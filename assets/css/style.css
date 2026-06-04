@@ -47,9 +47,10 @@
 html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
 body {
   margin: 0; font-family: var(--font); color: var(--ink); background: var(--bg);
-  line-height: 1.65; font-size: 16px; letter-spacing: -.01em;
+  line-height: 1.8; font-size: 16px; letter-spacing: -.01em;
   -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility;
 }
+p { line-height: 1.85; }
 img, svg { max-width: 100%; display: block; }
 a { color: var(--accent-strong); text-decoration: none; }
 a:hover { text-decoration: underline; }
