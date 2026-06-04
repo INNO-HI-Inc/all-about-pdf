@@ -20,7 +20,7 @@
   <meta name="twitter:card" content="summary_large_image">
   <link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
   <link rel="manifest" href="../site.webmanifest">
-  <meta name="theme-color" content="#3d6dfb">
+  <meta name="theme-color" content="#6c5ce7">
   <link rel="stylesheet" href="../assets/css/style.css">
   <script type="application/ld+json">[{"@context":"https://schema.org","@type":"WebApplication","name":"PDF 페이지 번호 넣기 - PDF의 모든 것","url":"https://inno-hi-inc.github.io/all-about-pdf/page-numbers/","applicationCategory":"UtilitiesApplication","operatingSystem":"All","browserRequirements":"Requires JavaScript","inLanguage":"ko","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"KRW"},"featureList":["위치·형식 선택","시작 번호 지정","표지 제외"],"publisher":{"@type":"Organization","name":"PDF의 모든 것","url":"https://inno-hi-inc.github.io/all-about-pdf/"}},{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"홈","item":"https://inno-hi-inc.github.io/all-about-pdf/"},{"@type":"ListItem","position":2,"name":"PDF 페이지 번호 넣기","item":"https://inno-hi-inc.github.io/all-about-pdf/page-numbers/"}]}]</script>
 </head>
@@ -43,14 +43,14 @@
         </div>
       </div>
       <div class="tool" data-tool="page-numbers">
-      <div class="dropzone" id="aap-drop" tabindex="0" role="button" aria-label="PDF 파일 선택 또는 끌어다 놓기">
-        <input type="file" id="aap-file" accept="application/pdf" hidden>
+      <div class="dropzone js-drop" tabindex="0" role="button" aria-label="PDF 파일 선택 또는 끌어다 놓기">
+        <input type="file" class="js-file" accept="application/pdf" hidden>
         <svg class="dropzone__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 16V4M12 4l-4 4M12 4l4 4"/><path d="M4 16v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg>
         <p class="dropzone__title">번호를 넣을 PDF를 끌어다 놓으세요</p>
         <p class="dropzone__hint">또는 <span class="link">파일 선택</span> · 파일은 내 브라우저에서만 처리됩니다</p>
       </div>
-      <p class="pagecount" id="aap-pagecount"></p>
-      <ul class="filelist" id="aap-files"></ul>
+      <p class="pagecount js-pagecount"></p>
+      <ul class="filelist js-files"></ul>
       <div class="options">
   <div class="option-row">
     <div class="option">
@@ -79,9 +79,9 @@
   </div>
   <label class="checkbox"><input type="checkbox" id="pn-skip"> 표지(첫 페이지)는 번호 제외</label>
 </div>
-      <div class="actions"><button class="btn btn--primary btn--lg btn--block" id="aap-run" disabled>페이지 번호 넣기</button></div>
-      <div class="progress" id="aap-progress" hidden><div class="progress__bar" id="aap-bar"></div><span class="progress__text" id="aap-progress-text"></span></div>
-      <div class="result" id="aap-result" hidden></div>
+      <div class="actions"><button class="btn btn--primary btn--lg btn--block js-run" disabled>페이지 번호 넣기</button></div>
+      <div class="progress js-progress" hidden><div class="progress__bar js-bar"></div><span class="progress__text js-ptext"></span></div>
+      <div class="result js-result" hidden></div>
       <noscript><p class="callout callout--warn" style="margin-top:16px"><span class="callout__ic">ℹ️</span><span>이 도구는 자바스크립트가 필요합니다. 브라우저의 자바스크립트를 켜 주세요. 파일은 여전히 서버로 전송되지 않고 내 브라우저에서만 처리됩니다.</span></p></noscript>
     </div>
       <section class="section section--tight prose">

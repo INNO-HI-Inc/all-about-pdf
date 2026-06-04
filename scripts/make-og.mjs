@@ -10,7 +10,7 @@ const OUT = join(dirname(fileURLToPath(import.meta.url)), '..', 'assets', 'img',
 const HTML = `<!doctype html><html><head><meta charset="utf-8"><style>
 *{margin:0;box-sizing:border-box}
 body{font-family:-apple-system,'Apple SD Gothic Neo','Noto Sans KR',sans-serif}
-.card{width:1200px;height:630px;background:linear-gradient(135deg,#3d6dfb 0%,#2b54e0 100%);
+.card{width:1200px;height:630px;background:linear-gradient(135deg,#6c5ce7 0%,#9b5cf0 48%,#ff5d7e 120%);
   color:#fff;padding:78px;display:flex;flex-direction:column;justify-content:center;position:relative;overflow:hidden}
 .card::after{content:'';position:absolute;right:-120px;top:-120px;width:420px;height:420px;border-radius:50%;background:rgba(255,255,255,.08)}
 .brand{display:flex;align-items:center;gap:16px;margin-bottom:30px}

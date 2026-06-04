@@ -2,15 +2,9 @@
 document.addEventListener('DOMContentLoaded', function () {
   if (!document.querySelector('[data-tool="extract"]')) return;
   ToolCore.init({
-    tool: 'extract', multiple: false,
-    onFiles: async function (files) {
-      if (!files.length) return;
-      var n = await PDFEngine.getPageCount(files[0]);
-      var el = UI.qs('#aap-pagecount');
-      if (el) el.textContent = n ? ('총 ' + n + '페이지') : '';
-    },
-    readOptions: function () {
-      var el = UI.qs('#extract-pages');
+    tool: 'extract', multiple: false, pageCount: true,
+    readOptions: function (root) {
+      var el = root.querySelector('#extract-pages');
       return { pages: el ? el.value : '' };
     },
     validate: function (files, o) {

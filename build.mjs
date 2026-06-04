@@ -182,7 +182,8 @@ function footer(rel) {
 
 function page({ title, desc, canonical, ogTitle, rel, jsonld, main, withScripts, headExtra, bodyClass }) {
   const ld = jsonld ? `\n  <script type="application/ld+json">${JSON.stringify(jsonld)}</script>` : '';
-  const scripts = withScripts ? `
+  const toolList = withScripts ? (Array.isArray(withScripts) ? withScripts : [withScripts]) : [];
+  const scripts = toolList.length ? `
   <script>window.AAP_BASE='${rel}';</script>
   <script src="${rel}assets/vendor/pdf-lib.min.js" defer></script>
   <script src="${rel}assets/vendor/pdf.min.js" defer></script>
@@ -190,7 +191,7 @@ function page({ title, desc, canonical, ogTitle, rel, jsonld, main, withScripts,
   <script src="${rel}assets/js/ui.js" defer></script>
   <script src="${rel}assets/js/pdf-engine.js" defer></script>
   <script src="${rel}assets/js/tool-core.js" defer></script>
-  <script src="${rel}assets/js/tools/${withScripts}.js" defer></script>` : '';
+${toolList.map((s) => `  <script src="${rel}assets/js/tools/${s}.js" defer></script>`).join('\n')}` : '';
   return `<!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -213,7 +214,7 @@ function page({ title, desc, canonical, ogTitle, rel, jsonld, main, withScripts,
   <meta name="twitter:card" content="summary_large_image">
   <link rel="icon" href="${rel}assets/img/favicon.svg" type="image/svg+xml">
   <link rel="manifest" href="${rel}site.webmanifest">
-  <meta name="theme-color" content="#3d6dfb">
+  <meta name="theme-color" content="#6c5ce7">
   <link rel="stylesheet" href="${rel}assets/css/style.css">${headExtra || ''}${ld}
 </head>
 <body${bodyClass ? ` class="${bodyClass}"` : ''}>
@@ -229,20 +230,22 @@ ${footer(rel)}${scripts}
 }
 
 // ───────── 도구 위젯 ─────────
-function widget(t) {
-  const pc = t.pagecount ? `\n      <p class="pagecount" id="aap-pagecount"></p>` : '';
-  return `<div class="tool" data-tool="${t.slug}">
-      <div class="dropzone" id="aap-drop" tabindex="0" role="button" aria-label="PDF 파일 선택 또는 끌어다 놓기">
-        <input type="file" id="aap-file" accept="application/pdf" ${t.multiple ? 'multiple ' : ''}hidden>
+function widget(t, opts) {
+  opts = opts || {};
+  const extraClass = opts.class ? ' ' + opts.class : '';
+  const pc = t.pagecount ? `\n      <p class="pagecount js-pagecount"></p>` : '';
+  return `<div class="tool${extraClass}" data-tool="${t.slug}">
+      <div class="dropzone js-drop" tabindex="0" role="button" aria-label="PDF 파일 선택 또는 끌어다 놓기">
+        <input type="file" class="js-file" accept="application/pdf" ${t.multiple ? 'multiple ' : ''}hidden>
         <svg class="dropzone__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 16V4M12 4l-4 4M12 4l4 4"/><path d="M4 16v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg>
         <p class="dropzone__title">${t.dropTitle}</p>
         <p class="dropzone__hint">또는 <span class="link">파일 선택</span> · 파일은 내 브라우저에서만 처리됩니다</p>
       </div>${pc}
-      <ul class="filelist" id="aap-files"></ul>
+      <ul class="filelist js-files"></ul>
       ${t.options}
-      <div class="actions"><button class="btn btn--primary btn--lg btn--block" id="aap-run" disabled>${t.runLabel}</button></div>
-      <div class="progress" id="aap-progress" hidden><div class="progress__bar" id="aap-bar"></div><span class="progress__text" id="aap-progress-text"></span></div>
-      <div class="result" id="aap-result" hidden></div>
+      <div class="actions"><button class="btn btn--primary btn--lg btn--block js-run" disabled>${t.runLabel}</button></div>
+      <div class="progress js-progress" hidden><div class="progress__bar js-bar"></div><span class="progress__text js-ptext"></span></div>
+      <div class="result js-result" hidden></div>
       <noscript><p class="callout callout--warn" style="margin-top:16px"><span class="callout__ic">ℹ️</span><span>이 도구는 자바스크립트가 필요합니다. 브라우저의 자바스크립트를 켜 주세요. 파일은 여전히 서버로 전송되지 않고 내 브라우저에서만 처리됩니다.</span></p></noscript>
     </div>`;
 }
@@ -339,110 +342,132 @@ function buildHome() {
   const rel = '';
   const canonical = SITE_URL + '/';
 
-  const TOOL_SUB = {
-    merge: '여러 PDF를 순서대로 한 파일로',
-    split: '낱장 또는 범위로 쪼개기',
-    unlock: '인쇄·편집 제한·비밀번호 제거',
-    extract: '원하는 페이지만 골라 저장',
-    delete: '필요 없는 페이지 빼고 저장',
-    'to-image': 'PNG·JPG 이미지로 변환',
-    'page-numbers': '쪽번호 위치·형식 지정 삽입',
-  };
-  const FEAT = { merge: true, 'to-image': true };
-  const cards = TOOLS.map((t) => {
-    const feat = FEAT[t.slug] ? ' bcard--feat' : '';
-    const tag = t.slug === 'merge' ? '<span class="bcard__tag">인기</span>' : '';
-    return `<a class="bcard${feat}" href="${t.slug}/">${tag}
-          <span class="bcard__emoji">${t.emoji}</span>
-          <span class="bcard__name">${read(t.slug).h1}</span>
-          <span class="bcard__sub">${esc(TOOL_SUB[t.slug] || '')}</span>
-          <span class="bcard__go">바로 사용 →</span>
-        </a>`;
-  }).join('\n        ');
+  // 상단 기능 카드 4종 (도구로 연결)
+  const FCARDS = [
+    { slug: 'merge', emoji: '🔗', t: 'PDF 합치기', d: '여러 PDF 파일을 하나로 합쳐 깔끔하게 정리하세요.', c: 'co' },
+    { slug: 'split', emoji: '✂️', t: 'PDF 분할', d: '원하는 페이지 범위로 PDF를 나눠 저장하세요.', c: 'pp' },
+    { slug: 'to-image', emoji: '🖼️', t: '이미지 변환', d: 'PDF를 PNG·JPG 이미지로 빠르게 바꿔요.', c: 'pp' },
+    { slug: 'unlock', emoji: '🔓', t: '안전한 잠금해제', d: '인쇄·편집 제한이나 비밀번호를 제거해요.', c: 'co' },
+  ];
+  const fcards = FCARDS.map((f) => `<a class="fcard" href="${f.slug}/">
+          <span class="fcard__ic ic-${f.c}">${f.emoji}</span>
+          <span class="fcard__t">${f.t}</span>
+          <span class="fcard__d">${f.d}</span>
+          <span class="fcard__go go-${f.c}">바로가기 →</span>
+        </a>`).join('\n        ');
 
-  const kw = ['PDF 합치기', 'PDF 분할', 'PDF 잠금해제', 'PDF JPG 변환', 'PDF 페이지 번호', 'PDF 페이지 추출', 'PDF 페이지 삭제', 'PDF 병합', '이미지 변환'];
-  const mItem = kw.map((k) => `<span>${k}<span class="x">✦</span></span>`).join('');
-  const marquee = `<div class="marquee" aria-hidden="true"><div class="marquee__track">${mItem}${mItem}</div></div>`;
+  // 전체 도구 칩
+  const chips = TOOLS.map((t) => `<a class="tchip" href="${t.slug}/"><span>${t.emoji}</span> ${read(t.slug).h1}</a>`).join('\n          ');
 
-  const usps = c.uspCards.map((u) => `<span class="upill"><b>✓</b> ${esc(u.title)}</span>`).join('\n          ');
+  // 특별한 이유 4종
+  const WHY = [
+    ['💸', '무료로 사용', '모든 기능을 무료로 제공합니다.'],
+    ['♾️', '무제한 사용', '파일 크기·개수 제한 없이 쓸 수 있어요.'],
+    ['🔒', '브라우저 기반', '서버에 올리지 않고 내 기기에서 바로 처리.'],
+    ['🙂', '사용자 친화적', '직관적인 한국어 화면으로 누구나 쉽게.'],
+  ];
+  const whyItems = WHY.map((w, i) => `<div class="wcell">
+          <span class="wcell__ic ic-${i % 2 ? 'co' : 'pp'}">${w[0]}</span>
+          <div><b>${w[1]}</b><span>${w[2]}</span></div>
+        </div>`).join('\n        ');
+
   const faqs = c.faq.map((f) => `<details><summary>${esc(f.q)}</summary><div class="faq__a">${esc(f.a)}</div></details>`).join('\n          ');
 
+  // 히어로 일러스트
+  const art = `<div class="hart" aria-hidden="true">
+        <span class="hart__blob"></span>
+        <div class="hart__doc">
+          <span class="hart__tag">PDF</span>
+          <div class="hart__img"><svg viewBox="0 0 24 24" fill="none" stroke="#b9c0cf" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2.5"/><circle cx="8.5" cy="8.5" r="1.6"/><path d="M21 15l-5-5L5 21"/></svg></div>
+          <span class="hart__line"></span><span class="hart__line"></span><span class="hart__line w60"></span>
+        </div>
+        <div class="hart__scissors"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><line x1="20" y1="4" x2="8.12" y2="15.88"/><line x1="14.47" y1="14.48" x2="20" y2="20"/><line x1="8.12" y1="8.12" x2="12" y2="12"/></svg></div>
+        <div class="hart__pages"><span class="hart__pg"><b>1</b></span><span class="hart__pg"><b>2</b></span><span class="hart__pg"><b>3</b></span></div>
+        <div class="hart__plus"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+      </div>`;
+
   const jsonld = [
-    {
-      '@context': 'https://schema.org', '@type': 'WebSite',
-      name: BRAND, url: SITE_URL + '/', inLanguage: 'ko', description: c.metaDescription
-    },
-    {
-      '@context': 'https://schema.org', '@type': 'Organization',
-      name: BRAND, url: SITE_URL + '/', sameAs: [GITHUB_URL]
-    }
+    { '@context': 'https://schema.org', '@type': 'WebSite', name: BRAND, url: SITE_URL + '/', inLanguage: 'ko', description: c.metaDescription },
+    { '@context': 'https://schema.org', '@type': 'Organization', name: BRAND, url: SITE_URL + '/', sameAs: [GITHUB_URL] }
   ];
 
-  const main = `    <section class="bhero">
-      <span class="bhero__blob" aria-hidden="true"></span>
+  const main = `    <section class="hsec hhero">
+      <div class="container hhero__grid">
+        <div class="hhero__copy">
+          <h1>PDF를 쉽게<br><span class="pp">분할</span>하고 <span class="co">합치</span>세요</h1>
+          <p class="hhero__sub">${esc(c.heroSubtitle)}</p>
+          <div class="hhero__btns">
+            <a class="hbtn hbtn--pp" href="#t-split">✂️ PDF 분할하기</a>
+            <a class="hbtn hbtn--co" href="#t-merge">🔗 PDF 합치기</a>
+          </div>
+          <div class="hfeats">
+            <div class="hfeat"><span class="hfeat__ic ic-pp">🛡️</span><div><b>100% 안전</b><span>파일은 서버에 저장되지 않습니다.</span></div></div>
+            <div class="hfeat"><span class="hfeat__ic ic-co">⚡</span><div><b>빠른 처리</b><span>내 기기에서 즉시 처리합니다.</span></div></div>
+            <div class="hfeat"><span class="hfeat__ic ic-pp">📱</span><div><b>모든 기기 지원</b><span>PC·모바일·태블릿에서 사용.</span></div></div>
+          </div>
+        </div>
+        ${art}
+      </div>
+    </section>
+
+    <section class="hsec hsec--tight">
       <div class="container">
-        <div class="sticker" aria-hidden="true">🔒 100% 내 기기 처리<small>파일 서버 미전송</small></div>
-        <div class="bhero__inner">
-          <span class="eyebrow"><span class="dot"></span> 파일을 서버에 올리지 않는 PDF 도구</span>
-          <h1>PDF 합치기·분할·변환,<br><span class="mark">올리지 말고</span> <span class="el">무료로</span></h1>
-          <p class="bhero__sub">${esc(c.heroSubtitle)}</p>
-          <div class="bhero__cta">
-            <a class="bbtn bbtn--solid" href="#tools">도구 둘러보기 ↓</a>
-            <a class="bbtn bbtn--ghost" href="#privacy">왜 안전한가요?</a>
-          </div>
-          <div class="bhero__usps">
-          ${usps}
-          </div>
+        <div class="fcards">
+        ${fcards}
         </div>
       </div>
     </section>
-    ${marquee}
-    <section class="btools" id="tools">
-      <div class="container">
-        <div class="sec-head">
-          <h2>필요한 도구를 골라보세요</h2>
-          <p>${esc(c.intro)}</p>
+
+    <section class="hsec" id="tools">
+      <div class="container hpanels">
+        <div class="hpanel hpanel--pp" id="t-split">
+          <h2 class="hpanel__title">PDF 분할하기</h2>
+          <p class="hpanel__sub">PDF의 페이지를 분할하여 필요한 부분만 추출하세요.</p>
+          ${widget(TOOL_BY['split'], { class: 'tw tw--pp' })}
         </div>
-        <div class="bento">
-        ${cards}
+        <div class="hpanel hpanel--co" id="t-merge">
+          <h2 class="hpanel__title">PDF 합치기</h2>
+          <p class="hpanel__sub">여러 PDF 파일을 하나의 파일로 합치세요.</p>
+          ${widget(TOOL_BY['merge'], { class: 'tw tw--co' })}
         </div>
       </div>
     </section>
-    <section class="bdark" id="privacy">
-      <div class="container"><div class="bdark__in">
-        <span class="eyebrow"><span class="dot"></span> ${esc(c.whyTitle)}</span>
-        <h2>당신의 파일은 <span class="mark">어디로도</span> 가지 않아요.</h2>
-        <p>${esc(c.why)}</p>
-        <div class="bchips">
-          <span class="bchip"><b>0</b> 서버 업로드</span>
-          <span class="bchip"><b>100%</b> 내 기기에서 처리</span>
-          <span class="bchip"><b>0원</b> 완전 무료·무제한</span>
+
+    <section class="hsec hsec--tight">
+      <div class="container">
+        <div class="sec-head center"><h2>모든 PDF 도구</h2><p>${esc(c.intro)}</p></div>
+        <div class="tchips">
+          ${chips}
         </div>
-      </div></div>
+      </div>
     </section>
-    <section class="faq-wrap">
+
+    <section class="hsec hwhy">
+      <div class="container">
+        <div class="sec-head center"><h2>${esc(c.whyTitle)}</h2><p>${esc(c.why)}</p></div>
+        <div class="wrow">
+        ${whyItems}
+        </div>
+      </div>
+    </section>
+
+    <section class="hsec">
       <div class="container container--read">
-        <div class="sec-head"><h2>자주 묻는 질문</h2></div>
+        <div class="sec-head center"><h2>자주 묻는 질문</h2></div>
         <div class="faq">
           ${faqs}
         </div>
       </div>
-    </section>
-    <section class="bcta">
-      <div class="container"><div class="bcta__in">
-        <h2>지금 바로, 설치 없이 시작하세요</h2>
-        <a class="bbtn bbtn--ghost" href="merge/">PDF 합치기부터 →</a>
-      </div></div>
     </section>`;
 
   const html = page({
     title: c.metaTitle, desc: c.metaDescription, canonical,
-    ogTitle: c.metaTitle, rel, jsonld, main, withScripts: null,
+    ogTitle: c.metaTitle, rel, jsonld, main, withScripts: ['split', 'merge'],
     bodyClass: 'home',
-    headExtra: '\n  <link rel="preload" href="assets/vendor/fonts/a2z-Black.woff2" as="font" type="font/woff2" crossorigin>\n  <link rel="stylesheet" href="assets/css/home.css">'
+    headExtra: '\n  <link rel="preload" href="assets/vendor/fonts/a2z-Bold.woff2" as="font" type="font/woff2" crossorigin>\n  <link rel="stylesheet" href="assets/css/home.css">'
   });
   writeFileSync(join(ROOT, 'index.html'), html);
-  console.log('✓ /index.html (bold)');
+  console.log('✓ /index.html (PDFix-style)');
 }
 
 // ───────── 소개 페이지 ─────────

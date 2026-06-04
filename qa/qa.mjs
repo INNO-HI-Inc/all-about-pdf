@@ -59,13 +59,14 @@ function bufToB64(buf) { return Buffer.from(buf).toString('base64'); }
 async function ready(page) {
   await page.waitForFunction(() => window.PDFLib && window.JSZip && window.PDFEngine && window.ToolCore, null, { timeout: 10000 });
 }
-async function setAndRun(page, files, before) {
-  await page.setInputFiles('#aap-file', files);
-  await page.waitForSelector('#aap-run:not([disabled])', { timeout: 8000 });
+async function setAndRun(page, files, before, scope) {
+  var pre = scope ? scope + ' ' : '';
+  await page.setInputFiles(pre + '.js-file', files);
+  await page.waitForSelector(pre + '.js-run:not([disabled])', { timeout: 8000 });
   if (before) await before();
   const [download] = await Promise.all([
     page.waitForEvent('download', { timeout: 45000 }),
-    page.click('#aap-run')
+    page.click(pre + '.js-run')
   ]);
   const p = await download.path();
   return { buf: fs.readFileSync(p), filename: download.suggestedFilename() };
@@ -156,6 +157,20 @@ async function testUnlock(ctx) {
   await page.close();
 }
 
+async function testHomeWidgets(ctx) {
+  const page = await ctx.newPage(); await page.goto(BASE + '/'); await ready(page);
+  const b = await page.evaluate(GEN, [[3, 'A'], [2, 'B']]);
+  // 홈에 임베드된 합치기 위젯 (인스턴스 스코프)
+  const r1 = await setAndRun(page, [b64ToFile(b[0], 'a.pdf'), b64ToFile(b[1], 'b.pdf')], null, '[data-tool="merge"]');
+  const c1 = await page.evaluate(COUNT, bufToB64(r1.buf));
+  c1 === 5 ? pass('홈 합치기 위젯', '3+2 → ' + c1) : fail('홈 합치기 위젯', '기대 5, 실제 ' + c1);
+  // 홈 분할 위젯 (낱장)
+  const r2 = await setAndRun(page, [b64ToFile(b[0], 'a.pdf')], null, '[data-tool="split"]');
+  const n2 = (await page.evaluate(ZIP, bufToB64(r2.buf))).length;
+  n2 === 3 ? pass('홈 분할 위젯', '3페이지 → ZIP ' + n2) : fail('홈 분할 위젯', '기대 3, 실제 ' + n2);
+  await page.close();
+}
+
 // ───────── 구조 감사 ─────────
 async function auditPage(ctx, path) {
   const page = await ctx.newPage();
@@ -211,6 +226,7 @@ async function auditPage(ctx, path) {
     console.log('▶ 기능 실측...');
     await testMerge(ctx); await testSplit(ctx); await testExtract(ctx);
     await testDelete(ctx); await testToImage(ctx); await testPageNumbers(ctx); await testUnlock(ctx);
+    await testHomeWidgets(ctx);
     console.log('▶ 구조 감사...');
     for (const p of PAGES) await auditPage(ctx, p);
   } catch (e) {

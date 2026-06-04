@@ -3,9 +3,9 @@ document.addEventListener('DOMContentLoaded', function () {
   if (!document.querySelector('[data-tool="unlock"]')) return;
   ToolCore.init({
     tool: 'unlock', multiple: false,
-    readOptions: function () {
-      var pw = UI.qs('#unlock-pw');
-      var raster = UI.qs('#unlock-raster');
+    readOptions: function (root) {
+      var pw = root.querySelector('#unlock-pw');
+      var raster = root.querySelector('#unlock-raster');
       return { password: pw ? pw.value : '', raster: raster ? raster.checked : false };
     },
     run: async function (files, o, ctx) {
@@ -17,7 +17,6 @@ document.addEventListener('DOMContentLoaded', function () {
           try {
             blob = await PDFEngine.unlock(file);
           } catch (e) {
-            // 열람암호가 걸린 경우 → 래스터 폴백(비번 필요할 수 있음)
             blob = await PDFEngine.unlockRaster(file, o.password, 2, ctx.onProgress);
           }
         }

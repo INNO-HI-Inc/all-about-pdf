@@ -2,18 +2,12 @@
 document.addEventListener('DOMContentLoaded', function () {
   if (!document.querySelector('[data-tool="to-image"]')) return;
   ToolCore.init({
-    tool: 'to-image', multiple: false,
-    onFiles: async function (files) {
-      if (!files.length) return;
-      var n = await PDFEngine.getPageCount(files[0]);
-      var el = UI.qs('#aap-pagecount');
-      if (el) el.textContent = n ? ('총 ' + n + '페이지') : '';
-    },
-    readOptions: function () {
-      var fmt = document.querySelector('input[name="img-format"]:checked');
-      var scale = UI.qs('#img-scale');
-      var mode = document.querySelector('input[name="img-pages-mode"]:checked');
-      var pages = UI.qs('#img-pages');
+    tool: 'to-image', multiple: false, pageCount: true,
+    readOptions: function (root) {
+      var fmt = root.querySelector('input[name="img-format"]:checked');
+      var scale = root.querySelector('#img-scale');
+      var mode = root.querySelector('input[name="img-pages-mode"]:checked');
+      var pages = root.querySelector('#img-pages');
       return {
         format: fmt ? fmt.value : 'png',
         scale: scale ? parseInt(scale.value, 10) || 2 : 2,

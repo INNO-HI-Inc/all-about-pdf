@@ -2,18 +2,12 @@
 document.addEventListener('DOMContentLoaded', function () {
   if (!document.querySelector('[data-tool="page-numbers"]')) return;
   ToolCore.init({
-    tool: 'page-numbers', multiple: false,
-    onFiles: async function (files) {
-      if (!files.length) return;
-      var n = await PDFEngine.getPageCount(files[0]);
-      var el = UI.qs('#aap-pagecount');
-      if (el) el.textContent = n ? ('총 ' + n + '페이지') : '';
-    },
-    readOptions: function () {
-      var pos = UI.qs('#pn-position');
-      var start = UI.qs('#pn-start');
-      var skip = UI.qs('#pn-skip');
-      var fmt = document.querySelector('input[name="pn-format"]:checked');
+    tool: 'page-numbers', multiple: false, pageCount: true,
+    readOptions: function (root) {
+      var pos = root.querySelector('#pn-position');
+      var start = root.querySelector('#pn-start');
+      var skip = root.querySelector('#pn-skip');
+      var fmt = root.querySelector('input[name="pn-format"]:checked');
       return {
         position: pos ? pos.value : 'bottom-center',
         startAt: start ? (parseInt(start.value, 10) || 1) : 1,

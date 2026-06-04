@@ -1,12 +1,11 @@
 /*!
- * PDF의 모든 것 — ToolCore: 도구 위젯 공통 컨트롤러
- * 페이지의 표준 마크업(아래 ID)을 찾아 드롭존·파일목록·실행·진행률·결과를 처리한다.
- *   #aap-drop(드롭존) #aap-file(input) #aap-files(ul) #aap-run(버튼)
- *   #aap-progress #aap-bar #aap-progress-text #aap-result  [선택]#aap-pagecount
+ * PDF의 모든 것 — ToolCore: 도구 위젯 공통 컨트롤러 (인스턴스 단위)
+ * 한 페이지에 여러 위젯이 공존할 수 있도록 각 위젯의 루트([data-tool]) 안에서
+ * 클래스 훅(.js-*)으로 요소를 찾는다.
+ *   .js-drop .js-file .js-files .js-run .js-progress .js-bar .js-ptext .js-result [.js-pagecount]
  *
- * 사용: ToolCore.init({ tool, multiple, reorder, runLabel,
- *   readOptions(): opts, validate(files,opts): err|null,
- *   onFiles(files), run(files,opts,ctx): result })
+ * 사용: ToolCore.init({ tool, multiple, reorder, pageCount, root?,
+ *   readOptions(): opts, validate(files,opts): err|null, run(files,opts,ctx): result })
  * result: {type:'blob',blob,filename} | {type:'zip',items,zipName} | {type:'files',items} | {type:'message',html}
  */
 (function (global) {
@@ -21,11 +20,15 @@
 
   function init(config) {
     var d = document;
-    var drop = UI.qs('#aap-drop'), input = UI.qs('#aap-file'),
-      filelist = UI.qs('#aap-files'), runBtn = UI.qs('#aap-run'),
-      progress = UI.qs('#aap-progress'), bar = UI.qs('#aap-bar'),
-      ptext = UI.qs('#aap-progress-text'), result = UI.qs('#aap-result'),
-      pagecount = UI.qs('#aap-pagecount');
+    var root = config.root
+      ? (typeof config.root === 'string' ? d.querySelector(config.root) : config.root)
+      : d.querySelector('[data-tool="' + config.tool + '"]');
+    if (!root) return null;
+    var q = function (cls) { return root.querySelector('.' + cls); };
+
+    var drop = q('js-drop'), input = q('js-file'), filelist = q('js-files'), runBtn = q('js-run'),
+      progress = q('js-progress'), bar = q('js-bar'), ptext = q('js-ptext'),
+      result = q('js-result'), pagecount = q('js-pagecount');
     if (!drop || !input || !runBtn) return null;
 
     var state = { files: [] };
@@ -61,10 +64,19 @@
       runBtn.disabled = state.files.length === 0;
     }
 
+    function updatePageCount() {
+      if (!pagecount || !config.pageCount) return;
+      pagecount.textContent = '';
+      if (!state.files.length || !global.PDFEngine || !PDFEngine.getPageCount) return;
+      PDFEngine.getPageCount(state.files[0]).then(function (n) {
+        if (n) pagecount.textContent = '총 ' + n + '페이지';
+      });
+    }
+
     function changed() {
       result.hidden = true; result.innerHTML = '';
-      if (pagecount) pagecount.textContent = '';
       render();
+      updatePageCount();
       if (config.onFiles) { try { config.onFiles(state.files); } catch (e) { /* noop */ } }
     }
 
@@ -140,7 +152,7 @@
 
     runBtn.addEventListener('click', async function () {
       if (state.files.length === 0) return;
-      var opts = config.readOptions ? config.readOptions() : {};
+      var opts = config.readOptions ? config.readOptions(root) : {};
       if (config.validate) {
         var err = config.validate(state.files, opts);
         if (err) { UI.toast(err, 'error'); return; }
@@ -158,7 +170,7 @@
     });
 
     render();
-    return { state: state };
+    return { state: state, root: root };
   }
 
   global.ToolCore = { init: init };
