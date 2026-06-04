@@ -1,7 +1,15 @@
 /*!
  * PDF의 모든 것 (all-about-pdf) — 디자인 시스템
- * 외부 요청 0: 시스템 폰트 스택만 사용(프라이버시 USP + 빠른 LCP).
+ * 외부 요청 0: 폰트도 로컬 동봉(에이투지체 + 시스템 폴백).
  */
+
+/* ── 에이투지체(A2Z) 로컬 동봉 — 외부 요청 0. 무료 폰트, 원저작자 라이선스 별도 ── */
+@font-face { font-family: 'AtoZ'; font-weight: 400; font-style: normal; font-display: swap; src: url(../vendor/fonts/a2z-Regular.woff2) format('woff2'); }
+@font-face { font-family: 'AtoZ'; font-weight: 500; font-style: normal; font-display: swap; src: url(../vendor/fonts/a2z-Medium.woff2) format('woff2'); }
+@font-face { font-family: 'AtoZ'; font-weight: 600; font-style: normal; font-display: swap; src: url(../vendor/fonts/a2z-SemiBold.woff2) format('woff2'); }
+@font-face { font-family: 'AtoZ'; font-weight: 700; font-style: normal; font-display: swap; src: url(../vendor/fonts/a2z-Bold.woff2) format('woff2'); }
+@font-face { font-family: 'AtoZ'; font-weight: 800; font-style: normal; font-display: swap; src: url(../vendor/fonts/a2z-ExtraBold.woff2) format('woff2'); }
+@font-face { font-family: 'AtoZ'; font-weight: 900; font-style: normal; font-display: swap; src: url(../vendor/fonts/a2z-Black.woff2) format('woff2'); }
 
 /* ── 토큰 ───────────────────────────────────────────── */
 :root {
@@ -28,7 +36,7 @@
   --shadow-sm: 0 1px 2px rgba(20, 30, 60, .06), 0 1px 3px rgba(20, 30, 60, .04);
   --shadow: 0 6px 24px rgba(25, 35, 70, .08);
   --shadow-lg: 0 16px 48px rgba(25, 35, 70, .12);
-  --font: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo',
+  --font: 'AtoZ', 'Pretendard', -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo',
     'Noto Sans KR', 'Malgun Gothic', 'Segoe UI', Roboto, sans-serif;
   --maxw: 1080px;
   --readw: 760px;

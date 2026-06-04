@@ -27,3 +27,7 @@ SOFTWARE.
 - pdf.js (Apache-2.0) — https://github.com/mozilla/pdf.js
 - JSZip (MIT or GPLv3) — https://github.com/Stuk/jszip
 각 라이브러리의 원 저작권 및 라이선스는 해당 프로젝트에 귀속됩니다.
+
+포함 폰트:
+- 에이투지체 (A2Z) — 무료 폰트. 저작권 및 사용 범위는 원저작자에게 귀속됩니다.
+  (assets/vendor/fonts/) 폰트 재배포·사용 조건은 원저작자 라이선스를 따릅니다.

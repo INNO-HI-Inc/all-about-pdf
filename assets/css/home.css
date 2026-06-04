@@ -1,0 +1,147 @@
+/*!
+ * PDF의 모든 것 — 홈 전용 과감한 디자인 (네오브루탈리즘 × 일렉트릭)
+ * body.home 에서만 적용. 도구 페이지에는 영향 없음.
+ */
+.home {
+  --paper: #f3f1ea;
+  --ink: #0e1116;
+  --el: #1f4cff;       /* 일렉트릭 코발트 */
+  --el-deep: #1536c9;
+  --lemon: #e2ff45;    /* 포인트 */
+  --pink: #ff5d8f;
+  background: var(--paper);
+  --line: #0e1116;
+}
+.home .container { max-width: 1140px; }
+.home main { overflow: clip; }
+
+/* 헤더를 과감 톤에 맞춰 살짝 조정 */
+.home .site-header { background: rgba(243, 241, 234, .82); border-bottom: 2px solid var(--ink); }
+.home .brand { color: var(--ink); }
+.home .brand__logo { background: var(--ink); border-radius: 9px; }
+.home .brand__dot { color: var(--el); }
+.home .site-nav a { color: var(--ink); font-weight: 700; }
+.home .site-nav a:hover { background: var(--el); color: #fff; }
+
+/* ── HERO ─────────────────────────────────────────── */
+.bhero { position: relative; padding: 64px 0 28px; }
+.bhero__blob {
+  position: absolute; z-index: 0; width: 540px; height: 540px; border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, var(--el), transparent 62%);
+  opacity: .16; right: -120px; top: -80px; filter: blur(8px); pointer-events: none;
+}
+.bhero__inner { position: relative; z-index: 1; max-width: 880px; }
+.eyebrow {
+  display: inline-flex; align-items: center; gap: 8px; background: var(--ink); color: #fff;
+  font-weight: 800; font-size: .92rem; padding: 9px 16px; border-radius: 999px; margin-bottom: 22px;
+  animation: rise .6s .02s both;
+}
+.eyebrow .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--lemon); box-shadow: 0 0 0 0 var(--lemon); animation: pulse 1.8s infinite; }
+.bhero h1 {
+  font-weight: 900; font-size: clamp(2.5rem, 7.4vw, 5.3rem); line-height: .98; letter-spacing: -.035em;
+  color: var(--ink); margin: 0 0 22px; animation: rise .7s .08s both;
+}
+.bhero h1 .el { color: var(--el); }
+.bhero h1 .mark {
+  background: linear-gradient(transparent 58%, var(--lemon) 58%); padding: 0 .06em; border-radius: 2px;
+  box-decoration-break: clone; -webkit-box-decoration-break: clone;
+}
+.bhero__sub { font-size: clamp(1.05rem, 2.3vw, 1.32rem); color: #3a414d; font-weight: 500; max-width: 600px; margin: 0 0 30px; animation: rise .7s .16s both; }
+.bhero__cta { display: flex; flex-wrap: wrap; gap: 12px; animation: rise .7s .24s both; }
+.bbtn {
+  display: inline-flex; align-items: center; gap: 9px; font-family: inherit; font-weight: 800; font-size: 1.04rem;
+  padding: 15px 26px; border-radius: 14px; border: 2px solid var(--ink); cursor: pointer; text-decoration: none;
+  transition: transform .08s ease, box-shadow .12s ease, background .12s;
+}
+.bbtn--solid { background: var(--el); color: #fff; box-shadow: 5px 5px 0 var(--ink); }
+.bbtn--solid:hover { transform: translate(-2px, -2px); box-shadow: 7px 7px 0 var(--ink); text-decoration: none; }
+.bbtn--ghost { background: #fff; color: var(--ink); box-shadow: 5px 5px 0 var(--ink); }
+.bbtn--ghost:hover { transform: translate(-2px, -2px); box-shadow: 7px 7px 0 var(--ink); background: var(--lemon); text-decoration: none; }
+.bbtn:active { transform: translate(0, 0); box-shadow: 2px 2px 0 var(--ink); }
+
+.bhero__usps { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 30px; animation: rise .7s .32s both; }
+.upill {
+  display: inline-flex; align-items: center; gap: 8px; background: #fff; border: 2px solid var(--ink);
+  border-radius: 999px; padding: 9px 16px; font-weight: 700; font-size: .92rem; color: var(--ink);
+}
+.upill b { color: var(--el); }
+
+.sticker {
+  position: absolute; z-index: 2; right: 18px; top: 70px; transform: rotate(-8deg);
+  background: var(--lemon); border: 2.5px solid var(--ink); border-radius: 16px; padding: 14px 18px;
+  font-weight: 900; font-size: 1.02rem; color: var(--ink); box-shadow: 5px 5px 0 var(--ink);
+  text-align: center; line-height: 1.25; max-width: 200px; animation: pop .6s .5s both;
+}
+.sticker small { display: block; font-weight: 700; font-size: .76rem; margin-top: 2px; }
+@media (max-width: 900px) { .sticker { display: none; } }
+
+/* ── 키워드 마퀴 ──────────────────────────────────── */
+.marquee {
+  background: var(--el); border-top: 2px solid var(--ink); border-bottom: 2px solid var(--ink);
+  overflow: hidden; white-space: nowrap; padding: 14px 0; margin-top: 26px;
+}
+.marquee__track { display: inline-flex; gap: 0; will-change: transform; animation: slide 26s linear infinite; }
+.marquee span { font-weight: 900; font-size: clamp(1.1rem, 2.4vw, 1.7rem); color: #fff; letter-spacing: -.01em; padding: 0 14px; }
+.marquee span .x { color: var(--lemon); margin: 0 6px; }
+
+/* ── 도구 벤토 그리드 ─────────────────────────────── */
+.btools { padding: 60px 0 24px; }
+.sec-head { margin-bottom: 26px; }
+.sec-head h2 { font-weight: 900; font-size: clamp(1.7rem, 4vw, 2.6rem); letter-spacing: -.03em; color: var(--ink); margin: 0 0 6px; }
+.sec-head p { color: #57606e; font-weight: 600; margin: 0; }
+.bento { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+@media (min-width: 720px) { .bento { grid-template-columns: repeat(6, 1fr); } }
+.bcard {
+  position: relative; display: flex; flex-direction: column; gap: 6px; background: #fff;
+  border: 2.5px solid var(--ink); border-radius: 18px; padding: 22px 20px; text-decoration: none;
+  color: var(--ink); box-shadow: 5px 5px 0 var(--ink); transition: transform .1s ease, box-shadow .12s ease, background .12s;
+  grid-column: span 2;
+}
+@media (min-width: 720px) {
+  .bcard { grid-column: span 2; }
+  .bcard--feat { grid-column: span 3; }   /* 합치기·변환 크게 */
+}
+.bcard:hover { transform: translate(-3px, -3px); box-shadow: 9px 9px 0 var(--ink); background: var(--el); color: #fff; text-decoration: none; }
+.bcard:hover .bcard__sub { color: rgba(255, 255, 255, .85); }
+.bcard:hover .bcard__go { color: var(--lemon); }
+.bcard__emoji { font-size: 2.3rem; line-height: 1; }
+.bcard__name { font-weight: 900; font-size: 1.28rem; letter-spacing: -.02em; }
+.bcard__sub { font-size: .92rem; color: #57606e; font-weight: 500; line-height: 1.5; }
+.bcard__go { margin-top: auto; font-weight: 800; font-size: .92rem; color: var(--el); }
+.bcard__tag { position: absolute; top: 14px; right: 14px; font-size: .68rem; font-weight: 800; background: var(--lemon); color: var(--ink); border: 1.5px solid var(--ink); border-radius: 999px; padding: 3px 9px; }
+.bcard:hover .bcard__tag { background: var(--lemon); }
+
+/* ── 다크 대비 밴드(프라이버시) ───────────────────── */
+.bdark { background: var(--ink); color: #fff; border-top: 2px solid var(--ink); margin-top: 56px; position: relative; overflow: hidden; }
+.bdark::before { content: ''; position: absolute; inset: 0; background: radial-gradient(600px 300px at 80% -10%, rgba(31, 76, 255, .4), transparent 70%); }
+.bdark__in { position: relative; padding: 72px 0; max-width: 820px; }
+.bdark .eyebrow { background: rgba(255, 255, 255, .12); color: #fff; }
+.bdark h2 { font-weight: 900; font-size: clamp(1.9rem, 5vw, 3.2rem); letter-spacing: -.035em; line-height: 1.05; margin: 0 0 18px; }
+.bdark h2 .el { color: #6f8bff; }
+.bdark h2 .mark { background: linear-gradient(transparent 58%, var(--el) 58%); padding: 0 .05em; }
+.bdark p { color: #c4cbd8; font-size: 1.1rem; font-weight: 500; max-width: 660px; }
+.bchips { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 24px; }
+.bchip { display: inline-flex; align-items: center; gap: 8px; background: rgba(255, 255, 255, .07); border: 1.5px solid rgba(255, 255, 255, .18); border-radius: 999px; padding: 10px 16px; font-weight: 700; font-size: .92rem; }
+.bchip b { color: var(--lemon); }
+
+/* ── FAQ(과감 톤 오버라이드) ──────────────────────── */
+.home .faq-wrap { padding: 64px 0 24px; }
+.home .faq details { border: 2px solid var(--ink); border-radius: 14px; }
+.home .faq summary { font-weight: 800; }
+.home .faq summary::after { color: var(--el); }
+
+/* ── CTA 밴드 ─────────────────────────────────────── */
+.bcta { background: var(--el); border-top: 2px solid var(--ink); border-bottom: 2px solid var(--ink); }
+.bcta__in { padding: 60px 0; text-align: center; }
+.bcta h2 { color: #fff; font-weight: 900; font-size: clamp(1.8rem, 5vw, 3rem); letter-spacing: -.03em; margin: 0 0 22px; }
+.bcta .bbtn--ghost { box-shadow: 5px 5px 0 var(--ink); }
+
+/* ── 애니메이션 ───────────────────────────────────── */
+@keyframes rise { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
+@keyframes pop { from { opacity: 0; transform: rotate(-8deg) scale(.7); } to { opacity: 1; transform: rotate(-8deg) scale(1); } }
+@keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(226, 255, 69, .7); } 70% { box-shadow: 0 0 0 7px rgba(226, 255, 69, 0); } 100% { box-shadow: 0 0 0 0 rgba(226, 255, 69, 0); } }
+@keyframes slide { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+@media (prefers-reduced-motion: reduce) {
+  .bhero .eyebrow, .bhero h1, .bhero__sub, .bhero__cta, .bhero__usps, .sticker { animation: none !important; }
+  .marquee__track { animation: none !important; }
+}
