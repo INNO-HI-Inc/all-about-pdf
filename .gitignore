@@ -1,0 +1,12 @@
+# 의존성/빌드 캐시
+node_modules/
+.DS_Store
+*.log
+
+# QA 산출물(스크린샷·다운로드)
+/qa/_out/
+/qa/_downloads/
+
+# 에디터
+.vscode/
+.idea/

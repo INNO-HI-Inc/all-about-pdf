@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PDF 페이지 삭제 무료 | PDF의 모든 것</title>
+  <meta name="description" content="PDF 페이지 삭제, 지금 바로 무료로. 삭제할 번호만 입력하면 끝. 파일은 내 기기에서만 처리돼 업로드 없이 안전합니다.">
+  <link rel="canonical" href="https://inno-hi-inc.github.io/all-about-pdf/delete/">
+  <meta name="robots" content="index,follow">
+  <!-- 검색엔진 소유확인: 등록 후 아래 두 줄의 content 값을 채워 주석 해제 -->
+  <!-- <meta name="naver-site-verification" content=""> -->
+  <!-- <meta name="google-site-verification" content=""> -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="PDF의 모든 것">
+  <meta property="og:title" content="PDF 페이지 삭제 무료 - PDF의 모든 것">
+  <meta property="og:description" content="PDF 페이지 삭제, 지금 바로 무료로. 삭제할 번호만 입력하면 끝. 파일은 내 기기에서만 처리돼 업로드 없이 안전합니다.">
+  <meta property="og:url" content="https://inno-hi-inc.github.io/all-about-pdf/delete/">
+  <meta property="og:image" content="https://inno-hi-inc.github.io/all-about-pdf/assets/img/og-default.png">
+  <meta property="og:locale" content="ko_KR">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="manifest" href="../site.webmanifest">
+  <meta name="theme-color" content="#3d6dfb">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <script type="application/ld+json">[{"@context":"https://schema.org","@type":"WebApplication","name":"PDF 페이지 삭제 - PDF의 모든 것","url":"https://inno-hi-inc.github.io/all-about-pdf/delete/","applicationCategory":"UtilitiesApplication","operatingSystem":"All","browserRequirements":"Requires JavaScript","inLanguage":"ko","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"KRW"},"featureList":["특정 페이지 삭제","여러 페이지 일괄","원본 보존"],"publisher":{"@type":"Organization","name":"PDF의 모든 것","url":"https://inno-hi-inc.github.io/all-about-pdf/"}},{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"홈","item":"https://inno-hi-inc.github.io/all-about-pdf/"},{"@type":"ListItem","position":2,"name":"PDF 페이지 삭제","item":"https://inno-hi-inc.github.io/all-about-pdf/delete/"}]}]</script>
+</head>
+<body>
+  <a class="skip-link" href="#main">본문 바로가기</a>
+<header class="site-header"><div class="container"><div class="site-header__inner">
+  <a class="brand" href="../"><span class="brand__logo">PDF</span><span>PDF의 <span class="brand__dot">모든 것</span></span></a>
+  <nav class="site-nav" aria-label="주요 도구"><a href="../merge/">합치기</a><a href="../split/">분할</a><a href="../unlock/">잠금해제</a><a href="../to-image/">이미지 변환</a><a href="../page-numbers/">페이지 번호</a><a href="https://github.com/INNO-HI-Inc/all-about-pdf" rel="noopener" target="_blank">GitHub</a></nav>
+</div></div></header>
+  <main id="main">
+    <div class="container container--read">
+      <nav class="breadcrumb" aria-label="위치"><a href="../">홈</a><span>›</span>PDF 페이지 삭제</nav>
+      <div class="tool-hero">
+        <h1>PDF 페이지 삭제</h1>
+        <p class="tool-hero__sub">회원가입·설치 없이 무료로, 필요 없는 페이지만 쏙 빼서 새 파일로 저장하세요.</p>
+        <div class="badges badges--center">
+          <span class="badge"><span class="badge__ic">✓</span> 서버 미전송 · 내 기기 처리</span>
+          <span class="badge"><span class="badge__ic">✓</span> 완전 무료 · 워터마크 없음</span>
+          <span class="badge"><span class="badge__ic">✓</span> 설치·회원가입 불필요</span>
+        </div>
+      </div>
+      <div class="tool" data-tool="delete">
+      <div class="dropzone" id="aap-drop" tabindex="0" role="button" aria-label="PDF 파일 선택 또는 끌어다 놓기">
+        <input type="file" id="aap-file" accept="application/pdf" hidden>
+        <svg class="dropzone__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 16V4M12 4l-4 4M12 4l4 4"/><path d="M4 16v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg>
+        <p class="dropzone__title">페이지를 삭제할 PDF를 끌어다 놓으세요</p>
+        <p class="dropzone__hint">또는 <span class="link">파일 선택</span> · 파일은 내 브라우저에서만 처리됩니다</p>
+      </div>
+      <p class="pagecount" id="aap-pagecount"></p>
+      <ul class="filelist" id="aap-files"></ul>
+      <div class="options">
+  <div class="option">
+    <label class="option__label" for="delete-pages">삭제할 페이지 <span class="option__hint">예: 2, 4, 6-8</span></label>
+    <input type="text" id="delete-pages" class="field" placeholder="2, 4, 6-8" inputmode="numeric" autocomplete="off">
+  </div>
+</div>
+      <div class="actions"><button class="btn btn--primary btn--lg btn--block" id="aap-run" disabled>페이지 삭제하기</button></div>
+      <div class="progress" id="aap-progress" hidden><div class="progress__bar" id="aap-bar"></div><span class="progress__text" id="aap-progress-text"></span></div>
+      <div class="result" id="aap-result" hidden></div>
+      <noscript><p class="callout callout--warn" style="margin-top:16px"><span class="callout__ic">ℹ️</span><span>이 도구는 자바스크립트가 필요합니다. 브라우저의 자바스크립트를 켜 주세요. 파일은 여전히 서버로 전송되지 않고 내 브라우저에서만 처리됩니다.</span></p></noscript>
+    </div>
+      <section class="section section--tight prose">
+        <p class="lead">스캔하다 들어간 빈 페이지나 보고서 끝의 불필요한 장, 이제 번호만 입력해 지우세요. 삭제할 페이지를 빼고 깔끔한 PDF로 새로 저장합니다. 워터마크도, 개수 제한도 없습니다.</p>
+      </section>
+      <section class="section section--tight prose">
+        <h2>PDF 페이지 삭제 사용 방법</h2>
+        <ol class="steps">
+        <li>① PDF 파일을 화면에 올려요.</li>
+        <li>② 삭제할 페이지 번호를 입력해요(예: 2, 4, 6-8).</li>
+        <li>③ 미리보기로 남길 페이지를 확인해요.</li>
+        <li>④ 삭제 버튼을 눌러요.</li>
+        <li>⑤ 페이지가 빠진 새 PDF를 내려받아요.</li>
+        </ol>
+      </section>
+      <section class="section section--tight">
+        <p class="callout callout--security"><span class="callout__ic">🔒</span><span><strong>파일은 서버로 전송되지 않습니다.</strong>올리신 PDF는 서버로 전송되지 않습니다. 모든 처리는 사용자의 브라우저, 즉 내 기기 안에서만 이뤄집니다. 그래서 계약서·청약 서류·민원 문서처럼 민감한 파일도 외부에 올리지 않고 페이지를 삭제할 수 있습니다.</span></p>
+      </section>
+    <section class="section section--tight prose"><h2>이런 분께 편리해요</h2><p>과제나 보고서를 스캔하다 빈 페이지가 끼었을 때, 계약서에서 서명만 받은 마지막 장을 빼야 할 때, 민원 서류 중 필요 없는 안내 페이지를 정리할 때 쓰기 좋습니다. 번호만 정확히 적으면 원하는 페이지를 빠르게 제거합니다.</p></section>
+    <section class="section section--tight prose"><h2>삭제 전 확인하면 좋은 점</h2><p>삭제는 미리보기에서 남길 페이지를 한 번 확인한 뒤 진행하세요. 번호를 잘못 적어도 원본은 그대로라 다시 시도할 수 있습니다. 양면 스캔본은 앞뒤 페이지 번호가 함께 들어가니 빼는 범위를 한 번 더 살펴보세요.</p></section>
+      <section class="section section--tight">
+        <h2>자주 묻는 질문</h2>
+        <div class="faq">
+        <details><summary>특정 페이지만 삭제할 수 있나요?</summary><div class="faq__a">네, 지우고 싶은 페이지 번호만 입력하면 됩니다. 예를 들어 3페이지만 빼고 싶으면 3을 입력하세요. 나머지 페이지는 순서 그대로 유지됩니다.</div></details>
+        <details><summary>여러 페이지를 한 번에 삭제하려면 어떻게 하나요?</summary><div class="faq__a">번호를 쉼표로 나눠 적거나 범위로 적으면 됩니다. 예를 들어 2, 4, 6-8처럼 입력하면 2·4페이지와 6에서 8페이지까지 한 번에 제거합니다.</div></details>
+        <details><summary>스캔할 때 생긴 빈 페이지만 골라 지울 수 있나요?</summary><div class="faq__a">빈 페이지를 자동으로 찾아주지는 않지만, 미리보기에서 비어 있는 페이지의 번호를 확인해 직접 입력하면 됩니다. 그 번호만 적어 삭제하면 빈 페이지를 깔끔하게 뺄 수 있습니다.</div></details>
+        <details><summary>원본 파일은 그대로 보존되나요?</summary><div class="faq__a">네, 원본은 손대지 않고 페이지가 빠진 결과를 새 파일로 저장합니다. 원본과 결과를 비교한 뒤 결정할 수 있어 안심하고 사용하세요.</div></details>
+        <details><summary>정말 무료인가요? 파일 개수나 용량 제한이 있나요?</summary><div class="faq__a">완전 무료이며 워터마크가 찍히지 않습니다. 파일 개수나 용량 제한, 회원가입도 없습니다. 필요할 때마다 자유롭게 페이지를 삭제하세요.</div></details>
+        </div>
+      </section>
+      <section class="section section--tight">
+      <h2 class="center">다른 PDF 도구도 써보세요</h2>
+      <div class="related">
+        <a href="../merge/"><span class="ic">🔗</span> 합치기</a>
+        <a href="../split/"><span class="ic">✂️</span> 분할</a>
+        <a href="../unlock/"><span class="ic">🔓</span> 잠금해제</a>
+        <a href="../extract/"><span class="ic">📑</span> 페이지 추출</a>
+        <a href="../to-image/"><span class="ic">🖼️</span> 이미지 변환</a>
+        <a href="../page-numbers/"><span class="ic">🔢</span> 페이지 번호</a>
+      </div>
+    </section>
+    </div>
+  </main>
+<footer class="site-footer"><div class="container">
+  <div class="site-footer__grid">
+    <div class="site-footer__col site-footer__brand">
+      <a class="brand" href="../"><span class="brand__logo">PDF</span><span>PDF의 <span class="brand__dot">모든 것</span></span></a>
+      <p>필요한 PDF 작업을 설치 없이, 파일을 서버에 올리지 않고 무료로. 모든 처리는 내 브라우저 안에서만 이뤄집니다.</p>
+    </div>
+    <div class="site-footer__col"><h4>도구</h4><ul><li><a href="../merge/">합치기</a></li><li><a href="../split/">분할</a></li><li><a href="../unlock/">잠금해제</a></li><li><a href="../extract/">페이지 추출</a></li><li><a href="../delete/">페이지 삭제</a></li><li><a href="../to-image/">이미지 변환</a></li><li><a href="../page-numbers/">페이지 번호</a></li></ul></div>
+    <div class="site-footer__col"><h4>정보</h4><ul>
+      <li><a href="../about/">소개 · 개인정보</a></li>
+      <li><a href="https://github.com/INNO-HI-Inc/all-about-pdf" rel="noopener" target="_blank">오픈소스(GitHub)</a></li>
+      <li><a href="https://github.com/INNO-HI-Inc/all-about-pdf/issues" rel="noopener" target="_blank">문의 · 제안</a></li>
+    </ul></div>
+  </div>
+  <div class="site-footer__bottom">
+    <span>© 2026 PDF의 모든 것 · 오픈소스 · 모든 파일은 내 기기에서만 처리됩니다.</span>
+    <span>광고·추적·업로드 없음</span>
+  </div>
+</div></footer>
+  <script>window.AAP_BASE='../';</script>
+  <script src="../assets/vendor/pdf-lib.min.js" defer></script>
+  <script src="../assets/vendor/pdf.min.js" defer></script>
+  <script src="../assets/vendor/jszip.min.js" defer></script>
+  <script src="../assets/js/ui.js" defer></script>
+  <script src="../assets/js/pdf-engine.js" defer></script>
+  <script src="../assets/js/tool-core.js" defer></script>
+  <script src="../assets/js/tools/delete.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PDF 잠금해제 무료 | PDF의 모든 것</title>
+  <meta name="description" content="PDF 잠금해제를 무료로 하세요. 인쇄·편집 제한과 비밀번호를 풀어요. 파일은 내 기기에서만 처리해 서버로 올라가지 않습니다.">
+  <link rel="canonical" href="https://inno-hi-inc.github.io/all-about-pdf/unlock/">
+  <meta name="robots" content="index,follow">
+  <!-- 검색엔진 소유확인: 등록 후 아래 두 줄의 content 값을 채워 주석 해제 -->
+  <!-- <meta name="naver-site-verification" content=""> -->
+  <!-- <meta name="google-site-verification" content=""> -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="PDF의 모든 것">
+  <meta property="og:title" content="PDF 잠금해제 무료 - PDF의 모든 것">
+  <meta property="og:description" content="PDF 잠금해제를 무료로 하세요. 인쇄·편집 제한과 비밀번호를 풀어요. 파일은 내 기기에서만 처리해 서버로 올라가지 않습니다.">
+  <meta property="og:url" content="https://inno-hi-inc.github.io/all-about-pdf/unlock/">
+  <meta property="og:image" content="https://inno-hi-inc.github.io/all-about-pdf/assets/img/og-default.png">
+  <meta property="og:locale" content="ko_KR">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="manifest" href="../site.webmanifest">
+  <meta name="theme-color" content="#3d6dfb">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <script type="application/ld+json">[{"@context":"https://schema.org","@type":"WebApplication","name":"PDF 잠금해제 - PDF의 모든 것","url":"https://inno-hi-inc.github.io/all-about-pdf/unlock/","applicationCategory":"UtilitiesApplication","operatingSystem":"All","browserRequirements":"Requires JavaScript","inLanguage":"ko","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"KRW"},"featureList":["인쇄·편집 제한 해제","비밀번호 제거","브라우저 내 처리"],"publisher":{"@type":"Organization","name":"PDF의 모든 것","url":"https://inno-hi-inc.github.io/all-about-pdf/"}},{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"홈","item":"https://inno-hi-inc.github.io/all-about-pdf/"},{"@type":"ListItem","position":2,"name":"PDF 잠금해제","item":"https://inno-hi-inc.github.io/all-about-pdf/unlock/"}]}]</script>
+</head>
+<body>
+  <a class="skip-link" href="#main">본문 바로가기</a>
+<header class="site-header"><div class="container"><div class="site-header__inner">
+  <a class="brand" href="../"><span class="brand__logo">PDF</span><span>PDF의 <span class="brand__dot">모든 것</span></span></a>
+  <nav class="site-nav" aria-label="주요 도구"><a href="../merge/">합치기</a><a href="../split/">분할</a><a href="../unlock/">잠금해제</a><a href="../to-image/">이미지 변환</a><a href="../page-numbers/">페이지 번호</a><a href="https://github.com/INNO-HI-Inc/all-about-pdf" rel="noopener" target="_blank">GitHub</a></nav>
+</div></div></header>
+  <main id="main">
+    <div class="container container--read">
+      <nav class="breadcrumb" aria-label="위치"><a href="../">홈</a><span>›</span>PDF 잠금해제</nav>
+      <div class="tool-hero">
+        <h1>PDF 잠금해제</h1>
+        <p class="tool-hero__sub">무료로, 설치 없이, 내 기기에서 바로 제한을 풀어요.</p>
+        <div class="badges badges--center">
+          <span class="badge"><span class="badge__ic">✓</span> 서버 미전송 · 내 기기 처리</span>
+          <span class="badge"><span class="badge__ic">✓</span> 완전 무료 · 워터마크 없음</span>
+          <span class="badge"><span class="badge__ic">✓</span> 설치·회원가입 불필요</span>
+        </div>
+      </div>
+      <div class="tool" data-tool="unlock">
+      <div class="dropzone" id="aap-drop" tabindex="0" role="button" aria-label="PDF 파일 선택 또는 끌어다 놓기">
+        <input type="file" id="aap-file" accept="application/pdf" hidden>
+        <svg class="dropzone__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 16V4M12 4l-4 4M12 4l4 4"/><path d="M4 16v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg>
+        <p class="dropzone__title">잠금을 풀 PDF를 끌어다 놓으세요</p>
+        <p class="dropzone__hint">또는 <span class="link">파일 선택</span> · 파일은 내 브라우저에서만 처리됩니다</p>
+      </div>
+      <ul class="filelist" id="aap-files"></ul>
+      <div class="options">
+  <div class="option">
+    <label class="option__label" for="unlock-pw">비밀번호 <span class="option__hint">열 때 비밀번호를 묻는 경우에만 입력</span></label>
+    <input type="password" id="unlock-pw" class="field" placeholder="아는 비밀번호 (선택)" autocomplete="off">
+  </div>
+  <label class="checkbox"><input type="checkbox" id="unlock-raster"> 이미지로 해제 (비밀번호가 걸린 PDF용)</label>
+  <p class="callout callout--warn"><span class="callout__ic">⚖️</span><span><strong>암호 크랙이 아닙니다.</strong> 본인이 아는 비밀번호, 또는 인쇄·편집 제한만 제거합니다. 모르는 비밀번호는 풀 수 없어요.</span></p>
+</div>
+      <div class="actions"><button class="btn btn--primary btn--lg btn--block" id="aap-run" disabled>잠금 해제하기</button></div>
+      <div class="progress" id="aap-progress" hidden><div class="progress__bar" id="aap-bar"></div><span class="progress__text" id="aap-progress-text"></span></div>
+      <div class="result" id="aap-result" hidden></div>
+      <noscript><p class="callout callout--warn" style="margin-top:16px"><span class="callout__ic">ℹ️</span><span>이 도구는 자바스크립트가 필요합니다. 브라우저의 자바스크립트를 켜 주세요. 파일은 여전히 서버로 전송되지 않고 내 브라우저에서만 처리됩니다.</span></p></noscript>
+    </div>
+      <section class="section section--tight prose">
+        <p class="lead">내 PDF에 걸린 인쇄·편집 제한을 풉니다. 열 때 비밀번호를 묻는 문서는 아는 비밀번호를 넣고 풀어요. 파일은 브라우저 안에서만 처리해, 서버로 전송되지 않습니다.</p>
+      </section>
+      <section class="section section--tight prose">
+        <h2>PDF 잠금해제 사용 방법</h2>
+        <ol class="steps">
+        <li>① 잠금을 풀 PDF 파일을 올려요.</li>
+        <li>② 인쇄·편집만 막힌 문서는 바로 제한이 풀려요.</li>
+        <li>③ 열 때 비밀번호가 필요한 문서는 아는 비밀번호를 입력해요.</li>
+        <li>④ '이미지로 해제'를 선택해 비밀번호를 제거해요.</li>
+        <li>⑤ 잠금이 풀린 PDF를 내 기기에 저장해요.</li>
+        </ol>
+      </section>
+      <section class="section section--tight">
+        <p class="callout callout--security"><span class="callout__ic">🔒</span><span><strong>파일은 서버로 전송되지 않습니다.</strong>이 도구는 암호를 알아내는 크랙이 아니라, 본인이 아는 비밀번호나 인쇄·편집 제한을 제거하는 도구입니다. 모르는 비밀번호는 풀 수 없습니다. 파일과 입력한 비밀번호는 내 브라우저에서만 쓰이고, 서버로 저장·전송되지 않습니다.</span></p>
+      </section>
+    <section class="section section--tight prose"><h2>이럴 때 쓰면 좋아요</h2><p>직접 만든 보고서나 과제 PDF의 인쇄·편집 제한을 풀어 다시 손볼 때, 메일로 받은 청약 안내서나 명세서를 인쇄해 보관할 때, 비밀번호를 알고 있는 내 계약서를 비밀번호 없이 열어 보고 싶을 때 쓰세요. 모두 본인이 권한을 가진 문서에 한합니다.</p></section>
+    <section class="section section--tight prose"><h2>이미지로 해제할 때 알아두세요</h2><p>열람암호가 걸린 문서를 '이미지로 해제'하면 각 페이지가 이미지로 바뀌어 비밀번호가 사라집니다. 이 방식은 문서가 그대로 보이지만, 처리 후에는 글자를 직접 선택·복사하거나 본문을 수정하기 어렵습니다. 원본 비밀번호 PDF는 따로 보관해 두는 편이 안전합니다.</p></section>
+      <section class="section section--tight">
+        <h2>자주 묻는 질문</h2>
+        <div class="faq">
+        <details><summary>비밀번호를 모르면 PDF 잠금을 풀 수 있나요?</summary><div class="faq__a">아니요. 모르는 비밀번호는 풀 수 없습니다. 이 도구는 본인이 알고 있는 비밀번호를 제거하거나 인쇄·편집 제한을 푸는 도구이며, 암호 크랙이 아닙니다.</div></details>
+        <details><summary>입력한 비밀번호가 저장되거나 어딘가로 전송되나요?</summary><div class="faq__a">아니요. 입력한 비밀번호는 내 브라우저 안에서만 쓰입니다. 서버로 저장되거나 전송되지 않으며, 작업이 끝나면 메모리에서 사라집니다.</div></details>
+        <details><summary>권한제한과 열람암호는 무엇이 다른가요?</summary><div class="faq__a">권한제한은 문서는 열리지만 인쇄·편집·복사가 막힌 상태로, 비밀번호 없이 바로 풀 수 있습니다. 열람암호는 문서를 열 때부터 비밀번호를 묻는 잠금으로, 아는 비밀번호를 입력하고 '이미지로 해제'를 선택해 제거합니다.</div></details>
+        <details><summary>PDF 비밀번호 제거가 법적으로 문제 없나요?</summary><div class="faq__a">본인 문서이거나 정당한 권한이 있는 문서의 제한을 푸는 용도라면 문제없습니다. 예를 들어 내가 받은 청약 안내서나 직접 만든 계약서·보고서의 인쇄 제한을 풀 때 쓰면 됩니다. 권한 없는 타인의 문서를 푸는 데 쓰면 안 됩니다.</div></details>
+        <details><summary>회원가입이나 프로그램 설치가 필요한가요?</summary><div class="faq__a">아니요. 회원가입과 설치 없이 바로 쓸 수 있습니다. 완전 무료이며 워터마크가 붙지 않고, 파일 개수나 용량 제한도 없습니다.</div></details>
+        <details><summary>스캔본이나 민감한 계약서도 안전하게 풀 수 있나요?</summary><div class="faq__a">네. 파일은 내 기기 브라우저에서만 처리하고 서버로 올리지 않아, 계약서·민원 서류·스캔본 같은 민감한 문서도 외부로 새지 않습니다. 외산 도구처럼 업로드 후 일정 시간 뒤 삭제하는 방식이 아니라, 애초에 업로드하지 않습니다.</div></details>
+        </div>
+      </section>
+      <section class="section section--tight">
+      <h2 class="center">다른 PDF 도구도 써보세요</h2>
+      <div class="related">
+        <a href="../merge/"><span class="ic">🔗</span> 합치기</a>
+        <a href="../split/"><span class="ic">✂️</span> 분할</a>
+        <a href="../extract/"><span class="ic">📑</span> 페이지 추출</a>
+        <a href="../delete/"><span class="ic">🗑️</span> 페이지 삭제</a>
+        <a href="../to-image/"><span class="ic">🖼️</span> 이미지 변환</a>
+        <a href="../page-numbers/"><span class="ic">🔢</span> 페이지 번호</a>
+      </div>
+    </section>
+    </div>
+  </main>
+<footer class="site-footer"><div class="container">
+  <div class="site-footer__grid">
+    <div class="site-footer__col site-footer__brand">
+      <a class="brand" href="../"><span class="brand__logo">PDF</span><span>PDF의 <span class="brand__dot">모든 것</span></span></a>
+      <p>필요한 PDF 작업을 설치 없이, 파일을 서버에 올리지 않고 무료로. 모든 처리는 내 브라우저 안에서만 이뤄집니다.</p>
+    </div>
+    <div class="site-footer__col"><h4>도구</h4><ul><li><a href="../merge/">합치기</a></li><li><a href="../split/">분할</a></li><li><a href="../unlock/">잠금해제</a></li><li><a href="../extract/">페이지 추출</a></li><li><a href="../delete/">페이지 삭제</a></li><li><a href="../to-image/">이미지 변환</a></li><li><a href="../page-numbers/">페이지 번호</a></li></ul></div>
+    <div class="site-footer__col"><h4>정보</h4><ul>
+      <li><a href="../about/">소개 · 개인정보</a></li>
+      <li><a href="https://github.com/INNO-HI-Inc/all-about-pdf" rel="noopener" target="_blank">오픈소스(GitHub)</a></li>
+      <li><a href="https://github.com/INNO-HI-Inc/all-about-pdf/issues" rel="noopener" target="_blank">문의 · 제안</a></li>
+    </ul></div>
+  </div>
+  <div class="site-footer__bottom">
+    <span>© 2026 PDF의 모든 것 · 오픈소스 · 모든 파일은 내 기기에서만 처리됩니다.</span>
+    <span>광고·추적·업로드 없음</span>
+  </div>
+</div></footer>
+  <script>window.AAP_BASE='../';</script>
+  <script src="../assets/vendor/pdf-lib.min.js" defer></script>
+  <script src="../assets/vendor/pdf.min.js" defer></script>
+  <script src="../assets/vendor/jszip.min.js" defer></script>
+  <script src="../assets/js/ui.js" defer></script>
+  <script src="../assets/js/pdf-engine.js" defer></script>
+  <script src="../assets/js/tool-core.js" defer></script>
+  <script src="../assets/js/tools/unlock.js" defer></script>
+</body>
+</html>
