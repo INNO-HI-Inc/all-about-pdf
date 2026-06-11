@@ -21,6 +21,25 @@ const TODAY = '2026-06-04';
 // 로고 마크 (글로시 그라디언트 오브) — 헤더·푸터 공통
 const LOGO_SVG = '<svg class="logo-mark" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><defs><radialGradient id="aapOrb" cx="34%" cy="27%" r="84%"><stop offset="0%" stop-color="#c8b9ff"/><stop offset="36%" stop-color="#6d6af6"/><stop offset="74%" stop-color="#4f46e5"/><stop offset="100%" stop-color="#36178a"/></radialGradient></defs><circle cx="16" cy="16" r="13.6" fill="url(#aapOrb)"/><ellipse cx="11.6" cy="10.4" rx="4.7" ry="3" fill="#fff" opacity=".5" transform="rotate(-18 11.6 10.4)"/></svg>';
 
+// ───────── 커스텀 라인 아이콘 (이모지 대체, currentColor) ─────────
+const IC = (p) => `<svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${p}</svg>`;
+const ICONS = {
+  merge: IC('<rect x="3.5" y="8" width="11" height="12.5" rx="2"/><path d="M9 8V5.5A2 2 0 0 1 11 3.5h7.5A2 2 0 0 1 20.5 5.5V15a2 2 0 0 1-2 2H14.5"/>'),
+  split: IC('<circle cx="6" cy="6" r="2.4"/><circle cx="6" cy="18" r="2.4"/><line x1="20" y1="4" x2="8.6" y2="15.4"/><line x1="14.6" y1="14.6" x2="20" y2="20"/><line x1="8.6" y1="8.6" x2="11.4" y2="11.4"/>'),
+  unlock: IC('<rect x="5" y="11" width="14" height="9.5" rx="2"/><path d="M8 11V7a4 4 0 0 1 7.5-1.9"/>'),
+  extract: IC('<path d="M14 3.5H7.5a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h9a2 2 0 0 0 2-2v-9.5"/><path d="M14 3.5v5h5"/><path d="M12 17v-6.4"/><path d="M9.6 12.8 12 10.4l2.4 2.4"/>'),
+  delete: IC('<path d="M4.5 7h15"/><path d="M9 7V5.4A1.6 1.6 0 0 1 10.6 3.8h2.8A1.6 1.6 0 0 1 15 5.4V7"/><path d="M6.6 7l.9 12.2A1.6 1.6 0 0 0 9 20.7h6a1.6 1.6 0 0 0 1.6-1.5L17.4 7"/><line x1="10" y1="10.5" x2="10" y2="17"/><line x1="14" y1="10.5" x2="14" y2="17"/>'),
+  image: IC('<rect x="3.5" y="4.5" width="17" height="15" rx="2.5"/><circle cx="8.5" cy="9.5" r="1.7"/><path d="M20.5 15.5 16 11 6 21"/>'),
+  number: IC('<path d="M14 3.5H7.5a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h9a2 2 0 0 0 2-2V8l-5-4.5z"/><path d="M14 3.5V8h5"/><path d="M10.3 12.6 9.7 17M13.7 12.6 13.1 17M9 14.1h5M8.7 15.6h5"/>'),
+  free: IC('<path d="M11.6 3.6H18A2.4 2.4 0 0 1 20.4 6v6.3a2 2 0 0 1-.6 1.4l-7.4 7.4a2 2 0 0 1-2.8 0l-6-6a2 2 0 0 1 0-2.8l7.5-7.5a2 2 0 0 1 1.5-.6z"/><circle cx="16" cy="8" r="1.3"/>'),
+  infinity: IC('<path d="M9.4 9.3a3.1 3.1 0 1 0 0 5.4c1.7 0 2.6-1.6 2.6-2.7s.9-2.7 2.6-2.7a3.1 3.1 0 1 1 0 5.4c-1.7 0-2.6-1.6-2.6-2.7s-.9-2.7-2.6-2.7z"/>'),
+  browser: IC('<rect x="3.5" y="5" width="17" height="14" rx="2.5"/><path d="M3.5 9.2h17"/><circle cx="6.6" cy="7.1" r=".55" fill="currentColor" stroke="none"/><circle cx="8.7" cy="7.1" r=".55" fill="currentColor" stroke="none"/>'),
+  sparkle: IC('<path d="M12 3.4l1.7 4.9 4.9 1.7-4.9 1.7L12 16.6l-1.7-4.9L5.4 10l4.9-1.7L12 3.4z"/><path d="M18.5 14l.6 1.8 1.8.6-1.8.6-.6 1.8-.6-1.8-1.8-.6 1.8-.6.6-1.8z"/>'),
+  lock: IC('<rect x="5" y="11" width="14" height="9.5" rx="2"/><path d="M8 11V7.5a4 4 0 0 1 8 0V11"/>'),
+  info: IC('<circle cx="12" cy="12" r="9"/><line x1="12" y1="11" x2="12" y2="16.5"/><circle cx="12" cy="7.8" r=".7" fill="currentColor" stroke="none"/>'),
+};
+const DOT_SVG = '<svg class="pill-dot" viewBox="0 0 8 8" aria-hidden="true"><circle cx="4" cy="4" r="4" fill="currentColor"/></svg>';
+
 // ───────── 유틸 ─────────
 const esc = (s) => String(s == null ? '' : s)
   .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
@@ -29,25 +48,25 @@ const read = (slug) => JSON.parse(readFileSync(join(WS, `content_${slug}.json`),
 
 // ───────── 도구 메타 ─────────
 const TOOLS = [
-  { slug: 'merge', emoji: '🔗', nav: '합치기', multiple: true, reorder: true,
+  { slug: 'merge', icon: ICONS.merge, nav: '합치기', multiple: true, reorder: true,
     runLabel: 'PDF 합치기', dropTitle: '합칠 PDF들을 끌어다 놓으세요', pagecount: false,
     feature: ['여러 PDF 병합', '페이지 순서 변경', '무료·무제한'], options: '' },
-  { slug: 'split', emoji: '✂️', nav: '분할', multiple: false,
+  { slug: 'split', icon: ICONS.split, nav: '분할', multiple: false,
     runLabel: 'PDF 분할하기', dropTitle: '분할할 PDF를 끌어다 놓으세요', pagecount: true,
     feature: ['낱장 분리', '범위 지정 분할', 'ZIP 일괄 다운로드'], options: optSplit() },
-  { slug: 'unlock', emoji: '🔓', nav: '잠금해제', multiple: false,
+  { slug: 'unlock', icon: ICONS.unlock, nav: '잠금해제', multiple: false,
     runLabel: '잠금 해제하기', dropTitle: '잠금을 풀 PDF를 끌어다 놓으세요', pagecount: false,
     feature: ['인쇄·편집 제한 해제', '비밀번호 제거', '브라우저 내 처리'], options: optUnlock() },
-  { slug: 'extract', emoji: '📑', nav: '페이지 추출', multiple: false,
+  { slug: 'extract', icon: ICONS.extract, nav: '페이지 추출', multiple: false,
     runLabel: '페이지 추출하기', dropTitle: '페이지를 추출할 PDF를 끌어다 놓으세요', pagecount: true,
     feature: ['특정 페이지 추출', '여러 구간 지정', '순서 유지'], options: optPages('extract-pages', '1, 3, 5-7', '추출할 페이지') },
-  { slug: 'delete', emoji: '🗑️', nav: '페이지 삭제', multiple: false,
+  { slug: 'delete', icon: ICONS.delete, nav: '페이지 삭제', multiple: false,
     runLabel: '페이지 삭제하기', dropTitle: '페이지를 삭제할 PDF를 끌어다 놓으세요', pagecount: true,
     feature: ['특정 페이지 삭제', '여러 페이지 일괄', '원본 보존'], options: optPages('delete-pages', '2, 4, 6-8', '삭제할 페이지') },
-  { slug: 'to-image', emoji: '🖼️', nav: '이미지 변환', multiple: false,
+  { slug: 'to-image', icon: ICONS.image, nav: '이미지 변환', multiple: false,
     runLabel: '이미지로 변환하기', dropTitle: '이미지로 바꿀 PDF를 끌어다 놓으세요', pagecount: true,
     feature: ['PNG·JPG 변환', '화질(배율) 선택', '페이지 지정'], options: optImage() },
-  { slug: 'page-numbers', emoji: '🔢', nav: '페이지 번호', multiple: false,
+  { slug: 'page-numbers', icon: ICONS.number, nav: '페이지 번호', multiple: false,
     runLabel: '페이지 번호 넣기', dropTitle: '번호를 넣을 PDF를 끌어다 놓으세요', pagecount: true,
     feature: ['위치·형식 선택', '시작 번호 지정', '표지 제외'], options: optPageNumbers() },
 ];
@@ -76,7 +95,7 @@ function optUnlock() {
     <input type="password" id="unlock-pw" class="field" placeholder="아는 비밀번호 (선택)" autocomplete="off">
   </div>
   <label class="checkbox"><input type="checkbox" id="unlock-raster"> 이미지로 해제 (비밀번호가 걸린 PDF용)</label>
-  <p class="callout callout--warn"><span class="callout__ic">⚖️</span><span><strong>암호 크랙이 아닙니다.</strong> 본인이 아는 비밀번호, 또는 인쇄·편집 제한만 제거합니다. 모르는 비밀번호는 풀 수 없어요.</span></p>
+  <p class="callout callout--warn"><span class="callout__ic">${ICONS.info}</span><span><strong>암호 크랙이 아닙니다.</strong> 본인이 아는 비밀번호, 또는 인쇄·편집 제한만 제거합니다. 모르는 비밀번호는 풀 수 없어요.</span></p>
 </div>`;
 }
 function optPages(id, ph, label) {
@@ -243,21 +262,22 @@ function widget(t, opts) {
         <input type="file" class="js-file" accept="application/pdf" ${t.multiple ? 'multiple ' : ''}hidden>
         <svg class="dropzone__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 16V4M12 4l-4 4M12 4l4 4"/><path d="M4 16v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg>
         <p class="dropzone__title">${t.dropTitle}</p>
-        <p class="dropzone__hint">또는 <span class="link">파일 선택</span> · 파일은 내 브라우저에서만 처리됩니다</p>
+        <span class="dropzone__btn">파일 선택</span>
+        <p class="dropzone__hint">또는 끌어다 놓기 · 파일은 내 브라우저에서만 처리됩니다</p>
       </div>${pc}
       <ul class="filelist js-files"></ul>
       ${t.options}
       <div class="actions"><button class="btn btn--primary btn--lg btn--block js-run" disabled>${t.runLabel}</button></div>
       <div class="progress js-progress" hidden><div class="progress__bar js-bar"></div><span class="progress__text js-ptext"></span></div>
       <div class="result js-result" hidden></div>
-      <noscript><p class="callout callout--warn" style="margin-top:16px"><span class="callout__ic">ℹ️</span><span>이 도구는 자바스크립트가 필요합니다. 브라우저의 자바스크립트를 켜 주세요. 파일은 여전히 서버로 전송되지 않고 내 브라우저에서만 처리됩니다.</span></p></noscript>
+      <noscript><p class="callout callout--warn" style="margin-top:16px"><span class="callout__ic">${ICONS.info}</span><span>이 도구는 자바스크립트가 필요합니다. 브라우저의 자바스크립트를 켜 주세요. 파일은 여전히 서버로 전송되지 않고 내 브라우저에서만 처리됩니다.</span></p></noscript>
     </div>`;
 }
 
 // ───────── 관련 도구 ─────────
 function related(slug, rel) {
   const others = TOOLS.filter((t) => t.slug !== slug);
-  const cards = others.map((t) => `<a href="${rel}${t.slug}/"><span class="ic">${t.emoji}</span> ${t.nav}</a>`).join('\n        ');
+  const cards = others.map((t) => `<a href="${rel}${t.slug}/"><span class="ic">${t.icon}</span> ${t.nav}</a>`).join('\n        ');
   return `<section class="section section--tight">
       <h2 class="center">다른 PDF 도구도 써보세요</h2>
       <div class="related">
@@ -318,7 +338,7 @@ function buildTool(t) {
         </ol>
       </section>
       <section class="section section--tight">
-        <p class="callout callout--security"><span class="callout__ic">🔒</span><span><strong>파일은 서버로 전송되지 않습니다.</strong>${esc(c.security)}</span></p>
+        <p class="callout callout--security"><span class="callout__ic">${ICONS.lock}</span><span><strong>파일은 서버로 전송되지 않습니다.</strong>${esc(c.security)}</span></p>
       </section>
     ${extra}
       <section class="section section--tight">
@@ -348,27 +368,27 @@ function buildHome() {
 
   // 상단 기능 카드 4종 (도구로 연결)
   const FCARDS = [
-    { slug: 'merge', emoji: '🔗', t: 'PDF 합치기', d: '여러 PDF 파일을 하나로 합쳐 깔끔하게 정리하세요.', c: 'co' },
-    { slug: 'split', emoji: '✂️', t: 'PDF 분할', d: '원하는 페이지 범위로 PDF를 나눠 저장하세요.', c: 'pp' },
-    { slug: 'to-image', emoji: '🖼️', t: '이미지 변환', d: 'PDF를 PNG·JPG 이미지로 빠르게 바꿔요.', c: 'pp' },
-    { slug: 'unlock', emoji: '🔓', t: '안전한 잠금해제', d: '인쇄·편집 제한이나 비밀번호를 제거해요.', c: 'co' },
+    { slug: 'merge', icon: ICONS.merge, t: 'PDF 합치기', d: '여러 PDF 파일을 하나로 합쳐 깔끔하게 정리하세요.', c: 'co' },
+    { slug: 'split', icon: ICONS.split, t: 'PDF 분할', d: '원하는 페이지 범위로 PDF를 나눠 저장하세요.', c: 'pp' },
+    { slug: 'to-image', icon: ICONS.image, t: '이미지 변환', d: 'PDF를 PNG·JPG 이미지로 빠르게 바꿔요.', c: 'pp' },
+    { slug: 'unlock', icon: ICONS.unlock, t: '안전한 잠금해제', d: '인쇄·편집 제한이나 비밀번호를 제거해요.', c: 'co' },
   ];
   const fcards = FCARDS.map((f) => `<a class="fcard" href="${f.slug}/">
-          <span class="fcard__ic ic-${f.c}">${f.emoji}</span>
+          <span class="fcard__ic ic-${f.c}">${f.icon}</span>
           <span class="fcard__t">${f.t}</span>
           <span class="fcard__d">${f.d}</span>
           <span class="fcard__go go-${f.c}">바로가기 →</span>
         </a>`).join('\n        ');
 
   // 전체 도구 칩
-  const chips = TOOLS.map((t) => `<a class="tchip" href="${t.slug}/"><span>${t.emoji}</span> ${read(t.slug).h1}</a>`).join('\n          ');
+  const chips = TOOLS.map((t) => `<a class="tchip" href="${t.slug}/"><span class="tchip__ic">${t.icon}</span> ${read(t.slug).h1}</a>`).join('\n          ');
 
   // 특별한 이유 4종
   const WHY = [
-    ['💸', '무료로 사용', '모든 기능을 무료로 제공합니다.'],
-    ['♾️', '무제한 사용', '파일 크기·개수 제한 없이 쓸 수 있어요.'],
-    ['🔒', '브라우저 기반', '서버에 올리지 않고 내 기기에서 바로 처리.'],
-    ['🙂', '사용자 친화적', '직관적인 한국어 화면으로 누구나 쉽게.'],
+    [ICONS.free, '무료로 사용', '모든 기능을 무료로 제공합니다.'],
+    [ICONS.infinity, '무제한 사용', '파일 크기·개수 제한 없이 쓸 수 있어요.'],
+    [ICONS.browser, '브라우저 기반', '서버에 올리지 않고 내 기기에서 바로 처리.'],
+    [ICONS.sparkle, '사용자 친화적', '직관적인 한국어 화면으로 누구나 쉽게.'],
   ];
   const whyItems = WHY.map((w, i) => `<div class="wcell">
           <span class="wcell__ic ic-${i % 2 ? 'co' : 'pp'}">${w[0]}</span>
@@ -400,7 +420,7 @@ function buildHome() {
         <div class="orb"></div>
         <h1 class="hhero__title">PDF를 쉽게<br><span class="ac">분할</span>하고 <span class="ac">합치</span>세요</h1>
         <p class="hhero__sub">${esc(c.heroSubtitle)}</p>
-        <div class="hhero__cta"><a class="pillbtn" href="#tools">도구 시작하기 <span class="dot">●</span></a></div>
+        <div class="hhero__cta"><a class="pillbtn" href="#tools">도구 시작하기 <span class="dot">${DOT_SVG}</span></a></div>
         <a class="hhero__more" href="#tools">또는 아래로 둘러보기</a>
       </div>
       <div class="hhero__scroll" aria-hidden="true">SCROLL</div>

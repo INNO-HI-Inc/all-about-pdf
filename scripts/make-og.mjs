@@ -25,7 +25,7 @@ body{font-family:-apple-system,'Apple SD Gothic Neo','Noto Sans KR',sans-serif}
   <div class="brand"><div class="logo"><svg width="62" height="62" viewBox="0 0 32 32"><defs><radialGradient id="oo" cx="34%" cy="27%" r="84%"><stop offset="0%" stop-color="#c8b9ff"/><stop offset="36%" stop-color="#6d6af6"/><stop offset="74%" stop-color="#4f46e5"/><stop offset="100%" stop-color="#36178a"/></radialGradient></defs><circle cx="16" cy="16" r="13.6" fill="url(#oo)"/><ellipse cx="11.6" cy="10.4" rx="4.7" ry="3" fill="#fff" opacity=".5" transform="rotate(-18 11.6 10.4)"/></svg></div><div class="bname">PDF의 모든 것</div></div>
   <div class="title">무료 PDF 도구 모음<br>합치기 · 분할 · 변환 · 잠금해제</div>
   <div class="sub">설치 없이 · 파일을 서버에 올리지 않고 · 내 브라우저에서</div>
-  <div class="tags"><span class="tag">🔒 서버 미전송</span><span class="tag">💸 완전 무료</span><span class="tag">⚡ 설치 불필요</span></div>
+  <div class="tags"><span class="tag">서버에 안 올림</span><span class="tag">완전 무료</span><span class="tag">설치 불필요</span></div>
 </div></body></html>`;
 
 const browser = await chromium.launch();

@@ -47,14 +47,15 @@
         <input type="file" class="js-file" accept="application/pdf" multiple hidden>
         <svg class="dropzone__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 16V4M12 4l-4 4M12 4l4 4"/><path d="M4 16v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg>
         <p class="dropzone__title">합칠 PDF들을 끌어다 놓으세요</p>
-        <p class="dropzone__hint">또는 <span class="link">파일 선택</span> · 파일은 내 브라우저에서만 처리됩니다</p>
+        <span class="dropzone__btn">파일 선택</span>
+        <p class="dropzone__hint">또는 끌어다 놓기 · 파일은 내 브라우저에서만 처리됩니다</p>
       </div>
       <ul class="filelist js-files"></ul>
       
       <div class="actions"><button class="btn btn--primary btn--lg btn--block js-run" disabled>PDF 합치기</button></div>
       <div class="progress js-progress" hidden><div class="progress__bar js-bar"></div><span class="progress__text js-ptext"></span></div>
       <div class="result js-result" hidden></div>
-      <noscript><p class="callout callout--warn" style="margin-top:16px"><span class="callout__ic">ℹ️</span><span>이 도구는 자바스크립트가 필요합니다. 브라우저의 자바스크립트를 켜 주세요. 파일은 여전히 서버로 전송되지 않고 내 브라우저에서만 처리됩니다.</span></p></noscript>
+      <noscript><p class="callout callout--warn" style="margin-top:16px"><span class="callout__ic"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><line x1="12" y1="11" x2="12" y2="16.5"/><circle cx="12" cy="7.8" r=".7" fill="currentColor" stroke="none"/></svg></span><span>이 도구는 자바스크립트가 필요합니다. 브라우저의 자바스크립트를 켜 주세요. 파일은 여전히 서버로 전송되지 않고 내 브라우저에서만 처리됩니다.</span></p></noscript>
     </div>
       <section class="section section--tight prose">
         <p class="lead">과제, 보고서, 계약서, 스캔본이 여러 장으로 나뉘어 있나요? 흩어진 PDF를 끌어다 놓고 순서만 정하면 한 파일로 합쳐집니다. 모든 작업이 내 기기 안에서 이뤄져요.</p>
@@ -69,7 +70,7 @@
         </ol>
       </section>
       <section class="section section--tight">
-        <p class="callout callout--security"><span class="callout__ic">🔒</span><span><strong>파일은 서버로 전송되지 않습니다.</strong>올린 파일은 서버로 전송되지 않습니다. 합치는 과정 전부가 내 브라우저(기기) 안에서만 이뤄지고, 창을 닫으면 흔적도 남지 않아요. 계약서나 민원서류처럼 민감한 문서도 마음 놓고 합칠 수 있습니다.</span></p>
+        <p class="callout callout--security"><span class="callout__ic"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="9.5" rx="2"/><path d="M8 11V7.5a4 4 0 0 1 8 0V11"/></svg></span><span><strong>파일은 서버로 전송되지 않습니다.</strong>올린 파일은 서버로 전송되지 않습니다. 합치는 과정 전부가 내 브라우저(기기) 안에서만 이뤄지고, 창을 닫으면 흔적도 남지 않아요. 계약서나 민원서류처럼 민감한 문서도 마음 놓고 합칠 수 있습니다.</span></p>
       </section>
     <section class="section section--tight prose"><h2>이럴 때 쓰면 좋아요</h2><p>여러 장으로 스캔한 계약서를 한 파일로 묶을 때, 조별 과제를 각자 만든 부분끼리 합쳐 제출할 때, 청약이나 민원에 필요한 서류 여러 장을 하나로 정리할 때 편리합니다. 표지와 본문, 부록을 따로 만들었다면 순서만 맞춰 한 번에 합치세요.</p></section>
     <section class="section section--tight prose"><h2>합치기 전에 확인하세요</h2><p>파일 이름이 비슷하면 순서가 헷갈릴 수 있으니 목록에서 ↑↓로 순서를 한 번 더 확인해 주세요. 비밀번호가 걸린 PDF는 먼저 잠금을 풀어야 합칠 수 있습니다.</p></section>
@@ -86,12 +87,12 @@
       <section class="section section--tight">
       <h2 class="center">다른 PDF 도구도 써보세요</h2>
       <div class="related">
-        <a href="../split/"><span class="ic">✂️</span> 분할</a>
-        <a href="../unlock/"><span class="ic">🔓</span> 잠금해제</a>
-        <a href="../extract/"><span class="ic">📑</span> 페이지 추출</a>
-        <a href="../delete/"><span class="ic">🗑️</span> 페이지 삭제</a>
-        <a href="../to-image/"><span class="ic">🖼️</span> 이미지 변환</a>
-        <a href="../page-numbers/"><span class="ic">🔢</span> 페이지 번호</a>
+        <a href="../split/"><span class="ic"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="6" cy="6" r="2.4"/><circle cx="6" cy="18" r="2.4"/><line x1="20" y1="4" x2="8.6" y2="15.4"/><line x1="14.6" y1="14.6" x2="20" y2="20"/><line x1="8.6" y1="8.6" x2="11.4" y2="11.4"/></svg></span> 분할</a>
+        <a href="../unlock/"><span class="ic"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="9.5" rx="2"/><path d="M8 11V7a4 4 0 0 1 7.5-1.9"/></svg></span> 잠금해제</a>
+        <a href="../extract/"><span class="ic"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3.5H7.5a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h9a2 2 0 0 0 2-2v-9.5"/><path d="M14 3.5v5h5"/><path d="M12 17v-6.4"/><path d="M9.6 12.8 12 10.4l2.4 2.4"/></svg></span> 페이지 추출</a>
+        <a href="../delete/"><span class="ic"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 7h15"/><path d="M9 7V5.4A1.6 1.6 0 0 1 10.6 3.8h2.8A1.6 1.6 0 0 1 15 5.4V7"/><path d="M6.6 7l.9 12.2A1.6 1.6 0 0 0 9 20.7h6a1.6 1.6 0 0 0 1.6-1.5L17.4 7"/><line x1="10" y1="10.5" x2="10" y2="17"/><line x1="14" y1="10.5" x2="14" y2="17"/></svg></span> 페이지 삭제</a>
+        <a href="../to-image/"><span class="ic"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="4.5" width="17" height="15" rx="2.5"/><circle cx="8.5" cy="9.5" r="1.7"/><path d="M20.5 15.5 16 11 6 21"/></svg></span> 이미지 변환</a>
+        <a href="../page-numbers/"><span class="ic"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3.5H7.5a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h9a2 2 0 0 0 2-2V8l-5-4.5z"/><path d="M14 3.5V8h5"/><path d="M10.3 12.6 9.7 17M13.7 12.6 13.1 17M9 14.1h5M8.7 15.6h5"/></svg></span> 페이지 번호</a>
       </div>
     </section>
     </div>

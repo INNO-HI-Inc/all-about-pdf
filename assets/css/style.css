@@ -47,10 +47,18 @@
 html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
 body {
   margin: 0; font-family: var(--font); color: var(--ink); background: var(--bg);
-  line-height: 1.8; font-size: 16px; letter-spacing: -.01em;
+  line-height: 1.78; font-size: 16px; letter-spacing: -.005em;
+  word-break: keep-all; line-break: strict;
   -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility;
 }
-p { line-height: 1.85; }
+p { line-height: 1.82; }
+
+/* 커스텀 아이콘 (이모지 대체) */
+.ic-svg { width: 24px; height: 24px; display: block; }
+.callout__ic { display: inline-flex; }
+.callout__ic .ic-svg { width: 20px; height: 20px; }
+.related a .ic { display: inline-flex; color: var(--accent); }
+.related a .ic .ic-svg { width: 22px; height: 22px; }
 img, svg { max-width: 100%; display: block; }
 a { color: var(--accent-strong); text-decoration: none; }
 a:hover { text-decoration: underline; }
@@ -173,8 +181,10 @@ ul, ol { margin: 0 0 1em; padding-left: 1.2em; }
 .dropzone--over { border-color: var(--accent); background: var(--accent-soft); }
 .dropzone__icon { width: 52px; height: 52px; margin: 0 auto 12px; color: var(--accent); }
 .dropzone__title { font-weight: 700; font-size: 1.05rem; margin-bottom: 6px; }
-.dropzone__hint { font-size: .88rem; color: var(--ink-soft); margin: 0; }
+.dropzone__hint { font-size: .85rem; color: var(--ink-soft); margin: 0; }
 .dropzone__hint .link { color: var(--accent-strong); font-weight: 700; text-decoration: underline; }
+.dropzone__btn { display: inline-block; margin: 4px 0 12px; background: var(--accent); color: #fff; font-weight: 700; font-size: .92rem; padding: 10px 22px; border-radius: 999px; transition: background .15s, transform .1s; }
+.dropzone:hover .dropzone__btn { background: var(--accent-strong); }
 
 .pagecount { text-align: center; font-size: .85rem; color: var(--ink-faint); margin: 10px 0 0; }
 

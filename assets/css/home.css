@@ -8,6 +8,9 @@
   --ink: #fafafa; --ink-soft: #a2a2aa; --ink-faint: #6c6c74;
   --pp: #7c74ff; --pp-strong: #9a93ff; --pp-soft: #18172a;
   background: #0a0a0a; color: #fafafa;
+  /* 레퍼런스풍 중립 그로테스크 (에이투지체 대신) */
+  font-family: 'Helvetica Neue', Arial, -apple-system, 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', sans-serif;
+  letter-spacing: -.01em;
 }
 .home .container { max-width: none; padding-left: clamp(20px, 5vw, 96px); padding-right: clamp(20px, 5vw, 96px); }
 .home .container--read { max-width: 880px; padding-left: 20px; padding-right: 20px; margin: 0 auto; }
@@ -21,8 +24,16 @@
   .orb, .orb::before, .hhero::before, .hhero__title, .hhero__sub, .hhero__cta, .hhero__more, .hhero__scroll { animation: none !important; opacity: 1 !important; transform: none !important; }
 }
 
-/* 커서 따라오는 앰비언트 글로우 (데스크톱 · 모션 허용 시 home.js가 생성) */
-.cursor-glow { position: fixed; left: 0; top: 0; width: 300px; height: 300px; border-radius: 50%; pointer-events: none; z-index: 2; background: radial-gradient(circle, rgba(124, 116, 255, .12), transparent 60%); mix-blend-mode: screen; will-change: transform; }
+/* 커스텀 커서 (데스크톱 · home.js가 생성) — 레퍼런스풍 따라다니는 링 */
+@media (pointer: fine) {
+  body.home.has-cursor, body.home.has-cursor a, body.home.has-cursor button,
+  body.home.has-cursor .tchip, body.home.has-cursor .fcard, body.home.has-cursor .dropzone,
+  body.home.has-cursor summary, body.home.has-cursor .pillbtn, body.home.has-cursor label { cursor: none; }
+  body.home.has-cursor input, body.home.has-cursor select, body.home.has-cursor textarea { cursor: auto; }
+}
+.cur-dot { position: fixed; left: 0; top: 0; width: 7px; height: 7px; margin: -3.5px 0 0 -3.5px; border-radius: 50%; background: #fff; pointer-events: none; z-index: 9999; mix-blend-mode: difference; }
+.cur-ring { position: fixed; left: 0; top: 0; width: 34px; height: 34px; margin: -17px 0 0 -17px; border: 1.5px solid rgba(255, 255, 255, .6); border-radius: 50%; pointer-events: none; z-index: 9999; mix-blend-mode: difference; transition: width .22s ease, height .22s ease, margin .22s ease, background .22s ease, border-color .22s ease; }
+.cur-ring.hover { width: 64px; height: 64px; margin: -32px 0 0 -32px; background: rgba(255, 255, 255, .14); border-color: transparent; }
 
 /* ── 헤더 ─────────────────────────────────────────── */
 .home .site-header { background: rgba(10, 10, 10, .72); backdrop-filter: saturate(160%) blur(12px); border-bottom: 1px solid var(--line); }
@@ -39,7 +50,7 @@
 
 /* 살아 움직이는 글로시 오브 */
 .orb {
-  width: 128px; height: 128px; border-radius: 50%; margin: 0 auto 38px; position: relative; overflow: hidden;
+  width: 168px; height: 168px; border-radius: 50%; margin: 0 auto 46px; position: relative; overflow: hidden;
   background: #3f1d8f;
   box-shadow: 0 24px 70px rgba(124, 116, 255, .5), inset 0 -14px 34px rgba(0, 0, 0, .5);
   animation: orbFloat 6s ease-in-out infinite, orbAppear 1s ease both;
@@ -61,9 +72,9 @@
 @keyframes orbFloat { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
 @keyframes orbAppear { from { opacity: 0; } to { opacity: 1; } }
 
-.hhero__title { font-weight: 800; font-size: clamp(2.7rem, 6.2vw, 5rem); line-height: 1.08; letter-spacing: -.035em; color: var(--ink); margin: 0 0 22px; }
+.hhero__title { font-weight: 600; font-size: clamp(1.8rem, 3.7vw, 2.8rem); line-height: 1.18; letter-spacing: -.028em; color: var(--ink); margin: 0 0 16px; }
 .hhero__title .ac { color: var(--pp-strong); }
-.hhero__sub { font-size: clamp(1.02rem, 2vw, 1.2rem); color: var(--ink-soft); line-height: 1.75; max-width: 540px; margin: 0 auto 32px; }
+.hhero__sub { font-size: clamp(.98rem, 1.7vw, 1.1rem); color: var(--ink-soft); line-height: 1.72; letter-spacing: -.003em; max-width: 480px; margin: 0 auto 30px; }
 .hhero__cta { display: flex; justify-content: center; }
 
 /* 히어로 인트로 (스태거 등장) */
@@ -84,6 +95,11 @@
 .hsec { padding: 72px 0; }
 .hsec--tight { padding: 34px 0; }
 .ic-pp, .ic-co { background: var(--pp-soft); }
+.ic-pp .ic-svg, .ic-co .ic-svg { width: 24px; height: 24px; color: var(--pp-strong); }
+.tchip__ic { display: inline-flex; color: var(--pp-strong); }
+.tchip__ic .ic-svg { width: 18px; height: 18px; }
+.pillbtn .dot { display: inline-flex; color: var(--pp); }
+.pillbtn .dot .pill-dot { width: 8px; height: 8px; }
 
 /* ── 섹션 헤더 ────────────────────────────────────── */
 .sec-head { margin-bottom: 36px; }
@@ -110,8 +126,10 @@
 .hpanel .tool { background: transparent; border: none; box-shadow: none; padding: 0; max-width: none; margin: 0; }
 
 /* 다크 위젯 내부 */
-.home .dropzone { background: var(--card2); border-color: var(--line2); padding: 30px 18px; }
-.home .dropzone:hover, .home .dropzone--over { border-color: var(--pp); background: #1b1b26; }
+.home .dropzone { background: var(--card2); border: 1.5px dashed var(--line2); border-radius: 16px; padding: 42px 22px; }
+.home .dropzone:hover, .home .dropzone--over { border-color: var(--pp); background: #1b1b29; }
+.home .dropzone__btn { background: var(--pp); }
+.home .dropzone:hover .dropzone__btn { background: var(--pp-strong); }
 .home .dropzone__title { color: var(--ink); }
 .home .dropzone__hint { color: var(--ink-soft); }
 .home .dropzone__hint .link { color: var(--pp-strong); }

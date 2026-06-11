@@ -47,7 +47,8 @@
         <input type="file" class="js-file" accept="application/pdf" hidden>
         <svg class="dropzone__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 16V4M12 4l-4 4M12 4l4 4"/><path d="M4 16v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg>
         <p class="dropzone__title">번호를 넣을 PDF를 끌어다 놓으세요</p>
-        <p class="dropzone__hint">또는 <span class="link">파일 선택</span> · 파일은 내 브라우저에서만 처리됩니다</p>
+        <span class="dropzone__btn">파일 선택</span>
+        <p class="dropzone__hint">또는 끌어다 놓기 · 파일은 내 브라우저에서만 처리됩니다</p>
       </div>
       <p class="pagecount js-pagecount"></p>
       <ul class="filelist js-files"></ul>
@@ -82,7 +83,7 @@
       <div class="actions"><button class="btn btn--primary btn--lg btn--block js-run" disabled>페이지 번호 넣기</button></div>
       <div class="progress js-progress" hidden><div class="progress__bar js-bar"></div><span class="progress__text js-ptext"></span></div>
       <div class="result js-result" hidden></div>
-      <noscript><p class="callout callout--warn" style="margin-top:16px"><span class="callout__ic">ℹ️</span><span>이 도구는 자바스크립트가 필요합니다. 브라우저의 자바스크립트를 켜 주세요. 파일은 여전히 서버로 전송되지 않고 내 브라우저에서만 처리됩니다.</span></p></noscript>
+      <noscript><p class="callout callout--warn" style="margin-top:16px"><span class="callout__ic"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><line x1="12" y1="11" x2="12" y2="16.5"/><circle cx="12" cy="7.8" r=".7" fill="currentColor" stroke="none"/></svg></span><span>이 도구는 자바스크립트가 필요합니다. 브라우저의 자바스크립트를 켜 주세요. 파일은 여전히 서버로 전송되지 않고 내 브라우저에서만 처리됩니다.</span></p></noscript>
     </div>
       <section class="section section--tight prose">
         <p class="lead">보고서나 논문을 제출하기 전, PDF에 쪽번호가 빠져 당황한 적 있나요. 파일을 올리고 위치와 형식만 고르면 페이지 번호가 한 번에 들어갑니다. 워터마크도, 회원가입도 없습니다.</p>
@@ -98,7 +99,7 @@
         </ol>
       </section>
       <section class="section section--tight">
-        <p class="callout callout--security"><span class="callout__ic">🔒</span><span><strong>파일은 서버로 전송되지 않습니다.</strong>파일은 내 컴퓨터의 브라우저 안에서만 처리합니다. 다른 PDF 도구와 달리 파일을 서버로 보내지 않으니, 계약서·민원 서류·과제처럼 남에게 보이고 싶지 않은 문서도 안심하고 쪽번호를 매길 수 있습니다.</span></p>
+        <p class="callout callout--security"><span class="callout__ic"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="9.5" rx="2"/><path d="M8 11V7.5a4 4 0 0 1 8 0V11"/></svg></span><span><strong>파일은 서버로 전송되지 않습니다.</strong>파일은 내 컴퓨터의 브라우저 안에서만 처리합니다. 다른 PDF 도구와 달리 파일을 서버로 보내지 않으니, 계약서·민원 서류·과제처럼 남에게 보이고 싶지 않은 문서도 안심하고 쪽번호를 매길 수 있습니다.</span></p>
       </section>
     <section class="section section--tight prose"><h2>이럴 때 써보세요</h2><p>과제와 보고서를 제출하기 직전 쪽번호를 빠뜨렸을 때, 여러 문서를 합친 뒤 번호를 다시 정리해야 할 때 유용합니다. 표지를 뺀 본문부터 1번 매기기, 전체 분량을 보여주는 1/N 넣기처럼 제출 양식이 요구하는 형식에 맞춰 PDF 페이지 번호를 매길 수 있습니다.</p></section>
     <section class="section section--tight prose"><h2>작업 전 알아두면 좋은 점</h2><p>이미 인쇄된 쪽번호가 있는 문서에 새로 번호를 넣으면 두 개가 겹쳐 보일 수 있으니, 위치를 비어 있는 자리로 골라 주세요. 작업한 PDF는 새 파일로 내려받으므로 원본은 그대로 남습니다. 결과가 마음에 들지 않으면 설정을 바꿔 다시 만들면 됩니다.</p></section>
@@ -116,12 +117,12 @@
       <section class="section section--tight">
       <h2 class="center">다른 PDF 도구도 써보세요</h2>
       <div class="related">
-        <a href="../merge/"><span class="ic">🔗</span> 합치기</a>
-        <a href="../split/"><span class="ic">✂️</span> 분할</a>
-        <a href="../unlock/"><span class="ic">🔓</span> 잠금해제</a>
-        <a href="../extract/"><span class="ic">📑</span> 페이지 추출</a>
-        <a href="../delete/"><span class="ic">🗑️</span> 페이지 삭제</a>
-        <a href="../to-image/"><span class="ic">🖼️</span> 이미지 변환</a>
+        <a href="../merge/"><span class="ic"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="8" width="11" height="12.5" rx="2"/><path d="M9 8V5.5A2 2 0 0 1 11 3.5h7.5A2 2 0 0 1 20.5 5.5V15a2 2 0 0 1-2 2H14.5"/></svg></span> 합치기</a>
+        <a href="../split/"><span class="ic"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="6" cy="6" r="2.4"/><circle cx="6" cy="18" r="2.4"/><line x1="20" y1="4" x2="8.6" y2="15.4"/><line x1="14.6" y1="14.6" x2="20" y2="20"/><line x1="8.6" y1="8.6" x2="11.4" y2="11.4"/></svg></span> 분할</a>
+        <a href="../unlock/"><span class="ic"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="9.5" rx="2"/><path d="M8 11V7a4 4 0 0 1 7.5-1.9"/></svg></span> 잠금해제</a>
+        <a href="../extract/"><span class="ic"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3.5H7.5a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h9a2 2 0 0 0 2-2v-9.5"/><path d="M14 3.5v5h5"/><path d="M12 17v-6.4"/><path d="M9.6 12.8 12 10.4l2.4 2.4"/></svg></span> 페이지 추출</a>
+        <a href="../delete/"><span class="ic"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 7h15"/><path d="M9 7V5.4A1.6 1.6 0 0 1 10.6 3.8h2.8A1.6 1.6 0 0 1 15 5.4V7"/><path d="M6.6 7l.9 12.2A1.6 1.6 0 0 0 9 20.7h6a1.6 1.6 0 0 0 1.6-1.5L17.4 7"/><line x1="10" y1="10.5" x2="10" y2="17"/><line x1="14" y1="10.5" x2="14" y2="17"/></svg></span> 페이지 삭제</a>
+        <a href="../to-image/"><span class="ic"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="4.5" width="17" height="15" rx="2.5"/><circle cx="8.5" cy="9.5" r="1.7"/><path d="M20.5 15.5 16 11 6 21"/></svg></span> 이미지 변환</a>
       </div>
     </section>
     </div>

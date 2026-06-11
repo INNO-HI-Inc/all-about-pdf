@@ -15,19 +15,26 @@
   }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
   arr.forEach(function (e) { io.observe(e); });
 
-  // 커서 따라오는 앰비언트 글로우 (데스크톱 · 모션 허용 시)
+  // 커스텀 커서 (데스크톱) — 점은 즉시 따라오고, 링은 부드럽게 lerp, 인터랙티브 위에서 확대
   var reduce2 = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var fine = window.matchMedia && window.matchMedia('(pointer: fine)').matches;
   if (fine && !reduce2) {
-    var g = document.createElement('div');
-    g.className = 'cursor-glow';
-    document.body.appendChild(g);
-    var gx = window.innerWidth / 2, gy = window.innerHeight / 2, mx = gx, my = gy;
-    document.addEventListener('mousemove', function (e) { mx = e.clientX; my = e.clientY; });
+    document.body.classList.add('has-cursor');
+    var dot = document.createElement('div'); dot.className = 'cur-dot';
+    var ring = document.createElement('div'); ring.className = 'cur-ring';
+    document.body.appendChild(dot); document.body.appendChild(ring);
+    var mx = window.innerWidth / 2, my = window.innerHeight / 2, rx = mx, ry = my;
+    document.addEventListener('mousemove', function (e) {
+      mx = e.clientX; my = e.clientY;
+      dot.style.transform = 'translate(' + mx + 'px,' + my + 'px)';
+    });
     (function loop() {
-      gx += (mx - gx) * 0.12; gy += (my - gy) * 0.12;
-      g.style.transform = 'translate(' + (gx - 150) + 'px,' + (gy - 150) + 'px)';
+      rx += (mx - rx) * 0.18; ry += (my - ry) * 0.18;
+      ring.style.transform = 'translate(' + rx + 'px,' + ry + 'px)';
       window.requestAnimationFrame(loop);
     })();
+    var HOV = 'a,button,.tchip,.fcard,.dropzone,summary,.pillbtn,label,.iconbtn';
+    document.addEventListener('mouseover', function (e) { if (e.target.closest && e.target.closest(HOV)) ring.classList.add('hover'); });
+    document.addEventListener('mouseout', function (e) { if (e.target.closest && e.target.closest(HOV)) ring.classList.remove('hover'); });
   }
 })();
