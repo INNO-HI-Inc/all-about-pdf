@@ -259,6 +259,31 @@
     return toBlob(await out.save());
   }
 
+  // 페이지 썸네일 렌더링 (시각적 선택용)
+  async function renderThumbs(file, opts, onProgress) {
+    opts = opts || {};
+    var scale = opts.scale || 0.34;
+    var max = opts.max || 60;
+    var pdf = await loadPdfjs(file, opts.password);
+    var total = pdf.numPages;
+    var n = Math.min(total, max);
+    var out = [];
+    for (var i = 1; i <= n; i++) {
+      var page = await pdf.getPage(i);
+      var vp = page.getViewport({ scale: scale });
+      var canvas = document.createElement('canvas');
+      canvas.width = Math.floor(vp.width);
+      canvas.height = Math.floor(vp.height);
+      var ctx = canvas.getContext('2d');
+      ctx.fillStyle = '#ffffff'; ctx.fillRect(0, 0, canvas.width, canvas.height);
+      await page.render({ canvasContext: ctx, viewport: vp }).promise;
+      out.push({ page: i, url: canvas.toDataURL('image/jpeg', 0.7) });
+      canvas.width = canvas.height = 0;
+      if (onProgress) onProgress(i / n);
+    }
+    return { thumbs: out, total: total, shown: n };
+  }
+
   // 페이지 수 (범위 검증용)
   async function getPageCount(file) {
     try {
@@ -285,6 +310,7 @@
     addPageNumbers: addPageNumbers,
     unlock: unlock,
     unlockRaster: unlockRaster,
+    renderThumbs: renderThumbs,
     getPageCount: getPageCount,
     isPasswordError: isPasswordError
   };

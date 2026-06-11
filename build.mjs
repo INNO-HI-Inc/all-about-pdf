@@ -268,6 +268,7 @@ function widget(t, opts) {
       </div>${pc}
       <ul class="filelist js-files"></ul>
       ${t.options}
+      <div class="pagegrid js-pagegrid" hidden></div>
       <div class="actions"><button class="btn btn--primary btn--lg btn--block js-run" disabled>${t.runLabel}</button></div>
       <div class="progress js-progress" hidden><div class="progress__bar js-bar"></div><span class="progress__text js-ptext"></span></div>
       <div class="result js-result" hidden></div>

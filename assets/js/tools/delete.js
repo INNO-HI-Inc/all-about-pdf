@@ -2,7 +2,7 @@
 document.addEventListener('DOMContentLoaded', function () {
   if (!document.querySelector('[data-tool="delete"]')) return;
   ToolCore.init({
-    tool: 'delete', multiple: false, pageCount: true,
+    tool: 'delete', multiple: false, pageCount: true, pageGrid: true, gridInput: '#delete-pages',
     readOptions: function (root) {
       var el = root.querySelector('#delete-pages');
       return { pages: el ? el.value : '' };

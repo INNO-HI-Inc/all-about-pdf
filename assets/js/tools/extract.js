@@ -2,7 +2,7 @@
 document.addEventListener('DOMContentLoaded', function () {
   if (!document.querySelector('[data-tool="extract"]')) return;
   ToolCore.init({
-    tool: 'extract', multiple: false, pageCount: true,
+    tool: 'extract', multiple: false, pageCount: true, pageGrid: true, gridInput: '#extract-pages',
     readOptions: function (root) {
       var el = root.querySelector('#extract-pages');
       return { pages: el ? el.value : '' };
