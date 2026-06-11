@@ -21,13 +21,10 @@
   --ink-faint: #8a93a3;
   --line: #e7ebf2;
   --line-strong: #d4dae5;
-  --accent: #6c5ce7;
-  --accent-strong: #5a48d6;
-  --accent-soft: #efecfd;
-  --accent-ink: #4733b3;
-  --coral: #ff4d6a;
-  --coral-strong: #ec3b5b;
-  --coral-soft: #ffeef1;
+  --accent: #4f46e5;
+  --accent-strong: #4338ca;
+  --accent-soft: #eef0fe;
+  --accent-ink: #3730a3;
   --success: #15a05a;
   --success-soft: #e7f7ee;
   --danger: #e5484d;
@@ -83,11 +80,8 @@ ul, ol { margin: 0 0 1em; padding-left: 1.2em; }
 .site-header__inner { display: flex; align-items: center; justify-content: space-between; height: 62px; }
 .brand { display: inline-flex; align-items: center; gap: 9px; font-weight: 800; font-size: 1.12rem; color: var(--ink); }
 .brand:hover { text-decoration: none; }
-.brand__logo {
-  width: 30px; height: 30px; border-radius: 8px; display: grid; place-items: center;
-  background: linear-gradient(135deg, var(--accent), var(--accent-strong)); color: #fff;
-  font-weight: 800; font-size: .82rem; letter-spacing: -.04em;
-}
+.brand__logo { width: 30px; height: 30px; display: inline-flex; flex-shrink: 0; }
+.brand__logo svg { width: 100%; height: 100%; display: block; }
 .brand__dot { color: var(--accent); }
 .site-nav { display: flex; gap: 4px; align-items: center; flex-wrap: wrap; }
 .site-nav a {

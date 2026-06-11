@@ -3,15 +3,15 @@
  * body.home 에서만 적용.
  */
 .home {
-  --pp: #6c5ce7; --pp-soft: #efecfd; --pp-strong: #5a48d6;
-  --co: #ff4d6a; --co-soft: #ffeef1; --co-strong: #ec3b5b;
+  --pp: #4f46e5; --pp-soft: #eef0fe; --pp-strong: #4338ca;
+  --co: #4f46e5; --co-soft: #eef0fe; --co-strong: #4338ca;
   --ink: #1f2430; --ink-soft: #616a7d; --line: #eceef4; --soft: #f7f8fc;
   background: #fff;
 }
-.home .container { max-width: 1080px; }
+.home .container { max-width: 1600px; padding-left: clamp(20px, 3.2vw, 56px); padding-right: clamp(20px, 3.2vw, 56px); }
+.home .container--read { max-width: 880px; }
 .home main { overflow: clip; }
 .home .site-header { background: rgba(255, 255, 255, .86); border-bottom: 1px solid var(--line); }
-.home .brand__logo { background: linear-gradient(135deg, var(--pp), var(--co)); border-radius: 9px; }
 .home .brand__dot { color: var(--pp); }
 .home .site-nav a:hover { background: var(--pp-soft); color: var(--pp); }
 
@@ -34,10 +34,10 @@
 .hhero__sub { font-size: clamp(1.02rem, 2vw, 1.18rem); line-height: 1.8; color: var(--ink-soft); max-width: 470px; margin: 0 0 30px; }
 .hhero__btns { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 36px; }
 .hbtn { display: inline-flex; align-items: center; gap: 8px; font-weight: 700; font-size: 1.02rem; padding: 14px 24px; border-radius: 14px; color: #fff; text-decoration: none; transition: transform .1s ease, box-shadow .15s, background .15s; }
-.hbtn--pp { background: var(--pp); box-shadow: 0 10px 22px rgba(108, 92, 231, .26); }
+.hbtn--pp { background: var(--pp); box-shadow: 0 10px 22px rgba(79, 70, 229, .24); }
 .hbtn--pp:hover { background: var(--pp-strong); transform: translateY(-2px); text-decoration: none; }
-.hbtn--co { background: var(--co); box-shadow: 0 10px 22px rgba(255, 77, 106, .26); }
-.hbtn--co:hover { background: var(--co-strong); transform: translateY(-2px); text-decoration: none; }
+.hbtn--co { background: #fff; color: var(--pp); border: 1.5px solid #dde0f3; box-shadow: none; }
+.hbtn--co:hover { background: var(--pp-soft); border-color: var(--pp); transform: translateY(-2px); text-decoration: none; }
 .hfeats { display: flex; flex-wrap: wrap; gap: 18px 26px; }
 .hfeat { display: flex; gap: 11px; align-items: flex-start; max-width: 220px; }
 .hfeat__ic { width: 38px; height: 38px; border-radius: 11px; display: grid; place-items: center; font-size: 1.05rem; flex-shrink: 0; }
@@ -52,14 +52,14 @@
 .hart__img { background: #f1f3f8; border-radius: 10px; height: 94px; display: grid; place-items: center; margin-bottom: 14px; }
 .hart__line { display: block; height: 9px; border-radius: 5px; background: #eef0f6; margin-bottom: 9px; }
 .hart__line.w60 { width: 60%; }
-.hart__scissors { position: absolute; z-index: 3; left: 4%; top: 18%; width: 54px; height: 54px; border-radius: 50%; background: var(--pp); display: grid; place-items: center; box-shadow: 0 10px 22px rgba(108, 92, 231, .4); }
+.hart__scissors { position: absolute; z-index: 3; left: 4%; top: 18%; width: 54px; height: 54px; border-radius: 50%; background: var(--pp); display: grid; place-items: center; box-shadow: 0 10px 22px rgba(79, 70, 229, .38); }
 .hart__scissors svg { width: 26px; height: 26px; }
 .hart__pages { position: absolute; z-index: 1; left: 2%; top: 44%; display: flex; flex-direction: column; gap: 8px; }
 .hart__pg { width: 46px; height: 34px; background: #fff; border-radius: 8px; box-shadow: 0 6px 16px rgba(40, 40, 90, .1); display: grid; place-items: center; }
 .hart__pg b { color: var(--co); font-weight: 800; font-size: .9rem; }
 .hart__pages .hart__pg:nth-child(2) { margin-left: 14px; }
 .hart__pages .hart__pg:nth-child(3) { margin-left: 28px; }
-.hart__plus { position: absolute; z-index: 3; right: 6%; top: 32%; width: 46px; height: 46px; border-radius: 50%; background: var(--co); display: grid; place-items: center; box-shadow: 0 10px 22px rgba(255, 77, 106, .4); }
+.hart__plus { position: absolute; z-index: 3; right: 6%; top: 32%; width: 46px; height: 46px; border-radius: 50%; background: #818cf8; display: grid; place-items: center; box-shadow: 0 10px 22px rgba(79, 70, 229, .32); }
 .hart__plus svg { width: 22px; height: 22px; }
 
 /* ── 기능 카드 4 ──────────────────────────────────── */
@@ -84,12 +84,7 @@
 .hpanel .tool { background: transparent; border: none; box-shadow: none; padding: 0; max-width: none; margin: 0; }
 .hpanel .dropzone { padding: 28px 18px; background: #fff; }
 .hpanel .actions { margin-top: 18px; }
-/* 코랄(합치기) 테마 */
-.tw--co .dropzone:hover, .tw--co .dropzone--over { border-color: var(--co); background: var(--co-soft); }
-.tw--co .dropzone__hint .link { color: var(--co); }
-.tw--co .js-run.btn--primary { background: var(--co); box-shadow: 0 4px 14px rgba(255, 77, 106, .28); }
-.tw--co .js-run.btn--primary:hover { background: var(--co-strong); }
-.tw--co .iconbtn:hover { background: var(--co-soft); color: var(--co); border-color: var(--co); }
+/* 두 위젯 모두 인디고 단색 (글로벌 --accent) */
 
 /* ── 전체 도구 칩 ─────────────────────────────────── */
 .tchips { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; }
