@@ -2,7 +2,7 @@
 document.addEventListener('DOMContentLoaded', function () {
   if (!document.querySelector('[data-tool="split"]')) return;
   ToolCore.init({
-    tool: 'split', multiple: false, pageCount: true,
+    tool: 'split', multiple: false, pageCount: true, splitGrid: true, gridInput: '#split-ranges',
     readOptions: function (root) {
       var m = root.querySelector('input[name="split-mode"]:checked');
       var ranges = root.querySelector('#split-ranges');

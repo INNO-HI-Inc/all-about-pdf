@@ -19,7 +19,7 @@ const BRAND = 'PDF의 모든 것';
 const TODAY = '2026-06-04';
 
 // 로고 마크 (글로시 그라디언트 오브) — 헤더·푸터 공통
-const LOGO_SVG = '<svg class="logo-mark" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><defs><radialGradient id="aapOrb" cx="34%" cy="27%" r="84%"><stop offset="0%" stop-color="#c8b9ff"/><stop offset="36%" stop-color="#6d6af6"/><stop offset="74%" stop-color="#4f46e5"/><stop offset="100%" stop-color="#36178a"/></radialGradient></defs><circle cx="16" cy="16" r="13.6" fill="url(#aapOrb)"/><ellipse cx="11.6" cy="10.4" rx="4.7" ry="3" fill="#fff" opacity=".5" transform="rotate(-18 11.6 10.4)"/></svg>';
+const LOGO_SVG = '<svg class="logo-mark" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><defs><radialGradient id="aapOrb" cx="34%" cy="27%" r="84%"><stop offset="0%" stop-color="#ffe1a8"/><stop offset="36%" stop-color="#ff9b5a"/><stop offset="74%" stop-color="#f2683c"/><stop offset="100%" stop-color="#9c2f0e"/></radialGradient></defs><circle cx="16" cy="16" r="13.6" fill="url(#aapOrb)"/><ellipse cx="11.6" cy="10.4" rx="4.7" ry="3" fill="#fff" opacity=".5" transform="rotate(-18 11.6 10.4)"/></svg>';
 
 // ───────── 커스텀 라인 아이콘 (이모지 대체, currentColor) ─────────
 const IC = (p) => `<svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${p}</svg>`;
@@ -238,7 +238,7 @@ ${toolList.map((s) => `  <script src="${rel}assets/js/tools/${s}.js" defer></scr
   <meta name="twitter:card" content="summary_large_image">
   <link rel="icon" href="${rel}assets/img/favicon.svg" type="image/svg+xml">
   <link rel="manifest" href="${rel}site.webmanifest">
-  <meta name="theme-color" content="#4f46e5">
+  <meta name="theme-color" content="#f2683c">
   <link rel="stylesheet" href="${rel}assets/css/style.css">${headExtra || ''}${ld}
 </head>
 <body${bodyClass ? ` class="${bodyClass}"` : ''}>

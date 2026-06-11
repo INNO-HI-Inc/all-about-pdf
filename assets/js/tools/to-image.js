@@ -2,7 +2,12 @@
 document.addEventListener('DOMContentLoaded', function () {
   if (!document.querySelector('[data-tool="to-image"]')) return;
   ToolCore.init({
-    tool: 'to-image', multiple: false, pageCount: true,
+    tool: 'to-image', multiple: false, pageCount: true, pageGrid: true, gridInput: '#img-pages',
+    onGridChange: function (hasSel, root) {
+      var all = root.querySelector('input[name="img-pages-mode"][value="all"]');
+      var custom = root.querySelector('input[name="img-pages-mode"][value="custom"]');
+      if (hasSel) { if (custom) custom.checked = true; } else if (all) { all.checked = true; }
+    },
     readOptions: function (root) {
       var fmt = root.querySelector('input[name="img-format"]:checked');
       var scale = root.querySelector('#img-scale');

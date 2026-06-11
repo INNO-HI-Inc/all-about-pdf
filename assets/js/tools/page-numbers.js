@@ -2,7 +2,7 @@
 document.addEventListener('DOMContentLoaded', function () {
   if (!document.querySelector('[data-tool="page-numbers"]')) return;
   ToolCore.init({
-    tool: 'page-numbers', multiple: false, pageCount: true,
+    tool: 'page-numbers', multiple: false, pageCount: true, numberPreview: true,
     readOptions: function (root) {
       var pos = root.querySelector('#pn-position');
       var start = root.querySelector('#pn-start');

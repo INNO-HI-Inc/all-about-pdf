@@ -4,8 +4,9 @@
  *   .js-drop .js-file .js-files .js-run .js-progress .js-bar .js-ptext .js-result
  *   [.js-pagecount] [.js-pagegrid]
  *
- * config: { tool, multiple, reorder, pageCount, pageGrid, gridInput, root?,
- *   readOptions(root): opts, validate(files,opts): err|null, run(files,opts,ctx): result }
+ * config: { tool, multiple, reorder, pageCount, root?,
+ *   pageGrid(썸네일 선택), splitGrid(자르기), numberPreview(번호 미리보기), fileThumbs(파일 썸네일),
+ *   gridInput, onGridChange, readOptions(root), validate(files,opts), run(files,opts,ctx) }
  */
 (function (global) {
   'use strict';
@@ -16,7 +17,6 @@
       return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
     });
   }
-  // 정렬된 페이지 배열 → "1, 3, 5-7"
   function compactRanges(arr) {
     arr = arr.slice().sort(function (a, b) { return a - b; });
     var res = [], i = 0;
@@ -45,8 +45,11 @@
 
     var state = { files: [] };
     var multiple = !!config.multiple;
-    var selected = {};
+    var selected = {};       // 선택 모드
+    var cutsBefore = {};     // 분할 모드: page→true (그 앞에서 자름)
     var dragIdx = -1;
+    var thumbCache = new global.Map();
+    var previewPageShown = 0, previewTotal = 0;
 
     function iconBtn(txt, label, fn, cls) {
       var b = d.createElement('button');
@@ -62,35 +65,37 @@
     }
     function swap(i, j) { var t = state.files[i]; state.files[i] = state.files[j]; state.files[j] = t; render(); }
 
+    function fileThumb(file, imgEl) {
+      if (thumbCache.has(file)) { imgEl.src = thumbCache.get(file); return; }
+      if (!global.PDFEngine || !PDFEngine.renderThumbs) return;
+      PDFEngine.renderThumbs(file, { max: 1, scale: 0.3 }).then(function (res) {
+        if (res.thumbs[0]) { thumbCache.set(file, res.thumbs[0].url); imgEl.src = res.thumbs[0].url; }
+      }).catch(function () {});
+    }
+
     function render() {
       filelist.innerHTML = '';
       var reorderable = config.reorder && state.files.length > 1;
       state.files.forEach(function (f, idx) {
         var li = d.createElement('li'); li.className = 'filelist__item';
         if (reorderable) {
-          li.setAttribute('draggable', 'true');
-          li.classList.add('is-draggable');
-          li.addEventListener('dragstart', function (e) {
-            dragIdx = idx; li.classList.add('dragging');
-            if (e.dataTransfer) { e.dataTransfer.effectAllowed = 'move'; try { e.dataTransfer.setData('text/plain', String(idx)); } catch (x) {} }
-          });
-          li.addEventListener('dragend', function () {
-            dragIdx = -1; li.classList.remove('dragging');
-            Array.prototype.forEach.call(filelist.children, function (c) { c.classList.remove('drag-over'); });
-          });
+          li.setAttribute('draggable', 'true'); li.classList.add('is-draggable');
+          li.addEventListener('dragstart', function (e) { dragIdx = idx; li.classList.add('dragging'); if (e.dataTransfer) { e.dataTransfer.effectAllowed = 'move'; try { e.dataTransfer.setData('text/plain', String(idx)); } catch (x) {} } });
+          li.addEventListener('dragend', function () { dragIdx = -1; li.classList.remove('dragging'); Array.prototype.forEach.call(filelist.children, function (c) { c.classList.remove('drag-over'); }); });
           li.addEventListener('dragover', function (e) { e.preventDefault(); if (e.dataTransfer) e.dataTransfer.dropEffect = 'move'; li.classList.add('drag-over'); });
           li.addEventListener('dragleave', function () { li.classList.remove('drag-over'); });
-          li.addEventListener('drop', function (e) {
-            e.preventDefault(); li.classList.remove('drag-over');
-            if (dragIdx > -1 && dragIdx !== idx) { var m = state.files.splice(dragIdx, 1)[0]; state.files.splice(idx, 0, m); render(); }
-          });
+          li.addEventListener('drop', function (e) { e.preventDefault(); li.classList.remove('drag-over'); if (dragIdx > -1 && dragIdx !== idx) { var m = state.files.splice(dragIdx, 1)[0]; state.files.splice(idx, 0, m); render(); } });
           li.appendChild(gripEl());
+        }
+        if (config.fileThumbs) {
+          var th = d.createElement('span'); th.className = 'filelist__thumb';
+          var img = d.createElement('img'); img.alt = ''; th.appendChild(img); li.appendChild(th);
+          fileThumb(f, img);
         }
         var info = d.createElement('div'); info.className = 'filelist__info';
         var name = d.createElement('span'); name.className = 'filelist__name'; name.textContent = f.name;
         var size = d.createElement('span'); size.className = 'filelist__size'; size.textContent = UI.humanSize(f.size);
-        info.appendChild(name); info.appendChild(size);
-        li.appendChild(info);
+        info.appendChild(name); info.appendChild(size); li.appendChild(info);
         var ctrls = d.createElement('div'); ctrls.className = 'filelist__ctrls';
         if (reorderable) {
           ctrls.appendChild(iconBtn('↑', '위로 이동', function () { if (idx > 0) swap(idx, idx - 1); }));
@@ -106,16 +111,22 @@
     function updatePageCount() {
       if (!pagecount || !config.pageCount) return;
       pagecount.textContent = '';
-      if (!state.files.length || !global.PDFEngine || !PDFEngine.getPageCount) return;
+      if (!state.files.length || !global.PDFEngine) return;
       PDFEngine.getPageCount(state.files[0]).then(function (n) { if (n) pagecount.textContent = '총 ' + n + '페이지'; });
     }
 
-    // ── 페이지 썸네일 선택 (텍스트 입력과 동기화) ──
-    function syncFromInput() {
-      selected = {};
-      if (gridInput && gridInput.value) { var p = UI.parsePageList(gridInput.value); p.list.forEach(function (n) { selected[n] = true; }); }
+    // ── 썸네일 영역 dispatcher ──
+    function renderGrid() {
+      if (!pagegrid || !global.PDFEngine || !PDFEngine.renderThumbs) return;
+      if (!state.files.length) { pagegrid.hidden = true; pagegrid.innerHTML = ''; return; }
+      if (config.numberPreview) return renderNumberPreview();
+      if (config.splitGrid) return renderSplitGrid();
+      if (config.pageGrid) return renderSelectGrid();
     }
-    function writeInput() { if (gridInput) gridInput.value = compactRanges(Object.keys(selected).map(Number)); }
+
+    // 선택 모드 (추출/삭제/이미지변환)
+    function syncFromInput() { selected = {}; if (gridInput && gridInput.value) { UI.parsePageList(gridInput.value).list.forEach(function (n) { selected[n] = true; }); } }
+    function writeInput() { if (gridInput) gridInput.value = compactRanges(Object.keys(selected).map(Number)); if (config.onGridChange) config.onGridChange(Object.keys(selected).length > 0, root); }
     function reflectInput() {
       if (!config.pageGrid || !pagegrid) return;
       syncFromInput();
@@ -124,11 +135,8 @@
         cell.classList.toggle('is-sel', on); cell.setAttribute('aria-pressed', on ? 'true' : 'false');
       });
     }
-    function renderGrid() {
-      if (!config.pageGrid || !pagegrid) return;
-      if (!state.files.length) { pagegrid.hidden = true; pagegrid.innerHTML = ''; return; }
-      pagegrid.hidden = false;
-      pagegrid.innerHTML = '<p class="pagegrid__loading">미리보기 불러오는 중…</p>';
+    function renderSelectGrid() {
+      pagegrid.hidden = false; pagegrid.innerHTML = '<p class="pagegrid__loading">미리보기 불러오는 중…</p>';
       var fileRef = state.files[0];
       PDFEngine.renderThumbs(fileRef, {}).then(function (res) {
         if (state.files[0] !== fileRef) return;
@@ -143,26 +151,103 @@
           if (selected[t.page]) cell.classList.add('is-sel');
           cell.addEventListener('click', function () {
             if (selected[t.page]) delete selected[t.page]; else selected[t.page] = true;
-            cell.classList.toggle('is-sel'); cell.setAttribute('aria-pressed', selected[t.page] ? 'true' : 'false');
-            writeInput();
+            cell.classList.toggle('is-sel'); cell.setAttribute('aria-pressed', selected[t.page] ? 'true' : 'false'); writeInput();
           });
           grid.appendChild(cell);
         });
         pagegrid.appendChild(grid);
-        var hint = d.createElement('p'); hint.className = 'pagegrid__hint';
-        hint.textContent = res.total > res.shown
-          ? '페이지를 눌러 선택하세요 · 앞 ' + res.shown + '쪽 미리보기(나머지는 위 칸에 번호 입력)'
-          : '페이지를 눌러 선택하세요.';
-        pagegrid.appendChild(hint);
+        addHint(res, '페이지를 눌러 선택하세요');
       }).catch(function () { pagegrid.hidden = true; pagegrid.innerHTML = ''; });
+    }
+
+    // 분할 모드 (split): 페이지를 누르면 그 앞에서 새 구간으로 나뉨
+    function splitSegments(total) {
+      var starts = [1], p; for (p = 2; p <= total; p++) if (cutsBefore[p]) starts.push(p);
+      var segs = [], i; for (i = 0; i < starts.length; i++) segs.push([starts[i], (i + 1 < starts.length ? starts[i + 1] - 1 : total)]);
+      return segs;
+    }
+    function writeSplitInput(total) {
+      var segs = splitSegments(total);
+      if (gridInput) gridInput.value = segs.map(function (g) { return g[0] === g[1] ? '' + g[0] : g[0] + '-' + g[1]; }).join(', ');
+      var rangesRadio = root.querySelector('input[name="split-mode"][value="ranges"]');
+      if (rangesRadio && segs.length > 1) rangesRadio.checked = true;
+    }
+    function segIndexOf(page, total) { var idx = 0, p; for (p = 2; p <= page; p++) if (cutsBefore[p]) idx++; return idx; }
+    function renderSplitGrid() {
+      pagegrid.hidden = false; pagegrid.innerHTML = '<p class="pagegrid__loading">미리보기 불러오는 중…</p>';
+      var fileRef = state.files[0];
+      PDFEngine.renderThumbs(fileRef, {}).then(function (res) {
+        if (state.files[0] !== fileRef) return;
+        var total = res.shown;
+        pagegrid.innerHTML = '';
+        var grid = d.createElement('div'); grid.className = 'pagegrid__grid pagegrid__grid--split';
+        var paint = function () {
+          Array.prototype.forEach.call(grid.children, function (cell) {
+            var pg = +cell.getAttribute('data-page');
+            cell.classList.toggle('is-cut', !!cutsBefore[pg]);
+            cell.setAttribute('data-seg', segIndexOf(pg, total) % 2);
+          });
+        };
+        res.thumbs.forEach(function (t) {
+          var cell = d.createElement('button');
+          cell.type = 'button'; cell.className = 'pagecell pagecell--split'; cell.setAttribute('data-page', t.page);
+          cell.innerHTML = '<span class="pagecell__img"><img src="' + t.url + '" alt="' + t.page + '페이지" loading="lazy"></span><span class="pagecell__no">' + t.page + '</span>';
+          if (t.page > 1) cell.addEventListener('click', function () {
+            if (cutsBefore[t.page]) delete cutsBefore[t.page]; else cutsBefore[t.page] = true;
+            paint(); writeSplitInput(total);
+          });
+          else cell.classList.add('is-locked');
+          grid.appendChild(cell);
+        });
+        pagegrid.appendChild(grid);
+        paint();
+        addHint(res, '나눌 페이지를 누르면 거기서부터 새 파일로 분리돼요');
+      }).catch(function () { pagegrid.hidden = true; pagegrid.innerHTML = ''; });
+    }
+
+    // 번호 미리보기 (page-numbers)
+    function renderNumberPreview() {
+      var o = config.readOptions ? config.readOptions(root) : {};
+      var want = o.skipCover ? 2 : 1;
+      pagegrid.hidden = false;
+      if (previewPageShown === want && pagegrid.querySelector('.numprev')) { updateNumberBadge(); return; }
+      pagegrid.innerHTML = '<p class="pagegrid__loading">미리보기 불러오는 중…</p>';
+      var fileRef = state.files[0];
+      PDFEngine.renderThumbs(fileRef, { max: want, scale: 0.62 }).then(function (res) {
+        if (state.files[0] !== fileRef) return;
+        var t = res.thumbs[res.thumbs.length - 1];
+        if (!t) { pagegrid.hidden = true; pagegrid.innerHTML = ''; return; }
+        previewPageShown = want; previewTotal = res.total;
+        pagegrid.innerHTML = '<div class="numprev"><img src="' + t.url + '" alt="미리보기"><span class="numprev__badge"></span></div><p class="pagegrid__hint">번호가 들어갈 위치 미리보기</p>';
+        updateNumberBadge();
+      }).catch(function () { pagegrid.hidden = true; pagegrid.innerHTML = ''; });
+    }
+    function updateNumberBadge() {
+      var badge = pagegrid && pagegrid.querySelector('.numprev__badge'); if (!badge) return;
+      var o = config.readOptions ? config.readOptions(root) : {};
+      var num = (o.startAt != null ? o.startAt : 1);
+      var txt = o.format === 'n/total' ? num + ' / ' + Math.max(1, previewTotal - (o.skipCover ? 1 : 0)) : (o.format === 'dash' ? '- ' + num + ' -' : '' + num);
+      badge.textContent = txt;
+      badge.className = 'numprev__badge pos-' + (o.position || 'bottom-center');
+    }
+    function onNumChange() {
+      if (!state.files.length) return;
+      var o = config.readOptions ? config.readOptions(root) : {};
+      var want = o.skipCover ? 2 : 1;
+      if (want !== previewPageShown) renderNumberPreview(); else updateNumberBadge();
+    }
+
+    function addHint(res, base) {
+      var hint = d.createElement('p'); hint.className = 'pagegrid__hint';
+      hint.textContent = res.total > res.shown ? base + ' · 앞 ' + res.shown + '쪽 미리보기' : base;
+      pagegrid.appendChild(hint);
     }
 
     function changed() {
       result.hidden = true; result.innerHTML = '';
-      render();
-      updatePageCount();
-      renderGrid();
-      if (config.onFiles) { try { config.onFiles(state.files); } catch (e) { /* noop */ } }
+      selected = {}; cutsBefore = {}; previewPageShown = 0;
+      render(); updatePageCount(); renderGrid();
+      if (config.onFiles) { try { config.onFiles(state.files); } catch (e) {} }
     }
 
     function addFiles(fileList) {
@@ -178,43 +263,28 @@
     ['dragenter', 'dragover'].forEach(function (ev) { drop.addEventListener(ev, function (e) { e.preventDefault(); drop.classList.add('dropzone--over'); }); });
     ['dragleave', 'dragend', 'drop'].forEach(function (ev) { drop.addEventListener(ev, function (e) { e.preventDefault(); drop.classList.remove('dropzone--over'); }); });
     drop.addEventListener('drop', function (e) { if (e.dataTransfer && e.dataTransfer.files) addFiles(e.dataTransfer.files); });
-    if (gridInput) gridInput.addEventListener('input', reflectInput);
+    if (gridInput && config.pageGrid) gridInput.addEventListener('input', reflectInput);
+    if (config.numberPreview) { root.addEventListener('change', onNumChange); root.addEventListener('input', onNumChange); }
 
     function setBusy(b) {
-      runBtn.disabled = b || state.files.length === 0;
-      runBtn.classList.toggle('is-busy', b);
+      runBtn.disabled = b || state.files.length === 0; runBtn.classList.toggle('is-busy', b);
       if (progress) { progress.hidden = !b; if (b) { if (bar) bar.style.width = '4%'; if (ptext) ptext.textContent = '처리 중…'; } }
     }
-    function onProgress(p) {
-      var pct = Math.max(2, Math.round((p || 0) * 100));
-      if (bar) bar.style.width = pct + '%';
-      if (ptext) ptext.textContent = '처리 중… ' + pct + '%';
-    }
+    function onProgress(p) { var pct = Math.max(2, Math.round((p || 0) * 100)); if (bar) bar.style.width = pct + '%'; if (ptext) ptext.textContent = '처리 중… ' + pct + '%'; }
 
     async function handleResult(res) {
       if (!res) return;
-      if (res.type === 'blob') {
-        UI.downloadBlob(res.blob, res.filename);
-        showSuccess(res.filename, function () { UI.downloadBlob(res.blob, res.filename); });
-      } else if (res.type === 'zip') {
-        await UI.zipAndDownload(res.items, res.zipName, onProgress);
-        showSuccess(res.zipName + ' (' + res.items.length + '개 파일)', function () { UI.zipAndDownload(res.items, res.zipName); });
-      } else if (res.type === 'files') {
-        res.items.forEach(function (it) { UI.downloadBlob(it.blob, it.name); });
-        showSuccess(res.items.length + '개 파일');
-      } else if (res.type === 'message') {
-        result.hidden = false; result.innerHTML = res.html;
-      }
+      if (res.type === 'blob') { UI.downloadBlob(res.blob, res.filename); showSuccess(res.filename, function () { UI.downloadBlob(res.blob, res.filename); }); }
+      else if (res.type === 'zip') { await UI.zipAndDownload(res.items, res.zipName, onProgress); showSuccess(res.zipName + ' (' + res.items.length + '개 파일)', function () { UI.zipAndDownload(res.items, res.zipName); }); }
+      else if (res.type === 'files') { res.items.forEach(function (it) { UI.downloadBlob(it.blob, it.name); }); showSuccess(res.items.length + '개 파일'); }
+      else if (res.type === 'message') { result.hidden = false; result.innerHTML = res.html; }
     }
     function showSuccess(label, again) {
       result.hidden = false; result.innerHTML = '';
       var ok = d.createElement('p'); ok.className = 'result__ok';
-      ok.innerHTML = '<span class="result__check">✓</span> <strong>완료됐어요!</strong> ' + escapeHtml(label) + ' 다운로드가 시작됐습니다.';
+      ok.innerHTML = '<span class="result__check"></span> <strong>완료됐어요!</strong> ' + escapeHtml(label) + ' 다운로드가 시작됐습니다.';
       result.appendChild(ok);
-      if (again) {
-        var b = d.createElement('button'); b.type = 'button'; b.className = 'btn btn--ghost btn--sm';
-        b.textContent = '다시 다운로드'; b.addEventListener('click', again); result.appendChild(b);
-      }
+      if (again) { var b = d.createElement('button'); b.type = 'button'; b.className = 'btn btn--ghost btn--sm'; b.textContent = '다시 다운로드'; b.addEventListener('click', again); result.appendChild(b); }
     }
 
     runBtn.addEventListener('click', async function () {
