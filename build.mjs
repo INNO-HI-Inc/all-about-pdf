@@ -417,9 +417,8 @@ function buildHome() {
   const footT2 = TOOLS.slice(4).map((t) => `<a href="${t.slug}/">${read(t.slug).h1}</a>`).join('');
 
   const main = `    <header class="ws-taskbar">
-      <a href="./" class="ws-logo"><span class="chip">${CHIP}</span><span class="ko">PDF의 모든 것</span><b style="color:#6b6f86">/</b><span style="color:#9498b0">workspace</span></a>
-      <nav class="ws-nav"><a href="#tools">도구</a><a href="#why">왜 안전한가</a><a href="#faq">자주 묻는 질문</a><a href="${escAttr(GITHUB_URL)}" rel="noopener" target="_blank" style="color:#fff;border-color:rgba(255,255,255,.2)">오픈소스 ↗</a></nav>
-      <div class="ws-clock"><span class="ws-status"><span class="led"></span>내 기기에서 처리중 · 서버 미전송</span><span class="ws-time" id="ws-clock">00:00:00</span></div>
+      <a href="./" class="ws-logo"><span class="chip">${CHIP}</span><span class="ko">PDF의 모든 것</span><b class="sep">/</b><span class="wk">workspace</span></a>
+      <nav class="ws-nav"><a href="#tools">도구</a><a href="#why">왜 안전한가</a><a href="#faq">자주 묻는 질문</a><a class="gh" href="${escAttr(GITHUB_URL)}" rel="noopener" target="_blank">오픈소스 ↗</a></nav>
     </header>
 
     <div class="ws-wrap">
@@ -436,8 +435,8 @@ function buildHome() {
         </div>
         <div class="ws-winwrap">
           <div class="ws-note"><span class="tk">// memo.txt</span>계약서·사내자료도 OK.<br>업로드 자체가 없음 :)</div>
-          <div class="ws-window">
-            <div class="ws-winbar"><span class="ws-lights"><span class="r"></span><span class="y"></span><span class="g"></span></span><span class="ws-wintitle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4"/></svg>pdf_tools.app — 여기서 바로 작업</span></div>
+          <div class="ws-window" data-ws-window>
+            <div class="ws-winbar"><button class="ws-lights" type="button" data-ws-close aria-label="작업 닫기"><span class="r"></span><span class="y"></span><span class="g"></span></button><span class="ws-wintitle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4"/></svg><span class="t">pdf_tools.app</span><span class="sub"> — 여기서 바로 작업</span></span><button class="ws-winclose" type="button" data-ws-close aria-label="작업 닫고 처음으로">처음으로 ✕</button></div>
             <div class="herotool">
               <div class="herotool__tabs" role="tablist" aria-label="PDF 도구 선택">
               ${heroTabs}
@@ -505,7 +504,7 @@ function buildHome() {
             <div class="ws-footcol"><h5>// about</h5><a href="about/">서비스 소개</a><a href="#why">왜 안전한가</a><a href="#faq">자주 묻는 질문</a><a href="${escAttr(GITHUB_URL)}" rel="noopener" target="_blank">오픈소스 (GitHub) ↗</a></div>
           </div>
         </div>
-        <div class="ws-footbottom"><span>© 2026 PDF의 모든 것 — made in Korea, runs on your device.</span><span class="priv"><span class="led"></span>NO UPLOAD · 파일은 이 기기를 벗어나지 않습니다</span></div>
+        <div class="ws-footbottom"><span>© 2026 PDF의 모든 것 — made in Korea, runs on your device.</span><span>오픈소스 · MIT License</span></div>
       </div>
     </footer>`;
 

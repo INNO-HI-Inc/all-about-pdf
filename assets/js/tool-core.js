@@ -248,7 +248,10 @@
       selected = {}; cutsBefore = {}; previewPageShown = 0;
       render(); updatePageCount(); renderGrid();
       if (config.onFiles) { try { config.onFiles(state.files); } catch (e) {} }
+      try { root.dispatchEvent(new CustomEvent('tool:files', { bubbles: true, detail: { count: state.files.length, tool: config.tool } })); } catch (e) {}
     }
+    // 외부(홈 풀스크린 닫기 등)에서 초기화 요청
+    root.addEventListener('tool:reset', function () { if (!state.files.length) return; state.files = []; changed(); });
 
     function addFiles(fileList) {
       var arr = Array.prototype.slice.call(fileList).filter(function (f) { return /\.pdf$/i.test(f.name) || f.type === 'application/pdf'; });
