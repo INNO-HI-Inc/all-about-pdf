@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>PDF의 모든 것 | 무료 PDF 합치기·분할·변환 — 서버에 올리지 않는 PDF 도구</title>
+<meta name="description" content="설치도 회원가입도 없이 무료로 쓰는 PDF 도구 모음. 파일을 서버에 올리지 않고 내 브라우저에서 바로 합치기·분할·변환·잠금해제까지 처리합니다." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;700;800;900&family=Archivo+Black&family=IBM+Plex+Mono:wght@400;500;600;700&family=IBM+Plex+Sans+KR:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --ink:#0a0a0a;
+    --paper:#f4f1e8;       /* warm machine paper */
+    --paper-2:#ece8db;
+    --indigo:#4f46e5;
+    --indigo-dk:#3730a3;
+    --indigo-lt:#c7d2fe;
+    --lime:#d7ff3e;        /* utility hazard accent */
+    --red:#e23b2e;
+    --line:#0a0a0a;
+    --bd:2px solid var(--ink);
+    --bd-thick:3px solid var(--ink);
+    --shadow:6px 6px 0 var(--ink);
+    --shadow-sm:4px 4px 0 var(--ink);
+    --mono:'IBM Plex Mono','ui-monospace',monospace;
+    --sans:'Archivo','IBM Plex Sans KR',system-ui,sans-serif;
+    --kr:'IBM Plex Sans KR','Archivo',sans-serif;
+    --gut:clamp(16px,2.4vw,34px);
+  }
+
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:var(--kr);
+    line-height:1.5;
+    overflow-x:hidden;
+    /* engineering grid backdrop */
+    background-image:
+      linear-gradient(rgba(10,10,10,.05) 1px,transparent 1px),
+      linear-gradient(90deg,rgba(10,10,10,.05) 1px,transparent 1px);
+    background-size:44px 44px;
+  }
+  ::selection{background:var(--indigo);color:#fff}
+  a{color:inherit;text-decoration:none}
+
+  .mono{font-family:var(--mono);font-feature-settings:"tnum" 1}
+  .upp{text-transform:uppercase;letter-spacing:.14em}
+
+  /* ===== shell / frame ===== */
+  .frame{
+    max-width:1440px;
+    margin:0 auto;
+    border-left:var(--bd-thick);
+    border-right:var(--bd-thick);
+    background:var(--paper);
+    background-image:inherit;
+    min-height:100vh;
+  }
+
+  /* ===== topbar ===== */
+  .topbar{
+    display:flex;align-items:stretch;
+    border-bottom:var(--bd-thick);
+    background:var(--paper-2);
+  }
+  .brand{
+    display:flex;align-items:center;gap:14px;
+    padding:18px 26px;
+    border-right:var(--bd-thick);
+    flex:0 0 auto;
+  }
+  .brand .logo{
+    width:42px;height:42px;flex:0 0 42px;
+    background:var(--indigo);
+    border:var(--bd);
+    display:grid;place-items:center;
+    color:#fff;font-family:var(--mono);font-weight:700;font-size:20px;
+    box-shadow:3px 3px 0 var(--ink);
+    position:relative;
+  }
+  .brand .logo::after{
+    content:"";position:absolute;top:5px;right:5px;width:7px;height:7px;background:var(--lime);
+  }
+  .brand .name{font-family:var(--sans);font-weight:800;font-size:20px;line-height:1;letter-spacing:-.01em}
+  .brand .name b{display:block;font-family:var(--mono);font-weight:500;font-size:10px;letter-spacing:.18em;color:var(--indigo);margin-top:5px}
+  .topnav{display:flex;flex:1;align-items:stretch;justify-content:flex-end}
+  .topnav a{
+    display:flex;align-items:center;padding:0 24px;
+    border-left:2px solid var(--ink);
+    font-family:var(--mono);font-size:12px;font-weight:500;letter-spacing:.04em;
+    transition:background .12s,color .12s;
+  }
+  .topnav a:hover{background:var(--ink);color:var(--paper)}
+  .topnav a.cta{background:var(--indigo);color:#fff;font-weight:700}
+  .topnav a.cta:hover{background:var(--lime);color:var(--ink)}
+  .topnav .status{
+    display:flex;align-items:center;gap:8px;padding:0 22px;border-left:2px solid var(--ink);
+    font-family:var(--mono);font-size:11px;letter-spacing:.04em;
+  }
+  .dot{width:9px;height:9px;border-radius:50%;background:#21b358;border:1.5px solid var(--ink);
+       animation:pulse 1.6s infinite}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+
+  /* ===== ticker ===== */
+  .ticker{
+    border-bottom:var(--bd-thick);
+    background:var(--ink);color:var(--paper);
+    overflow:hidden;white-space:nowrap;
+    font-family:var(--mono);font-size:12px;letter-spacing:.06em;
+  }
+  .ticker .track{display:inline-block;padding:9px 0;animation:scroll 34s linear infinite}
+  .ticker .track span{padding:0 28px;border-right:1px solid rgba(244,241,232,.25)}
+  .ticker .track span b{color:var(--lime);font-weight:600}
+  @keyframes scroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+
+  /* ===== HERO ===== */
+  .hero{display:grid;grid-template-columns:1.55fr 1fr;border-bottom:var(--bd-thick)}
+  .hero-main{padding:clamp(30px,4.5vw,64px) clamp(24px,4vw,60px) clamp(34px,4vw,56px);
+             border-right:var(--bd-thick);position:relative}
+  .kicker{display:inline-flex;align-items:center;gap:10px;margin-bottom:26px;
+          font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:.14em;
+          background:var(--lime);border:var(--bd);padding:6px 12px;box-shadow:3px 3px 0 var(--ink)}
+  .kicker i{width:7px;height:7px;background:var(--ink);display:block;transform:rotate(45deg)}
+  h1.head{
+    font-family:var(--sans);font-weight:900;
+    font-size:clamp(40px,7vw,92px);line-height:.92;letter-spacing:-.03em;
+    text-transform:none;
+  }
+  h1.head .ln{display:block;overflow:hidden}
+  h1.head .ln > span{display:inline-block;animation:rise .7s cubic-bezier(.2,.8,.2,1) both}
+  h1.head .ln:nth-child(2) > span{animation-delay:.07s}
+  h1.head .ln:nth-child(3) > span{animation-delay:.14s}
+  @keyframes rise{from{transform:translateY(105%)}to{transform:translateY(0)}}
+  h1.head em{font-style:normal;background:var(--indigo);color:var(--paper);
+             padding:0 .12em;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+  h1.head .mark{position:relative;white-space:nowrap}
+  h1.head .mark s{position:absolute;left:-2%;right:-2%;top:52%;height:7px;background:var(--red);
+                  transform:scaleX(0);transform-origin:left;
+                  animation:strike .5s ease .85s forwards;text-decoration:none}
+  @keyframes strike{to{transform:scaleX(1)}}
+
+  .sub{margin-top:30px;max-width:38ch;font-size:clamp(15px,1.5vw,18px);font-weight:400;
+       color:#1a1a1a;line-height:1.7;font-family:var(--kr)}
+  .sub b{font-weight:700;border-bottom:3px solid var(--indigo)}
+  .hero-actions{display:flex;flex-wrap:wrap;gap:0;margin-top:34px;border:var(--bd-thick);
+                width:fit-content;box-shadow:var(--shadow)}
+  .btn{font-family:var(--mono);font-size:14px;font-weight:600;letter-spacing:.02em;
+       padding:16px 26px;display:inline-flex;align-items:center;gap:10px;
+       transition:transform .1s,background .12s,color .12s;cursor:pointer;background:var(--paper)}
+  .btn.prime{background:var(--indigo);color:#fff;border-right:var(--bd-thick)}
+  .btn.prime:hover{background:var(--ink)}
+  .btn.ghost:hover{background:var(--lime)}
+  .btn .arr{font-size:16px;transition:transform .15s}
+  .btn:hover .arr{transform:translateX(4px)}
+
+  /* hero side : the "machine" stat panel */
+  .hero-side{display:flex;flex-direction:column;background:var(--paper-2)}
+  .stat{border-bottom:var(--bd);padding:22px 26px;position:relative;flex:1}
+  .stat:last-child{border-bottom:none}
+  .stat .lab{font-family:var(--mono);font-size:11px;letter-spacing:.12em;color:#555;text-transform:uppercase}
+  .stat .big{font-family:var(--sans);font-weight:900;font-size:clamp(30px,3.6vw,46px);line-height:1;margin-top:8px;letter-spacing:-.02em}
+  .stat .big small{font-size:.4em;font-weight:700;color:var(--indigo);vertical-align:super;font-family:var(--mono)}
+  .stat .note{font-family:var(--kr);font-size:12.5px;color:#444;margin-top:10px;line-height:1.55}
+  .stat.hl{background:var(--indigo);color:var(--paper)}
+  .stat.hl .lab{color:var(--indigo-lt)}
+  .stat.hl .note{color:#dcdcf5}
+  .stat .idx{position:absolute;top:14px;right:18px;font-family:var(--mono);font-size:11px;color:#999}
+  .stat.hl .idx{color:#a5b4fc}
+
+  /* ===== privacy strip (the core USP, loud) ===== */
+  .privacy{display:grid;grid-template-columns:auto 1fr auto;align-items:center;
+           border-bottom:var(--bd-thick);background:var(--ink);color:var(--paper)}
+  .privacy .tag{font-family:var(--mono);writing-mode:vertical-rl;text-orientation:mixed;
+                padding:18px 14px;background:var(--lime);color:var(--ink);border-right:2px solid var(--paper);
+                font-weight:700;letter-spacing:.2em;font-size:12px;align-self:stretch;display:flex;align-items:center}
+  .privacy .flow{display:flex;align-items:center;gap:0;flex-wrap:wrap;padding:18px 24px}
+  .pnode{display:flex;align-items:center;gap:12px;font-family:var(--mono);font-size:13px}
+  .pnode .box{border:2px solid var(--paper);padding:8px 13px;font-weight:600;letter-spacing:.02em;background:rgba(255,255,255,.05)}
+  .pnode .box.me{background:var(--indigo);border-color:var(--indigo)}
+  .pflow{padding:0 16px;color:var(--lime);font-size:18px;letter-spacing:-.1em}
+  .pnode .box.no{color:#ff8a7d;border-color:#ff8a7d;position:relative}
+  .pnode .box.no::after{content:"";position:absolute;inset:0;background:
+    linear-gradient(135deg,transparent calc(50% - 1px),#ff8a7d,transparent calc(50% + 1px));opacity:.5}
+  .privacy .verdict{padding:0 26px;font-family:var(--sans);font-weight:800;font-size:clamp(14px,1.4vw,18px);
+                    letter-spacing:-.01em;text-align:right;line-height:1.2}
+  .privacy .verdict b{color:var(--lime)}
+
+  /* ===== section header ===== */
+  .sec-head{display:flex;align-items:baseline;justify-content:space-between;gap:20px;
+            padding:18px 26px;border-bottom:var(--bd-thick);background:var(--paper-2);flex-wrap:wrap}
+  .sec-head .l{display:flex;align-items:baseline;gap:16px}
+  .sec-head .num{font-family:var(--mono);font-size:13px;background:var(--ink);color:var(--paper);
+                 padding:4px 9px;font-weight:600}
+  .sec-head h2{font-family:var(--sans);font-weight:900;font-size:clamp(20px,2.6vw,32px);
+               letter-spacing:-.02em;line-height:1}
+  .sec-head .r{font-family:var(--mono);font-size:12px;color:#555;letter-spacing:.04em}
+
+  /* ===== TOOLS GRID — the engine room ===== */
+  .tools{display:grid;grid-template-columns:repeat(4,1fr);border-bottom:var(--bd-thick)}
+  .tool{
+    border-right:var(--bd);border-bottom:var(--bd);
+    padding:24px 22px 22px;
+    position:relative;display:flex;flex-direction:column;min-height:218px;
+    background:var(--paper);transition:background .14s,transform .12s;
+    overflow:hidden;
+  }
+  .tool::before{content:"";position:absolute;inset:0;background:var(--indigo);
+                transform:translateY(101%);transition:transform .26s cubic-bezier(.2,.8,.2,1);z-index:0}
+  .tool:hover::before{transform:translateY(0)}
+  .tool:hover{color:var(--paper)}
+  .tool > *{position:relative;z-index:1}
+  .tool .t-idx{font-family:var(--mono);font-size:12px;color:#999;letter-spacing:.05em;transition:color .14s}
+  .tool:hover .t-idx{color:var(--indigo-lt)}
+  .tool .ico{width:46px;height:46px;border:var(--bd);background:var(--paper-2);margin:14px 0 18px;
+             display:grid;place-items:center;box-shadow:3px 3px 0 var(--ink);transition:background .14s,box-shadow .14s}
+  .tool:hover .ico{background:var(--lime);box-shadow:3px 3px 0 var(--paper)}
+  .tool .ico svg{width:24px;height:24px;display:block}
+  .tool h3{font-family:var(--sans);font-weight:800;font-size:19px;letter-spacing:-.01em;line-height:1.15}
+  .tool p{font-family:var(--kr);font-size:13px;color:#555;margin-top:8px;line-height:1.55;transition:color .14s;flex:1}
+  .tool:hover p{color:#e0e0fb}
+  .tool .go{margin-top:14px;font-family:var(--mono);font-size:12px;font-weight:600;
+            display:inline-flex;align-items:center;gap:7px;letter-spacing:.03em}
+  .tool .go .a{transition:transform .15s}
+  .tool:hover .go .a{transform:translateX(5px)}
+  .tool .badge{position:absolute;top:18px;right:18px;font-family:var(--mono);font-size:10px;
+               background:var(--ink);color:var(--paper);padding:2px 7px;letter-spacing:.06em;transition:background .14s,color .14s}
+  .tool:hover .badge{background:var(--lime);color:var(--ink)}
+  /* remove double border on last col / row visually handled by frame */
+  .tools .tool:nth-child(4n){border-right:none}
+  .tool.fill{background:var(--indigo);color:var(--paper);display:flex;justify-content:center}
+  .tool.fill::before{display:none}
+  .tool.fill .lab{font-family:var(--mono);font-size:11px;letter-spacing:.14em;color:var(--indigo-lt)}
+  .tool.fill h3{font-size:22px;margin-top:10px}
+  .tool.fill p{color:#dcdcf5}
+  .tool.fill .ico{background:var(--lime);box-shadow:3px 3px 0 var(--paper)}
+
+  /* ===== HOW (process) ===== */
+  .how{display:grid;grid-template-columns:repeat(3,1fr);border-bottom:var(--bd-thick)}
+  .step{padding:28px 26px;border-right:var(--bd);position:relative}
+  .step:last-child{border-right:none}
+  .step .n{font-family:var(--sans);font-weight:900;font-size:clamp(42px,5vw,68px);line-height:.85;
+           color:var(--indigo);letter-spacing:-.04em;-webkit-text-stroke:2px var(--ink)}
+  .step h4{font-family:var(--sans);font-weight:800;font-size:18px;margin-top:14px;letter-spacing:-.01em}
+  .step p{font-family:var(--kr);font-size:13.5px;color:#555;margin-top:8px;line-height:1.6;max-width:34ch}
+  .step .conn{position:absolute;top:36px;right:-12px;font-family:var(--mono);color:var(--ink);font-size:20px;z-index:2;background:var(--paper);padding:2px}
+
+  /* ===== SEO body + FAQ ===== */
+  .lower{display:grid;grid-template-columns:1.2fr 1fr}
+  .copy{padding:clamp(28px,3.4vw,48px);border-right:var(--bd-thick)}
+  .copy .eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.16em;color:var(--indigo);text-transform:uppercase}
+  .copy h2{font-family:var(--sans);font-weight:900;font-size:clamp(24px,3vw,40px);letter-spacing:-.025em;
+           margin-top:14px;line-height:1.04}
+  .copy h2 em{font-style:normal;background:var(--lime);padding:0 .08em}
+  .copy p{font-family:var(--kr);font-size:15px;color:#2a2a2a;line-height:1.85;margin-top:20px;max-width:54ch}
+  .copy p b{font-weight:700;color:var(--ink)}
+  .copy .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:26px}
+  .chip{font-family:var(--mono);font-size:11.5px;border:var(--bd);padding:6px 11px;background:var(--paper-2);
+        box-shadow:2px 2px 0 var(--ink);letter-spacing:.02em}
+
+  .faq{background:var(--paper-2)}
+  .faq .fhd{padding:18px 26px;border-bottom:var(--bd-thick);font-family:var(--mono);font-size:12px;
+             letter-spacing:.14em;text-transform:uppercase;display:flex;justify-content:space-between;align-items:center}
+  details{border-bottom:var(--bd-thick)}
+  summary{list-style:none;cursor:pointer;padding:18px 26px;display:flex;align-items:center;gap:16px;
+          font-family:var(--kr);font-weight:600;font-size:15.5px;transition:background .12s}
+  summary::-webkit-details-marker{display:none}
+  summary:hover{background:var(--paper)}
+  summary .q{font-family:var(--mono);font-size:12px;color:var(--indigo);font-weight:700;flex:0 0 auto}
+  summary .plus{margin-left:auto;width:24px;height:24px;border:var(--bd);display:grid;place-items:center;
+                font-family:var(--mono);font-size:15px;transition:transform .2s,background .12s;flex:0 0 24px}
+  details[open] summary .plus{background:var(--indigo);color:#fff;transform:rotate(45deg)}
+  details .ans{padding:0 26px 22px 64px;font-family:var(--kr);font-size:14px;color:#444;line-height:1.75}
+
+  /* ===== footer ===== */
+  .foot{display:grid;grid-template-columns:1.4fr 1fr 1fr;border-bottom:var(--bd-thick)}
+  .foot > div{padding:28px 26px;border-right:var(--bd)}
+  .foot > div:last-child{border-right:none}
+  .foot .big{font-family:var(--sans);font-weight:900;font-size:clamp(26px,3.4vw,44px);letter-spacing:-.03em;line-height:1}
+  .foot .big em{font-style:normal;color:var(--indigo)}
+  .foot p{font-family:var(--kr);font-size:13px;color:#555;margin-top:14px;line-height:1.6;max-width:34ch}
+  .foot h5{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#888;margin-bottom:14px}
+  .foot ul{list-style:none}
+  .foot ul li{margin-bottom:9px}
+  .foot ul li a{font-family:var(--kr);font-size:13.5px;transition:color .12s;border-bottom:1px solid transparent}
+  .foot ul li a:hover{color:var(--indigo);border-bottom-color:var(--indigo)}
+  .colophon{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;
+            padding:14px 26px;font-family:var(--mono);font-size:11px;letter-spacing:.04em;color:#666}
+  .colophon . os{display:inline-flex;align-items:center;gap:8px}
+  .colophon . os b{background:var(--ink);color:var(--paper);padding:3px 8px;font-weight:600}
+
+  /* ===== responsive ===== */
+  @media(max-width:1080px){
+    .tools{grid-template-columns:repeat(2,1fr)}
+    .tools .tool:nth-child(4n){border-right:var(--bd)}
+    .tools .tool:nth-child(2n){border-right:none}
+  }
+  @media(max-width:920px){
+    .hero{grid-template-columns:1fr}
+    .hero-main{border-right:none;border-bottom:var(--bd-thick)}
+    .hero-side{flex-direction:row;flex-wrap:wrap}
+    .stat{flex:1 1 50%;border-right:var(--bd)}
+    .lower{grid-template-columns:1fr}
+    .copy{border-right:none;border-bottom:var(--bd-thick)}
+    .how{grid-template-columns:1fr}
+    .step{border-right:none;border-bottom:var(--bd)}
+    .step .conn{display:none}
+    .foot{grid-template-columns:1fr}
+    .foot > div{border-right:none;border-bottom:var(--bd)}
+  }
+  @media(max-width:680px){
+    body{background-size:32px 32px}
+    .frame{border-left:none;border-right:none}
+    .topnav a:not(.cta){display:none}
+    .topnav .status{display:none}
+    .privacy{grid-template-columns:1fr}
+    .privacy .tag{writing-mode:horizontal-tb;text-orientation:initial;border-right:none;border-bottom:2px solid var(--paper);justify-content:center}
+    .privacy .verdict{text-align:left;padding:14px 24px 18px;border-top:1px solid rgba(244,241,232,.25)}
+    .tools{grid-template-columns:1fr}
+    .tools .tool{border-right:none!important}
+    .stat{flex:1 1 100%;border-right:none}
+    .hero-actions{width:100%}
+    .btn{flex:1;justify-content:center}
+    h1.head{font-size:clamp(38px,12vw,56px)}
+  }
+</style>
+</head>
+<body>
+<div class="frame">
+
+  <!-- ============ TOPBAR ============ -->
+  <header class="topbar">
+    <a class="brand" href="#top">
+      <span class="logo mono">P</span>
+      <span class="name">PDF의 모든 것<b>ALL ABOUT PDF</b></span>
+    </a>
+    <nav class="topnav">
+      <a href="#tools">도구</a>
+      <a href="#how">사용법</a>
+      <a href="#faq">FAQ</a>
+      <span class="status mono"><span class="dot"></span>LOCAL · ONLINE</span>
+      <a class="cta" href="#tools">도구 열기 →</a>
+    </nav>
+  </header>
+
+  <!-- ============ TICKER ============ -->
+  <div class="ticker">
+    <div class="track mono">
+      <span><b>00</b> 서버에 올리지 않음 — 모든 처리는 내 브라우저에서</span>
+      <span><b>01</b> 워터마크 없음</span>
+      <span><b>02</b> 회원가입 불필요</span>
+      <span><b>03</b> 용량·개수 무제한</span>
+      <span><b>04</b> 100% 무료</span>
+      <span><b>05</b> 자연스러운 한국어</span>
+      <span><b>00</b> 서버에 올리지 않음 — 모든 처리는 내 브라우저에서</span>
+      <span><b>01</b> 워터마크 없음</span>
+      <span><b>02</b> 회원가입 불필요</span>
+      <span><b>03</b> 용량·개수 무제한</span>
+      <span><b>04</b> 100% 무료</span>
+      <span><b>05</b> 자연스러운 한국어</span>
+    </div>
+  </div>
+
+  <!-- ============ HERO ============ -->
+  <section class="hero" id="top">
+    <div class="hero-main">
+      <span class="kicker mono"><i></i>FREE PDF TOOLKIT / KR / v1.0</span>
+      <h1 class="head">
+        <span class="ln"><span>파일은 <em>안 올린다</em>.</span></span>
+        <span class="ln"><span>작업은 <span class="mark">끝낸다<s></s></span>.</span></span>
+        <span class="ln"><span>PDF, 내 기기에서.</span></span>
+      </h1>
+      <p class="sub">합치기·분할·잠금해제·페이지 추출·삭제·이미지 변환·페이지 번호까지.
+        7가지 도구를 <b>설치도 회원가입도 없이</b> 한곳에서. 파일은 서버로 전송되지 않습니다.</p>
+      <div class="hero-actions">
+        <a class="btn prime mono" href="#tools">도구 7개 보기 <span class="arr">→</span></a>
+        <a class="btn ghost mono" href="#how">어떻게 안전한가</a>
+      </div>
+    </div>
+
+    <aside class="hero-side">
+      <div class="stat">
+        <span class="idx mono">A1</span>
+        <span class="lab mono">업로드 바이트</span>
+        <span class="big">0<small>BYTE</small></span>
+        <p class="note">파일이 외부로 전송되는 양. 처리는 전부 브라우저 메모리 안에서만 일어납니다.</p>
+      </div>
+      <div class="stat hl">
+        <span class="idx mono">A2</span>
+        <span class="lab mono">제공 도구</span>
+        <span class="big">07<small>TOOLS</small></span>
+        <p class="note">합치기 · 분할 · 잠금해제 · 추출 · 삭제 · 이미지 변환 · 페이지 번호.</p>
+      </div>
+      <div class="stat">
+        <span class="idx mono">A3</span>
+        <span class="lab mono">비용 / 한도</span>
+        <span class="big">₩0<small>NO LIMIT</small></span>
+        <p class="note">워터마크·결제·파일 개수 제한 없음. 필요한 만큼 무제한으로.</p>
+      </div>
+    </aside>
+  </section>
+
+  <!-- ============ PRIVACY STRIP ============ -->
+  <section class="privacy">
+    <div class="tag mono">PRIVACY</div>
+    <div class="flow">
+      <div class="pnode"><span class="box me mono">내 PDF</span></div>
+      <span class="pflow mono">───▶</span>
+      <div class="pnode"><span class="box mono">브라우저 처리</span></div>
+      <span class="pflow mono">───✕──▶</span>
+      <div class="pnode"><span class="box no mono">서버 업로드</span></div>
+    </div>
+    <div class="verdict">계약서도, 사내 문서도.<br><b>업로드 자체가 없습니다.</b></div>
+  </section>
+
+  <!-- ============ TOOLS ============ -->
+  <section id="tools">
+    <div class="sec-head">
+      <div class="l">
+        <span class="num mono">§01</span>
+        <h2>도구 모음 / THE ENGINE ROOM</h2>
+      </div>
+      <span class="r mono">7 UTILITIES · CLIENT-SIDE</span>
+    </div>
+
+    <div class="tools">
+      <!-- 1 MERGE -->
+      <a class="tool" href="#" data-tool="merge">
+        <span class="t-idx mono">T-01</span>
+        <span class="badge mono">인기</span>
+        <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="9" height="13" rx="1"/><rect x="9" y="8" width="12" height="13" rx="1" fill="var(--paper-2)"/><path d="M13 12h4M15 10v4"/></svg></span>
+        <h3>PDF 합치기</h3>
+        <p>여러 PDF를 원하는 순서로 하나로. 드래그로 순서 변경.</p>
+        <span class="go mono">실행하기 <span class="a">→</span></span>
+      </a>
+      <!-- 2 SPLIT -->
+      <a class="tool" href="#" data-tool="split">
+        <span class="t-idx mono">T-02</span>
+        <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="8" height="16" rx="1"/><rect x="13" y="4" width="8" height="16" rx="1"/><path d="M12 2v20" stroke-dasharray="2 2"/></svg></span>
+        <h3>PDF 분할</h3>
+        <p>한 문서를 페이지·범위 단위로 여러 파일로 나눕니다.</p>
+        <span class="go mono">실행하기 <span class="a">→</span></span>
+      </a>
+      <!-- 3 UNLOCK -->
+      <a class="tool" href="#" data-tool="unlock">
+        <span class="t-idx mono">T-03</span>
+        <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="11" width="16" height="10" rx="1.5"/><path d="M8 11V7a4 4 0 0 1 7.5-2"/><circle cx="12" cy="16" r="1.4" fill="currentColor"/></svg></span>
+        <h3>PDF 잠금해제</h3>
+        <p>비밀번호로 묶인 PDF의 잠금을 풀어 자유롭게.</p>
+        <span class="go mono">실행하기 <span class="a">→</span></span>
+      </a>
+      <!-- 4 EXTRACT -->
+      <a class="tool" href="#" data-tool="extract">
+        <span class="t-idx mono">T-04</span>
+        <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="3" width="12" height="16" rx="1"/><path d="M16 9h4v9a2 2 0 0 1-2 2H9"/><path d="M12 11l3 0M13.5 9.5l1.5 1.5-1.5 1.5" /></svg></span>
+        <h3>페이지 추출</h3>
+        <p>필요한 페이지만 골라 새 PDF로 뽑아냅니다.</p>
+        <span class="go mono">실행하기 <span class="a">→</span></span>
+      </a>
+      <!-- 5 DELETE -->
+      <a class="tool" href="#" data-tool="delete">
+        <span class="t-idx mono">T-05</span>
+        <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="3" width="14" height="18" rx="1"/><path d="M9 8l6 6M15 8l-6 6"/></svg></span>
+        <h3>페이지 삭제</h3>
+        <p>불필요한 페이지를 지우고 깔끔하게 정리.</p>
+        <span class="go mono">실행하기 <span class="a">→</span></span>
+      </a>
+      <!-- 6 TO IMAGE -->
+      <a class="tool" href="#" data-tool="to-image">
+        <span class="t-idx mono">T-06</span>
+        <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="16" rx="1.5"/><circle cx="8.5" cy="9.5" r="1.8"/><path d="M3 17l5-5 4 4 3-3 6 6"/></svg></span>
+        <h3>이미지 변환</h3>
+        <p>PDF 페이지를 JPG·PNG 이미지로 한 장씩.</p>
+        <span class="go mono">실행하기 <span class="a">→</span></span>
+      </a>
+      <!-- 7 PAGE NUMBER -->
+      <a class="tool" href="#" data-tool="page-numbers">
+        <span class="t-idx mono">T-07</span>
+        <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="3" width="16" height="18" rx="1"/><path d="M14 16h3M14 13.5h3M9.5 13v4M8 15h3" stroke-linecap="round"/></svg></span>
+        <h3>페이지 번호</h3>
+        <p>보고서·과제에 페이지 번호를 자동으로 삽입.</p>
+        <span class="go mono">실행하기 <span class="a">→</span></span>
+      </a>
+      <!-- FILL CTA cell -->
+      <div class="tool fill">
+        <span class="lab mono">NEXT ↗</span>
+        <h3>전부 무료, 지금 바로.</h3>
+        <p>아무거나 눌러 시작하세요. 가입도 설치도 없이 바로 실행됩니다.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ HOW ============ -->
+  <section id="how">
+    <div class="sec-head">
+      <div class="l">
+        <span class="num mono">§02</span>
+        <h2>작동 방식 / HOW IT RUNS</h2>
+      </div>
+      <span class="r mono">3 STEPS · NO UPLOAD</span>
+    </div>
+    <div class="how">
+      <div class="step">
+        <span class="conn mono">→</span>
+        <span class="n">01</span>
+        <h4>도구 선택 &amp; 파일 열기</h4>
+        <p>원하는 도구를 누르고 PDF를 끌어다 놓습니다. 이 순간에도 파일은 내 기기 밖으로 나가지 않습니다.</p>
+      </div>
+      <div class="step">
+        <span class="conn mono">→</span>
+        <span class="n">02</span>
+        <h4>브라우저가 직접 처리</h4>
+        <p>합치고, 나누고, 변환하는 모든 연산이 브라우저 안에서 실행됩니다. 서버 통신이 없으니 빠르고 안전합니다.</p>
+      </div>
+      <div class="step">
+        <span class="n">03</span>
+        <h4>결과 내려받기</h4>
+        <p>완성된 파일을 곧바로 저장하세요. 워터마크도, 가입 유도도 없습니다. 끝나면 흔적도 남지 않습니다.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SEO COPY + FAQ ============ -->
+  <section class="lower" id="faq">
+    <div class="copy">
+      <span class="eyebrow mono">ABOUT / 왜 이걸 쓰나요</span>
+      <h2>외산 도구는 <em>올린 뒤</em> 지웁니다.<br>우리는 <em>애초에</em> 안 올립니다.</h2>
+      <p>「PDF의 모든 것」은 PDF 합치기, 분할, 잠금해제, 페이지 추출·삭제, JPG·이미지 변환,
+        페이지 번호 넣기까지 자주 쓰는 작업을 한곳에 모은 <b>무료 도구 모음</b>입니다.
+        설치나 회원가입 없이 브라우저에서 바로 시작하고, 파일은 서버로 올라가지 않으니
+        계약서·보고서·민원서류 같은 <b>민감한 문서도 안심하고</b> 다룰 수 있습니다.</p>
+      <p>대부분의 해외 PDF 서비스는 파일을 서버에 업로드한 뒤 일정 시간이 지나면 삭제하는 방식입니다.
+        저희는 <b>처음부터 업로드를 하지 않습니다.</b> 모든 처리가 사용자의 기기 안에서 이뤄지고,
+        어색한 기계번역 대신 <b>자연스러운 한국어</b>로 안내해 처음 쓰는 분도 헤매지 않습니다.</p>
+      <div class="chips">
+        <span class="chip mono">#과제·보고서</span>
+        <span class="chip mono">#계약서</span>
+        <span class="chip mono">#민원서류</span>
+        <span class="chip mono">#서버미전송</span>
+        <span class="chip mono">#워터마크없음</span>
+        <span class="chip mono">#오픈소스</span>
+      </div>
+    </div>
+
+    <div class="faq">
+      <div class="fhd mono"><span>FAQ / 자주 묻는 질문</span><span>05</span></div>
+      <details open>
+        <summary><span class="q mono">Q1</span>정말 무료인가요?<span class="plus mono">+</span></summary>
+        <div class="ans">네, 전부 무료입니다. 결과물에 워터마크가 붙지 않고 파일 개수나 용량 제한도 없으며, 중간에 결제를 요구하지 않습니다.</div>
+      </details>
+      <details>
+        <summary><span class="q mono">Q2</span>내 파일이 안전한가요?<span class="plus mono">+</span></summary>
+        <div class="ans">안전합니다. 모든 작업이 사용자의 브라우저 안에서 처리되며 파일이 서버로 전송되지 않습니다. 업로드 자체가 없으므로 외부에 파일이 보관될 일이 없습니다.</div>
+      </details>
+      <details>
+        <summary><span class="q mono">Q3</span>프로그램을 설치해야 하나요?<span class="plus mono">+</span></summary>
+        <div class="ans">아니요. 설치나 회원가입 없이 웹페이지를 열기만 하면 바로 사용할 수 있습니다.</div>
+      </details>
+      <details>
+        <summary><span class="q mono">Q4</span>어떤 작업을 할 수 있나요?<span class="plus mono">+</span></summary>
+        <div class="ans">PDF 합치기, 분할, 잠금해제, 특정 페이지 추출·삭제, JPG·이미지로 변환, 페이지 번호 넣기까지 7가지 도구를 제공합니다.</div>
+      </details>
+      <details>
+        <summary><span class="q mono">Q5</span>모바일에서도 되나요?<span class="plus mono">+</span></summary>
+        <div class="ans">네. 스마트폰이나 태블릿의 웹 브라우저에서도 별도 앱 설치 없이 동일하게 이용할 수 있습니다.</div>
+      </details>
+    </div>
+  </section>
+
+  <!-- ============ FOOTER ============ -->
+  <footer>
+    <div class="foot">
+      <div>
+        <div class="big">PDF, <em>내 손</em>에서<br>전부.</div>
+        <p>설치 없이, 올리지 않고, 무료로. 필요한 PDF 작업을 지금 바로 시작하세요.</p>
+        <a class="btn prime mono" href="#tools" style="margin-top:18px;border:2px solid var(--ink);box-shadow:4px 4px 0 var(--ink)">도구 열기 →</a>
+      </div>
+      <div>
+        <h5 class="mono">도구 / TOOLS</h5>
+        <ul>
+          <li><a href="#tools">PDF 합치기</a></li>
+          <li><a href="#tools">PDF 분할</a></li>
+          <li><a href="#tools">PDF 잠금해제</a></li>
+          <li><a href="#tools">페이지 추출</a></li>
+          <li><a href="#tools">페이지 삭제</a></li>
+          <li><a href="#tools">이미지 변환</a></li>
+          <li><a href="#tools">페이지 번호</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5 class="mono">정보 / INFO</h5>
+        <ul>
+          <li><a href="#how">사용 방법</a></li>
+          <li><a href="#faq">자주 묻는 질문</a></li>
+          <li><a href="#top">서버 미전송 원칙</a></li>
+          <li><a href="#top">오픈소스 안내</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="colophon mono">
+      <span>© 2026 PDF의 모든 것 — ALL ABOUT PDF</span>
+      <span class="os">MADE IN KOREA <b>CLIENT-SIDE</b> NO-UPLOAD</span>
+    </div>
+  </footer>
+
+</div>
+
+<script>
+  // brutalist micro-interaction: tap a tool -> brief "RUN" flash before nav (demo)
+  document.querySelectorAll('.tool[href]').forEach(function(t){
+    t.addEventListener('click',function(e){
+      e.preventDefault();
+      var go=t.querySelector('.go');
+      if(!go)return;
+      var orig=go.innerHTML;
+      go.innerHTML='실행 중… <span class="a">▮</span>';
+      setTimeout(function(){ go.innerHTML=orig; },650);
+    });
+  });
+  // subtle parallax on the engineering grid relative to scroll
+  var b=document.body;
+  window.addEventListener('scroll',function(){
+    var y=window.scrollY*0.04;
+    b.style.backgroundPosition='0 '+y+'px, 0 '+y+'px';
+  },{passive:true});
+</script>
+</body>
+</html>

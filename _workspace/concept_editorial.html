@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>PDF의 모든 것 | 무료 PDF 합치기·분할·변환 — 파일은 내 기기에서만</title>
+<meta name="description" content="설치도 회원가입도 없이 무료로 쓰는 PDF 도구 모음. 파일을 서버에 올리지 않고 내 브라우저에서 바로 합치기·분할·변환·잠금해제까지 처리합니다." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Spectral:ital,wght@0,300;0,400;0,500;1,400&family=Archivo:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" />
+<style>
+  :root{
+    --paper:#f3ede1;          /* warm paper base */
+    --paper-2:#ece4d4;        /* slightly deeper paper */
+    --paper-3:#e6dcc8;        /* panel paper */
+    --ink:#1d1a16;            /* near-black ink, warm */
+    --ink-soft:#4a443b;       /* secondary ink */
+    --ink-faint:#8a8174;      /* captions / labels */
+    --rule:#cdc2ac;           /* hairline rules */
+    --rule-strong:#b6a98e;
+    --indigo:#4f46e5;         /* brand accent */
+    --indigo-deep:#3a32b8;
+    --indigo-wash:#e9e7fb;
+    --maxw:1320px;
+    --gut:clamp(20px,4.4vw,72px);
+    --ease:cubic-bezier(.2,.7,.2,1);
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:"Archivo","Pretendard",system-ui,sans-serif;
+    font-size:16px;
+    line-height:1.55;
+    overflow-x:hidden;
+    /* paper grain */
+    background-image:
+      radial-gradient(circle at 12% 18%, rgba(79,70,229,.025), transparent 38%),
+      radial-gradient(circle at 88% 6%, rgba(120,100,40,.05), transparent 42%),
+      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix type='saturate' values='0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/></svg>");
+  }
+  ::selection{background:var(--indigo);color:#fff;}
+  a{color:inherit;text-decoration:none;}
+
+  .kr{font-family:"Pretendard","Archivo",system-ui,sans-serif;}
+  .serif{font-family:"Fraunces",Georgia,serif;}
+  .spectral{font-family:"Spectral","Fraunces",Georgia,serif;}
+
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 var(--gut);}
+
+  /* labels / kickers */
+  .kicker{
+    font-family:"Archivo",sans-serif;
+    font-weight:600;
+    font-size:.7rem;
+    letter-spacing:.28em;
+    text-transform:uppercase;
+    color:var(--ink-faint);
+  }
+  .kicker.idg{color:var(--indigo);}
+
+  /* ───────────────── MASTHEAD ───────────────── */
+  .masthead{
+    position:sticky;top:0;z-index:60;
+    background:rgba(243,237,225,.82);
+    backdrop-filter:blur(10px) saturate(1.1);
+    border-bottom:1px solid var(--rule);
+  }
+  .masthead .bar{
+    display:flex;align-items:center;justify-content:space-between;
+    gap:24px;
+    padding:14px var(--gut);
+    max-width:var(--maxw);margin:0 auto;
+  }
+  .brand{display:flex;align-items:baseline;gap:14px;min-width:0;}
+  .brand .glyph{
+    font-family:"Fraunces",serif;font-weight:600;
+    font-size:1.55rem;font-style:italic;
+    letter-spacing:-.01em;line-height:1;color:var(--ink);
+  }
+  .brand .glyph b{color:var(--indigo);font-style:normal;font-weight:900;}
+  .brand .sub{
+    font-family:"Archivo";font-size:.62rem;letter-spacing:.26em;
+    text-transform:uppercase;color:var(--ink-faint);white-space:nowrap;
+  }
+  .mast-meta{display:flex;align-items:center;gap:26px;}
+  .mast-meta nav{display:flex;gap:24px;}
+  .mast-meta nav a{
+    font-family:"Archivo";font-weight:500;font-size:.78rem;
+    letter-spacing:.02em;color:var(--ink-soft);position:relative;padding:4px 0;
+  }
+  .mast-meta nav a::after{
+    content:"";position:absolute;left:0;bottom:0;height:1px;width:0;
+    background:var(--indigo);transition:width .35s var(--ease);
+  }
+  .mast-meta nav a:hover{color:var(--ink);}
+  .mast-meta nav a:hover::after{width:100%;}
+  .issue-tag{
+    font-family:"Archivo";font-size:.62rem;letter-spacing:.24em;text-transform:uppercase;
+    color:var(--paper);background:var(--indigo);
+    padding:6px 10px;border-radius:2px;white-space:nowrap;
+  }
+  @media(max-width:880px){.mast-meta nav,.brand .sub{display:none;}}
+
+  /* ───────────────── COVER / HERO ───────────────── */
+  .cover{position:relative;padding:clamp(36px,6vw,82px) 0 0;}
+  .cover .topline{
+    display:flex;justify-content:space-between;align-items:baseline;
+    border-top:1.5px solid var(--ink);border-bottom:1px solid var(--rule);
+    padding:10px 0;margin-bottom:clamp(20px,3vw,40px);
+    font-family:"Archivo";font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-soft);
+  }
+  .cover .topline span:last-child{color:var(--indigo);}
+
+  .cover-grid{
+    display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.62fr);
+    gap:clamp(24px,4vw,64px);align-items:end;
+  }
+  .headline{
+    font-family:"Fraunces",serif;
+    font-weight:340;
+    font-size:clamp(3.1rem,9.2vw,8.6rem);
+    line-height:.92;
+    letter-spacing:-.025em;
+    color:var(--ink);
+    margin:0;
+  }
+  .headline .em{font-style:italic;font-weight:430;}
+  .headline .idg{color:var(--indigo);font-style:italic;font-weight:560;position:relative;}
+  .headline .small{
+    display:block;font-family:"Pretendard";font-weight:700;
+    font-size:clamp(1.05rem,2.4vw,1.7rem);letter-spacing:-.01em;
+    color:var(--ink-soft);margin-top:.55em;line-height:1.35;
+  }
+  /* staggered reveal */
+  .reveal{opacity:0;transform:translateY(26px);animation:rise 1s var(--ease) forwards;}
+  @keyframes rise{to{opacity:1;transform:none;}}
+  .d1{animation-delay:.05s}.d2{animation-delay:.18s}.d3{animation-delay:.32s}
+  .d4{animation-delay:.46s}.d5{animation-delay:.6s}.d6{animation-delay:.74s}
+
+  .cover-side{padding-bottom:8px;}
+  .lede{
+    font-family:"Spectral",serif;font-size:1.18rem;line-height:1.62;
+    color:var(--ink-soft);margin:0 0 26px;
+    border-left:2px solid var(--indigo);padding-left:20px;
+  }
+  .lede .kr{font-family:"Pretendard";}
+  .cover-cta{display:flex;flex-wrap:wrap;gap:14px;align-items:center;}
+  .btn{
+    font-family:"Pretendard";font-weight:700;font-size:.95rem;
+    padding:14px 26px;border-radius:2px;border:1.5px solid var(--ink);
+    background:var(--ink);color:var(--paper);
+    display:inline-flex;align-items:center;gap:10px;
+    transition:transform .3s var(--ease),background .3s,box-shadow .3s,color .3s;
+  }
+  .btn:hover{background:var(--indigo);border-color:var(--indigo);transform:translateY(-2px);box-shadow:0 14px 28px -16px rgba(79,70,229,.7);}
+  .btn .arr{transition:transform .3s var(--ease);}
+  .btn:hover .arr{transform:translateX(4px);}
+  .btn.ghost{background:transparent;color:var(--ink);border-color:var(--rule-strong);}
+  .btn.ghost:hover{background:transparent;color:var(--indigo);border-color:var(--indigo);box-shadow:none;}
+
+  /* cover bottom band: USP ticker as editorial standfirst */
+  .standfirst{
+    margin-top:clamp(34px,5vw,64px);
+    border-top:1.5px solid var(--ink);
+    display:grid;grid-template-columns:repeat(3,1fr);
+  }
+  .standfirst .cell{
+    padding:26px 28px 30px 0;border-right:1px solid var(--rule);
+  }
+  .standfirst .cell:last-child{border-right:none;padding-right:0;}
+  .standfirst .num{
+    font-family:"Fraunces",serif;font-style:italic;font-weight:500;
+    font-size:1.4rem;color:var(--indigo);
+  }
+  .standfirst h3{
+    font-family:"Pretendard";font-weight:800;font-size:1.12rem;
+    margin:.5em 0 .45em;letter-spacing:-.01em;
+  }
+  .standfirst p{
+    font-family:"Pretendard";font-size:.92rem;line-height:1.62;color:var(--ink-soft);margin:0;
+  }
+  @media(max-width:880px){
+    .cover-grid{grid-template-columns:1fr;align-items:start;}
+    .standfirst{grid-template-columns:1fr;}
+    .standfirst .cell{border-right:none;border-bottom:1px solid var(--rule);padding:22px 0;}
+    .standfirst .cell:last-child{border-bottom:none;}
+  }
+
+  /* ───────────────── SECTION HEADER ───────────────── */
+  section{padding:clamp(56px,8vw,118px) 0;}
+  .sec-head{
+    display:grid;grid-template-columns:auto 1fr auto;gap:24px;align-items:end;
+    border-bottom:1.5px solid var(--ink);padding-bottom:18px;margin-bottom:clamp(32px,4vw,56px);
+  }
+  .sec-no{
+    font-family:"Fraunces",serif;font-weight:300;font-style:italic;
+    font-size:clamp(2.6rem,6vw,4.4rem);line-height:.8;color:var(--indigo);
+  }
+  .sec-title{
+    font-family:"Fraunces",serif;font-weight:380;
+    font-size:clamp(1.7rem,3.6vw,2.9rem);line-height:1;letter-spacing:-.02em;
+  }
+  .sec-title .kr{font-family:"Pretendard";font-weight:700;}
+  .sec-meta{font-family:"Archivo";font-size:.7rem;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-faint);text-align:right;white-space:nowrap;}
+  @media(max-width:680px){.sec-head{grid-template-columns:auto 1fr;}.sec-meta{display:none;}}
+
+  /* ───────────────── TABLE OF CONTENTS / TOOLS ───────────────── */
+  .toc{display:flex;flex-direction:column;}
+  .toc-row{
+    display:grid;grid-template-columns:auto minmax(0,2.1fr) minmax(0,3fr) auto;
+    gap:clamp(16px,3vw,48px);align-items:center;
+    padding:clamp(22px,3vw,34px) 4px;
+    border-bottom:1px solid var(--rule);
+    position:relative;transition:background .4s var(--ease),padding-left .4s var(--ease);
+    cursor:pointer;
+  }
+  .toc-row:first-child{border-top:1px solid var(--rule);}
+  .toc-row::before{
+    content:"";position:absolute;left:0;top:0;bottom:0;width:0;
+    background:var(--indigo);transition:width .4s var(--ease);
+  }
+  .toc-row:hover{background:linear-gradient(90deg,rgba(79,70,229,.06),transparent 70%);padding-left:22px;}
+  .toc-row:hover::before{width:4px;}
+  .toc-folio{
+    font-family:"Fraunces",serif;font-weight:300;font-style:italic;
+    font-size:clamp(1.7rem,3.4vw,2.7rem);color:var(--ink-faint);line-height:1;
+    transition:color .35s,transform .35s var(--ease);min-width:2.2ch;
+  }
+  .toc-row:hover .toc-folio{color:var(--indigo);transform:translateY(-2px);}
+  .toc-name{display:flex;flex-direction:column;gap:5px;min-width:0;}
+  .toc-name .ko{
+    font-family:"Pretendard";font-weight:800;font-size:clamp(1.15rem,2.3vw,1.55rem);
+    letter-spacing:-.015em;line-height:1.1;
+  }
+  .toc-name .en{
+    font-family:"Archivo";font-weight:500;font-size:.66rem;letter-spacing:.2em;
+    text-transform:uppercase;color:var(--ink-faint);
+  }
+  .toc-desc{
+    font-family:"Spectral",serif;font-size:1rem;line-height:1.5;color:var(--ink-soft);
+  }
+  .toc-desc .kr{font-family:"Pretendard";}
+  .toc-go{
+    font-family:"Archivo";font-weight:600;font-size:.74rem;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--ink-soft);display:inline-flex;align-items:center;gap:8px;white-space:nowrap;
+    transition:color .35s,gap .35s var(--ease);
+  }
+  .toc-row:hover .toc-go{color:var(--indigo);gap:14px;}
+  .toc-go svg{width:14px;height:14px;}
+  @media(max-width:880px){
+    .toc-row{grid-template-columns:auto 1fr auto;}
+    .toc-desc{display:none;}
+  }
+  @media(max-width:520px){
+    .toc-row{grid-template-columns:auto 1fr;gap:14px;}
+    .toc-go{display:none;}
+  }
+
+  /* ───────────────── PULL QUOTE / PRIVACY FEATURE ───────────────── */
+  .feature{
+    background:var(--ink);color:var(--paper);
+    border-radius:3px;position:relative;overflow:hidden;
+    padding:clamp(40px,6vw,84px) clamp(28px,5vw,76px);
+  }
+  .feature::after{
+    content:"";position:absolute;inset:0;pointer-events:none;
+    background:
+      radial-gradient(circle at 90% 0%, rgba(79,70,229,.42), transparent 46%),
+      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='140' height='140'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/><feColorMatrix type='saturate' values='0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)' opacity='0.05'/></svg>");
+  }
+  .feature .inner{position:relative;z-index:1;}
+  .feature .kicker{color:#bcb6f5;}
+  .pullquote{
+    font-family:"Fraunces",serif;font-weight:320;
+    font-size:clamp(1.9rem,5vw,4rem);line-height:1.04;letter-spacing:-.02em;
+    margin:.3em 0 .65em;max-width:18ch;
+  }
+  .pullquote .kr{font-family:"Pretendard";font-weight:600;}
+  .pullquote em{font-style:italic;color:#a9a2ff;}
+  .feature-grid{
+    display:grid;grid-template-columns:1.4fr 1fr;gap:clamp(28px,5vw,72px);align-items:end;
+    border-top:1px solid rgba(243,237,225,.18);padding-top:34px;margin-top:8px;
+  }
+  .feature-grid p{font-family:"Pretendard";font-size:1.02rem;line-height:1.7;color:#d8d2c4;margin:0;}
+  .ledger{font-family:"Archivo";display:flex;flex-direction:column;gap:14px;}
+  .ledger .li{
+    display:flex;justify-content:space-between;gap:16px;align-items:baseline;
+    border-bottom:1px dashed rgba(243,237,225,.25);padding-bottom:12px;
+    font-size:.86rem;letter-spacing:.04em;
+  }
+  .ledger .li .k{color:#9b94b8;text-transform:uppercase;letter-spacing:.16em;font-size:.66rem;}
+  .ledger .li .v{font-family:"Fraunces",serif;font-style:italic;font-size:1.15rem;color:var(--paper);}
+  .ledger .li .v.on{color:#9d96ff;}
+  @media(max-width:780px){.feature-grid{grid-template-columns:1fr;align-items:start;}}
+
+  /* ───────────────── HOW / EDITORIAL COLUMNS ───────────────── */
+  .columns{
+    column-count:3;column-gap:clamp(28px,4vw,56px);
+    column-rule:1px solid var(--rule);
+  }
+  .columns .dropcap::first-letter{
+    font-family:"Fraunces",serif;font-weight:400;font-style:italic;
+    font-size:3.6em;line-height:.7;float:left;padding:.08em .12em 0 0;color:var(--indigo);
+  }
+  .columns p{
+    font-family:"Spectral",serif;font-size:1.02rem;line-height:1.66;
+    color:var(--ink-soft);margin:0 0 1.1em;break-inside:avoid;
+  }
+  .columns p.kr{font-family:"Pretendard";font-size:.98rem;}
+  .columns h4{
+    font-family:"Pretendard";font-weight:800;font-size:1.02rem;
+    margin:0 0 .5em;letter-spacing:-.01em;break-inside:avoid;
+    padding-top:.2em;
+  }
+  .columns h4 .no{font-family:"Fraunces",serif;font-style:italic;color:var(--indigo);margin-right:.4em;}
+  @media(max-width:980px){.columns{column-count:2;}}
+  @media(max-width:620px){.columns{column-count:1;column-rule:none;}}
+
+  /* ───────────────── FAQ / CATECHISM ───────────────── */
+  .faq-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:clamp(32px,5vw,80px);align-items:start;}
+  .faq-aside .big{
+    font-family:"Fraunces",serif;font-weight:340;font-style:italic;
+    font-size:clamp(2rem,4vw,3.2rem);line-height:1;letter-spacing:-.02em;margin:0 0 .4em;
+  }
+  .faq-aside p{font-family:"Pretendard";font-size:.96rem;line-height:1.7;color:var(--ink-soft);}
+  details.qa{border-top:1px solid var(--rule);padding:4px 0;}
+  details.qa:last-child{border-bottom:1px solid var(--rule);}
+  details.qa summary{
+    list-style:none;cursor:pointer;display:flex;gap:18px;align-items:baseline;
+    padding:20px 4px;font-family:"Pretendard";font-weight:700;font-size:1.08rem;
+    letter-spacing:-.01em;color:var(--ink);transition:color .3s;
+  }
+  details.qa summary::-webkit-details-marker{display:none;}
+  details.qa summary .q{
+    font-family:"Fraunces",serif;font-style:italic;font-weight:400;font-size:1.05rem;
+    color:var(--indigo);min-width:2.4ch;
+  }
+  details.qa summary .plus{margin-left:auto;color:var(--ink-faint);font-family:"Archivo";font-size:1.3rem;transition:transform .35s var(--ease),color .3s;line-height:1;}
+  details.qa[open] summary .plus{transform:rotate(45deg);color:var(--indigo);}
+  details.qa summary:hover{color:var(--indigo);}
+  details.qa .a{
+    font-family:"Pretendard";font-size:.97rem;line-height:1.72;color:var(--ink-soft);
+    padding:0 4px 24px calc(2.4ch + 18px);max-width:62ch;
+    animation:fade .5s var(--ease);
+  }
+  @keyframes fade{from{opacity:0;transform:translateY(-6px);}to{opacity:1;transform:none;}}
+  @media(max-width:780px){.faq-grid{grid-template-columns:1fr;}}
+
+  /* ───────────────── CLOSING / COLOPHON CTA ───────────────── */
+  .closer{text-align:center;padding:clamp(70px,10vw,140px) 0;border-top:1.5px solid var(--ink);}
+  .closer .mark{font-family:"Archivo";font-size:.68rem;letter-spacing:.3em;text-transform:uppercase;color:var(--ink-faint);}
+  .closer h2{
+    font-family:"Fraunces",serif;font-weight:330;
+    font-size:clamp(2.4rem,7vw,6rem);line-height:.95;letter-spacing:-.025em;
+    margin:.3em 0 .55em;
+  }
+  .closer h2 .idg{color:var(--indigo);font-style:italic;}
+  .closer .small{display:block;font-family:"Pretendard";font-weight:700;font-size:clamp(1rem,2.2vw,1.5rem);color:var(--ink-soft);margin-top:.4em;}
+
+  /* ───────────────── FOOTER ───────────────── */
+  footer{border-top:1px solid var(--rule);padding:clamp(40px,5vw,64px) 0 clamp(60px,7vw,80px);}
+  .foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:40px;}
+  .foot-brand .glyph{font-family:"Fraunces",serif;font-style:italic;font-weight:600;font-size:1.5rem;}
+  .foot-brand .glyph b{color:var(--indigo);font-style:normal;font-weight:900;}
+  .foot-brand p{font-family:"Pretendard";font-size:.88rem;color:var(--ink-soft);line-height:1.6;max-width:42ch;margin:14px 0 0;}
+  .foot-col h5{font-family:"Archivo";font-size:.66rem;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-faint);margin:0 0 16px;}
+  .foot-col a{display:block;font-family:"Pretendard";font-size:.92rem;color:var(--ink-soft);padding:5px 0;transition:color .25s,padding-left .25s var(--ease);}
+  .foot-col a:hover{color:var(--indigo);padding-left:6px;}
+  .foot-base{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-top:clamp(40px,5vw,64px);padding-top:20px;border-top:1px solid var(--rule);font-family:"Archivo";font-size:.72rem;letter-spacing:.06em;color:var(--ink-faint);}
+  @media(max-width:780px){.foot-grid{grid-template-columns:1fr 1fr;}.foot-brand{grid-column:1/-1;}}
+
+  /* marquee strip between sections */
+  .strip{
+    border-top:1.5px solid var(--ink);border-bottom:1.5px solid var(--ink);
+    overflow:hidden;padding:14px 0;background:var(--paper-2);
+  }
+  .strip .track{display:flex;gap:48px;white-space:nowrap;width:max-content;animation:march 32s linear infinite;}
+  .strip .track span{
+    font-family:"Fraunces",serif;font-style:italic;font-weight:380;font-size:1.15rem;color:var(--ink-soft);
+    display:inline-flex;align-items:center;gap:48px;
+  }
+  .strip .track span::after{content:"✦";color:var(--indigo);font-style:normal;}
+  @keyframes march{to{transform:translateX(-50%);}}
+  @media(prefers-reduced-motion:reduce){
+    .reveal{animation:none;opacity:1;transform:none;}
+    .strip .track{animation:none;}
+  }
+</style>
+</head>
+<body>
+
+<!-- ════════════ MASTHEAD ════════════ -->
+<header class="masthead">
+  <div class="bar">
+    <a class="brand" href="#top" aria-label="PDF의 모든 것 홈">
+      <span class="glyph serif">PDF의 <b>모든 것</b></span>
+      <span class="sub kr">올-어바웃-PDF · 무료 도구 모음</span>
+    </a>
+    <div class="mast-meta">
+      <nav aria-label="주요 메뉴">
+        <a href="#tools" class="kr">도구 목차</a>
+        <a href="#privacy" class="kr">프라이버시</a>
+        <a href="#how" class="kr">사용법</a>
+        <a href="#faq" class="kr">자주 묻는 질문</a>
+      </nav>
+      <span class="issue-tag kr">VOL.01 · 무료</span>
+    </div>
+  </div>
+</header>
+
+<main id="top" class="wrap">
+
+  <!-- ════════════ COVER ════════════ -->
+  <section class="cover" aria-label="표지">
+    <div class="topline">
+      <span class="kr">발행 · PDF의 모든 것 편집실</span>
+      <span class="kr">서버 미전송 · 100% 내 기기 처리</span>
+    </div>
+
+    <div class="cover-grid">
+      <div>
+        <h1 class="headline">
+          <span class="reveal d1" style="display:block">필요한 <span class="em">PDF</span> 작업,</span>
+          <span class="reveal d2" style="display:block">파일은 <span class="idg">올리지 않고</span></span>
+          <span class="reveal d3" style="display:block">무료로 <span class="em">전부.</span></span>
+          <span class="small kr reveal d4">합치기·분할·변환·잠금해제까지, 설치도 회원가입도 없이.</span>
+        </h1>
+      </div>
+
+      <aside class="cover-side reveal d4">
+        <p class="lede">
+          <span class="kr">대부분의 외산 도구는 파일을 서버에 올린 뒤 “일정 시간 후 삭제”합니다.</span>
+          <strong class="kr">저희는 애초에 올리지 않습니다.</strong>
+          <span class="kr">모든 처리가 당신의 브라우저 안에서 끝납니다.</span>
+        </p>
+        <div class="cover-cta">
+          <a class="btn kr" href="#tools">도구 목차 보기 <span class="arr">→</span></a>
+          <a class="btn ghost kr" href="#privacy">왜 안전한가요?</a>
+        </div>
+      </aside>
+    </div>
+
+    <!-- USP as editorial standfirst -->
+    <div class="standfirst" aria-label="핵심 약속">
+      <div class="cell reveal d4">
+        <span class="num serif">01</span>
+        <h3 class="kr">100% 내 기기에서 처리</h3>
+        <p class="kr">모든 작업이 브라우저 안에서 끝납니다. 파일이 서버로 전송되지 않으니 계약서·업무 문서도 안심하고 다루세요.</p>
+      </div>
+      <div class="cell reveal d5">
+        <span class="num serif">02</span>
+        <h3 class="kr">완전 무료 · 무제한</h3>
+        <p class="kr">워터마크도, 파일 개수나 용량 제한도 없습니다. 결제나 가입 유도 없이 필요한 만큼 쓰세요.</p>
+      </div>
+      <div class="cell reveal d6">
+        <span class="num serif">03</span>
+        <h3 class="kr">설치·회원가입 불필요</h3>
+        <p class="kr">프로그램 설치도 로그인도 필요 없습니다. 페이지를 열면 바로, 자연스러운 한국어로 안내합니다.</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- ════════════ MARQUEE STRIP ════════════ -->
+<div class="strip" aria-hidden="true">
+  <div class="track">
+    <span>PDF 합치기</span><span>PDF 분할</span><span>잠금해제</span><span>페이지 추출</span><span>페이지 삭제</span><span>이미지 변환</span><span>페이지 번호</span>
+    <span>PDF 합치기</span><span>PDF 분할</span><span>잠금해제</span><span>페이지 추출</span><span>페이지 삭제</span><span>이미지 변환</span><span>페이지 번호</span>
+  </div>
+</div>
+
+<main class="wrap">
+
+  <!-- ════════════ TOOLS — TABLE OF CONTENTS ════════════ -->
+  <section id="tools" aria-label="도구 목차">
+    <div class="sec-head">
+      <span class="sec-no serif">I</span>
+      <h2 class="sec-title serif">목차 <span class="kr">— 일곱 가지 도구</span></h2>
+      <span class="sec-meta">Contents · 07 Tools</span>
+    </div>
+
+    <div class="toc">
+      <a class="toc-row" href="merge.html">
+        <span class="toc-folio serif">01</span>
+        <span class="toc-name"><span class="ko kr">PDF 합치기</span><span class="en">Merge</span></span>
+        <span class="toc-desc kr">흩어진 PDF를 끌어다 놓고 순서만 맞추면 한 파일로. 표지·본문·부록을 한 번에 묶어요.</span>
+        <span class="toc-go">바로가기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
+      <a class="toc-row" href="split.html">
+        <span class="toc-folio serif">02</span>
+        <span class="toc-name"><span class="ko kr">PDF 분할</span><span class="en">Split</span></span>
+        <span class="toc-desc kr">큰 문서를 챕터·장별로 잘라요. 필요한 범위만 따로 떼어 가볍게 만들 수 있어요.</span>
+        <span class="toc-go">바로가기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
+      <a class="toc-row" href="unlock.html">
+        <span class="toc-folio serif">03</span>
+        <span class="toc-name"><span class="ko kr">PDF 잠금해제</span><span class="en">Unlock</span></span>
+        <span class="toc-desc kr">아는 비밀번호로 잠긴 PDF의 보호를 풀어요. 다시 매번 입력하지 않아도 되게.</span>
+        <span class="toc-go">바로가기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
+      <a class="toc-row" href="extract.html">
+        <span class="toc-folio serif">04</span>
+        <span class="toc-name"><span class="ko kr">PDF 페이지 추출</span><span class="en">Extract</span></span>
+        <span class="toc-desc kr">필요한 페이지만 골라 새 PDF로. 제출용·공유용으로 딱 그 부분만 떼어내요.</span>
+        <span class="toc-go">바로가기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
+      <a class="toc-row" href="delete.html">
+        <span class="toc-folio serif">05</span>
+        <span class="toc-name"><span class="ko kr">PDF 페이지 삭제</span><span class="en">Delete</span></span>
+        <span class="toc-desc kr">빈 장, 광고 페이지, 불필요한 면을 깔끔하게 지워요. 나머지는 그대로 한 파일로.</span>
+        <span class="toc-go">바로가기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
+      <a class="toc-row" href="to-image.html">
+        <span class="toc-folio serif">06</span>
+        <span class="toc-name"><span class="ko kr">PDF 이미지 변환</span><span class="en">To Image</span></span>
+        <span class="toc-desc kr">PDF 페이지를 JPG·PNG 이미지로. 발표 자료나 SNS에 바로 올릴 수 있게 바꿔요.</span>
+        <span class="toc-go">바로가기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
+      <a class="toc-row" href="page-numbers.html">
+        <span class="toc-folio serif">07</span>
+        <span class="toc-name"><span class="ko kr">PDF 페이지 번호</span><span class="en">Page Numbers</span></span>
+        <span class="toc-desc kr">보고서·논문에 페이지 번호를 넣어요. 위치와 시작 숫자까지 원하는 대로.</span>
+        <span class="toc-go">바로가기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
+    </div>
+  </section>
+
+  <!-- ════════════ PRIVACY — PULL QUOTE FEATURE ════════════ -->
+  <section id="privacy" aria-label="프라이버시">
+    <div class="feature">
+      <div class="inner">
+        <span class="kicker idg kr">사설 · 우리의 원칙</span>
+        <blockquote class="pullquote serif">
+          파일을 <em>올리지</em> 않으면, <span class="kr">유출될 파일도 없습니다.</span>
+        </blockquote>
+        <div class="feature-grid">
+          <p class="kr">
+            대부분의 PDF 도구는 파일을 서버에 업로드한 뒤 일정 시간이 지나면 삭제하는 방식입니다.
+            「PDF의 모든 것」은 처리 방식 자체가 다릅니다. 모든 작업이 사용자의 기기 안에서만 이뤄지기 때문에,
+            계약서나 사내 자료 같은 민감한 문서도 업로드 걱정 없이 다룰 수 있습니다. 창을 닫으면 흔적도 남지 않습니다.
+          </p>
+          <div class="ledger" aria-label="처리 방식 비교">
+            <div class="li"><span class="k kr">파일 업로드</span><span class="v on serif">없음</span></div>
+            <div class="li"><span class="k kr">처리 위치</span><span class="v serif">내 브라우저</span></div>
+            <div class="li"><span class="k kr">워터마크</span><span class="v on serif">없음</span></div>
+            <div class="li"><span class="k kr">회원가입</span><span class="v on serif">불필요</span></div>
+            <div class="li"><span class="k kr">이용 요금</span><span class="v serif">₩0</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════ HOW — EDITORIAL COLUMNS ════════════ -->
+  <section id="how" aria-label="사용법과 소개">
+    <div class="sec-head">
+      <span class="sec-no serif">II</span>
+      <h2 class="sec-title serif">읽는 법 <span class="kr">— 쓰는 법</span></h2>
+      <span class="sec-meta">How it works</span>
+    </div>
+
+    <div class="columns">
+      <p class="kr dropcap">「PDF의 모든 것」은 PDF 합치기, 분할, 잠금해제, 페이지 추출·삭제, JPG·이미지 변환, 페이지 번호 넣기까지 자주 쓰는 작업을 한곳에 모은 무료 도구 모음입니다. 설치나 회원가입 없이 브라우저에서 바로 시작하고, 파일은 서버로 올라가지 않으니 민감한 문서도 안심하고 다룰 수 있습니다.</p>
+
+      <h4 class="kr"><span class="no serif">①</span> 도구를 고릅니다</h4>
+      <p class="kr">목차에서 필요한 작업을 누르면 해당 도구 페이지로 이동합니다. 합칠지, 자를지, 번호를 넣을지 — 하고 싶은 일을 그대로 고르면 됩니다.</p>
+
+      <h4 class="kr"><span class="no serif">②</span> 파일을 끌어다 놓습니다</h4>
+      <p class="kr">화면에 PDF를 끌어다 놓거나 선택합니다. 이 순간에도 파일은 어디로도 전송되지 않습니다. 브라우저가 파일을 직접 읽어 작업을 준비합니다.</p>
+
+      <h4 class="kr"><span class="no serif">③</span> 결과를 내려받습니다</h4>
+      <p class="kr">순서를 맞추거나 범위를 정한 뒤 실행 버튼을 누르면, 완성된 파일이 바로 내 기기에 저장됩니다. 워터마크도, 가입 유도도 없이 그대로 제출하면 됩니다.</p>
+
+      <h4 class="kr">스마트폰에서도</h4>
+      <p class="kr">아이폰·안드로이드의 웹 브라우저에서도 별도 앱 설치 없이 동일하게 작동합니다. 메일로 받은 PDF나 스캔 앱으로 찍은 파일을 골라 그 자리에서 정리하세요.</p>
+
+      <h4 class="kr">자연스러운 한국어</h4>
+      <p class="kr">어색한 기계번역 대신, 과제·보고서·계약서·민원처럼 실제로 자주 맞닥뜨리는 상황의 말투로 안내합니다. 처음 쓰는 분도 헤매지 않도록.</p>
+    </div>
+  </section>
+
+  <!-- ════════════ FAQ ════════════ -->
+  <section id="faq" aria-label="자주 묻는 질문">
+    <div class="sec-head">
+      <span class="sec-no serif">III</span>
+      <h2 class="sec-title serif">문답 <span class="kr">— 자주 묻는 질문</span></h2>
+      <span class="sec-meta">FAQ</span>
+    </div>
+
+    <div class="faq-grid">
+      <aside class="faq-aside">
+        <p class="big serif">아직 <em>망설여진다면</em>, 여기 먼저 읽어보세요.</p>
+        <p class="kr">무료인지, 안전한지, 설치가 필요한지 — 가장 많이 받는 다섯 가지 질문에 솔직하게 답했습니다.</p>
+      </aside>
+
+      <div>
+        <details class="qa" open>
+          <summary><span class="q serif">Q.</span><span class="kr">정말 무료인가요?</span><span class="plus">+</span></summary>
+          <div class="a kr">네, 전부 무료입니다. 결과물에 워터마크가 붙지 않고 파일 개수나 용량 제한도 없으며, 중간에 결제를 요구하지 않습니다.</div>
+        </details>
+        <details class="qa">
+          <summary><span class="q serif">Q.</span><span class="kr">내 파일이 안전한가요?</span><span class="plus">+</span></summary>
+          <div class="a kr">안전합니다. 모든 작업이 사용자의 브라우저 안에서 처리되며 파일이 서버로 전송되지 않습니다. 업로드 자체가 없으므로 외부에 파일이 보관될 일이 없습니다.</div>
+        </details>
+        <details class="qa">
+          <summary><span class="q serif">Q.</span><span class="kr">프로그램을 설치해야 하나요?</span><span class="plus">+</span></summary>
+          <div class="a kr">아니요. 설치나 회원가입 없이 웹페이지를 열기만 하면 바로 사용할 수 있습니다.</div>
+        </details>
+        <details class="qa">
+          <summary><span class="q serif">Q.</span><span class="kr">어떤 작업을 할 수 있나요?</span><span class="plus">+</span></summary>
+          <div class="a kr">PDF 합치기, 분할, 잠금해제, 특정 페이지 추출·삭제, JPG·이미지로 변환, 페이지 번호 넣기까지 일곱 가지 도구를 제공합니다.</div>
+        </details>
+        <details class="qa">
+          <summary><span class="q serif">Q.</span><span class="kr">모바일에서도 되나요?</span><span class="plus">+</span></summary>
+          <div class="a kr">네. 스마트폰이나 태블릿의 웹 브라우저에서도 별도 앱 설치 없이 동일하게 이용할 수 있습니다.</div>
+        </details>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- ════════════ CLOSING CTA ════════════ -->
+<section class="closer wrap" aria-label="시작하기">
+  <span class="mark kr">지금, 한 번의 클릭으로</span>
+  <h2 class="serif">
+    가장 가까운 <span class="idg">PDF</span> 작업부터.
+    <span class="small kr">설치 없이, 올리지 않고, 무료로 시작하세요.</span>
+  </h2>
+  <a class="btn kr" href="#tools" style="margin-top:8px">일곱 가지 도구 보기 <span class="arr">→</span></a>
+</section>
+
+<!-- ════════════ FOOTER / COLOPHON ════════════ -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <span class="glyph serif">PDF의 <b>모든 것</b></span>
+        <p class="kr">파일을 서버에 올리지 않고 100% 내 기기에서 처리하는 한국어 무료 PDF 도구 모음. 설치도, 회원가입도, 워터마크도 없습니다.</p>
+      </div>
+      <div class="foot-col">
+        <h5>도구 · Tools</h5>
+        <a class="kr" href="merge.html">PDF 합치기</a>
+        <a class="kr" href="split.html">PDF 분할</a>
+        <a class="kr" href="unlock.html">PDF 잠금해제</a>
+        <a class="kr" href="extract.html">PDF 페이지 추출</a>
+      </div>
+      <div class="foot-col">
+        <h5>더 보기 · More</h5>
+        <a class="kr" href="delete.html">PDF 페이지 삭제</a>
+        <a class="kr" href="to-image.html">PDF 이미지 변환</a>
+        <a class="kr" href="page-numbers.html">PDF 페이지 번호</a>
+        <a class="kr" href="#privacy">프라이버시 원칙</a>
+      </div>
+    </div>
+    <div class="foot-base">
+      <span class="kr">© 2026 PDF의 모든 것 · 브라우저에서 처리, 서버 미전송</span>
+      <span class="kr">VOL.01 — 무료 · 오픈소스</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

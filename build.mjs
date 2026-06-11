@@ -203,7 +203,7 @@ function footer(rel) {
 </div></footer>`;
 }
 
-function page({ title, desc, canonical, ogTitle, rel, jsonld, main, withScripts, headExtra, bodyClass, extraScripts }) {
+function page({ title, desc, canonical, ogTitle, rel, jsonld, main, withScripts, headExtra, bodyClass, extraScripts, noChrome }) {
   const ld = jsonld ? `\n  <script type="application/ld+json">${JSON.stringify(jsonld)}</script>` : '';
   const extra = (extraScripts || []).map((s) => `\n  <script src="${rel}${s}" defer></script>`).join('');
   const toolList = withScripts ? (Array.isArray(withScripts) ? withScripts : [withScripts]) : [];
@@ -243,11 +243,11 @@ ${toolList.map((s) => `  <script src="${rel}assets/js/tools/${s}.js" defer></scr
 </head>
 <body${bodyClass ? ` class="${bodyClass}"` : ''}>
   <a class="skip-link" href="#main">본문 바로가기</a>
-${header(rel)}
+${noChrome ? '' : header(rel)}
   <main id="main">
 ${main}
   </main>
-${footer(rel)}${scripts}${extra}
+${noChrome ? '' : footer(rel)}${scripts}${extra}
 </body>
 </html>
 `;
@@ -368,107 +368,157 @@ function buildHome() {
   const rel = '';
   const canonical = SITE_URL + '/';
 
-  // 상단 기능 카드 4종 (도구로 연결)
-  const FCARDS = [
-    { slug: 'merge', icon: ICONS.merge, t: 'PDF 합치기', d: '여러 PDF 파일을 하나로 합쳐 깔끔하게 정리하세요.', c: 'co' },
-    { slug: 'split', icon: ICONS.split, t: 'PDF 분할', d: '원하는 페이지 범위로 PDF를 나눠 저장하세요.', c: 'pp' },
-    { slug: 'to-image', icon: ICONS.image, t: '이미지 변환', d: 'PDF를 PNG·JPG 이미지로 빠르게 바꿔요.', c: 'pp' },
-    { slug: 'unlock', icon: ICONS.unlock, t: '안전한 잠금해제', d: '인쇄·편집 제한이나 비밀번호를 제거해요.', c: 'co' },
-  ];
-  const fcards = FCARDS.map((f) => `<a class="fcard" href="${f.slug}/">
-          <span class="fcard__ic ic-${f.c}">${f.icon}</span>
-          <span class="fcard__t">${f.t}</span>
-          <span class="fcard__d">${f.d}</span>
-          <span class="fcard__go go-${f.c}">바로가기 →</span>
-        </a>`).join('\n        ');
-
-  // 전체 도구 칩
-  const chips = TOOLS.map((t) => `<a class="tchip" href="${t.slug}/"><span class="tchip__ic">${t.icon}</span> ${read(t.slug).h1}</a>`).join('\n          ');
-
-  // 특별한 이유 4종
-  const WHY = [
-    [ICONS.free, '무료로 사용', '모든 기능을 무료로 제공합니다.'],
-    [ICONS.infinity, '무제한 사용', '파일 크기·개수 제한 없이 쓸 수 있어요.'],
-    [ICONS.browser, '브라우저 기반', '서버에 올리지 않고 내 기기에서 바로 처리.'],
-    [ICONS.sparkle, '사용자 친화적', '직관적인 한국어 화면으로 누구나 쉽게.'],
-  ];
-  const whyItems = WHY.map((w, i) => `<div class="wcell">
-          <span class="wcell__ic ic-${i % 2 ? 'co' : 'pp'}">${w[0]}</span>
-          <div><b>${w[1]}</b><span>${w[2]}</span></div>
-        </div>`).join('\n        ');
-
-  const faqs = c.faq.map((f) => `<details><summary>${esc(f.q)}</summary><div class="faq__a">${esc(f.a)}</div></details>`).join('\n          ');
-
-  // 히어로 일러스트
-  const art = `<div class="hart" aria-hidden="true">
-        <span class="hart__blob"></span>
-        <div class="hart__doc">
-          <span class="hart__tag">PDF</span>
-          <div class="hart__img"><svg viewBox="0 0 24 24" fill="none" stroke="#b9c0cf" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2.5"/><circle cx="8.5" cy="8.5" r="1.6"/><path d="M21 15l-5-5L5 21"/></svg></div>
-          <span class="hart__line"></span><span class="hart__line"></span><span class="hart__line w60"></span>
-        </div>
-        <div class="hart__scissors"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><line x1="20" y1="4" x2="8.12" y2="15.88"/><line x1="14.47" y1="14.48" x2="20" y2="20"/><line x1="8.12" y1="8.12" x2="12" y2="12"/></svg></div>
-        <div class="hart__pages"><span class="hart__pg"><b>1</b></span><span class="hart__pg"><b>2</b></span><span class="hart__pg"><b>3</b></span></div>
-        <div class="hart__plus"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
-      </div>`;
+  const CHIP = '<svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4"/></svg>';
+  const APP_DESC = {
+    merge: '여러 PDF를 순서대로 끌어다 하나로. 과제 묶음, 보고서 취합, 스캔본 결합까지 한 번에 끝냅니다.',
+    split: '한 파일을 여러 개로. 자르는 지점을 눌러 필요한 부분만 깔끔하게 나눕니다.',
+    unlock: '비밀번호가 걸린 PDF를 풀어 자유롭게. 내가 아는 암호로 내 기기에서만 처리합니다.',
+    extract: '원하는 페이지만 콕 집어 새 PDF로. 썸네일을 눌러 특정 조항·핵심 장만 뽑아냅니다.',
+    delete: '빈 페이지나 불필요한 장을 제거. 제출 전 군더더기를 정리해 문서를 깔끔하게.',
+    'to-image': 'PDF 페이지를 JPG·PNG 이미지로. 블로그·SNS·발표 자료에 그대로 붙여 쓰기 좋습니다.',
+    'page-numbers': '문서 하단에 페이지 번호를 자동으로. 위치·시작 번호·서식을 골라 보고서 형식을 갖춥니다.',
+  };
+  const APP_FILE = { merge: 'merge.app', split: 'split.app', unlock: 'unlock.app', extract: 'extract.app', delete: 'delete.app', 'to-image': 'to-image.app', 'page-numbers': 'page-num.app' };
 
   const jsonld = [
     { '@context': 'https://schema.org', '@type': 'WebSite', name: BRAND, url: SITE_URL + '/', inLanguage: 'ko', description: c.metaDescription },
     { '@context': 'https://schema.org', '@type': 'Organization', name: BRAND, url: SITE_URL + '/', sameAs: [GITHUB_URL] }
   ];
 
-  const heroTabs = TOOLS.map((t, i) => `<button class="herotool__tab" type="button" role="tab" data-tab="${t.slug}" aria-selected="${i === 0 ? 'true' : 'false'}">${t.icon}<span>${t.nav}</span></button>`).join('\n            ');
+  const heroTabs = TOOLS.map((t, i) => `<button class="herotool__tab" type="button" role="tab" data-tab="${t.slug}" aria-selected="${i === 0 ? 'true' : 'false'}">${t.icon}<span>${t.nav}</span></button>`).join('\n              ');
   const heroPanels = TOOLS.map((t, i) => `<div class="herotool__panel${i === 0 ? ' is-active' : ''}" role="tabpanel" data-panel="${t.slug}">
-          ${widget(t)}
-        </div>`).join('\n        ');
+            ${widget(t)}
+          </div>`).join('\n          ');
 
-  const main = `    <section class="hsec hhero">
-      <div class="container">
-        <div class="hhero__grid">
-          <div class="hhero__copy">
-            <div class="orb" aria-hidden="true"></div>
-            <h1 class="hhero__title">PDF,<br>여기서 <span class="ac">바로 끝내세요</span></h1>
-            <p class="hhero__sub">합치기·분할·변환·잠금해제까지. 설치도 가입도 없이, 무료로.</p>
+  const apps = TOOLS.map((t, i) => {
+    const num = String(i + 1).padStart(2, '0');
+    const feat = t.slug === 'merge';
+    const launch = `<span class="ws-app__launch"><span>${APP_FILE[t.slug]}${feat ? ' 실행' : ''}</span><span class="arr">→</span></span>`;
+    const bar = `<div class="ws-app__bar"><span class="ll"><span></span><span></span><span></span></span><span class="num">app_${num}</span></div>`;
+    if (feat) return `<a class="ws-app ws-app--feat" href="${t.slug}/" data-reveal>
+        ${bar}
+        <div class="ws-app__body">
+          <span class="ws-app__ico">${t.icon}</span>
+          <div class="ws-app__txt"><span class="badge">가장 많이 쓰는 도구</span><h3>${read(t.slug).h1}</h3><p>${APP_DESC[t.slug]}</p></div>
+        </div>${launch}
+      </a>`;
+    return `<a class="ws-app" href="${t.slug}/" data-reveal>
+        ${bar}
+        <div class="ws-app__body">
+          <span class="ws-app__ico">${t.icon}</span>
+          <h3>${read(t.slug).h1}</h3><p>${APP_DESC[t.slug]}</p>
+        </div>${launch}
+      </a>`;
+  }).join('\n      ');
+
+  const usps = c.uspCards.map((u, i) => `<div class="ws-usp" data-reveal><span class="n">0${i + 1}</span><div><h4>${esc(u.title)}</h4><p>${esc(u.desc)}</p></div></div>`).join('\n        ');
+  const faqs = c.faq.map((f, i) => `<details><summary><span class="q">Q${i + 1}</span><span>${esc(f.q)}</span></summary><div class="a">${esc(f.a)}</div></details>`).join('\n        ');
+  const footT1 = TOOLS.slice(0, 4).map((t) => `<a href="${t.slug}/">${read(t.slug).h1}</a>`).join('');
+  const footT2 = TOOLS.slice(4).map((t) => `<a href="${t.slug}/">${read(t.slug).h1}</a>`).join('');
+
+  const main = `    <header class="ws-taskbar">
+      <a href="./" class="ws-logo"><span class="chip">${CHIP}</span><span class="ko">PDF의 모든 것</span><b style="color:#6b6f86">/</b><span style="color:#9498b0">workspace</span></a>
+      <nav class="ws-nav"><a href="#tools">도구</a><a href="#why">왜 안전한가</a><a href="#faq">자주 묻는 질문</a><a href="${escAttr(GITHUB_URL)}" rel="noopener" target="_blank" style="color:#fff;border-color:rgba(255,255,255,.2)">오픈소스 ↗</a></nav>
+      <div class="ws-clock"><span class="ws-status"><span class="led"></span>내 기기에서 처리중 · 서버 미전송</span><span class="ws-time" id="ws-clock">00:00:00</span></div>
+    </header>
+
+    <div class="ws-wrap">
+      <section class="ws-hero">
+        <div class="ws-herohead">
+          <span class="ws-kicker"><span class="sq"></span>업로드 없는 PDF 작업실 · 100% 브라우저 처리</span>
+          <h1 class="ws-h1">파일은 <span class="nowrap">내 기기에</span>,<br><span class="mark">작업은 여기서</span>.<br>설치도 가입도 없이.</h1>
+          <p class="ws-sub">${esc(c.heroSubtitle)}</p>
+          <div class="ws-cta">
+            <a href="#tools" class="ws-btn primary"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="1"/><path d="M3 9h18M8 4v5"/></svg>7개 도구 둘러보기</a>
+            <a href="#why" class="ws-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>왜 안전할까?</a>
           </div>
-          <div class="herotool">
-            <div class="herotool__tabs" role="tablist" aria-label="PDF 도구 선택">
+          <div class="ws-meta"><div class="m"><b>7</b><span>무료 도구</span></div><div class="m"><b>0</b><span>서버 전송</span></div><div class="m"><b>0₩</b><span>워터마크·결제</span></div><div class="m"><b>∞</b><span>파일·용량 제한</span></div></div>
+        </div>
+        <div class="ws-winwrap">
+          <div class="ws-note"><span class="tk">// memo.txt</span>계약서·사내자료도 OK.<br>업로드 자체가 없음 :)</div>
+          <div class="ws-window">
+            <div class="ws-winbar"><span class="ws-lights"><span class="r"></span><span class="y"></span><span class="g"></span></span><span class="ws-wintitle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4"/></svg>pdf_tools.app — 여기서 바로 작업</span></div>
+            <div class="herotool">
+              <div class="herotool__tabs" role="tablist" aria-label="PDF 도구 선택">
               ${heroTabs}
-            </div>
-            <div class="herotool__panels">
+              </div>
+              <div class="herotool__panels">
           ${heroPanels}
+              </div>
             </div>
+            <div class="ws-winnote"><span class="pre">$&gt;</span> 파일은 이 페이지를 벗어나지 않습니다 · 100% 브라우저 처리</div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <section class="ws-tools" id="tools">
+      <div class="ws-wrap">
+        <div class="ws-sechead" data-reveal>
+          <h2><small>// 바탕화면 · applications</small>도구 7개, 눌러서 바로 작업</h2>
+          <span class="hint"><span class="dd"></span>각 앱을 열면 전용 작업 화면으로</span>
+        </div>
+        <div class="ws-grid">
+      ${apps}
+        <div class="ws-app ws-app--readme" data-reveal>
+          <div class="ws-app__bar"><span class="ll"><span></span><span></span><span></span></span><span class="num">readme</span></div>
+          <div class="ws-app__body"><div class="cmd">$ ls ./tools</div><h3>전부 무료,<br>전부 내 기기에서.</h3><p>7개 모두 워터마크·가입·결제가 없습니다. 페이지를 열면 바로 작동합니다.</p></div>
+        </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="ws-why" id="why">
+      <div class="ws-wrap">
+        <div class="ws-whygrid">
+          <div data-reveal>
+            <span class="tag">// why_not_upload</span>
+            <h2>대부분의 외산 도구는 파일을 서버에 올립니다.<br>저희는 <span class="hl">애초에 올리지 않습니다.</span></h2>
+            <p class="lede">${esc(c.why)}</p>
+          </div>
+          <div class="ws-uspcol">
+        ${usps}
           </div>
         </div>
       </div>
     </section>
 
-    <section class="hsec hsec--tight">
-      <div class="container">
-        <div class="tchips" data-reveal>
-          ${chips}
+    <section class="ws-faq" id="faq">
+      <div class="ws-wrap">
+        <div class="ws-sechead" data-reveal style="border-bottom:none;margin-bottom:18px"><h2><small>// help · faq.sh</small>궁금한 점을 펼쳐보세요</h2></div>
+        <div class="ws-term" data-reveal>
+          <div class="ws-winbar"><span class="ws-lights"><span class="r"></span><span class="y"></span><span class="g"></span></span><span class="ws-wintitle">help — faq.sh</span></div>
+          <div class="ws-faqlist">
+        ${faqs}
+          </div>
         </div>
       </div>
     </section>
 
-    <section class="hsec">
-      <div class="container container--read">
-        <div class="sec-head center" data-reveal><h2>자주 묻는 질문</h2></div>
-        <div class="faq" data-reveal>
-          ${faqs}
+    <footer class="ws-foot">
+      <div class="ws-wrap">
+        <div class="ws-footgrid">
+          <div class="ws-footbrand"><span class="fb"><span class="chip">${CHIP}</span>PDF의 모든 것</span><p>설치도 회원가입도 없이, 파일을 서버에 올리지 않고 내 브라우저에서 바로 처리하는 한국어 무료 PDF 도구 모음입니다.</p></div>
+          <div class="ws-footcols">
+            <div class="ws-footcol"><h5>// tools</h5>${footT1}</div>
+            <div class="ws-footcol"><h5>// more</h5>${footT2}</div>
+            <div class="ws-footcol"><h5>// about</h5><a href="about/">서비스 소개</a><a href="#why">왜 안전한가</a><a href="#faq">자주 묻는 질문</a><a href="${escAttr(GITHUB_URL)}" rel="noopener" target="_blank">오픈소스 (GitHub) ↗</a></div>
+          </div>
         </div>
+        <div class="ws-footbottom"><span>© 2026 PDF의 모든 것 — made in Korea, runs on your device.</span><span class="priv"><span class="led"></span>NO UPLOAD · 파일은 이 기기를 벗어나지 않습니다</span></div>
       </div>
-    </section>`;
+    </footer>`;
 
   const html = page({
     title: c.metaTitle, desc: c.metaDescription, canonical,
-    ogTitle: c.metaTitle, rel, jsonld, main,
+    ogTitle: c.metaTitle, rel, jsonld, main, noChrome: true,
     withScripts: ['merge', 'split', 'unlock', 'extract', 'delete', 'to-image', 'page-numbers'],
     bodyClass: 'home',
     extraScripts: ['assets/js/home.js'],
     headExtra: '\n  <script>document.documentElement.className+=" js";</script>\n  <link rel="stylesheet" href="assets/css/home.css">'
   });
   writeFileSync(join(ROOT, 'index.html'), html);
-  console.log('✓ /index.html (도구 페이지)');
+  console.log('✓ /index.html (작업실 OS)');
 }
 
 // ───────── 소개 페이지 ─────────

@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PDF의 모든 것 — 내 기기에서 끝나는 PDF</title>
+<meta name="description" content="PDF 합치기, 분할, 잠금해제, 페이지 추출·삭제, 이미지 변환, 페이지 번호까지. 파일을 서버에 올리지 않고 100% 브라우저에서 처리하는 완전 무료 한국어 PDF 도구 모음. 설치도 회원가입도 필요 없습니다.">
+<meta name="keywords" content="PDF 합치기, PDF 분할, PDF 잠금해제, PDF 무료, PDF 도구, 온라인 PDF, 한국어 PDF">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&display=swap" rel="stylesheet">
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+
+<style>
+  :root{
+    --ink:#15131b;
+    --paper:#f4f0e8;
+    --paper-deep:#ebe5d8;
+    --indigo:#4f46e5;
+    --indigo-deep:#3a32b8;
+    --indigo-soft:#6d65f0;
+    --line:rgba(21,19,27,.14);
+    --pad:clamp(20px, 4.5vw, 88px);
+    --ease:cubic-bezier(.19,1,.22,1);
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth; -webkit-text-size-adjust:100%}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:"Pretendard Variable",Pretendard,-apple-system,sans-serif;
+    line-height:1.5;
+    overflow-x:hidden;
+    -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
+  }
+  ::selection{background:var(--indigo);color:var(--paper)}
+
+  .display{font-family:"Bricolage Grotesque","Pretendard Variable",sans-serif;font-weight:700;letter-spacing:-.02em;line-height:.9}
+
+  /* paper grain texture */
+  body::before{
+    content:"";
+    position:fixed;inset:0;
+    pointer-events:none;z-index:9999;
+    opacity:.4;mix-blend-mode:multiply;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.5'/%3E%3C/svg%3E");
+  }
+
+  a{color:inherit;text-decoration:none}
+
+  /* ---------- HEADER ---------- */
+  header{
+    position:fixed;top:0;left:0;right:0;z-index:100;
+    display:flex;align-items:center;justify-content:space-between;
+    padding:18px var(--pad);
+    mix-blend-mode:normal;
+    transition:background .4s var(--ease),border-color .4s var(--ease),padding .4s var(--ease);
+    border-bottom:1px solid transparent;
+  }
+  header.scrolled{
+    background:rgba(244,240,232,.82);
+    backdrop-filter:blur(14px) saturate(1.2);
+    border-bottom:1px solid var(--line);
+    padding-top:14px;padding-bottom:14px;
+  }
+  .brand{display:flex;align-items:center;gap:11px;font-weight:600;letter-spacing:-.01em;font-size:16px}
+  .brand .glyph{
+    width:30px;height:30px;border-radius:8px;
+    background:var(--indigo);color:var(--paper);
+    display:grid;place-items:center;
+    font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:15px;
+    box-shadow:0 4px 14px rgba(79,70,229,.32);
+    transition:transform .5s var(--ease);
+  }
+  .brand:hover .glyph{transform:rotate(-8deg) scale(1.06)}
+  .brand small{display:block;font-size:10.5px;font-weight:500;opacity:.5;letter-spacing:.02em;margin-top:-2px}
+
+  .nav-right{display:flex;align-items:center;gap:26px}
+  .nav-link{font-size:13.5px;font-weight:500;opacity:.62;transition:opacity .25s}
+  .nav-link:hover{opacity:1}
+  .pill{
+    display:inline-flex;align-items:center;gap:7px;
+    font-size:12px;font-weight:600;
+    padding:8px 15px;border-radius:100px;
+    border:1px solid var(--line);
+    background:transparent;
+    transition:.3s var(--ease);
+  }
+  .pill .dot{width:6px;height:6px;border-radius:50%;background:var(--indigo);box-shadow:0 0 0 0 rgba(79,70,229,.5);animation:pulse 2.4s infinite}
+  @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(79,70,229,.45)}70%{box-shadow:0 0 0 7px rgba(79,70,229,0)}100%{box-shadow:0 0 0 0 rgba(79,70,229,0)}}
+
+  @media(max-width:680px){.nav-right .nav-link{display:none}}
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative;
+    min-height:100vh;
+    padding:140px var(--pad) 60px;
+    display:flex;flex-direction:column;justify-content:center;
+  }
+  .hero-meta{
+    display:flex;justify-content:space-between;align-items:flex-end;
+    margin-bottom:clamp(24px,5vh,56px);
+    opacity:0;animation:rise 1s var(--ease) .15s forwards;
+  }
+  .hero-meta .tag{
+    font-size:12px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--indigo);
+    display:flex;align-items:center;gap:10px;
+  }
+  .hero-meta .tag::before{content:"";width:34px;height:1.5px;background:var(--indigo);display:inline-block}
+  .hero-meta .idx{font-family:"Bricolage Grotesque",sans-serif;font-size:13px;font-weight:600;opacity:.4;letter-spacing:.05em}
+
+  .megatype{
+    font-family:"Bricolage Grotesque","Pretendard Variable",sans-serif;
+    font-weight:800;
+    letter-spacing:-.035em;
+    line-height:.82;
+    text-transform:none;
+  }
+  .megatype .ln{display:block;overflow:hidden}
+  .megatype .ln > span{display:block;transform:translateY(110%);animation:reveal 1.1s var(--ease) forwards}
+  .megatype .ln:nth-child(1) > span{animation-delay:.25s}
+  .megatype .ln:nth-child(2) > span{animation-delay:.37s}
+  .megatype .ln:nth-child(3) > span{animation-delay:.49s}
+
+  .l1{font-size:clamp(56px,12vw,200px)}
+  .l2{font-size:clamp(56px,12vw,200px)}
+  .l3{font-size:clamp(56px,12vw,200px)}
+
+  .stroke{
+    color:transparent;
+    -webkit-text-stroke:1.6px var(--ink);
+  }
+  .fill-indigo{color:var(--indigo)}
+  .device-tag{
+    display:inline-flex;align-items:center;vertical-align:middle;
+    font-family:"Pretendard Variable",sans-serif;
+    font-weight:600;letter-spacing:-.01em;
+    font-size:clamp(13px,1.5vw,22px);
+    line-height:1.15;
+    background:var(--ink);color:var(--paper);
+    padding:.34em .62em;border-radius:.5em;
+    margin:0 .12em;
+    transform:rotate(-2.5deg);
+    box-shadow:0 10px 30px rgba(21,19,27,.22);
+    white-space:nowrap;
+  }
+
+  .hero-base{
+    display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:30px;
+    margin-top:clamp(34px,7vh,70px);
+    opacity:0;animation:rise 1s var(--ease) .75s forwards;
+  }
+  .hero-sub{
+    max-width:430px;
+    font-size:clamp(15px,1.3vw,17.5px);
+    line-height:1.62;
+    color:rgba(21,19,27,.74);
+    font-weight:450;
+  }
+  .hero-sub b{color:var(--ink);font-weight:650}
+  .scrollcue{
+    display:flex;align-items:center;gap:12px;
+    font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;
+    color:var(--indigo);
+  }
+  .scrollcue .bar{position:relative;width:46px;height:1.5px;background:var(--line);overflow:hidden}
+  .scrollcue .bar::after{content:"";position:absolute;inset:0;width:50%;background:var(--indigo);animation:slide 1.8s var(--ease) infinite}
+  @keyframes slide{0%{transform:translateX(-100%)}100%{transform:translateX(200%)}}
+
+  /* ---------- MARQUEE ---------- */
+  .marquee{
+    border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+    background:var(--indigo);color:var(--paper);
+    overflow:hidden;
+    padding:16px 0;
+    position:relative;
+  }
+  .marquee .track{display:flex;width:max-content;animation:scrollx 28s linear infinite}
+  .marquee:hover .track{animation-play-state:paused}
+  .marquee .item{
+    font-family:"Bricolage Grotesque",sans-serif;
+    font-weight:600;font-size:clamp(16px,2vw,26px);letter-spacing:-.01em;
+    padding:0 28px;display:flex;align-items:center;gap:28px;white-space:nowrap;
+  }
+  .marquee .item .star{font-size:.7em;opacity:.7}
+  @keyframes scrollx{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+
+  /* ---------- WHY / PRIVACY MOMENT ---------- */
+  .why{
+    padding:clamp(80px,13vh,160px) var(--pad);
+    position:relative;
+  }
+  .section-label{
+    font-size:12px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--indigo);
+    display:flex;align-items:center;gap:11px;margin-bottom:38px;
+  }
+  .section-label::before{content:"";width:30px;height:1.5px;background:var(--indigo)}
+  .section-label .num{font-family:"Bricolage Grotesque",sans-serif;color:var(--ink);opacity:.35}
+
+  .why-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:clamp(40px,6vw,100px);align-items:start}
+  @media(max-width:900px){.why-grid{grid-template-columns:1fr;gap:48px}}
+
+  .why-head{
+    font-family:"Bricolage Grotesque","Pretendard Variable",sans-serif;
+    font-weight:700;letter-spacing:-.025em;line-height:1.02;
+    font-size:clamp(34px,5.4vw,82px);
+  }
+  .why-head em{font-style:normal;color:var(--indigo);position:relative}
+  .why-head em::after{content:"";position:absolute;left:0;bottom:.06em;width:100%;height:.09em;background:var(--indigo);opacity:.28}
+  .why-head .crossed{text-decoration:line-through;text-decoration-color:rgba(21,19,27,.32);text-decoration-thickness:.045em;opacity:.42}
+
+  .why-side p{font-size:15.5px;line-height:1.7;color:rgba(21,19,27,.72);margin-bottom:22px}
+  .why-side p b{color:var(--ink);font-weight:650}
+
+  .proofs{display:flex;flex-direction:column;gap:0;margin-top:8px;border-top:1px solid var(--line)}
+  .proof{
+    display:flex;align-items:baseline;gap:18px;
+    padding:18px 0;border-bottom:1px solid var(--line);
+  }
+  .proof .pn{font-family:"Bricolage Grotesque",sans-serif;font-weight:700;font-size:13px;color:var(--indigo);min-width:30px}
+  .proof .pt{font-weight:600;font-size:15.5px}
+  .proof .pd{font-size:13.5px;color:rgba(21,19,27,.6);margin-left:auto;text-align:right}
+  @media(max-width:520px){.proof{flex-wrap:wrap;gap:6px 18px}.proof .pd{margin-left:48px;text-align:left}}
+
+  /* ---------- TOOLS — KINETIC LIST ---------- */
+  .tools{
+    padding:clamp(40px,6vh,80px) 0 clamp(70px,11vh,130px);
+    position:relative;
+  }
+  .tools-head{
+    display:flex;justify-content:space-between;align-items:flex-end;
+    padding:0 var(--pad);margin-bottom:24px;flex-wrap:wrap;gap:18px;
+  }
+  .tools-head h2{
+    font-family:"Bricolage Grotesque","Pretendard Variable",sans-serif;
+    font-weight:700;letter-spacing:-.03em;line-height:.95;
+    font-size:clamp(30px,4.6vw,66px);
+  }
+  .tools-head .count{
+    font-family:"Bricolage Grotesque",sans-serif;font-weight:700;
+    font-size:clamp(34px,5vw,72px);color:var(--indigo);letter-spacing:-.03em;line-height:1;
+  }
+  .tools-head .count sub{font-size:.32em;opacity:.55;font-weight:600;vertical-align:super;margin-left:4px}
+
+  .klist{border-top:1px solid var(--line)}
+  .krow{
+    position:relative;display:block;
+    border-bottom:1px solid var(--line);
+    padding:clamp(18px,3.1vh,30px) var(--pad);
+    overflow:hidden;
+    transition:color .45s var(--ease);
+  }
+  .krow .bg{
+    position:absolute;inset:0;background:var(--indigo);
+    transform:translateY(101%);
+    transition:transform .55s var(--ease);
+    z-index:0;
+  }
+  .krow:hover .bg{transform:translateY(0)}
+  .krow:hover{color:var(--paper)}
+  .krow .row-inner{
+    position:relative;z-index:1;
+    display:flex;align-items:center;gap:clamp(16px,3vw,44px);
+  }
+  .krow .kn{
+    font-family:"Bricolage Grotesque",sans-serif;font-weight:600;
+    font-size:13px;opacity:.42;min-width:38px;
+    transition:opacity .4s;
+  }
+  .krow:hover .kn{opacity:.8}
+  .krow .ktitle{
+    font-family:"Bricolage Grotesque","Pretendard Variable",sans-serif;
+    font-weight:700;letter-spacing:-.025em;line-height:.96;
+    font-size:clamp(28px,5.6vw,76px);
+    transition:transform .55s var(--ease);
+    display:flex;align-items:baseline;gap:.36em;flex-wrap:wrap;
+  }
+  .krow .ktitle .en{
+    font-family:"Bricolage Grotesque",sans-serif;font-weight:300;font-style:italic;
+    font-size:.34em;letter-spacing:0;opacity:.55;
+    transform:translateY(-.1em);
+  }
+  .krow:hover .ktitle{transform:translateX(clamp(8px,1.4vw,26px))}
+  .krow .kdesc{
+    margin-left:auto;max-width:300px;text-align:right;
+    font-size:14px;line-height:1.5;color:rgba(21,19,27,.6);
+    transition:color .45s,opacity .45s,transform .55s var(--ease);
+    transform:translateX(0);
+  }
+  .krow:hover .kdesc{color:rgba(244,240,232,.85)}
+  .krow .karrow{
+    position:relative;z-index:1;
+    font-family:"Bricolage Grotesque",sans-serif;font-weight:400;
+    font-size:clamp(26px,4vw,48px);line-height:1;
+    transform:translateX(-8px) rotate(0deg);opacity:.3;
+    transition:transform .5s var(--ease),opacity .4s;
+    flex-shrink:0;
+  }
+  .krow:hover .karrow{transform:translateX(0) rotate(0deg);opacity:1}
+  @media(max-width:860px){
+    .krow .kdesc{display:none}
+    .krow .ktitle{font-size:clamp(28px,8vw,52px)}
+    .krow .ktitle .en{display:none}
+  }
+
+  /* ---------- STEPS ---------- */
+  .steps{
+    padding:clamp(70px,11vh,140px) var(--pad);
+    background:var(--ink);color:var(--paper);
+    position:relative;overflow:hidden;
+  }
+  .steps::after{
+    content:"PDF";position:absolute;right:-2vw;bottom:-7vw;
+    font-family:"Bricolage Grotesque",sans-serif;font-weight:800;
+    font-size:34vw;line-height:.8;color:rgba(244,240,232,.04);
+    letter-spacing:-.04em;pointer-events:none;user-select:none;
+  }
+  .steps .section-label{color:var(--indigo-soft)}
+  .steps .section-label::before{background:var(--indigo-soft)}
+  .steps .section-label .num{color:var(--paper);opacity:.4}
+  .steps h2{
+    font-family:"Bricolage Grotesque","Pretendard Variable",sans-serif;
+    font-weight:700;letter-spacing:-.028em;line-height:1;
+    font-size:clamp(32px,5vw,72px);margin-bottom:clamp(40px,7vh,72px);max-width:14ch;
+  }
+  .steps h2 em{font-style:normal;color:var(--indigo-soft)}
+  .step-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(24px,4vw,56px);position:relative;z-index:1}
+  @media(max-width:780px){.step-grid{grid-template-columns:1fr;gap:34px}}
+  .step{border-top:1.5px solid rgba(244,240,232,.22);padding-top:22px}
+  .step .sn{
+    font-family:"Bricolage Grotesque",sans-serif;font-weight:700;
+    font-size:clamp(40px,5vw,68px);color:var(--indigo-soft);line-height:1;letter-spacing:-.03em;
+    display:block;margin-bottom:18px;
+  }
+  .step h3{font-weight:650;font-size:19px;letter-spacing:-.01em;margin-bottom:10px}
+  .step p{font-size:14.5px;line-height:1.62;color:rgba(244,240,232,.62)}
+
+  /* ---------- CTA ---------- */
+  .cta{
+    padding:clamp(80px,15vh,180px) var(--pad);
+    text-align:center;position:relative;
+  }
+  .cta .small{
+    font-size:12px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--indigo);
+    margin-bottom:30px;
+  }
+  .cta h2{
+    font-family:"Bricolage Grotesque","Pretendard Variable",sans-serif;
+    font-weight:800;letter-spacing:-.035em;line-height:.88;
+    font-size:clamp(46px,11vw,170px);
+    margin-bottom:42px;
+  }
+  .cta h2 .stroke{-webkit-text-stroke:1.5px var(--ink)}
+  .cta-btn{
+    display:inline-flex;align-items:center;gap:14px;
+    font-weight:600;font-size:16.5px;letter-spacing:-.01em;
+    background:var(--indigo);color:var(--paper);
+    padding:18px 30px 18px 34px;border-radius:100px;
+    box-shadow:0 14px 40px rgba(79,70,229,.34);
+    transition:.4s var(--ease);
+    position:relative;overflow:hidden;
+  }
+  .cta-btn span{position:relative;z-index:1}
+  .cta-btn .ar{
+    position:relative;z-index:1;width:34px;height:34px;border-radius:50%;
+    background:var(--paper);color:var(--indigo);
+    display:grid;place-items:center;font-size:16px;
+    transition:transform .45s var(--ease);
+  }
+  .cta-btn::before{content:"";position:absolute;inset:0;background:var(--indigo-deep);transform:translateY(100%);transition:transform .45s var(--ease);z-index:0}
+  .cta-btn:hover::before{transform:translateY(0)}
+  .cta-btn:hover{box-shadow:0 18px 50px rgba(79,70,229,.46);transform:translateY(-2px)}
+  .cta-btn:hover .ar{transform:translateX(4px) rotate(45deg)}
+  .cta-note{margin-top:22px;font-size:13.5px;color:rgba(21,19,27,.55)}
+
+  /* ---------- FOOTER ---------- */
+  footer{
+    border-top:1px solid var(--line);
+    padding:clamp(40px,6vh,64px) var(--pad) clamp(28px,4vh,40px);
+  }
+  .foot-top{display:flex;justify-content:space-between;flex-wrap:wrap;gap:30px;margin-bottom:46px}
+  .foot-brand{font-family:"Bricolage Grotesque","Pretendard Variable",sans-serif;font-weight:700;font-size:clamp(30px,4.4vw,58px);letter-spacing:-.03em;line-height:.95;max-width:12ch}
+  .foot-links{display:flex;gap:clamp(40px,7vw,90px);flex-wrap:wrap}
+  .foot-col h4{font-size:11.5px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--indigo);margin-bottom:16px}
+  .foot-col a{display:block;font-size:14px;color:rgba(21,19,27,.66);margin-bottom:10px;transition:color .25s,transform .25s}
+  .foot-col a:hover{color:var(--ink);transform:translateX(3px)}
+  .foot-bottom{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px;padding-top:24px;border-top:1px solid var(--line);font-size:12.5px;color:rgba(21,19,27,.5)}
+  .foot-bottom .badge{display:inline-flex;align-items:center;gap:7px;font-weight:500}
+  .foot-bottom .badge .d{width:6px;height:6px;border-radius:50%;background:var(--indigo)}
+
+  /* scroll reveal */
+  .reveal{opacity:0;transform:translateY(28px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
+  .reveal.in{opacity:1;transform:none}
+
+  @keyframes rise{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:none}}
+  @keyframes reveal{to{transform:translateY(0)}}
+
+  @media (prefers-reduced-motion: reduce){
+    *{animation:none!important;transition:none!important}
+    .megatype .ln > span,.hero-meta,.hero-base{transform:none!important;opacity:1!important}
+    .reveal{opacity:1!important;transform:none!important}
+  }
+</style>
+</head>
+<body>
+
+<header id="hdr">
+  <a class="brand" href="#top" aria-label="PDF의 모든 것 홈">
+    <span class="glyph">P</span>
+    <span>PDF의 모든 것<small>everything pdf · 내 기기에서</small></span>
+  </a>
+  <nav class="nav-right">
+    <a class="nav-link" href="#why">왜 안전한가</a>
+    <a class="nav-link" href="#tools">도구 7개</a>
+    <a class="nav-link" href="#how">사용법</a>
+    <a class="pill" href="#tools"><span class="dot"></span>100% 브라우저 처리</a>
+  </nav>
+</header>
+
+<!-- ===================== HERO ===================== -->
+<section class="hero" id="top">
+  <div class="hero-meta">
+    <span class="tag">서버 미전송 · 완전 무료 · 한국어</span>
+    <span class="idx">EST. 2026 — KR</span>
+  </div>
+
+  <h1 class="megatype">
+    <span class="ln l1"><span>PDF는</span></span>
+    <span class="ln l2"><span><span class="device-tag">내 기기</span> 안에서</span></span>
+    <span class="ln l3"><span><span class="stroke">끝</span><span class="fill-indigo">난다.</span></span></span>
+  </h1>
+
+  <div class="hero-base">
+    <p class="hero-sub">
+      합치고, 나누고, 잠금을 풀고, 페이지를 빼고 더하는 일.
+      <b>파일은 단 한 번도 서버로 떠나지 않습니다.</b>
+      과제·보고서·계약서·민원 서류까지 — 모든 처리는 당신의 브라우저 안에서 조용히 끝납니다.
+    </p>
+    <div class="scrollcue"><span>스크롤</span><span class="bar"></span></div>
+  </div>
+</section>
+
+<!-- ===================== MARQUEE ===================== -->
+<div class="marquee" aria-hidden="true">
+  <div class="track">
+    <div class="item">설치 불필요<span class="star">✦</span>회원가입 없음<span class="star">✦</span>워터마크 0<span class="star">✦</span>업로드 0<span class="star">✦</span>완전 무료<span class="star">✦</span></div>
+    <div class="item">설치 불필요<span class="star">✦</span>회원가입 없음<span class="star">✦</span>워터마크 0<span class="star">✦</span>업로드 0<span class="star">✦</span>완전 무료<span class="star">✦</span></div>
+  </div>
+</div>
+
+<!-- ===================== WHY ===================== -->
+<section class="why" id="why">
+  <div class="section-label reveal"><span class="num">01</span> 왜 이 방식인가</div>
+  <div class="why-grid">
+    <h2 class="why-head reveal">
+      당신의 파일은<br>
+      <span class="crossed">서버에 올라가</span><br>
+      <em>어디에도 가지 않습니다.</em>
+    </h2>
+    <div class="why-side">
+      <p class="reveal">
+        대부분의 온라인 PDF 도구는 파일을 <b>회사 서버로 전송</b>한 뒤 처리합니다.
+        계약서, 신분증 사본, 회사 보고서가 어딘가에 잠시라도 머문다는 뜻이죠.
+      </p>
+      <p class="reveal">
+        「PDF의 모든 것」은 다릅니다. 모든 연산이 <b>웹브라우저(WebAssembly) 안에서</b> 일어납니다.
+        인터넷을 잠시 꺼도 작동합니다. 그게 가장 확실한 보안입니다.
+      </p>
+      <div class="proofs reveal">
+        <div class="proof"><span class="pn">A</span><span class="pt">서버 미전송</span><span class="pd">파일은 기기를 떠나지 않음</span></div>
+        <div class="proof"><span class="pn">B</span><span class="pt">완전 무료</span><span class="pd">결제·구독·워터마크 없음</span></div>
+        <div class="proof"><span class="pn">C</span><span class="pt">가입 불필요</span><span class="pd">바로 열고 바로 사용</span></div>
+        <div class="proof"><span class="pn">D</span><span class="pt">자연스러운 한국어</span><span class="pd">번역투 없는 우리말 안내</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== TOOLS — KINETIC LIST ===================== -->
+<section class="tools" id="tools">
+  <div class="tools-head">
+    <div>
+      <div class="section-label reveal" style="margin-bottom:18px"><span class="num">02</span> 무엇이든 고르세요</div>
+      <h2 class="reveal">도구를 고르면<br>바로 작업이 열립니다</h2>
+    </div>
+    <div class="count reveal">7<sub>TOOLS</sub></div>
+  </div>
+
+  <nav class="klist">
+    <a class="krow" href="merge.html">
+      <span class="bg"></span>
+      <span class="row-inner">
+        <span class="kn">01</span>
+        <span class="ktitle">PDF 합치기 <span class="en">Merge</span></span>
+        <span class="kdesc">여러 PDF를 원하는 순서로 한 파일로 묶기</span>
+        <span class="karrow">→</span>
+      </span>
+    </a>
+    <a class="krow" href="split.html">
+      <span class="bg"></span>
+      <span class="row-inner">
+        <span class="kn">02</span>
+        <span class="ktitle">PDF 분할 <span class="en">Split</span></span>
+        <span class="kdesc">한 문서를 페이지 단위·범위로 잘라 나누기</span>
+        <span class="karrow">→</span>
+      </span>
+    </a>
+    <a class="krow" href="unlock.html">
+      <span class="bg"></span>
+      <span class="row-inner">
+        <span class="kn">03</span>
+        <span class="ktitle">PDF 잠금해제 <span class="en">Unlock</span></span>
+        <span class="kdesc">아는 비밀번호의 PDF에서 잠금 풀기</span>
+        <span class="karrow">→</span>
+      </span>
+    </a>
+    <a class="krow" href="extract.html">
+      <span class="bg"></span>
+      <span class="row-inner">
+        <span class="kn">04</span>
+        <span class="ktitle">페이지 추출 <span class="en">Extract</span></span>
+        <span class="kdesc">필요한 페이지만 골라 새 PDF로 저장</span>
+        <span class="karrow">→</span>
+      </span>
+    </a>
+    <a class="krow" href="remove.html">
+      <span class="bg"></span>
+      <span class="row-inner">
+        <span class="kn">05</span>
+        <span class="ktitle">페이지 삭제 <span class="en">Remove</span></span>
+        <span class="kdesc">불필요한 페이지를 빼고 깔끔하게 정리</span>
+        <span class="karrow">→</span>
+      </span>
+    </a>
+    <a class="krow" href="to-image.html">
+      <span class="bg"></span>
+      <span class="row-inner">
+        <span class="kn">06</span>
+        <span class="ktitle">이미지 변환 <span class="en">To Image</span></span>
+        <span class="kdesc">PDF 페이지를 JPG·PNG 이미지로 바꾸기</span>
+        <span class="karrow">→</span>
+      </span>
+    </a>
+    <a class="krow" href="page-number.html">
+      <span class="bg"></span>
+      <span class="row-inner">
+        <span class="kn">07</span>
+        <span class="ktitle">페이지 번호 <span class="en">Page No.</span></span>
+        <span class="kdesc">문서에 보기 좋은 쪽 번호 자동으로 넣기</span>
+        <span class="karrow">→</span>
+      </span>
+    </a>
+  </nav>
+</section>
+
+<!-- ===================== STEPS ===================== -->
+<section class="steps" id="how">
+  <div class="section-label"><span class="num">03</span> 어떻게 작동하나</div>
+  <h2>세 번이면 됩니다. <em>업로드는 없습니다.</em></h2>
+  <div class="step-grid">
+    <div class="step reveal">
+      <span class="sn">01</span>
+      <h3>파일을 끌어다 놓기</h3>
+      <p>도구를 열고 PDF를 화면에 드래그하거나 선택합니다. 이 순간 파일은 당신의 브라우저 메모리에만 올라갑니다.</p>
+    </div>
+    <div class="step reveal">
+      <span class="sn">02</span>
+      <h3>내 기기에서 처리</h3>
+      <p>합치기·분할·번호 매기기 같은 모든 연산이 기기 안에서 실행됩니다. 네트워크로 전송되는 데이터는 0바이트입니다.</p>
+    </div>
+    <div class="step reveal">
+      <span class="sn">03</span>
+      <h3>결과 내려받기</h3>
+      <p>완성된 PDF를 바로 저장합니다. 워터마크도, 가입 요구도, 숨은 비용도 없습니다. 그것으로 끝.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== CTA ===================== -->
+<section class="cta">
+  <div class="small">지금 바로, 무료로</div>
+  <h2><span class="stroke">시작은</span><br>한 장부터.</h2>
+  <a class="cta-btn" href="#tools"><span>7개 도구 보러가기</span><span class="ar">→</span></a>
+  <p class="cta-note">설치 없이 · 가입 없이 · 파일을 올리지 않고. 그냥 작동합니다.</p>
+</section>
+
+<!-- ===================== FOOTER ===================== -->
+<footer>
+  <div class="foot-top">
+    <div class="foot-brand">PDF의 모든 것을<br>내 기기 안에서.</div>
+    <div class="foot-links">
+      <div class="foot-col">
+        <h4>편집·정리</h4>
+        <a href="merge.html">PDF 합치기</a>
+        <a href="split.html">PDF 분할</a>
+        <a href="extract.html">페이지 추출</a>
+        <a href="remove.html">페이지 삭제</a>
+      </div>
+      <div class="foot-col">
+        <h4>변환·보안</h4>
+        <a href="unlock.html">PDF 잠금해제</a>
+        <a href="to-image.html">PDF 이미지 변환</a>
+        <a href="page-number.html">PDF 페이지 번호</a>
+      </div>
+      <div class="foot-col">
+        <h4>사이트</h4>
+        <a href="#why">왜 안전한가</a>
+        <a href="#how">사용 방법</a>
+        <a href="#tools">전체 도구</a>
+      </div>
+    </div>
+  </div>
+  <div class="foot-bottom">
+    <span>© 2026 PDF의 모든 것 — 한국어 무료 PDF 도구 모음 · 오픈소스</span>
+    <span class="badge"><span class="d"></span>파일은 서버로 전송되지 않습니다</span>
+  </div>
+</footer>
+
+<script>
+  // header scroll state
+  const hdr = document.getElementById('hdr');
+  const onScroll = () => hdr.classList.toggle('scrolled', window.scrollY > 24);
+  window.addEventListener('scroll', onScroll, {passive:true}); onScroll();
+
+  // scroll reveal
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, {threshold:.16, rootMargin:'0px 0px -8% 0px'});
+  document.querySelectorAll('.reveal').forEach((el,i)=>{
+    el.style.transitionDelay = (i % 4) * 70 + 'ms';
+    io.observe(el);
+  });
+
+  // subtle parallax on hero device tag
+  const tag = document.querySelector('.device-tag');
+  window.addEventListener('pointermove', (e)=>{
+    if(window.innerWidth < 760 || !tag) return;
+    const x = (e.clientX / window.innerWidth - .5) * 10;
+    const y = (e.clientY / window.innerHeight - .5) * 6;
+    tag.style.transform = `rotate(-2.5deg) translate(${x}px, ${y}px)`;
+  }, {passive:true});
+</script>
+</body>
+</html>
