@@ -10,7 +10,7 @@ const OUT = join(dirname(fileURLToPath(import.meta.url)), '..', 'assets', 'img',
 const HTML = `<!doctype html><html><head><meta charset="utf-8"><style>
 *{margin:0;box-sizing:border-box}
 body{font-family:-apple-system,'Apple SD Gothic Neo','Noto Sans KR',sans-serif}
-.card{width:1200px;height:630px;background:linear-gradient(135deg,#4f46e5 0%,#6366f1 55%,#4338ca 120%);
+.card{width:1200px;height:630px;background:radial-gradient(760px 470px at 50% 24%,rgba(124,116,255,.32),transparent 62%),#0a0a0a;
   color:#fff;padding:78px;display:flex;flex-direction:column;justify-content:center;position:relative;overflow:hidden}
 .card::after{content:'';position:absolute;right:-120px;top:-120px;width:420px;height:420px;border-radius:50%;background:rgba(255,255,255,.08)}
 .brand{display:flex;align-items:center;gap:16px;margin-bottom:30px}
@@ -22,7 +22,7 @@ body{font-family:-apple-system,'Apple SD Gothic Neo','Noto Sans KR',sans-serif}
 .tag{background:rgba(255,255,255,.17);padding:13px 24px;border-radius:999px;font-size:25px;font-weight:600}
 </style></head><body>
 <div class="card">
-  <div class="brand"><div class="logo"><svg width="60" height="60" viewBox="0 0 32 32" fill="none"><path d="M10.5 2H19l7 7v18.5a2.5 2.5 0 0 1-2.5 2.5h-13A2.5 2.5 0 0 1 8 27.5v-23A2.5 2.5 0 0 1 10.5 2Z" fill="#fff"/><path d="M19 2l7 7h-4.5A2.5 2.5 0 0 1 19 6.5V2Z" fill="#c7d2fe"/><rect x="12" y="16.4" width="11" height="2.4" rx="1.2" fill="#6366f1"/><rect x="12" y="21.1" width="7.5" height="2.4" rx="1.2" fill="#a5b4fc"/></svg></div><div class="bname">PDF의 모든 것</div></div>
+  <div class="brand"><div class="logo"><svg width="62" height="62" viewBox="0 0 32 32"><defs><radialGradient id="oo" cx="34%" cy="27%" r="84%"><stop offset="0%" stop-color="#c8b9ff"/><stop offset="36%" stop-color="#6d6af6"/><stop offset="74%" stop-color="#4f46e5"/><stop offset="100%" stop-color="#36178a"/></radialGradient></defs><circle cx="16" cy="16" r="13.6" fill="url(#oo)"/><ellipse cx="11.6" cy="10.4" rx="4.7" ry="3" fill="#fff" opacity=".5" transform="rotate(-18 11.6 10.4)"/></svg></div><div class="bname">PDF의 모든 것</div></div>
   <div class="title">무료 PDF 도구 모음<br>합치기 · 분할 · 변환 · 잠금해제</div>
   <div class="sub">설치 없이 · 파일을 서버에 올리지 않고 · 내 브라우저에서</div>
   <div class="tags"><span class="tag">🔒 서버 미전송</span><span class="tag">💸 완전 무료</span><span class="tag">⚡ 설치 불필요</span></div>

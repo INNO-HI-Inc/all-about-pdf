@@ -1,7 +1,12 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
-  <rect width="64" height="64" rx="15" fill="#4f46e5"/>
-  <path d="M22 14h16l8 8v26a2 2 0 0 1-2 2H22a2 2 0 0 1-2-2V16a2 2 0 0 1 2-2z" fill="#ffffff"/>
-  <path d="M38 14l8 8h-6a2 2 0 0 1-2-2v-6z" fill="#c7d2fe"/>
-  <rect x="26" y="31" width="14" height="3.4" rx="1.7" fill="#4f46e5"/>
-  <rect x="26" y="38" width="9" height="3.4" rx="1.7" fill="#818cf8"/>
+  <defs>
+    <radialGradient id="o" cx="34%" cy="27%" r="84%">
+      <stop offset="0%" stop-color="#c8b9ff"/>
+      <stop offset="36%" stop-color="#6d6af6"/>
+      <stop offset="74%" stop-color="#4f46e5"/>
+      <stop offset="100%" stop-color="#36178a"/>
+    </radialGradient>
+  </defs>
+  <circle cx="32" cy="32" r="28" fill="url(#o)"/>
+  <ellipse cx="23" cy="21" rx="9" ry="6" fill="#ffffff" opacity=".5" transform="rotate(-18 23 21)"/>
 </svg>

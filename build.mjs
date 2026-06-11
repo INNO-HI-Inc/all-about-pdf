@@ -18,8 +18,8 @@ const GITHUB_URL = process.env.GITHUB_URL || 'https://github.com/INNO-HI-Inc/all
 const BRAND = 'PDF의 모든 것';
 const TODAY = '2026-06-04';
 
-// 로고 마크 (접힌 문서) — 헤더·푸터 공통
-const LOGO_SVG = '<svg class="logo-mark" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><path d="M10.5 2H19l7 7v18.5a2.5 2.5 0 0 1-2.5 2.5h-13A2.5 2.5 0 0 1 8 27.5v-23A2.5 2.5 0 0 1 10.5 2Z" fill="#4f46e5"/><path d="M19 2l7 7h-4.5A2.5 2.5 0 0 1 19 6.5V2Z" fill="#a5b4fc"/><rect x="12" y="16.4" width="11" height="2.4" rx="1.2" fill="#fff" opacity=".92"/><rect x="12" y="21.1" width="7.5" height="2.4" rx="1.2" fill="#fff" opacity=".66"/></svg>';
+// 로고 마크 (글로시 그라디언트 오브) — 헤더·푸터 공통
+const LOGO_SVG = '<svg class="logo-mark" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><defs><radialGradient id="aapOrb" cx="34%" cy="27%" r="84%"><stop offset="0%" stop-color="#c8b9ff"/><stop offset="36%" stop-color="#6d6af6"/><stop offset="74%" stop-color="#4f46e5"/><stop offset="100%" stop-color="#36178a"/></radialGradient></defs><circle cx="16" cy="16" r="13.6" fill="url(#aapOrb)"/><ellipse cx="11.6" cy="10.4" rx="4.7" ry="3" fill="#fff" opacity=".5" transform="rotate(-18 11.6 10.4)"/></svg>';
 
 // ───────── 유틸 ─────────
 const esc = (s) => String(s == null ? '' : s)
@@ -183,8 +183,9 @@ function footer(rel) {
 </div></footer>`;
 }
 
-function page({ title, desc, canonical, ogTitle, rel, jsonld, main, withScripts, headExtra, bodyClass }) {
+function page({ title, desc, canonical, ogTitle, rel, jsonld, main, withScripts, headExtra, bodyClass, extraScripts }) {
   const ld = jsonld ? `\n  <script type="application/ld+json">${JSON.stringify(jsonld)}</script>` : '';
+  const extra = (extraScripts || []).map((s) => `\n  <script src="${rel}${s}" defer></script>`).join('');
   const toolList = withScripts ? (Array.isArray(withScripts) ? withScripts : [withScripts]) : [];
   const scripts = toolList.length ? `
   <script>window.AAP_BASE='${rel}';</script>
@@ -226,7 +227,7 @@ ${header(rel)}
   <main id="main">
 ${main}
   </main>
-${footer(rel)}${scripts}
+${footer(rel)}${scripts}${extra}
 </body>
 </html>
 `;
@@ -395,27 +396,19 @@ function buildHome() {
   ];
 
   const main = `    <section class="hsec hhero">
-      <div class="container hhero__grid">
-        <div class="hhero__copy">
-          <h1>PDF를 쉽게<br><span class="pp">분할</span>하고 <span class="co">합치</span>세요</h1>
-          <p class="hhero__sub">${esc(c.heroSubtitle)}</p>
-          <div class="hhero__btns">
-            <a class="hbtn hbtn--pp" href="#t-split">✂️ PDF 분할하기</a>
-            <a class="hbtn hbtn--co" href="#t-merge">🔗 PDF 합치기</a>
-          </div>
-          <div class="hfeats">
-            <div class="hfeat"><span class="hfeat__ic ic-pp">🛡️</span><div><b>100% 안전</b><span>파일은 서버에 저장되지 않습니다.</span></div></div>
-            <div class="hfeat"><span class="hfeat__ic ic-co">⚡</span><div><b>빠른 처리</b><span>내 기기에서 즉시 처리합니다.</span></div></div>
-            <div class="hfeat"><span class="hfeat__ic ic-pp">📱</span><div><b>모든 기기 지원</b><span>PC·모바일·태블릿에서 사용.</span></div></div>
-          </div>
-        </div>
-        ${art}
+      <div class="hhero__inner">
+        <div class="orb"></div>
+        <h1 class="hhero__title">PDF를 쉽게<br><span class="ac">분할</span>하고 <span class="ac">합치</span>세요</h1>
+        <p class="hhero__sub">${esc(c.heroSubtitle)}</p>
+        <div class="hhero__cta"><a class="pillbtn" href="#tools">도구 시작하기 <span class="dot">●</span></a></div>
+        <a class="hhero__more" href="#tools">또는 아래로 둘러보기</a>
       </div>
+      <div class="hhero__scroll" aria-hidden="true">SCROLL</div>
     </section>
 
     <section class="hsec hsec--tight">
       <div class="container">
-        <div class="fcards">
+        <div class="fcards" data-reveal>
         ${fcards}
         </div>
       </div>
@@ -438,8 +431,8 @@ function buildHome() {
 
     <section class="hsec hsec--tight">
       <div class="container">
-        <div class="sec-head center"><h2>모든 PDF 도구</h2><p>${esc(c.intro)}</p></div>
-        <div class="tchips">
+        <div class="sec-head center" data-reveal><h2>모든 PDF 도구</h2><p>${esc(c.intro)}</p></div>
+        <div class="tchips" data-reveal>
           ${chips}
         </div>
       </div>
@@ -447,8 +440,8 @@ function buildHome() {
 
     <section class="hsec hwhy">
       <div class="container">
-        <div class="sec-head center"><h2>${esc(c.whyTitle)}</h2><p>${esc(c.why)}</p></div>
-        <div class="wrow">
+        <div class="sec-head center" data-reveal><h2>${esc(c.whyTitle)}</h2><p>${esc(c.why)}</p></div>
+        <div class="wrow" data-reveal>
         ${whyItems}
         </div>
       </div>
@@ -456,8 +449,8 @@ function buildHome() {
 
     <section class="hsec">
       <div class="container container--read">
-        <div class="sec-head center"><h2>자주 묻는 질문</h2></div>
-        <div class="faq">
+        <div class="sec-head center" data-reveal><h2>자주 묻는 질문</h2></div>
+        <div class="faq" data-reveal>
           ${faqs}
         </div>
       </div>
@@ -467,7 +460,8 @@ function buildHome() {
     title: c.metaTitle, desc: c.metaDescription, canonical,
     ogTitle: c.metaTitle, rel, jsonld, main, withScripts: ['split', 'merge'],
     bodyClass: 'home',
-    headExtra: '\n  <link rel="preload" href="assets/vendor/fonts/a2z-Bold.woff2" as="font" type="font/woff2" crossorigin>\n  <link rel="stylesheet" href="assets/css/home.css">'
+    extraScripts: ['assets/js/home.js'],
+    headExtra: '\n  <script>document.documentElement.className+=" js";</script>\n  <link rel="preload" href="assets/vendor/fonts/a2z-Bold.woff2" as="font" type="font/woff2" crossorigin>\n  <link rel="stylesheet" href="assets/css/home.css">'
   });
   writeFileSync(join(ROOT, 'index.html'), html);
   console.log('✓ /index.html (PDFix-style)');

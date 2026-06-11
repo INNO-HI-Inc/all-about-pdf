@@ -22,6 +22,7 @@
   <link rel="manifest" href="site.webmanifest">
   <meta name="theme-color" content="#4f46e5">
   <link rel="stylesheet" href="assets/css/style.css">
+  <script>document.documentElement.className+=" js";</script>
   <link rel="preload" href="assets/vendor/fonts/a2z-Bold.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="assets/css/home.css">
   <script type="application/ld+json">[{"@context":"https://schema.org","@type":"WebSite","name":"PDF의 모든 것","url":"https://inno-hi-inc.github.io/all-about-pdf/","inLanguage":"ko","description":"설치도 회원가입도 없이 무료로 쓰는 PDF 도구 모음. 파일을 서버에 올리지 않고 내 브라우저에서 바로 합치기·분할·변환·잠금해제까지 처리합니다."},{"@context":"https://schema.org","@type":"Organization","name":"PDF의 모든 것","url":"https://inno-hi-inc.github.io/all-about-pdf/","sameAs":["https://github.com/INNO-HI-Inc/all-about-pdf"]}]</script>
@@ -29,42 +30,24 @@
 <body class="home">
   <a class="skip-link" href="#main">본문 바로가기</a>
 <header class="site-header"><div class="container"><div class="site-header__inner">
-  <a class="brand" href="./"><span class="brand__logo"><svg class="logo-mark" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><path d="M10.5 2H19l7 7v18.5a2.5 2.5 0 0 1-2.5 2.5h-13A2.5 2.5 0 0 1 8 27.5v-23A2.5 2.5 0 0 1 10.5 2Z" fill="#4f46e5"/><path d="M19 2l7 7h-4.5A2.5 2.5 0 0 1 19 6.5V2Z" fill="#a5b4fc"/><rect x="12" y="16.4" width="11" height="2.4" rx="1.2" fill="#fff" opacity=".92"/><rect x="12" y="21.1" width="7.5" height="2.4" rx="1.2" fill="#fff" opacity=".66"/></svg></span><span>PDF의 <span class="brand__dot">모든 것</span></span></a>
+  <a class="brand" href="./"><span class="brand__logo"><svg class="logo-mark" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><defs><radialGradient id="aapOrb" cx="34%" cy="27%" r="84%"><stop offset="0%" stop-color="#c8b9ff"/><stop offset="36%" stop-color="#6d6af6"/><stop offset="74%" stop-color="#4f46e5"/><stop offset="100%" stop-color="#36178a"/></radialGradient></defs><circle cx="16" cy="16" r="13.6" fill="url(#aapOrb)"/><ellipse cx="11.6" cy="10.4" rx="4.7" ry="3" fill="#fff" opacity=".5" transform="rotate(-18 11.6 10.4)"/></svg></span><span>PDF의 <span class="brand__dot">모든 것</span></span></a>
   <nav class="site-nav" aria-label="주요 도구"><a href="./merge/">합치기</a><a href="./split/">분할</a><a href="./unlock/">잠금해제</a><a href="./to-image/">이미지 변환</a><a href="./page-numbers/">페이지 번호</a><a href="https://github.com/INNO-HI-Inc/all-about-pdf" rel="noopener" target="_blank">GitHub</a></nav>
 </div></div></header>
   <main id="main">
     <section class="hsec hhero">
-      <div class="container hhero__grid">
-        <div class="hhero__copy">
-          <h1>PDF를 쉽게<br><span class="pp">분할</span>하고 <span class="co">합치</span>세요</h1>
-          <p class="hhero__sub">PDF 합치기부터 분할·변환·잠금해제까지, 7가지 도구를 한곳에서.</p>
-          <div class="hhero__btns">
-            <a class="hbtn hbtn--pp" href="#t-split">✂️ PDF 분할하기</a>
-            <a class="hbtn hbtn--co" href="#t-merge">🔗 PDF 합치기</a>
-          </div>
-          <div class="hfeats">
-            <div class="hfeat"><span class="hfeat__ic ic-pp">🛡️</span><div><b>100% 안전</b><span>파일은 서버에 저장되지 않습니다.</span></div></div>
-            <div class="hfeat"><span class="hfeat__ic ic-co">⚡</span><div><b>빠른 처리</b><span>내 기기에서 즉시 처리합니다.</span></div></div>
-            <div class="hfeat"><span class="hfeat__ic ic-pp">📱</span><div><b>모든 기기 지원</b><span>PC·모바일·태블릿에서 사용.</span></div></div>
-          </div>
-        </div>
-        <div class="hart" aria-hidden="true">
-        <span class="hart__blob"></span>
-        <div class="hart__doc">
-          <span class="hart__tag">PDF</span>
-          <div class="hart__img"><svg viewBox="0 0 24 24" fill="none" stroke="#b9c0cf" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2.5"/><circle cx="8.5" cy="8.5" r="1.6"/><path d="M21 15l-5-5L5 21"/></svg></div>
-          <span class="hart__line"></span><span class="hart__line"></span><span class="hart__line w60"></span>
-        </div>
-        <div class="hart__scissors"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><line x1="20" y1="4" x2="8.12" y2="15.88"/><line x1="14.47" y1="14.48" x2="20" y2="20"/><line x1="8.12" y1="8.12" x2="12" y2="12"/></svg></div>
-        <div class="hart__pages"><span class="hart__pg"><b>1</b></span><span class="hart__pg"><b>2</b></span><span class="hart__pg"><b>3</b></span></div>
-        <div class="hart__plus"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+      <div class="hhero__inner">
+        <div class="orb"></div>
+        <h1 class="hhero__title">PDF를 쉽게<br><span class="ac">분할</span>하고 <span class="ac">합치</span>세요</h1>
+        <p class="hhero__sub">PDF 합치기부터 분할·변환·잠금해제까지, 7가지 도구를 한곳에서.</p>
+        <div class="hhero__cta"><a class="pillbtn" href="#tools">도구 시작하기 <span class="dot">●</span></a></div>
+        <a class="hhero__more" href="#tools">또는 아래로 둘러보기</a>
       </div>
-      </div>
+      <div class="hhero__scroll" aria-hidden="true">SCROLL</div>
     </section>
 
     <section class="hsec hsec--tight">
       <div class="container">
-        <div class="fcards">
+        <div class="fcards" data-reveal>
         <a class="fcard" href="merge/">
           <span class="fcard__ic ic-co">🔗</span>
           <span class="fcard__t">PDF 합치기</span>
@@ -149,8 +132,8 @@
 
     <section class="hsec hsec--tight">
       <div class="container">
-        <div class="sec-head center"><h2>모든 PDF 도구</h2><p>「PDF의 모든 것」은 PDF 합치기, 분할, 잠금해제, 페이지 추출·삭제, JPG·이미지 변환, 페이지 번호 넣기까지 자주 쓰는 PDF 작업을 한곳에 모은 무료 도구 모음입니다. 설치나 회원가입 없이 브라우저에서 바로 시작하고, 파일은 서버로 올라가지 않으니 민감한 문서도 안심하고 다룰 수 있습니다.</p></div>
-        <div class="tchips">
+        <div class="sec-head center" data-reveal><h2>모든 PDF 도구</h2><p>「PDF의 모든 것」은 PDF 합치기, 분할, 잠금해제, 페이지 추출·삭제, JPG·이미지 변환, 페이지 번호 넣기까지 자주 쓰는 PDF 작업을 한곳에 모은 무료 도구 모음입니다. 설치나 회원가입 없이 브라우저에서 바로 시작하고, 파일은 서버로 올라가지 않으니 민감한 문서도 안심하고 다룰 수 있습니다.</p></div>
+        <div class="tchips" data-reveal>
           <a class="tchip" href="merge/"><span>🔗</span> PDF 합치기</a>
           <a class="tchip" href="split/"><span>✂️</span> PDF 분할</a>
           <a class="tchip" href="unlock/"><span>🔓</span> PDF 잠금해제</a>
@@ -164,8 +147,8 @@
 
     <section class="hsec hwhy">
       <div class="container">
-        <div class="sec-head center"><h2>왜 「PDF의 모든 것」일까요?</h2><p>대부분의 외산 PDF 도구는 파일을 서버에 업로드한 뒤 일정 시간이 지나면 삭제하는 방식입니다. 저희는 애초에 파일을 올리지 않습니다. 모든 처리가 사용자의 기기 안에서 이뤄지기 때문에, 계약서나 사내 자료 같은 민감한 문서를 다룰 때 업로드 걱정 없이 쓸 수 있습니다. 여기에 어색한 기계번역 대신 자연스러운 한국어로 안내해, 처음 쓰는 분도 헤매지 않습니다.</p></div>
-        <div class="wrow">
+        <div class="sec-head center" data-reveal><h2>왜 「PDF의 모든 것」일까요?</h2><p>대부분의 외산 PDF 도구는 파일을 서버에 업로드한 뒤 일정 시간이 지나면 삭제하는 방식입니다. 저희는 애초에 파일을 올리지 않습니다. 모든 처리가 사용자의 기기 안에서 이뤄지기 때문에, 계약서나 사내 자료 같은 민감한 문서를 다룰 때 업로드 걱정 없이 쓸 수 있습니다. 여기에 어색한 기계번역 대신 자연스러운 한국어로 안내해, 처음 쓰는 분도 헤매지 않습니다.</p></div>
+        <div class="wrow" data-reveal>
         <div class="wcell">
           <span class="wcell__ic ic-pp">💸</span>
           <div><b>무료로 사용</b><span>모든 기능을 무료로 제공합니다.</span></div>
@@ -188,8 +171,8 @@
 
     <section class="hsec">
       <div class="container container--read">
-        <div class="sec-head center"><h2>자주 묻는 질문</h2></div>
-        <div class="faq">
+        <div class="sec-head center" data-reveal><h2>자주 묻는 질문</h2></div>
+        <div class="faq" data-reveal>
           <details><summary>정말 무료인가요?</summary><div class="faq__a">네, 전부 무료입니다. 결과물에 워터마크가 붙지 않고 파일 개수나 용량 제한도 없으며, 중간에 결제를 요구하지 않습니다.</div></details>
           <details><summary>내 파일이 안전한가요?</summary><div class="faq__a">안전합니다. 모든 작업이 사용자의 브라우저 안에서 처리되며 파일이 서버로 전송되지 않습니다. 업로드 자체가 없으므로 외부에 파일이 보관될 일이 없습니다.</div></details>
           <details><summary>프로그램을 설치해야 하나요?</summary><div class="faq__a">아니요. 설치나 회원가입 없이 웹페이지를 열기만 하면 바로 사용할 수 있습니다.</div></details>
@@ -202,7 +185,7 @@
 <footer class="site-footer"><div class="container">
   <div class="site-footer__grid">
     <div class="site-footer__col site-footer__brand">
-      <a class="brand" href="./"><span class="brand__logo"><svg class="logo-mark" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><path d="M10.5 2H19l7 7v18.5a2.5 2.5 0 0 1-2.5 2.5h-13A2.5 2.5 0 0 1 8 27.5v-23A2.5 2.5 0 0 1 10.5 2Z" fill="#4f46e5"/><path d="M19 2l7 7h-4.5A2.5 2.5 0 0 1 19 6.5V2Z" fill="#a5b4fc"/><rect x="12" y="16.4" width="11" height="2.4" rx="1.2" fill="#fff" opacity=".92"/><rect x="12" y="21.1" width="7.5" height="2.4" rx="1.2" fill="#fff" opacity=".66"/></svg></span><span>PDF의 <span class="brand__dot">모든 것</span></span></a>
+      <a class="brand" href="./"><span class="brand__logo"><svg class="logo-mark" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><defs><radialGradient id="aapOrb" cx="34%" cy="27%" r="84%"><stop offset="0%" stop-color="#c8b9ff"/><stop offset="36%" stop-color="#6d6af6"/><stop offset="74%" stop-color="#4f46e5"/><stop offset="100%" stop-color="#36178a"/></radialGradient></defs><circle cx="16" cy="16" r="13.6" fill="url(#aapOrb)"/><ellipse cx="11.6" cy="10.4" rx="4.7" ry="3" fill="#fff" opacity=".5" transform="rotate(-18 11.6 10.4)"/></svg></span><span>PDF의 <span class="brand__dot">모든 것</span></span></a>
       <p>필요한 PDF 작업을 설치 없이, 파일을 서버에 올리지 않고 무료로. 모든 처리는 내 브라우저 안에서만 이뤄집니다.</p>
     </div>
     <div class="site-footer__col"><h4>도구</h4><ul><li><a href="./merge/">합치기</a></li><li><a href="./split/">분할</a></li><li><a href="./unlock/">잠금해제</a></li><li><a href="./extract/">페이지 추출</a></li><li><a href="./delete/">페이지 삭제</a></li><li><a href="./to-image/">이미지 변환</a></li><li><a href="./page-numbers/">페이지 번호</a></li></ul></div>
@@ -226,5 +209,6 @@
   <script src="assets/js/tool-core.js" defer></script>
   <script src="assets/js/tools/split.js" defer></script>
   <script src="assets/js/tools/merge.js" defer></script>
+  <script src="assets/js/home.js" defer></script>
 </body>
 </html>
