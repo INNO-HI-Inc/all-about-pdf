@@ -415,36 +415,25 @@ function buildHome() {
     { '@context': 'https://schema.org', '@type': 'Organization', name: BRAND, url: SITE_URL + '/', sameAs: [GITHUB_URL] }
   ];
 
+  const heroTabs = TOOLS.map((t, i) => `<button class="herotool__tab" type="button" role="tab" data-tab="${t.slug}" aria-selected="${i === 0 ? 'true' : 'false'}">${t.icon}<span>${t.nav}</span></button>`).join('\n            ');
+  const heroPanels = TOOLS.map((t, i) => `<div class="herotool__panel${i === 0 ? ' is-active' : ''}" role="tabpanel" data-panel="${t.slug}">
+          ${widget(t)}
+        </div>`).join('\n        ');
+
   const main = `    <section class="hsec hhero">
-      <div class="hhero__inner">
-        <div class="orb"></div>
-        <h1 class="hhero__title">PDF를 쉽게<br><span class="ac">분할</span>하고 <span class="ac">합치</span>세요</h1>
-        <p class="hhero__sub">${esc(c.heroSubtitle)}</p>
-        <div class="hhero__cta"><a class="pillbtn" href="#tools">도구 시작하기 <span class="dot">${DOT_SVG}</span></a></div>
-        <a class="hhero__more" href="#tools">또는 아래로 둘러보기</a>
-      </div>
-      <div class="hhero__scroll" aria-hidden="true">SCROLL</div>
-    </section>
-
-    <section class="hsec hsec--tight">
       <div class="container">
-        <div class="fcards" data-reveal>
-        ${fcards}
+        <div class="hhero__inner">
+          <div class="orb" aria-hidden="true"></div>
+          <h1 class="hhero__title">PDF, 여기서 바로.<br><span class="ac">합치기·분할·변환</span> 무료로</h1>
+          <p class="hhero__sub">${esc(c.heroSubtitle)}</p>
         </div>
-      </div>
-    </section>
-
-    <section class="hsec" id="tools">
-      <div class="container hpanels">
-        <div class="hpanel hpanel--pp" id="t-split">
-          <h2 class="hpanel__title">PDF 분할하기</h2>
-          <p class="hpanel__sub">PDF의 페이지를 분할하여 필요한 부분만 추출하세요.</p>
-          ${widget(TOOL_BY['split'], { class: 'tw tw--pp' })}
-        </div>
-        <div class="hpanel hpanel--co" id="t-merge">
-          <h2 class="hpanel__title">PDF 합치기</h2>
-          <p class="hpanel__sub">여러 PDF 파일을 하나의 파일로 합치세요.</p>
-          ${widget(TOOL_BY['merge'], { class: 'tw tw--co' })}
+        <div class="herotool">
+          <div class="herotool__tabs" role="tablist" aria-label="PDF 도구 선택">
+            ${heroTabs}
+          </div>
+          <div class="herotool__panels">
+        ${heroPanels}
+          </div>
         </div>
       </div>
     </section>
@@ -478,13 +467,14 @@ function buildHome() {
 
   const html = page({
     title: c.metaTitle, desc: c.metaDescription, canonical,
-    ogTitle: c.metaTitle, rel, jsonld, main, withScripts: ['split', 'merge'],
+    ogTitle: c.metaTitle, rel, jsonld, main,
+    withScripts: ['merge', 'split', 'unlock', 'extract', 'delete', 'to-image', 'page-numbers'],
     bodyClass: 'home',
     extraScripts: ['assets/js/home.js'],
-    headExtra: '\n  <script>document.documentElement.className+=" js";</script>\n  <link rel="preload" href="assets/vendor/fonts/a2z-Bold.woff2" as="font" type="font/woff2" crossorigin>\n  <link rel="stylesheet" href="assets/css/home.css">'
+    headExtra: '\n  <script>document.documentElement.className+=" js";</script>\n  <link rel="stylesheet" href="assets/css/home.css">'
   });
   writeFileSync(join(ROOT, 'index.html'), html);
-  console.log('✓ /index.html (PDFix-style)');
+  console.log('✓ /index.html (도구 페이지)');
 }
 
 // ───────── 소개 페이지 ─────────

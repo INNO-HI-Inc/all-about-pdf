@@ -164,7 +164,9 @@ async function testHomeWidgets(ctx) {
   const r1 = await setAndRun(page, [b64ToFile(b[0], 'a.pdf'), b64ToFile(b[1], 'b.pdf')], null, '[data-tool="merge"]');
   const c1 = await page.evaluate(COUNT, bufToB64(r1.buf));
   c1 === 5 ? pass('홈 합치기 위젯', '3+2 → ' + c1) : fail('홈 합치기 위젯', '기대 5, 실제 ' + c1);
-  // 홈 분할 위젯 (낱장)
+  // 홈 분할 위젯 (탭 전환 후 낱장)
+  await page.click('.herotool__tab[data-tab="split"]');
+  await page.waitForSelector('[data-tool="split"]', { state: 'visible' });
   const r2 = await setAndRun(page, [b64ToFile(b[0], 'a.pdf')], null, '[data-tool="split"]');
   const n2 = (await page.evaluate(ZIP, bufToB64(r2.buf))).length;
   n2 === 3 ? pass('홈 분할 위젯', '3페이지 → ZIP ' + n2) : fail('홈 분할 위젯', '기대 3, 실제 ' + n2);

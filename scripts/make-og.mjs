@@ -10,16 +10,16 @@ const OUT = join(dirname(fileURLToPath(import.meta.url)), '..', 'assets', 'img',
 const HTML = `<!doctype html><html><head><meta charset="utf-8"><style>
 *{margin:0;box-sizing:border-box}
 body{font-family:-apple-system,'Apple SD Gothic Neo','Noto Sans KR',sans-serif}
-.card{width:1200px;height:630px;background:radial-gradient(760px 470px at 50% 24%,rgba(124,116,255,.32),transparent 62%),#0a0a0a;
-  color:#fff;padding:78px;display:flex;flex-direction:column;justify-content:center;position:relative;overflow:hidden}
-.card::after{content:'';position:absolute;right:-120px;top:-120px;width:420px;height:420px;border-radius:50%;background:rgba(255,255,255,.08)}
+.card{width:1200px;height:630px;background:radial-gradient(860px 500px at 50% 14%,rgba(79,70,229,.10),transparent 60%),#ffffff;
+  color:#15171f;padding:78px;display:flex;flex-direction:column;justify-content:center;position:relative;overflow:hidden}
+.card::after{content:'';position:absolute;right:-130px;top:-130px;width:440px;height:440px;border-radius:50%;background:rgba(79,70,229,.05)}
 .brand{display:flex;align-items:center;gap:16px;margin-bottom:30px}
 .logo{width:66px;height:66px;display:flex;align-items:center;justify-content:center}
-.bname{font-size:31px;font-weight:700;opacity:.96}
-.title{font-size:66px;font-weight:800;line-height:1.22;letter-spacing:-2.5px;margin-bottom:22px}
-.sub{font-size:31px;font-weight:500;opacity:.93}
+.bname{font-size:31px;font-weight:700;color:#15171f}
+.title{font-size:64px;font-weight:800;line-height:1.2;letter-spacing:-2.5px;margin-bottom:22px}
+.sub{font-size:30px;font-weight:500;color:#5a6172}
 .tags{display:flex;gap:13px;margin-top:42px}
-.tag{background:rgba(255,255,255,.17);padding:13px 24px;border-radius:999px;font-size:25px;font-weight:600}
+.tag{background:#eef0fe;color:#4338ca;padding:13px 24px;border-radius:999px;font-size:25px;font-weight:700}
 </style></head><body>
 <div class="card">
   <div class="brand"><div class="logo"><svg width="62" height="62" viewBox="0 0 32 32"><defs><radialGradient id="oo" cx="34%" cy="27%" r="84%"><stop offset="0%" stop-color="#c8b9ff"/><stop offset="36%" stop-color="#6d6af6"/><stop offset="74%" stop-color="#4f46e5"/><stop offset="100%" stop-color="#36178a"/></radialGradient></defs><circle cx="16" cy="16" r="13.6" fill="url(#oo)"/><ellipse cx="11.6" cy="10.4" rx="4.7" ry="3" fill="#fff" opacity=".5" transform="rotate(-18 11.6 10.4)"/></svg></div><div class="bname">PDF의 모든 것</div></div>
