@@ -73,6 +73,50 @@ const TOOLS = [
 ];
 const TOOL_BY = Object.fromEntries(TOOLS.map((t) => [t.slug, t]));
 
+// 작업실 OS 공용 자원 (홈 + 도구 상세 공통)
+const CHIP = '<svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4"/></svg>';
+const APP_FILE = { merge: 'merge.app', split: 'split.app', unlock: 'unlock.app', extract: 'extract.app', delete: 'delete.app', 'to-image': 'to-image.app', 'page-numbers': 'page-num.app' };
+const APP_DESC = {
+  merge: '여러 PDF를 순서대로 끌어다 하나로. 과제 묶음, 보고서 취합, 스캔본 결합까지 한 번에 끝냅니다.',
+  split: '한 파일을 여러 개로. 자르는 지점을 눌러 필요한 부분만 깔끔하게 나눕니다.',
+  unlock: '비밀번호가 걸린 PDF를 풀어 자유롭게. 내가 아는 암호로 내 기기에서만 처리합니다.',
+  extract: '원하는 페이지만 콕 집어 새 PDF로. 썸네일을 눌러 특정 조항·핵심 장만 뽑아냅니다.',
+  delete: '빈 페이지나 불필요한 장을 제거. 제출 전 군더더기를 정리해 문서를 깔끔하게.',
+  'to-image': 'PDF 페이지를 JPG·PNG 이미지로. 블로그·SNS·발표 자료에 그대로 붙여 쓰기 좋습니다.',
+  'page-numbers': '문서 하단에 페이지 번호를 자동으로. 위치·시작 번호·서식을 골라 보고서 형식을 갖춥니다.',
+};
+const APP_SHORT = {
+  merge: '여러 PDF를 하나로', split: '한 파일을 여러 개로', unlock: '비밀번호·제한 해제',
+  extract: '원하는 페이지만 추출', delete: '불필요한 페이지 삭제', 'to-image': 'JPG·PNG로 변환', 'page-numbers': '페이지 번호 넣기',
+};
+
+// 작업실 OS 태스크바 / 푸터 (rel: 홈은 '', 하위는 '../')
+function wsTaskbar(rel) {
+  const home = rel === '' ? './' : rel;
+  return `    <header class="ws-taskbar">
+      <a href="${home}" class="ws-logo"><span class="chip" aria-hidden="true">${CHIP}</span><span class="ko">PDF의 모든 것</span><b class="sep" aria-hidden="true">/</b><span class="wk">workspace</span></a>
+      <nav class="ws-nav"><a href="${home}#tools">도구</a><a href="${home}#why">왜 안전한가</a><a href="${home}#faq">자주 묻는 질문</a><a class="gh" href="${escAttr(GITHUB_URL)}" rel="noopener" target="_blank">오픈소스 ↗</a></nav>
+    </header>`;
+}
+function wsFooter(rel) {
+  const home = rel === '' ? './' : rel;
+  const t1 = TOOLS.slice(0, 4).map((t) => `<a href="${home}${t.slug}/">${read(t.slug).h1}</a>`).join('');
+  const t2 = TOOLS.slice(4).map((t) => `<a href="${home}${t.slug}/">${read(t.slug).h1}</a>`).join('');
+  return `    <footer class="ws-foot">
+      <div class="ws-wrap">
+        <div class="ws-footgrid">
+          <div class="ws-footbrand"><span class="fb"><span class="chip" aria-hidden="true">${CHIP}</span>PDF의 모든 것</span><p>설치도 회원가입도 없이, 파일을 서버에 올리지 않고 내 브라우저에서 바로 처리하는 한국어 무료 PDF 도구 모음입니다.</p></div>
+          <div class="ws-footcols">
+            <div class="ws-footcol"><h5>// tools</h5>${t1}</div>
+            <div class="ws-footcol"><h5>// more</h5>${t2}</div>
+            <div class="ws-footcol"><h5>// about</h5><a href="${home}about/">서비스 소개</a><a href="${home}#why">왜 안전한가</a><a href="${home}#faq">자주 묻는 질문</a><a href="${escAttr(GITHUB_URL)}" rel="noopener" target="_blank">오픈소스 (GitHub) ↗</a></div>
+          </div>
+        </div>
+        <div class="ws-footbottom"><span>© 2026 PDF의 모든 것 — made in Korea, runs on your device.</span><span>오픈소스 · MIT License</span></div>
+      </div>
+    </footer>`;
+}
+
 // ───────── 옵션 마크업 (tools/*.js의 ID와 일치) ─────────
 function optSplit() {
   return `<div class="options">
@@ -96,6 +140,7 @@ function optUnlock() {
     <input type="password" id="unlock-pw" class="field" placeholder="아는 비밀번호 (선택)" autocomplete="off">
   </div>
   <label class="checkbox"><input type="checkbox" id="unlock-raster"> 이미지로 해제 (비밀번호가 걸린 PDF용)</label>
+  <p class="option__hint" style="margin-top:-6px">※ 이미지로 해제하면 글자 선택·복사·편집이 안 되는 이미지 PDF로 바뀝니다. 비밀번호가 걸려 일반 해제가 안 될 때만 쓰세요.</p>
   <p class="callout callout--warn"><span class="callout__ic">${ICONS.info}</span><span><strong>암호 크랙이 아닙니다.</strong> 본인이 아는 비밀번호, 또는 인쇄·편집 제한만 제거합니다. 모르는 비밀번호는 풀 수 없어요.</span></p>
 </div>`;
 }
@@ -203,7 +248,7 @@ function footer(rel) {
 </div></footer>`;
 }
 
-function page({ title, desc, canonical, ogTitle, rel, jsonld, main, withScripts, headExtra, bodyClass, extraScripts, noChrome }) {
+function page({ title, desc, canonical, ogTitle, rel, jsonld, main, withScripts, headExtra, bodyClass, extraScripts, noChrome, noindex }) {
   const ld = jsonld ? `\n  <script type="application/ld+json">${JSON.stringify(jsonld)}</script>` : '';
   const extra = (extraScripts || []).map((s) => `\n  <script src="${rel}${s}" defer></script>`).join('');
   const toolList = withScripts ? (Array.isArray(withScripts) ? withScripts : [withScripts]) : [];
@@ -222,9 +267,8 @@ ${toolList.map((s) => `  <script src="${rel}assets/js/tools/${s}.js" defer></scr
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>${esc(title)}</title>
-  <meta name="description" content="${escAttr(desc)}">
-  <link rel="canonical" href="${escAttr(canonical)}">
-  <meta name="robots" content="index,follow">
+  <meta name="description" content="${escAttr(desc)}">${canonical ? `\n  <link rel="canonical" href="${escAttr(canonical)}">` : ''}
+  <meta name="robots" content="${noindex ? 'noindex,follow' : 'index,follow'}">
   <!-- 검색엔진 소유확인: 등록 후 아래 두 줄의 content 값을 채워 주석 해제 -->
   <!-- <meta name="naver-site-verification" content=""> -->
   <!-- <meta name="google-site-verification" content=""> -->
@@ -243,11 +287,11 @@ ${toolList.map((s) => `  <script src="${rel}assets/js/tools/${s}.js" defer></scr
 </head>
 <body${bodyClass ? ` class="${bodyClass}"` : ''}>
   <a class="skip-link" href="#main">본문 바로가기</a>
-${noChrome ? '' : header(rel)}
+${noChrome ? wsTaskbar(rel) : header(rel)}
   <main id="main">
 ${main}
   </main>
-${noChrome ? '' : footer(rel)}${scripts}${extra}
+${noChrome ? wsFooter(rel) : footer(rel)}${scripts}${extra}
 </body>
 </html>
 `;
@@ -279,11 +323,19 @@ function widget(t, opts) {
 // ───────── 관련 도구 ─────────
 function related(slug, rel) {
   const others = TOOLS.filter((t) => t.slug !== slug);
-  const cards = others.map((t) => `<a href="${rel}${t.slug}/"><span class="ic">${t.icon}</span> ${t.nav}</a>`).join('\n        ');
-  return `<section class="section section--tight">
-      <h2 class="center">다른 PDF 도구도 써보세요</h2>
-      <div class="related">
+  const cards = others.map((t) => `<a class="tp-rel" href="${rel}${t.slug}/">
+          <div class="tp-rel__bar"><span class="ll" aria-hidden="true"><span></span><span></span><span></span></span><span class="num">${APP_FILE[t.slug]}</span></div>
+          <div class="tp-rel__body"><span class="tp-rel__ico">${t.icon}</span><div class="tp-rel__tx"><h3>${read(t.slug).h1}</h3><p>${APP_SHORT[t.slug]}</p></div><span class="tp-rel__arr" aria-hidden="true">→</span></div>
+        </a>`).join('\n        ');
+  return `    <section class="tp-related" id="related">
+      <div class="ws-wrap">
+        <div class="ws-sechead" data-reveal>
+          <h2><small>// 바탕화면 · 다른 앱</small>다른 PDF 도구도 써보세요</h2>
+          <span class="hint"><span class="dd"></span>모두 무료 · 설치 없이 바로</span>
+        </div>
+        <div class="tp-relgrid">
         ${cards}
+        </div>
       </div>
     </section>`;
 }
@@ -293,10 +345,11 @@ function buildTool(t) {
   const c = read(t.slug);
   const rel = '../';
   const canonical = `${SITE_URL}/${t.slug}/`;
-  const steps = c.steps.map((s) => `<li>${esc(s)}</li>`).join('\n        ');
-  const faqs = c.faq.map((f) => `<details><summary>${esc(f.q)}</summary><div class="faq__a">${esc(f.a)}</div></details>`).join('\n        ');
-  const extra = (c.extraSections || []).map((s) =>
-    `<section class="section section--tight prose"><h2>${esc(s.heading)}</h2><p>${esc(s.body)}</p></section>`).join('\n    ');
+  // 콘텐츠의 선두 원문자(①②③…)는 OS 스텝퍼 번호(01·02)와 중복되므로 제거
+  const steps = c.steps.map((s) => `<li><span class="tx">${esc(s.replace(/^\s*[①②③④⑤⑥⑦⑧⑨⑩⑪⑫⑬⑭⑮]\s*/, ''))}</span></li>`).join('\n          ');
+  const faqs = c.faq.map((f, i) => `<details><summary><span class="q">Q${i + 1}</span><span>${esc(f.q)}</span></summary><div class="a">${esc(f.a)}</div></details>`).join('\n          ');
+  const extra = (c.extraSections || []).map((s, i) =>
+    `<div class="tp-sec" data-reveal><span class="tp-eyebrow">// note_${String(i + 1).padStart(2, '0')}.txt</span><h2 class="tp-h2">${esc(s.heading)}</h2><p>${esc(s.body)}</p></div>`).join('\n        ');
 
   const jsonld = [
     {
@@ -318,43 +371,77 @@ function buildTool(t) {
     }
   ];
 
-  const main = `    <div class="container container--read">
-      <nav class="breadcrumb" aria-label="위치"><a href="../">홈</a><span>›</span>${esc(c.h1)}</nav>
-      <div class="tool-hero">
-        <h1>${esc(c.h1)}</h1>
-        <p class="tool-hero__sub">${esc(c.subtitle)}</p>
-        <div class="badges badges--center">
-          <span class="badge"><span class="badge__ic">${ICONS.check}</span> 서버 미전송 · 내 기기 처리</span>
-          <span class="badge"><span class="badge__ic">${ICONS.check}</span> 완전 무료 · 워터마크 없음</span>
-          <span class="badge"><span class="badge__ic">${ICONS.check}</span> 설치·회원가입 불필요</span>
+  const main = `<section class="tp-hero">
+      <div class="tp-col">
+        <nav class="tp-path" aria-label="위치"><a href="${rel}">홈</a><span class="s" aria-hidden="true">/</span><a href="${rel}#tools">도구</a><span class="s" aria-hidden="true">/</span><b>${esc(c.h1)}</b></nav>
+        <div class="tp-head">
+          <span class="tp-ico">${t.icon}</span>
+          <div>
+            <h1 class="tp-h1">${esc(c.h1)}</h1>
+            <p class="tp-sub">${esc(c.subtitle)}</p>
+          </div>
+        </div>
+        <ul class="tp-chips">
+          <li><span class="dot" aria-hidden="true"></span>서버 미전송 · 내 기기 처리</li>
+          <li><span class="dot" aria-hidden="true"></span>완전 무료 · 워터마크 없음</li>
+          <li><span class="dot" aria-hidden="true"></span>설치 · 회원가입 불필요</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="tp-stage">
+      <div class="tp-col">
+        <div class="ws-winwrap">
+          <div class="ws-window tp-window">
+            <div class="ws-winbar"><span class="ws-lights" aria-hidden="true"><span class="r"></span><span class="y"></span><span class="g"></span></span><span class="ws-wintitle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4"/></svg><span class="t">${APP_FILE[t.slug]}</span><span class="sub"> — ${esc(c.h1)}</span></span></div>
+            <div class="tp-toolbody">${widget(t)}</div>
+            <div class="ws-winnote"><span class="pre">$&gt;</span> 파일은 이 페이지를 벗어나지 않습니다 · 100% 브라우저 처리</div>
+          </div>
         </div>
       </div>
-      ${widget(t)}
-      <section class="section section--tight prose">
-        <p class="lead">${esc(c.intro)}</p>
-      </section>
-      <section class="section section--tight prose">
-        <h2>${esc(c.h1)} 사용 방법</h2>
-        <ol class="steps">
-        ${steps}
-        </ol>
-      </section>
-      <section class="section section--tight">
-        <p class="callout callout--security"><span class="callout__ic">${ICONS.lock}</span><span><strong>파일은 서버로 전송되지 않습니다.</strong>${esc(c.security)}</span></p>
-      </section>
-    ${extra}
-      <section class="section section--tight">
-        <h2>자주 묻는 질문</h2>
-        <div class="faq">
-        ${faqs}
+    </section>
+
+    <section class="tp-info">
+      <div class="tp-col">
+        <p class="tp-lead">${esc(c.intro)}</p>
+
+        <div class="tp-sec" data-reveal>
+          <span class="tp-eyebrow">// how_to.md</span>
+          <h2 class="tp-h2">${esc(c.h1)} 사용 방법</h2>
+          <ol class="tp-steps">
+          ${steps}
+          </ol>
         </div>
-      </section>
-      ${related(t.slug, rel)}
-    </div>`;
+
+        <div class="tp-secure" data-reveal>
+          <span class="ic">${ICONS.lock}</span>
+          <div class="tx"><strong>파일은 서버로 전송되지 않습니다.</strong><span>${esc(c.security)}</span></div>
+        </div>
+
+        ${extra}
+
+        <div class="tp-sec" data-reveal>
+          <span class="tp-eyebrow">// faq.sh</span>
+          <h2 class="tp-h2">자주 묻는 질문</h2>
+          <div class="ws-term tp-faqterm">
+            <div class="ws-winbar"><span class="ws-lights" aria-hidden="true"><span class="r"></span><span class="y"></span><span class="g"></span></span><span class="ws-wintitle">help — ${t.slug}.faq</span></div>
+            <div class="ws-faqlist">
+            ${faqs}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+${related(t.slug, rel)}`;
 
   const html = page({
     title: c.title, desc: c.metaDescription, canonical,
-    ogTitle: `${c.h1} 무료 - ${BRAND}`, rel, jsonld, main, withScripts: t.slug
+    ogTitle: `${c.h1} 무료 - ${BRAND}`, rel, jsonld, main,
+    withScripts: t.slug, noChrome: true,
+    bodyClass: 'ws tp',
+    extraScripts: ['assets/js/workspace.js'],
+    headExtra: `\n  <script>document.documentElement.className+=" js";</script>\n  <link rel="stylesheet" href="${rel}assets/css/workspace.css">`
   });
   const dir = join(ROOT, t.slug);
   if (!existsSync(dir)) mkdirSync(dir, { recursive: true });
@@ -367,18 +454,6 @@ function buildHome() {
   const c = read('home');
   const rel = '';
   const canonical = SITE_URL + '/';
-
-  const CHIP = '<svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4"/></svg>';
-  const APP_DESC = {
-    merge: '여러 PDF를 순서대로 끌어다 하나로. 과제 묶음, 보고서 취합, 스캔본 결합까지 한 번에 끝냅니다.',
-    split: '한 파일을 여러 개로. 자르는 지점을 눌러 필요한 부분만 깔끔하게 나눕니다.',
-    unlock: '비밀번호가 걸린 PDF를 풀어 자유롭게. 내가 아는 암호로 내 기기에서만 처리합니다.',
-    extract: '원하는 페이지만 콕 집어 새 PDF로. 썸네일을 눌러 특정 조항·핵심 장만 뽑아냅니다.',
-    delete: '빈 페이지나 불필요한 장을 제거. 제출 전 군더더기를 정리해 문서를 깔끔하게.',
-    'to-image': 'PDF 페이지를 JPG·PNG 이미지로. 블로그·SNS·발표 자료에 그대로 붙여 쓰기 좋습니다.',
-    'page-numbers': '문서 하단에 페이지 번호를 자동으로. 위치·시작 번호·서식을 골라 보고서 형식을 갖춥니다.',
-  };
-  const APP_FILE = { merge: 'merge.app', split: 'split.app', unlock: 'unlock.app', extract: 'extract.app', delete: 'delete.app', 'to-image': 'to-image.app', 'page-numbers': 'page-num.app' };
 
   const jsonld = [
     { '@context': 'https://schema.org', '@type': 'WebSite', name: BRAND, url: SITE_URL + '/', inLanguage: 'ko', description: c.metaDescription },
@@ -394,7 +469,7 @@ function buildHome() {
     const num = String(i + 1).padStart(2, '0');
     const feat = t.slug === 'merge';
     const launch = `<span class="ws-app__launch"><span>${APP_FILE[t.slug]}${feat ? ' 실행' : ''}</span><span class="arr">→</span></span>`;
-    const bar = `<div class="ws-app__bar"><span class="ll"><span></span><span></span><span></span></span><span class="num">app_${num}</span></div>`;
+    const bar = `<div class="ws-app__bar"><span class="ll" aria-hidden="true"><span></span><span></span><span></span></span><span class="num">app_${num}</span></div>`;
     if (feat) return `<a class="ws-app ws-app--feat" href="${t.slug}/" data-reveal>
         ${bar}
         <div class="ws-app__body">
@@ -413,15 +488,8 @@ function buildHome() {
 
   const usps = c.uspCards.map((u, i) => `<div class="ws-usp" data-reveal><span class="n">0${i + 1}</span><div><h4>${esc(u.title)}</h4><p>${esc(u.desc)}</p></div></div>`).join('\n        ');
   const faqs = c.faq.map((f, i) => `<details><summary><span class="q">Q${i + 1}</span><span>${esc(f.q)}</span></summary><div class="a">${esc(f.a)}</div></details>`).join('\n        ');
-  const footT1 = TOOLS.slice(0, 4).map((t) => `<a href="${t.slug}/">${read(t.slug).h1}</a>`).join('');
-  const footT2 = TOOLS.slice(4).map((t) => `<a href="${t.slug}/">${read(t.slug).h1}</a>`).join('');
 
-  const main = `    <header class="ws-taskbar">
-      <a href="./" class="ws-logo"><span class="chip">${CHIP}</span><span class="ko">PDF의 모든 것</span><b class="sep">/</b><span class="wk">workspace</span></a>
-      <nav class="ws-nav"><a href="#tools">도구</a><a href="#why">왜 안전한가</a><a href="#faq">자주 묻는 질문</a><a class="gh" href="${escAttr(GITHUB_URL)}" rel="noopener" target="_blank">오픈소스 ↗</a></nav>
-    </header>
-
-    <div class="ws-wrap">
+  const main = `<div class="ws-wrap">
       <section class="ws-hero">
         <div class="ws-herohead">
           <span class="ws-kicker"><span class="sq"></span>업로드 없는 PDF 작업실 · 100% 브라우저 처리</span>
@@ -460,7 +528,7 @@ function buildHome() {
         <div class="ws-grid">
       ${apps}
         <div class="ws-app ws-app--readme" data-reveal>
-          <div class="ws-app__bar"><span class="ll"><span></span><span></span><span></span></span><span class="num">readme</span></div>
+          <div class="ws-app__bar"><span class="ll" aria-hidden="true"><span></span><span></span><span></span></span><span class="num">readme</span></div>
           <div class="ws-app__body"><div class="cmd">$ ls ./tools</div><h3>전부 무료,<br>전부 내 기기에서.</h3><p>7개 모두 워터마크·가입·결제가 없습니다. 페이지를 열면 바로 작동합니다.</p></div>
         </div>
         </div>
@@ -486,35 +554,21 @@ function buildHome() {
       <div class="ws-wrap">
         <div class="ws-sechead" data-reveal style="border-bottom:none;margin-bottom:18px"><h2><small>// help · faq.sh</small>궁금한 점을 펼쳐보세요</h2></div>
         <div class="ws-term" data-reveal>
-          <div class="ws-winbar"><span class="ws-lights"><span class="r"></span><span class="y"></span><span class="g"></span></span><span class="ws-wintitle">help — faq.sh</span></div>
+          <div class="ws-winbar"><span class="ws-lights" aria-hidden="true"><span class="r"></span><span class="y"></span><span class="g"></span></span><span class="ws-wintitle">help — faq.sh</span></div>
           <div class="ws-faqlist">
         ${faqs}
           </div>
         </div>
       </div>
-    </section>
-
-    <footer class="ws-foot">
-      <div class="ws-wrap">
-        <div class="ws-footgrid">
-          <div class="ws-footbrand"><span class="fb"><span class="chip">${CHIP}</span>PDF의 모든 것</span><p>설치도 회원가입도 없이, 파일을 서버에 올리지 않고 내 브라우저에서 바로 처리하는 한국어 무료 PDF 도구 모음입니다.</p></div>
-          <div class="ws-footcols">
-            <div class="ws-footcol"><h5>// tools</h5>${footT1}</div>
-            <div class="ws-footcol"><h5>// more</h5>${footT2}</div>
-            <div class="ws-footcol"><h5>// about</h5><a href="about/">서비스 소개</a><a href="#why">왜 안전한가</a><a href="#faq">자주 묻는 질문</a><a href="${escAttr(GITHUB_URL)}" rel="noopener" target="_blank">오픈소스 (GitHub) ↗</a></div>
-          </div>
-        </div>
-        <div class="ws-footbottom"><span>© 2026 PDF의 모든 것 — made in Korea, runs on your device.</span><span>오픈소스 · MIT License</span></div>
-      </div>
-    </footer>`;
+    </section>`;
 
   const html = page({
     title: c.metaTitle, desc: c.metaDescription, canonical,
     ogTitle: c.metaTitle, rel, jsonld, main, noChrome: true,
     withScripts: ['merge', 'split', 'unlock', 'extract', 'delete', 'to-image', 'page-numbers'],
-    bodyClass: 'home',
-    extraScripts: ['assets/js/home.js'],
-    headExtra: '\n  <script>document.documentElement.className+=" js";</script>\n  <link rel="stylesheet" href="assets/css/home.css">'
+    bodyClass: 'ws home',
+    extraScripts: ['assets/js/workspace.js'],
+    headExtra: '\n  <script>document.documentElement.className+=" js";</script>\n  <link rel="stylesheet" href="assets/css/workspace.css">'
   });
   writeFileSync(join(ROOT, 'index.html'), html);
   console.log('✓ /index.html (작업실 OS)');
@@ -524,26 +578,38 @@ function buildHome() {
 function buildAbout() {
   const rel = '../';
   const canonical = `${SITE_URL}/about/`;
-  const main = `    <div class="container container--read prose">
-      <nav class="breadcrumb" aria-label="위치"><a href="../">홈</a><span>›</span>소개 · 개인정보</nav>
-      <h1>소개 · 개인정보 처리방침</h1>
-      <p class="lead">「${BRAND}」은 설치와 회원가입 없이 쓰는 무료 PDF 도구 모음입니다. 가장 큰 차이는 <strong>파일을 서버에 올리지 않는다</strong>는 점입니다.</p>
-      <h2>파일은 어떻게 처리되나요?</h2>
-      <p>합치기·분할·변환 등 모든 작업은 여러분의 <strong>웹 브라우저 안(내 기기)</strong>에서만 이뤄집니다. PDF 파일은 어떤 서버로도 업로드되지 않으며, 작업이 끝나거나 창을 닫으면 메모리에서 사라집니다. 인터넷 연결이 끊긴 상태에서도 한 번 페이지를 열어두면 대부분의 기능이 동작합니다.</p>
-      <h2>개인정보 수집을 하나요?</h2>
-      <p>이 사이트는 회원가입을 받지 않고, 파일·이메일 등 어떤 개인정보도 수집·저장하지 않습니다. 파일을 외부로 전송하지 않으므로 업로드된 문서가 외부에 보관될 일이 없습니다.</p>
-      <h2>무료인가요?</h2>
-      <p>네. 완전 무료이며 결과물에 워터마크가 붙지 않고, 파일 개수·용량 제한도 없습니다.</p>
-      <h2>오픈소스입니다</h2>
-      <p>「${BRAND}」은 누구나 코드를 보고 함께 개선할 수 있는 오픈소스 프로젝트입니다. 기능 제안·버그 제보·기여를 환영합니다. <a href="${escAttr(GITHUB_URL)}" rel="noopener" target="_blank">GitHub 저장소</a>에서 참여하실 수 있습니다.</p>
-      <h2>잠금해제 도구 안내</h2>
-      <p>잠금해제는 암호를 알아내는 크랙 도구가 아니라, 본인이 알고 있는 비밀번호 또는 인쇄·편집 제한을 제거하는 도구입니다. 권한이 있는 본인의 문서에만 사용해 주세요.</p>
-      ${related('', rel).replace('다른 PDF 도구도 써보세요', '도구 바로가기')}
-    </div>`;
+  const sec = (eb, h, body) => `        <div class="tp-sec" data-reveal><span class="tp-eyebrow">// ${eb}</span><h2 class="tp-h2">${h}</h2><p>${body}</p></div>`;
+  const main = `<section class="tp-hero">
+      <div class="tp-col">
+        <nav class="tp-path" aria-label="위치"><a href="${rel}">홈</a><span class="s" aria-hidden="true">/</span><b>소개 · 개인정보</b></nav>
+        <div class="tp-head">
+          <span class="tp-ico">${ICONS.info}</span>
+          <div>
+            <h1 class="tp-h1">소개 · 개인정보 처리방침</h1>
+            <p class="tp-sub">설치와 회원가입 없이 쓰는 무료 PDF 도구 모음. 가장 큰 차이는 파일을 서버에 올리지 않는다는 점입니다.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="tp-info">
+      <div class="tp-col">
+        <p class="tp-lead">「${BRAND}」의 모든 작업은 여러분의 <strong>웹 브라우저 안(내 기기)</strong>에서만 이뤄집니다. 어떤 파일도 서버로 전송되지 않습니다.</p>
+${sec('how_it_works', '파일은 어떻게 처리되나요?', '합치기·분할·변환 등 모든 작업은 여러분의 <strong>웹 브라우저 안(내 기기)</strong>에서만 이뤄집니다. PDF 파일은 어떤 서버로도 업로드되지 않으며, 작업이 끝나거나 창을 닫으면 메모리에서 사라집니다. 인터넷 연결이 끊긴 상태에서도 한 번 페이지를 열어두면 대부분의 기능이 동작합니다.')}
+${sec('privacy', '개인정보 수집을 하나요?', '이 사이트는 회원가입을 받지 않고, 파일·이메일 등 어떤 개인정보도 수집·저장하지 않습니다. 파일을 외부로 전송하지 않으므로 업로드된 문서가 외부에 보관될 일이 없습니다.')}
+${sec('pricing', '무료인가요?', '네. 완전 무료이며 결과물에 워터마크가 붙지 않고, 파일 개수·용량 제한도 없습니다.')}
+${sec('opensource', '오픈소스입니다', `「${BRAND}」은 누구나 코드를 보고 함께 개선할 수 있는 오픈소스 프로젝트입니다. 기능 제안·버그 제보·기여를 환영합니다. <a href="${escAttr(GITHUB_URL)}" rel="noopener" target="_blank">GitHub 저장소</a>에서 참여하실 수 있습니다.`)}
+${sec('unlock_notice', '잠금해제 도구 안내', '잠금해제는 암호를 알아내는 크랙 도구가 아니라, 본인이 알고 있는 비밀번호 또는 인쇄·편집 제한을 제거하는 도구입니다. 권한이 있는 본인의 문서에만 사용해 주세요.')}
+      </div>
+    </section>
+
+${related('', rel).replace('다른 PDF 도구도 써보세요', '도구 바로가기')}`;
   const html = page({
     title: `소개 · 개인정보 | ${BRAND}`,
     desc: `${BRAND}은 파일을 서버에 올리지 않고 내 브라우저에서만 처리하는 무료 오픈소스 PDF 도구 모음입니다. 개인정보를 수집하지 않습니다.`,
-    canonical, ogTitle: `소개 · 개인정보 | ${BRAND}`, rel, jsonld: null, main, withScripts: null
+    canonical, ogTitle: `소개 · 개인정보 | ${BRAND}`, rel, jsonld: null, main, withScripts: null,
+    noChrome: true, bodyClass: 'ws tp', extraScripts: ['assets/js/workspace.js'],
+    headExtra: `\n  <script>document.documentElement.className+=" js";</script>\n  <link rel="stylesheet" href="${rel}assets/css/workspace.css">`
   });
   const dir = join(ROOT, 'about');
   if (!existsSync(dir)) mkdirSync(dir, { recursive: true });
@@ -553,16 +619,28 @@ function buildAbout() {
 
 // ───────── 404 ─────────
 function build404() {
-  const rel = '';
-  const main = `    <div class="container center" style="padding:80px 0">
-      <h1>페이지를 찾을 수 없어요 (404)</h1>
-      <p class="muted">주소가 바뀌었거나 삭제된 페이지일 수 있습니다.</p>
-      <p style="margin-top:24px"><a class="btn btn--primary btn--lg" href="${SITE_URL}/">홈으로 가기</a></p>
-    </div>`;
+  const rel = `${SITE_URL}/`; // 404는 임의 경로에서 서빙되므로 자산·링크를 절대경로로
+  const main = `<section class="tp-hero">
+      <div class="tp-col">
+        <div class="ws-winwrap" style="max-width:600px;margin:36px auto 0">
+          <div class="ws-window">
+            <div class="ws-winbar"><span class="ws-lights" aria-hidden="true"><span class="r"></span><span class="y"></span><span class="g"></span></span><span class="ws-wintitle">error — 404.log</span></div>
+            <div style="padding:40px 30px;text-align:center">
+              <p style="font-family:var(--mono);color:var(--pp);font-weight:700;margin:0 0 16px">$ open ./page<span style="color:var(--ink-soft)"> → </span>not found</p>
+              <h1 class="tp-h1" style="font-size:clamp(1.7rem,4vw,2.3rem)">페이지를 찾을 수 없어요</h1>
+              <p style="color:var(--ink-soft);margin:12px 0 26px;line-height:1.7">주소가 바뀌었거나 삭제된 페이지일 수 있어요.<br>아래에서 처음으로 돌아가세요.</p>
+              <a class="ws-btn primary" href="${SITE_URL}/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/></svg>홈으로 돌아가기</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>`;
   const html = page({
     title: `페이지를 찾을 수 없어요 | ${BRAND}`,
     desc: '요청하신 페이지를 찾을 수 없습니다.',
-    canonical: SITE_URL + '/404/', ogTitle: '404', rel, jsonld: null, main, withScripts: null
+    canonical: null, noindex: true, ogTitle: '404', rel, jsonld: null, main, withScripts: null,
+    noChrome: true, bodyClass: 'ws tp', extraScripts: ['assets/js/workspace.js'],
+    headExtra: `\n  <script>document.documentElement.className+=" js";</script>\n  <link rel="stylesheet" href="${SITE_URL}/assets/css/workspace.css">`
   });
   writeFileSync(join(ROOT, '404.html'), html);
   console.log('✓ /404.html');
