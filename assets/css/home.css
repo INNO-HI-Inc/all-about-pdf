@@ -3,11 +3,11 @@
  * body.home 에서만 적용.
  */
 .home {
-  --card2: #fbf8f1; --soft: #f6f1e7;
-  --line2: #dbd0bd;
-  --ink: #221c14; --ink-soft: #6e6557; --ink-faint: #9a9182;
-  --pp: #f2683c; --pp-strong: #dd5326; --pp-soft: #fcebe1;
-  background: #faf6ee; color: #221c14;
+  --card2: #f6f7fb; --soft: #f5f6fa;
+  --line2: #dfe2ec;
+  --ink: #15171f; --ink-soft: #5a6172; --ink-faint: #8a90a0;
+  --pp: #4f46e5; --pp-strong: #4338ca; --pp-soft: #eef0fe;
+  background: #fff; color: #15171f;
   letter-spacing: -.01em;
 }
 .home .container { max-width: 1640px; padding-left: clamp(20px, 5vw, 80px); padding-right: clamp(20px, 5vw, 80px); }
@@ -26,9 +26,9 @@
   body.home.has-cursor .pillbtn, body.home.has-cursor label, body.home.has-cursor .herotool__tab { cursor: none; }
   body.home.has-cursor input, body.home.has-cursor select, body.home.has-cursor textarea { cursor: auto; }
 }
-.cur-dot { position: fixed; left: 0; top: 0; width: 7px; height: 7px; margin: -3.5px 0 0 -3.5px; border-radius: 50%; background: #221c14; pointer-events: none; z-index: 9999; }
-.cur-ring { position: fixed; left: 0; top: 0; width: 32px; height: 32px; margin: -16px 0 0 -16px; border: 1.5px solid rgba(34, 28, 20, .45); border-radius: 50%; pointer-events: none; z-index: 9999; transition: width .22s ease, height .22s ease, margin .22s ease, background .22s ease, border-color .22s ease; }
-.cur-ring.hover { width: 58px; height: 58px; margin: -29px 0 0 -29px; background: rgba(242, 104, 60, .12); border-color: transparent; }
+.cur-dot { position: fixed; left: 0; top: 0; width: 7px; height: 7px; margin: -3.5px 0 0 -3.5px; border-radius: 50%; background: #15171f; pointer-events: none; z-index: 9999; }
+.cur-ring { position: fixed; left: 0; top: 0; width: 32px; height: 32px; margin: -16px 0 0 -16px; border: 1.5px solid rgba(21, 23, 31, .45); border-radius: 50%; pointer-events: none; z-index: 9999; transition: width .22s ease, height .22s ease, margin .22s ease, background .22s ease, border-color .22s ease; }
+.cur-ring.hover { width: 58px; height: 58px; margin: -29px 0 0 -29px; background: rgba(79, 70, 229, .12); border-color: transparent; }
 
 .hsec { padding: 70px 0; }
 .hsec--tight { padding: 34px 0; }
@@ -37,16 +37,16 @@
 
 /* ── 히어로 (바로 업로드) ─────────────────────────── */
 .hhero { position: relative; display: grid; align-items: center; min-height: calc(100vh - 64px); padding: 40px 0; overflow: hidden; }
-.hhero::before { content: ''; position: absolute; left: 26%; top: 44%; width: 760px; height: 700px; transform: translate(-50%, -50%); background: radial-gradient(closest-side, rgba(242, 104, 60, .12), transparent 70%); pointer-events: none; z-index: 0; }
+.hhero::before { content: ''; position: absolute; left: 26%; top: 44%; width: 760px; height: 700px; transform: translate(-50%, -50%); background: radial-gradient(closest-side, rgba(79, 70, 229, .12), transparent 70%); pointer-events: none; z-index: 0; }
 .hhero::after { content: ''; position: absolute; inset: 0; pointer-events: none; opacity: .05; z-index: 0; mix-blend-mode: multiply; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
 .hhero__grid { position: relative; z-index: 1; display: grid; grid-template-columns: 1fr 1fr; gap: clamp(40px, 5vw, 104px); align-items: center; }
 .hhero__copy { max-width: 580px; }
 .orb {
   width: 80px; height: 80px; border-radius: 50%; margin: 0 0 24px; position: relative; overflow: hidden;
-  background: #b03a14; box-shadow: 0 16px 40px rgba(242, 104, 60, .38), inset 0 -8px 20px rgba(60, 20, 0, .42);
+  background: #3f1d8f; box-shadow: 0 16px 40px rgba(79, 70, 229, .38), inset 0 -8px 20px rgba(0, 0, 0, .4);
   animation: orbFloat 6s ease-in-out infinite, orbAppear 1s ease both;
 }
-.orb::before { content: ''; position: absolute; inset: -25%; background: radial-gradient(circle at 30% 28%, #ffd166, transparent 42%), radial-gradient(circle at 74% 34%, #ff8a4c, transparent 44%), radial-gradient(circle at 60% 78%, #f2683c, transparent 48%), radial-gradient(circle at 38% 70%, #ff5c8a, transparent 42%); animation: orbSpin 11s linear infinite; }
+.orb::before { content: ''; position: absolute; inset: -25%; background: radial-gradient(circle at 30% 28%, #22d3ee, transparent 42%), radial-gradient(circle at 74% 34%, #a855f7, transparent 44%), radial-gradient(circle at 60% 78%, #4f46e5, transparent 48%), radial-gradient(circle at 38% 70%, #ec4899, transparent 42%); animation: orbSpin 11s linear infinite; }
 .orb::after { content: ''; position: absolute; inset: 0; border-radius: 50%; background: radial-gradient(circle at 33% 24%, rgba(255, 255, 255, .9), rgba(255, 255, 255, 0) 26%); }
 @keyframes orbSpin { to { transform: rotate(360deg); } }
 @keyframes orbFloat { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-9px); } }
@@ -56,19 +56,19 @@
 .hhero__sub { font-size: clamp(1.02rem, 1.4vw, 1.16rem); color: var(--ink-soft); line-height: 1.6; letter-spacing: -.005em; max-width: 380px; margin: 0; }
 
 /* ── 인터랙티브 도구 카드 (탭 + 위젯) ─────────────── */
-.herotool { width: 100%; max-width: 580px; margin: 0 auto; background: #fff; border: 1px solid var(--line); border-radius: 24px; box-shadow: 0 30px 70px rgba(90, 55, 25, .12); padding: 14px; text-align: left; }
+.herotool { width: 100%; max-width: 580px; margin: 0 auto; background: #fff; border: 1px solid var(--line); border-radius: 24px; box-shadow: 0 30px 70px rgba(25, 35, 70, .12); padding: 14px; text-align: left; }
 .herotool__tabs { display: flex; gap: 4px; overflow-x: auto; padding: 5px; background: var(--soft); border-radius: 15px; scrollbar-width: none; }
 .herotool__tabs::-webkit-scrollbar { display: none; }
 .herotool__tab { display: inline-flex; align-items: center; gap: 7px; white-space: nowrap; padding: 10px 15px; border-radius: 11px; font-family: inherit; font-weight: 700; font-size: .9rem; color: var(--ink-soft); background: transparent; border: none; cursor: pointer; transition: background .14s, color .14s; }
 .herotool__tab .ic-svg { width: 17px; height: 17px; }
 .herotool__tab:hover { color: var(--ink); }
-.herotool__tab[aria-selected="true"] { background: #fff; color: var(--pp); box-shadow: 0 1px 4px rgba(90, 55, 25, .12); }
+.herotool__tab[aria-selected="true"] { background: #fff; color: var(--pp); box-shadow: 0 1px 4px rgba(25, 35, 70, .12); }
 .herotool__panel { display: none; padding: 18px 10px 8px; }
 .herotool__panel.is-active { display: block; }
 .herotool .tool { background: transparent; border: none; box-shadow: none; padding: 0; max-width: none; margin: 0; }
 .herotool .dropzone { background: var(--soft); border: 1.5px dashed var(--line2); border-radius: 16px; padding: 40px 22px; }
-.herotool .dropzone:hover { border-color: #d8ccb6; background: #f4eee3; }
-.herotool .dropzone--over { border-color: #cabfa7; background: var(--pp-soft); }
+.herotool .dropzone:hover { border-color: #c4cad7; background: #f0f2f7; }
+.herotool .dropzone--over { border-color: #b4bbcb; background: var(--pp-soft); }
 
 /* ── 섹션 헤더 ────────────────────────────────────── */
 .sec-head { margin-bottom: 32px; }
@@ -78,8 +78,8 @@
 
 /* ── 전체 도구 칩 ─────────────────────────────────── */
 .tchips { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; }
-.tchip { display: inline-flex; align-items: center; gap: 8px; background: #fff; border: 1px solid var(--line); border-radius: 999px; padding: 11px 19px; font-weight: 700; font-size: .94rem; color: var(--ink); box-shadow: 0 2px 8px rgba(90, 55, 25, .04); transition: border-color .15s var(--ease, ease), color .15s, transform .15s var(--ease, ease), box-shadow .18s; }
-.tchip:hover { border-color: #ddd1bd; color: var(--pp); transform: translateY(-2px); box-shadow: 0 9px 20px rgba(90, 55, 25, .09); text-decoration: none; }
+.tchip { display: inline-flex; align-items: center; gap: 8px; background: #fff; border: 1px solid var(--line); border-radius: 999px; padding: 11px 19px; font-weight: 700; font-size: .94rem; color: var(--ink); box-shadow: 0 2px 8px rgba(25, 35, 70, .04); transition: border-color .15s var(--ease, ease), color .15s, transform .15s var(--ease, ease), box-shadow .18s; }
+.tchip:hover { border-color: #cdd2de; color: var(--pp); transform: translateY(-2px); box-shadow: 0 9px 20px rgba(25, 35, 70, .09); text-decoration: none; }
 .tchip__ic { display: inline-flex; color: var(--pp); }
 .tchip__ic .ic-svg { width: 18px; height: 18px; }
 
