@@ -8,10 +8,9 @@
   --ink: #15171f; --ink-soft: #5a6172; --ink-faint: #8a90a0;
   --pp: #4f46e5; --pp-strong: #4338ca; --pp-soft: #eef0fe;
   background: #fff; color: #15171f;
-  font-family: 'Helvetica Neue', Arial, -apple-system, 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', sans-serif;
   letter-spacing: -.01em;
 }
-.home .container { max-width: 1200px; padding-left: clamp(20px, 5vw, 56px); padding-right: clamp(20px, 5vw, 56px); }
+.home .container { max-width: 1640px; padding-left: clamp(20px, 5vw, 80px); padding-right: clamp(20px, 5vw, 80px); }
 .home .container--read { max-width: 880px; padding-left: 20px; padding-right: 20px; margin: 0 auto; }
 .home main { overflow: clip; }
 .home .brand__dot { color: var(--pp); }
@@ -37,11 +36,12 @@
 .ic-pp .ic-svg, .ic-co .ic-svg { width: 24px; height: 24px; color: var(--pp); }
 
 /* ── 히어로 (바로 업로드) ─────────────────────────── */
-.hhero { position: relative; padding: 56px 0 52px; text-align: center; overflow: hidden; }
-.hhero::before { content: ''; position: absolute; left: 50%; top: -10%; width: 900px; height: 560px; transform: translateX(-50%); background: radial-gradient(closest-side, rgba(79, 70, 229, .08), transparent 70%); pointer-events: none; }
-.hhero__inner { position: relative; z-index: 1; max-width: 760px; margin: 0 auto; }
+.hhero { position: relative; display: grid; align-items: center; min-height: calc(100vh - 64px); padding: 40px 0; overflow: hidden; }
+.hhero::before { content: ''; position: absolute; left: 26%; top: 44%; width: 720px; height: 660px; transform: translate(-50%, -50%); background: radial-gradient(closest-side, rgba(79, 70, 229, .10), transparent 70%); pointer-events: none; }
+.hhero__grid { position: relative; z-index: 1; display: grid; grid-template-columns: 1fr 1fr; gap: clamp(40px, 5vw, 104px); align-items: center; }
+.hhero__copy { max-width: 580px; }
 .orb {
-  width: 78px; height: 78px; border-radius: 50%; margin: 0 auto 22px; position: relative; overflow: hidden;
+  width: 80px; height: 80px; border-radius: 50%; margin: 0 0 24px; position: relative; overflow: hidden;
   background: #3f1d8f; box-shadow: 0 16px 40px rgba(79, 70, 229, .32), inset 0 -8px 20px rgba(0, 0, 0, .4);
   animation: orbFloat 6s ease-in-out infinite, orbAppear 1s ease both;
 }
@@ -50,12 +50,12 @@
 @keyframes orbSpin { to { transform: rotate(360deg); } }
 @keyframes orbFloat { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-9px); } }
 @keyframes orbAppear { from { opacity: 0; } to { opacity: 1; } }
-.hhero__title { font-weight: 700; font-size: clamp(2rem, 4.6vw, 3.3rem); line-height: 1.14; letter-spacing: -.032em; color: var(--ink); margin: 0 0 14px; }
+.hhero__title { font-weight: 800; font-size: clamp(2.3rem, 3.8vw, 3.9rem); line-height: 1.1; letter-spacing: -.035em; color: var(--ink); margin: 0 0 18px; }
 .hhero__title .ac { color: var(--pp); }
-.hhero__sub { font-size: clamp(1rem, 1.9vw, 1.18rem); color: var(--ink-soft); line-height: 1.7; letter-spacing: -.003em; max-width: 520px; margin: 0 auto 34px; }
+.hhero__sub { font-size: clamp(1.02rem, 1.4vw, 1.16rem); color: var(--ink-soft); line-height: 1.6; letter-spacing: -.005em; max-width: 380px; margin: 0; }
 
 /* ── 인터랙티브 도구 카드 (탭 + 위젯) ─────────────── */
-.herotool { max-width: 780px; margin: 0 auto; background: #fff; border: 1px solid var(--line); border-radius: 24px; box-shadow: 0 22px 60px rgba(30, 30, 70, .10); padding: 14px; text-align: left; }
+.herotool { width: 100%; max-width: 580px; margin: 0 auto; background: #fff; border: 1px solid var(--line); border-radius: 24px; box-shadow: 0 30px 70px rgba(30, 30, 70, .12); padding: 14px; text-align: left; }
 .herotool__tabs { display: flex; gap: 4px; overflow-x: auto; padding: 5px; background: var(--soft); border-radius: 15px; scrollbar-width: none; }
 .herotool__tabs::-webkit-scrollbar { display: none; }
 .herotool__tab { display: inline-flex; align-items: center; gap: 7px; white-space: nowrap; padding: 10px 15px; border-radius: 11px; font-family: inherit; font-weight: 700; font-size: .9rem; color: var(--ink-soft); background: transparent; border: none; cursor: pointer; transition: background .14s, color .14s; }
@@ -100,6 +100,14 @@
 .pillbtn .dot { display: inline-flex; } .pillbtn .dot .pill-dot { width: 7px; height: 7px; }
 
 /* ── 반응형 ───────────────────────────────────────── */
+@media (max-width: 980px) {
+  .hhero { min-height: auto; padding: 44px 0 36px; }
+  .hhero__grid { grid-template-columns: 1fr; gap: 30px; text-align: center; }
+  .hhero__copy { max-width: 600px; margin: 0 auto; }
+  .orb { margin: 0 auto 20px; }
+  .hhero__sub { margin: 0 auto; max-width: 460px; }
+  .hhero::before { left: 50%; top: 14%; }
+}
 @media (max-width: 860px) { .wrow { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 480px) {
   .hsec { padding: 48px 0; }

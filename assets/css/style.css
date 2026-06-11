@@ -363,3 +363,23 @@ select.field { cursor: pointer; }
 .faq summary::after { transition: transform .25s var(--ease); }
 .tool-card, .related a { transition: transform .14s var(--ease), box-shadow .18s var(--ease), border-color .15s; }
 a { transition: color .14s var(--ease); }
+
+/* ── design-dna 적용: 도구(세부) 페이지 디테일 ───────── */
+.breadcrumb { padding: 24px 0 2px; font-weight: 600; }
+.tool-hero { position: relative; padding: 12px 0 30px; }
+.tool-hero::before { content: ''; position: absolute; left: 50%; top: -8px; width: 620px; max-width: 90vw; height: 300px; transform: translateX(-50%); background: radial-gradient(closest-side, rgba(79, 70, 229, .07), transparent 72%); z-index: -1; pointer-events: none; }
+.tool-hero h1 { letter-spacing: -.033em; }
+.tool-hero__sub { font-size: 1.08rem; line-height: 1.6; max-width: 540px; margin: 0 auto 20px; }
+.badge { box-shadow: var(--shadow-sm); padding: 9px 15px; }
+.badge__ic { display: inline-flex; color: var(--accent); }
+.badge__ic .ic-svg { width: 15px; height: 15px; }
+.tool { box-shadow: 0 26px 64px rgba(30, 30, 70, .10); border-radius: 24px; padding: 26px; }
+.prose h2 { letter-spacing: -.025em; margin-bottom: .65em; }
+.prose .lead { font-size: 1.1rem; line-height: 1.75; color: var(--ink-soft); }
+.steps li { box-shadow: var(--shadow-sm); padding: 15px 18px; }
+.steps li::before { box-shadow: 0 3px 8px rgba(79, 70, 229, .2); }
+.callout { border-radius: 14px; align-items: flex-start; }
+.related { gap: 12px; }
+.related a { box-shadow: var(--shadow-sm); padding: 14px 16px; }
+.related a:hover { transform: translateY(-2px); box-shadow: 0 11px 26px rgba(30, 30, 70, .1); border-color: var(--line-strong); }
+.section--tight { padding: 32px 0; }

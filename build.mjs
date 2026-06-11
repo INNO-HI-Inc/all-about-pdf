@@ -37,6 +37,7 @@ const ICONS = {
   sparkle: IC('<path d="M12 3.4l1.7 4.9 4.9 1.7-4.9 1.7L12 16.6l-1.7-4.9L5.4 10l4.9-1.7L12 3.4z"/><path d="M18.5 14l.6 1.8 1.8.6-1.8.6-.6 1.8-.6-1.8-1.8-.6 1.8-.6.6-1.8z"/>'),
   lock: IC('<rect x="5" y="11" width="14" height="9.5" rx="2"/><path d="M8 11V7.5a4 4 0 0 1 8 0V11"/>'),
   info: IC('<circle cx="12" cy="12" r="9"/><line x1="12" y1="11" x2="12" y2="16.5"/><circle cx="12" cy="7.8" r=".7" fill="currentColor" stroke="none"/>'),
+  check: IC('<path d="M4.5 12.6l4.4 4.4L19.5 6.5"/>'),
 };
 const DOT_SVG = '<svg class="pill-dot" viewBox="0 0 8 8" aria-hidden="true"><circle cx="4" cy="4" r="4" fill="currentColor"/></svg>';
 
@@ -322,9 +323,9 @@ function buildTool(t) {
         <h1>${esc(c.h1)}</h1>
         <p class="tool-hero__sub">${esc(c.subtitle)}</p>
         <div class="badges badges--center">
-          <span class="badge"><span class="badge__ic">✓</span> 서버 미전송 · 내 기기 처리</span>
-          <span class="badge"><span class="badge__ic">✓</span> 완전 무료 · 워터마크 없음</span>
-          <span class="badge"><span class="badge__ic">✓</span> 설치·회원가입 불필요</span>
+          <span class="badge"><span class="badge__ic">${ICONS.check}</span> 서버 미전송 · 내 기기 처리</span>
+          <span class="badge"><span class="badge__ic">${ICONS.check}</span> 완전 무료 · 워터마크 없음</span>
+          <span class="badge"><span class="badge__ic">${ICONS.check}</span> 설치·회원가입 불필요</span>
         </div>
       </div>
       ${widget(t)}
@@ -422,17 +423,19 @@ function buildHome() {
 
   const main = `    <section class="hsec hhero">
       <div class="container">
-        <div class="hhero__inner">
-          <div class="orb" aria-hidden="true"></div>
-          <h1 class="hhero__title">PDF, 여기서 바로.<br><span class="ac">합치기·분할·변환</span> 무료로</h1>
-          <p class="hhero__sub">${esc(c.heroSubtitle)}</p>
-        </div>
-        <div class="herotool">
-          <div class="herotool__tabs" role="tablist" aria-label="PDF 도구 선택">
-            ${heroTabs}
+        <div class="hhero__grid">
+          <div class="hhero__copy">
+            <div class="orb" aria-hidden="true"></div>
+            <h1 class="hhero__title">PDF,<br>여기서 <span class="ac">바로 끝내세요</span></h1>
+            <p class="hhero__sub">합치기·분할·변환·잠금해제까지. 설치도 가입도 없이, 무료로.</p>
           </div>
-          <div class="herotool__panels">
-        ${heroPanels}
+          <div class="herotool">
+            <div class="herotool__tabs" role="tablist" aria-label="PDF 도구 선택">
+              ${heroTabs}
+            </div>
+            <div class="herotool__panels">
+          ${heroPanels}
+            </div>
           </div>
         </div>
       </div>
@@ -440,18 +443,8 @@ function buildHome() {
 
     <section class="hsec hsec--tight">
       <div class="container">
-        <div class="sec-head center" data-reveal><h2>모든 PDF 도구</h2><p>${esc(c.intro)}</p></div>
         <div class="tchips" data-reveal>
           ${chips}
-        </div>
-      </div>
-    </section>
-
-    <section class="hsec hwhy">
-      <div class="container">
-        <div class="sec-head center" data-reveal><h2>${esc(c.whyTitle)}</h2><p>${esc(c.why)}</p></div>
-        <div class="wrow" data-reveal>
-        ${whyItems}
         </div>
       </div>
     </section>

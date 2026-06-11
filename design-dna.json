@@ -1,0 +1,109 @@
+{
+  "meta": {
+    "name": "PDF의 모든 것 — Design DNA",
+    "description": "한국향 무료 PDF 도구 사이트의 디자인 DNA. 라이트·클린·도구중심(app-like). zanwei/design-dna 스키마 기반.",
+    "source_references": ["자체 홈(라이트 도구 페이지)", "pacomepertant.com(오브·모션)", "fourmula.ai(업로드 UI·여백)"],
+    "created_at": "2026-06-11"
+  },
+  "design_system": {
+    "color": {
+      "palette_type": "neutral + single indigo accent",
+      "primary": { "hex": "#4f46e5", "role": "accent / CTA / 강조 텍스트 (테두리에는 사용 안 함)" },
+      "secondary": { "hex": "#4338ca", "role": "accent hover/active" },
+      "accent": { "hex": "#6366f1", "role": "보조 강조, 아이콘" },
+      "neutral": {
+        "scale": ["#ffffff", "#f6f7fb", "#eef0f6", "#e8eaf0", "#dfe2ec", "#c4cad7", "#8a90a0", "#5a6172", "#15171f"],
+        "usage": "배경(흰색)→면(연회색)→테두리(회색)→보조텍스트→본문(거의 검정). 테두리는 항상 중립 회색."
+      },
+      "semantic": { "success": "#15a05a", "warning": "#b7791f", "error": "#e5484d", "info": "#4f46e5" },
+      "surface": { "background": "#ffffff", "card": "#ffffff", "elevated": "#ffffff(soft shadow)" },
+      "contrast_strategy": "흰 배경 + 거의 검정 본문, 인디고는 액션/링크/아이콘에만. 상태는 배경·그림자·텍스트로(테두리 색 변화 지양)."
+    },
+    "typography": {
+      "type_scale": {
+        "display": { "size": "clamp(2.3rem,3.8vw,3.9rem)", "weight": 800, "line_height": 1.1, "tracking": "-0.035em" },
+        "heading_1": { "size": "clamp(1.7rem,4.5vw,2.5rem)", "weight": 800, "line_height": 1.2, "tracking": "-0.03em" },
+        "heading_2": { "size": "clamp(1.5rem,3.2vw,2.05rem)", "weight": 800, "line_height": 1.3, "tracking": "-0.025em" },
+        "heading_3": { "size": "1.12rem", "weight": 700, "line_height": 1.4, "tracking": "-0.015em" },
+        "body": { "size": "16px", "weight": 400, "line_height": 1.8, "tracking": "-0.005em" },
+        "body_small": { "size": "0.92rem", "weight": 500, "line_height": 1.65, "tracking": "0" },
+        "caption": { "size": "0.82rem", "weight": 600, "line_height": 1.5, "tracking": "0" },
+        "overline": { "size": "0.72rem", "weight": 800, "line_height": 1.4, "tracking": "0.04em" }
+      },
+      "font_families": {
+        "heading": "'AtoZ'(에이투지체), Pretendard, -apple-system, sans-serif",
+        "body": "'AtoZ'(에이투지체), -apple-system, 'Apple SD Gothic Neo', sans-serif",
+        "mono": "ui-monospace, SFMono-Regular, Menlo, monospace"
+      },
+      "font_style_notes": "에이투지체(둥근 지오메트릭 산세리프) 단일 패밀리. 한글 줄바꿈은 word-break:keep-all. 큰 제목은 타이트한 자간."
+    },
+    "spacing": {
+      "base_unit": "4px",
+      "scale": [4, 8, 12, 16, 20, 24, 32, 40, 56, 72],
+      "content_density": "여유로움(generous). 카드 패딩 24~30, 섹션 56~72.",
+      "section_rhythm": "섹션 간 56~72px, 풀스크린 히어로는 100vh."
+    },
+    "layout": {
+      "grid_system": "유동 + 중앙정렬, 도구 히어로는 2단(텍스트/도구)",
+      "max_content_width": "본문 760~880, 전체 1640",
+      "columns": "히어로 2, 도구그리드 auto-fill",
+      "gutter": "clamp(40px,5vw,104px)",
+      "breakpoints": ["480", "640", "860", "980"],
+      "alignment_tendency": "히어로 좌(텍스트)/우(도구), 콘텐츠는 좌측 정렬 + 섹션헤더 중앙"
+    },
+    "shape": {
+      "border_radius": { "small": "10px", "medium": "16px", "large": "22px", "pill": "999px" },
+      "border_usage": "1~1.5px 중립 회색(#e8eaf0/#dfe2ec). 액센트(인디고) 테두리 금지.",
+      "divider_style": "1px solid #e8eaf0"
+    },
+    "elevation": {
+      "shadow_style": "부드럽고 넓게 퍼지는 그림자(soft, diffuse), 하드섀도 금지",
+      "levels": {
+        "low": "0 2px 8px rgba(30,30,60,.04)",
+        "medium": "0 6px 22px rgba(30,30,70,.06)",
+        "high": "0 30px 70px rgba(30,30,70,.12)"
+      },
+      "depth_cues": "흰 카드 + soft shadow + 얕은 호버 리프트(translateY -2~4px)"
+    },
+    "iconography": {
+      "style": "라인(아웃라인) 커스텀 SVG, currentColor",
+      "stroke_weight": "1.7",
+      "size_scale": ["17", "18", "20", "22", "24"],
+      "preferred_set": "자체 제작(이모지 미사용)"
+    },
+    "motion": {
+      "easing": "cubic-bezier(.22,.61,.36,1) 기본, 진입 cubic-bezier(.2,.7,.2,1)",
+      "duration_scale": { "micro": "120ms", "normal": "200ms", "macro": "350ms" },
+      "entrance_pattern": "fade + translateY(스크롤 리빌, IntersectionObserver), 스태거",
+      "exit_pattern": "fade",
+      "philosophy": "은은하고 부드럽게. 과한 모션 지양, 상태 변화는 매끄럽게."
+    },
+    "components": {
+      "button_style": "필(pill)/라운드, 인디고 채움(primary) + 흰 아웃라인(secondary, 중립 테두리). 호버 리프트.",
+      "input_style": "중립 테두리 + 라운드 10, 포커스는 은은한 인디고 글로우(테두리색 변화 최소)",
+      "card_style": "흰 배경 + 1px 중립 테두리 + radius 22 + soft shadow",
+      "navigation_pattern": "상단 고정 헤더(블러), 탭형 도구 전환",
+      "modal_style": "해당 없음(토스트로 알림)",
+      "list_style": "파일목록은 연회색 카드 아이템, 진입 애니메이션",
+      "component_notes": "드롭존: 점선 중립 테두리 + '파일 선택' 인디고 필 버튼 + 업로드 라인 아이콘. 도구 위젯은 인스턴스 단위."
+    }
+  },
+  "design_style": {
+    "mood": "깨끗하고 신뢰감 있는, 친근하지만 군더더기 없는 도구",
+    "visual_language": "라이트 미니멀 SaaS/유틸리티, 도구중심(app-like)",
+    "composition": "여백 충분, 도구를 화면 우선 배치, 마케팅 텍스트 최소",
+    "imagery": "글로시 그라디언트 오브(브랜드 마크) 외 이미지 절제",
+    "interaction_feel": "부드럽고 즉각적. 커스텀 커서, 스크롤 리빌, 탭 전환",
+    "brand_voice": "쉬운 한국어, 과장 없음, 프라이버시 강조(파일 서버 미전송)",
+    "ornamentation": "낮음", "whitespace_philosophy": "넉넉하게"
+  },
+  "visual_effects": {
+    "overview": { "effect_intensity": "low-medium", "performance_tier": "lightweight" },
+    "glossy_orb": { "enabled": true, "impl": "CSS multi-radial + 회전(::before) + 광택(::after) + 부유" },
+    "scroll_reveal": { "enabled": true, "impl": "IntersectionObserver + .js 게이팅(크롤러 안전)" },
+    "custom_cursor": { "enabled": true, "impl": "점+링 lerp, 인터랙티브 위 확대(데스크톱)" },
+    "noise_texture": { "enabled": false },
+    "webgl_3d": { "enabled": false },
+    "composite_notes": "효과는 가볍게. 도구 사용성·SEO를 해치지 않는 선에서만."
+  }
+}
