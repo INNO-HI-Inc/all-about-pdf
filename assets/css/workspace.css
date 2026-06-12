@@ -18,6 +18,7 @@
   --red: #ef4b4b;
   --grid: #e3e4ec;
   --pp: #4f46e5; --pp-deep: #4338ca; --pp-soft: #6366f1;
+  --pdf: #e5252a; --pdf-deep: #b3160f;   /* PDF 레드: 정체성·문서 아이콘 전용 */
   --ez: cubic-bezier(.22, .61, .36, 1);
   --mono: ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, monospace;
   color: var(--ink); background: var(--paper);
@@ -40,8 +41,8 @@
 /* ============ 태스크바 ============ */
 .ws-taskbar { position: sticky; top: 0; z-index: 200; height: 64px; background: var(--ink); border-bottom: 3px solid var(--line); display: flex; align-items: center; padding: 0 30px; gap: 24px; box-shadow: 0 3px 0 rgba(21, 23, 31, .18); }
 .ws-logo { display: flex; align-items: center; gap: 11px; color: #fff; font-family: var(--mono); font-weight: 700; font-size: 14px; }
-.ws-logo .chip { width: 30px; height: 30px; flex: 0 0 30px; background: var(--pp); border: 2px solid #fff; display: grid; place-items: center; box-shadow: 2px 2px 0 rgba(0, 0, 0, .5); position: relative; }
-.ws-logo .chip::before { content: ""; position: absolute; inset: 3px; border: 1px solid rgba(255, 255, 255, .5); }
+.ws-logo .chip { width: 30px; height: 30px; flex: 0 0 30px; background: #fff; border: 2px solid #fff; display: grid; place-items: center; box-shadow: 2px 2px 0 rgba(0, 0, 0, .5); position: relative; overflow: hidden; }
+.ws-logo .chip img { width: 30px; height: 30px; object-fit: cover; display: block; }
 .ws-logo .chip svg { width: 15px; height: 15px; }
 .ws-logo .ko { font-family: var(--font); font-weight: 800; font-size: 15px; letter-spacing: -.01em; }
 .ws-logo .sep { color: #565b73; font-weight: 400; margin: 0 2px; }
@@ -213,8 +214,8 @@ body.ws-app-open .ws-note { display: none; }
 .ws-footgrid { display: flex; justify-content: space-between; gap: 30px; flex-wrap: wrap; align-items: flex-start; }
 .ws-footbrand { display: flex; flex-direction: column; gap: 12px; max-width: 300px; }
 .ws-footbrand .fb { display: flex; align-items: center; gap: 10px; font-family: var(--mono); font-weight: 700; font-size: 14px; }
-.ws-footbrand .fb .chip { width: 28px; height: 28px; background: var(--pp); border: 2px solid var(--line); display: grid; place-items: center; box-shadow: 2px 2px 0 var(--line); }
-.ws-footbrand .fb .chip svg { width: 14px; height: 14px; color: #fff; }
+.ws-footbrand .fb .chip { width: 28px; height: 28px; background: #fff; border: 2px solid var(--line); display: grid; place-items: center; box-shadow: 2px 2px 0 var(--line); overflow: hidden; }
+.ws-footbrand .fb .chip img { width: 28px; height: 28px; object-fit: cover; display: block; }
 .ws-footbrand p { font-size: 12px; line-height: 1.7; color: var(--ink-soft); font-weight: 500; }
 .ws-footcols { display: flex; gap: 50px; flex-wrap: wrap; }
 .ws-footcol h5 { font-family: var(--mono); font-size: 10.5px; font-weight: 700; letter-spacing: .05em; color: var(--ink); margin-bottom: 13px; }

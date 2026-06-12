@@ -41,6 +41,21 @@ const ICONS = {
 };
 const DOT_SVG = '<svg class="pill-dot" viewBox="0 0 8 8" aria-hidden="true"><circle cx="4" cy="4" r="4" fill="currentColor"/></svg>';
 
+// PDF 레드 직관 아이콘(컬러): 빨간 PDF 문서 + 동작 컬러 배지. 추상 라인보다 한눈에 '무슨 PDF 작업'인지 읽힘.
+const PDF_RED = '#E5252A', PDF_FOLD = '#B3160F';
+const pdfPage = (lines) => `<path d="M6.4 2.6h6.6L17.6 7v11.4a1.5 1.5 0 0 1-1.5 1.5H6.4a1.5 1.5 0 0 1-1.5-1.5V4.1a1.5 1.5 0 0 1 1.5-1.5z" fill="${PDF_RED}"/><path d="M12.7 2.6 17.6 7h-3.8a1.1 1.1 0 0 1-1.1-1.1z" fill="${PDF_FOLD}"/>${lines >= 1 ? '<rect x="7.2" y="8.7" width="6" height="1.2" rx=".6" fill="#fff" opacity=".9"/>' : ''}${lines >= 2 ? '<rect x="7.2" y="11" width="4.2" height="1.2" rx=".6" fill="#fff" opacity=".9"/>' : ''}`;
+const pdfBadge = (cx, cy, fill, inner) => `<circle cx="${cx}" cy="${cy}" r="4.4" fill="${fill}" stroke="#fff" stroke-width="1.2"/>${inner}`;
+const pdfSvg = (inner) => `<svg viewBox="0 0 24 24" class="ic-svg ic-pdf" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">${inner}</svg>`;
+const ICONS_PDF = {
+  merge: pdfSvg(pdfPage(2) + pdfBadge(17.4, 17.4, '#18a957', '<path d="M17.4 15.5v3.8M15.5 17.4h3.8" stroke="#fff" stroke-width="1.5" stroke-linecap="round"/>')),
+  split: pdfSvg(`<path d="M6.4 2.6h7.4L17.6 7v12.3a1.5 1.5 0 0 1-1.5 1.5H6.4a1.5 1.5 0 0 1-1.5-1.5V4.1a1.5 1.5 0 0 1 1.5-1.5z" fill="${PDF_RED}"/><path d="M12.7 2.6 17.6 7h-3.8a1.1 1.1 0 0 1-1.1-1.1z" fill="${PDF_FOLD}"/><path d="M11.4 7.4v11.4" stroke="#fff" stroke-width="1.2" stroke-dasharray="1.8 1.6" stroke-linecap="round"/><g stroke="#fff" stroke-width="1.05" fill="none"><circle cx="9.4" cy="5.5" r="1.05"/><circle cx="9.4" cy="8.1" r="1.05"/><path d="M10.4 6 13.3 6.9M10.4 7.6 13.3 6.7" stroke-linecap="round"/></g>`),
+  unlock: pdfSvg(pdfPage(1) + '<path d="M15.4 15.5v-1.7a2 2 0 0 1 3.8-.9" fill="none" stroke="#f5a623" stroke-width="1.4" stroke-linecap="round"/><rect x="13.8" y="15.3" width="6.5" height="5.4" rx="1.1" fill="#f5a623" stroke="#fff" stroke-width="1"/><circle cx="17.05" cy="17.7" r=".95" fill="#fff"/>'),
+  extract: pdfSvg(pdfPage(2) + pdfBadge(17.4, 17.4, '#2f6df6', '<path d="M17.4 19.6v-4.3M15.4 17l2-2 2 2" fill="none" stroke="#fff" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>')),
+  delete: pdfSvg(pdfPage(2) + pdfBadge(17.4, 17.4, '#2b303b', '<path d="M15.4 17.4h4" stroke="#fff" stroke-width="1.7" stroke-linecap="round"/>')),
+  'to-image': pdfSvg(pdfPage(1) + '<rect x="13" y="13" width="7.8" height="7.8" rx="1.4" fill="#18a957" stroke="#fff" stroke-width="1"/><circle cx="15.5" cy="15.7" r="1" fill="#fff"/><path d="M13.7 19.7l2.1-2.4 1.4 1.5 1.3-1.5 1.9 2.4z" fill="#fff"/>'),
+  'page-numbers': pdfSvg(pdfPage(2) + '<circle cx="11.3" cy="17.6" r="3.6" fill="#4f46e5" stroke="#fff" stroke-width="1.1"/><path d="M11.55 15.9v3.4M10.5 16.5l1.05-.6" stroke="#fff" stroke-width="1" fill="none" stroke-linecap="round" stroke-linejoin="round"/>'),
+};
+
 // ───────── 유틸 ─────────
 const esc = (s) => String(s == null ? '' : s)
   .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
@@ -94,7 +109,7 @@ const APP_SHORT = {
 function wsTaskbar(rel) {
   const home = rel === '' ? './' : rel;
   return `    <header class="ws-taskbar">
-      <a href="${home}" class="ws-logo"><span class="chip" aria-hidden="true">${CHIP}</span><span class="ko">PDF의 모든 것</span><b class="sep" aria-hidden="true">/</b><span class="wk">workspace</span></a>
+      <a href="${home}" class="ws-logo"><span class="chip" aria-hidden="true"><img src="${rel}assets/img/logo.png" alt="" width="30" height="30" decoding="async"></span><span class="ko">PDF의 모든 것</span><b class="sep" aria-hidden="true">/</b><span class="wk">workspace</span></a>
       <nav class="ws-nav"><a href="${home}#tools">도구</a><a href="${home}#why">왜 안전한가</a><a href="${home}#faq">자주 묻는 질문</a><a class="gh" href="${escAttr(GITHUB_URL)}" rel="noopener" target="_blank">오픈소스 ↗</a></nav>
     </header>`;
 }
@@ -105,7 +120,7 @@ function wsFooter(rel) {
   return `    <footer class="ws-foot">
       <div class="ws-wrap">
         <div class="ws-footgrid">
-          <div class="ws-footbrand"><span class="fb"><span class="chip" aria-hidden="true">${CHIP}</span>PDF의 모든 것</span><p>설치도 회원가입도 없이, 파일을 서버에 올리지 않고 내 브라우저에서 바로 처리하는 한국어 무료 PDF 도구 모음입니다.</p></div>
+          <div class="ws-footbrand"><span class="fb"><span class="chip" aria-hidden="true"><img src="${rel}assets/img/logo.png" alt="" width="30" height="30" decoding="async"></span>PDF의 모든 것</span><p>설치도 회원가입도 없이, 파일을 서버에 올리지 않고 내 브라우저에서 바로 처리하는 한국어 무료 PDF 도구 모음입니다.</p></div>
           <div class="ws-footcols">
             <div class="ws-footcol"><h5>// tools</h5>${t1}</div>
             <div class="ws-footcol"><h5>// more</h5>${t2}</div>
@@ -280,7 +295,8 @@ ${toolList.map((s) => `  <script src="${rel}assets/js/tools/${s}.js" defer></scr
   <meta property="og:image" content="${SITE_URL}/assets/img/og-default.png">
   <meta property="og:locale" content="ko_KR">
   <meta name="twitter:card" content="summary_large_image">
-  <link rel="icon" href="${rel}assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="${rel}assets/img/favicon.png" type="image/png">
+  <link rel="apple-touch-icon" href="${rel}assets/img/logo.png">
   <link rel="manifest" href="${rel}site.webmanifest">
   <meta name="theme-color" content="#4f46e5">
   <link rel="stylesheet" href="${rel}assets/css/style.css">${headExtra || ''}${ld}
@@ -325,7 +341,7 @@ function related(slug, rel) {
   const others = TOOLS.filter((t) => t.slug !== slug);
   const cards = others.map((t) => `<a class="tp-rel" href="${rel}${t.slug}/">
           <div class="tp-rel__bar"><span class="ll" aria-hidden="true"><span></span><span></span><span></span></span><span class="num">${APP_FILE[t.slug]}</span></div>
-          <div class="tp-rel__body"><span class="tp-rel__ico">${t.icon}</span><div class="tp-rel__tx"><h3>${read(t.slug).h1}</h3><p>${APP_SHORT[t.slug]}</p></div><span class="tp-rel__arr" aria-hidden="true">→</span></div>
+          <div class="tp-rel__body"><span class="tp-rel__ico">${ICONS_PDF[t.slug]}</span><div class="tp-rel__tx"><h3>${read(t.slug).h1}</h3><p>${APP_SHORT[t.slug]}</p></div><span class="tp-rel__arr" aria-hidden="true">→</span></div>
         </a>`).join('\n        ');
   return `    <section class="tp-related" id="related">
       <div class="ws-wrap">
@@ -375,7 +391,7 @@ function buildTool(t) {
       <div class="tp-col">
         <nav class="tp-path" aria-label="위치"><a href="${rel}">홈</a><span class="s" aria-hidden="true">/</span><a href="${rel}#tools">도구</a><span class="s" aria-hidden="true">/</span><b>${esc(c.h1)}</b></nav>
         <div class="tp-head">
-          <span class="tp-ico">${t.icon}</span>
+          <span class="tp-ico">${ICONS_PDF[t.slug]}</span>
           <div>
             <h1 class="tp-h1">${esc(c.h1)}</h1>
             <p class="tp-sub">${esc(c.subtitle)}</p>
@@ -473,14 +489,14 @@ function buildHome() {
     if (feat) return `<a class="ws-app ws-app--feat" href="${t.slug}/" data-reveal>
         ${bar}
         <div class="ws-app__body">
-          <span class="ws-app__ico">${t.icon}</span>
+          <span class="ws-app__ico">${ICONS_PDF[t.slug]}</span>
           <div class="ws-app__txt"><span class="badge">가장 많이 쓰는 도구</span><h3>${read(t.slug).h1}</h3><p>${APP_DESC[t.slug]}</p></div>
         </div>${launch}
       </a>`;
     return `<a class="ws-app" href="${t.slug}/" data-reveal>
         ${bar}
         <div class="ws-app__body">
-          <span class="ws-app__ico">${t.icon}</span>
+          <span class="ws-app__ico">${ICONS_PDF[t.slug]}</span>
           <h3>${read(t.slug).h1}</h3><p>${APP_DESC[t.slug]}</p>
         </div>${launch}
       </a>`;
