@@ -122,9 +122,9 @@ function wsFooter(rel) {
         <div class="ws-footgrid">
           <div class="ws-footbrand"><span class="fb"><span class="chip" aria-hidden="true"><img src="${rel}assets/img/logo.png" alt="" width="30" height="30" decoding="async"></span>PDF의 모든 것</span><p>설치도 회원가입도 없이, 파일을 서버에 올리지 않고 내 브라우저에서 바로 처리하는 한국어 무료 PDF 도구 모음입니다.</p></div>
           <div class="ws-footcols">
-            <div class="ws-footcol"><h5>// tools</h5>${t1}</div>
-            <div class="ws-footcol"><h5>// more</h5>${t2}</div>
-            <div class="ws-footcol"><h5>// about</h5><a href="${home}about/">서비스 소개</a><a href="${home}#why">왜 안전한가</a><a href="${home}#faq">자주 묻는 질문</a><a href="${escAttr(GITHUB_URL)}" rel="noopener" target="_blank">오픈소스 (GitHub) ↗</a></div>
+            <div class="ws-footcol"><h5>도구</h5>${t1}</div>
+            <div class="ws-footcol"><h5>더보기</h5>${t2}</div>
+            <div class="ws-footcol"><h5>정보</h5><a href="${home}about/">서비스 소개</a><a href="${home}#why">왜 안전한가</a><a href="${home}#faq">자주 묻는 질문</a><a href="${escAttr(GITHUB_URL)}" rel="noopener" target="_blank">오픈소스 (GitHub) ↗</a></div>
           </div>
         </div>
         <div class="ws-footbottom"><span>© 2026 PDF의 모든 것 — made in Korea, runs on your device.</span><span>오픈소스 · MIT License</span></div>
@@ -340,13 +340,12 @@ function widget(t, opts) {
 function related(slug, rel) {
   const others = TOOLS.filter((t) => t.slug !== slug);
   const cards = others.map((t) => `<a class="tp-rel" href="${rel}${t.slug}/">
-          <div class="tp-rel__bar"><span class="ll" aria-hidden="true"><span></span><span></span><span></span></span><span class="num">${APP_FILE[t.slug]}</span></div>
           <div class="tp-rel__body"><span class="tp-rel__ico">${ICONS_PDF[t.slug]}</span><div class="tp-rel__tx"><h3>${read(t.slug).h1}</h3><p>${APP_SHORT[t.slug]}</p></div><span class="tp-rel__arr" aria-hidden="true">→</span></div>
         </a>`).join('\n        ');
   return `    <section class="tp-related" id="related">
       <div class="ws-wrap">
         <div class="ws-sechead" data-reveal>
-          <h2><small>// 바탕화면 · 다른 앱</small>다른 PDF 도구도 써보세요</h2>
+          <h2><small>다른 도구</small>다른 PDF 도구도 써보세요</h2>
           <span class="hint"><span class="dd"></span>모두 무료 · 설치 없이 바로</span>
         </div>
         <div class="tp-relgrid">
@@ -365,7 +364,7 @@ function buildTool(t) {
   const steps = c.steps.map((s) => `<li><span class="tx">${esc(s.replace(/^\s*[①②③④⑤⑥⑦⑧⑨⑩⑪⑫⑬⑭⑮]\s*/, ''))}</span></li>`).join('\n          ');
   const faqs = c.faq.map((f, i) => `<details><summary><span class="q">Q${i + 1}</span><span>${esc(f.q)}</span></summary><div class="a">${esc(f.a)}</div></details>`).join('\n          ');
   const extra = (c.extraSections || []).map((s, i) =>
-    `<div class="tp-sec" data-reveal><span class="tp-eyebrow">// note_${String(i + 1).padStart(2, '0')}.txt</span><h2 class="tp-h2">${esc(s.heading)}</h2><p>${esc(s.body)}</p></div>`).join('\n        ');
+    `<div class="tp-sec" data-reveal><span class="tp-eyebrow">참고</span><h2 class="tp-h2">${esc(s.heading)}</h2><p>${esc(s.body)}</p></div>`).join('\n        ');
 
   const jsonld = [
     {
@@ -422,7 +421,7 @@ function buildTool(t) {
         <p class="tp-lead">${esc(c.intro)}</p>
 
         <div class="tp-sec" data-reveal>
-          <span class="tp-eyebrow">// how_to.md</span>
+          <span class="tp-eyebrow">사용 방법</span>
           <h2 class="tp-h2">${esc(c.h1)} 사용 방법</h2>
           <ol class="tp-steps">
           ${steps}
@@ -437,10 +436,9 @@ function buildTool(t) {
         ${extra}
 
         <div class="tp-sec" data-reveal>
-          <span class="tp-eyebrow">// faq.sh</span>
+          <span class="tp-eyebrow">자주 묻는 질문</span>
           <h2 class="tp-h2">자주 묻는 질문</h2>
           <div class="ws-term tp-faqterm">
-            <div class="ws-winbar"><span class="ws-lights" aria-hidden="true"><span class="r"></span><span class="y"></span><span class="g"></span></span><span class="ws-wintitle">help — ${t.slug}.faq</span></div>
             <div class="ws-faqlist">
             ${faqs}
             </div>
@@ -484,8 +482,8 @@ function buildHome() {
   const apps = TOOLS.map((t, i) => {
     const num = String(i + 1).padStart(2, '0');
     const feat = t.slug === 'merge';
-    const launch = `<span class="ws-app__launch"><span>${APP_FILE[t.slug]}${feat ? ' 실행' : ''}</span><span class="arr">→</span></span>`;
-    const bar = `<div class="ws-app__bar"><span class="ll" aria-hidden="true"><span></span><span></span><span></span></span><span class="num">app_${num}</span></div>`;
+    const launch = `<span class="ws-app__launch"><span>바로 쓰기</span><span class="arr">→</span></span>`;
+    const bar = '';
     if (feat) return `<a class="ws-app ws-app--feat" href="${t.slug}/" data-reveal>
         ${bar}
         <div class="ws-app__body">
@@ -505,11 +503,11 @@ function buildHome() {
   const usps = c.uspCards.map((u, i) => `<div class="ws-usp" data-reveal><span class="n">0${i + 1}</span><div><h4>${esc(u.title)}</h4><p>${esc(u.desc)}</p></div></div>`).join('\n        ');
   const faqs = c.faq.map((f, i) => `<details><summary><span class="q">Q${i + 1}</span><span>${esc(f.q)}</span></summary><div class="a">${esc(f.a)}</div></details>`).join('\n        ');
 
-  const main = `<div class="ws-wrap">
-      <section class="ws-hero">
+  const main = `    <section class="ws-hero">
+      <div class="ws-wrap ws-herogrid">
         <div class="ws-herohead">
-          <span class="ws-kicker"><span class="sq"></span>업로드 없는 PDF 작업실 · 100% 브라우저 처리</span>
-          <h1 class="ws-h1">파일은 <span class="nowrap">내 기기에</span>,<br><span class="mark">작업은 여기서</span>.<br>설치도 가입도 없이.</h1>
+          <span class="ws-kicker"><span class="sq"></span>설치 없는 무료 PDF 도구 · 100% 브라우저 처리</span>
+          <h1 class="ws-h1">파일은 내 기기에,<br><span class="mark">작업은 여기서.</span><br>설치도 가입도 없이.</h1>
           <p class="ws-sub">${esc(c.heroSubtitle)}</p>
           <div class="ws-cta">
             <a href="#tools" class="ws-btn primary"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="1"/><path d="M3 9h18M8 4v5"/></svg>7개 도구 둘러보기</a>
@@ -518,9 +516,8 @@ function buildHome() {
           <div class="ws-meta"><div class="m"><b>7</b><span>무료 도구</span></div><div class="m"><b>0</b><span>서버 전송</span></div><div class="m"><b>0₩</b><span>워터마크·결제</span></div><div class="m"><b>∞</b><span>파일·용량 제한</span></div></div>
         </div>
         <div class="ws-winwrap">
-          <div class="ws-note"><span class="tk">// memo.txt</span>계약서·사내자료도 OK.<br>업로드 자체가 없음 :)</div>
           <div class="ws-window" data-ws-window>
-            <div class="ws-winbar"><button class="ws-lights" type="button" data-ws-close aria-label="작업 닫기"><span class="r"></span><span class="y"></span><span class="g"></span></button><span class="ws-wintitle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4"/></svg><span class="t">pdf_tools.app</span><span class="sub"> — 여기서 바로 작업</span></span><button class="ws-winclose" type="button" data-ws-close aria-label="작업 닫고 처음으로">처음으로 ✕</button></div>
+            <div class="ws-winbar"><span class="ws-wintitle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4"/></svg><span class="t">pdf_tools</span><span class="sub"> · 여기서 바로 작업</span></span><button class="ws-winclose" type="button" data-ws-close aria-label="작업 닫고 처음으로">처음으로 ✕</button></div>
             <div class="herotool">
               <div class="herotool__tabs" role="tablist" aria-label="PDF 도구 선택">
               ${heroTabs}
@@ -529,23 +526,21 @@ function buildHome() {
           ${heroPanels}
               </div>
             </div>
-            <div class="ws-winnote"><span class="pre">$&gt;</span> 파일은 이 페이지를 벗어나지 않습니다 · 100% 브라우저 처리</div>
           </div>
         </div>
-      </section>
-    </div>
+      </div>
+    </section>
 
     <section class="ws-tools" id="tools">
       <div class="ws-wrap">
         <div class="ws-sechead" data-reveal>
-          <h2><small>// 바탕화면 · applications</small>도구 7개, 눌러서 바로 작업</h2>
-          <span class="hint"><span class="dd"></span>각 앱을 열면 전용 작업 화면으로</span>
+          <h2><small>PDF 도구</small>필요한 작업, 7가지를 한곳에서</h2>
+          <span class="hint"><span class="dd"></span>모두 무료 · 설치 없이 클릭 한 번으로 작동합니다</span>
         </div>
         <div class="ws-grid">
       ${apps}
         <div class="ws-app ws-app--readme" data-reveal>
-          <div class="ws-app__bar"><span class="ll" aria-hidden="true"><span></span><span></span><span></span></span><span class="num">readme</span></div>
-          <div class="ws-app__body"><div class="cmd">$ ls ./tools</div><h3>전부 무료,<br>전부 내 기기에서.</h3><p>7개 모두 워터마크·가입·결제가 없습니다. 페이지를 열면 바로 작동합니다.</p></div>
+          <div class="ws-app__body"><h3>전부 무료,<br>전부 내 기기에서.</h3><p>7개 모두 워터마크·가입·결제가 없습니다. 페이지를 열면 바로 작동합니다.</p></div>
         </div>
         </div>
       </div>
@@ -555,7 +550,7 @@ function buildHome() {
       <div class="ws-wrap">
         <div class="ws-whygrid">
           <div data-reveal>
-            <span class="tag">// why_not_upload</span>
+            <span class="tag">왜 안전한가</span>
             <h2>대부분의 외산 도구는 파일을 서버에 올립니다.<br>저희는 <span class="hl">애초에 올리지 않습니다.</span></h2>
             <p class="lede">${esc(c.why)}</p>
           </div>
@@ -568,9 +563,8 @@ function buildHome() {
 
     <section class="ws-faq" id="faq">
       <div class="ws-wrap">
-        <div class="ws-sechead" data-reveal style="border-bottom:none;margin-bottom:18px"><h2><small>// help · faq.sh</small>궁금한 점을 펼쳐보세요</h2></div>
+        <div class="ws-sechead" data-reveal><h2><small>자주 묻는 질문</small>궁금한 점을 펼쳐보세요</h2></div>
         <div class="ws-term" data-reveal>
-          <div class="ws-winbar"><span class="ws-lights" aria-hidden="true"><span class="r"></span><span class="y"></span><span class="g"></span></span><span class="ws-wintitle">help — faq.sh</span></div>
           <div class="ws-faqlist">
         ${faqs}
           </div>
@@ -594,7 +588,7 @@ function buildHome() {
 function buildAbout() {
   const rel = '../';
   const canonical = `${SITE_URL}/about/`;
-  const sec = (eb, h, body) => `        <div class="tp-sec" data-reveal><span class="tp-eyebrow">// ${eb}</span><h2 class="tp-h2">${h}</h2><p>${body}</p></div>`;
+  const sec = (eb, h, body) => `        <div class="tp-sec" data-reveal><span class="tp-eyebrow">${eb}</span><h2 class="tp-h2">${h}</h2><p>${body}</p></div>`;
   const main = `<section class="tp-hero">
       <div class="tp-col">
         <nav class="tp-path" aria-label="위치"><a href="${rel}">홈</a><span class="s" aria-hidden="true">/</span><b>소개 · 개인정보</b></nav>
@@ -611,11 +605,11 @@ function buildAbout() {
     <section class="tp-info">
       <div class="tp-col">
         <p class="tp-lead">「${BRAND}」의 모든 작업은 여러분의 <strong>웹 브라우저 안(내 기기)</strong>에서만 이뤄집니다. 어떤 파일도 서버로 전송되지 않습니다.</p>
-${sec('how_it_works', '파일은 어떻게 처리되나요?', '합치기·분할·변환 등 모든 작업은 여러분의 <strong>웹 브라우저 안(내 기기)</strong>에서만 이뤄집니다. PDF 파일은 어떤 서버로도 업로드되지 않으며, 작업이 끝나거나 창을 닫으면 메모리에서 사라집니다. 인터넷 연결이 끊긴 상태에서도 한 번 페이지를 열어두면 대부분의 기능이 동작합니다.')}
-${sec('privacy', '개인정보 수집을 하나요?', '이 사이트는 회원가입을 받지 않고, 파일·이메일 등 어떤 개인정보도 수집·저장하지 않습니다. 파일을 외부로 전송하지 않으므로 업로드된 문서가 외부에 보관될 일이 없습니다.')}
-${sec('pricing', '무료인가요?', '네. 완전 무료이며 결과물에 워터마크가 붙지 않고, 파일 개수·용량 제한도 없습니다.')}
-${sec('opensource', '오픈소스입니다', `「${BRAND}」은 누구나 코드를 보고 함께 개선할 수 있는 오픈소스 프로젝트입니다. 기능 제안·버그 제보·기여를 환영합니다. <a href="${escAttr(GITHUB_URL)}" rel="noopener" target="_blank">GitHub 저장소</a>에서 참여하실 수 있습니다.`)}
-${sec('unlock_notice', '잠금해제 도구 안내', '잠금해제는 암호를 알아내는 크랙 도구가 아니라, 본인이 알고 있는 비밀번호 또는 인쇄·편집 제한을 제거하는 도구입니다. 권한이 있는 본인의 문서에만 사용해 주세요.')}
+${sec('처리 방식', '파일은 어떻게 처리되나요?', '합치기·분할·변환 등 모든 작업은 여러분의 <strong>웹 브라우저 안(내 기기)</strong>에서만 이뤄집니다. PDF 파일은 어떤 서버로도 업로드되지 않으며, 작업이 끝나거나 창을 닫으면 메모리에서 사라집니다. 인터넷 연결이 끊긴 상태에서도 한 번 페이지를 열어두면 대부분의 기능이 동작합니다.')}
+${sec('개인정보', '개인정보 수집을 하나요?', '이 사이트는 회원가입을 받지 않고, 파일·이메일 등 어떤 개인정보도 수집·저장하지 않습니다. 파일을 외부로 전송하지 않으므로 업로드된 문서가 외부에 보관될 일이 없습니다.')}
+${sec('이용 요금', '무료인가요?', '네. 완전 무료이며 결과물에 워터마크가 붙지 않고, 파일 개수·용량 제한도 없습니다.')}
+${sec('오픈소스', '오픈소스입니다', `「${BRAND}」은 누구나 코드를 보고 함께 개선할 수 있는 오픈소스 프로젝트입니다. 기능 제안·버그 제보·기여를 환영합니다. <a href="${escAttr(GITHUB_URL)}" rel="noopener" target="_blank">GitHub 저장소</a>에서 참여하실 수 있습니다.`)}
+${sec('잠금해제 안내', '잠금해제 도구 안내', '잠금해제는 암호를 알아내는 크랙 도구가 아니라, 본인이 알고 있는 비밀번호 또는 인쇄·편집 제한을 제거하는 도구입니다. 권한이 있는 본인의 문서에만 사용해 주세요.')}
       </div>
     </section>
 
