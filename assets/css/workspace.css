@@ -96,13 +96,27 @@
 .ws-launch::before { content: ""; position: absolute; top: -90px; right: -150px; width: 540px; height: 540px; border-radius: 50%; background: radial-gradient(circle, rgba(255, 91, 82, .14), transparent 62%); z-index: -1; pointer-events: none; }
 .ws-launch::after { content: ""; position: absolute; bottom: -80px; left: -140px; width: 420px; height: 420px; border-radius: 50%; background: radial-gradient(circle, rgba(99, 102, 241, .08), transparent 64%); z-index: -1; pointer-events: none; }
 .ws-launch .ws-wrap { width: 100%; }
-.ws-launchhead { text-align: center; max-width: 740px; margin: 0 auto 34px; }
-.ws-launchhead .ws-kicker { margin-bottom: 18px; }
-.ws-launchhead h1 { font-family: var(--font); font-weight: 800; font-size: clamp(2rem, 4.2vw, 3rem); line-height: 1.08; letter-spacing: -.038em; color: var(--ink); }
-.ws-launchhead h1 .mark { background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
-.ws-launchhead .ws-sub { margin: 16px auto 0; max-width: 48ch; font-size: 1.06rem; line-height: 1.6; color: var(--ink-soft); }
-.ws-trust { display: flex; justify-content: center; flex-wrap: wrap; gap: 14px 26px; margin-top: 30px; font-size: 14px; font-weight: 600; color: var(--ink-soft); }
-.ws-trust span { display: inline-flex; align-items: center; gap: 8px; }
+.ws-launchhead { display: flex; align-items: flex-end; justify-content: space-between; gap: 16px; flex-wrap: wrap; margin-bottom: 22px; }
+.ws-launchhead h1 { font-family: var(--font); font-weight: 800; font-size: clamp(1.5rem, 3vw, 2.1rem); line-height: 1.1; letter-spacing: -.032em; color: var(--ink); }
+.ws-launchhead .sub { font-size: 14px; color: var(--ink-soft); font-weight: 500; }
+/* 태블릿 대시보드 컬러 타일 */
+.ws-tilegrid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+@media (max-width: 900px) { .ws-tilegrid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 420px) { .ws-tilegrid { grid-template-columns: 1fr; } }
+.ws-tile { position: relative; border-radius: 22px; padding: 22px; min-height: 158px; display: flex; flex-direction: column; justify-content: space-between; color: #fff; overflow: hidden; box-shadow: 0 8px 20px rgba(20, 20, 40, .12); transition: transform .16s var(--ez), box-shadow .16s; }
+.ws-tile:hover { transform: translateY(-5px); box-shadow: 0 18px 38px rgba(20, 20, 40, .2); text-decoration: none; }
+.ws-tile::after { content: ""; position: absolute; top: -45%; right: -25%; width: 78%; height: 88%; background: radial-gradient(circle, rgba(255, 255, 255, .26), transparent 60%); pointer-events: none; }
+.ws-tile__ico { position: relative; }
+.ws-tile__ico .ic-svg { width: 44px; height: 44px; color: #fff; }
+.ws-tile__name { display: block; position: relative; font-family: var(--font); font-weight: 800; font-size: 1.26rem; letter-spacing: -.02em; color: #fff; }
+.ws-tile__sub { display: block; }
+.ws-tile .arr { position: absolute; top: 22px; right: 20px; color: rgba(255, 255, 255, .8); transition: transform .18s; }
+.ws-tile:hover .arr { transform: translateX(4px); }
+.ws-tile--about { background: #475569; }
+.ws-tile--about .ws-tile__name { font-size: 1.12rem; }
+.ws-tile--about .ws-tile__sub { position: relative; font-size: 12.5px; color: rgba(255, 255, 255, .82); margin-top: 5px; line-height: 1.45; }
+.ws-trust { display: flex; justify-content: center; flex-wrap: wrap; gap: 12px 24px; margin-top: 26px; font-size: 13.5px; font-weight: 600; color: var(--ink-soft); }
+.ws-trust span { display: inline-flex; align-items: center; gap: 7px; }
 .ws-trust span::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: #18a957; }
 
 /* ============ 도구 카드 그리드 ============ */

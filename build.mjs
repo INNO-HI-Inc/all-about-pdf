@@ -104,6 +104,12 @@ const APP_SHORT = {
   merge: '여러 PDF를 하나로', split: '한 파일을 여러 개로', unlock: '비밀번호·제한 해제',
   extract: '원하는 페이지만 추출', delete: '불필요한 페이지 삭제', 'to-image': 'JPG·PNG로 변환', 'page-numbers': '페이지 번호 넣기',
 };
+// 태블릿 대시보드 타일 색(도구별 컬러 구분)
+const TILE_COLOR = {
+  merge: '#e5252a', split: '#2f6df6', unlock: '#f59e0b', extract: '#10b981',
+  delete: '#f43f5e', 'to-image': '#8b5cf6', 'page-numbers': '#0ea5e9',
+};
+const ARR_SVG = '<svg class="arr" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>';
 
 // 작업실 OS 태스크바 / 푸터 (rel: 홈은 '', 하위는 '../')
 function wsTaskbar(rel) {
@@ -479,12 +485,9 @@ function buildHome() {
             ${widget(t)}
           </div>`).join('\n          ');
 
-  const apps = TOOLS.map((t) => `<a class="ws-app" href="${t.slug}/" data-reveal>
-        <div class="ws-app__body">
-          <span class="ws-app__ico">${ICONS_PDF[t.slug]}</span>
-          <h3>${read(t.slug).h1}</h3><p>${APP_SHORT[t.slug]}</p>
-        </div>
-        <span class="ws-app__launch"><span>바로 쓰기</span><span class="arr">→</span></span>
+  const tiles = TOOLS.map((t) => `<a class="ws-tile" href="${t.slug}/" style="background:${TILE_COLOR[t.slug]}" data-reveal>
+        <span class="ws-tile__ico">${t.icon}</span>
+        <span class="ws-tile__name">${t.nav}</span>${ARR_SVG}
       </a>`).join('\n      ');
 
   const usps = c.uspCards.map((u, i) => `<div class="ws-usp" data-reveal><span class="n">0${i + 1}</span><div><h4>${esc(u.title)}</h4><p>${esc(u.desc)}</p></div></div>`).join('\n        ');
@@ -493,15 +496,14 @@ function buildHome() {
   const main = `    <section class="ws-launch" id="tools">
       <div class="ws-wrap">
         <div class="ws-launchhead">
-          <span class="ws-kicker"><span class="sq"></span>설치 없는 무료 PDF 도구 · 100% 브라우저 처리</span>
-          <h1>필요한 작업, <span class="mark">7가지를 한곳에서.</span></h1>
-          <p class="ws-sub">설치도 회원가입도 없이, 파일을 서버에 올리지 않고 내 브라우저에서 바로 처리합니다. 쓰고 싶은 도구를 누르세요.</p>
+          <h1>필요한 PDF 작업을 누르세요</h1>
+          <span class="sub">설치·가입 없이 · 내 브라우저에서 바로 · 완전 무료</span>
         </div>
-        <div class="ws-grid">
-      ${apps}
-        <a class="ws-app ws-app--readme" href="about/" data-reveal>
-          <div class="ws-app__body"><h3>전부 무료,<br>전부 내 기기에서.</h3><p>7개 모두 워터마크·가입·결제 없이, 파일을 서버에 올리지 않고 처리합니다.</p></div>
-          <span class="ws-app__launch"><span>자세히</span><span class="arr">→</span></span>
+        <div class="ws-tilegrid">
+      ${tiles}
+        <a class="ws-tile ws-tile--about" href="about/" data-reveal>
+          <span class="ws-tile__ico">${ICONS.info}</span>
+          <span><span class="ws-tile__name">전부 무료</span><span class="ws-tile__sub">서버에 올리지 않고 내 기기에서</span></span>${ARR_SVG}
         </a>
         </div>
         <div class="ws-trust"><span>서버 미전송 · 내 기기 처리</span><span>완전 무료 · 워터마크 없음</span><span>설치 · 회원가입 불필요</span></div>
