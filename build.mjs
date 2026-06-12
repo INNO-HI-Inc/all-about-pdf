@@ -485,9 +485,12 @@ function buildHome() {
             ${widget(t)}
           </div>`).join('\n          ');
 
-  const tiles = TOOLS.map((t) => `<a class="ws-tile" href="${t.slug}/" data-reveal>
-        <span class="ws-tile__ico">${ICONS_PDF[t.slug]}</span>
-        <span class="ws-tile__name">${t.nav}</span>${ARR_SVG}
+  const apps = TOOLS.map((t) => `<a class="ws-app" href="${t.slug}/" data-reveal>
+        <div class="ws-app__body">
+          <span class="ws-app__ico">${ICONS_PDF[t.slug]}</span>
+          <h3>${read(t.slug).h1}</h3><p>${APP_SHORT[t.slug]}</p>
+        </div>
+        <span class="ws-app__launch"><span>바로 쓰기</span><span class="arr">→</span></span>
       </a>`).join('\n      ');
 
   const usps = c.uspCards.map((u, i) => `<div class="ws-usp" data-reveal><span class="n">0${i + 1}</span><div><h4>${esc(u.title)}</h4><p>${esc(u.desc)}</p></div></div>`).join('\n        ');
@@ -499,11 +502,11 @@ function buildHome() {
           <h1>필요한 PDF 작업을 누르세요</h1>
           <span class="sub">설치·가입 없이 · 내 브라우저에서 바로 · 완전 무료</span>
         </div>
-        <div class="ws-tilegrid">
-      ${tiles}
-        <a class="ws-tile ws-tile--about" href="about/" data-reveal>
-          <span class="ws-tile__ico">${ICONS.info}</span>
-          <span><span class="ws-tile__name">전부 무료</span><span class="ws-tile__sub">서버에 올리지 않고 내 기기에서</span></span>${ARR_SVG}
+        <div class="ws-grid">
+      ${apps}
+        <a class="ws-app ws-app--readme" href="about/" data-reveal>
+          <div class="ws-app__body"><h3>전부 무료,<br>전부 내 기기에서.</h3><p>서버에 올리지 않고 내 기기에서 처리합니다.</p></div>
+          <span class="ws-app__launch"><span>자세히</span><span class="arr">→</span></span>
         </a>
         </div>
         <div class="ws-trust"><span>서버 미전송 · 내 기기 처리</span><span>완전 무료 · 워터마크 없음</span><span>설치 · 회원가입 불필요</span></div>
