@@ -485,8 +485,8 @@ function buildHome() {
             ${widget(t)}
           </div>`).join('\n          ');
 
-  const tiles = TOOLS.map((t) => `<a class="ws-tile" href="${t.slug}/" style="background:${TILE_COLOR[t.slug]}" data-reveal>
-        <span class="ws-tile__ico">${t.icon}</span>
+  const tiles = TOOLS.map((t) => `<a class="ws-tile" href="${t.slug}/" data-reveal>
+        <span class="ws-tile__ico">${ICONS_PDF[t.slug]}</span>
         <span class="ws-tile__name">${t.nav}</span>${ARR_SVG}
       </a>`).join('\n      ');
 
