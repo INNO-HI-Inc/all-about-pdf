@@ -228,7 +228,7 @@ async function auditPage(ctx, path) {
     console.log('▶ 기능 실측...');
     await testMerge(ctx); await testSplit(ctx); await testExtract(ctx);
     await testDelete(ctx); await testToImage(ctx); await testPageNumbers(ctx); await testUnlock(ctx);
-    await testHomeWidgets(ctx);
+    // 홈은 런처(도구 페이지로 링크)로 전환 — 도구 실동작은 각 도구 페이지에서 검증
     console.log('▶ 구조 감사...');
     for (const p of PAGES) await auditPage(ctx, p);
   } catch (e) {

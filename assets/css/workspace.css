@@ -32,8 +32,8 @@
 .ws-taskbar { position: sticky; top: 0; z-index: 200; height: 72px; display: flex; align-items: center; gap: 22px; padding: 0 28px; background: rgba(255, 255, 255, .78); backdrop-filter: saturate(180%) blur(16px); -webkit-backdrop-filter: saturate(180%) blur(16px); border-bottom: 1px solid var(--line); }
 .ws-logo { display: flex; align-items: center; gap: 11px; color: var(--ink); font-weight: 800; font-size: 17px; }
 .ws-logo:hover { text-decoration: none; }
-.ws-logo .chip { width: 34px; height: 34px; flex: 0 0 34px; border-radius: 10px; overflow: hidden; background: #fff; box-shadow: var(--sh-sm); display: grid; place-items: center; }
-.ws-logo .chip img { width: 34px; height: 34px; object-fit: cover; display: block; }
+.ws-logo .chip { width: 40px; height: 40px; flex: 0 0 40px; display: grid; place-items: center; }
+.ws-logo .chip img { width: 40px; height: 40px; object-fit: contain; display: block; }
 .ws-logo .ko { font-family: var(--font); font-weight: 800; letter-spacing: -.02em; }
 .ws-logo .sep, .ws-logo .wk { display: none; }
 .ws-nav { display: flex; align-items: center; gap: 4px; margin-left: auto; }
@@ -91,6 +91,20 @@
 .herotool__panel.is-active { display: block; }
 .ws-window .herotool__panel.is-active { padding: 8px 16px 18px; }
 
+/* ============ 기능 위주 단일 화면 런처 ============ */
+.ws-launch { position: relative; min-height: calc(100vh - 72px); display: flex; flex-direction: column; justify-content: center; padding: 26px 0 40px; }
+.ws-launch::before { content: ""; position: absolute; top: -90px; right: -150px; width: 540px; height: 540px; border-radius: 50%; background: radial-gradient(circle, rgba(255, 91, 82, .14), transparent 62%); z-index: -1; pointer-events: none; }
+.ws-launch::after { content: ""; position: absolute; bottom: -80px; left: -140px; width: 420px; height: 420px; border-radius: 50%; background: radial-gradient(circle, rgba(99, 102, 241, .08), transparent 64%); z-index: -1; pointer-events: none; }
+.ws-launch .ws-wrap { width: 100%; }
+.ws-launchhead { text-align: center; max-width: 740px; margin: 0 auto 34px; }
+.ws-launchhead .ws-kicker { margin-bottom: 18px; }
+.ws-launchhead h1 { font-family: var(--font); font-weight: 800; font-size: clamp(2rem, 4.2vw, 3rem); line-height: 1.08; letter-spacing: -.038em; color: var(--ink); }
+.ws-launchhead h1 .mark { background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.ws-launchhead .ws-sub { margin: 16px auto 0; max-width: 48ch; font-size: 1.06rem; line-height: 1.6; color: var(--ink-soft); }
+.ws-trust { display: flex; justify-content: center; flex-wrap: wrap; gap: 14px 26px; margin-top: 30px; font-size: 14px; font-weight: 600; color: var(--ink-soft); }
+.ws-trust span { display: inline-flex; align-items: center; gap: 8px; }
+.ws-trust span::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: #18a957; }
+
 /* ============ 도구 카드 그리드 ============ */
 .ws-tools { padding: 40px 0 96px; }
 .ws-sechead { text-align: center; max-width: 640px; margin: 0 auto 46px; }
@@ -98,10 +112,11 @@
 .ws-sechead h2 small { display: block; font-size: 13px; font-weight: 700; color: var(--red); letter-spacing: .02em; margin-bottom: 12px; text-transform: none; }
 .ws-sechead .hint { display: inline-flex; align-items: center; gap: 7px; margin-top: 14px; font-size: 14px; color: var(--ink-soft); }
 .ws-sechead .hint .dd { display: none; }
-.ws-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
-@media (max-width: 860px) { .ws-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; } }
-@media (max-width: 520px) { .ws-grid { grid-template-columns: 1fr; } }
-.ws-app { display: flex; flex-direction: column; background: #fff; border: 1px solid var(--line); border-radius: var(--radius); box-shadow: var(--sh-sm); padding: 26px 24px; color: var(--ink); position: relative; overflow: hidden; transition: transform .18s var(--ez), box-shadow .18s, border-color .18s; }
+.ws-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+@media (max-width: 980px) { .ws-grid { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 680px) { .ws-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; } }
+@media (max-width: 420px) { .ws-grid { grid-template-columns: 1fr; } }
+.ws-app { display: flex; flex-direction: column; background: #fff; border: 1px solid var(--line); border-radius: var(--radius); box-shadow: var(--sh-sm); padding: 22px 20px; color: var(--ink); position: relative; overflow: hidden; transition: transform .18s var(--ez), box-shadow .18s, border-color .18s; }
 .ws-app::after { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--grad); opacity: 0; transition: opacity .2s; }
 .ws-app:hover { transform: translateY(-6px); box-shadow: var(--sh); border-color: transparent; text-decoration: none; }
 .ws-app:hover::after { opacity: 1; }
@@ -109,8 +124,8 @@
 .ws-app:hover .ws-app__launch .arr { transform: translateX(4px); }
 .ws-app__bar { display: none; }
 .ws-app__body { display: flex; flex-direction: column; gap: 0; }
-.ws-app__ico { width: 56px; height: 56px; border-radius: 15px; display: grid; place-items: center; background: var(--grad-soft); margin-bottom: 18px; box-shadow: inset 0 0 0 1px rgba(229, 37, 42, .08); }
-.ws-app__ico .ic-svg { width: 30px; height: 30px; }
+.ws-app__ico { display: block; margin-bottom: 14px; }
+.ws-app__ico .ic-svg { width: 58px; height: 58px; }
 .ws-app h3 { font-family: var(--font); font-weight: 800; font-size: 1.18rem; letter-spacing: -.02em; line-height: 1.25; }
 .ws-app p { font-size: 13.5px; line-height: 1.6; color: var(--ink-soft); margin-top: 9px; flex: 1; }
 .ws-app__launch { margin-top: 18px; font-size: 13px; font-weight: 700; color: var(--ink-faint); display: inline-flex; align-items: center; gap: 6px; transition: color .18s; }
@@ -118,8 +133,8 @@
 .ws-app--feat { grid-column: span 2; background: linear-gradient(135deg, #fff, #fff7f6); }
 @media (max-width: 520px) { .ws-app--feat { grid-column: span 1; } }
 .ws-app--feat .ws-app__body { flex-direction: row; align-items: center; gap: 22px; }
-.ws-app--feat .ws-app__ico { width: 68px; height: 68px; flex: 0 0 68px; margin-bottom: 0; }
-.ws-app--feat .ws-app__ico .ic-svg { width: 38px; height: 38px; }
+.ws-app--feat .ws-app__ico { flex: 0 0 auto; margin-bottom: 0; }
+.ws-app--feat .ws-app__ico .ic-svg { width: 72px; height: 72px; }
 .ws-app--feat .ws-app__txt { flex: 1; }
 .ws-app--feat .badge { display: inline-block; font-size: 11px; font-weight: 700; color: #fff; background: var(--grad); padding: 4px 11px; border-radius: var(--pill); margin-bottom: 10px; box-shadow: var(--sh-red); }
 @media (max-width: 520px) { .ws-app--feat .ws-app__body { flex-direction: column; align-items: flex-start; } }
@@ -127,6 +142,8 @@
 .ws-app--readme .cmd { display: none; }
 .ws-app--readme h3 { color: #fff; }
 .ws-app--readme p { color: #b9bdca; }
+.ws-app--readme .ws-app__launch { color: rgba(255, 255, 255, .6); }
+.ws-app--readme:hover .ws-app__launch { color: #fff; }
 
 /* ============ WHY (안전) ============ */
 .ws-why { padding: 96px 0; background: var(--surf-2); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
@@ -165,8 +182,8 @@
 .ws-footgrid { display: flex; justify-content: space-between; gap: 40px; flex-wrap: wrap; }
 .ws-footbrand { max-width: 320px; display: flex; flex-direction: column; gap: 14px; }
 .ws-footbrand .fb { display: flex; align-items: center; gap: 11px; font-family: var(--font); font-weight: 800; font-size: 16px; }
-.ws-footbrand .fb .chip { width: 32px; height: 32px; border-radius: 9px; overflow: hidden; background: #fff; box-shadow: var(--sh-sm); display: grid; place-items: center; }
-.ws-footbrand .fb .chip img { width: 32px; height: 32px; object-fit: cover; }
+.ws-footbrand .fb .chip { width: 36px; height: 36px; display: grid; place-items: center; }
+.ws-footbrand .fb .chip img { width: 36px; height: 36px; object-fit: contain; }
 .ws-footbrand p { font-size: 13.5px; line-height: 1.7; color: var(--ink-soft); }
 .ws-footcols { display: flex; gap: 56px; flex-wrap: wrap; }
 .ws-footcol h5 { font-size: 12px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; color: var(--ink-faint); margin-bottom: 14px; }
@@ -185,14 +202,14 @@
 .tp-path .s { color: var(--line-2); }
 .tp-path b { color: var(--red); font-weight: 700; }
 .tp-head { display: flex; align-items: center; gap: 22px; }
-.tp-ico { width: 66px; height: 66px; flex: 0 0 66px; border-radius: 18px; display: grid; place-items: center; background: var(--grad-soft); box-shadow: var(--sh-sm), inset 0 0 0 1px rgba(229, 37, 42, .08); }
-.tp-ico .ic-svg { width: 36px; height: 36px; }
+.tp-ico { flex: 0 0 auto; display: grid; place-items: center; }
+.tp-ico .ic-svg { width: 64px; height: 64px; }
 .tp-h1 { font-family: var(--font); font-weight: 800; font-size: clamp(2.1rem, 4.4vw, 3.1rem); letter-spacing: -.04em; line-height: 1.06; color: var(--ink); }
 .tp-sub { margin-top: 12px; font-size: 1.1rem; line-height: 1.6; color: var(--ink-soft); max-width: 58ch; }
 .tp-chips { list-style: none; margin: 28px 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 10px; }
 .tp-chips li { display: flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 600; color: var(--ink); background: #fff; border: 1px solid var(--line-2); padding: 9px 15px; border-radius: var(--pill); box-shadow: var(--sh-sm); }
 .tp-chips li .dot { width: 7px; height: 7px; border-radius: 50%; background: #18a957; flex: 0 0 7px; }
-@media (max-width: 560px) { .tp-head { flex-direction: column; align-items: flex-start; gap: 16px; } .tp-ico { width: 56px; height: 56px; flex-basis: 56px; } .tp-ico .ic-svg { width: 30px; height: 30px; } }
+@media (max-width: 560px) { .tp-head { flex-direction: column; align-items: flex-start; gap: 14px; } .tp-ico .ic-svg { width: 54px; height: 54px; } }
 
 .tp-stage { padding: 14px 0 10px; }
 .tp-window { background: #fff; border: 1px solid var(--line); border-radius: var(--radius-lg); box-shadow: var(--sh-lg); overflow: hidden; }
@@ -235,8 +252,8 @@
 .tp-rel:hover { transform: translateY(-4px); box-shadow: var(--sh); text-decoration: none; }
 .tp-rel:hover .tp-rel__arr { transform: translateX(4px); color: var(--red); }
 .tp-rel__bar { display: none; }
-.tp-rel__ico { width: 48px; height: 48px; flex: 0 0 48px; border-radius: 13px; display: grid; place-items: center; background: var(--grad-soft); }
-.tp-rel__ico .ic-svg { width: 26px; height: 26px; }
+.tp-rel__ico { flex: 0 0 auto; display: grid; place-items: center; }
+.tp-rel__ico .ic-svg { width: 46px; height: 46px; }
 .tp-rel__tx { min-width: 0; flex: 1; }
 .tp-rel__tx h3 { font-family: var(--font); font-weight: 800; font-size: 1.04rem; letter-spacing: -.02em; line-height: 1.2; }
 .tp-rel__tx p { font-size: 12.5px; color: var(--ink-soft); margin-top: 3px; }

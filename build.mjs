@@ -479,70 +479,32 @@ function buildHome() {
             ${widget(t)}
           </div>`).join('\n          ');
 
-  const apps = TOOLS.map((t, i) => {
-    const num = String(i + 1).padStart(2, '0');
-    const feat = t.slug === 'merge';
-    const launch = `<span class="ws-app__launch"><span>바로 쓰기</span><span class="arr">→</span></span>`;
-    const bar = '';
-    if (feat) return `<a class="ws-app ws-app--feat" href="${t.slug}/" data-reveal>
-        ${bar}
+  const apps = TOOLS.map((t) => `<a class="ws-app" href="${t.slug}/" data-reveal>
         <div class="ws-app__body">
           <span class="ws-app__ico">${ICONS_PDF[t.slug]}</span>
-          <div class="ws-app__txt"><span class="badge">가장 많이 쓰는 도구</span><h3>${read(t.slug).h1}</h3><p>${APP_DESC[t.slug]}</p></div>
-        </div>${launch}
-      </a>`;
-    return `<a class="ws-app" href="${t.slug}/" data-reveal>
-        ${bar}
-        <div class="ws-app__body">
-          <span class="ws-app__ico">${ICONS_PDF[t.slug]}</span>
-          <h3>${read(t.slug).h1}</h3><p>${APP_DESC[t.slug]}</p>
-        </div>${launch}
-      </a>`;
-  }).join('\n      ');
+          <h3>${read(t.slug).h1}</h3><p>${APP_SHORT[t.slug]}</p>
+        </div>
+        <span class="ws-app__launch"><span>바로 쓰기</span><span class="arr">→</span></span>
+      </a>`).join('\n      ');
 
   const usps = c.uspCards.map((u, i) => `<div class="ws-usp" data-reveal><span class="n">0${i + 1}</span><div><h4>${esc(u.title)}</h4><p>${esc(u.desc)}</p></div></div>`).join('\n        ');
   const faqs = c.faq.map((f, i) => `<details><summary><span class="q">Q${i + 1}</span><span>${esc(f.q)}</span></summary><div class="a">${esc(f.a)}</div></details>`).join('\n        ');
 
-  const main = `    <section class="ws-hero">
-      <div class="ws-wrap ws-herogrid">
-        <div class="ws-herohead">
-          <span class="ws-kicker"><span class="sq"></span>설치 없는 무료 PDF 도구 · 100% 브라우저 처리</span>
-          <h1 class="ws-h1">파일은 내 기기에,<br><span class="mark">작업은 여기서.</span><br>설치도 가입도 없이.</h1>
-          <p class="ws-sub">${esc(c.heroSubtitle)}</p>
-          <div class="ws-cta">
-            <a href="#tools" class="ws-btn primary"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="1"/><path d="M3 9h18M8 4v5"/></svg>7개 도구 둘러보기</a>
-            <a href="#why" class="ws-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>왜 안전할까?</a>
-          </div>
-          <div class="ws-meta"><div class="m"><b>7</b><span>무료 도구</span></div><div class="m"><b>0</b><span>서버 전송</span></div><div class="m"><b>0₩</b><span>워터마크·결제</span></div><div class="m"><b>∞</b><span>파일·용량 제한</span></div></div>
-        </div>
-        <div class="ws-winwrap">
-          <div class="ws-window" data-ws-window>
-            <div class="ws-winbar"><span class="ws-wintitle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4"/></svg><span class="t">pdf_tools</span><span class="sub"> · 여기서 바로 작업</span></span><button class="ws-winclose" type="button" data-ws-close aria-label="작업 닫고 처음으로">처음으로 ✕</button></div>
-            <div class="herotool">
-              <div class="herotool__tabs" role="tablist" aria-label="PDF 도구 선택">
-              ${heroTabs}
-              </div>
-              <div class="herotool__panels">
-          ${heroPanels}
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="ws-tools" id="tools">
+  const main = `    <section class="ws-launch" id="tools">
       <div class="ws-wrap">
-        <div class="ws-sechead" data-reveal>
-          <h2><small>PDF 도구</small>필요한 작업, 7가지를 한곳에서</h2>
-          <span class="hint"><span class="dd"></span>모두 무료 · 설치 없이 클릭 한 번으로 작동합니다</span>
+        <div class="ws-launchhead">
+          <span class="ws-kicker"><span class="sq"></span>설치 없는 무료 PDF 도구 · 100% 브라우저 처리</span>
+          <h1>필요한 작업, <span class="mark">7가지를 한곳에서.</span></h1>
+          <p class="ws-sub">설치도 회원가입도 없이, 파일을 서버에 올리지 않고 내 브라우저에서 바로 처리합니다. 쓰고 싶은 도구를 누르세요.</p>
         </div>
         <div class="ws-grid">
       ${apps}
-        <div class="ws-app ws-app--readme" data-reveal>
-          <div class="ws-app__body"><h3>전부 무료,<br>전부 내 기기에서.</h3><p>7개 모두 워터마크·가입·결제가 없습니다. 페이지를 열면 바로 작동합니다.</p></div>
+        <a class="ws-app ws-app--readme" href="about/" data-reveal>
+          <div class="ws-app__body"><h3>전부 무료,<br>전부 내 기기에서.</h3><p>7개 모두 워터마크·가입·결제 없이, 파일을 서버에 올리지 않고 처리합니다.</p></div>
+          <span class="ws-app__launch"><span>자세히</span><span class="arr">→</span></span>
+        </a>
         </div>
-        </div>
+        <div class="ws-trust"><span>서버 미전송 · 내 기기 처리</span><span>완전 무료 · 워터마크 없음</span><span>설치 · 회원가입 불필요</span></div>
       </div>
     </section>
 
@@ -575,7 +537,7 @@ function buildHome() {
   const html = page({
     title: c.metaTitle, desc: c.metaDescription, canonical,
     ogTitle: c.metaTitle, rel, jsonld, main, noChrome: true,
-    withScripts: ['merge', 'split', 'unlock', 'extract', 'delete', 'to-image', 'page-numbers'],
+    withScripts: null,
     bodyClass: 'ws home',
     extraScripts: ['assets/js/workspace.js'],
     headExtra: '\n  <script>document.documentElement.className+=" js";</script>\n  <link rel="stylesheet" href="assets/css/workspace.css">'
