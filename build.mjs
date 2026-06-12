@@ -116,7 +116,7 @@ function wsTaskbar(rel) {
   const home = rel === '' ? './' : rel;
   return `    <header class="ws-taskbar">
       <a href="${home}" class="ws-logo"><span class="chip" aria-hidden="true"><img src="${rel}assets/img/logo.png" alt="" width="30" height="30" decoding="async"></span><span class="ko">PDF의 모든 것</span><b class="sep" aria-hidden="true">/</b><span class="wk">workspace</span></a>
-      <nav class="ws-nav"><a href="${home}#tools">도구</a><a href="${home}#why">왜 안전한가</a><a href="${home}#faq">자주 묻는 질문</a><a class="gh" href="${escAttr(GITHUB_URL)}" rel="noopener" target="_blank">오픈소스 ↗</a></nav>
+      <nav class="ws-nav"><a href="${home}">도구</a><a href="${home}about/">소개</a><a class="gh" href="${escAttr(GITHUB_URL)}" rel="noopener" target="_blank">오픈소스 ↗</a></nav>
     </header>`;
 }
 function wsFooter(rel) {
@@ -130,7 +130,7 @@ function wsFooter(rel) {
           <div class="ws-footcols">
             <div class="ws-footcol"><h5>도구</h5>${t1}</div>
             <div class="ws-footcol"><h5>더보기</h5>${t2}</div>
-            <div class="ws-footcol"><h5>정보</h5><a href="${home}about/">서비스 소개</a><a href="${home}#why">왜 안전한가</a><a href="${home}#faq">자주 묻는 질문</a><a href="${escAttr(GITHUB_URL)}" rel="noopener" target="_blank">오픈소스 (GitHub) ↗</a></div>
+            <div class="ws-footcol"><h5>정보</h5><a href="${home}about/">서비스 소개</a><a href="${escAttr(GITHUB_URL)}" rel="noopener" target="_blank">오픈소스 (GitHub) ↗</a></div>
           </div>
         </div>
         <div class="ws-footbottom"><span>© 2026 PDF의 모든 것 — made in Korea, runs on your device.</span><span>오픈소스 · MIT License</span></div>
@@ -269,7 +269,7 @@ function footer(rel) {
 </div></footer>`;
 }
 
-function page({ title, desc, canonical, ogTitle, rel, jsonld, main, withScripts, headExtra, bodyClass, extraScripts, noChrome, noindex }) {
+function page({ title, desc, canonical, ogTitle, rel, jsonld, main, withScripts, headExtra, bodyClass, extraScripts, noChrome, noindex, noFooter }) {
   const ld = jsonld ? `\n  <script type="application/ld+json">${JSON.stringify(jsonld)}</script>` : '';
   const extra = (extraScripts || []).map((s) => `\n  <script src="${rel}${s}" defer></script>`).join('');
   const toolList = withScripts ? (Array.isArray(withScripts) ? withScripts : [withScripts]) : [];
@@ -313,7 +313,7 @@ ${noChrome ? wsTaskbar(rel) : header(rel)}
   <main id="main">
 ${main}
   </main>
-${noChrome ? wsFooter(rel) : footer(rel)}${scripts}${extra}
+${noFooter ? '' : (noChrome ? wsFooter(rel) : footer(rel))}${scripts}${extra}
 </body>
 </html>
 `;
@@ -508,37 +508,11 @@ function buildHome() {
         </div>
         <div class="ws-trust"><span>서버 미전송 · 내 기기 처리</span><span>완전 무료 · 워터마크 없음</span><span>설치 · 회원가입 불필요</span></div>
       </div>
-    </section>
-
-    <section class="ws-why" id="why">
-      <div class="ws-wrap">
-        <div class="ws-whygrid">
-          <div data-reveal>
-            <span class="tag">왜 안전한가</span>
-            <h2>대부분의 외산 도구는 파일을 서버에 올립니다.<br>저희는 <span class="hl">애초에 올리지 않습니다.</span></h2>
-            <p class="lede">${esc(c.why)}</p>
-          </div>
-          <div class="ws-uspcol">
-        ${usps}
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="ws-faq" id="faq">
-      <div class="ws-wrap">
-        <div class="ws-sechead" data-reveal><h2><small>자주 묻는 질문</small>궁금한 점을 펼쳐보세요</h2></div>
-        <div class="ws-term" data-reveal>
-          <div class="ws-faqlist">
-        ${faqs}
-          </div>
-        </div>
-      </div>
     </section>`;
 
   const html = page({
     title: c.metaTitle, desc: c.metaDescription, canonical,
-    ogTitle: c.metaTitle, rel, jsonld, main, noChrome: true,
+    ogTitle: c.metaTitle, rel, jsonld, main, noChrome: true, noFooter: true,
     withScripts: null,
     bodyClass: 'ws home',
     extraScripts: ['assets/js/workspace.js'],

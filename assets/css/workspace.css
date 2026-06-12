@@ -92,7 +92,7 @@
 .ws-window .herotool__panel.is-active { padding: 8px 16px 18px; }
 
 /* ============ 기능 위주 단일 화면 런처 ============ */
-.ws-launch { position: relative; min-height: calc(100vh - 72px); display: flex; flex-direction: column; justify-content: center; padding: 26px 0 40px; }
+.ws-launch { position: relative; overflow: hidden; min-height: calc(100vh - 72px); display: flex; flex-direction: column; justify-content: center; padding: 26px 0 40px; }
 .ws-launch::before { content: ""; position: absolute; top: -90px; right: -150px; width: 540px; height: 540px; border-radius: 50%; background: radial-gradient(circle, rgba(255, 91, 82, .14), transparent 62%); z-index: -1; pointer-events: none; }
 .ws-launch::after { content: ""; position: absolute; bottom: -80px; left: -140px; width: 420px; height: 420px; border-radius: 50%; background: radial-gradient(circle, rgba(99, 102, 241, .08), transparent 64%); z-index: -1; pointer-events: none; }
 .ws-launch .ws-wrap { width: 100%; }
