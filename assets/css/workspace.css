@@ -448,3 +448,48 @@ body.home { background: #06070f; }
 .home .ws-trust { color: #9aa1bd; }
 .home .ws-trust span::before { background: #1fe3a0; box-shadow: 0 0 8px rgba(31,227,160,.8); }
 .home ::selection { background: rgba(255,60,95,.35); color: #fff; }
+
+/* ===== MORE FUTURISTIC: 콘솔 HUD 구조 · 네온 테두리 · 시안 · 스캔라인 ===== */
+@property --hue { syntax: '<angle>'; inherits: false; initial-value: 0deg; }
+
+/* 시안 오브 */
+.home .ws-orb-f.c { top: 28%; left: 44%; width: 300px; height: 300px; background: radial-gradient(circle, #28c8ff, transparent 65%); opacity: .38; filter: blur(70px); animation: wsFloat 22s var(--ez) infinite; }
+
+/* CRT 스캔라인 오버레이 */
+.home .ws-scan { position: absolute; inset: 0; z-index: 1; pointer-events: none; background: repeating-linear-gradient(0deg, rgba(255,255,255,.022) 0 1px, transparent 1px 3px); mix-blend-mode: overlay; opacity: .6; }
+
+/* 테크 오버라인 */
+.home .ws-launchhero { position: relative; z-index: 2; }
+.home .ws-launchhero__eyebrow { display: inline-flex; align-items: center; gap: 9px; font-family: var(--mono); font-size: 11.5px; font-weight: 700; letter-spacing: .22em; text-transform: uppercase; color: #9fb4ff; margin-bottom: 18px; padding: 6px 14px; border: 1px solid rgba(120,140,255,.32); border-radius: 999px; background: rgba(120,140,255,.07); }
+.home .ws-launchhero__eyebrow i { width: 7px; height: 7px; border-radius: 50%; background: #28c8ff; box-shadow: 0 0 10px #28c8ff; animation: wsBlink 2s steps(1) infinite; }
+@keyframes wsBlink { 50% { opacity: .2; } }
+
+/* 헤드라인 글로우 펄스 */
+.home .ws-launchhero__h1 { animation: wsPulse 5s ease-in-out infinite; }
+@keyframes wsPulse { 0%, 100% { text-shadow: 0 0 30px rgba(120,140,255,.25); } 50% { text-shadow: 0 0 48px rgba(255,60,95,.4); } }
+
+/* 콘솔 패널 */
+.home .ws-console { position: relative; z-index: 2; margin-top: 10px; border: 1px solid rgba(255,255,255,.10); border-radius: 12px; background: linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.015)); box-shadow: 0 0 0 1px rgba(120,140,255,.06), 0 36px 90px rgba(0,0,0,.55), inset 0 1px 0 rgba(255,255,255,.07); overflow: hidden; -webkit-backdrop-filter: blur(16px); backdrop-filter: blur(16px); }
+.home .ws-console::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, transparent, rgba(40,200,255,.7), rgba(255,60,95,.7), transparent); }
+.home .ws-console__bar { display: flex; align-items: center; gap: 12px; padding: 12px 18px; border-bottom: 1px solid rgba(255,255,255,.08); background: rgba(255,255,255,.02); font-family: var(--mono); }
+.home .ws-console__dots { display: inline-flex; gap: 6px; }
+.home .ws-console__dots i { width: 11px; height: 11px; border-radius: 50%; }
+.home .ws-console__dots i:nth-child(1) { background: #ff5f57; }
+.home .ws-console__dots i:nth-child(2) { background: #febc2e; }
+.home .ws-console__dots i:nth-child(3) { background: #28c840; }
+.home .ws-console__name { font-size: 13px; font-weight: 700; color: #c8cee6; letter-spacing: .02em; }
+.home .ws-console__name .dim { color: #6a7290; }
+.home .ws-console__status { margin-left: auto; display: inline-flex; align-items: center; gap: 8px; font-size: 11px; font-weight: 700; letter-spacing: .14em; color: #1fe3a0; }
+.home .ws-console__status b { width: 7px; height: 7px; border-radius: 50%; background: #1fe3a0; box-shadow: 0 0 8px #1fe3a0; animation: wsBlink 1.6s steps(1) infinite; }
+.home .ws-console__body { padding: clamp(16px, 2.4vw, 28px); }
+.home .ws-console__foot { display: flex; align-items: center; gap: 14px; padding: 12px 18px; border-top: 1px solid rgba(255,255,255,.08); background: rgba(255,255,255,.02); }
+.home .ws-console__prompt { font-family: var(--mono); font-weight: 700; color: #ff5b7f; font-size: 13px; }
+.home .ws-console__foot .ws-trust { margin-top: 0; justify-content: flex-start; font-size: 12.5px; }
+.home .ws-console .ws-tile { background: rgba(255,255,255,.03); }
+
+/* 네온 흐르는 테두리 (모든 카드, 호버 시 강조 + 회전) */
+.home .ws-tile::after { content: ''; position: absolute; inset: 0; border-radius: inherit; padding: 1px; background: conic-gradient(from var(--hue), rgba(255,45,85,.85), rgba(109,106,246,.85), rgba(40,200,255,.85), rgba(255,45,85,.85)); -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor; mask-composite: exclude; opacity: .26; transition: opacity .3s; pointer-events: none; }
+.home .ws-tile:hover::after { opacity: 1; animation: wsHue 4s linear infinite; }
+@keyframes wsHue { to { --hue: 360deg; } }
+
+@media (max-width: 560px) { .home .ws-console__foot { flex-wrap: wrap; gap: 8px; } }
