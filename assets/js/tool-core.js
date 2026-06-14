@@ -82,6 +82,7 @@
       var reorderable = config.reorder && state.files.length > 1;
       state.files.forEach(function (f, idx) {
         var li = d.createElement('li'); li.className = 'filelist__item';
+        if (config.reorder) { var ord = d.createElement('span'); ord.className = 'filelist__order'; ord.textContent = String(idx + 1); ord.setAttribute('aria-hidden', 'true'); li.appendChild(ord); }
         if (reorderable) {
           li.setAttribute('draggable', 'true'); li.classList.add('is-draggable');
           li.addEventListener('dragstart', function (e) { dragIdx = idx; li.classList.add('dragging'); if (e.dataTransfer) { e.dataTransfer.effectAllowed = 'move'; try { e.dataTransfer.setData('text/plain', String(idx)); } catch (x) {} } });
@@ -333,8 +334,20 @@
       result.hidden = true; result.innerHTML = '';
       selected = {}; cutsBefore = {}; previewPageShown = 0;
       render(); updatePageCount(); renderGrid();
+      announce(state.files.length ? (state.files.length + '개 파일이 선택되었습니다') : '파일 목록이 비워졌습니다');
+      if (state.files.length) probeEncrypted();
       if (config.onFiles) { try { config.onFiles(state.files); } catch (e) {} }
       try { root.dispatchEvent(new CustomEvent('tool:files', { bubbles: true, detail: { count: state.files.length, tool: config.tool } })); } catch (e) {}
+    }
+    // (개선 1) 열기-비밀번호 PDF 자동 감지 → 안내 (unlock·이미지 도구 제외)
+    var probedKey = '';
+    function probeEncrypted() {
+      if (config.tool === 'unlock' || config.accept === 'image' || !global.PDFEngine || !PDFEngine.probe) return;
+      var f = state.files[0]; if (!f) return;
+      var key = f.name + '|' + f.size; if (key === probedKey) return; probedKey = key;
+      PDFEngine.probe(f).then(function (info) {
+        if (info && info.needsPassword) UI.toast('이 PDF는 열기 비밀번호가 걸려 있어요. 먼저 [잠금해제] 도구로 푼 뒤 사용해 주세요.', 'warn');
+      }).catch(function () {});
     }
     // 외부(홈 풀스크린 닫기 등)에서 초기화 요청
     root.addEventListener('tool:reset', function () { if (!state.files.length) return; state.files = []; changed(); });
@@ -349,6 +362,7 @@
       });
       if (!arr.length) { UI.toast(isImg ? 'JPG·PNG 이미지만 올릴 수 있어요.' : 'PDF 파일만 올릴 수 있어요.', 'error'); return; }
       if (all.length > arr.length) UI.toast(isImg ? '이미지가 아닌 파일은 제외했어요.' : 'PDF가 아닌 파일은 제외했어요.', 'info');
+      arr.forEach(function (f) { if (f.size > 50 * 1024 * 1024) UI.toast('"' + f.name + '"은(는) 용량이 커서 처리가 느릴 수 있어요.', 'info'); });
       if (multiple) {
         var seen = {}; state.files.forEach(function (f) { seen[f.name + '|' + f.size] = true; });
         var dups = 0;
@@ -391,8 +405,14 @@
       if (base) res.filename = base + ext;
     }
 
+    // (개선 3) 처리 중 탭 닫기 경고 (작업 유실 방지)
+    function unloadGuard(e) { e.preventDefault(); e.returnValue = ''; return ''; }
     function setBusy(b) {
       runBtn.disabled = b || state.files.length === 0; runBtn.classList.toggle('is-busy', b);
+      // (개선 4) 처리 중 드롭존 비활성 (중간 파일 변경 방지)
+      if (drop) { drop.classList.toggle('is-disabled', b); drop.setAttribute('aria-disabled', b ? 'true' : 'false'); }
+      try { if (b) global.addEventListener('beforeunload', unloadGuard); else global.removeEventListener('beforeunload', unloadGuard); } catch (e) {}
+      if (b) announce('처리 중입니다. 잠시만 기다려 주세요.');
       if (progress) { progress.hidden = !b; if (b) { if (bar) bar.style.width = '4%'; if (ptext) ptext.textContent = '처리 중…'; } }
     }
     function onProgress(p) { var pct = Math.max(2, Math.round((p || 0) * 100)); if (bar) bar.style.width = pct + '%'; if (ptext) ptext.textContent = '처리 중… ' + pct + '%'; }
@@ -400,10 +420,21 @@
     function sumSize(items) { return items.reduce(function (s, it) { return s + ((it.blob && it.blob.size) || 0); }, 0); }
     async function handleResult(res) {
       if (!res) return;
-      if (res.type === 'blob') { UI.downloadBlob(res.blob, res.filename); showSuccess(res.filename, function () { UI.downloadBlob(res.blob, res.filename); }, res.blob && res.blob.size); }
+      if (res.type === 'blob') {
+        UI.downloadBlob(res.blob, res.filename);
+        showSuccess(res.filename, function () { UI.downloadBlob(res.blob, res.filename); }, res.blob && res.blob.size);
+        // (개선 5) 결과 PDF 페이지 수 표시
+        if (/\.pdf$/i.test(res.filename || '') && global.PDFEngine && PDFEngine.getPageCount) {
+          PDFEngine.getPageCount(res.blob).then(function (n) { if (n) appendResultMeta(n + '페이지'); }).catch(function () {});
+        }
+      }
       else if (res.type === 'zip') { await UI.zipAndDownload(res.items, res.zipName, onProgress); showSuccess(res.zipName + ' (' + res.items.length + '개 파일)', function () { UI.zipAndDownload(res.items, res.zipName); }, sumSize(res.items)); }
       else if (res.type === 'files') { res.items.forEach(function (it) { UI.downloadBlob(it.blob, it.name); }); showSuccess(res.items.length + '개 파일', null, sumSize(res.items)); }
       else if (res.type === 'message') { result.hidden = false; result.innerHTML = res.html; }
+    }
+    function appendResultMeta(txt) {
+      var ok = result.querySelector('.result__ok .result__size');
+      if (ok) ok.textContent = ok.textContent.replace(/\)$/, ' · ' + txt + ')');
     }
     function showSuccess(label, again, size) {
       result.hidden = false; result.innerHTML = '';
@@ -412,6 +443,9 @@
       ok.innerHTML = '<span class="result__check"></span> <strong>완료됐어요!</strong> ' + escapeHtml(label) + sizeTxt + ' 다운로드가 시작됐습니다.';
       result.appendChild(ok);
       if (again) { var b = d.createElement('button'); b.type = 'button'; b.className = 'btn btn--ghost btn--sm'; b.textContent = '다시 다운로드'; b.addEventListener('click', again); result.appendChild(b); }
+      // (개선 6) 완료 시 결과로 스크롤 + 음성 안내
+      announce('완료됐습니다. ' + label + ' 다운로드가 시작됐습니다.');
+      try { result.scrollIntoView({ behavior: 'smooth', block: 'nearest' }); } catch (e) {}
     }
 
     runBtn.addEventListener('click', async function () {
@@ -426,6 +460,33 @@
       }
       catch (e) { console.error('[ToolCore]', e); UI.toast(e && e.message ? e.message : '처리 중 오류가 발생했어요.', 'error'); }
       finally { setBusy(false); }
+    });
+
+    // ── 스크린리더 알림 (a11y) ──
+    var liveEl = null;
+    function announce(msg) {
+      try {
+        if (!liveEl) { liveEl = d.createElement('div'); liveEl.className = 'sr-only'; liveEl.setAttribute('aria-live', 'polite'); liveEl.setAttribute('aria-atomic', 'true'); root.appendChild(liveEl); }
+        liveEl.textContent = ''; var m = msg; setTimeout(function () { if (liveEl) liveEl.textContent = m; }, 30);
+      } catch (e) {}
+    }
+
+    // (개선 7) 옵션 기억 (localStorage · 파일은 저장하지 않음)
+    var OPT_KEY = 'aap:opts:' + config.tool;
+    function eachOpt(fn) { Array.prototype.forEach.call(root.querySelectorAll('input, select'), function (el) { if (el.classList.contains('js-file') || el.classList.contains('js-outname')) return; var k = el.name || el.id; if (!k) return; fn(el, k); }); }
+    function persistOptions() { try { var data = {}; eachOpt(function (el, k) { if (el.type === 'radio') { if (el.checked) data[k] = el.value; } else if (el.type === 'checkbox') { data[k] = !!el.checked; } else { data[k] = el.value; } }); global.localStorage.setItem(OPT_KEY, JSON.stringify(data)); } catch (e) {} }
+    function restoreOptions() { try { var raw = global.localStorage.getItem(OPT_KEY); if (!raw) return; var data = JSON.parse(raw); eachOpt(function (el, k) { if (!(k in data)) return; if (el.type === 'radio') el.checked = (el.value === data[k]); else if (el.type === 'checkbox') el.checked = !!data[k]; else el.value = data[k]; }); } catch (e) {} }
+    restoreOptions();
+    root.addEventListener('change', persistOptions);
+
+    // (개선 8) Enter로 실행 / Esc로 파일 비우기
+    root.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter') {
+        var t = e.target;
+        if (t && t.tagName === 'INPUT' && t.type !== 'checkbox' && t.type !== 'radio' && !runBtn.disabled) { e.preventDefault(); runBtn.click(); }
+      } else if (e.key === 'Escape') {
+        if (state.files.length) { state.files = []; changed(); }
+      }
     });
 
     render();

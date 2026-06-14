@@ -357,12 +357,15 @@
 .ws .linkbtn:hover { color: var(--red); text-decoration: underline; }
 .ws .linkbtn--danger:hover { color: var(--red-deep); }
 .ws .filelist__pages { font-size: 12px; color: var(--ink-faint); margin-left: 2px; }
+.ws .filelist__order { flex: 0 0 auto; min-width: 22px; height: 22px; display: grid; place-items: center; font-family: var(--font); font-weight: 800; font-size: 12px; color: #fff; background: var(--grad); border-radius: var(--radius-sm); box-shadow: var(--sh-red); }
 .ws .selbar { display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap; margin-bottom: 12px; }
 .ws .selbar__count { font-size: 13px; font-weight: 700; color: var(--ink); letter-spacing: -.01em; }
 .ws .selbar__btns { display: flex; gap: 6px; flex-wrap: wrap; }
 .ws .selbar__btns .linkbtn { border: 1px solid var(--line-2); padding: 5px 10px; border-radius: var(--radius-sm); }
 .ws .selbar__btns .linkbtn:hover { color: var(--red); border-color: #ffd5d1; background: #fff7f6; text-decoration: none; }
 .ws .result__size { color: var(--ink-faint); font-weight: 500; }
+.ws .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; padding: 0; margin: -1px; }
+.ws .dropzone.is-disabled { opacity: .55; pointer-events: none; filter: grayscale(.2); }
 
 /* ============ 업로드 → 풀스크린 전환 ============ */
 .ws-scrim { position: fixed; inset: 0; z-index: 998; background: rgba(23, 23, 42, .42); backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px); opacity: 0; pointer-events: none; transition: opacity .26s var(--ez); }
@@ -384,4 +387,64 @@ body.ws-app-open .ws-scrim { opacity: 1; pointer-events: auto; }
 @media (prefers-reduced-motion: reduce) {
   .js [data-reveal] { opacity: 1 !important; transform: none !important; }
   .ws-window.is-max, .tp-window.is-max { animation: none; }
+  .home .ws-orb-f, .home .ws-launchhero__h1 .mark { animation: none !important; }
 }
+
+/* ===================================================================
+   FUTURISTIC HOME — 다크 · 네온 글로우 · 글라스 · 그리드 메시 (홈 전용)
+   =================================================================== */
+body.home { background: #06070f; }
+.home { --f-bg: #06070f; --f-text: #eef1fb; --f-muted: #9aa1bd; --f-line: rgba(255,255,255,.10); }
+
+/* 헤더: 다크 글라스 */
+.home .ws-taskbar { background: rgba(8,9,18,.72); border-bottom: 1px solid var(--f-line); backdrop-filter: saturate(160%) blur(18px); -webkit-backdrop-filter: saturate(160%) blur(18px); }
+.home .ws-logo, .home .ws-logo .ko { color: var(--f-text); }
+.home .ws-nav a { color: var(--f-muted); }
+.home .ws-nav a:hover { color: #fff; background: rgba(255,255,255,.07); }
+.home .ws-nav a.gh { color: #fff; background: linear-gradient(135deg, #ff5b7f, #e5252a); box-shadow: 0 0 0 1px rgba(255,90,110,.4), 0 8px 26px rgba(229,37,42,.5); }
+
+/* 런처: 다크 + 그리드 메시 + 네온 글로우 블롭 */
+.home .ws-launch {
+  background:
+    linear-gradient(rgba(255,255,255,.022) 1px, transparent 1px) 0 0 / 100% 58px,
+    linear-gradient(90deg, rgba(255,255,255,.022) 1px, transparent 1px) 0 0 / 58px 100%,
+    radial-gradient(60% 50% at 82% 4%, rgba(255,60,95,.20), transparent 60%),
+    radial-gradient(52% 46% at 8% 96%, rgba(99,102,241,.20), transparent 62%),
+    radial-gradient(40% 40% at 50% 50%, rgba(40,200,255,.06), transparent 70%),
+    var(--f-bg);
+}
+.home .ws-launch::before, .home .ws-launch::after { content: none; }
+/* 떠다니는 네온 오브 */
+.home .ws-orb-f { position: absolute; border-radius: 50%; filter: blur(60px); z-index: 0; pointer-events: none; opacity: .55; }
+.home .ws-orb-f.a { top: -120px; right: 8%; width: 360px; height: 360px; background: radial-gradient(circle, #ff2d55, transparent 65%); animation: wsFloat 14s var(--ez) infinite; }
+.home .ws-orb-f.b { bottom: -100px; left: 4%; width: 320px; height: 320px; background: radial-gradient(circle, #6d6af6, transparent 65%); animation: wsFloat 18s var(--ez) infinite reverse; }
+
+/* 헤드라인: 발광 그라데이션 */
+.home .ws-launchhero__h1 { color: #f6f8ff; text-shadow: 0 0 34px rgba(120,140,255,.28); }
+.home .ws-launchhero__h1 .mark { background: linear-gradient(100deg, #ff8a5c, #ff2d55 38%, #ff5b7f 60%, #b5179e); background-size: 220% 100%; -webkit-background-clip: text; background-clip: text; color: transparent; filter: drop-shadow(0 0 20px rgba(255,60,95,.5)); animation: wsFlow 7s ease-in-out infinite; }
+.home .ws-launchhero__sub { color: var(--f-muted); }
+
+/* 타일: 다크 글라스 + 네온 보더/글로우 */
+.home .ws-tile { background: rgba(255,255,255,.038); border: 1px solid var(--f-line); -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); box-shadow: inset 0 1px 0 rgba(255,255,255,.07), 0 16px 36px rgba(0,0,0,.5); }
+.home .ws-tile__name { color: var(--f-text); }
+.home .ws-tile__desc { color: #8b92ad; }
+.home .ws-tile .arr { color: #6f7693; }
+.home .ws-tile::before { background: radial-gradient(130% 90% at 50% 0%, rgba(255,60,95,.22), transparent 60%); }
+.home .ws-tile:hover { transform: translateY(-8px); border-color: rgba(255,90,120,.6); box-shadow: 0 0 0 1px rgba(255,90,120,.45), 0 0 30px rgba(255,60,95,.30), 0 30px 60px rgba(0,0,0,.6); }
+.home .ws-tile:hover .arr { color: #ff7b93; }
+
+/* 아이콘 컨테이너: 다크 글라스 + 호버 네온 */
+.home .ws-tile__ico { background: linear-gradient(180deg, rgba(255,255,255,.10), rgba(255,255,255,.02)); border: 1px solid rgba(255,255,255,.14); box-shadow: inset 0 1px 0 rgba(255,255,255,.14); }
+.home .ws-tile:hover .ws-tile__ico { background: linear-gradient(180deg, rgba(255,90,120,.28), rgba(255,90,120,.06)); border-color: rgba(255,100,125,.6); box-shadow: 0 0 20px rgba(255,60,95,.5); }
+
+/* '전부 무료' 카드 */
+.home .ws-tile--about { background: rgba(255,255,255,.02); }
+.home .ws-tile--about:hover { background: rgba(255,255,255,.05); }
+.home .ws-tile--about .ws-tile__name { color: var(--f-text); }
+.home .ws-tile--about .ws-tile__sub { color: #7b82a0; }
+.home .ws-tile--about .ws-tile__ico .ic-svg { color: #8b92ad; }
+
+/* 신뢰 배지: 네온 점 */
+.home .ws-trust { color: #9aa1bd; }
+.home .ws-trust span::before { background: #1fe3a0; box-shadow: 0 0 8px rgba(31,227,160,.8); }
+.home ::selection { background: rgba(255,60,95,.35); color: #fff; }

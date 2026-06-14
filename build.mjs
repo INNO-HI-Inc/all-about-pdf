@@ -610,7 +610,8 @@ function buildHome() {
   const faqs = c.faq.map((f, i) => `<details><summary><span class="q">Q${i + 1}</span><span>${esc(f.q)}</span></summary><div class="a">${esc(f.a)}</div></details>`).join('\n        ');
 
   const main = `    <section class="ws-launch" id="tools">
-      <div class="ws-orb" aria-hidden="true"></div>
+      <div class="ws-orb-f a" aria-hidden="true"></div>
+      <div class="ws-orb-f b" aria-hidden="true"></div>
       <div class="ws-wrap">
         <div class="ws-launchhero" data-reveal>
           <h1 class="ws-launchhero__h1">PDF의 모든 것,<br><span class="mark">설치 없이 무료로.</span></h1>
