@@ -93,7 +93,7 @@
 
 /* ============ 기능 위주 단일 화면 런처 ============ */
 .ws-launch { position: relative; overflow: hidden; min-height: calc(100vh - 72px); display: flex; flex-direction: column; justify-content: center; padding: 26px 0 40px; background: #ffffff; }
-.ws-launch::before { content: ""; position: absolute; top: -120px; right: -180px; width: 560px; height: 560px; border-radius: 50%; background: radial-gradient(circle, rgba(255, 91, 82, .05), transparent 64%); z-index: 0; pointer-events: none; }
+.ws-launch::before { content: none; }
 .ws-launch::after { content: none; }
 /* 홈 런처는 화면을 꽉 채우도록 넓게 (중앙 1200 제한 해제) */
 .ws-launch .ws-wrap { width: 100%; max-width: 1640px; padding: 0 clamp(24px, 4vw, 72px); position: relative; z-index: 1; }
@@ -113,8 +113,7 @@
 .ws-launchhero__badge .sq { width: 7px; height: 7px; border-radius: 50%; background: var(--red); box-shadow: 0 0 0 3px rgba(229, 37, 42, .18); }
 /* 행간 1.06 · 자간 -.046em · 장평(글자 폭) scaleX .985 + font-stretch */
 .ws-launchhero__h1 { font-family: var(--font); font-weight: 800; font-size: clamp(2.1rem, 5.2vw, 3.7rem); line-height: 1.06; letter-spacing: -.046em; word-spacing: -.01em; font-stretch: 96%; transform: scaleX(.985); transform-origin: center; color: var(--ink); }
-.ws-launchhero__h1 .mark { background: linear-gradient(100deg, #ff7a5c, #e5252a 38%, #ff5b52 62%, #c81e14); background-size: 220% 100%; -webkit-background-clip: text; background-clip: text; color: transparent; animation: wsFlow 7s ease-in-out infinite; }
-@keyframes wsFlow { 0%, 100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }
+.ws-launchhero__h1 .mark { color: var(--red); }
 /* 행간 1.75(넉넉) · 자간 -.008em */
 .ws-launchhero__sub { margin: 18px auto 0; max-width: 46ch; font-size: clamp(1rem, 2.2vw, 1.16rem); line-height: 1.75; letter-spacing: -.008em; color: var(--ink-soft); font-weight: 450; word-break: keep-all; }
 @media (max-width: 560px) {
@@ -127,14 +126,14 @@
 @media (max-width: 900px) { .ws-tilegrid { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 420px) { .ws-tilegrid { grid-template-columns: 1fr; } }
 /* 각진 입체 카드 (다층 그림자로 깊이감, 배경은 깔끔하게) */
-.ws-tile { position: relative; background: linear-gradient(180deg, #ffffff, #fcfcfe); border: 1px solid var(--line-2); border-radius: var(--radius-sm); box-shadow: 0 1px 1px rgba(23, 23, 42, .04), 0 4px 8px rgba(23, 23, 42, .05), 0 12px 22px rgba(23, 23, 42, .05), inset 0 1px 0 rgba(255, 255, 255, .95); padding: 24px 22px; min-height: 166px; display: flex; flex-direction: column; justify-content: space-between; gap: 18px; color: var(--ink); overflow: hidden; transition: transform .22s var(--ez), box-shadow .22s, border-color .22s; }
-/* 호버: 더 높이 떠오르고 레드 글로우가 깔리는 입체 리프트 */
-.ws-tile::before { content: ""; position: absolute; inset: 0; background: radial-gradient(130% 90% at 50% 0%, rgba(255, 91, 82, .08), transparent 60%); opacity: 0; transition: opacity .25s; pointer-events: none; }
+.ws-tile { position: relative; background: #fff; border: 1px solid var(--line-2); border-radius: var(--radius-sm); box-shadow: 0 1px 1px rgba(23, 23, 42, .04), 0 4px 8px rgba(23, 23, 42, .05), 0 12px 22px rgba(23, 23, 42, .05), inset 0 1px 0 rgba(255, 255, 255, .95); padding: 24px 22px; min-height: 166px; display: flex; flex-direction: column; justify-content: space-between; gap: 18px; color: var(--ink); overflow: hidden; transition: transform .22s var(--ez), box-shadow .22s, border-color .22s; }
+/* 호버: 떠오름 + 옅은 레드 틴트 (그라데이션 없이) */
+.ws-tile::before { content: ""; position: absolute; inset: 0; background: rgba(255, 91, 82, .05); opacity: 0; transition: opacity .25s; pointer-events: none; }
 .ws-tile:hover { transform: translateY(-8px); box-shadow: 0 2px 4px rgba(23, 23, 42, .05), 0 14px 28px rgba(229, 37, 42, .12), 0 28px 50px rgba(23, 23, 42, .12), inset 0 1px 0 rgba(255, 255, 255, 1); border-color: rgba(229, 37, 42, .22); text-decoration: none; }
 .ws-tile:hover::before { opacity: 1; }
 /* 톤온톤 각진 아이콘 컨테이너 — 그리드 리듬·구조 부여 */
-.ws-tile__ico { position: relative; width: 56px; height: 56px; display: grid; place-items: center; background: linear-gradient(180deg, #ffffff, #f1f2f7); border: 1px solid var(--line); border-radius: var(--radius); box-shadow: 0 1px 2px rgba(23, 23, 42, .06), inset 0 1px 0 rgba(255, 255, 255, .9); transition: transform .2s var(--ez), background .2s, border-color .2s, box-shadow .2s; }
-.ws-tile:hover .ws-tile__ico { transform: translateY(-2px); background: var(--grad-soft); border-color: #ffd5d1; box-shadow: 0 4px 10px rgba(229, 37, 42, .16), inset 0 1px 0 rgba(255, 255, 255, .9); }
+.ws-tile__ico { position: relative; width: 56px; height: 56px; display: grid; place-items: center; background: var(--surf-2); border: 1px solid var(--line); border-radius: var(--radius); box-shadow: inset 0 1px 0 rgba(255, 255, 255, .9); transition: transform .2s var(--ez), background .2s, border-color .2s, box-shadow .2s; }
+.ws-tile:hover .ws-tile__ico { transform: translateY(-2px); background: #fff1f0; border-color: #ffd5d1; }
 .ws-tile__ico .ic-svg { width: 36px; height: 36px; filter: drop-shadow(0 4px 10px rgba(229, 37, 42, .14)); }
 .ws-tile__txt { display: block; position: relative; }
 .ws-tile__name { display: block; position: relative; font-family: var(--font); font-weight: 800; font-size: 1.3rem; line-height: 1.22; letter-spacing: -.024em; font-stretch: 97%; color: var(--ink); }
@@ -387,109 +386,5 @@ body.ws-app-open .ws-scrim { opacity: 1; pointer-events: auto; }
 @media (prefers-reduced-motion: reduce) {
   .js [data-reveal] { opacity: 1 !important; transform: none !important; }
   .ws-window.is-max, .tp-window.is-max { animation: none; }
-  .home .ws-orb-f, .home .ws-launchhero__h1 .mark { animation: none !important; }
 }
 
-/* ===================================================================
-   FUTURISTIC HOME — 다크 · 네온 글로우 · 글라스 · 그리드 메시 (홈 전용)
-   =================================================================== */
-body.home { background: #06070f; }
-.home { --f-bg: #06070f; --f-text: #eef1fb; --f-muted: #9aa1bd; --f-line: rgba(255,255,255,.10); }
-
-/* 헤더: 다크 글라스 */
-.home .ws-taskbar { background: rgba(8,9,18,.72); border-bottom: 1px solid var(--f-line); backdrop-filter: saturate(160%) blur(18px); -webkit-backdrop-filter: saturate(160%) blur(18px); }
-.home .ws-logo, .home .ws-logo .ko { color: var(--f-text); }
-.home .ws-nav a { color: var(--f-muted); }
-.home .ws-nav a:hover { color: #fff; background: rgba(255,255,255,.07); }
-.home .ws-nav a.gh { color: #fff; background: linear-gradient(135deg, #ff5b7f, #e5252a); box-shadow: 0 0 0 1px rgba(255,90,110,.4), 0 8px 26px rgba(229,37,42,.5); }
-
-/* 런처: 다크 + 그리드 메시 + 네온 글로우 블롭 */
-.home .ws-launch {
-  background:
-    linear-gradient(rgba(255,255,255,.022) 1px, transparent 1px) 0 0 / 100% 58px,
-    linear-gradient(90deg, rgba(255,255,255,.022) 1px, transparent 1px) 0 0 / 58px 100%,
-    radial-gradient(60% 50% at 82% 4%, rgba(255,60,95,.20), transparent 60%),
-    radial-gradient(52% 46% at 8% 96%, rgba(99,102,241,.20), transparent 62%),
-    radial-gradient(40% 40% at 50% 50%, rgba(40,200,255,.06), transparent 70%),
-    var(--f-bg);
-}
-.home .ws-launch::before, .home .ws-launch::after { content: none; }
-/* 떠다니는 네온 오브 */
-.home .ws-orb-f { position: absolute; border-radius: 50%; filter: blur(60px); z-index: 0; pointer-events: none; opacity: .55; }
-.home .ws-orb-f.a { top: -120px; right: 8%; width: 360px; height: 360px; background: radial-gradient(circle, #ff2d55, transparent 65%); animation: wsFloat 14s var(--ez) infinite; }
-.home .ws-orb-f.b { bottom: -100px; left: 4%; width: 320px; height: 320px; background: radial-gradient(circle, #6d6af6, transparent 65%); animation: wsFloat 18s var(--ez) infinite reverse; }
-
-/* 헤드라인: 발광 그라데이션 */
-.home .ws-launchhero__h1 { color: #f6f8ff; text-shadow: 0 0 34px rgba(120,140,255,.28); }
-.home .ws-launchhero__h1 .mark { background: linear-gradient(100deg, #ff8a5c, #ff2d55 38%, #ff5b7f 60%, #b5179e); background-size: 220% 100%; -webkit-background-clip: text; background-clip: text; color: transparent; filter: drop-shadow(0 0 20px rgba(255,60,95,.5)); animation: wsFlow 7s ease-in-out infinite; }
-.home .ws-launchhero__sub { color: var(--f-muted); }
-
-/* 타일: 다크 글라스 + 네온 보더/글로우 */
-.home .ws-tile { background: rgba(255,255,255,.038); border: 1px solid var(--f-line); -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); box-shadow: inset 0 1px 0 rgba(255,255,255,.07), 0 16px 36px rgba(0,0,0,.5); }
-.home .ws-tile__name { color: var(--f-text); }
-.home .ws-tile__desc { color: #8b92ad; }
-.home .ws-tile .arr { color: #6f7693; }
-.home .ws-tile::before { background: radial-gradient(130% 90% at 50% 0%, rgba(255,60,95,.22), transparent 60%); }
-.home .ws-tile:hover { transform: translateY(-8px); border-color: rgba(255,90,120,.6); box-shadow: 0 0 0 1px rgba(255,90,120,.45), 0 0 30px rgba(255,60,95,.30), 0 30px 60px rgba(0,0,0,.6); }
-.home .ws-tile:hover .arr { color: #ff7b93; }
-
-/* 아이콘 컨테이너: 다크 글라스 + 호버 네온 */
-.home .ws-tile__ico { background: linear-gradient(180deg, rgba(255,255,255,.10), rgba(255,255,255,.02)); border: 1px solid rgba(255,255,255,.14); box-shadow: inset 0 1px 0 rgba(255,255,255,.14); }
-.home .ws-tile:hover .ws-tile__ico { background: linear-gradient(180deg, rgba(255,90,120,.28), rgba(255,90,120,.06)); border-color: rgba(255,100,125,.6); box-shadow: 0 0 20px rgba(255,60,95,.5); }
-
-/* '전부 무료' 카드 */
-.home .ws-tile--about { background: rgba(255,255,255,.02); }
-.home .ws-tile--about:hover { background: rgba(255,255,255,.05); }
-.home .ws-tile--about .ws-tile__name { color: var(--f-text); }
-.home .ws-tile--about .ws-tile__sub { color: #7b82a0; }
-.home .ws-tile--about .ws-tile__ico .ic-svg { color: #8b92ad; }
-
-/* 신뢰 배지: 네온 점 */
-.home .ws-trust { color: #9aa1bd; }
-.home .ws-trust span::before { background: #1fe3a0; box-shadow: 0 0 8px rgba(31,227,160,.8); }
-.home ::selection { background: rgba(255,60,95,.35); color: #fff; }
-
-/* ===== MORE FUTURISTIC: 콘솔 HUD 구조 · 네온 테두리 · 시안 · 스캔라인 ===== */
-@property --hue { syntax: '<angle>'; inherits: false; initial-value: 0deg; }
-
-/* 시안 오브 */
-.home .ws-orb-f.c { top: 28%; left: 44%; width: 300px; height: 300px; background: radial-gradient(circle, #28c8ff, transparent 65%); opacity: .38; filter: blur(70px); animation: wsFloat 22s var(--ez) infinite; }
-
-/* CRT 스캔라인 오버레이 */
-.home .ws-scan { position: absolute; inset: 0; z-index: 1; pointer-events: none; background: repeating-linear-gradient(0deg, rgba(255,255,255,.022) 0 1px, transparent 1px 3px); mix-blend-mode: overlay; opacity: .6; }
-
-/* 테크 오버라인 */
-.home .ws-launchhero { position: relative; z-index: 2; }
-.home .ws-launchhero__eyebrow { display: inline-flex; align-items: center; gap: 9px; font-family: var(--mono); font-size: 11.5px; font-weight: 700; letter-spacing: .22em; text-transform: uppercase; color: #9fb4ff; margin-bottom: 18px; padding: 6px 14px; border: 1px solid rgba(120,140,255,.32); border-radius: 999px; background: rgba(120,140,255,.07); }
-.home .ws-launchhero__eyebrow i { width: 7px; height: 7px; border-radius: 50%; background: #28c8ff; box-shadow: 0 0 10px #28c8ff; animation: wsBlink 2s steps(1) infinite; }
-@keyframes wsBlink { 50% { opacity: .2; } }
-
-/* 헤드라인 글로우 펄스 */
-.home .ws-launchhero__h1 { animation: wsPulse 5s ease-in-out infinite; }
-@keyframes wsPulse { 0%, 100% { text-shadow: 0 0 30px rgba(120,140,255,.25); } 50% { text-shadow: 0 0 48px rgba(255,60,95,.4); } }
-
-/* 콘솔 패널 */
-.home .ws-console { position: relative; z-index: 2; margin-top: 10px; border: 1px solid rgba(255,255,255,.10); border-radius: 12px; background: linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.015)); box-shadow: 0 0 0 1px rgba(120,140,255,.06), 0 36px 90px rgba(0,0,0,.55), inset 0 1px 0 rgba(255,255,255,.07); overflow: hidden; -webkit-backdrop-filter: blur(16px); backdrop-filter: blur(16px); }
-.home .ws-console::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, transparent, rgba(40,200,255,.7), rgba(255,60,95,.7), transparent); }
-.home .ws-console__bar { display: flex; align-items: center; gap: 12px; padding: 12px 18px; border-bottom: 1px solid rgba(255,255,255,.08); background: rgba(255,255,255,.02); font-family: var(--mono); }
-.home .ws-console__dots { display: inline-flex; gap: 6px; }
-.home .ws-console__dots i { width: 11px; height: 11px; border-radius: 50%; }
-.home .ws-console__dots i:nth-child(1) { background: #ff5f57; }
-.home .ws-console__dots i:nth-child(2) { background: #febc2e; }
-.home .ws-console__dots i:nth-child(3) { background: #28c840; }
-.home .ws-console__name { font-size: 13px; font-weight: 700; color: #c8cee6; letter-spacing: .02em; }
-.home .ws-console__name .dim { color: #6a7290; }
-.home .ws-console__status { margin-left: auto; display: inline-flex; align-items: center; gap: 8px; font-size: 11px; font-weight: 700; letter-spacing: .14em; color: #1fe3a0; }
-.home .ws-console__status b { width: 7px; height: 7px; border-radius: 50%; background: #1fe3a0; box-shadow: 0 0 8px #1fe3a0; animation: wsBlink 1.6s steps(1) infinite; }
-.home .ws-console__body { padding: clamp(16px, 2.4vw, 28px); }
-.home .ws-console__foot { display: flex; align-items: center; gap: 14px; padding: 12px 18px; border-top: 1px solid rgba(255,255,255,.08); background: rgba(255,255,255,.02); }
-.home .ws-console__prompt { font-family: var(--mono); font-weight: 700; color: #ff5b7f; font-size: 13px; }
-.home .ws-console__foot .ws-trust { margin-top: 0; justify-content: flex-start; font-size: 12.5px; }
-.home .ws-console .ws-tile { background: rgba(255,255,255,.03); }
-
-/* 네온 흐르는 테두리 (모든 카드, 호버 시 강조 + 회전) */
-.home .ws-tile::after { content: ''; position: absolute; inset: 0; border-radius: inherit; padding: 1px; background: conic-gradient(from var(--hue), rgba(255,45,85,.85), rgba(109,106,246,.85), rgba(40,200,255,.85), rgba(255,45,85,.85)); -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor; mask-composite: exclude; opacity: .26; transition: opacity .3s; pointer-events: none; }
-.home .ws-tile:hover::after { opacity: 1; animation: wsHue 4s linear infinite; }
-@keyframes wsHue { to { --hue: 360deg; } }
-
-@media (max-width: 560px) { .home .ws-console__foot { flex-wrap: wrap; gap: 8px; } }

@@ -610,41 +610,24 @@ function buildHome() {
   const faqs = c.faq.map((f, i) => `<details><summary><span class="q">Q${i + 1}</span><span>${esc(f.q)}</span></summary><div class="a">${esc(f.a)}</div></details>`).join('\n        ');
 
   const main = `    <section class="ws-launch" id="tools">
-      <div class="ws-orb-f a" aria-hidden="true"></div>
-      <div class="ws-orb-f b" aria-hidden="true"></div>
-      <div class="ws-orb-f c" aria-hidden="true"></div>
-      <div class="ws-scan" aria-hidden="true"></div>
       <div class="ws-wrap">
         <div class="ws-launchhero" data-reveal>
-          <span class="ws-launchhero__eyebrow"><i></i>PDF TOOLKIT · BROWSER-NATIVE</span>
           <h1 class="ws-launchhero__h1">PDF의 모든 것,<br><span class="mark">설치 없이 무료로.</span></h1>
           <p class="ws-launchhero__sub">${esc(c.heroSubtitle)}</p>
         </div>
-        <div class="ws-console" data-reveal>
-          <div class="ws-console__bar">
-            <span class="ws-console__dots" aria-hidden="true"><i></i><i></i><i></i></span>
-            <span class="ws-console__name">pdf-toolkit<span class="dim">.local</span></span>
-            <span class="ws-console__status"><b aria-hidden="true"></b>8 MODULES · ONLINE</span>
-          </div>
-          <div class="ws-console__body">
-            <div class="ws-tilegrid">
-        ${tiles}
-            <a class="ws-tile ws-tile--about" href="about/" data-reveal>
-              <span class="ws-tile__ico">${ICONS.info}</span>
-              <span><span class="ws-tile__name">전부 무료</span><span class="ws-tile__sub">서버에 올리지 않고 내 기기에서</span></span>${ARR_SVG}
-            </a>
-            </div>
-          </div>
-          <div class="ws-console__foot">
-            <span class="ws-console__prompt" aria-hidden="true">&gt;_</span>
-            <div class="ws-trust">
-              <span>무설치</span>
-              <span>무가입</span>
-              <span>완전 무료 · 무제한</span>
-              <span>파일 서버 전송 안 함</span>
-              <span>오픈소스</span>
-            </div>
-          </div>
+        <div class="ws-tilegrid">
+      ${tiles}
+        <a class="ws-tile ws-tile--about" href="about/" data-reveal>
+          <span class="ws-tile__ico">${ICONS.info}</span>
+          <span><span class="ws-tile__name">전부 무료</span><span class="ws-tile__sub">서버에 올리지 않고 내 기기에서</span></span>${ARR_SVG}
+        </a>
+        </div>
+        <div class="ws-trust" data-reveal>
+          <span>무설치</span>
+          <span>무가입</span>
+          <span>완전 무료 · 무제한</span>
+          <span>파일 서버 전송 안 함</span>
+          <span>오픈소스</span>
         </div>
       </div>
     </section>`;
