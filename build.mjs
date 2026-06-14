@@ -17,6 +17,7 @@ const SITE_URL = process.env.SITE_URL || 'https://inno-hi-inc.github.io/all-abou
 const GITHUB_URL = process.env.GITHUB_URL || 'https://github.com/INNO-HI-Inc/all-about-pdf';
 const BRAND = 'PDF의 모든 것';
 const TODAY = '2026-06-04';
+const ASSET_VER = Date.now(); // CSS/JS 캐시버스팅(빌드마다 갱신)
 
 // 로고 마크 (글로시 그라디언트 오브) — 헤더·푸터 공통
 const LOGO_SVG = '<svg class="logo-mark" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><defs><radialGradient id="aapOrb" cx="34%" cy="27%" r="84%"><stop offset="0%" stop-color="#c8b9ff"/><stop offset="36%" stop-color="#6d6af6"/><stop offset="74%" stop-color="#4f46e5"/><stop offset="100%" stop-color="#36178a"/></radialGradient></defs><circle cx="16" cy="16" r="13.6" fill="url(#aapOrb)"/><ellipse cx="11.6" cy="10.4" rx="4.7" ry="3" fill="#fff" opacity=".5" transform="rotate(-18 11.6 10.4)"/></svg>';
@@ -54,6 +55,7 @@ const ICONS_PDF = {
   delete: pdfSvg(pdfPage(2) + pdfBadge(17.4, 17.4, '#2b303b', '<path d="M15.4 17.4h4" stroke="#fff" stroke-width="1.7" stroke-linecap="round"/>')),
   'to-image': pdfSvg(pdfPage(1) + '<rect x="13" y="13" width="7.8" height="7.8" rx="1.4" fill="#18a957" stroke="#fff" stroke-width="1"/><circle cx="15.5" cy="15.7" r="1" fill="#fff"/><path d="M13.7 19.7l2.1-2.4 1.4 1.5 1.3-1.5 1.9 2.4z" fill="#fff"/>'),
   'page-numbers': pdfSvg(pdfPage(2) + '<circle cx="11.3" cy="17.6" r="3.6" fill="#4f46e5" stroke="#fff" stroke-width="1.1"/><path d="M11.55 15.9v3.4M10.5 16.5l1.05-.6" stroke="#fff" stroke-width="1" fill="none" stroke-linecap="round" stroke-linejoin="round"/>'),
+  'image-to-pdf': pdfSvg(pdfPage(0) + '<rect x="6.8" y="8.2" width="6.8" height="5.4" rx="1" fill="#0ea5e9"/><circle cx="8.9" cy="10.1" r=".85" fill="#fff"/><path d="M7.2 13.2l1.9-2.2 1.25 1.35 1.15-1.25 1.7 2.1z" fill="#fff"/>' + pdfBadge(17.4, 17.4, '#e5252a', '<path d="M15.6 17.4h3.6M17.4 15.6v3.6" stroke="#fff" stroke-width="1.5" stroke-linecap="round"/>')),
 };
 
 // ───────── 유틸 ─────────
@@ -66,7 +68,7 @@ const read = (slug) => JSON.parse(readFileSync(join(WS, `content_${slug}.json`),
 const TOOLS = [
   { slug: 'merge', icon: ICONS.merge, nav: '합치기', multiple: true, reorder: true,
     runLabel: 'PDF 합치기', dropTitle: '합칠 PDF들을 끌어다 놓으세요', pagecount: false,
-    feature: ['여러 PDF 병합', '페이지 순서 변경', '무료·무제한'], options: '' },
+    feature: ['여러 PDF 병합', '페이지 순서 변경', '무료·무제한'], options: optMerge() },
   { slug: 'split', icon: ICONS.split, nav: '분할', multiple: false,
     runLabel: 'PDF 분할하기', dropTitle: '분할할 PDF를 끌어다 놓으세요', pagecount: true,
     feature: ['낱장 분리', '범위 지정 분할', 'ZIP 일괄 다운로드'], options: optSplit() },
@@ -75,22 +77,26 @@ const TOOLS = [
     feature: ['인쇄·편집 제한 해제', '비밀번호 제거', '브라우저 내 처리'], options: optUnlock() },
   { slug: 'extract', icon: ICONS.extract, nav: '페이지 추출', multiple: false,
     runLabel: '페이지 추출하기', dropTitle: '페이지를 추출할 PDF를 끌어다 놓으세요', pagecount: true,
-    feature: ['특정 페이지 추출', '여러 구간 지정', '순서 유지'], options: optPages('extract-pages', '1, 3, 5-7', '추출할 페이지') },
+    feature: ['특정 페이지 추출', '여러 구간 지정', '순서 유지'], options: optPages('extract-pages', '1, 3, 5-7', '추출할 페이지', '추출된-페이지') },
   { slug: 'delete', icon: ICONS.delete, nav: '페이지 삭제', multiple: false,
     runLabel: '페이지 삭제하기', dropTitle: '페이지를 삭제할 PDF를 끌어다 놓으세요', pagecount: true,
-    feature: ['특정 페이지 삭제', '여러 페이지 일괄', '원본 보존'], options: optPages('delete-pages', '2, 4, 6-8', '삭제할 페이지') },
+    feature: ['특정 페이지 삭제', '여러 페이지 일괄', '원본 보존'], options: optPages('delete-pages', '2, 4, 6-8', '삭제할 페이지', '페이지-삭제됨') },
   { slug: 'to-image', icon: ICONS.image, nav: '이미지 변환', multiple: false,
     runLabel: '이미지로 변환하기', dropTitle: '이미지로 바꿀 PDF를 끌어다 놓으세요', pagecount: true,
     feature: ['PNG·JPG 변환', '화질(배율) 선택', '페이지 지정'], options: optImage() },
   { slug: 'page-numbers', icon: ICONS.number, nav: '페이지 번호', multiple: false,
     runLabel: '페이지 번호 넣기', dropTitle: '번호를 넣을 PDF를 끌어다 놓으세요', pagecount: true,
     feature: ['위치·형식 선택', '시작 번호 지정', '표지 제외'], options: optPageNumbers() },
+  { slug: 'image-to-pdf', icon: ICONS.image, nav: '이미지→PDF', multiple: true, reorder: true,
+    accept: 'image', imageThumbs: true, fileThumbs: true,
+    runLabel: 'PDF로 만들기', dropTitle: '이미지(JPG·PNG)를 끌어다 놓으세요', pagecount: false,
+    feature: ['JPG·PNG → PDF', '여러 장 한 파일로', '순서 변경'], options: optImagesToPdf() },
 ];
 const TOOL_BY = Object.fromEntries(TOOLS.map((t) => [t.slug, t]));
 
 // 작업실 OS 공용 자원 (홈 + 도구 상세 공통)
 const CHIP = '<svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4"/></svg>';
-const APP_FILE = { merge: 'merge.app', split: 'split.app', unlock: 'unlock.app', extract: 'extract.app', delete: 'delete.app', 'to-image': 'to-image.app', 'page-numbers': 'page-num.app' };
+const APP_FILE = { merge: 'merge.app', split: 'split.app', unlock: 'unlock.app', extract: 'extract.app', delete: 'delete.app', 'to-image': 'to-image.app', 'page-numbers': 'page-num.app', 'image-to-pdf': 'img-to-pdf.app' };
 const APP_DESC = {
   merge: '여러 PDF를 순서대로 끌어다 하나로. 과제 묶음, 보고서 취합, 스캔본 결합까지 한 번에 끝냅니다.',
   split: '한 파일을 여러 개로. 자르는 지점을 눌러 필요한 부분만 깔끔하게 나눕니다.',
@@ -99,15 +105,17 @@ const APP_DESC = {
   delete: '빈 페이지나 불필요한 장을 제거. 제출 전 군더더기를 정리해 문서를 깔끔하게.',
   'to-image': 'PDF 페이지를 JPG·PNG 이미지로. 블로그·SNS·발표 자료에 그대로 붙여 쓰기 좋습니다.',
   'page-numbers': '문서 하단에 페이지 번호를 자동으로. 위치·시작 번호·서식을 골라 보고서 형식을 갖춥니다.',
+  'image-to-pdf': '사진·캡처 이미지를 한 PDF로. JPG·PNG 여러 장을 끌어다 순서대로 묶어 제출용 문서를 만듭니다.',
 };
 const APP_SHORT = {
   merge: '여러 PDF를 하나로', split: '한 파일을 여러 개로', unlock: '비밀번호·제한 해제',
   extract: '원하는 페이지만 추출', delete: '불필요한 페이지 삭제', 'to-image': 'JPG·PNG로 변환', 'page-numbers': '페이지 번호 넣기',
+  'image-to-pdf': 'JPG·PNG를 PDF로',
 };
 // 태블릿 대시보드 타일 색(도구별 컬러 구분)
 const TILE_COLOR = {
   merge: '#e5252a', split: '#2f6df6', unlock: '#f59e0b', extract: '#10b981',
-  delete: '#f43f5e', 'to-image': '#8b5cf6', 'page-numbers': '#0ea5e9',
+  delete: '#f43f5e', 'to-image': '#8b5cf6', 'page-numbers': '#0ea5e9', 'image-to-pdf': '#0ea5e9',
 };
 const ARR_SVG = '<svg class="arr" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>';
 
@@ -139,13 +147,50 @@ function wsFooter(rel) {
 }
 
 // ───────── 옵션 마크업 (tools/*.js의 ID와 일치) ─────────
+// 공통: 저장 파일명(선택). 비우면 도구 기본 이름. class js-outname을 ToolCore가 읽음.
+function optOutName(ph) {
+  return `<div class="option">
+    <label class="option__label" for="out-name">저장 파일명 <span class="option__hint">선택 · 비우면 기본 이름</span></label>
+    <input type="text" id="out-name" class="field js-outname" placeholder="${ph}" autocomplete="off">
+  </div>`;
+}
+function optMerge() {
+  return `<div class="options">
+  <label class="checkbox"><input type="checkbox" id="merge-blank"> 파일 사이에 빈 페이지 넣기</label>
+  ${optOutName('합쳐진-PDF')}
+</div>`;
+}
+function optImagesToPdf() {
+  return `<div class="options">
+  <div class="option">
+    <span class="option__label">페이지 크기</span>
+    <div class="segmented" role="radiogroup" aria-label="페이지 크기">
+      <label><input type="radio" name="itp-size" value="image" checked><span>이미지 크기대로</span></label>
+      <label><input type="radio" name="itp-size" value="a4"><span>A4에 맞춤</span></label>
+    </div>
+  </div>
+  ${optOutName('이미지-PDF')}
+</div>`;
+}
 function optSplit() {
   return `<div class="options">
   <div class="option">
     <span class="option__label">분할 방식</span>
     <div class="segmented" role="radiogroup" aria-label="분할 방식">
-      <label><input type="radio" name="split-mode" value="each" checked><span>낱장으로 분리</span></label>
+      <label><input type="radio" name="split-mode" value="each" checked><span>낱장으로</span></label>
+      <label><input type="radio" name="split-mode" value="every"><span>N매마다</span></label>
+      <label><input type="radio" name="split-mode" value="oddeven"><span>홀/짝 분리</span></label>
       <label><input type="radio" name="split-mode" value="ranges"><span>범위 지정</span></label>
+    </div>
+  </div>
+  <div class="option-row">
+    <div class="option">
+      <label class="option__label" for="split-every">N매마다 <span class="option__hint">'N매마다' 선택 시</span></label>
+      <input type="number" id="split-every" class="field" value="2" min="1" inputmode="numeric">
+    </div>
+    <div class="option">
+      <label class="option__label" for="split-zipname">ZIP 파일명 <span class="option__hint">선택</span></label>
+      <input type="text" id="split-zipname" class="field" placeholder="분할된-PDF" autocomplete="off">
     </div>
   </div>
   <div class="option">
@@ -160,17 +205,28 @@ function optUnlock() {
     <label class="option__label" for="unlock-pw">비밀번호 <span class="option__hint">열 때 비밀번호를 묻는 경우에만 입력</span></label>
     <input type="password" id="unlock-pw" class="field" placeholder="아는 비밀번호 (선택)" autocomplete="off">
   </div>
+  <label class="checkbox"><input type="checkbox" id="unlock-showpw"> 비밀번호 표시</label>
   <label class="checkbox"><input type="checkbox" id="unlock-raster"> 이미지로 해제 (비밀번호가 걸린 PDF용)</label>
+  <div class="option">
+    <label class="option__label" for="unlock-scale">이미지 해제 화질 <span class="option__hint">'이미지로 해제' 선택 시</span></label>
+    <select id="unlock-scale" class="field">
+      <option value="1.5">보통 (가벼움)</option>
+      <option value="2" selected>선명</option>
+      <option value="3">아주 선명 (용량 큼)</option>
+    </select>
+  </div>
   <p class="option__hint" style="margin-top:-6px">※ 이미지로 해제하면 글자 선택·복사·편집이 안 되는 이미지 PDF로 바뀝니다. 비밀번호가 걸려 일반 해제가 안 될 때만 쓰세요.</p>
+  ${optOutName('잠금해제-PDF')}
   <p class="callout callout--warn"><span class="callout__ic">${ICONS.info}</span><span><strong>암호 크랙이 아닙니다.</strong> 본인이 아는 비밀번호, 또는 인쇄·편집 제한만 제거합니다. 모르는 비밀번호는 풀 수 없어요.</span></p>
 </div>`;
 }
-function optPages(id, ph, label) {
+function optPages(id, ph, label, outPh) {
   return `<div class="options">
   <div class="option">
-    <label class="option__label" for="${id}">${label} <span class="option__hint">예: ${ph}</span></label>
+    <label class="option__label" for="${id}">${label} <span class="option__hint">예: ${ph} · 썸네일을 눌러 골라도 됩니다</span></label>
     <input type="text" id="${id}" class="field" placeholder="${ph}" inputmode="numeric" autocomplete="off">
   </div>
+  ${optOutName(outPh || '결과-PDF')}
 </div>`;
 }
 function optImage() {
@@ -192,6 +248,21 @@ function optImage() {
       </select>
     </div>
   </div>
+  <div class="option-row">
+    <div class="option">
+      <label class="option__label" for="img-quality">JPG 품질 <span class="option__hint">JPG일 때</span></label>
+      <select id="img-quality" class="field">
+        <option value="0.7">보통 (가벼움)</option>
+        <option value="0.85">좋음</option>
+        <option value="0.92" selected>높음</option>
+        <option value="0.97">최고 (용량 큼)</option>
+      </select>
+    </div>
+    <div class="option">
+      <label class="option__label" for="img-prefix">파일명 접두어 <span class="option__hint">선택 · 기본 page</span></label>
+      <input type="text" id="img-prefix" class="field" placeholder="page" autocomplete="off">
+    </div>
+  </div>
   <div class="option">
     <span class="option__label">변환 범위</span>
     <div class="segmented" role="radiogroup" aria-label="변환 범위">
@@ -203,6 +274,8 @@ function optImage() {
     <label class="option__label" for="img-pages">페이지 지정 <span class="option__hint">'특정 페이지' 선택 시 · 예: 1, 3, 5-7</span></label>
     <input type="text" id="img-pages" class="field" placeholder="1, 3, 5-7" inputmode="numeric" autocomplete="off">
   </div>
+  <label class="checkbox"><input type="checkbox" id="img-gray"> 흑백(그레이스케일)으로 변환</label>
+  <label class="checkbox"><input type="checkbox" id="img-transparent"> 투명 배경 (PNG만 적용)</label>
 </div>`;
 }
 function optPageNumbers() {
@@ -232,7 +305,48 @@ function optPageNumbers() {
       <label><input type="radio" name="pn-format" value="dash"><span>- 1 -</span></label>
     </div>
   </div>
+  <div class="option-row">
+    <div class="option">
+      <label class="option__label" for="pn-size">글자 크기</label>
+      <select id="pn-size" class="field">
+        <option value="9">작게</option>
+        <option value="11" selected>보통</option>
+        <option value="14">크게</option>
+        <option value="18">아주 크게</option>
+      </select>
+    </div>
+    <div class="option">
+      <label class="option__label" for="pn-color">글자 색</label>
+      <select id="pn-color" class="field">
+        <option value="1a1a1a" selected>검정</option>
+        <option value="888888">회색</option>
+        <option value="e5252a">빨강</option>
+        <option value="2f6df6">파랑</option>
+      </select>
+    </div>
+    <div class="option">
+      <label class="option__label" for="pn-margin">가장자리 여백</label>
+      <select id="pn-margin" class="field">
+        <option value="18">좁게</option>
+        <option value="28" selected>보통</option>
+        <option value="40">넓게</option>
+      </select>
+    </div>
+  </div>
+  <div class="option-row">
+    <div class="option">
+      <label class="option__label" for="pn-prefix">앞 글자 <span class="option__hint">예: p.</span></label>
+      <input type="text" id="pn-prefix" class="field" placeholder="(없음)" maxlength="8" autocomplete="off">
+    </div>
+    <div class="option">
+      <label class="option__label" for="pn-suffix">뒤 글자 <span class="option__hint">예: - 또는 /</span></label>
+      <input type="text" id="pn-suffix" class="field" placeholder="(없음)" maxlength="8" autocomplete="off">
+    </div>
+  </div>
+  <p class="option__hint" style="margin-top:-4px">※ 앞뒤 글자는 영문·숫자·기호만 가능합니다(한글 미지원).</p>
   <label class="checkbox"><input type="checkbox" id="pn-skip"> 표지(첫 페이지)는 번호 제외</label>
+  <label class="checkbox"><input type="checkbox" id="pn-box"> 번호 뒤에 반투명 배경 (가독성)</label>
+  ${optOutName('페이지번호-추가')}
 </div>`;
 }
 
@@ -305,7 +419,7 @@ ${toolList.map((s) => `  <script src="${rel}assets/js/tools/${s}.js" defer></scr
   <link rel="apple-touch-icon" href="${rel}assets/img/logo.png">
   <link rel="manifest" href="${rel}site.webmanifest">
   <meta name="theme-color" content="#4f46e5">
-  <link rel="stylesheet" href="${rel}assets/css/style.css">${headExtra || ''}${ld}
+  <link rel="stylesheet" href="${rel}assets/css/style.css?v=${ASSET_VER}">${headExtra || ''}${ld}
 </head>
 <body${bodyClass ? ` class="${bodyClass}"` : ''}>
   <a class="skip-link" href="#main">본문 바로가기</a>
@@ -324,9 +438,11 @@ function widget(t, opts) {
   opts = opts || {};
   const extraClass = opts.class ? ' ' + opts.class : '';
   const pc = t.pagecount ? `\n      <p class="pagecount js-pagecount"></p>` : '';
+  const accept = t.accept === 'image' ? 'image/png,image/jpeg' : 'application/pdf';
+  const aria = t.accept === 'image' ? '이미지 파일 선택 또는 끌어다 놓기' : 'PDF 파일 선택 또는 끌어다 놓기';
   return `<div class="tool${extraClass}" data-tool="${t.slug}">
-      <div class="dropzone js-drop" tabindex="0" role="button" aria-label="PDF 파일 선택 또는 끌어다 놓기">
-        <input type="file" class="js-file" accept="application/pdf" ${t.multiple ? 'multiple ' : ''}hidden>
+      <div class="dropzone js-drop" tabindex="0" role="button" aria-label="${aria}">
+        <input type="file" class="js-file" accept="${accept}" ${t.multiple ? 'multiple ' : ''}hidden>
         <svg class="dropzone__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 16V4M12 4l-4 4M12 4l4 4"/><path d="M4 16v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg>
         <p class="dropzone__title">${t.dropTitle}</p>
         <span class="dropzone__btn">파일 선택</span>
@@ -461,7 +577,7 @@ ${related(t.slug, rel)}`;
     withScripts: t.slug, noChrome: true,
     bodyClass: 'ws tp',
     extraScripts: ['assets/js/workspace.js'],
-    headExtra: `\n  <script>document.documentElement.className+=" js";</script>\n  <link rel="stylesheet" href="${rel}assets/css/workspace.css">`
+    headExtra: `\n  <script>document.documentElement.className+=" js";</script>\n  <link rel="stylesheet" href="${rel}assets/css/workspace.css?v=${ASSET_VER}">`
   });
   const dir = join(ROOT, t.slug);
   if (!existsSync(dir)) mkdirSync(dir, { recursive: true });
@@ -487,17 +603,18 @@ function buildHome() {
 
   const tiles = TOOLS.map((t) => `<a class="ws-tile" href="${t.slug}/" data-reveal>
         <span class="ws-tile__ico">${ICONS_PDF[t.slug]}</span>
-        <span class="ws-tile__name">${t.nav}</span>${ARR_SVG}
+        <span class="ws-tile__txt"><span class="ws-tile__name">${t.nav}</span><span class="ws-tile__desc">${esc(t.feature[0])}</span></span>${ARR_SVG}
       </a>`).join('\n      ');
 
   const usps = c.uspCards.map((u, i) => `<div class="ws-usp" data-reveal><span class="n">0${i + 1}</span><div><h4>${esc(u.title)}</h4><p>${esc(u.desc)}</p></div></div>`).join('\n        ');
   const faqs = c.faq.map((f, i) => `<details><summary><span class="q">Q${i + 1}</span><span>${esc(f.q)}</span></summary><div class="a">${esc(f.a)}</div></details>`).join('\n        ');
 
   const main = `    <section class="ws-launch" id="tools">
+      <div class="ws-orb" aria-hidden="true"></div>
       <div class="ws-wrap">
-        <div class="ws-launchhead">
-          <h1>필요한 PDF 작업을 누르세요</h1>
-          <span class="sub">설치·가입 없이 · 내 브라우저에서 바로 · 완전 무료</span>
+        <div class="ws-launchhero" data-reveal>
+          <h1 class="ws-launchhero__h1">PDF의 모든 것,<br><span class="mark">설치 없이 무료로.</span></h1>
+          <p class="ws-launchhero__sub">${esc(c.heroSubtitle)}</p>
         </div>
         <div class="ws-tilegrid">
       ${tiles}
@@ -505,6 +622,13 @@ function buildHome() {
           <span class="ws-tile__ico">${ICONS.info}</span>
           <span><span class="ws-tile__name">전부 무료</span><span class="ws-tile__sub">서버에 올리지 않고 내 기기에서</span></span>${ARR_SVG}
         </a>
+        </div>
+        <div class="ws-trust" data-reveal>
+          <span>무설치</span>
+          <span>무가입</span>
+          <span>완전 무료 · 무제한</span>
+          <span>파일 서버 전송 안 함</span>
+          <span>오픈소스</span>
         </div>
       </div>
     </section>`;
@@ -515,7 +639,7 @@ function buildHome() {
     withScripts: null,
     bodyClass: 'ws home',
     extraScripts: ['assets/js/workspace.js'],
-    headExtra: '\n  <script>document.documentElement.className+=" js";</script>\n  <link rel="stylesheet" href="assets/css/workspace.css">'
+    headExtra: `\n  <script>document.documentElement.className+=" js";</script>\n  <link rel="stylesheet" href="assets/css/workspace.css?v=${ASSET_VER}">`
   });
   writeFileSync(join(ROOT, 'index.html'), html);
   console.log('✓ /index.html (작업실 OS)');
@@ -556,7 +680,7 @@ ${related('', rel).replace('다른 PDF 도구도 써보세요', '도구 바로�
     desc: `${BRAND}은 파일을 서버에 올리지 않고 내 브라우저에서만 처리하는 무료 오픈소스 PDF 도구 모음입니다. 개인정보를 수집하지 않습니다.`,
     canonical, ogTitle: `소개 · 개인정보 | ${BRAND}`, rel, jsonld: null, main, withScripts: null,
     noChrome: true, bodyClass: 'ws tp', extraScripts: ['assets/js/workspace.js'],
-    headExtra: `\n  <script>document.documentElement.className+=" js";</script>\n  <link rel="stylesheet" href="${rel}assets/css/workspace.css">`
+    headExtra: `\n  <script>document.documentElement.className+=" js";</script>\n  <link rel="stylesheet" href="${rel}assets/css/workspace.css?v=${ASSET_VER}">`
   });
   const dir = join(ROOT, 'about');
   if (!existsSync(dir)) mkdirSync(dir, { recursive: true });
@@ -587,7 +711,7 @@ function build404() {
     desc: '요청하신 페이지를 찾을 수 없습니다.',
     canonical: null, noindex: true, ogTitle: '404', rel, jsonld: null, main, withScripts: null,
     noChrome: true, bodyClass: 'ws tp', extraScripts: ['assets/js/workspace.js'],
-    headExtra: `\n  <script>document.documentElement.className+=" js";</script>\n  <link rel="stylesheet" href="${SITE_URL}/assets/css/workspace.css">`
+    headExtra: `\n  <script>document.documentElement.className+=" js";</script>\n  <link rel="stylesheet" href="${SITE_URL}/assets/css/workspace.css?v=${ASSET_VER}">`
   });
   writeFileSync(join(ROOT, '404.html'), html);
   console.log('✓ /404.html');

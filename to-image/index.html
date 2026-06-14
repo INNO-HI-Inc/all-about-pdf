@@ -22,9 +22,9 @@
   <link rel="apple-touch-icon" href="../assets/img/logo.png">
   <link rel="manifest" href="../site.webmanifest">
   <meta name="theme-color" content="#4f46e5">
-  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/style.css?v=1781447457716">
   <script>document.documentElement.className+=" js";</script>
-  <link rel="stylesheet" href="../assets/css/workspace.css">
+  <link rel="stylesheet" href="../assets/css/workspace.css?v=1781447457716">
   <script type="application/ld+json">[{"@context":"https://schema.org","@type":"WebApplication","name":"PDF JPG 변환 - PDF의 모든 것","url":"https://inno-hi-inc.github.io/all-about-pdf/to-image/","applicationCategory":"UtilitiesApplication","operatingSystem":"All","browserRequirements":"Requires JavaScript","inLanguage":"ko","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"KRW"},"featureList":["PNG·JPG 변환","화질(배율) 선택","페이지 지정"],"publisher":{"@type":"Organization","name":"PDF의 모든 것","url":"https://inno-hi-inc.github.io/all-about-pdf/"}},{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"홈","item":"https://inno-hi-inc.github.io/all-about-pdf/"},{"@type":"ListItem","position":2,"name":"PDF JPG 변환","item":"https://inno-hi-inc.github.io/all-about-pdf/to-image/"}]}]</script>
 </head>
 <body class="ws tp">
@@ -85,6 +85,21 @@
       </select>
     </div>
   </div>
+  <div class="option-row">
+    <div class="option">
+      <label class="option__label" for="img-quality">JPG 품질 <span class="option__hint">JPG일 때</span></label>
+      <select id="img-quality" class="field">
+        <option value="0.7">보통 (가벼움)</option>
+        <option value="0.85">좋음</option>
+        <option value="0.92" selected>높음</option>
+        <option value="0.97">최고 (용량 큼)</option>
+      </select>
+    </div>
+    <div class="option">
+      <label class="option__label" for="img-prefix">파일명 접두어 <span class="option__hint">선택 · 기본 page</span></label>
+      <input type="text" id="img-prefix" class="field" placeholder="page" autocomplete="off">
+    </div>
+  </div>
   <div class="option">
     <span class="option__label">변환 범위</span>
     <div class="segmented" role="radiogroup" aria-label="변환 범위">
@@ -96,6 +111,8 @@
     <label class="option__label" for="img-pages">페이지 지정 <span class="option__hint">'특정 페이지' 선택 시 · 예: 1, 3, 5-7</span></label>
     <input type="text" id="img-pages" class="field" placeholder="1, 3, 5-7" inputmode="numeric" autocomplete="off">
   </div>
+  <label class="checkbox"><input type="checkbox" id="img-gray"> 흑백(그레이스케일)으로 변환</label>
+  <label class="checkbox"><input type="checkbox" id="img-transparent"> 투명 배경 (PNG만 적용)</label>
 </div>
       <div class="pagegrid js-pagegrid" hidden></div>
       <div class="actions"><button class="btn btn--primary btn--lg btn--block js-run" disabled>이미지로 변환하기</button></div>
@@ -173,6 +190,9 @@
         <a class="tp-rel" href="../page-numbers/">
           <div class="tp-rel__body"><span class="tp-rel__ico"><svg viewBox="0 0 24 24" class="ic-svg ic-pdf" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M6.4 2.6h6.6L17.6 7v11.4a1.5 1.5 0 0 1-1.5 1.5H6.4a1.5 1.5 0 0 1-1.5-1.5V4.1a1.5 1.5 0 0 1 1.5-1.5z" fill="#E5252A"/><path d="M12.7 2.6 17.6 7h-3.8a1.1 1.1 0 0 1-1.1-1.1z" fill="#B3160F"/><rect x="7.2" y="8.7" width="6" height="1.2" rx=".6" fill="#fff" opacity=".9"/><rect x="7.2" y="11" width="4.2" height="1.2" rx=".6" fill="#fff" opacity=".9"/><circle cx="11.3" cy="17.6" r="3.6" fill="#4f46e5" stroke="#fff" stroke-width="1.1"/><path d="M11.55 15.9v3.4M10.5 16.5l1.05-.6" stroke="#fff" stroke-width="1" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span><div class="tp-rel__tx"><h3>PDF 페이지 번호 넣기</h3><p>페이지 번호 넣기</p></div><span class="tp-rel__arr" aria-hidden="true">→</span></div>
         </a>
+        <a class="tp-rel" href="../image-to-pdf/">
+          <div class="tp-rel__body"><span class="tp-rel__ico"><svg viewBox="0 0 24 24" class="ic-svg ic-pdf" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M6.4 2.6h6.6L17.6 7v11.4a1.5 1.5 0 0 1-1.5 1.5H6.4a1.5 1.5 0 0 1-1.5-1.5V4.1a1.5 1.5 0 0 1 1.5-1.5z" fill="#E5252A"/><path d="M12.7 2.6 17.6 7h-3.8a1.1 1.1 0 0 1-1.1-1.1z" fill="#B3160F"/><rect x="6.8" y="8.2" width="6.8" height="5.4" rx="1" fill="#0ea5e9"/><circle cx="8.9" cy="10.1" r=".85" fill="#fff"/><path d="M7.2 13.2l1.9-2.2 1.25 1.35 1.15-1.25 1.7 2.1z" fill="#fff"/><circle cx="17.4" cy="17.4" r="4.4" fill="#e5252a" stroke="#fff" stroke-width="1.2"/><path d="M15.6 17.4h3.6M17.4 15.6v3.6" stroke="#fff" stroke-width="1.5" stroke-linecap="round"/></svg></span><div class="tp-rel__tx"><h3>이미지 PDF 변환</h3><p>JPG·PNG를 PDF로</p></div><span class="tp-rel__arr" aria-hidden="true">→</span></div>
+        </a>
         </div>
       </div>
     </section>
@@ -183,7 +203,7 @@
           <div class="ws-footbrand"><span class="fb"><span class="chip" aria-hidden="true"><img src="../assets/img/logo.png" alt="" width="30" height="30" decoding="async"></span>PDF의 모든 것</span><p>설치도 회원가입도 없이, 파일을 서버에 올리지 않고 내 브라우저에서 바로 처리하는 한국어 무료 PDF 도구 모음입니다.</p></div>
           <div class="ws-footcols">
             <div class="ws-footcol"><h5>도구</h5><a href="../merge/">PDF 합치기</a><a href="../split/">PDF 분할</a><a href="../unlock/">PDF 잠금해제</a><a href="../extract/">PDF 페이지 추출</a></div>
-            <div class="ws-footcol"><h5>더보기</h5><a href="../delete/">PDF 페이지 삭제</a><a href="../to-image/">PDF JPG 변환</a><a href="../page-numbers/">PDF 페이지 번호 넣기</a></div>
+            <div class="ws-footcol"><h5>더보기</h5><a href="../delete/">PDF 페이지 삭제</a><a href="../to-image/">PDF JPG 변환</a><a href="../page-numbers/">PDF 페이지 번호 넣기</a><a href="../image-to-pdf/">이미지 PDF 변환</a></div>
             <div class="ws-footcol"><h5>정보</h5><a href="../about/">서비스 소개</a><a href="https://github.com/INNO-HI-Inc/all-about-pdf" rel="noopener" target="_blank">오픈소스 (GitHub) ↗</a></div>
           </div>
         </div>

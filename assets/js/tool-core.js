@@ -49,6 +49,9 @@
     var cutsBefore = {};     // 분할 모드: page→true (그 앞에서 자름)
     var dragIdx = -1;
     var thumbCache = new global.Map();
+    var pcCache = new global.Map();  // 파일별 페이지 수 캐시
+    var fileBar = null;              // 파일 요약/정리 툴바
+    var gridTotal = 0;               // 현재 그리드의 표시 페이지 수
     var previewPageShown = 0, previewTotal = 0;
 
     function iconBtn(txt, label, fn, cls) {
@@ -67,6 +70,7 @@
 
     function fileThumb(file, imgEl) {
       if (thumbCache.has(file)) { imgEl.src = thumbCache.get(file); return; }
+      if (config.imageThumbs) { var u = global.URL.createObjectURL(file); thumbCache.set(file, u); imgEl.src = u; return; }
       if (!global.PDFEngine || !PDFEngine.renderThumbs) return;
       PDFEngine.renderThumbs(file, { max: 1, scale: 0.3 }).then(function (res) {
         if (res.thumbs[0]) { thumbCache.set(file, res.thumbs[0].url); imgEl.src = res.thumbs[0].url; }
@@ -95,7 +99,16 @@
         var info = d.createElement('div'); info.className = 'filelist__info';
         var name = d.createElement('span'); name.className = 'filelist__name'; name.textContent = f.name;
         var size = d.createElement('span'); size.className = 'filelist__size'; size.textContent = UI.humanSize(f.size);
-        info.appendChild(name); info.appendChild(size); li.appendChild(info);
+        info.appendChild(name); info.appendChild(size);
+        if (config.showPages) {
+          var pgs = d.createElement('span'); pgs.className = 'filelist__pages';
+          if (pcCache.has(f)) pgs.textContent = pcCache.get(f) + '쪽';
+          else if (global.PDFEngine) (function (file, span) {
+            PDFEngine.getPageCount(file).then(function (n) { if (n) { pcCache.set(file, n); span.textContent = n + '쪽'; renderFileBar(); } });
+          })(f, pgs);
+          info.appendChild(pgs);
+        }
+        li.appendChild(info);
         var ctrls = d.createElement('div'); ctrls.className = 'filelist__ctrls';
         if (reorderable) {
           ctrls.appendChild(iconBtn('↑', '위로 이동', function () { if (idx > 0) swap(idx, idx - 1); }));
@@ -105,7 +118,42 @@
         li.appendChild(ctrls);
         filelist.appendChild(li);
       });
+      renderFileBar();
       runBtn.disabled = state.files.length === 0;
+    }
+
+    function ensureFileBar() {
+      if (fileBar) return fileBar;
+      fileBar = d.createElement('div'); fileBar.className = 'filebar'; fileBar.hidden = true;
+      if (filelist.parentNode) filelist.parentNode.insertBefore(fileBar, filelist);
+      return fileBar;
+    }
+    function renderFileBar() {
+      var fb = ensureFileBar();
+      if (!state.files.length) { fb.hidden = true; fb.innerHTML = ''; return; }
+      fb.hidden = false; fb.innerHTML = '';
+      var totalSize = state.files.reduce(function (s, f) { return s + (f.size || 0); }, 0);
+      var txt = state.files.length + '개 파일 · ' + UI.humanSize(totalSize);
+      if (config.showPages) {
+        var known = state.files.filter(function (f) { return pcCache.has(f); });
+        if (known.length === state.files.length) {
+          var tp = known.reduce(function (s, f) { return s + pcCache.get(f); }, 0);
+          txt += ' · 합산 ' + tp + '쪽';
+        }
+      }
+      var sum = d.createElement('span'); sum.className = 'filebar__sum'; sum.textContent = txt; fb.appendChild(sum);
+      var act = d.createElement('div'); act.className = 'filebar__act';
+      if (multiple) {
+        var sortBtn = d.createElement('button'); sortBtn.type = 'button'; sortBtn.className = 'linkbtn';
+        sortBtn.textContent = '이름순 정렬';
+        sortBtn.addEventListener('click', function () { state.files.sort(function (a, b) { return a.name.localeCompare(b.name, 'ko', { numeric: true }); }); render(); });
+        act.appendChild(sortBtn);
+      }
+      var clr = d.createElement('button'); clr.type = 'button'; clr.className = 'linkbtn linkbtn--danger';
+      clr.textContent = '전체 비우기';
+      clr.addEventListener('click', function () { state.files = []; changed(); });
+      act.appendChild(clr);
+      fb.appendChild(act);
     }
 
     function updatePageCount() {
@@ -140,9 +188,35 @@
       var fileRef = state.files[0];
       PDFEngine.renderThumbs(fileRef, {}).then(function (res) {
         if (state.files[0] !== fileRef) return;
+        gridTotal = res.shown;
         syncFromInput();
         pagegrid.innerHTML = '';
         var grid = d.createElement('div'); grid.className = 'pagegrid__grid';
+        var count = d.createElement('span'); count.className = 'selbar__count';
+        function updateSelCount() {
+          var n = Object.keys(selected).length;
+          count.textContent = config.selCountLabel ? config.selCountLabel(n, gridTotal) : (n ? (n + '개 선택됨') : '선택된 페이지 없음');
+        }
+        function repaint() {
+          Array.prototype.forEach.call(grid.children, function (cell) {
+            var pg = +cell.getAttribute('data-page'), on = !!selected[pg];
+            cell.classList.toggle('is-sel', on); cell.setAttribute('aria-pressed', on ? 'true' : 'false');
+          });
+          updateSelCount(); writeInput();
+        }
+        function mkBtn(label, fn) {
+          var b = d.createElement('button'); b.type = 'button'; b.className = 'linkbtn'; b.textContent = label;
+          b.addEventListener('click', function () { fn(); repaint(); }); return b;
+        }
+        var bar = d.createElement('div'); bar.className = 'selbar';
+        var btns = d.createElement('div'); btns.className = 'selbar__btns';
+        btns.appendChild(mkBtn('전체 선택', function () { selected = {}; for (var p = 1; p <= gridTotal; p++) selected[p] = true; }));
+        btns.appendChild(mkBtn('선택 해제', function () { selected = {}; }));
+        btns.appendChild(mkBtn('반전', function () { var s = {}; for (var p = 1; p <= gridTotal; p++) if (!selected[p]) s[p] = true; selected = s; }));
+        btns.appendChild(mkBtn('홀수', function () { selected = {}; for (var p = 1; p <= gridTotal; p += 2) selected[p] = true; }));
+        btns.appendChild(mkBtn('짝수', function () { selected = {}; for (var p = 2; p <= gridTotal; p += 2) selected[p] = true; }));
+        bar.appendChild(count); bar.appendChild(btns);
+        pagegrid.appendChild(bar);
         res.thumbs.forEach(function (t) {
           var cell = d.createElement('button');
           cell.type = 'button'; cell.className = 'pagecell'; cell.setAttribute('data-page', t.page);
@@ -151,12 +225,14 @@
           if (selected[t.page]) cell.classList.add('is-sel');
           cell.addEventListener('click', function () {
             if (selected[t.page]) delete selected[t.page]; else selected[t.page] = true;
-            cell.classList.toggle('is-sel'); cell.setAttribute('aria-pressed', selected[t.page] ? 'true' : 'false'); writeInput();
+            cell.classList.toggle('is-sel'); cell.setAttribute('aria-pressed', selected[t.page] ? 'true' : 'false');
+            updateSelCount(); writeInput();
           });
           grid.appendChild(cell);
         });
         pagegrid.appendChild(grid);
-        addHint(res, '페이지를 눌러 선택하세요');
+        updateSelCount();
+        addHint(res, '페이지를 눌러 선택 · 위 버튼으로 일괄 선택');
       }).catch(function () { pagegrid.hidden = true; pagegrid.innerHTML = ''; });
     }
 
@@ -180,14 +256,24 @@
         if (state.files[0] !== fileRef) return;
         var total = res.shown;
         pagegrid.innerHTML = '';
-        var grid = d.createElement('div'); grid.className = 'pagegrid__grid pagegrid__grid--split';
         var paint = function () {
           Array.prototype.forEach.call(grid.children, function (cell) {
             var pg = +cell.getAttribute('data-page');
             cell.classList.toggle('is-cut', !!cutsBefore[pg]);
             cell.setAttribute('data-seg', segIndexOf(pg, total) % 2);
           });
+          updateSegCount();
         };
+        var bar = d.createElement('div'); bar.className = 'selbar';
+        var segCount = d.createElement('span'); segCount.className = 'selbar__count';
+        function updateSegCount() { segCount.textContent = '→ ' + splitSegments(total).length + '개 파일로 분할'; }
+        var resetBtn = d.createElement('button'); resetBtn.type = 'button'; resetBtn.className = 'linkbtn';
+        resetBtn.textContent = '모든 자르기 해제';
+        resetBtn.addEventListener('click', function () { cutsBefore = {}; paint(); writeSplitInput(total); });
+        var segBtns = d.createElement('div'); segBtns.className = 'selbar__btns'; segBtns.appendChild(resetBtn);
+        bar.appendChild(segCount); bar.appendChild(segBtns);
+        pagegrid.appendChild(bar);
+        var grid = d.createElement('div'); grid.className = 'pagegrid__grid pagegrid__grid--split';
         res.thumbs.forEach(function (t) {
           var cell = d.createElement('button');
           cell.type = 'button'; cell.className = 'pagecell pagecell--split'; cell.setAttribute('data-page', t.page);
@@ -226,9 +312,9 @@
       var badge = pagegrid && pagegrid.querySelector('.numprev__badge'); if (!badge) return;
       var o = config.readOptions ? config.readOptions(root) : {};
       var num = (o.startAt != null ? o.startAt : 1);
-      var txt = o.format === 'n/total' ? num + ' / ' + Math.max(1, previewTotal - (o.skipCover ? 1 : 0)) : (o.format === 'dash' ? '- ' + num + ' -' : '' + num);
-      badge.textContent = txt;
-      badge.className = 'numprev__badge pos-' + (o.position || 'bottom-center');
+      var core = o.format === 'n/total' ? num + ' / ' + Math.max(1, previewTotal - (o.skipCover ? 1 : 0)) : (o.format === 'dash' ? '- ' + num + ' -' : '' + num);
+      badge.textContent = (o.prefix || '') + core + (o.suffix || '');
+      badge.className = 'numprev__badge pos-' + (o.position || 'bottom-center') + (o.box ? ' has-box' : '');
     }
     function onNumChange() {
       if (!state.files.length) return;
@@ -254,9 +340,25 @@
     root.addEventListener('tool:reset', function () { if (!state.files.length) return; state.files = []; changed(); });
 
     function addFiles(fileList) {
-      var arr = Array.prototype.slice.call(fileList).filter(function (f) { return /\.pdf$/i.test(f.name) || f.type === 'application/pdf'; });
-      if (!arr.length) { UI.toast('PDF 파일만 올릴 수 있어요.', 'error'); return; }
-      state.files = multiple ? state.files.concat(arr) : [arr[0]];
+      var all = Array.prototype.slice.call(fileList);
+      var isImg = config.accept === 'image';
+      var arr = all.filter(function (f) {
+        return isImg
+          ? (/\.(jpe?g|png)$/i.test(f.name) || /^image\/(png|jpeg)$/i.test(f.type))
+          : (/\.pdf$/i.test(f.name) || f.type === 'application/pdf');
+      });
+      if (!arr.length) { UI.toast(isImg ? 'JPG·PNG 이미지만 올릴 수 있어요.' : 'PDF 파일만 올릴 수 있어요.', 'error'); return; }
+      if (all.length > arr.length) UI.toast(isImg ? '이미지가 아닌 파일은 제외했어요.' : 'PDF가 아닌 파일은 제외했어요.', 'info');
+      if (multiple) {
+        var seen = {}; state.files.forEach(function (f) { seen[f.name + '|' + f.size] = true; });
+        var dups = 0;
+        arr = arr.filter(function (f) { var k = f.name + '|' + f.size; if (seen[k]) { dups++; return false; } seen[k] = true; return true; });
+        if (dups) UI.toast(dups + '개 중복 파일은 제외했어요.', 'info');
+        if (!arr.length) return;
+        state.files = state.files.concat(arr);
+      } else {
+        state.files = [arr[0]];
+      }
       changed();
     }
 
@@ -265,9 +367,29 @@
     input.addEventListener('change', function () { addFiles(input.files); input.value = ''; });
     ['dragenter', 'dragover'].forEach(function (ev) { drop.addEventListener(ev, function (e) { e.preventDefault(); drop.classList.add('dropzone--over'); }); });
     ['dragleave', 'dragend', 'drop'].forEach(function (ev) { drop.addEventListener(ev, function (e) { e.preventDefault(); drop.classList.remove('dropzone--over'); }); });
-    drop.addEventListener('drop', function (e) { if (e.dataTransfer && e.dataTransfer.files) addFiles(e.dataTransfer.files); });
+    drop.addEventListener('drop', function (e) { e.stopPropagation(); if (e.dataTransfer && e.dataTransfer.files) addFiles(e.dataTransfer.files); });
+    // 페이지 어디서든 드롭 허용 (드롭존 밖에 떨어뜨려도 인식)
+    var dragDepth = 0;
+    function hasFiles(e) { return e.dataTransfer && Array.prototype.indexOf.call(e.dataTransfer.types || [], 'Files') >= 0; }
+    d.addEventListener('dragover', function (e) { if (hasFiles(e)) e.preventDefault(); });
+    d.addEventListener('dragenter', function (e) { if (hasFiles(e)) { dragDepth++; drop.classList.add('dropzone--over'); } });
+    d.addEventListener('dragleave', function () { dragDepth = Math.max(0, dragDepth - 1); if (!dragDepth) drop.classList.remove('dropzone--over'); });
+    d.addEventListener('drop', function (e) {
+      if (!e.dataTransfer || !e.dataTransfer.files || !e.dataTransfer.files.length) return;
+      e.preventDefault(); dragDepth = 0; drop.classList.remove('dropzone--over');
+      addFiles(e.dataTransfer.files);
+    });
     if (gridInput && config.pageGrid) gridInput.addEventListener('input', reflectInput);
     if (config.numberPreview) { root.addEventListener('change', onNumChange); root.addEventListener('input', onNumChange); }
+
+    function applyOutName(res) {
+      if (!res || res.type !== 'blob') return;
+      var f = root.querySelector('.js-outname');
+      if (!f || !f.value.trim()) return;
+      var ext = (res.filename && res.filename.match(/\.[a-z0-9]+$/i) || ['.pdf'])[0];
+      var base = f.value.trim().replace(/[\\/:*?"<>|]/g, '').replace(/\.[a-z0-9]+$/i, '');
+      if (base) res.filename = base + ext;
+    }
 
     function setBusy(b) {
       runBtn.disabled = b || state.files.length === 0; runBtn.classList.toggle('is-busy', b);
@@ -275,17 +397,19 @@
     }
     function onProgress(p) { var pct = Math.max(2, Math.round((p || 0) * 100)); if (bar) bar.style.width = pct + '%'; if (ptext) ptext.textContent = '처리 중… ' + pct + '%'; }
 
+    function sumSize(items) { return items.reduce(function (s, it) { return s + ((it.blob && it.blob.size) || 0); }, 0); }
     async function handleResult(res) {
       if (!res) return;
-      if (res.type === 'blob') { UI.downloadBlob(res.blob, res.filename); showSuccess(res.filename, function () { UI.downloadBlob(res.blob, res.filename); }); }
-      else if (res.type === 'zip') { await UI.zipAndDownload(res.items, res.zipName, onProgress); showSuccess(res.zipName + ' (' + res.items.length + '개 파일)', function () { UI.zipAndDownload(res.items, res.zipName); }); }
-      else if (res.type === 'files') { res.items.forEach(function (it) { UI.downloadBlob(it.blob, it.name); }); showSuccess(res.items.length + '개 파일'); }
+      if (res.type === 'blob') { UI.downloadBlob(res.blob, res.filename); showSuccess(res.filename, function () { UI.downloadBlob(res.blob, res.filename); }, res.blob && res.blob.size); }
+      else if (res.type === 'zip') { await UI.zipAndDownload(res.items, res.zipName, onProgress); showSuccess(res.zipName + ' (' + res.items.length + '개 파일)', function () { UI.zipAndDownload(res.items, res.zipName); }, sumSize(res.items)); }
+      else if (res.type === 'files') { res.items.forEach(function (it) { UI.downloadBlob(it.blob, it.name); }); showSuccess(res.items.length + '개 파일', null, sumSize(res.items)); }
       else if (res.type === 'message') { result.hidden = false; result.innerHTML = res.html; }
     }
-    function showSuccess(label, again) {
+    function showSuccess(label, again, size) {
       result.hidden = false; result.innerHTML = '';
       var ok = d.createElement('p'); ok.className = 'result__ok';
-      ok.innerHTML = '<span class="result__check"></span> <strong>완료됐어요!</strong> ' + escapeHtml(label) + ' 다운로드가 시작됐습니다.';
+      var sizeTxt = size ? ' <span class="result__size">(' + UI.humanSize(size) + ')</span>' : '';
+      ok.innerHTML = '<span class="result__check"></span> <strong>완료됐어요!</strong> ' + escapeHtml(label) + sizeTxt + ' 다운로드가 시작됐습니다.';
       result.appendChild(ok);
       if (again) { var b = d.createElement('button'); b.type = 'button'; b.className = 'btn btn--ghost btn--sm'; b.textContent = '다시 다운로드'; b.addEventListener('click', again); result.appendChild(b); }
     }
@@ -295,7 +419,11 @@
       var opts = config.readOptions ? config.readOptions(root) : {};
       if (config.validate) { var err = config.validate(state.files, opts); if (err) { UI.toast(err, 'error'); return; } }
       setBusy(true);
-      try { var res = await config.run(state.files, opts, { onProgress: onProgress }); await handleResult(res); }
+      try {
+        var res = await config.run(state.files, opts, { onProgress: onProgress, root: root });
+        applyOutName(res);
+        await handleResult(res);
+      }
       catch (e) { console.error('[ToolCore]', e); UI.toast(e && e.message ? e.message : '처리 중 오류가 발생했어요.', 'error'); }
       finally { setBusy(false); }
     });
