@@ -560,7 +560,6 @@ function buildTool(t) {
     <section class="tp-editor">
       <div class="tp-editorwrap">
         <div class="ws-window tp-window">
-          <div class="ws-winbar"><span class="ws-wintitle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4"/></svg><span class="t">${APP_FILE[t.slug]}</span><span class="sub"> — ${esc(c.h1)}</span></span></div>
           <div class="tp-toolbody">${widget(t)}</div>
         </div>
       </div>
