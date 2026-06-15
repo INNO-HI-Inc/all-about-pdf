@@ -453,20 +453,24 @@ function widget(t, opts) {
   const accept = t.accept === 'image' ? 'image/png,image/jpeg' : 'application/pdf';
   const aria = t.accept === 'image' ? '이미지 파일 선택 또는 끌어다 놓기' : 'PDF 파일 선택 또는 끌어다 놓기';
   return `<div class="tool${extraClass}" data-tool="${t.slug}">
-      <div class="dropzone js-drop" tabindex="0" role="button" aria-label="${aria}">
-        <input type="file" class="js-file" accept="${accept}" ${t.multiple ? 'multiple ' : ''}hidden>
-        <svg class="dropzone__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 16V4M12 4l-4 4M12 4l4 4"/><path d="M4 16v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg>
-        <p class="dropzone__title">${t.dropTitle}</p>
-        <span class="dropzone__btn">파일 선택</span>
-        <p class="dropzone__hint">또는 끌어다 놓기 · 파일은 내 브라우저에서만 처리됩니다</p>
-      </div>${pc}
-      <ul class="filelist js-files"></ul>
-      ${t.options}
-      <div class="pagegrid js-pagegrid" hidden></div>
-      <div class="actions"><button class="btn btn--primary btn--lg btn--block js-run" disabled>${t.runLabel}</button></div>
-      <div class="progress js-progress" hidden><div class="progress__bar js-bar"></div><span class="progress__text js-ptext"></span></div>
-      <div class="result js-result" hidden></div>
-      <noscript><p class="callout callout--warn" style="margin-top:16px"><span class="callout__ic">${ICONS.info}</span><span>이 도구는 자바스크립트가 필요합니다. 브라우저의 자바스크립트를 켜 주세요. 파일은 여전히 서버로 전송되지 않고 내 브라우저에서만 처리됩니다.</span></p></noscript>
+      <div class="tool__left">
+        <div class="dropzone js-drop" tabindex="0" role="button" aria-label="${aria}">
+          <input type="file" class="js-file" accept="${accept}" ${t.multiple ? 'multiple ' : ''}hidden>
+          <svg class="dropzone__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 16V4M12 4l-4 4M12 4l4 4"/><path d="M4 16v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg>
+          <p class="dropzone__title">${t.dropTitle}</p>
+          <span class="dropzone__btn">파일 선택</span>
+          <p class="dropzone__hint">또는 끌어다 놓기 · 파일은 내 브라우저에서만 처리됩니다</p>
+        </div>${pc}
+        <ul class="filelist js-files"></ul>
+        <div class="pagegrid js-pagegrid" hidden></div>
+      </div>
+      <div class="tool__right">
+        ${t.options}
+        <div class="actions"><button class="btn btn--primary btn--lg btn--block js-run" disabled>${t.runLabel}</button></div>
+        <div class="progress js-progress" hidden><div class="progress__bar js-bar"></div><span class="progress__text js-ptext"></span></div>
+        <div class="result js-result" hidden></div>
+        <noscript><p class="callout callout--warn" style="margin-top:16px"><span class="callout__ic">${ICONS.info}</span><span>이 도구는 자바스크립트가 필요합니다. 브라우저의 자바스크립트를 켜 주세요. 파일은 여전히 서버로 전송되지 않고 내 브라우저에서만 처리됩니다.</span></p></noscript>
+      </div>
     </div>`;
 }
 
@@ -487,6 +491,16 @@ function related(slug, rel) {
         </div>
       </div>
     </section>`;
+}
+
+// ───────── 하단 중앙 플로팅 도구 선택 바 ─────────
+function toolDock(slug, rel) {
+  const items = TOOLS.map((o) => `<a class="tp-dock__item${o.slug === slug ? ' is-active' : ''}" href="${rel}${o.slug}/"${o.slug === slug ? ' aria-current="page"' : ''}>${o.icon}<span>${o.nav}</span></a>`).join('\n        ');
+  return `    <nav class="tp-dock" aria-label="PDF 도구 선택">
+      <div class="tp-dock__inner">
+        ${items}
+      </div>
+    </nav>`;
 }
 
 // ───────── 도구 페이지 ─────────
@@ -543,25 +557,18 @@ function buildTool(t) {
       </div>
     </section>
 
-    <section class="tp-stage tp-stage--split">
-      <div class="tp-splitgrid">
-        <div class="tp-splitleft">
-          <div class="ws-window tp-window">
-            <div class="ws-winbar"><span class="ws-wintitle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4"/></svg><span class="t">${APP_FILE[t.slug]}</span><span class="sub"> — ${esc(c.h1)}</span></span></div>
-            <div class="tp-toolbody">${widget(t)}</div>
-            <div class="ws-winnote"><span class="pre">$&gt;</span> 파일은 이 페이지를 벗어나지 않습니다 · 100% 브라우저 처리</div>
-          </div>
+    <section class="tp-editor">
+      <div class="tp-editorwrap">
+        <div class="ws-window tp-window">
+          <div class="ws-winbar"><span class="ws-wintitle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4"/></svg><span class="t">${APP_FILE[t.slug]}</span><span class="sub"> — ${esc(c.h1)}</span></span></div>
+          <div class="tp-toolbody">${widget(t)}</div>
         </div>
-        <aside class="tp-splitright" aria-label="다른 PDF 도구">
-          <div class="tp-splitright__h">다른 도구</div>
-          <div class="ws-tilegrid ws-tilegrid--mini">
-          ${otherTiles}
-          </div>
-        </aside>
       </div>
     </section>
 
-    <section class="tp-info">
+${toolDock(t.slug, rel)}
+
+    <section class="tp-info sr-only">
       <div class="tp-col">
         <p class="tp-lead">${esc(c.intro)}</p>
 
@@ -594,7 +601,7 @@ function buildTool(t) {
 
   const html = page({
     title: c.title, desc: c.metaDescription, canonical,
-    ogTitle: `${c.h1} 무료 - ${BRAND}`, rel, jsonld, main,
+    ogTitle: `${c.h1} 무료 - ${BRAND}`, rel, jsonld, main, noFooter: true,
     withScripts: t.slug, noChrome: true,
     bodyClass: 'ws tp',
     extraScripts: ['assets/js/workspace.js'],

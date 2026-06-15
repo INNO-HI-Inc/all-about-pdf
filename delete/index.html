@@ -22,9 +22,9 @@
   <link rel="apple-touch-icon" href="../assets/img/logo.png">
   <link rel="manifest" href="../site.webmanifest">
   <meta name="theme-color" content="#4f46e5">
-  <link rel="stylesheet" href="../assets/css/style.css?v=1781513089209">
+  <link rel="stylesheet" href="../assets/css/style.css?v=1781515102705">
   <script>document.documentElement.className+=" js";</script>
-  <link rel="stylesheet" href="../assets/css/workspace.css?v=1781513089209">
+  <link rel="stylesheet" href="../assets/css/workspace.css?v=1781515102705">
   <script type="application/ld+json">[{"@context":"https://schema.org","@type":"WebApplication","name":"PDF 페이지 삭제 - PDF의 모든 것","url":"https://inno-hi-inc.github.io/all-about-pdf/delete/","applicationCategory":"UtilitiesApplication","operatingSystem":"All","browserRequirements":"Requires JavaScript","inLanguage":"ko","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"KRW"},"featureList":["특정 페이지 삭제","여러 페이지 일괄","원본 보존"],"publisher":{"@type":"Organization","name":"PDF의 모든 것","url":"https://inno-hi-inc.github.io/all-about-pdf/"}},{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"홈","item":"https://inno-hi-inc.github.io/all-about-pdf/"},{"@type":"ListItem","position":2,"name":"PDF 페이지 삭제","item":"https://inno-hi-inc.github.io/all-about-pdf/delete/"}]}]</script>
 </head>
 <body class="ws tp">
@@ -52,22 +52,25 @@
       </div>
     </section>
 
-    <section class="tp-stage tp-stage--split">
-      <div class="tp-splitgrid">
-        <div class="tp-splitleft">
-          <div class="ws-window tp-window">
-            <div class="ws-winbar"><span class="ws-wintitle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4"/></svg><span class="t">delete.app</span><span class="sub"> — PDF 페이지 삭제</span></span></div>
-            <div class="tp-toolbody"><div class="tool" data-tool="delete">
-      <div class="dropzone js-drop" tabindex="0" role="button" aria-label="PDF 파일 선택 또는 끌어다 놓기">
-        <input type="file" class="js-file" accept="application/pdf" hidden>
-        <svg class="dropzone__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 16V4M12 4l-4 4M12 4l4 4"/><path d="M4 16v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg>
-        <p class="dropzone__title">페이지를 삭제할 PDF를 끌어다 놓으세요</p>
-        <span class="dropzone__btn">파일 선택</span>
-        <p class="dropzone__hint">또는 끌어다 놓기 · 파일은 내 브라우저에서만 처리됩니다</p>
-      </div>
+    <section class="tp-editor">
+      <div class="tp-editorwrap">
+        <div class="ws-window tp-window">
+          <div class="ws-winbar"><span class="ws-wintitle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4"/></svg><span class="t">delete.app</span><span class="sub"> — PDF 페이지 삭제</span></span></div>
+          <div class="tp-toolbody"><div class="tool" data-tool="delete">
+      <div class="tool__left">
+        <div class="dropzone js-drop" tabindex="0" role="button" aria-label="PDF 파일 선택 또는 끌어다 놓기">
+          <input type="file" class="js-file" accept="application/pdf" hidden>
+          <svg class="dropzone__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 16V4M12 4l-4 4M12 4l4 4"/><path d="M4 16v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg>
+          <p class="dropzone__title">페이지를 삭제할 PDF를 끌어다 놓으세요</p>
+          <span class="dropzone__btn">파일 선택</span>
+          <p class="dropzone__hint">또는 끌어다 놓기 · 파일은 내 브라우저에서만 처리됩니다</p>
+        </div>
       <p class="pagecount js-pagecount"></p>
-      <ul class="filelist js-files"></ul>
-      <div class="options">
+        <ul class="filelist js-files"></ul>
+        <div class="pagegrid js-pagegrid" hidden></div>
+      </div>
+      <div class="tool__right">
+        <div class="options">
   <div class="option">
     <label class="option__label" for="delete-pages">삭제할 페이지 <span class="option__hint">예: 2, 4, 6-8 · 썸네일을 눌러 골라도 됩니다</span></label>
     <input type="text" id="delete-pages" class="field" placeholder="2, 4, 6-8" inputmode="numeric" autocomplete="off">
@@ -77,56 +80,31 @@
     <input type="text" id="out-name" class="field js-outname" placeholder="페이지-삭제됨" autocomplete="off">
   </div>
 </div>
-      <div class="pagegrid js-pagegrid" hidden></div>
-      <div class="actions"><button class="btn btn--primary btn--lg btn--block js-run" disabled>페이지 삭제하기</button></div>
-      <div class="progress js-progress" hidden><div class="progress__bar js-bar"></div><span class="progress__text js-ptext"></span></div>
-      <div class="result js-result" hidden></div>
-      <noscript><p class="callout callout--warn" style="margin-top:16px"><span class="callout__ic"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><line x1="12" y1="11" x2="12" y2="16.5"/><circle cx="12" cy="7.8" r=".7" fill="currentColor" stroke="none"/></svg></span><span>이 도구는 자바스크립트가 필요합니다. 브라우저의 자바스크립트를 켜 주세요. 파일은 여전히 서버로 전송되지 않고 내 브라우저에서만 처리됩니다.</span></p></noscript>
+        <div class="actions"><button class="btn btn--primary btn--lg btn--block js-run" disabled>페이지 삭제하기</button></div>
+        <div class="progress js-progress" hidden><div class="progress__bar js-bar"></div><span class="progress__text js-ptext"></span></div>
+        <div class="result js-result" hidden></div>
+        <noscript><p class="callout callout--warn" style="margin-top:16px"><span class="callout__ic"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><line x1="12" y1="11" x2="12" y2="16.5"/><circle cx="12" cy="7.8" r=".7" fill="currentColor" stroke="none"/></svg></span><span>이 도구는 자바스크립트가 필요합니다. 브라우저의 자바스크립트를 켜 주세요. 파일은 여전히 서버로 전송되지 않고 내 브라우저에서만 처리됩니다.</span></p></noscript>
+      </div>
     </div></div>
-            <div class="ws-winnote"><span class="pre">$&gt;</span> 파일은 이 페이지를 벗어나지 않습니다 · 100% 브라우저 처리</div>
-          </div>
         </div>
-        <aside class="tp-splitright" aria-label="다른 PDF 도구">
-          <div class="tp-splitright__h">다른 도구</div>
-          <div class="ws-tilegrid ws-tilegrid--mini">
-          <a class="ws-tile" href="../merge/" data-reveal>
-            <span class="ws-tile__ico"><svg viewBox="0 0 24 24" class="ic-svg ic-pdf" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M6.4 2.6h6.6L17.6 7v11.4a1.5 1.5 0 0 1-1.5 1.5H6.4a1.5 1.5 0 0 1-1.5-1.5V4.1a1.5 1.5 0 0 1 1.5-1.5z" fill="#E5252A"/><path d="M12.7 2.6 17.6 7h-3.8a1.1 1.1 0 0 1-1.1-1.1z" fill="#B3160F"/><rect x="7.2" y="8.7" width="6" height="1.2" rx=".6" fill="#fff" opacity=".9"/><rect x="7.2" y="11" width="4.2" height="1.2" rx=".6" fill="#fff" opacity=".9"/><circle cx="17.4" cy="17.4" r="4.4" fill="#18a957" stroke="#fff" stroke-width="1.2"/><path d="M17.4 15.5v3.8M15.5 17.4h3.8" stroke="#fff" stroke-width="1.5" stroke-linecap="round"/></svg></span>
-            <span class="ws-tile__txt"><span class="ws-tile__name">합치기</span><span class="ws-tile__desc">여러 PDF 병합</span></span><svg class="arr" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-          </a>
-          <a class="ws-tile" href="../split/" data-reveal>
-            <span class="ws-tile__ico"><svg viewBox="0 0 24 24" class="ic-svg ic-pdf" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M6.4 2.6h7.4L17.6 7v12.3a1.5 1.5 0 0 1-1.5 1.5H6.4a1.5 1.5 0 0 1-1.5-1.5V4.1a1.5 1.5 0 0 1 1.5-1.5z" fill="#E5252A"/><path d="M12.7 2.6 17.6 7h-3.8a1.1 1.1 0 0 1-1.1-1.1z" fill="#B3160F"/><path d="M11.4 7.4v11.4" stroke="#fff" stroke-width="1.2" stroke-dasharray="1.8 1.6" stroke-linecap="round"/><g stroke="#fff" stroke-width="1.05" fill="none"><circle cx="9.4" cy="5.5" r="1.05"/><circle cx="9.4" cy="8.1" r="1.05"/><path d="M10.4 6 13.3 6.9M10.4 7.6 13.3 6.7" stroke-linecap="round"/></g></svg></span>
-            <span class="ws-tile__txt"><span class="ws-tile__name">분할</span><span class="ws-tile__desc">낱장 분리</span></span><svg class="arr" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-          </a>
-          <a class="ws-tile" href="../unlock/" data-reveal>
-            <span class="ws-tile__ico"><svg viewBox="0 0 24 24" class="ic-svg ic-pdf" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M6.4 2.6h6.6L17.6 7v11.4a1.5 1.5 0 0 1-1.5 1.5H6.4a1.5 1.5 0 0 1-1.5-1.5V4.1a1.5 1.5 0 0 1 1.5-1.5z" fill="#E5252A"/><path d="M12.7 2.6 17.6 7h-3.8a1.1 1.1 0 0 1-1.1-1.1z" fill="#B3160F"/><rect x="7.2" y="8.7" width="6" height="1.2" rx=".6" fill="#fff" opacity=".9"/><path d="M15.4 15.5v-1.7a2 2 0 0 1 3.8-.9" fill="none" stroke="#f5a623" stroke-width="1.4" stroke-linecap="round"/><rect x="13.8" y="15.3" width="6.5" height="5.4" rx="1.1" fill="#f5a623" stroke="#fff" stroke-width="1"/><circle cx="17.05" cy="17.7" r=".95" fill="#fff"/></svg></span>
-            <span class="ws-tile__txt"><span class="ws-tile__name">잠금해제</span><span class="ws-tile__desc">인쇄·편집 제한 해제</span></span><svg class="arr" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-          </a>
-          <a class="ws-tile" href="../extract/" data-reveal>
-            <span class="ws-tile__ico"><svg viewBox="0 0 24 24" class="ic-svg ic-pdf" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M6.4 2.6h6.6L17.6 7v11.4a1.5 1.5 0 0 1-1.5 1.5H6.4a1.5 1.5 0 0 1-1.5-1.5V4.1a1.5 1.5 0 0 1 1.5-1.5z" fill="#E5252A"/><path d="M12.7 2.6 17.6 7h-3.8a1.1 1.1 0 0 1-1.1-1.1z" fill="#B3160F"/><rect x="7.2" y="8.7" width="6" height="1.2" rx=".6" fill="#fff" opacity=".9"/><rect x="7.2" y="11" width="4.2" height="1.2" rx=".6" fill="#fff" opacity=".9"/><circle cx="17.4" cy="17.4" r="4.4" fill="#2f6df6" stroke="#fff" stroke-width="1.2"/><path d="M17.4 19.6v-4.3M15.4 17l2-2 2 2" fill="none" stroke="#fff" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-            <span class="ws-tile__txt"><span class="ws-tile__name">페이지 추출</span><span class="ws-tile__desc">특정 페이지 추출</span></span><svg class="arr" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-          </a>
-          <a class="ws-tile" href="../organize/" data-reveal>
-            <span class="ws-tile__ico"><svg viewBox="0 0 24 24" class="ic-svg ic-pdf" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M6.4 2.6h6.6L17.6 7v11.4a1.5 1.5 0 0 1-1.5 1.5H6.4a1.5 1.5 0 0 1-1.5-1.5V4.1a1.5 1.5 0 0 1 1.5-1.5z" fill="#E5252A"/><path d="M12.7 2.6 17.6 7h-3.8a1.1 1.1 0 0 1-1.1-1.1z" fill="#B3160F"/><rect x="7.2" y="8.7" width="6" height="1.2" rx=".6" fill="#fff" opacity=".9"/><rect x="7.2" y="11" width="4.2" height="1.2" rx=".6" fill="#fff" opacity=".9"/><circle cx="17.4" cy="17.4" r="4.4" fill="#7c3aed" stroke="#fff" stroke-width="1.2"/><path d="M19.4 16.5a2.5 2.5 0 1 0 .35 2.4" fill="none" stroke="#fff" stroke-width="1.3" stroke-linecap="round"/><path d="M19.6 15.3v1.7h-1.7" fill="none" stroke="#fff" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-            <span class="ws-tile__txt"><span class="ws-tile__name">페이지 정리</span><span class="ws-tile__desc">드래그로 순서 변경</span></span><svg class="arr" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-          </a>
-          <a class="ws-tile" href="../to-image/" data-reveal>
-            <span class="ws-tile__ico"><svg viewBox="0 0 24 24" class="ic-svg ic-pdf" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M6.4 2.6h6.6L17.6 7v11.4a1.5 1.5 0 0 1-1.5 1.5H6.4a1.5 1.5 0 0 1-1.5-1.5V4.1a1.5 1.5 0 0 1 1.5-1.5z" fill="#E5252A"/><path d="M12.7 2.6 17.6 7h-3.8a1.1 1.1 0 0 1-1.1-1.1z" fill="#B3160F"/><rect x="7.2" y="8.7" width="6" height="1.2" rx=".6" fill="#fff" opacity=".9"/><rect x="13" y="13" width="7.8" height="7.8" rx="1.4" fill="#18a957" stroke="#fff" stroke-width="1"/><circle cx="15.5" cy="15.7" r="1" fill="#fff"/><path d="M13.7 19.7l2.1-2.4 1.4 1.5 1.3-1.5 1.9 2.4z" fill="#fff"/></svg></span>
-            <span class="ws-tile__txt"><span class="ws-tile__name">이미지 변환</span><span class="ws-tile__desc">PNG·JPG 변환</span></span><svg class="arr" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-          </a>
-          <a class="ws-tile" href="../page-numbers/" data-reveal>
-            <span class="ws-tile__ico"><svg viewBox="0 0 24 24" class="ic-svg ic-pdf" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M6.4 2.6h6.6L17.6 7v11.4a1.5 1.5 0 0 1-1.5 1.5H6.4a1.5 1.5 0 0 1-1.5-1.5V4.1a1.5 1.5 0 0 1 1.5-1.5z" fill="#E5252A"/><path d="M12.7 2.6 17.6 7h-3.8a1.1 1.1 0 0 1-1.1-1.1z" fill="#B3160F"/><rect x="7.2" y="8.7" width="6" height="1.2" rx=".6" fill="#fff" opacity=".9"/><rect x="7.2" y="11" width="4.2" height="1.2" rx=".6" fill="#fff" opacity=".9"/><circle cx="11.3" cy="17.6" r="3.6" fill="#4f46e5" stroke="#fff" stroke-width="1.1"/><path d="M11.55 15.9v3.4M10.5 16.5l1.05-.6" stroke="#fff" stroke-width="1" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-            <span class="ws-tile__txt"><span class="ws-tile__name">페이지 번호</span><span class="ws-tile__desc">위치·형식 선택</span></span><svg class="arr" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-          </a>
-          <a class="ws-tile" href="../image-to-pdf/" data-reveal>
-            <span class="ws-tile__ico"><svg viewBox="0 0 24 24" class="ic-svg ic-pdf" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M6.4 2.6h6.6L17.6 7v11.4a1.5 1.5 0 0 1-1.5 1.5H6.4a1.5 1.5 0 0 1-1.5-1.5V4.1a1.5 1.5 0 0 1 1.5-1.5z" fill="#E5252A"/><path d="M12.7 2.6 17.6 7h-3.8a1.1 1.1 0 0 1-1.1-1.1z" fill="#B3160F"/><rect x="6.8" y="8.2" width="6.8" height="5.4" rx="1" fill="#0ea5e9"/><circle cx="8.9" cy="10.1" r=".85" fill="#fff"/><path d="M7.2 13.2l1.9-2.2 1.25 1.35 1.15-1.25 1.7 2.1z" fill="#fff"/><circle cx="17.4" cy="17.4" r="4.4" fill="#e5252a" stroke="#fff" stroke-width="1.2"/><path d="M15.6 17.4h3.6M17.4 15.6v3.6" stroke="#fff" stroke-width="1.5" stroke-linecap="round"/></svg></span>
-            <span class="ws-tile__txt"><span class="ws-tile__name">이미지→PDF</span><span class="ws-tile__desc">JPG·PNG → PDF</span></span><svg class="arr" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-          </a>
-          </div>
-        </aside>
       </div>
     </section>
 
-    <section class="tp-info">
+    <nav class="tp-dock" aria-label="PDF 도구 선택">
+      <div class="tp-dock__inner">
+        <a class="tp-dock__item" href="../merge/"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="8" width="11" height="12.5" rx="2"/><path d="M9 8V5.5A2 2 0 0 1 11 3.5h7.5A2 2 0 0 1 20.5 5.5V15a2 2 0 0 1-2 2H14.5"/></svg><span>합치기</span></a>
+        <a class="tp-dock__item" href="../split/"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="6" cy="6" r="2.4"/><circle cx="6" cy="18" r="2.4"/><line x1="20" y1="4" x2="8.6" y2="15.4"/><line x1="14.6" y1="14.6" x2="20" y2="20"/><line x1="8.6" y1="8.6" x2="11.4" y2="11.4"/></svg><span>분할</span></a>
+        <a class="tp-dock__item" href="../unlock/"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="9.5" rx="2"/><path d="M8 11V7a4 4 0 0 1 7.5-1.9"/></svg><span>잠금해제</span></a>
+        <a class="tp-dock__item" href="../extract/"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3.5H7.5a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h9a2 2 0 0 0 2-2v-9.5"/><path d="M14 3.5v5h5"/><path d="M12 17v-6.4"/><path d="M9.6 12.8 12 10.4l2.4 2.4"/></svg><span>페이지 추출</span></a>
+        <a class="tp-dock__item is-active" href="../delete/" aria-current="page"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 7h15"/><path d="M9 7V5.4A1.6 1.6 0 0 1 10.6 3.8h2.8A1.6 1.6 0 0 1 15 5.4V7"/><path d="M6.6 7l.9 12.2A1.6 1.6 0 0 0 9 20.7h6a1.6 1.6 0 0 0 1.6-1.5L17.4 7"/><line x1="10" y1="10.5" x2="10" y2="17"/><line x1="14" y1="10.5" x2="14" y2="17"/></svg><span>페이지 삭제</span></a>
+        <a class="tp-dock__item" href="../organize/"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.4" y="3.4" width="7" height="7" rx="1.6"/><rect x="13.6" y="3.4" width="7" height="7" rx="1.6"/><rect x="3.4" y="13.6" width="7" height="7" rx="1.6"/><path d="M14.2 17.1h5.8M17.3 14.2l2.9 2.9-2.9 2.9"/></svg><span>페이지 정리</span></a>
+        <a class="tp-dock__item" href="../to-image/"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="4.5" width="17" height="15" rx="2.5"/><circle cx="8.5" cy="9.5" r="1.7"/><path d="M20.5 15.5 16 11 6 21"/></svg><span>이미지 변환</span></a>
+        <a class="tp-dock__item" href="../page-numbers/"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3.5H7.5a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h9a2 2 0 0 0 2-2V8l-5-4.5z"/><path d="M14 3.5V8h5"/><path d="M10.3 12.6 9.7 17M13.7 12.6 13.1 17M9 14.1h5M8.7 15.6h5"/></svg><span>페이지 번호</span></a>
+        <a class="tp-dock__item" href="../image-to-pdf/"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="4.5" width="17" height="15" rx="2.5"/><circle cx="8.5" cy="9.5" r="1.7"/><path d="M20.5 15.5 16 11 6 21"/></svg><span>이미지→PDF</span></a>
+      </div>
+    </nav>
+
+    <section class="tp-info sr-only">
       <div class="tp-col">
         <p class="tp-lead">스캔하다 들어간 빈 페이지나 보고서 끝의 불필요한 장, 이제 번호만 입력해 지우세요. 삭제할 페이지를 빼고 깔끔한 PDF로 새로 저장합니다. 워터마크도, 개수 제한도 없습니다.</p>
 
@@ -166,27 +144,15 @@
       </div>
     </section>
   </main>
-    <footer class="ws-foot">
-      <div class="ws-wrap">
-        <div class="ws-footgrid">
-          <div class="ws-footbrand"><span class="fb"><span class="chip" aria-hidden="true"><img src="../assets/img/logo.png" alt="" width="30" height="30" decoding="async"></span>PDF의 모든 것</span><p>설치도 회원가입도 없이, 파일을 서버에 올리지 않고 내 브라우저에서 바로 처리하는 한국어 무료 PDF 도구 모음입니다.</p></div>
-          <div class="ws-footcols">
-            <div class="ws-footcol"><h5>도구</h5><a href="../merge/">PDF 합치기</a><a href="../split/">PDF 분할</a><a href="../unlock/">PDF 잠금해제</a><a href="../extract/">PDF 페이지 추출</a></div>
-            <div class="ws-footcol"><h5>더보기</h5><a href="../delete/">PDF 페이지 삭제</a><a href="../organize/">PDF 페이지 정리</a><a href="../to-image/">PDF JPG 변환</a><a href="../page-numbers/">PDF 페이지 번호 넣기</a><a href="../image-to-pdf/">이미지 PDF 변환</a></div>
-            <div class="ws-footcol"><h5>정보</h5><a href="../about/">서비스 소개</a><a href="https://github.com/INNO-HI-Inc/all-about-pdf" rel="noopener" target="_blank">오픈소스 (GitHub) ↗</a></div>
-          </div>
-        </div>
-        <div class="ws-footbottom"><span>© 2026 PDF의 모든 것 — made in Korea, runs on your device.</span><span>오픈소스 · MIT License</span></div>
-      </div>
-    </footer>
+
   <script>window.AAP_BASE='../';</script>
   <script src="../assets/vendor/pdf-lib.min.js" defer></script>
   <script src="../assets/vendor/pdf.min.js" defer></script>
   <script src="../assets/vendor/jszip.min.js" defer></script>
-  <script src="../assets/js/ui.js?v=1781513089209" defer></script>
-  <script src="../assets/js/pdf-engine.js?v=1781513089209" defer></script>
-  <script src="../assets/js/tool-core.js?v=1781513089209" defer></script>
-  <script src="../assets/js/tools/delete.js?v=1781513089209" defer></script>
-  <script src="../assets/js/workspace.js?v=1781513089209" defer></script>
+  <script src="../assets/js/ui.js?v=1781515102705" defer></script>
+  <script src="../assets/js/pdf-engine.js?v=1781515102705" defer></script>
+  <script src="../assets/js/tool-core.js?v=1781515102705" defer></script>
+  <script src="../assets/js/tools/delete.js?v=1781515102705" defer></script>
+  <script src="../assets/js/workspace.js?v=1781515102705" defer></script>
 </body>
 </html>

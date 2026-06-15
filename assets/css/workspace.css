@@ -318,19 +318,31 @@
 .tp-toolbody .pagegrid__hint, .tp-toolbody .pagegrid__loading { font-size: .92rem; }
 @media (max-width: 560px) { .tp-toolbody .pagegrid__grid { grid-template-columns: repeat(2, 1fr); gap: 10px; } }
 
-/* ============ 상세 2단: 왼쪽 도구 · 오른쪽 다른 도구 카드 ============ */
-.tp-stage--split { padding: 8px 0 44px; }
-.tp-splitgrid { display: grid; grid-template-columns: 1.12fr .88fr; gap: 30px; align-items: start; max-width: 1280px; margin: 0 auto; padding: 0 clamp(20px, 4vw, 40px); }
-@media (max-width: 1000px) { .tp-splitgrid { grid-template-columns: 1fr; gap: 28px; } }
-/* 2단에선 도구 창이 화면을 채우지 않고 내용에 맞춤 */
-.tp-stage--split .tp-window { height: auto; min-height: 0; }
-.tp-stage--split .tp-toolbody { justify-content: flex-start; overflow: visible; }
-.tp-splitright__h { font-family: var(--font); font-weight: 800; font-size: 1.04rem; letter-spacing: -.02em; color: var(--ink); margin-bottom: 13px; }
-.tp-splitright .ws-tilegrid--mini { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
-@media (max-width: 1280px) { .tp-splitright .ws-tilegrid--mini { grid-template-columns: repeat(2, 1fr); } }
-@media (max-width: 1000px) { .tp-splitright .ws-tilegrid--mini { grid-template-columns: repeat(3, 1fr); } }
-@media (max-width: 620px) { .tp-splitright .ws-tilegrid--mini { grid-template-columns: repeat(2, 1fr); } }
-@media (max-width: 380px) { .tp-splitright .ws-tilegrid--mini { grid-template-columns: 1fr; } }
+/* ============ 상세 PDF 에디터: 왼쪽 페이지 · 오른쪽 옵션 · 하단 플로팅 도구 독 ============ */
+.tp-editor { padding: 6px 0 128px; }
+.tp-editorwrap { max-width: 1280px; margin: 0 auto; padding: 0 clamp(18px, 4vw, 40px); }
+.tp-editor .tp-window { height: auto; min-height: 0; }
+.tp-editor .tp-toolbody { display: block; padding: 0; overflow: visible; }
+/* 도구 위젯을 2단으로: 왼쪽 페이지 영역 / 오른쪽 옵션·실행 패널 */
+.tp-editor .tp-toolbody .tool { display: grid; grid-template-columns: 1.62fr 1fr; gap: 22px; padding: 24px; max-width: none; width: 100%; margin: 0; align-items: start; }
+.tp-editor .tool__left { min-width: 0; }
+/* 오른쪽 옵션·실행 패널: 스크롤해도 항상 보이는 sticky 카드 */
+.tp-editor .tool__right { position: sticky; top: 92px; align-self: start; min-width: 0; background: var(--surf-2); border: 1px solid var(--line); border-radius: var(--radius); padding: 20px; }
+.tp-editor .tool__right .options { margin-top: 0; }
+.tp-editor .tool__right .actions { margin-top: 18px; }
+@media (max-width: 880px) { .tp-editor .tp-toolbody .tool { grid-template-columns: 1fr; gap: 18px; padding: 18px; } .tp-editor .tool__right { position: static; } }
+/* 페이지 미리보기가 비어있을 때(업로드 전) 왼쪽은 드롭존만 */
+.tp-editor .tool__left .pagegrid:not([hidden]) { margin-top: 18px; }
+
+/* 하단 중앙 플로팅 도구 독 */
+.tp-dock { position: fixed; bottom: 18px; left: 50%; transform: translateX(-50%); z-index: 150; max-width: calc(100vw - 24px); }
+.tp-dock__inner { display: flex; gap: 3px; padding: 7px; background: rgba(255, 255, 255, .82); backdrop-filter: blur(18px) saturate(180%); -webkit-backdrop-filter: blur(18px) saturate(180%); border: 1px solid var(--line-2); border-radius: 18px; box-shadow: var(--sh-lg); overflow-x: auto; scrollbar-width: none; }
+.tp-dock__inner::-webkit-scrollbar { display: none; }
+.tp-dock__item { display: inline-flex; flex-direction: column; align-items: center; gap: 4px; padding: 8px 11px; border-radius: 12px; color: var(--ink-soft); font-size: 11px; font-weight: 600; white-space: nowrap; transition: background .15s, color .15s, transform .15s; flex: 0 0 auto; }
+.tp-dock__item .ic-svg { width: 22px; height: 22px; }
+.tp-dock__item:hover { background: var(--surf-2); color: var(--ink); text-decoration: none; transform: translateY(-2px); }
+.tp-dock__item.is-active { background: var(--grad); color: #fff; box-shadow: var(--sh-red); }
+@media (max-width: 560px) { .tp-dock { bottom: 10px; } .tp-dock__item { padding: 7px 9px; font-size: 10px; } .tp-dock__item .ic-svg { width: 20px; height: 20px; } }
 
 .tp-info { padding: 50px 0 84px; }
 .tp-lead { font-size: 1.18rem; line-height: 1.8; color: var(--ink-soft); max-width: 70ch; font-weight: 450; }
