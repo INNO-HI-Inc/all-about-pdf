@@ -416,6 +416,25 @@ a { transition: color .14s var(--ease); }
 .pagecell--split.is-locked { cursor: default; }
 .pagecell--split:not(.is-locked):hover .pagecell__img { box-shadow: 0 0 0 2px var(--accent), var(--shadow-sm); }
 
+/* 정리 모드: 드래그 재정렬 + 페이지별 회전/삭제 */
+.pagegrid__grid--org { grid-template-columns: repeat(auto-fill, minmax(98px, 1fr)); gap: 14px; max-height: 470px; }
+.pagecell--org { position: relative; cursor: grab; gap: 6px; }
+.pagecell--org:active { cursor: grabbing; }
+.pagecell--org.dragging { opacity: .4; }
+.pagecell--org.drag-over .pagecell__img { box-shadow: 0 0 0 2px var(--accent), var(--shadow); }
+.pagecell--org .pagecell__img { aspect-ratio: 3 / 4; display: grid; place-items: center; background: #fff; }
+.pagecell--org .pagecell__img img { width: 100%; height: 100%; object-fit: contain; transition: transform .22s var(--ease); }
+.pagecell--org .pagecell__img img[data-rot="90"]  { transform: rotate(90deg)  scale(.74); }
+.pagecell--org .pagecell__img img[data-rot="180"] { transform: rotate(180deg); }
+.pagecell--org .pagecell__img img[data-rot="270"] { transform: rotate(270deg) scale(.74); }
+.pcops { position: absolute; top: 5px; left: 5px; right: 5px; z-index: 2; display: flex; gap: 4px; opacity: 0; transition: opacity .15s; pointer-events: none; }
+.pagecell--org:hover .pcops, .pagecell--org:focus-within .pcops { opacity: 1; pointer-events: auto; }
+.pcop { width: 23px; height: 23px; border-radius: 6px; border: none; display: grid; place-items: center; font-size: 13px; line-height: 1; cursor: pointer; color: #fff; background: rgba(23, 23, 42, .72); box-shadow: var(--shadow-sm); transition: background .14s; }
+.pcop:hover { background: rgba(23, 23, 42, .94); }
+.pcop--del { margin-left: auto; background: rgba(229, 37, 42, .82); }
+.pcop--del:hover { background: #e5252a; }
+@media (hover: none) { .pagecell--org .pcops { opacity: 1; pointer-events: auto; } }
+
 /* 번호 미리보기 */
 .numprev { position: relative; width: 230px; max-width: 78%; margin: 4px auto 0; }
 .numprev img { display: block; width: 100%; border: 1px solid var(--line-strong); border-radius: 6px; box-shadow: var(--shadow); }

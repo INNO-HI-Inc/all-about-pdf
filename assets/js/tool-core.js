@@ -47,6 +47,8 @@
     var multiple = !!config.multiple;
     var selected = {};       // 선택 모드
     var cutsBefore = {};     // 분할 모드: page→true (그 앞에서 자름)
+    var organizeOrder = [];  // 정리 모드: [{page:<원본쪽>, rot:0|90|180|270}, ...] (화면 순서)
+    var organizeTail = [];   // 정리 모드: 표시 한도(CAP) 초과분 — 화면엔 없지만 순서 그대로 보존
     var dragIdx = -1;
     var thumbCache = new global.Map();
     var pcCache = new global.Map();  // 파일별 페이지 수 캐시
@@ -170,6 +172,7 @@
       if (!state.files.length) { pagegrid.hidden = true; pagegrid.innerHTML = ''; return; }
       if (config.numberPreview) return renderNumberPreview();
       if (config.splitGrid) return renderSplitGrid();
+      if (config.organizeGrid) return renderOrganizeGrid();
       if (config.pageGrid) return renderSelectGrid();
     }
 
@@ -292,6 +295,79 @@
       }).catch(function () { pagegrid.hidden = true; pagegrid.innerHTML = ''; });
     }
 
+    // 정리 모드 (organize): 모든 페이지를 펼쳐 드래그 재정렬 + 페이지별 회전/삭제
+    var ORG_CAP = 120;
+    function renderOrganizeGrid() {
+      pagegrid.hidden = false; pagegrid.innerHTML = '<p class="pagegrid__loading">미리보기 불러오는 중…</p>';
+      var fileRef = state.files[0];
+      PDFEngine.renderThumbs(fileRef, { max: ORG_CAP }).then(function (res) {
+        if (state.files[0] !== fileRef) return;
+        gridTotal = res.total;
+        var urlByPage = {};
+        res.thumbs.forEach(function (t) { urlByPage[t.page] = t.url; });
+        organizeOrder = res.thumbs.map(function (t) { return { page: t.page, rot: 0 }; });
+        organizeTail = [];
+        for (var tp = res.shown + 1; tp <= res.total; tp++) organizeTail.push({ page: tp, rot: 0 });
+
+        pagegrid.innerHTML = '';
+        var bar = d.createElement('div'); bar.className = 'selbar';
+        var count = d.createElement('span'); count.className = 'selbar__count';
+        var btns = d.createElement('div'); btns.className = 'selbar__btns';
+        function mkBtn(label, fn) { var b = d.createElement('button'); b.type = 'button'; b.className = 'linkbtn'; b.textContent = label; b.addEventListener('click', fn); return b; }
+        function rotateAll(delta) { organizeOrder.forEach(function (o) { o.rot = (((o.rot + delta) % 360) + 360) % 360; }); rebuild(); }
+        btns.appendChild(mkBtn('전체 ↺', function () { rotateAll(-90); }));
+        btns.appendChild(mkBtn('전체 ↻', function () { rotateAll(90); }));
+        btns.appendChild(mkBtn('처음으로', function () { organizeOrder = res.thumbs.map(function (t) { return { page: t.page, rot: 0 }; }); rebuild(); }));
+        bar.appendChild(count); bar.appendChild(btns);
+        pagegrid.appendChild(bar);
+
+        var grid = d.createElement('div'); grid.className = 'pagegrid__grid pagegrid__grid--org';
+        pagegrid.appendChild(grid);
+
+        function updateCount() {
+          var n = organizeOrder.length + organizeTail.length;
+          count.textContent = '원본 ' + res.total + '쪽 → ' + n + '쪽';
+        }
+        function cellEl(o, idx) {
+          var cell = d.createElement('div');
+          cell.className = 'pagecell pagecell--org'; cell.setAttribute('draggable', 'true'); cell.setAttribute('data-idx', idx);
+          var rot = (((o.rot % 360) + 360) % 360);
+          cell.innerHTML =
+            '<span class="pagecell__img"><img src="' + urlByPage[o.page] + '" alt="' + o.page + '페이지" data-rot="' + rot + '" loading="lazy"></span>' +
+            '<span class="pcops">' +
+              '<button type="button" class="pcop pcop--rotl" title="왼쪽으로 90° 회전" aria-label="' + o.page + '페이지 왼쪽 회전">↺</button>' +
+              '<button type="button" class="pcop pcop--rotr" title="오른쪽으로 90° 회전" aria-label="' + o.page + '페이지 오른쪽 회전">↻</button>' +
+              '<button type="button" class="pcop pcop--del" title="이 페이지 삭제" aria-label="' + o.page + '페이지 삭제">✕</button>' +
+            '</span>' +
+            '<span class="pagecell__no">' + o.page + '</span>';
+          cell.querySelector('.pcop--rotl').addEventListener('click', function (e) { e.stopPropagation(); o.rot = (((o.rot - 90) % 360) + 360) % 360; rebuild(); });
+          cell.querySelector('.pcop--rotr').addEventListener('click', function (e) { e.stopPropagation(); o.rot = (((o.rot + 90) % 360) + 360) % 360; rebuild(); });
+          cell.querySelector('.pcop--del').addEventListener('click', function (e) {
+            e.stopPropagation();
+            if (organizeOrder.length <= 1) { UI.toast('최소 1페이지는 남겨야 해요.', 'warn'); return; }
+            var pos = organizeOrder.indexOf(o); if (pos > -1) organizeOrder.splice(pos, 1); rebuild();
+          });
+          cell.addEventListener('dragstart', function (e) { dragIdx = idx; cell.classList.add('dragging'); if (e.dataTransfer) { e.dataTransfer.effectAllowed = 'move'; try { e.dataTransfer.setData('text/plain', String(idx)); } catch (x) {} } });
+          cell.addEventListener('dragend', function () { dragIdx = -1; cell.classList.remove('dragging'); Array.prototype.forEach.call(grid.children, function (c) { c.classList.remove('drag-over'); }); });
+          cell.addEventListener('dragover', function (e) { e.preventDefault(); if (e.dataTransfer) e.dataTransfer.dropEffect = 'move'; cell.classList.add('drag-over'); });
+          cell.addEventListener('dragleave', function () { cell.classList.remove('drag-over'); });
+          cell.addEventListener('drop', function (e) { e.preventDefault(); cell.classList.remove('drag-over'); if (dragIdx > -1 && dragIdx !== idx) { var m = organizeOrder.splice(dragIdx, 1)[0]; organizeOrder.splice(idx, 0, m); rebuild(); } });
+          return cell;
+        }
+        function rebuild() {
+          grid.innerHTML = '';
+          organizeOrder.forEach(function (o, i) { grid.appendChild(cellEl(o, i)); });
+          updateCount();
+        }
+        rebuild();
+        var note = res.total > res.shown
+          ? '페이지를 끌어 순서 변경 · ↺ ↻ 회전 · ✕ 삭제 · ' + (res.shown + 1) + '쪽부터는 화면엔 없지만 순서 그대로 유지돼요'
+          : '페이지를 끌어 순서 변경 · ↺ ↻ 회전 · ✕ 삭제';
+        var hint = d.createElement('p'); hint.className = 'pagegrid__hint'; hint.textContent = note;
+        pagegrid.appendChild(hint);
+      }).catch(function () { pagegrid.hidden = true; pagegrid.innerHTML = ''; });
+    }
+
     // 번호 미리보기 (page-numbers)
     function renderNumberPreview() {
       var o = config.readOptions ? config.readOptions(root) : {};
@@ -332,7 +408,7 @@
 
     function changed() {
       result.hidden = true; result.innerHTML = '';
-      selected = {}; cutsBefore = {}; previewPageShown = 0;
+      selected = {}; cutsBefore = {}; organizeOrder = []; organizeTail = []; previewPageShown = 0;
       render(); updatePageCount(); renderGrid();
       announce(state.files.length ? (state.files.length + '개 파일이 선택되었습니다') : '파일 목록이 비워졌습니다');
       if (state.files.length) probeEncrypted();
@@ -454,7 +530,7 @@
       if (config.validate) { var err = config.validate(state.files, opts); if (err) { UI.toast(err, 'error'); return; } }
       setBusy(true);
       try {
-        var res = await config.run(state.files, opts, { onProgress: onProgress, root: root });
+        var res = await config.run(state.files, opts, { onProgress: onProgress, root: root, organize: organizeOrder.concat(organizeTail) });
         applyOutName(res);
         await handleResult(res);
       }

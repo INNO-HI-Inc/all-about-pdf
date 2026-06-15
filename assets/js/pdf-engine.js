@@ -381,6 +381,34 @@
     return toBlob(await out.save());
   }
 
+  // ── 페이지 정리: 순서변경 + 회전 + 삭제 (한 번에) ───────────
+  // organize(file, order, onProgress) — order: [{ page:<1-based 원본쪽>, rot:0|90|180|270 }, ...]
+  // order에 담긴 페이지만, 담긴 순서대로, 각자 회전을 더해 새 PDF로 만든다(원본 회전에 가산).
+  async function organize(file, order, onProgress) {
+    if (!order || !order.length) throw new Error('남길 페이지가 없습니다. 최소 1페이지는 유지해 주세요.');
+    var LL = L();
+    var PDFDocument = LL.PDFDocument, degrees = LL.degrees;
+    var src = await loadDoc(file);
+    var srcCount = src.getPageCount();
+    var valid = order.filter(function (o) { return o && o.page >= 1 && o.page <= srcCount; });
+    if (!valid.length) throw new Error('유효한 페이지가 없습니다.');
+    var out = await PDFDocument.create();
+    var indices = valid.map(function (o) { return o.page - 1; });
+    var copied = await out.copyPages(src, indices);
+    for (var i = 0; i < copied.length; i++) {
+      var pg = copied[i];
+      var add = (((valid[i].rot || 0) % 360) + 360) % 360;
+      if (add) {
+        var cur = 0;
+        try { cur = pg.getRotation().angle || 0; } catch (e) {}
+        pg.setRotation(degrees((cur + add) % 360));
+      }
+      out.addPage(pg);
+      if (onProgress) onProgress((i + 1) / copied.length);
+    }
+    return toBlob(await out.save());
+  }
+
   // 페이지 썸네일 렌더링 (시각적 선택용)
   async function renderThumbs(file, opts, onProgress) {
     opts = opts || {};
@@ -446,6 +474,7 @@
     addPageNumbers: addPageNumbers,
     unlock: unlock,
     unlockRaster: unlockRaster,
+    organize: organize,
     renderThumbs: renderThumbs,
     getPageCount: getPageCount,
     isPasswordError: isPasswordError,

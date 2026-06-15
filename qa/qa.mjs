@@ -13,7 +13,7 @@ const require = createRequire(import.meta.url);
 const { chromium } = require(process.env.PW_PATH || 'playwright');
 
 const BASE = process.env.BASE || 'http://localhost:8099';
-const PAGES = ['/', '/merge/', '/split/', '/unlock/', '/extract/', '/delete/', '/to-image/', '/page-numbers/', '/about/'];
+const PAGES = ['/', '/merge/', '/split/', '/unlock/', '/extract/', '/delete/', '/organize/', '/to-image/', '/page-numbers/', '/about/'];
 const results = [];
 const pass = (name, msg) => results.push({ ok: true, name, msg: msg || '' });
 const fail = (name, msg) => results.push({ ok: false, name, msg: msg || '' });
@@ -42,6 +42,13 @@ const COUNT = async (b64) => {
   for (let i = 0; i < bin.length; i++) u[i] = bin.charCodeAt(i);
   const doc = await window.PDFLib.PDFDocument.load(u, { ignoreEncryption: true });
   return doc.getPageCount();
+};
+// base64 → 페이지별 회전각 배열
+const ROTS = async (b64) => {
+  const bin = atob(b64); const u = new Uint8Array(bin.length);
+  for (let i = 0; i < bin.length; i++) u[i] = bin.charCodeAt(i);
+  const doc = await window.PDFLib.PDFDocument.load(u, { ignoreEncryption: true });
+  return doc.getPages().map((p) => p.getRotation().angle);
 };
 // base64(zip) → 엔트리 이름들
 const ZIP = async (b64) => {
@@ -157,6 +164,23 @@ async function testUnlock(ctx) {
   await page.close();
 }
 
+async function testOrganize(ctx) {
+  const page = await ctx.newPage(); await page.goto(BASE + '/organize/'); await ready(page);
+  const b = await page.evaluate(GEN, [[5, 'O']]);
+  const { buf } = await setAndRun(page, [b64ToFile(b[0], 'o.pdf')], async () => {
+    await page.waitForSelector('.pagecell--org', { timeout: 15000 });
+    // 2번째 페이지 삭제 → 리빌드 후 첫 페이지 오른쪽 90° 회전
+    await page.evaluate(() => document.querySelectorAll('.pagecell--org')[1].querySelector('.pcop--del').click());
+    await page.evaluate(() => document.querySelectorAll('.pagecell--org')[0].querySelector('.pcop--rotr').click());
+  });
+  const cnt = await page.evaluate(COUNT, bufToB64(buf));
+  const rots = await page.evaluate(ROTS, bufToB64(buf));
+  (cnt === 4 && rots[0] === 90)
+    ? pass('페이지 정리', '5쪽에서 1장 삭제 → ' + cnt + '쪽, 1쪽 회전=' + rots[0] + '°')
+    : fail('페이지 정리', '기대 4쪽/첫쪽90°, 실제 ' + cnt + '쪽/[' + rots.join(',') + ']');
+  await page.close();
+}
+
 async function testHomeWidgets(ctx) {
   const page = await ctx.newPage(); await page.goto(BASE + '/'); await ready(page);
   const b = await page.evaluate(GEN, [[3, 'A'], [2, 'B']]);
@@ -227,7 +251,7 @@ async function auditPage(ctx, path) {
   try {
     console.log('▶ 기능 실측...');
     await testMerge(ctx); await testSplit(ctx); await testExtract(ctx);
-    await testDelete(ctx); await testToImage(ctx); await testPageNumbers(ctx); await testUnlock(ctx);
+    await testDelete(ctx); await testOrganize(ctx); await testToImage(ctx); await testPageNumbers(ctx); await testUnlock(ctx);
     // 홈은 런처(도구 페이지로 링크)로 전환 — 도구 실동작은 각 도구 페이지에서 검증
     console.log('▶ 구조 감사...');
     for (const p of PAGES) await auditPage(ctx, p);
