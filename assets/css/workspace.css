@@ -95,24 +95,11 @@
 .ws-launch { position: relative; overflow: hidden; min-height: calc(100vh - 72px); display: flex; flex-direction: column; justify-content: center; padding: 26px 0 40px; background: #ffffff; }
 .ws-launch::before { content: none; }
 .ws-launch::after { content: none; }
-/* 홈 런처: 좌측 히어로 / 우측 도구 그리드 2단 분할 */
-.ws-launch .ws-wrap { width: 100%; max-width: 1500px; padding: 0 clamp(24px, 4vw, 64px); position: relative; z-index: 1; }
-.ws-split { display: grid; grid-template-columns: minmax(260px, 340px) 1fr; gap: clamp(32px, 4vw, 64px); align-items: center; }
-.ws-split__aside { text-align: left; }
-.ws-split__main { min-width: 0; }
-.ws-split .ws-launchhero { text-align: left; max-width: none; margin: 0 0 4px; }
-.ws-split .ws-launchhero__sub { margin: 12px 0 0; max-width: 38ch; }
-.ws-split .ws-trust { justify-content: flex-start; margin-top: 24px; }
-.ws-split__main .ws-tilegrid { grid-template-columns: repeat(3, 1fr); }
-@media (max-width: 1100px) { .ws-split__main .ws-tilegrid { grid-template-columns: repeat(2, 1fr); } }
-@media (max-width: 900px) {
-  .ws-split { grid-template-columns: 1fr; gap: 26px; }
-  .ws-split__aside { text-align: center; }
-  .ws-split .ws-launchhero { text-align: center; margin: 0 auto; }
-  .ws-split .ws-launchhero__sub { margin: 12px auto 0; }
-  .ws-split .ws-trust { justify-content: center; }
-}
-@media (max-width: 560px) { .ws-split__main .ws-tilegrid { grid-template-columns: 1fr; } }
+/* 홈 런처: 작은 상단 히어로 + 화면을 채우는 균형 그리드 (도구 8개 = 4열×2행) */
+.ws-launch .ws-wrap { width: 100%; max-width: 1500px; padding: 0 clamp(24px, 4vw, 56px); position: relative; z-index: 1; }
+.ws-launch .ws-tilegrid { grid-template-columns: repeat(4, 1fr); }
+@media (max-width: 1000px) { .ws-launch .ws-tilegrid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 460px) { .ws-launch .ws-tilegrid { grid-template-columns: 1fr; } }
 /* 부유하는 브랜드 그라데이션 오브 — 깔끔한 배경을 위해 홈에서는 숨김 */
 .ws-orb { display: none; }
 .ws-orb--legacy { position: absolute; top: -120px; right: 6%; width: 360px; height: 360px; border-radius: 50%; background: var(--grad); filter: blur(8px); opacity: .14; z-index: 0; pointer-events: none; animation: wsFloat 13s var(--ez) infinite; }
