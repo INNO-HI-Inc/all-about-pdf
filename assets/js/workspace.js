@@ -14,25 +14,29 @@
     tab.addEventListener('click', function () { activateTab(tab.getAttribute('data-tab')); });
   });
 
-  // 2) 업로드 시 → pdf_tools.app 풀스크린 전환
+  // 2) 업로드 시 → 작업 창 풀스크린 전환
   var win = d.querySelector('[data-ws-window]');
   if (win) {
     var scrim = d.createElement('div');
     scrim.className = 'ws-scrim'; scrim.setAttribute('aria-hidden', 'true');
     d.body.appendChild(scrim);
 
+    // 풀스크린 시 창을 <body> 직속으로 포탈 → 조상 stacking context에 갇히지 않고
+    // scrim 위에 선명하게 뜨도록(예전 z-index 트랩 버그 재발 방지). 닫으면 원위치 복원.
+    var winHome = win.parentNode;
+    var winNext = win.nextSibling;
+
     var open = function () {
       if (d.body.classList.contains('ws-app-open')) return;
       d.body.classList.add('ws-app-open');
+      d.body.appendChild(win);     // 포탈: 루트로 끌어올림
       win.classList.add('is-max');
-      // 작업 영역으로 포커스 이동(접근성)
-      var panel = win.querySelector('.herotool__panel.is-active');
-      if (panel) { var f = panel.querySelector('.js-run, .js-pagegrid, .js-files'); if (f && f.scrollIntoView) {} }
     };
     var close = function () {
       if (!d.body.classList.contains('ws-app-open')) return;
       d.body.classList.remove('ws-app-open');
       win.classList.remove('is-max');
+      if (winHome) { winHome.insertBefore(win, winNext); }   // 인라인 런처 위치로 복원
       // 활성 도구 초기화 → 깔끔한 런처 상태로 복귀
       var panel = win.querySelector('.herotool__panel.is-active [data-tool]');
       if (panel) { try { panel.dispatchEvent(new CustomEvent('tool:reset', { bubbles: true })); } catch (e) {} }
