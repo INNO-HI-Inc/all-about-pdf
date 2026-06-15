@@ -412,7 +412,7 @@
   // 페이지 썸네일 렌더링 (시각적 선택용)
   async function renderThumbs(file, opts, onProgress) {
     opts = opts || {};
-    var scale = opts.scale || 0.34;
+    var scale = opts.scale || 0.5;
     var max = opts.max || 60;
     var pdf = await loadPdfjs(file, opts.password);
     var total = pdf.numPages;

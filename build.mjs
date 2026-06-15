@@ -397,17 +397,17 @@ function footer(rel) {
 
 function page({ title, desc, canonical, ogTitle, rel, jsonld, main, withScripts, headExtra, bodyClass, extraScripts, noChrome, noindex, noFooter }) {
   const ld = jsonld ? `\n  <script type="application/ld+json">${JSON.stringify(jsonld)}</script>` : '';
-  const extra = (extraScripts || []).map((s) => `\n  <script src="${rel}${s}" defer></script>`).join('');
+  const extra = (extraScripts || []).map((s) => `\n  <script src="${rel}${s}?v=${ASSET_VER}" defer></script>`).join('');
   const toolList = withScripts ? (Array.isArray(withScripts) ? withScripts : [withScripts]) : [];
   const scripts = toolList.length ? `
   <script>window.AAP_BASE='${rel}';</script>
   <script src="${rel}assets/vendor/pdf-lib.min.js" defer></script>
   <script src="${rel}assets/vendor/pdf.min.js" defer></script>
   <script src="${rel}assets/vendor/jszip.min.js" defer></script>
-  <script src="${rel}assets/js/ui.js" defer></script>
-  <script src="${rel}assets/js/pdf-engine.js" defer></script>
-  <script src="${rel}assets/js/tool-core.js" defer></script>
-${toolList.map((s) => `  <script src="${rel}assets/js/tools/${s}.js" defer></script>`).join('\n')}` : '';
+  <script src="${rel}assets/js/ui.js?v=${ASSET_VER}" defer></script>
+  <script src="${rel}assets/js/pdf-engine.js?v=${ASSET_VER}" defer></script>
+  <script src="${rel}assets/js/tool-core.js?v=${ASSET_VER}" defer></script>
+${toolList.map((s) => `  <script src="${rel}assets/js/tools/${s}.js?v=${ASSET_VER}" defer></script>`).join('\n')}` : '';
   return `<!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -499,6 +499,11 @@ function buildTool(t) {
   const faqs = c.faq.map((f, i) => `<details><summary><span class="q">Q${i + 1}</span><span>${esc(f.q)}</span></summary><div class="a">${esc(f.a)}</div></details>`).join('\n          ');
   const extra = (c.extraSections || []).map((s, i) =>
     `<div class="tp-sec" data-reveal><span class="tp-eyebrow">참고</span><h2 class="tp-h2">${esc(s.heading)}</h2><p>${esc(s.body)}</p></div>`).join('\n        ');
+  // 오른쪽 컬럼: 다른 도구 정사각형 카드(홈과 동일 스타일)
+  const otherTiles = TOOLS.filter((o) => o.slug !== t.slug).map((o) => `<a class="ws-tile" href="${rel}${o.slug}/" data-reveal>
+            <span class="ws-tile__ico">${ICONS_PDF[o.slug]}</span>
+            <span class="ws-tile__txt"><span class="ws-tile__name">${o.nav}</span><span class="ws-tile__desc">${esc(o.feature[0])}</span></span>${ARR_SVG}
+          </a>`).join('\n          ');
 
   const jsonld = [
     {
@@ -538,15 +543,21 @@ function buildTool(t) {
       </div>
     </section>
 
-    <section class="tp-stage">
-      <div class="tp-col">
-        <div class="ws-winwrap">
+    <section class="tp-stage tp-stage--split">
+      <div class="tp-splitgrid">
+        <div class="tp-splitleft">
           <div class="ws-window tp-window">
-            <div class="ws-winbar"><span class="ws-lights" aria-hidden="true"><span class="r"></span><span class="y"></span><span class="g"></span></span><span class="ws-wintitle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4"/></svg><span class="t">${APP_FILE[t.slug]}</span><span class="sub"> — ${esc(c.h1)}</span></span></div>
+            <div class="ws-winbar"><span class="ws-wintitle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4"/></svg><span class="t">${APP_FILE[t.slug]}</span><span class="sub"> — ${esc(c.h1)}</span></span></div>
             <div class="tp-toolbody">${widget(t)}</div>
             <div class="ws-winnote"><span class="pre">$&gt;</span> 파일은 이 페이지를 벗어나지 않습니다 · 100% 브라우저 처리</div>
           </div>
         </div>
+        <aside class="tp-splitright" aria-label="다른 PDF 도구">
+          <div class="tp-splitright__h">다른 도구</div>
+          <div class="ws-tilegrid ws-tilegrid--mini">
+          ${otherTiles}
+          </div>
+        </aside>
       </div>
     </section>
 
@@ -579,9 +590,7 @@ function buildTool(t) {
           </div>
         </div>
       </div>
-    </section>
-
-${related(t.slug, rel)}`;
+    </section>`;
 
   const html = page({
     title: c.title, desc: c.metaDescription, canonical,
