@@ -68,9 +68,9 @@
 
 /* ============ 히어로 도구 카드(글로시) ============ */
 .ws-winwrap { position: relative; }
-.ws-winwrap::before { content: ""; position: absolute; inset: -22px -14px; background: radial-gradient(circle at 70% 25%, rgba(255, 91, 82, .14), transparent 60%); z-index: -1; }
+.ws-winwrap::before { content: none; }
 .ws-window { background: #fff; border: 1px solid var(--line); border-radius: var(--radius-lg); box-shadow: var(--sh-lg); overflow: hidden; }
-.ws-winbar { display: flex; align-items: center; gap: 10px; padding: 15px 20px; border-bottom: 1px solid var(--line); background: linear-gradient(#ffffff, #fcfcfe); }
+.ws-winbar { display: flex; align-items: center; gap: 10px; padding: 15px 20px; border-bottom: 1px solid var(--line); background: #fff; }
 .ws-winbar .dot3 { display: none; }
 .ws-lights { display: none; }
 .ws-wintitle { display: flex; align-items: center; gap: 9px; font-size: 13.5px; font-weight: 700; color: var(--ink); }
@@ -166,16 +166,17 @@
 .ws-homeright { order: 1; }
 .ws-homeleft { order: 2; }
 @media (max-width: 1000px) { .ws-homegrid { grid-template-columns: 1fr; gap: 28px; } .ws-launch--split { min-height: 0; padding: 36px 0 64px; } }
-/* 왼쪽: 미니 도구 카드 (가로형, 2열) */
-.ws-launch--split .ws-tilegrid--mini { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+/* 오른쪽: 정사각형 도구 타일 (세로형, 3열) */
+.ws-launch--split .ws-tilegrid--mini { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+@media (max-width: 1180px) { .ws-launch--split .ws-tilegrid--mini { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 1000px) { .ws-launch--split .ws-tilegrid--mini { grid-template-columns: repeat(3, 1fr); } }
 @media (max-width: 620px) { .ws-launch--split .ws-tilegrid--mini { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 380px) { .ws-launch--split .ws-tilegrid--mini { grid-template-columns: 1fr; } }
-.ws-tilegrid--mini .ws-tile { flex-direction: row; align-items: center; justify-content: flex-start; gap: 14px; min-height: 0; padding: 14px 16px; border-radius: var(--radius-sm); }
-.ws-tilegrid--mini .ws-tile__ico { width: 44px; height: 44px; flex: 0 0 44px; }
-.ws-tilegrid--mini .ws-tile__ico .ic-svg { width: 42px; height: 42px; }
-.ws-tilegrid--mini .ws-tile__name { font-size: 1.02rem; line-height: 1.2; }
-.ws-tilegrid--mini .ws-tile__desc { font-size: 11.5px; margin-top: 2px; }
+.ws-tilegrid--mini .ws-tile { flex-direction: column; align-items: flex-start; justify-content: center; gap: 12px; aspect-ratio: 1 / 1; min-height: 0; padding: 20px 18px; }
+.ws-tilegrid--mini .ws-tile__ico { width: auto; height: auto; flex: none; }
+.ws-tilegrid--mini .ws-tile__ico .ic-svg { width: 46px; height: 46px; }
+.ws-tilegrid--mini .ws-tile__name { font-size: 1.08rem; line-height: 1.2; }
+.ws-tilegrid--mini .ws-tile__desc { font-size: 12px; margin-top: 3px; line-height: 1.4; }
 .ws-tilegrid--mini .arr { display: none; }
 /* 오른쪽: 드롭 도구 창 */
 .ws-homeright .ws-window { box-shadow: var(--sh-lg); }
@@ -292,7 +293,7 @@
 .tp-stage { padding: 2px 0 24px; }
 /* 풀스크린: 도구 창이 화면(뷰포트) 높이를 채움 */
 .tp-window { background: #fff; border: 1px solid var(--line); border-radius: var(--radius-lg); box-shadow: var(--sh-lg); overflow: hidden; height: calc(100vh - 320px); min-height: 420px; display: flex; flex-direction: column; }
-.tp-window .ws-winbar { flex: 0 0 auto; display: flex; align-items: center; gap: 10px; padding: 15px 22px; border-bottom: 1px solid var(--line); background: linear-gradient(#fff, #fcfcfe); }
+.tp-window .ws-winbar { flex: 0 0 auto; display: flex; align-items: center; gap: 10px; padding: 15px 22px; border-bottom: 1px solid var(--line); background: #fff; }
 .tp-window .ws-winnote { flex: 0 0 auto; }
 .tp-toolbody { flex: 1 1 auto; min-height: 0; overflow: auto; padding: 26px; display: flex; flex-direction: column; justify-content: safe center; }
 @media (max-width: 560px) { .tp-toolbody { padding: 16px; justify-content: flex-start; } .tp-window { min-height: calc(100vh - 220px); } }
