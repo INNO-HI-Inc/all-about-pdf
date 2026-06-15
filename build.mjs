@@ -618,13 +618,6 @@ function buildHome() {
         <div class="ws-tilegrid">
       ${tiles}
         </div>
-        <div class="ws-trust" data-reveal>
-          <span>무설치</span>
-          <span>무가입</span>
-          <span>완전 무료 · 무제한</span>
-          <span>파일 서버 전송 안 함</span>
-          <span>오픈소스</span>
-        </div>
       </div>
     </section>`;
 
