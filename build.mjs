@@ -430,7 +430,7 @@ ${toolList.map((s) => `  <script src="${rel}assets/js/tools/${s}.js?v=${ASSET_VE
   <link rel="icon" href="${rel}assets/img/favicon.png" type="image/png">
   <link rel="apple-touch-icon" href="${rel}assets/img/logo.png">
   <link rel="manifest" href="${rel}site.webmanifest">
-  <meta name="theme-color" content="#4f46e5">
+  <meta name="theme-color" content="#ffffff">
   <link rel="stylesheet" href="${rel}assets/css/style.css?v=${ASSET_VER}">${headExtra || ''}${ld}
 </head>
 <body${bodyClass ? ` class="${bodyClass}"` : ''}>
@@ -768,7 +768,7 @@ Sitemap: ${SITE_URL}/sitemap.xml
   const manifest = {
     name: BRAND, short_name: 'PDF모든것', lang: 'ko',
     description: '파일을 서버에 올리지 않는 무료 PDF 도구 모음',
-    start_url: './', display: 'standalone', background_color: '#f4f6fb', theme_color: '#3d6dfb',
+    start_url: './', display: 'standalone', background_color: '#ffffff', theme_color: '#ffffff',
     icons: [
       { src: 'assets/img/favicon.svg', sizes: 'any', type: 'image/svg+xml', purpose: 'any' }
     ]

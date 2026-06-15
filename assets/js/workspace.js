@@ -26,20 +26,34 @@
     var winHome = win.parentNode;
     var winNext = win.nextSibling;
 
+    var reduceMo = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var closeTimer = null;
+
     var open = function () {
       if (d.body.classList.contains('ws-app-open')) return;
+      if (closeTimer) { clearTimeout(closeTimer); closeTimer = null; }
+      win.classList.remove('is-closing');
       d.body.classList.add('ws-app-open');
       d.body.appendChild(win);     // 포탈: 루트로 끌어올림
       win.classList.add('is-max');
     };
-    var close = function () {
-      if (!d.body.classList.contains('ws-app-open')) return;
-      d.body.classList.remove('ws-app-open');
-      win.classList.remove('is-max');
+    var finishClose = function (e) {
+      // 자식(패널 fade-up 등) 애니메이션 버블은 무시 — wsPopOut 종료만 처리
+      if (e && e.animationName && e.animationName !== 'wsPopOut') return;
+      if (closeTimer) { clearTimeout(closeTimer); closeTimer = null; }
+      win.classList.remove('is-max', 'is-closing');
       if (winHome) { winHome.insertBefore(win, winNext); }   // 인라인 런처 위치로 복원
       // 활성 도구 초기화 → 깔끔한 런처 상태로 복귀
       var panel = win.querySelector('.herotool__panel.is-active [data-tool]');
-      if (panel) { try { panel.dispatchEvent(new CustomEvent('tool:reset', { bubbles: true })); } catch (e) {} }
+      if (panel) { try { panel.dispatchEvent(new CustomEvent('tool:reset', { bubbles: true })); } catch (er) {} }
+    };
+    var close = function () {
+      if (!d.body.classList.contains('ws-app-open')) return;
+      d.body.classList.remove('ws-app-open');     // scrim 페이드 아웃 동시에
+      if (reduceMo) { finishClose(); return; }
+      win.classList.add('is-closing');            // 퇴장 애니메이션 → 끝나면 복원
+      win.addEventListener('animationend', finishClose, { once: true });
+      closeTimer = setTimeout(finishClose, 360);  // 애니메이션 미발화 폴백
     };
 
     // 파일이 들어오면 열고, 0개가 되면 닫는다

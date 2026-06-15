@@ -3,6 +3,24 @@
  * body.ws 공용(홈 + 도구 상세). 화이트 캔버스 · 레드 그라데이션 · 부드러운 둥근 글로시 카드.
  * 색 역할: 레드=브랜드/PDF 정체성·강조, 잉크=텍스트. 외부 요청 0(폰트 로컬).
  */
+
+/* ============ 페이지 전환(Cross-document View Transitions) ============
+   도구 간 이동(독 클릭 = 풀 리로드)을 흰 플래시 없이 크로스페이드로.
+   미지원 브라우저는 자동으로 기존 즉시 네비게이션으로 폴백(progressive enhancement). */
+@view-transition { navigation: auto; }
+::view-transition { background: #fff; }
+::view-transition-old(root), ::view-transition-new(root) {
+  animation-duration: 320ms; animation-timing-function: cubic-bezier(.16, 1, .3, 1);
+}
+/* 공통 셸을 페이지 넘어가도 고정 → '그 자리에 박힌' 앱 느낌 */
+.ws-taskbar { view-transition-name: vt-taskbar; }
+.tp-dock { view-transition-name: vt-dock; }
+/* 활성 알약이 이전 도구 위치 → 새 도구 위치로 iOS 독처럼 슬라이드 */
+.tp-dock__item.is-active { view-transition-name: vt-dock-active; }
+::view-transition-group(vt-dock-active) {
+  animation-timing-function: cubic-bezier(.34, 1.56, .64, 1); animation-duration: 320ms;
+}
+
 .ws {
   --red: #e5252a; --red-2: #ff5147; --red-deep: #c01a12; --red-ink: #9a140d;
   /* style.css의 인디고 액센트를 레드로 통일(페이지 호버·포커스·선택 등) */
@@ -18,6 +36,11 @@
   --sh-lg: 0 30px 70px rgba(23, 23, 42, .14);
   --sh-red: 0 12px 30px rgba(229, 37, 42, .32);
   --ez: cubic-bezier(.22, .61, .36, 1);
+  --ez-out: cubic-bezier(.16, 1, .3, 1);          /* 강한 감속 — 패널/모달/콘텐츠 진입 */
+  --ez-spring: cubic-bezier(.34, 1.56, .64, 1);   /* 살짝 탄성 — 강조 인터랙션 한정 */
+  --ez-in-out: cubic-bezier(.65, 0, .35, 1);      /* 대칭 — height/펼침 양방향 */
+  --d-micro: 140ms; --d-hover: 200ms; --d-press: 120ms; --d-enter: 260ms;
+  --d-stagger: 45ms; --d-stagger-cap: 320ms; --d-page: 320ms; --d-modal: 300ms; --d-reveal: 480ms;
   --mono: ui-monospace, SFMono-Regular, 'SF Mono', Menlo, monospace;
   color: var(--ink); background: var(--bg); letter-spacing: -.011em;
 }
@@ -28,7 +51,7 @@
 .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
 
 /* 스크롤 리빌 */
-.js [data-reveal] { opacity: 0; transform: translateY(20px); transition: opacity .7s var(--ez), transform .7s var(--ez); }
+.js [data-reveal] { opacity: 0; transform: translateY(10px); transition: opacity var(--d-reveal) var(--ez-out), transform var(--d-reveal) var(--ez-out); }
 .js [data-reveal].in { opacity: 1; transform: none; }
 
 /* ============ 내비게이션 ============ */
@@ -40,7 +63,7 @@
 .ws-logo .ko { font-family: var(--font); font-weight: 800; letter-spacing: -.02em; }
 .ws-logo .sep, .ws-logo .wk { display: none; }
 .ws-nav { display: flex; align-items: center; gap: 4px; margin-left: auto; }
-.ws-nav a { font-size: 14.5px; font-weight: 600; color: var(--ink-soft); padding: 9px 14px; border-radius: var(--radius); transition: background .15s, color .15s; }
+.ws-nav a { font-size: 14.5px; font-weight: 600; color: var(--ink-soft); padding: 9px 14px; border-radius: var(--radius); transition: background var(--d-micro) var(--ez), color var(--d-micro) var(--ez), transform var(--d-micro) var(--ez), filter var(--d-micro) var(--ez); }
 .ws-nav a:hover { color: var(--ink); background: var(--surf-2); text-decoration: none; }
 .ws-nav a.gh { color: #fff; background: var(--grad); box-shadow: var(--sh-red); padding: 10px 18px; margin-left: 8px; }
 .ws-nav a.gh:hover { transform: translateY(-1px); filter: brightness(1.04); }
@@ -58,7 +81,8 @@
 .ws-h1 .mark { background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
 .ws-sub { margin-top: 24px; font-size: 1.16rem; line-height: 1.7; color: var(--ink-soft); max-width: 35ch; font-weight: 450; }
 .ws-cta { display: flex; gap: 14px; margin-top: 36px; flex-wrap: wrap; }
-.ws-btn { font-weight: 700; font-size: 15px; padding: 15px 26px; border-radius: 14px; display: inline-flex; align-items: center; gap: 9px; cursor: pointer; transition: transform .18s var(--ez), box-shadow .18s, filter .18s; border: 1px solid transparent; }
+.ws-btn { font-weight: 700; font-size: 15px; padding: 15px 26px; border-radius: 14px; display: inline-flex; align-items: center; gap: 9px; cursor: pointer; transition: transform var(--d-press) var(--ez), box-shadow var(--d-hover) var(--ez), filter var(--d-hover) var(--ez); border: 1px solid transparent; }
+.ws-btn:active { transform: translateY(0) scale(.98); }
 .ws-btn svg { width: 17px; height: 17px; }
 .ws-btn.primary { background: var(--grad); color: #fff; box-shadow: var(--sh-red); }
 .ws-btn.primary:hover { transform: translateY(-2px); box-shadow: 0 18px 40px rgba(229, 37, 42, .42); text-decoration: none; }
@@ -86,13 +110,16 @@
 /* 윈도우 안 도구 위젯 */
 .ws-window .herotool { padding: 8px; background: #fff; }
 .ws-window .herotool__tabs { display: flex; flex-wrap: wrap; gap: 4px; padding: 10px 12px 4px; }
-.ws-window .herotool__tab { display: inline-flex; align-items: center; gap: 6px; padding: 8px 13px; cursor: pointer; border: none; background: transparent; color: var(--ink-soft); font-family: inherit; font-size: 13px; font-weight: 600; border-radius: var(--pill); transition: background .15s, color .15s; }
+.ws-window .herotool__tab { display: inline-flex; align-items: center; gap: 6px; padding: 8px 13px; cursor: pointer; border: none; background: transparent; color: var(--ink-soft); font-family: inherit; font-size: 13px; font-weight: 600; border-radius: var(--pill); transition: background var(--d-micro) var(--ez), color var(--d-micro) var(--ez); }
 .ws-window .herotool__tab:hover { background: var(--surf-2); color: var(--ink); }
 .ws-window .herotool__tab[aria-selected="true"] { background: var(--grad-soft); color: var(--red-deep); }
 .ws-window .herotool__tab .ic-svg { width: 16px; height: 16px; }
 .herotool__panel { display: none; }
-.herotool__panel.is-active { display: block; }
+.herotool__panel.is-active { display: block; animation: aapFadeUp var(--d-enter) var(--ez-out) both; }
 .ws-window .herotool__panel.is-active { padding: 8px 16px 18px; }
+
+/* 콘텐츠 진입 키프레임 — 패널/썸네일/결과 공용 */
+@keyframes aapFadeUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
 
 /* ============ 기능 위주 단일 화면 런처 ============ */
 .ws-launch { position: relative; overflow: hidden; min-height: calc(100vh - 72px); display: flex; flex-direction: column; justify-content: center; padding: 26px 0 40px; background: #ffffff; }
@@ -129,35 +156,36 @@
 @media (max-width: 900px) { .ws-tilegrid { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 420px) { .ws-tilegrid { grid-template-columns: 1fr; } }
 /* 각진 입체 카드 (다층 그림자로 깊이감, 배경은 깔끔하게) */
-.ws-tile { position: relative; background: #fff; border: 1px solid var(--line-2); border-radius: var(--radius-sm); box-shadow: 0 1px 1px rgba(23, 23, 42, .04), 0 4px 8px rgba(23, 23, 42, .05), 0 12px 22px rgba(23, 23, 42, .05), inset 0 1px 0 rgba(255, 255, 255, .95); padding: 24px 22px; min-height: 166px; display: flex; flex-direction: column; justify-content: space-between; gap: 18px; color: var(--ink); overflow: hidden; transition: transform .22s var(--ez), box-shadow .22s, border-color .22s; }
+.ws-tile { position: relative; background: #fff; border: 1px solid var(--line-2); border-radius: var(--radius-sm); box-shadow: 0 1px 1px rgba(23, 23, 42, .04), 0 4px 8px rgba(23, 23, 42, .05), 0 12px 22px rgba(23, 23, 42, .05), inset 0 1px 0 rgba(255, 255, 255, .95); padding: 24px 22px; min-height: 166px; display: flex; flex-direction: column; justify-content: space-between; gap: 18px; color: var(--ink); overflow: hidden; transition: transform var(--d-hover) var(--ez), box-shadow var(--d-hover) var(--ez), border-color var(--d-hover) var(--ez); }
 /* 호버: 떠오름 + 옅은 레드 틴트 (그라데이션 없이) */
-.ws-tile::before { content: ""; position: absolute; inset: 0; background: rgba(255, 91, 82, .05); opacity: 0; transition: opacity .25s; pointer-events: none; }
+.ws-tile::before { content: ""; position: absolute; inset: 0; background: rgba(255, 91, 82, .05); opacity: 0; transition: opacity var(--d-hover) var(--ez); pointer-events: none; }
 .ws-tile:hover { transform: translateY(-8px); box-shadow: 0 2px 4px rgba(23, 23, 42, .05), 0 14px 28px rgba(229, 37, 42, .12), 0 28px 50px rgba(23, 23, 42, .12), inset 0 1px 0 rgba(255, 255, 255, 1); border-color: rgba(229, 37, 42, .22); text-decoration: none; }
 .ws-tile:hover::before { opacity: 1; }
 /* 톤온톤 각진 아이콘 컨테이너 — 그리드 리듬·구조 부여 */
-.ws-tile__ico { position: relative; width: 52px; height: 52px; display: grid; place-items: center; background: none; border: none; box-shadow: none; transition: transform .2s var(--ez); }
+.ws-tile__ico { position: relative; width: 52px; height: 52px; display: grid; place-items: center; background: none; border: none; box-shadow: none; transition: transform var(--d-hover) var(--ez); }
 .ws-tile:hover .ws-tile__ico { transform: translateY(-2px); }
 .ws-tile__ico .ic-svg { width: 48px; height: 48px; filter: drop-shadow(0 4px 10px rgba(229, 37, 42, .12)); }
 .ws-tile__txt { display: block; position: relative; }
 .ws-tile__name { display: block; position: relative; font-family: var(--font); font-weight: 800; font-size: 1.3rem; line-height: 1.22; letter-spacing: -.024em; font-stretch: 97%; color: var(--ink); }
 .ws-tile__desc { display: block; margin-top: 5px; font-size: 13px; font-weight: 500; line-height: 1.5; letter-spacing: -.004em; color: var(--ink-soft); }
 .ws-tile__sub { display: block; }
-.ws-tile .arr { position: absolute; top: 24px; right: 24px; width: 22px; height: 22px; color: var(--ink-faint); transition: transform .18s, color .18s; }
+.ws-tile .arr { position: absolute; top: 24px; right: 24px; width: 22px; height: 22px; color: var(--ink-faint); transition: transform var(--d-micro) var(--ez), color var(--d-micro) var(--ez); }
 .ws-tile:hover .arr { transform: translateX(4px); color: var(--red); }
 .ws-tile--about { background: var(--surf-2); }
 .ws-tile--about:hover { background: #fff; }
 .ws-tile--about .ws-tile__ico .ic-svg { width: 30px; height: 30px; color: var(--ink-faint); filter: none; }
 .ws-tile--about .ws-tile__name { font-size: 1.2rem; }
 .ws-tile--about .ws-tile__sub { position: relative; font-size: 13px; color: var(--ink-soft); margin-top: 5px; line-height: 1.5; letter-spacing: -.004em; }
-/* 타일 스태거 진입 */
-.js .ws-tilegrid > [data-reveal]:nth-child(1) { transition-delay: .03s; }
-.js .ws-tilegrid > [data-reveal]:nth-child(2) { transition-delay: .07s; }
-.js .ws-tilegrid > [data-reveal]:nth-child(3) { transition-delay: .11s; }
-.js .ws-tilegrid > [data-reveal]:nth-child(4) { transition-delay: .15s; }
-.js .ws-tilegrid > [data-reveal]:nth-child(5) { transition-delay: .19s; }
-.js .ws-tilegrid > [data-reveal]:nth-child(6) { transition-delay: .23s; }
-.js .ws-tilegrid > [data-reveal]:nth-child(7) { transition-delay: .27s; }
-.js .ws-tilegrid > [data-reveal]:nth-child(8) { transition-delay: .31s; }
+/* 타일 스태거 진입 (촘촘히 — 마지막 타일도 빨리 합류) */
+.js .ws-tilegrid > [data-reveal]:nth-child(1) { transition-delay: .02s; }
+.js .ws-tilegrid > [data-reveal]:nth-child(2) { transition-delay: .05s; }
+.js .ws-tilegrid > [data-reveal]:nth-child(3) { transition-delay: .08s; }
+.js .ws-tilegrid > [data-reveal]:nth-child(4) { transition-delay: .11s; }
+.js .ws-tilegrid > [data-reveal]:nth-child(5) { transition-delay: .14s; }
+.js .ws-tilegrid > [data-reveal]:nth-child(6) { transition-delay: .17s; }
+.js .ws-tilegrid > [data-reveal]:nth-child(7) { transition-delay: .20s; }
+.js .ws-tilegrid > [data-reveal]:nth-child(8) { transition-delay: .23s; }
+.js .ws-tilegrid > [data-reveal]:nth-child(9) { transition-delay: .26s; }
 .ws-trust { display: flex; justify-content: center; flex-wrap: wrap; gap: 12px 22px; margin-top: 32px; font-size: 13.5px; font-weight: 600; letter-spacing: -.006em; color: var(--ink-soft); }
 .ws-trust span { display: inline-flex; align-items: center; gap: 7px; }
 .ws-trust span::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: #18a957; }
@@ -176,16 +204,16 @@
 @media (max-width: 380px) { .ws-launch--split .ws-tilegrid--mini { grid-template-columns: 1fr; } }
 .ws-tilegrid--mini .ws-tile { flex-direction: column; align-items: flex-start; justify-content: space-between; gap: 12px; aspect-ratio: 1 / 1; min-height: 0; padding: 24px 22px; }
 /* 코너 소프트 레드 글로우 (카드에 클립되어 은은한 코너 악센트) */
-.ws-tilegrid--mini .ws-tile::after { content: ""; position: absolute; top: -30px; right: -30px; width: 104px; height: 104px; border-radius: 50%; background: radial-gradient(circle, rgba(255, 91, 82, .13), transparent 68%); opacity: .6; transition: opacity .3s var(--ez), transform .3s var(--ez); pointer-events: none; }
+.ws-tilegrid--mini .ws-tile::after { content: ""; position: absolute; top: -30px; right: -30px; width: 104px; height: 104px; border-radius: 50%; background: radial-gradient(circle, rgba(255, 91, 82, .13), transparent 68%); opacity: .6; transition: opacity var(--d-enter) var(--ez), transform var(--d-enter) var(--ez); pointer-events: none; }
 .ws-tilegrid--mini .ws-tile:hover::after { opacity: 1; transform: scale(1.3); }
 .ws-tilegrid--mini .ws-tile__ico { width: auto; height: auto; flex: none; position: relative; }
-.ws-tilegrid--mini .ws-tile__ico .ic-svg { width: 56px; height: 56px; transition: transform .25s var(--ez); }
+.ws-tilegrid--mini .ws-tile__ico .ic-svg { width: 56px; height: 56px; transition: transform var(--d-hover) var(--ez); }
 .ws-tilegrid--mini .ws-tile:hover .ws-tile__ico .ic-svg { transform: scale(1.08); }
 .ws-tilegrid--mini .ws-tile__txt { position: relative; }
-.ws-tilegrid--mini .ws-tile__name { font-size: 1.14rem; line-height: 1.2; transition: color .2s; }
+.ws-tilegrid--mini .ws-tile__name { font-size: 1.14rem; line-height: 1.2; transition: color var(--d-micro) var(--ez); }
 .ws-tilegrid--mini .ws-tile:hover .ws-tile__name { color: var(--red-deep); }
 .ws-tilegrid--mini .ws-tile__desc { font-size: 12.5px; margin-top: 4px; line-height: 1.4; color: var(--ink-soft); }
-.ws-tilegrid--mini .arr { display: block; position: absolute; bottom: 22px; right: 22px; width: 20px; height: 20px; color: var(--red); opacity: 0; transform: translateX(-5px); transition: opacity .22s, transform .22s var(--ez); }
+.ws-tilegrid--mini .arr { display: block; position: absolute; bottom: 22px; right: 22px; width: 20px; height: 20px; color: var(--red); opacity: 0; transform: translateX(-5px); transition: opacity var(--d-micro) var(--ez), transform var(--d-hover) var(--ez); }
 .ws-tilegrid--mini .ws-tile:hover .arr { opacity: 1; transform: translateX(0); }
 /* 오른쪽: 드롭 도구 창 */
 .ws-homeright .ws-window { box-shadow: var(--sh-lg); }
@@ -340,7 +368,7 @@
 .tp-dock { position: fixed; bottom: 22px; left: 50%; transform: translateX(-50%); z-index: 150; width: min(1140px, calc(100vw - 28px)); }
 .tp-dock__inner { display: flex; gap: 6px; padding: 11px; background: rgba(255, 255, 255, .85); backdrop-filter: blur(20px) saturate(180%); -webkit-backdrop-filter: blur(20px) saturate(180%); border: 1px solid var(--line-2); border-radius: 22px; box-shadow: var(--sh-lg); overflow-x: auto; scrollbar-width: none; }
 .tp-dock__inner::-webkit-scrollbar { display: none; }
-.tp-dock__item { flex: 1 1 0; min-width: 76px; display: inline-flex; flex-direction: column; align-items: center; justify-content: center; gap: 7px; padding: 14px 8px; border-radius: 15px; color: var(--ink-soft); font-size: 12.5px; font-weight: 600; white-space: nowrap; transition: background .15s, color .15s, transform .15s; }
+.tp-dock__item { flex: 1 1 0; min-width: 76px; display: inline-flex; flex-direction: column; align-items: center; justify-content: center; gap: 7px; padding: 14px 8px; border-radius: 15px; color: var(--ink-soft); font-size: 12.5px; font-weight: 600; white-space: nowrap; transition: background var(--d-micro) var(--ez), color var(--d-micro) var(--ez), transform var(--d-micro) var(--ez), box-shadow var(--d-hover) var(--ez); }
 .tp-dock__item .ic-svg { width: 26px; height: 26px; }
 .tp-dock__item:hover { background: var(--surf-2); color: var(--ink); text-decoration: none; transform: translateY(-2px); }
 .tp-dock__item.is-active { background: var(--grad); color: #fff; box-shadow: var(--sh-red); }
@@ -349,6 +377,8 @@
 /* 페이지 미리보기 인디고 잔재 → 레드 */
 .ws .pagecell__img::after { background: rgba(229, 37, 42, .16); }
 .ws .pagecell--split:not(.is-locked):hover .pagecell__img { box-shadow: 0 0 0 2px var(--red), var(--sh-sm); }
+/* 페이지 선택 시 체크 배지가 톡 튀어나오게(spring) */
+.ws .pagecell.is-sel .pagecell__img::before { animation: aapPop var(--d-enter) var(--ez-spring); }
 
 /* ===== 토스풍 UX/UI 폴리시 (상세 에디터) — 여백·둥근 카드·큰 친근한 버튼 ===== */
 .tp-editor .tp-window { border-radius: 26px; box-shadow: 0 1px 2px rgba(23, 23, 42, .04), 0 14px 44px rgba(23, 23, 42, .09); }
@@ -360,6 +390,23 @@
 .tp-editor .field { border-radius: 14px; padding: 13px 16px; font-size: 1rem; }
 .tp-editor .tool__right .btn--primary { border-radius: 16px; padding: 17px 20px; font-size: 1.1rem; font-weight: 700; }
 .tp-editor .pagecell__img { border-radius: 14px; }
+
+/* 페이지 썸네일 진입 — 셀이 순차적으로 부드럽게 fade-up (마지막 셀도 빨리 합류) */
+.ws .pagecell { animation: aapFadeUp var(--d-enter) var(--ez-out) both; }
+.ws .pagecell:nth-child(2) { animation-delay: 35ms; }
+.ws .pagecell:nth-child(3) { animation-delay: 70ms; }
+.ws .pagecell:nth-child(4) { animation-delay: 105ms; }
+.ws .pagecell:nth-child(5) { animation-delay: 140ms; }
+.ws .pagecell:nth-child(6) { animation-delay: 175ms; }
+.ws .pagecell:nth-child(7) { animation-delay: 210ms; }
+.ws .pagecell:nth-child(8) { animation-delay: 245ms; }
+.ws .pagecell:nth-child(n+9) { animation-delay: 280ms; }
+/* 드래그 진입 시 업로드 아이콘이 살짝 떠오름 */
+.ws .dropzone__icon { transition: transform var(--d-hover) var(--ez); }
+.ws .dropzone--over .dropzone__icon { transform: translateY(-3px); }
+/* 진행바·파일 요약 진입 + 숫자 흔들림 제거 */
+.ws .progress, .ws .filebar { transition: opacity var(--d-enter) var(--ez), transform var(--d-enter) var(--ez-out); }
+.ws .progress__text, .ws .filebar__sum, .ws .result__size { font-variant-numeric: tabular-nums; }
 
 .tp-info { padding: 50px 0 84px; }
 .tp-lead { font-size: 1.18rem; line-height: 1.8; color: var(--ink-soft); max-width: 70ch; font-weight: 450; }
@@ -458,12 +505,15 @@
 .ws .dropzone.is-disabled { opacity: .55; pointer-events: none; filter: grayscale(.2); }
 
 /* ============ 업로드 → 풀스크린 전환 ============ */
-.ws-scrim { position: fixed; inset: 0; z-index: 998; background: rgba(23, 23, 42, .42); backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px); opacity: 0; pointer-events: none; transition: opacity .26s var(--ez); }
+.ws-scrim { position: fixed; inset: 0; z-index: 998; background: rgba(23, 23, 42, .42); backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px); opacity: 0; pointer-events: none; transition: opacity var(--d-modal) var(--ez); }
 body.ws-app-open .ws-scrim { opacity: 1; pointer-events: auto; }
-.ws-window.is-max, .tp-window.is-max { position: fixed; z-index: 999; top: 50%; left: 50%; width: min(1040px, 94vw); max-height: 92vh; transform: translate(-50%, -50%); display: flex; flex-direction: column; box-shadow: var(--sh-lg); animation: wsPop .3s var(--ez); }
+.ws-window.is-max, .tp-window.is-max { position: fixed; z-index: 999; top: 50%; left: 50%; width: min(1040px, 94vw); max-height: 92vh; transform: translate(-50%, -50%); display: flex; flex-direction: column; box-shadow: var(--sh-lg); animation: wsPop var(--d-modal) var(--ez-out); }
 .ws-window.is-max .herotool, .tp-window.is-max .tp-toolbody { flex: 1 1 auto; overflow: auto; min-height: 0; }
 .ws-window.is-max .ws-winclose, .tp-window.is-max .ws-winclose { display: inline-flex; align-items: center; }
+/* 퇴장: 닫을 때도 역재생으로 부드럽게(즉시 사라지지 않게) */
+.ws-window.is-closing, .tp-window.is-closing { animation: wsPopOut var(--d-modal) var(--ez-out) forwards; }
 @keyframes wsPop { from { opacity: 0; transform: translate(-50%, -47%) scale(.98); } to { opacity: 1; transform: translate(-50%, -50%) scale(1); } }
+@keyframes wsPopOut { from { opacity: 1; transform: translate(-50%, -50%) scale(1); } to { opacity: 0; transform: translate(-50%, -47%) scale(.98); } }
 @media (max-width: 980px) { .ws-window.is-max, .tp-window.is-max { width: 96vw; max-height: 94vh; } }
 
 /* ============ 포커스 가시성 ============ */
@@ -476,6 +526,9 @@ body.ws-app-open .ws-scrim { opacity: 1; pointer-events: auto; }
 }
 @media (prefers-reduced-motion: reduce) {
   .js [data-reveal] { opacity: 1 !important; transform: none !important; }
-  .ws-window.is-max, .tp-window.is-max { animation: none; }
+  .ws-window.is-max, .tp-window.is-max,
+  .ws-window.is-closing, .tp-window.is-closing,
+  .herotool__panel.is-active, .ws .pagecell { animation: none !important; }
+  ::view-transition-group(*), ::view-transition-old(*), ::view-transition-new(*) { animation: none !important; }
 }
 

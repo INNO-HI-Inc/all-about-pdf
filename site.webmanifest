@@ -5,8 +5,8 @@
   "description": "파일을 서버에 올리지 않는 무료 PDF 도구 모음",
   "start_url": "./",
   "display": "standalone",
-  "background_color": "#f4f6fb",
-  "theme_color": "#3d6dfb",
+  "background_color": "#ffffff",
+  "theme_color": "#ffffff",
   "icons": [
     {
       "src": "assets/img/favicon.svg",

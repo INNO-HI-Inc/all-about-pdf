@@ -44,7 +44,7 @@
 
 /* ── 리셋 ───────────────────────────────────────────── */
 *, *::before, *::after { box-sizing: border-box; }
-html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+html { background: #fff; -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
 body {
   margin: 0; font-family: var(--font); color: var(--ink); background: var(--bg);
   line-height: 1.78; font-size: 16px; letter-spacing: -.005em;
