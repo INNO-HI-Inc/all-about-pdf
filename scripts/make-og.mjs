@@ -3,34 +3,40 @@
 import { createRequire } from 'node:module';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
+import { readFileSync } from 'node:fs';
 const require = createRequire(import.meta.url);
 const { chromium } = require(process.env.PW_PATH || 'playwright');
-const OUT = join(dirname(fileURLToPath(import.meta.url)), '..', 'assets', 'img', 'og-default.png');
+const ASSETS = join(dirname(fileURLToPath(import.meta.url)), '..', 'assets', 'img');
+const OUT = join(ASSETS, 'og-default.png');
+const LOGO = 'data:image/png;base64,' + readFileSync(join(ASSETS, 'logo.png')).toString('base64');
 
 const HTML = `<!doctype html><html><head><meta charset="utf-8"><style>
 *{margin:0;box-sizing:border-box}
 body{font-family:-apple-system,'Apple SD Gothic Neo','Noto Sans KR',sans-serif}
-.card{width:1200px;height:630px;background:radial-gradient(860px 500px at 50% 14%,rgba(79,70,229,.10),transparent 60%),#ffffff;
-  color:#15171f;padding:78px;display:flex;flex-direction:column;justify-content:center;position:relative;overflow:hidden}
-.card::after{content:'';position:absolute;right:-130px;top:-130px;width:440px;height:440px;border-radius:50%;background:rgba(79,70,229,.05)}
-.brand{display:flex;align-items:center;gap:16px;margin-bottom:30px}
-.logo{width:66px;height:66px;display:flex;align-items:center;justify-content:center}
-.bname{font-size:31px;font-weight:700;color:#15171f}
-.title{font-size:64px;font-weight:800;line-height:1.2;letter-spacing:-2.5px;margin-bottom:22px}
-.sub{font-size:30px;font-weight:500;color:#5a6172}
-.tags{display:flex;gap:13px;margin-top:42px}
-.tag{background:#eef0fe;color:#4338ca;padding:13px 24px;border-radius:999px;font-size:25px;font-weight:700}
+.card{width:1200px;height:630px;background:radial-gradient(900px 540px at 78% -8%,rgba(255,91,82,.16),transparent 58%),radial-gradient(620px 420px at 6% 108%,rgba(229,37,42,.07),transparent 60%),#ffffff;
+  color:#17172a;padding:80px;display:flex;flex-direction:column;justify-content:center;position:relative;overflow:hidden}
+.card::after{content:'';position:absolute;right:-150px;top:-150px;width:480px;height:480px;border-radius:50%;background:radial-gradient(circle,rgba(229,37,42,.06),transparent 65%)}
+.brand{display:flex;align-items:center;gap:15px;margin-bottom:34px}
+.logo{width:74px;height:74px;object-fit:contain;display:block}
+.bname{font-size:32px;font-weight:800;color:#17172a;letter-spacing:-1px}
+.title{font-size:66px;font-weight:800;line-height:1.16;letter-spacing:-3px;margin-bottom:24px}
+.title .mk{color:#e5252a}
+.sub{font-size:29px;font-weight:500;color:#585e6e;letter-spacing:-.5px}
+.tags{display:flex;gap:13px;margin-top:44px}
+.tag{display:flex;align-items:center;gap:10px;background:#fff1f0;color:#c01a12;padding:13px 24px;border-radius:999px;font-size:24px;font-weight:700;border:1px solid #ffd5d1}
+.tag i{width:11px;height:11px;border-radius:50%;background:#18a957;display:block}
 </style></head><body>
 <div class="card">
-  <div class="brand"><div class="logo"><svg width="62" height="62" viewBox="0 0 32 32"><defs><radialGradient id="oo" cx="34%" cy="27%" r="84%"><stop offset="0%" stop-color="#c8b9ff"/><stop offset="36%" stop-color="#6d6af6"/><stop offset="74%" stop-color="#4f46e5"/><stop offset="100%" stop-color="#36178a"/></radialGradient></defs><circle cx="16" cy="16" r="13.6" fill="url(#oo)"/><ellipse cx="11.6" cy="10.4" rx="4.7" ry="3" fill="#fff" opacity=".5" transform="rotate(-18 11.6 10.4)"/></svg></div><div class="bname">PDF의 모든 것</div></div>
-  <div class="title">무료 PDF 도구 모음<br>합치기 · 분할 · 변환 · 잠금해제</div>
-  <div class="sub">설치 없이 · 파일을 서버에 올리지 않고 · 내 브라우저에서</div>
-  <div class="tags"><span class="tag">서버에 안 올림</span><span class="tag">완전 무료</span><span class="tag">설치 불필요</span></div>
+  <div class="brand"><img class="logo" src="${LOGO}"><div class="bname">PDF의 모든 것</div></div>
+  <div class="title">설치 없이 무료로,<br><span class="mk">9가지 PDF 도구</span>를 한곳에서</div>
+  <div class="sub">합치기 · 분할 · 변환 · 잠금해제 · 페이지 정리까지 — 파일은 서버에 올리지 않고 내 브라우저에서</div>
+  <div class="tags"><span class="tag"><i></i>서버에 안 올림</span><span class="tag"><i></i>완전 무료</span><span class="tag"><i></i>설치 불필요</span></div>
 </div></body></html>`;
 
 const browser = await chromium.launch();
 const page = await browser.newPage({ viewport: { width: 1200, height: 630 }, deviceScaleFactor: 1 });
 await page.setContent(HTML, { waitUntil: 'networkidle' });
+await page.waitForTimeout(200);
 await page.locator('.card').screenshot({ path: OUT });
 await browser.close();
 console.log('✓ OG 이미지 생성:', OUT);
