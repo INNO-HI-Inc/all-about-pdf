@@ -74,9 +74,10 @@
   var catRows = Array.prototype.slice.call(d.querySelectorAll('.ws-cat-row'));
   catTiles.forEach(function (tile) {
     tile.addEventListener('click', function () {
-      var id = tile.getAttribute('data-cat');
-      catRows.forEach(function (r) { r.classList.toggle('is-active', r.getAttribute('data-cat') === id); });
-      catTiles.forEach(function (t) { var on = t.getAttribute('data-cat') === id; t.classList.toggle('is-active', on); t.setAttribute('aria-expanded', on ? 'true' : 'false'); });
+      var row = tile.parentNode;
+      var open = row.classList.toggle('is-active');
+      tile.classList.toggle('is-active', open);
+      tile.setAttribute('aria-expanded', open ? 'true' : 'false');
     });
   });
 

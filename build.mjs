@@ -803,8 +803,8 @@ function buildHome() {
           <span class="ws-card__ico">${ICONS_PDF[slug]}</span>
           <span class="ws-card__tx"><span class="ws-card__name">${esc(read(slug).h1)}</span><span class="ws-card__desc">${esc(APP_DESC[slug] || '')}</span></span>
         </a>`;
-  const catRows = CATEGORIES.map((cat, ci) => `        <div class="ws-cat-row${ci === 0 ? ' is-active' : ''}" data-cat="${cat.id}">
-          <button class="ws-cattile${ci === 0 ? ' is-active' : ''}" type="button" data-cat="${cat.id}" aria-expanded="${ci === 0 ? 'true' : 'false'}">
+  const catRows = CATEGORIES.map((cat) => `        <div class="ws-cat-row is-active" data-cat="${cat.id}">
+          <button class="ws-cattile is-active" type="button" data-cat="${cat.id}" aria-expanded="true">
             <span class="ws-cattile__count">${cat.slugs.length}</span>
             <span class="ws-cattile__title">${esc(cat.title)}</span>
           </button>
