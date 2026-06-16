@@ -69,6 +69,15 @@
     d.addEventListener('keydown', function (e) { if (e.key === 'Escape') close(); });
   }
 
+  // 2-b) 카테고리 아코디언 — 클릭하면 도구가 옆으로 촤라락 펼쳐짐
+  Array.prototype.slice.call(d.querySelectorAll('.ws-cat__btn')).forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var cat = btn.parentNode;
+      var open = cat.classList.toggle('is-open');
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+  });
+
   // 3) 숫자키(1–7)로 도구 전환 — 입력 중이 아닐 때만
   d.addEventListener('keydown', function (e) {
     if (e.metaKey || e.ctrlKey || e.altKey) return;

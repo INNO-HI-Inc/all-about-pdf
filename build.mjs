@@ -745,16 +745,20 @@ function buildHome() {
   const usps = c.uspCards.map((u, i) => `<div class="ws-usp" data-reveal><span class="n">0${i + 1}</span><div><h4>${esc(u.title)}</h4><p>${esc(u.desc)}</p></div></div>`).join('\n        ');
   const faqs = c.faq.map((f, i) => `<details><summary><span class="q">Q${i + 1}</span><span>${esc(f.q)}</span></summary><div class="a">${esc(f.a)}</div></details>`).join('\n        ');
 
-  const card = (slug, i) => `<a class="ws-card" href="${slug}/" data-reveal style="--i:${i}">
+  const card = (slug, i) => `<a class="ws-card" href="${slug}/" style="--i:${i}">
           <span class="ws-card__ico">${ICONS_PDF[slug]}</span>
           <span class="ws-card__tx"><span class="ws-card__name">${esc(read(slug).h1)}</span><span class="ws-card__desc">${esc(APP_DESC[slug] || '')}</span></span>
         </a>`;
-  const catalog = CATEGORIES.map((cat) => `      <section class="ws-cat" id="cat-${cat.id}">
-        <div class="ws-cat__head"><h2 class="ws-cat__title">${esc(cat.title)}</h2><p class="ws-cat__desc">${esc(cat.desc)}</p></div>
-        <div class="ws-shelf${cat.soon ? ' ws-shelf--soon' : ''}">
-          ${cat.soon ? '<div class="ws-soon">곧 추가됩니다</div>' : cat.slugs.map((s, i) => card(s, i)).join('\n          ')}
-        </div>
-      </section>`).join('\n');
+  const chev = '<svg class="ws-cat__chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>';
+  const catalog = CATEGORIES.map((cat, ci) => `      <div class="ws-cat${ci === 0 ? ' is-open' : ''}" id="cat-${cat.id}">
+        <button class="ws-cat__btn" type="button" aria-expanded="${ci === 0 ? 'true' : 'false'}" aria-controls="catp-${cat.id}">
+          <span class="ws-cat__meta"><span class="ws-cat__title">${esc(cat.title)}</span><span class="ws-cat__desc">${esc(cat.desc)}</span></span>
+          <span class="ws-cat__count">${cat.slugs.length}</span>${chev}
+        </button>
+        <div class="ws-cat__panel" id="catp-${cat.id}"><div class="ws-cat__inner"><div class="ws-shelf">
+          ${cat.slugs.map((s, i) => card(s, i)).join('\n          ')}
+        </div></div></div>
+      </div>`).join('\n');
 
   const main = `    <section class="ws-home2" id="tools">
       <h1 class="sr-only">${esc(c.metaTitle || 'PDF의 모든 것')} — 설치 없이 무료로 쓰는 한국어 PDF 도구 모음</h1>

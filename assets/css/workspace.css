@@ -606,21 +606,37 @@ body.ws-app-open .ws-scrim { opacity: 1; pointer-events: auto; }
 .ws-home2 { padding: 24px 0 72px; }
 .ws-home2grid { display: grid; grid-template-columns: 1fr 1.08fr; gap: 34px; align-items: start; max-width: 1340px; margin: 0 auto; }
 .ws-home2left { position: sticky; top: 88px; align-self: start; min-width: 0; }
-.ws-home2right { min-width: 0; }
-.ws-home2right .ws-cat { margin-top: 28px; }
-.ws-home2right .ws-cat:first-child { margin-top: 0; }
-.ws-home2right .ws-cat__head { margin-bottom: 12px; }
-.ws-home2right .ws-cat__title { font-size: 1.22rem; }
-.ws-home2right .ws-cat__desc { font-size: .9rem; }
-/* 카탈로그를 가로 스크롤 선반 → 컬럼에 맞는 2열 그리드(전부 보임, fan-in 유지) */
-.ws-home2right .ws-shelf { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; overflow: visible; padding: 6px 2px 2px; scroll-snap-type: none; }
-.ws-home2right .ws-card { flex: none; padding: 18px; gap: 10px; border-radius: 14px; }
-.ws-home2right .ws-card__ico, .ws-home2right .ws-card__ico .ic-svg { width: 40px; height: 40px; flex-basis: 40px; }
-.ws-home2right .ws-card__name { font-size: 1.02rem; }
-.ws-home2right .ws-card__desc { font-size: .85rem; margin-top: 4px; line-height: 1.5; }
-.ws-home2right .ws-shelf > .ws-card:only-child { grid-column: 1 / -1; }
+.ws-home2right { min-width: 0; display: flex; flex-direction: column; gap: 12px; }
 @media (max-width: 1000px) {
   .ws-home2grid { grid-template-columns: 1fr; gap: 26px; }
   .ws-home2left { position: static; max-width: 760px; margin: 0 auto; width: 100%; }
 }
-@media (max-width: 560px) { .ws-home2right .ws-shelf { grid-template-columns: 1fr; } }
+
+/* ===== 카테고리 아코디언: 클릭하면 도구가 옆으로 촤라락 ===== */
+.ws-cat { background: #fff; border: 1px solid var(--line-2); border-radius: 16px; overflow: hidden; box-shadow: 0 1px 2px rgba(23, 23, 42, .04), 0 5px 14px rgba(23, 23, 42, .05); transition: box-shadow var(--d-hover) var(--ez), border-color var(--d-hover) var(--ez); }
+.ws-cat.is-open { border-color: var(--line-2); box-shadow: 0 2px 4px rgba(23, 23, 42, .05), 0 12px 28px rgba(23, 23, 42, .08); }
+.ws-cat__btn { width: 100%; display: flex; align-items: center; gap: 14px; padding: 17px 20px; background: none; border: 0; cursor: pointer; text-align: left; font-family: inherit; color: var(--ink); transition: background var(--d-micro) var(--ez); }
+.ws-cat__btn:hover { background: var(--surf-2); }
+.ws-cat__meta { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.ws-cat__title { font-family: var(--font); font-weight: 700; font-size: 1.12rem; letter-spacing: -.018em; color: var(--ink); }
+.ws-cat__desc { font-size: .86rem; color: var(--ink-soft); word-break: keep-all; }
+.ws-cat__count { margin-left: auto; flex: 0 0 auto; min-width: 26px; height: 24px; display: inline-grid; place-items: center; padding: 0 8px; font-size: 12.5px; font-weight: 700; color: var(--red-deep); background: var(--grad-soft); border-radius: var(--pill); font-variant-numeric: tabular-nums; }
+.ws-cat__chev { flex: 0 0 auto; width: 20px; height: 20px; color: var(--ink-faint); transition: transform var(--d-enter) var(--ez-out); }
+.ws-cat.is-open .ws-cat__chev { transform: rotate(90deg); color: var(--red); }
+/* 펼침: grid-rows 0fr→1fr 로 부드럽게 */
+.ws-cat__panel { display: grid; grid-template-rows: 0fr; transition: grid-template-rows var(--d-enter) var(--ez-out); }
+.ws-cat.is-open .ws-cat__panel { grid-template-rows: 1fr; }
+.ws-cat__inner { overflow: hidden; min-height: 0; }
+/* 도구가 옆으로 펼쳐지는 가로 선반 */
+.ws-cat .ws-shelf { display: flex; gap: 12px; overflow-x: auto; padding: 4px 20px 20px; scrollbar-width: thin; scrollbar-color: var(--line-2) transparent; }
+.ws-cat .ws-shelf::-webkit-scrollbar { height: 7px; }
+.ws-cat .ws-shelf::-webkit-scrollbar-thumb { background: var(--line-2); border-radius: 4px; }
+.ws-cat .ws-card { flex: 0 0 210px; scroll-snap-align: start; padding: 16px; gap: 10px; border-radius: 13px; box-shadow: 0 1px 2px rgba(23, 23, 42, .04), 0 3px 10px rgba(23, 23, 42, .05); }
+.ws-cat .ws-card__ico, .ws-cat .ws-card__ico .ic-svg { width: 38px; height: 38px; flex-basis: 38px; }
+.ws-cat .ws-card__name { font-size: .98rem; }
+.ws-cat .ws-card__desc { font-size: .82rem; margin-top: 4px; line-height: 1.45; }
+/* 촤라락 — 펼칠 때 카드가 좌→우 순차 슬라이드 */
+.js .ws-cat.is-open .ws-card { animation: fanIn var(--d-enter) var(--ez-out) both; animation-delay: calc(var(--i, 0) * 52ms); }
+@keyframes fanIn { from { opacity: 0; transform: translateX(-26px) scale(.95); } to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) { .js .ws-cat.is-open .ws-card { animation: none; } .ws-cat__panel { transition: none; } }
+@media (max-width: 560px) { .ws-cat .ws-card { flex-basis: 74vw; } }
