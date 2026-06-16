@@ -640,3 +640,10 @@ body.ws-app-open .ws-scrim { opacity: 1; pointer-events: auto; }
 @keyframes fanIn { from { opacity: 0; transform: translateX(-26px) scale(.95); } to { opacity: 1; transform: none; } }
 @media (prefers-reduced-motion: reduce) { .js .ws-cat.is-open .ws-card { animation: none; } .ws-cat__panel { transition: none; } }
 @media (max-width: 560px) { .ws-cat .ws-card { flex-basis: 74vw; } }
+
+/* 홈 작업창: 'PDF 올려두는 곳(드롭존)' 과 '옵션 하는 곳' 을 분리 — 옵션을 별도 카드로 */
+.ws-window .herotool__panel .tool { display: flex; flex-direction: column; gap: 16px; }
+.ws-window .herotool__panel .tool__right { background: #fff; border: 1px solid var(--line-2); border-radius: 14px; padding: 16px 16px 18px; box-shadow: 0 1px 2px rgba(23, 23, 42, .04), 0 6px 16px rgba(23, 23, 42, .05); }
+.ws-window .herotool__panel .tool__right .options { margin: 0; }
+.ws-window .herotool__panel .tool__right .actions { margin-top: 14px; }
+.ws-window .herotool__panel .tool__right .field { background: var(--surf-2); }

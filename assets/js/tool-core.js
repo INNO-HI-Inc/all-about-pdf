@@ -429,19 +429,20 @@
     // 외부(홈 풀스크린 닫기 등)에서 초기화 요청
     root.addEventListener('tool:reset', function () { if (!state.files.length) return; state.files = []; changed(); });
 
+    var FMT = {
+      image: { re: /\.(jpe?g|png)$/i, mime: /^image\/(png|jpeg)$/i, label: 'JPG·PNG 이미지' },
+      jpg: { re: /\.jpe?g$/i, mime: /^image\/jpeg$/i, label: 'JPG 이미지' },
+      png: { re: /\.png$/i, mime: /^image\/png$/i, label: 'PNG 이미지' },
+      webp: { re: /\.webp$/i, mime: /^image\/webp$/i, label: 'WEBP 이미지' },
+      svg: { re: /\.svg$/i, mime: /^image\/svg\+xml$/i, label: 'SVG 파일' },
+      pdf: { re: /\.pdf$/i, mime: /^application\/pdf$/i, label: 'PDF 파일' }
+    };
     function addFiles(fileList) {
       var all = Array.prototype.slice.call(fileList);
-      var isImg = config.accept === 'image';
-      var isSvg = config.accept === 'svg';
-      var arr = all.filter(function (f) {
-        return isSvg
-          ? (/\.svg$/i.test(f.name) || f.type === 'image/svg+xml')
-          : isImg
-          ? (/\.(jpe?g|png)$/i.test(f.name) || /^image\/(png|jpeg)$/i.test(f.type))
-          : (/\.pdf$/i.test(f.name) || f.type === 'application/pdf');
-      });
-      if (!arr.length) { UI.toast(isSvg ? 'SVG 파일만 올릴 수 있어요.' : isImg ? 'JPG·PNG 이미지만 올릴 수 있어요.' : 'PDF 파일만 올릴 수 있어요.', 'error'); return; }
-      if (all.length > arr.length) UI.toast(isSvg ? 'SVG가 아닌 파일은 제외했어요.' : isImg ? '이미지가 아닌 파일은 제외했어요.' : 'PDF가 아닌 파일은 제외했어요.', 'info');
+      var spec = FMT[config.accept] || FMT.pdf;
+      var arr = all.filter(function (f) { return spec.re.test(f.name || '') || spec.mime.test(f.type || ''); });
+      if (!arr.length) { UI.toast(spec.label + '만 올릴 수 있어요.', 'error'); return; }
+      if (all.length > arr.length) UI.toast(spec.label + '이(가) 아닌 파일은 제외했어요.', 'info');
       arr.forEach(function (f) { if (f.size > 50 * 1024 * 1024) UI.toast('"' + f.name + '"은(는) 용량이 커서 처리가 느릴 수 있어요.', 'info'); });
       if (multiple) {
         var seen = {}; state.files.forEach(function (f) { seen[f.name + '|' + f.size] = true; });

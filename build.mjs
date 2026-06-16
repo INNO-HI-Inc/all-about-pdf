@@ -163,6 +163,37 @@ const TILE_COLOR = {
   merge: '#e5252a', split: '#2f6df6', unlock: '#f59e0b', extract: '#10b981',
   delete: '#f43f5e', organize: '#7c3aed', 'to-image': '#8b5cf6', 'page-numbers': '#0ea5e9', 'image-to-pdf': '#0ea5e9', 'svg-to-png': '#8b5cf6',
 };
+
+// ───────── 이미지 변환 도구 자동 생성 (JPG/PNG/WEBP/SVG 상호변환) ─────────
+const UP = { jpg: 'JPG', png: 'PNG', webp: 'WEBP', svg: 'SVG' };
+const CONVERTS = [
+  { from: 'jpg', to: 'png', feat: ['무손실·투명', '여러 장 ZIP'], desc: 'JPG 사진을 무손실·투명 지원 PNG로. PNG만 받는 곳이나 편집·보관용으로 좋아요.' },
+  { from: 'png', to: 'jpg', feat: ['용량 축소', '화질 선택'], desc: '무거운 PNG를 가벼운 JPG로. 투명 배경은 흰색으로 채워지고, 화질을 고를 수 있어요.' },
+  { from: 'webp', to: 'png', feat: ['어디서나 열림', '투명 유지'], desc: '웹용 WEBP를 어디서나 열리는 무손실 PNG로. 투명 배경 그대로 유지돼요.' },
+  { from: 'webp', to: 'jpg', feat: ['호환성↑', '화질 선택'], desc: 'WEBP를 호환성 좋은 JPG로. 카톡·문서·메일에 바로 올릴 수 있어요.' },
+  { from: 'png', to: 'webp', feat: ['용량 크게↓', '투명 유지'], desc: '무거운 PNG를 가벼운 WEBP로. 보이는 모양은 그대로, 용량만 줄여 웹을 빠르게.' },
+  { from: 'jpg', to: 'webp', feat: ['웹 최적화', '용량↓'], desc: 'JPG를 더 가벼운 WEBP로. 같은 화질에 작은 용량으로 웹페이지를 빠르게.' },
+  { from: 'svg', to: 'jpg', feat: ['배율 고화질', '흰 배경'], desc: '벡터 SVG를 어디서나 쓰는 JPG로. 배율을 올려 고화질로, 투명은 흰 배경 처리.' },
+  { from: 'svg', to: 'webp', feat: ['배율 고화질', '용량↓'], desc: '벡터 SVG를 가벼운 WEBP로. 배율 선택, 투명 유지.' },
+];
+const convIcon = (c) => pdfSvg('<rect x="3" y="5.2" width="8.4" height="8.4" rx="1.5" fill="#9aa0ad"/><path d="M5 11.6l1.6-2 1.05 1.2 1-1.2 1.55 2z" fill="#fff"/><circle cx="5.5" cy="8" r=".9" fill="#fff"/><rect x="11.6" y="10.4" width="9.4" height="9.4" rx="1.6" fill="' + ({ png: '#18a957', jpg: '#f59e0b', webp: '#0ea5e9' }[c.to] || PDF_RED) + '" stroke="#fff" stroke-width="1.1"/><path d="M14 17.6l1.7-2.1 1.1 1.25 1.05-1.25 1.6 2.1z" fill="#fff"/><circle cx="14.3" cy="13.6" r="1" fill="#fff"/>');
+const convTool = (c) => ({
+  slug: c.from + '-to-' + c.to, icon: ICONS.image, nav: UP[c.from] + '→' + UP[c.to], multiple: true, reorder: true,
+  accept: c.from, conv: { from: c.from, to: c.to }, script: 'img-convert', imageThumbs: true, fileThumbs: true,
+  runLabel: UP[c.to] + '로 변환하기', dropTitle: UP[c.from] + ' 파일을 끌어다 놓으세요', pagecount: false,
+  feature: [UP[c.from] + ' → ' + UP[c.to]].concat(c.feat || []), options: optConv({ from: c.from, to: c.to })
+});
+CONVERTS.forEach((c) => {
+  const slug = c.from + '-to-' + c.to;
+  ICONS_PDF[slug] = convIcon(c);
+  APP_DESC[slug] = c.desc;
+  APP_SHORT[slug] = UP[c.from] + '→' + UP[c.to];
+  APP_FILE[slug] = slug + '.app';
+  TILE_COLOR[slug] = '#0ea5e9';
+  TOOLS.push(convTool(c));
+});
+CATEGORIES.find((x) => x.id === 'convert').slugs.push(...CONVERTS.map((c) => c.from + '-to-' + c.to));
+Object.assign(TOOL_BY, Object.fromEntries(TOOLS.map((t) => [t.slug, t])));
 const ARR_SVG = '<svg class="arr" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>';
 
 // 작업실 OS 태스크바 / 푸터 (rel: 홈은 '', 하위는 '../')
@@ -288,6 +319,26 @@ function optCompress() {
 function optInfo() {
   return `<div class="options">
   <p class="option__hint" style="margin:0">PDF를 올리면 페이지 수·용량·크기·메타데이터·잠김 여부를 표로 보여줘요. 파일을 바꾸거나 저장하지 않습니다.</p>
+</div>`;
+}
+function optConv(conv) {
+  const lossy = (conv.to === 'jpg' || conv.to === 'webp');
+  const parts = [];
+  if (conv.from === 'svg') {
+    parts.push(`<div class="option">
+    <label class="option__label" for="conv-scale">출력 배율 <span class="option__hint">클수록 고화질·큰 파일</span></label>
+    <select id="conv-scale" class="field"><option value="1">1배</option><option value="2" selected>2배 (고화질)</option><option value="3">3배</option><option value="4">4배</option></select>
+  </div>`);
+  }
+  if (lossy) {
+    parts.push(`<div class="option">
+    <label class="option__label" for="conv-quality">화질 <span class="option__hint">낮을수록 용량↓</span></label>
+    <select id="conv-quality" class="field"><option value="0.6">낮음 (가벼움)</option><option value="0.8" selected>보통</option><option value="0.92">높음 (선명)</option></select>
+  </div>`);
+  }
+  parts.push(optOutName(conv.to.toUpperCase() + '-변환'));
+  return `<div class="options">
+  ${parts.join('\n  ')}
 </div>`;
 }
 function optSplit() {
@@ -556,9 +607,12 @@ function widget(t, opts) {
   opts = opts || {};
   const extraClass = opts.class ? ' ' + opts.class : '';
   const pc = t.pagecount ? `\n      <p class="pagecount js-pagecount"></p>` : '';
-  const accept = t.accept === 'image' ? 'image/png,image/jpeg' : t.accept === 'svg' ? 'image/svg+xml,.svg' : 'application/pdf';
-  const aria = t.accept === 'image' ? '이미지 파일 선택 또는 끌어다 놓기' : t.accept === 'svg' ? 'SVG 파일 선택 또는 끌어다 놓기' : 'PDF 파일 선택 또는 끌어다 놓기';
-  const noun = t.accept === 'image' ? '이미지' : t.accept === 'svg' ? 'SVG' : 'PDF';
+  const ACC = { image: 'image/png,image/jpeg', jpg: 'image/jpeg,.jpg,.jpeg', png: 'image/png,.png', webp: 'image/webp,.webp', svg: 'image/svg+xml,.svg' };
+  const NOUN = { image: '이미지', jpg: 'JPG', png: 'PNG', webp: 'WEBP', svg: 'SVG' };
+  const accept = ACC[t.accept] || 'application/pdf';
+  const noun = NOUN[t.accept] || 'PDF';
+  const aria = noun + ' 파일 선택 또는 끌어다 놓기';
+  const convAttr = t.conv ? ` data-from="${t.conv.from}" data-to="${t.conv.to}"` : '';
   const dropBody = `<div class="dropzone js-drop" tabindex="0" role="button" aria-label="${aria}">
           <input type="file" class="js-file" accept="${accept}" ${t.multiple ? 'multiple ' : ''}hidden>
           <svg class="dropzone__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 16V4M12 4l-4 4M12 4l4 4"/><path d="M4 16v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg>
@@ -573,7 +627,7 @@ function widget(t, opts) {
   const left = opts.editor
     ? `<div class="tool__left ws-window">${winbar}<div class="tool__leftbody">${dropBody}</div></div>`
     : `<div class="tool__left">${dropBody}</div>`;
-  return `<div class="tool${extraClass}" data-tool="${t.slug}">
+  return `<div class="tool${extraClass}" data-tool="${t.slug}"${convAttr}>
       ${left}
       <div class="tool__right">
         ${t.options}
@@ -710,7 +764,7 @@ ${toolDock(t.slug, rel)}
   const html = page({
     title: c.title, desc: c.metaDescription, canonical,
     ogTitle: `${c.h1} 무료 - ${BRAND}`, rel, jsonld, main, noFooter: true,
-    withScripts: t.slug, noChrome: true,
+    withScripts: t.script || t.slug, noChrome: true,
     bodyClass: 'ws tp',
     extraScripts: ['assets/js/workspace.js'],
     headExtra: `\n  <script>document.documentElement.className+=" js";</script>\n  <link rel="stylesheet" href="${rel}assets/css/workspace.css?v=${ASSET_VER}">`
@@ -787,7 +841,7 @@ ${catalog}
   const html = page({
     title: c.metaTitle, desc: c.metaDescription, canonical,
     ogTitle: c.metaTitle, rel, jsonld, main, noChrome: true, noFooter: true,
-    withScripts: TOOLS.map((t) => t.slug),
+    withScripts: [...new Set(TOOLS.map((t) => t.script || t.slug))],
     bodyClass: 'ws home',
     extraScripts: ['assets/js/workspace.js'],
     headExtra: `\n  <script>document.documentElement.className+=" js";</script>\n  <link rel="stylesheet" href="assets/css/workspace.css?v=${ASSET_VER}">`

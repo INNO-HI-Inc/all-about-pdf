@@ -484,6 +484,61 @@
     return info;
   }
 
+  // ── 이미지 형식 변환 (래스터/SVG → PNG/JPG/WEBP) ─────────────
+  function parseSvgDims(text) {
+    var m = text.match(/<svg[\s\S]*?>/i); if (!m) return { w: 0, h: 0 };
+    var tag = m[0];
+    var pick = function (re) { var x = tag.match(re); return x ? parseFloat(x[1]) : 0; };
+    var w = pick(/\bwidth\s*=\s*["']?\s*([\d.]+)/i), h = pick(/\bheight\s*=\s*["']?\s*([\d.]+)/i);
+    if (!w || !h) { var vb = tag.match(/viewBox\s*=\s*["']\s*[-\d.]+[ ,]+[-\d.]+[ ,]+([\d.]+)[ ,]+([\d.]+)/i); if (vb) { if (!w) w = parseFloat(vb[1]); if (!h) h = parseFloat(vb[2]); } }
+    return { w: w || 0, h: h || 0 };
+  }
+  function readTextFile(file) { return new Promise(function (res, rej) { var r = new FileReader(); r.onload = function () { res(String(r.result || '')); }; r.onerror = function () { rej(new Error('파일을 읽지 못했어요.')); }; r.readAsText(file); }); }
+  function rasterizeImage(file, o) {
+    o = o || {};
+    return new Promise(function (resolve, reject) {
+      var isSvg = /\.svg$/i.test(file.name) || file.type === 'image/svg+xml';
+      function draw(dims) {
+        var url = global.URL.createObjectURL(file);
+        var img = new Image();
+        img.onload = function () {
+          var bw = (dims && dims.w) || img.naturalWidth || img.width || 1024;
+          var bh = (dims && dims.h) || img.naturalHeight || img.height || bw;
+          var sc = o.scale || 1;
+          var w = Math.max(1, Math.round(bw * sc)), h = Math.max(1, Math.round(bh * sc));
+          var MAX = 16000000; if (w * h > MAX) { var k = Math.sqrt(MAX / (w * h)); w = Math.max(1, Math.round(w * k)); h = Math.max(1, Math.round(h * k)); }
+          var c = document.createElement('canvas'); c.width = w; c.height = h;
+          var ctx = c.getContext('2d');
+          if (o.white) { ctx.fillStyle = '#ffffff'; ctx.fillRect(0, 0, w, h); }
+          try { ctx.drawImage(img, 0, 0, w, h); } catch (e) { global.URL.revokeObjectURL(url); reject(new Error('이 파일은 변환할 수 없어요.')); return; }
+          global.URL.revokeObjectURL(url);
+          c.toBlob(function (b) { if (b) resolve(b); else reject(new Error('변환에 실패했어요. 브라우저가 이 형식을 지원하지 않을 수 있어요.')); c.width = c.height = 0; }, o.mime, o.quality);
+        };
+        img.onerror = function () { global.URL.revokeObjectURL(url); reject(new Error('파일을 불러올 수 없어요. 형식이 맞는지 확인해 주세요.')); };
+        img.src = url;
+      }
+      if (isSvg) { readTextFile(file).then(function (t) { draw(parseSvgDims(t)); }).catch(function () { draw(null); }); }
+      else draw(null);
+    });
+  }
+  // convertImages(files, {to:'png'|'jpg'|'webp', quality, scale}, onProgress) → items[{name,blob}]
+  async function convertImages(files, opts, onProgress) {
+    opts = opts || {};
+    var to = (opts.to || 'png').toLowerCase();
+    var mime = (to === 'jpg' || to === 'jpeg') ? 'image/jpeg' : to === 'webp' ? 'image/webp' : 'image/png';
+    var ext = to === 'jpeg' ? 'jpg' : to;
+    var quality = opts.quality != null ? opts.quality : 0.92;
+    var white = mime === 'image/jpeg' || !!opts.white;
+    var items = [];
+    for (var i = 0; i < files.length; i++) {
+      var blob = await rasterizeImage(files[i], { scale: opts.scale || 1, mime: mime, quality: quality, white: white });
+      var base = (files[i].name || ('image-' + (i + 1))).replace(/\.[a-z0-9]+$/i, '') || ('image-' + (i + 1));
+      items.push({ name: base + '.' + ext, blob: blob });
+      if (onProgress) onProgress((i + 1) / files.length);
+    }
+    return items;
+  }
+
   // 페이지 썸네일 렌더링 (시각적 선택용)
   async function renderThumbs(file, opts, onProgress) {
     opts = opts || {};
@@ -554,6 +609,7 @@
     crop: crop,
     compress: compress,
     getInfo: getInfo,
+    convertImages: convertImages,
     renderThumbs: renderThumbs,
     getPageCount: getPageCount,
     isPasswordError: isPasswordError,
