@@ -87,12 +87,12 @@ const TOOLS = [
   { slug: 'organize', icon: ICONS.organize, nav: '페이지 정리', multiple: false,
     runLabel: '페이지 정리하기', dropTitle: '정리할 PDF를 끌어다 놓으세요', pagecount: true,
     feature: ['드래그로 순서 변경', '페이지별 회전', '페이지 삭제'], options: optOrganize() },
-  { slug: 'to-image', icon: ICONS.image, nav: '이미지 변환', multiple: false,
-    runLabel: '이미지로 변환하기', dropTitle: '이미지로 바꿀 PDF를 끌어다 놓으세요', pagecount: true,
-    feature: ['PNG·JPG 변환', '화질(배율) 선택', '페이지 지정'], options: optImage() },
   { slug: 'page-numbers', icon: ICONS.number, nav: '페이지 번호', multiple: false,
     runLabel: '페이지 번호 넣기', dropTitle: '번호를 넣을 PDF를 끌어다 놓으세요', pagecount: true,
     feature: ['위치·형식 선택', '시작 번호 지정', '표지 제외'], options: optPageNumbers() },
+  { slug: 'to-image', icon: ICONS.image, nav: 'PDF→이미지', multiple: false,
+    runLabel: '이미지로 변환하기', dropTitle: '이미지로 바꿀 PDF를 끌어다 놓으세요', pagecount: true,
+    feature: ['PNG·JPG 변환', '화질(배율) 선택', '페이지 지정'], options: optImage() },
   { slug: 'image-to-pdf', icon: ICONS.image, nav: '이미지→PDF', multiple: true, reorder: true,
     accept: 'image', imageThumbs: true, fileThumbs: true,
     runLabel: 'PDF로 만들기', dropTitle: '이미지(JPG·PNG)를 끌어다 놓으세요', pagecount: false,
@@ -103,6 +103,16 @@ const TOOLS = [
     feature: ['SVG → PNG 변환', '배율(고화질) 선택', '여러 장 한 번에'], options: optSvgToPng() },
 ];
 const TOOL_BY = Object.fromEntries(TOOLS.map((t) => [t.slug, t]));
+
+// ───────── 카테고리(카탈로그) ─────────
+const CATEGORIES = [
+  { id: 'organize', title: 'PDF 구성', desc: '여러 PDF를 합치고, 나누고, 페이지를 자유롭게 정리하세요.', slugs: ['merge', 'split', 'organize', 'extract', 'delete', 'page-numbers'] },
+  { id: 'convert', title: 'PDF 변환', desc: 'PDF와 이미지를 서로 바꾸세요. 모두 내 브라우저에서 처리됩니다.', slugs: ['to-image', 'image-to-pdf', 'svg-to-png'] },
+  { id: 'security', title: 'PDF 보안', desc: '비밀번호·편집 제한을 풀어 자유롭게 사용하세요.', slugs: ['unlock'] },
+  { id: 'optimize', title: 'PDF 최적화', desc: '용량을 줄여 가볍게. 곧 추가됩니다.', slugs: [], soon: true },
+  { id: 'edit', title: 'PDF 편집', desc: '워터마크·자르기·회전 등 문서를 직접 손보세요. 곧 추가됩니다.', slugs: [], soon: true },
+  { id: 'analyze', title: 'PDF 분석', desc: '비교·검색 등 문서를 들여다보세요. 곧 추가됩니다.', slugs: [], soon: true },
+];
 
 // 작업실 OS 공용 자원 (홈 + 도구 상세 공통)
 const CHIP = '<svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4"/></svg>';
@@ -664,29 +674,38 @@ function buildHome() {
   const usps = c.uspCards.map((u, i) => `<div class="ws-usp" data-reveal><span class="n">0${i + 1}</span><div><h4>${esc(u.title)}</h4><p>${esc(u.desc)}</p></div></div>`).join('\n        ');
   const faqs = c.faq.map((f, i) => `<details><summary><span class="q">Q${i + 1}</span><span>${esc(f.q)}</span></summary><div class="a">${esc(f.a)}</div></details>`).join('\n        ');
 
-  const main = `    <section class="ws-launch ws-launch--split" id="tools">
-      <h1 class="sr-only">${esc(c.metaTitle || 'PDF의 모든 것')} — 설치 없이 무료로 쓰는 한국어 PDF 도구 모음</h1>
-      <div class="ws-wrap ws-homegrid">
-        <div class="ws-homeleft">
-          <div class="ws-tilegrid ws-tilegrid--mini">
-      ${tiles}
-          </div>
+  const card = (slug, i) => `<a class="ws-card" href="${slug}/" data-reveal style="--i:${i}">
+          <span class="ws-card__ico">${ICONS_PDF[slug]}</span>
+          <span class="ws-card__tx"><span class="ws-card__name">${esc(read(slug).h1)}</span><span class="ws-card__desc">${esc(APP_DESC[slug] || '')}</span></span>
+        </a>`;
+  const catalog = CATEGORIES.map((cat) => `      <section class="ws-cat" id="cat-${cat.id}">
+        <div class="ws-cat__head"><h2 class="ws-cat__title">${esc(cat.title)}</h2><p class="ws-cat__desc">${esc(cat.desc)}</p></div>
+        <div class="ws-shelf${cat.soon ? ' ws-shelf--soon' : ''}">
+          ${cat.soon ? '<div class="ws-soon">곧 추가됩니다</div>' : cat.slugs.map((s, i) => card(s, i)).join('\n          ')}
         </div>
-        <div class="ws-homeright">
-          <div class="ws-winwrap">
-            <div class="ws-window" data-ws-window>
-              <div class="ws-winbar"><span class="ws-wintitle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 16V4M8 8l4-4 4 4"/><path d="M4 16v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg><span class="t">여기에 PDF를 놓고 바로 작업</span></span><button class="ws-winclose" type="button" data-ws-close aria-label="작업 닫고 처음으로">처음으로 ✕</button></div>
-              <div class="herotool">
-                <div class="herotool__tabs" role="tablist" aria-label="PDF 도구 선택">
+      </section>`).join('\n');
+
+  const main = `    <section class="ws-hero" id="tools">
+      <h1 class="sr-only">${esc(c.metaTitle || 'PDF의 모든 것')} — 설치 없이 무료로 쓰는 한국어 PDF 도구 모음</h1>
+      <div class="ws-wrap">
+        <div class="ws-winwrap ws-hero__win">
+          <div class="ws-window" data-ws-window>
+            <div class="ws-winbar"><span class="ws-wintitle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 16V4M8 8l4-4 4 4"/><path d="M4 16v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg><span class="t">여기에 PDF를 놓고 바로 작업</span></span><button class="ws-winclose" type="button" data-ws-close aria-label="작업 닫고 처음으로">처음으로 ✕</button></div>
+            <div class="herotool">
+              <div class="herotool__tabs" role="tablist" aria-label="PDF 도구 선택">
               ${heroTabs}
-                </div>
-                <div class="herotool__panels">
+              </div>
+              <div class="herotool__panels">
           ${heroPanels}
-                </div>
               </div>
             </div>
           </div>
         </div>
+      </div>
+    </section>
+    <section class="ws-catalog">
+      <div class="ws-wrap">
+${catalog}
       </div>
     </section>`;
 
