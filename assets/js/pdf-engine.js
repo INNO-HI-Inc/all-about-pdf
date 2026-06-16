@@ -409,6 +409,81 @@
     return toBlob(await out.save());
   }
 
+  // ── 회전 ──────────────────────────────────────────────────
+  // rotate(file, angle) — 모든 페이지를 angle(±90/180)만큼 회전. 글자/화질 보존.
+  async function rotate(file, angle) {
+    var PDFLib = L();
+    var doc = await loadDoc(file);
+    var add = (((angle || 0) % 360) + 360) % 360;
+    doc.getPages().forEach(function (p) {
+      var cur = (p.getRotation() && p.getRotation().angle) || 0;
+      p.setRotation(PDFLib.degrees(((cur + add) % 360 + 360) % 360));
+    });
+    return toBlob(await doc.save());
+  }
+
+  // ── 자르기(여백 제거) ─────────────────────────────────────
+  // crop(file, ratio) — 각 변에서 ratio(0~0.45) 비율만큼 CropBox 축소. 내용/화질 보존.
+  async function crop(file, ratio) {
+    var doc = await loadDoc(file);
+    var r = Math.max(0, Math.min(0.45, ratio || 0));
+    doc.getPages().forEach(function (p) {
+      var s = p.getSize();
+      var mx = s.width * r, my = s.height * r;
+      if (p.setCropBox) p.setCropBox(mx, my, s.width - 2 * mx, s.height - 2 * my);
+    });
+    return toBlob(await doc.save());
+  }
+
+  // ── 압축(래스터화 재압축) ─────────────────────────────────
+  // compress(file, {scale, quality}, onProgress) — 각 페이지를 렌더→JPEG 재압축→같은 크기 페이지로 재구성.
+  async function compress(file, opts, onProgress) {
+    opts = opts || {};
+    var PDFDocument = L().PDFDocument;
+    var scale = opts.scale || 1.3;
+    var quality = opts.quality != null ? opts.quality : 0.6;
+    var pdf = await loadPdfjs(file);
+    var total = pdf.numPages;
+    var out = await PDFDocument.create();
+    for (var n = 1; n <= total; n++) {
+      var page = await pdf.getPage(n);
+      var vp = page.getViewport({ scale: scale });
+      var canvas = document.createElement('canvas');
+      canvas.width = Math.floor(vp.width);
+      canvas.height = Math.floor(vp.height);
+      var ctx = canvas.getContext('2d');
+      ctx.fillStyle = '#ffffff'; ctx.fillRect(0, 0, canvas.width, canvas.height);
+      await page.render({ canvasContext: ctx, viewport: vp }).promise;
+      var blob = await canvasToBlob(canvas, 'image/jpeg', quality);
+      var bytes = new Uint8Array(await blob.arrayBuffer());
+      var img = await out.embedJpg(bytes);
+      var base = page.getViewport({ scale: 1 });
+      var pg = out.addPage([base.width, base.height]);
+      pg.drawImage(img, { x: 0, y: 0, width: base.width, height: base.height });
+      canvas.width = canvas.height = 0;
+      if (onProgress) onProgress(n / total);
+    }
+    return toBlob(await out.save());
+  }
+
+  // ── 정보 보기 ─────────────────────────────────────────────
+  // getInfo(file) — 페이지 수·용량·크기·메타데이터·잠김 여부. 파일 변경 없음.
+  async function getInfo(file) {
+    var info = { fileName: file.name || '', fileSize: file.size || 0, pages: 0, size: null, title: '', author: '', producer: '', encrypted: false };
+    try { var pr = await probe(file); if (pr && pr.needsPassword) { info.encrypted = true; return info; } } catch (e) {}
+    try {
+      var pdf = await loadPdfjs(file);
+      info.pages = pdf.numPages;
+      try { var md = await pdf.getMetadata(); if (md && md.info) { info.title = md.info.Title || ''; info.author = md.info.Author || ''; info.producer = md.info.Producer || ''; } } catch (e) {}
+      var first = await pdf.getPage(1);
+      var vp = first.getViewport({ scale: 1 });
+      info.size = { w: Math.round(vp.width), h: Math.round(vp.height) };
+    } catch (e) {
+      try { var doc = await loadDoc(file); info.pages = doc.getPageCount(); var s = doc.getPage(0).getSize(); info.size = { w: Math.round(s.width), h: Math.round(s.height) }; } catch (e2) {}
+    }
+    return info;
+  }
+
   // 페이지 썸네일 렌더링 (시각적 선택용)
   async function renderThumbs(file, opts, onProgress) {
     opts = opts || {};
@@ -475,6 +550,10 @@
     unlock: unlock,
     unlockRaster: unlockRaster,
     organize: organize,
+    rotate: rotate,
+    crop: crop,
+    compress: compress,
+    getInfo: getInfo,
     renderThumbs: renderThumbs,
     getPageCount: getPageCount,
     isPasswordError: isPasswordError,

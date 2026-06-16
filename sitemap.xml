@@ -67,6 +67,30 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://inno-hi-inc.github.io/all-about-pdf/rotate/</loc>
+    <lastmod>2026-06-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://inno-hi-inc.github.io/all-about-pdf/crop/</loc>
+    <lastmod>2026-06-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://inno-hi-inc.github.io/all-about-pdf/compress/</loc>
+    <lastmod>2026-06-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://inno-hi-inc.github.io/all-about-pdf/pdf-info/</loc>
+    <lastmod>2026-06-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://inno-hi-inc.github.io/all-about-pdf/about/</loc>
     <lastmod>2026-06-04</lastmod>
     <changefreq>monthly</changefreq>

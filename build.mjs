@@ -40,6 +40,9 @@ const ICONS = {
   info: IC('<circle cx="12" cy="12" r="9"/><line x1="12" y1="11" x2="12" y2="16.5"/><circle cx="12" cy="7.8" r=".7" fill="currentColor" stroke="none"/>'),
   check: IC('<path d="M4.5 12.6l4.4 4.4L19.5 6.5"/>'),
   organize: IC('<rect x="3.4" y="3.4" width="7" height="7" rx="1.6"/><rect x="13.6" y="3.4" width="7" height="7" rx="1.6"/><rect x="3.4" y="13.6" width="7" height="7" rx="1.6"/><path d="M14.2 17.1h5.8M17.3 14.2l2.9 2.9-2.9 2.9"/>'),
+  rotate: IC('<path d="M20.5 12a8.5 8.5 0 1 1-2.5-6"/><path d="M20.5 4.5V10H15"/>'),
+  crop: IC('<path d="M6.5 2.5v13.5a1.5 1.5 0 0 0 1.5 1.5h13.5"/><path d="M2.5 6.5h13.5a1.5 1.5 0 0 1 1.5 1.5v13.5"/>'),
+  compress: IC('<line x1="4" y1="12" x2="20" y2="12"/><path d="M8.5 5.5 12 9l3.5-3.5M8.5 18.5 12 15l3.5 3.5"/>'),
 };
 const DOT_SVG = '<svg class="pill-dot" viewBox="0 0 8 8" aria-hidden="true"><circle cx="4" cy="4" r="4" fill="currentColor"/></svg>';
 
@@ -59,6 +62,10 @@ const ICONS_PDF = {
   'image-to-pdf': pdfSvg(pdfPage(0) + '<rect x="6.8" y="8.2" width="6.8" height="5.4" rx="1" fill="#0ea5e9"/><circle cx="8.9" cy="10.1" r=".85" fill="#fff"/><path d="M7.2 13.2l1.9-2.2 1.25 1.35 1.15-1.25 1.7 2.1z" fill="#fff"/>' + pdfBadge(17.4, 17.4, '#e5252a', '<path d="M15.6 17.4h3.6M17.4 15.6v3.6" stroke="#fff" stroke-width="1.5" stroke-linecap="round"/>')),
   'organize': pdfSvg(pdfPage(2) + pdfBadge(17.4, 17.4, '#7c3aed', '<path d="M19.4 16.5a2.5 2.5 0 1 0 .35 2.4" fill="none" stroke="#fff" stroke-width="1.3" stroke-linecap="round"/><path d="M19.6 15.3v1.7h-1.7" fill="none" stroke="#fff" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>')),
   'svg-to-png': pdfSvg('<rect x="3.4" y="4.2" width="9.6" height="9.6" rx="1.6" fill="#8b5cf6"/><path d="M6 11.2l1.9-2.3 1.25 1.4 1.2-1.4 1.75 2.3z" fill="#fff"/><circle cx="6.4" cy="7.2" r="1.05" fill="#fff"/><rect x="11" y="10.4" width="9.6" height="9.6" rx="1.6" fill="${PDF_RED}" stroke="#fff" stroke-width="1.1"/><path d="M13.5 17.4l1.9-2.3 1.25 1.4 1.2-1.4 1.75 2.3z" fill="#fff"/><circle cx="13.9" cy="13.4" r="1.05" fill="#fff"/>'),
+  rotate: pdfSvg(pdfPage(2) + pdfBadge(17.4, 17.4, '#2f6df6', '<path d="M19.6 17.7a2.3 2.3 0 1 1-.7-1.9" fill="none" stroke="#fff" stroke-width="1.25" stroke-linecap="round"/><path d="M19.5 15.1v1.8h-1.8" fill="none" stroke="#fff" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/>')),
+  crop: pdfSvg(pdfPage(2) + pdfBadge(17.4, 17.4, '#0d9488', '<path d="M15.9 15.2v3.3a.5.5 0 0 0 .5.5h3.3M18.9 19.6v-3.3a.5.5 0 0 0-.5-.5h-3.3" fill="none" stroke="#fff" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>')),
+  compress: pdfSvg(pdfPage(2) + pdfBadge(17.4, 17.4, '#f59e0b', '<path d="M15.6 17.4h3.6" stroke="#fff" stroke-width="1.1"/><path d="M16.2 15.5l1.2 1.1 1.2-1.1M16.2 19.3l1.2-1.1 1.2 1.1" fill="none" stroke="#fff" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/>')),
+  'pdf-info': pdfSvg(pdfPage(2) + pdfBadge(17.4, 17.4, '#2f6df6', '<circle cx="17.4" cy="15.5" r=".75" fill="#fff"/><path d="M17.4 16.9v2.4" stroke="#fff" stroke-width="1.4" stroke-linecap="round"/>')),
 };
 
 // ───────── 유틸 ─────────
@@ -101,6 +108,18 @@ const TOOLS = [
     accept: 'svg', imageThumbs: true, fileThumbs: true,
     runLabel: 'PNG로 변환하기', dropTitle: 'SVG 파일을 끌어다 놓으세요', pagecount: false,
     feature: ['SVG → PNG 변환', '배율(고화질) 선택', '여러 장 한 번에'], options: optSvgToPng() },
+  { slug: 'rotate', icon: ICONS.rotate, nav: 'PDF 회전', multiple: false,
+    runLabel: '회전하기', dropTitle: '회전할 PDF를 끌어다 놓으세요', pagecount: true,
+    feature: ['왼쪽·오른쪽·180도', '전체 페이지 한 번에', '화질·글자 보존'], options: optRotate() },
+  { slug: 'crop', icon: ICONS.crop, nav: 'PDF 자르기', multiple: false,
+    runLabel: '자르기', dropTitle: '여백을 자를 PDF를 끌어다 놓으세요', pagecount: true,
+    feature: ['사방 여백 제거', '적게·보통·많이', '내용 보존'], options: optCrop() },
+  { slug: 'compress', icon: ICONS.compress, nav: 'PDF 압축', multiple: false,
+    runLabel: '압축하기', dropTitle: '압축할 PDF를 끌어다 놓으세요', pagecount: true,
+    feature: ['용량 줄이기', '화질 선택', '스캔 PDF에 효과적'], options: optCompress() },
+  { slug: 'pdf-info', icon: ICONS.info, nav: 'PDF 정보', multiple: false,
+    runLabel: '정보 보기', dropTitle: '정보를 볼 PDF를 끌어다 놓으세요', pagecount: false,
+    feature: ['페이지·용량·크기', '메타데이터 확인', '잠김 여부'], options: optInfo() },
 ];
 const TOOL_BY = Object.fromEntries(TOOLS.map((t) => [t.slug, t]));
 
@@ -109,14 +128,14 @@ const CATEGORIES = [
   { id: 'organize', title: 'PDF 구성', desc: '여러 PDF를 합치고, 나누고, 페이지를 자유롭게 정리하세요.', slugs: ['merge', 'split', 'organize', 'extract', 'delete', 'page-numbers'] },
   { id: 'convert', title: 'PDF 변환', desc: 'PDF와 이미지를 서로 바꾸세요. 모두 내 브라우저에서 처리됩니다.', slugs: ['to-image', 'image-to-pdf', 'svg-to-png'] },
   { id: 'security', title: 'PDF 보안', desc: '비밀번호·편집 제한을 풀어 자유롭게 사용하세요.', slugs: ['unlock'] },
-  { id: 'optimize', title: 'PDF 최적화', desc: '용량을 줄여 가볍게. 곧 추가됩니다.', slugs: [], soon: true },
-  { id: 'edit', title: 'PDF 편집', desc: '워터마크·자르기·회전 등 문서를 직접 손보세요. 곧 추가됩니다.', slugs: [], soon: true },
-  { id: 'analyze', title: 'PDF 분석', desc: '비교·검색 등 문서를 들여다보세요. 곧 추가됩니다.', slugs: [], soon: true },
+  { id: 'optimize', title: 'PDF 최적화', desc: '용량을 줄여 가볍게. 메일·제출 용량 제한에 맞추세요.', slugs: ['compress'] },
+  { id: 'edit', title: 'PDF 편집', desc: '방향을 바로잡고 여백을 정리해 문서를 다듬으세요.', slugs: ['rotate', 'crop'] },
+  { id: 'analyze', title: 'PDF 분석', desc: '페이지 수·용량·메타데이터 등 문서 정보를 확인하세요.', slugs: ['pdf-info'] },
 ];
 
 // 작업실 OS 공용 자원 (홈 + 도구 상세 공통)
 const CHIP = '<svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4"/></svg>';
-const APP_FILE = { merge: 'merge.app', split: 'split.app', unlock: 'unlock.app', extract: 'extract.app', delete: 'delete.app', organize: 'organize.app', 'to-image': 'to-image.app', 'page-numbers': 'page-num.app', 'image-to-pdf': 'img-to-pdf.app', 'svg-to-png': 'svg-to-png.app' };
+const APP_FILE = { merge: 'merge.app', split: 'split.app', unlock: 'unlock.app', extract: 'extract.app', delete: 'delete.app', organize: 'organize.app', 'to-image': 'to-image.app', 'page-numbers': 'page-num.app', 'image-to-pdf': 'img-to-pdf.app', 'svg-to-png': 'svg-to-png.app', rotate: 'rotate.app', crop: 'crop.app', compress: 'compress.app', 'pdf-info': 'pdf-info.app' };
 const APP_DESC = {
   merge: '여러 PDF를 순서대로 끌어다 하나로. 과제 묶음, 보고서 취합, 스캔본 결합까지 한 번에 끝냅니다.',
   split: '한 파일을 여러 개로. 자르는 지점을 눌러 필요한 부분만 깔끔하게 나눕니다.',
@@ -128,11 +147,16 @@ const APP_DESC = {
   'page-numbers': '문서 하단에 페이지 번호를 자동으로. 위치·시작 번호·서식을 골라 보고서 형식을 갖춥니다.',
   'image-to-pdf': '사진·캡처 이미지를 한 PDF로. JPG·PNG 여러 장을 끌어다 순서대로 묶어 제출용 문서를 만듭니다.',
   'svg-to-png': '벡터 SVG를 또렷한 PNG 이미지로. 배율을 올려 고화질로 뽑고, 투명·흰색 배경을 골라 블로그·발표·디자인에 바로 씁니다.',
+  rotate: '옆으로 누운 스캔본, 거꾸로 들어간 문서를 왼쪽·오른쪽 90도나 180도로 한 번에 바로잡아요. 글자·화질은 그대로.',
+  crop: '페이지 사방의 넓은 여백을 적게·보통·많이로 잘라내 내용에 맞게 정리해요. 글자·화질은 그대로 보존합니다.',
+  compress: '스캔본·사진이 많은 PDF의 용량을 줄여요. 메일 첨부나 제출 사이트의 용량 제한에 맞출 때 좋습니다.',
+  'pdf-info': '페이지 수·용량·크기·제목·작성자·잠김 여부를 표로 한눈에. 파일은 바꾸지 않고 정보만 읽어요.',
 };
 const APP_SHORT = {
   merge: '여러 PDF를 하나로', split: '한 파일을 여러 개로', unlock: '비밀번호·제한 해제',
   extract: '원하는 페이지만 추출', delete: '불필요한 페이지 삭제', organize: '순서·회전·삭제 한 번에', 'to-image': 'JPG·PNG로 변환', 'page-numbers': '페이지 번호 넣기',
   'image-to-pdf': 'JPG·PNG를 PDF로', 'svg-to-png': 'SVG를 PNG로',
+  rotate: '페이지 회전', crop: '여백 제거', compress: '용량 줄이기', 'pdf-info': '문서 정보 보기',
 };
 // 태블릿 대시보드 타일 색(도구별 컬러 구분)
 const TILE_COLOR = {
@@ -219,6 +243,51 @@ function optSvgToPng() {
     </div>
   </div>
   ${optOutName('변환된-PNG')}
+</div>`;
+}
+function optRotate() {
+  return `<div class="options">
+  <div class="option">
+    <span class="option__label">회전 방향</span>
+    <div class="segmented" role="radiogroup" aria-label="회전 방향">
+      <label><input type="radio" name="rot-angle" value="-90"><span>왼쪽 90°</span></label>
+      <label><input type="radio" name="rot-angle" value="90" checked><span>오른쪽 90°</span></label>
+      <label><input type="radio" name="rot-angle" value="180"><span>180°</span></label>
+    </div>
+  </div>
+  ${optOutName('회전된-PDF')}
+</div>`;
+}
+function optCrop() {
+  return `<div class="options">
+  <div class="option">
+    <span class="option__label">잘라낼 정도</span>
+    <div class="segmented" role="radiogroup" aria-label="잘라낼 정도">
+      <label><input type="radio" name="crop-amt" value="small"><span>적게</span></label>
+      <label><input type="radio" name="crop-amt" value="medium" checked><span>보통</span></label>
+      <label><input type="radio" name="crop-amt" value="large"><span>많이</span></label>
+    </div>
+  </div>
+  ${optOutName('여백제거-PDF')}
+</div>`;
+}
+function optCompress() {
+  return `<div class="options">
+  <div class="option">
+    <span class="option__label">화질 <span class="option__hint">낮을수록 용량↓</span></span>
+    <div class="segmented" role="radiogroup" aria-label="화질">
+      <label><input type="radio" name="cmp-quality" value="low"><span>낮음</span></label>
+      <label><input type="radio" name="cmp-quality" value="medium" checked><span>보통</span></label>
+      <label><input type="radio" name="cmp-quality" value="high"><span>높음</span></label>
+    </div>
+  </div>
+  <p class="option__hint" style="margin:2px 0 0">스캔본·사진 PDF에 효과가 큽니다. 글자 위주 PDF는 거의 줄지 않거나 글자가 이미지로 바뀔 수 있어요.</p>
+  ${optOutName('압축된-PDF')}
+</div>`;
+}
+function optInfo() {
+  return `<div class="options">
+  <p class="option__hint" style="margin:0">PDF를 올리면 페이지 수·용량·크기·메타데이터·잠김 여부를 표로 보여줘요. 파일을 바꾸거나 저장하지 않습니다.</p>
 </div>`;
 }
 function optSplit() {

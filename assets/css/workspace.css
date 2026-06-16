@@ -592,3 +592,12 @@ body.ws-app-open .ws-scrim { opacity: 1; pointer-events: auto; }
 .js .ws-card[data-reveal].in { opacity: 1; transform: none; }
 @media (max-width: 560px) { .ws-card { flex-basis: 78vw; } .ws-cat__title { font-size: 1.28rem; } }
 @media (prefers-reduced-motion: reduce) { .js .ws-card[data-reveal] { opacity: 1 !important; transform: none !important; } }
+
+/* PDF 정보 결과 표 */
+.ws .infocard { width: 100%; }
+.ws .infocard__h { font-family: var(--font); font-weight: 700; font-size: 1.05rem; margin: 0 0 12px; color: var(--ink); }
+.ws .infotable { width: 100%; border-collapse: collapse; font-size: .95rem; }
+.ws .infotable th, .ws .infotable td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--line); vertical-align: top; }
+.ws .infotable th { width: 38%; color: var(--ink-soft); font-weight: 600; white-space: nowrap; }
+.ws .infotable td { color: var(--ink); font-weight: 500; word-break: break-all; font-variant-numeric: tabular-nums; }
+.ws .infotable tr:last-child th, .ws .infotable tr:last-child td { border-bottom: 0; }
