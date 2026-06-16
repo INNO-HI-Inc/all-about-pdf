@@ -58,6 +58,7 @@ const ICONS_PDF = {
   'page-numbers': pdfSvg(pdfPage(2) + '<circle cx="11.3" cy="17.6" r="3.6" fill="#4f46e5" stroke="#fff" stroke-width="1.1"/><path d="M11.55 15.9v3.4M10.5 16.5l1.05-.6" stroke="#fff" stroke-width="1" fill="none" stroke-linecap="round" stroke-linejoin="round"/>'),
   'image-to-pdf': pdfSvg(pdfPage(0) + '<rect x="6.8" y="8.2" width="6.8" height="5.4" rx="1" fill="#0ea5e9"/><circle cx="8.9" cy="10.1" r=".85" fill="#fff"/><path d="M7.2 13.2l1.9-2.2 1.25 1.35 1.15-1.25 1.7 2.1z" fill="#fff"/>' + pdfBadge(17.4, 17.4, '#e5252a', '<path d="M15.6 17.4h3.6M17.4 15.6v3.6" stroke="#fff" stroke-width="1.5" stroke-linecap="round"/>')),
   'organize': pdfSvg(pdfPage(2) + pdfBadge(17.4, 17.4, '#7c3aed', '<path d="M19.4 16.5a2.5 2.5 0 1 0 .35 2.4" fill="none" stroke="#fff" stroke-width="1.3" stroke-linecap="round"/><path d="M19.6 15.3v1.7h-1.7" fill="none" stroke="#fff" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>')),
+  'svg-to-png': pdfSvg('<rect x="3.4" y="4.2" width="9.6" height="9.6" rx="1.6" fill="#8b5cf6"/><path d="M6 11.2l1.9-2.3 1.25 1.4 1.2-1.4 1.75 2.3z" fill="#fff"/><circle cx="6.4" cy="7.2" r="1.05" fill="#fff"/><rect x="11" y="10.4" width="9.6" height="9.6" rx="1.6" fill="${PDF_RED}" stroke="#fff" stroke-width="1.1"/><path d="M13.5 17.4l1.9-2.3 1.25 1.4 1.2-1.4 1.75 2.3z" fill="#fff"/><circle cx="13.9" cy="13.4" r="1.05" fill="#fff"/>'),
 };
 
 // ───────── 유틸 ─────────
@@ -96,12 +97,16 @@ const TOOLS = [
     accept: 'image', imageThumbs: true, fileThumbs: true,
     runLabel: 'PDF로 만들기', dropTitle: '이미지(JPG·PNG)를 끌어다 놓으세요', pagecount: false,
     feature: ['JPG·PNG → PDF', '여러 장 한 파일로', '순서 변경'], options: optImagesToPdf() },
+  { slug: 'svg-to-png', icon: ICONS.image, nav: 'SVG→PNG', multiple: true, reorder: true,
+    accept: 'svg', imageThumbs: true, fileThumbs: true,
+    runLabel: 'PNG로 변환하기', dropTitle: 'SVG 파일을 끌어다 놓으세요', pagecount: false,
+    feature: ['SVG → PNG 변환', '배율(고화질) 선택', '여러 장 한 번에'], options: optSvgToPng() },
 ];
 const TOOL_BY = Object.fromEntries(TOOLS.map((t) => [t.slug, t]));
 
 // 작업실 OS 공용 자원 (홈 + 도구 상세 공통)
 const CHIP = '<svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4"/></svg>';
-const APP_FILE = { merge: 'merge.app', split: 'split.app', unlock: 'unlock.app', extract: 'extract.app', delete: 'delete.app', organize: 'organize.app', 'to-image': 'to-image.app', 'page-numbers': 'page-num.app', 'image-to-pdf': 'img-to-pdf.app' };
+const APP_FILE = { merge: 'merge.app', split: 'split.app', unlock: 'unlock.app', extract: 'extract.app', delete: 'delete.app', organize: 'organize.app', 'to-image': 'to-image.app', 'page-numbers': 'page-num.app', 'image-to-pdf': 'img-to-pdf.app', 'svg-to-png': 'svg-to-png.app' };
 const APP_DESC = {
   merge: '여러 PDF를 순서대로 끌어다 하나로. 과제 묶음, 보고서 취합, 스캔본 결합까지 한 번에 끝냅니다.',
   split: '한 파일을 여러 개로. 자르는 지점을 눌러 필요한 부분만 깔끔하게 나눕니다.',
@@ -112,16 +117,17 @@ const APP_DESC = {
   'to-image': 'PDF 페이지를 JPG·PNG 이미지로. 블로그·SNS·발표 자료에 그대로 붙여 쓰기 좋습니다.',
   'page-numbers': '문서 하단에 페이지 번호를 자동으로. 위치·시작 번호·서식을 골라 보고서 형식을 갖춥니다.',
   'image-to-pdf': '사진·캡처 이미지를 한 PDF로. JPG·PNG 여러 장을 끌어다 순서대로 묶어 제출용 문서를 만듭니다.',
+  'svg-to-png': '벡터 SVG를 또렷한 PNG 이미지로. 배율을 올려 고화질로 뽑고, 투명·흰색 배경을 골라 블로그·발표·디자인에 바로 씁니다.',
 };
 const APP_SHORT = {
   merge: '여러 PDF를 하나로', split: '한 파일을 여러 개로', unlock: '비밀번호·제한 해제',
   extract: '원하는 페이지만 추출', delete: '불필요한 페이지 삭제', organize: '순서·회전·삭제 한 번에', 'to-image': 'JPG·PNG로 변환', 'page-numbers': '페이지 번호 넣기',
-  'image-to-pdf': 'JPG·PNG를 PDF로',
+  'image-to-pdf': 'JPG·PNG를 PDF로', 'svg-to-png': 'SVG를 PNG로',
 };
 // 태블릿 대시보드 타일 색(도구별 컬러 구분)
 const TILE_COLOR = {
   merge: '#e5252a', split: '#2f6df6', unlock: '#f59e0b', extract: '#10b981',
-  delete: '#f43f5e', organize: '#7c3aed', 'to-image': '#8b5cf6', 'page-numbers': '#0ea5e9', 'image-to-pdf': '#0ea5e9',
+  delete: '#f43f5e', organize: '#7c3aed', 'to-image': '#8b5cf6', 'page-numbers': '#0ea5e9', 'image-to-pdf': '#0ea5e9', 'svg-to-png': '#8b5cf6',
 };
 const ARR_SVG = '<svg class="arr" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>';
 
@@ -182,6 +188,27 @@ function optImagesToPdf() {
     </div>
   </div>
   ${optOutName('이미지-PDF')}
+</div>`;
+}
+function optSvgToPng() {
+  return `<div class="options">
+  <div class="option">
+    <label class="option__label" for="svg-scale">출력 배율 <span class="option__hint">클수록 고화질·큰 파일</span></label>
+    <select id="svg-scale" class="field">
+      <option value="1">1배 (원본 크기)</option>
+      <option value="2" selected>2배 (고화질)</option>
+      <option value="3">3배</option>
+      <option value="4">4배 (최고 화질)</option>
+    </select>
+  </div>
+  <div class="option">
+    <span class="option__label">배경</span>
+    <div class="segmented" role="radiogroup" aria-label="배경">
+      <label><input type="radio" name="svg-bg" value="transparent" checked><span>투명</span></label>
+      <label><input type="radio" name="svg-bg" value="white"><span>흰색</span></label>
+    </div>
+  </div>
+  ${optOutName('변환된-PNG')}
 </div>`;
 }
 function optSplit() {
@@ -450,8 +477,8 @@ function widget(t, opts) {
   opts = opts || {};
   const extraClass = opts.class ? ' ' + opts.class : '';
   const pc = t.pagecount ? `\n      <p class="pagecount js-pagecount"></p>` : '';
-  const accept = t.accept === 'image' ? 'image/png,image/jpeg' : 'application/pdf';
-  const aria = t.accept === 'image' ? '이미지 파일 선택 또는 끌어다 놓기' : 'PDF 파일 선택 또는 끌어다 놓기';
+  const accept = t.accept === 'image' ? 'image/png,image/jpeg' : t.accept === 'svg' ? 'image/svg+xml,.svg' : 'application/pdf';
+  const aria = t.accept === 'image' ? '이미지 파일 선택 또는 끌어다 놓기' : t.accept === 'svg' ? 'SVG 파일 선택 또는 끌어다 놓기' : 'PDF 파일 선택 또는 끌어다 놓기';
   return `<div class="tool${extraClass}" data-tool="${t.slug}">
       <div class="tool__left">
         <div class="dropzone js-drop" tabindex="0" role="button" aria-label="${aria}">

@@ -13,7 +13,7 @@ const require = createRequire(import.meta.url);
 const { chromium } = require(process.env.PW_PATH || 'playwright');
 
 const BASE = process.env.BASE || 'http://localhost:8099';
-const PAGES = ['/', '/merge/', '/split/', '/unlock/', '/extract/', '/delete/', '/organize/', '/to-image/', '/page-numbers/', '/about/'];
+const PAGES = ['/', '/merge/', '/split/', '/unlock/', '/extract/', '/delete/', '/organize/', '/to-image/', '/page-numbers/', '/svg-to-png/', '/about/'];
 const results = [];
 const pass = (name, msg) => results.push({ ok: true, name, msg: msg || '' });
 const fail = (name, msg) => results.push({ ok: false, name, msg: msg || '' });

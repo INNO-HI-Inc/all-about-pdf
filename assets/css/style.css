@@ -235,7 +235,7 @@ select.field { cursor: pointer; }
   margin-top: 16px; height: 30px; background: var(--surface-2); border: 1px solid var(--line);
   border-radius: 999px; position: relative; overflow: hidden;
 }
-.progress__bar { height: 100%; width: 0; background: linear-gradient(90deg, var(--accent), var(--accent-strong)); transition: width .2s ease; }
+.progress__bar { height: 100%; width: 0; background: var(--accent); transition: width .2s ease; }
 .progress__text { position: absolute; inset: 0; display: grid; place-items: center; font-size: .8rem; font-weight: 700; color: var(--ink); }
 .result { margin-top: 18px; padding: 16px; background: var(--success-soft); border: 1px solid #bfe8cf; border-radius: var(--radius-sm); }
 .result__ok { margin: 0 0 10px; font-size: .95rem; color: #0f6c3d; }
@@ -367,7 +367,7 @@ a { transition: color .14s var(--ease); }
 /* ── design-dna 적용: 도구(세부) 페이지 디테일 ───────── */
 .breadcrumb { padding: 24px 0 2px; font-weight: 600; }
 .tool-hero { position: relative; padding: 12px 0 30px; }
-.tool-hero::before { content: ''; position: absolute; left: 50%; top: -8px; width: 620px; max-width: 90vw; height: 300px; transform: translateX(-50%); background: radial-gradient(closest-side, rgba(79, 70, 229, .07), transparent 72%); z-index: -1; pointer-events: none; }
+.tool-hero::before { display: none; }
 .tool-hero h1 { letter-spacing: -.033em; }
 .tool-hero__sub { font-size: 1.08rem; line-height: 1.6; max-width: 540px; margin: 0 auto 20px; }
 .badge { box-shadow: var(--shadow-sm); padding: 9px 15px; }

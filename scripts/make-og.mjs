@@ -13,9 +13,8 @@ const LOGO = 'data:image/png;base64,' + readFileSync(join(ASSETS, 'logo.png')).t
 const HTML = `<!doctype html><html><head><meta charset="utf-8"><style>
 *{margin:0;box-sizing:border-box}
 body{font-family:-apple-system,'Apple SD Gothic Neo','Noto Sans KR',sans-serif}
-.card{width:1200px;height:630px;background:radial-gradient(900px 540px at 78% -8%,rgba(255,91,82,.16),transparent 58%),radial-gradient(620px 420px at 6% 108%,rgba(229,37,42,.07),transparent 60%),#ffffff;
+.card{width:1200px;height:630px;background:#ffffff;
   color:#17172a;padding:80px;display:flex;flex-direction:column;justify-content:center;position:relative;overflow:hidden}
-.card::after{content:'';position:absolute;right:-150px;top:-150px;width:480px;height:480px;border-radius:50%;background:radial-gradient(circle,rgba(229,37,42,.06),transparent 65%)}
 .brand{display:flex;align-items:center;gap:15px;margin-bottom:34px}
 .logo{width:74px;height:74px;object-fit:contain;display:block}
 .bname{font-size:32px;font-weight:800;color:#17172a;letter-spacing:-1px}
@@ -28,7 +27,7 @@ body{font-family:-apple-system,'Apple SD Gothic Neo','Noto Sans KR',sans-serif}
 </style></head><body>
 <div class="card">
   <div class="brand"><img class="logo" src="${LOGO}"><div class="bname">PDF의 모든 것</div></div>
-  <div class="title">설치 없이 무료로,<br><span class="mk">9가지 PDF 도구</span>를 한곳에서</div>
+  <div class="title">설치 없이 무료로,<br><span class="mk">10가지 PDF 도구</span>를 한곳에서</div>
   <div class="sub">합치기 · 분할 · 변환 · 잠금해제 · 페이지 정리까지 — 파일은 서버에 올리지 않고 내 브라우저에서</div>
   <div class="tags"><span class="tag"><i></i>서버에 안 올림</span><span class="tag"><i></i>완전 무료</span><span class="tag"><i></i>설치 불필요</span></div>
 </div></body></html>`;

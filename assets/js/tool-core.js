@@ -419,7 +419,7 @@
     // (개선 1) 열기-비밀번호 PDF 자동 감지 → 안내 (unlock·이미지 도구 제외)
     var probedKey = '';
     function probeEncrypted() {
-      if (config.tool === 'unlock' || config.accept === 'image' || !global.PDFEngine || !PDFEngine.probe) return;
+      if (config.tool === 'unlock' || config.accept === 'image' || config.accept === 'svg' || !global.PDFEngine || !PDFEngine.probe) return;
       var f = state.files[0]; if (!f) return;
       var key = f.name + '|' + f.size; if (key === probedKey) return; probedKey = key;
       PDFEngine.probe(f).then(function (info) {
@@ -432,13 +432,16 @@
     function addFiles(fileList) {
       var all = Array.prototype.slice.call(fileList);
       var isImg = config.accept === 'image';
+      var isSvg = config.accept === 'svg';
       var arr = all.filter(function (f) {
-        return isImg
+        return isSvg
+          ? (/\.svg$/i.test(f.name) || f.type === 'image/svg+xml')
+          : isImg
           ? (/\.(jpe?g|png)$/i.test(f.name) || /^image\/(png|jpeg)$/i.test(f.type))
           : (/\.pdf$/i.test(f.name) || f.type === 'application/pdf');
       });
-      if (!arr.length) { UI.toast(isImg ? 'JPG·PNG 이미지만 올릴 수 있어요.' : 'PDF 파일만 올릴 수 있어요.', 'error'); return; }
-      if (all.length > arr.length) UI.toast(isImg ? '이미지가 아닌 파일은 제외했어요.' : 'PDF가 아닌 파일은 제외했어요.', 'info');
+      if (!arr.length) { UI.toast(isSvg ? 'SVG 파일만 올릴 수 있어요.' : isImg ? 'JPG·PNG 이미지만 올릴 수 있어요.' : 'PDF 파일만 올릴 수 있어요.', 'error'); return; }
+      if (all.length > arr.length) UI.toast(isSvg ? 'SVG가 아닌 파일은 제외했어요.' : isImg ? '이미지가 아닌 파일은 제외했어요.' : 'PDF가 아닌 파일은 제외했어요.', 'info');
       arr.forEach(function (f) { if (f.size > 50 * 1024 * 1024) UI.toast('"' + f.name + '"은(는) 용량이 커서 처리가 느릴 수 있어요.', 'info'); });
       if (multiple) {
         var seen = {}; state.files.forEach(function (f) { seen[f.name + '|' + f.size] = true; });

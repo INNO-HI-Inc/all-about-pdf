@@ -17,6 +17,11 @@
 .tp-dock { view-transition-name: vt-dock; }
 /* 활성 알약이 이전 도구 위치 → 새 도구 위치로 iOS 독처럼 슬라이드 */
 .tp-dock__item.is-active { view-transition-name: vt-dock-active; }
+/* 드롭존을 홈↔상세 공유요소로 — 도구로 들어가도 그 자리에서 제자리로 이어짐
+   (홈은 활성 패널 하나만, 상세는 하나뿐이라 이름 중복 없음) */
+.herotool__panel.is-active .dropzone { view-transition-name: vt-dropzone; }
+.tp-editor .dropzone { view-transition-name: vt-dropzone; }
+::view-transition-group(vt-dropzone) { animation-duration: 320ms; animation-timing-function: cubic-bezier(.16, 1, .3, 1); }
 ::view-transition-group(vt-dock-active) {
   animation-timing-function: cubic-bezier(.34, 1.56, .64, 1); animation-duration: 320ms;
 }
@@ -25,8 +30,9 @@
   --red: #e5252a; --red-2: #ff5147; --red-deep: #c01a12; --red-ink: #9a140d;
   /* style.css의 인디고 액센트를 레드로 통일(페이지 호버·포커스·선택 등) */
   --accent: #e5252a; --accent-strong: #c01a12; --accent-soft: #fff1f0; --accent-ink: #c01a12;
-  --grad: linear-gradient(135deg, #ff5b52 0%, #e5252a 52%, #c81e14 100%);
-  --grad-soft: linear-gradient(135deg, #fff4f3, #ffe7e4);
+  /* 그라데이션 전면 제거 — 솔리드 컬러로 통일 */
+  --grad: #e5252a;
+  --grad-soft: #fff1f0;
   --ink: #17172a; --ink-soft: #585e6e; --ink-faint: #9aa0ad;
   --bg: #ffffff; --surf: #ffffff; --surf-2: #f7f8fb; --surf-3: #f1f2f6;
   --line: #ececf2; --line-2: #e0e3ea;
@@ -71,8 +77,7 @@
 
 /* ============ 히어로 ============ */
 .ws-hero { position: relative; padding: 84px 0 76px; }
-.ws-hero::before { content: ""; position: absolute; top: -140px; right: -180px; width: 600px; height: 600px; border-radius: 50%; background: radial-gradient(circle, rgba(255, 91, 82, .20), rgba(255, 91, 82, 0) 62%); pointer-events: none; z-index: -1; }
-.ws-hero::after { content: ""; position: absolute; left: -160px; bottom: -120px; width: 460px; height: 460px; border-radius: 50%; background: radial-gradient(circle, rgba(99, 102, 241, .10), transparent 64%); pointer-events: none; z-index: -1; }
+.ws-hero::before, .ws-hero::after { display: none; }
 .ws-herogrid { display: grid; grid-template-columns: 1.02fr .98fr; gap: 56px; align-items: center; }
 @media (max-width: 980px) { .ws-herogrid { grid-template-columns: 1fr; gap: 40px; } .ws-hero { padding: 52px 0 56px; } }
 .ws-kicker { display: inline-flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 700; color: var(--red-deep); background: var(--grad-soft); border: 1px solid #ffd5d1; padding: 7px 14px; border-radius: var(--pill); margin-bottom: 24px; }
@@ -135,7 +140,7 @@
 /* 부유하는 브랜드 그라데이션 오브 — 깔끔한 배경을 위해 홈에서는 숨김 */
 .ws-orb { display: none; }
 .ws-orb--legacy { position: absolute; top: -120px; right: 6%; width: 360px; height: 360px; border-radius: 50%; background: var(--grad); filter: blur(8px); opacity: .14; z-index: 0; pointer-events: none; animation: wsFloat 13s var(--ez) infinite; }
-.ws-orb::after { content: ""; position: absolute; inset: 18% 22% auto 14%; height: 38%; border-radius: 50%; background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, .9), transparent 60%); opacity: .8; }
+.ws-orb::after { display: none; }
 @keyframes wsFloat { 0%, 100% { transform: translateY(0) scale(1); } 50% { transform: translateY(26px) scale(1.05); } }
 @media (max-width: 760px) { .ws-orb { width: 220px; height: 220px; top: -70px; right: -40px; } }
 /* 런처 히어로 (보조 역할 — 도구 그리드가 주인공) */
@@ -217,8 +222,7 @@
 @media (max-width: 380px) { .ws-launch--split .ws-tilegrid--mini { grid-template-columns: 1fr; } }
 .ws-tilegrid--mini .ws-tile { flex-direction: column; align-items: flex-start; justify-content: flex-start; gap: 12px; aspect-ratio: 1 / 1; min-height: 0; padding: 24px 22px; }
 /* 코너 소프트 레드 글로우 (카드에 클립되어 은은한 코너 악센트) */
-.ws-tilegrid--mini .ws-tile::after { content: ""; position: absolute; top: -30px; right: -30px; width: 104px; height: 104px; border-radius: 50%; background: radial-gradient(circle, rgba(255, 91, 82, .20), transparent 66%); opacity: .85; transition: opacity var(--d-enter) var(--ez), transform var(--d-enter) var(--ez); pointer-events: none; }
-.ws-tilegrid--mini .ws-tile:hover::after { opacity: 1; transform: scale(1.3); }
+.ws-tilegrid--mini .ws-tile::after { display: none; }
 .ws-tilegrid--mini .ws-tile__ico { width: auto; height: auto; flex: none; position: relative; }
 .ws-tilegrid--mini .ws-tile__ico .ic-svg { width: 56px; height: 56px; transition: transform var(--d-hover) var(--ez); }
 .ws-tilegrid--mini .ws-tile:hover .ws-tile__ico .ic-svg { transform: scale(1.08); }
@@ -258,7 +262,7 @@
 .ws-app p { font-size: 13.5px; line-height: 1.6; color: var(--ink-soft); margin-top: 9px; flex: 1; }
 .ws-app__launch { margin-top: 18px; font-size: 13px; font-weight: 700; color: var(--ink-faint); display: inline-flex; align-items: center; gap: 6px; transition: color .18s; }
 .ws-app__launch .arr { transition: transform .2s var(--ez); }
-.ws-app--feat { grid-column: span 2; background: linear-gradient(135deg, #fff, #fff7f6); }
+.ws-app--feat { grid-column: span 2; background: #fff; }
 @media (max-width: 520px) { .ws-app--feat { grid-column: span 1; } }
 .ws-app--feat .ws-app__body { flex-direction: row; align-items: center; gap: 22px; }
 .ws-app--feat .ws-app__ico { flex: 0 0 auto; margin-bottom: 0; }
@@ -266,7 +270,7 @@
 .ws-app--feat .ws-app__txt { flex: 1; }
 .ws-app--feat .badge { display: inline-block; font-size: 11px; font-weight: 700; color: #fff; background: var(--grad); padding: 4px 11px; border-radius: var(--pill); margin-bottom: 10px; box-shadow: var(--sh-red); }
 @media (max-width: 520px) { .ws-app--feat .ws-app__body { flex-direction: column; align-items: flex-start; } }
-.ws-app--readme { background: linear-gradient(135deg, #1c1c2b, #232338); color: #fff; }
+.ws-app--readme { background: #232338; color: #fff; }
 .ws-app--readme .cmd { display: none; }
 .ws-app--readme h3 { color: #fff; }
 .ws-app--readme p { color: #b9bdca; }
@@ -322,7 +326,7 @@
 /* ============ 도구 상세 페이지 ============ */
 .tp-col { max-width: 1120px; margin: 0 auto; padding: 0 28px; }
 .tp-hero { position: relative; padding: 30px 0 14px; }
-.tp-hero::before { content: ""; position: absolute; top: -100px; right: -160px; width: 520px; height: 520px; border-radius: 50%; background: radial-gradient(circle, rgba(255, 91, 82, .05), transparent 64%); z-index: 0; pointer-events: none; }
+.tp-hero::before { display: none; }
 .tp-hero > .tp-col { position: relative; z-index: 1; }
 .tp-path { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; font-size: 13.5px; color: var(--ink-faint); margin-bottom: 14px; }
 .tp-path a { color: var(--ink-soft); }
@@ -449,7 +453,7 @@
 
 /* 보안 콜아웃(레드 그라데이션 카드) */
 .tp-secure { margin-top: 48px; display: flex; gap: 18px; align-items: flex-start; background: var(--grad); color: #fff; border-radius: var(--radius-lg); padding: 28px 30px; box-shadow: var(--sh-red); position: relative; overflow: hidden; }
-.tp-secure::after { content: ""; position: absolute; top: -60px; right: -40px; width: 220px; height: 220px; border-radius: 50%; background: radial-gradient(circle, rgba(255, 255, 255, .18), transparent 60%); }
+.tp-secure::after { display: none; }
 .tp-secure .ic { flex: 0 0 auto; position: relative; }
 .tp-secure .ic .ic-svg { width: 30px; height: 30px; color: #fff; }
 .tp-secure .tx { position: relative; }
