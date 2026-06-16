@@ -22,9 +22,9 @@
   <link rel="apple-touch-icon" href="../assets/img/logo.png">
   <link rel="manifest" href="../site.webmanifest">
   <meta name="theme-color" content="#ffffff">
-  <link rel="stylesheet" href="../assets/css/style.css?v=1781592916749">
+  <link rel="stylesheet" href="../assets/css/style.css?v=1781594787712">
   <script>document.documentElement.className+=" js";</script>
-  <link rel="stylesheet" href="../assets/css/workspace.css?v=1781592916749">
+  <link rel="stylesheet" href="../assets/css/workspace.css?v=1781594787712">
   <script type="application/ld+json">[{"@context":"https://schema.org","@type":"WebApplication","name":"PDF 합치기 - PDF의 모든 것","url":"https://inno-hi-inc.github.io/all-about-pdf/merge/","applicationCategory":"UtilitiesApplication","operatingSystem":"All","browserRequirements":"Requires JavaScript","inLanguage":"ko","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"KRW"},"featureList":["여러 PDF 병합","페이지 순서 변경","무료·무제한"],"publisher":{"@type":"Organization","name":"PDF의 모든 것","url":"https://inno-hi-inc.github.io/all-about-pdf/"}},{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"홈","item":"https://inno-hi-inc.github.io/all-about-pdf/"},{"@type":"ListItem","position":2,"name":"PDF 합치기","item":"https://inno-hi-inc.github.io/all-about-pdf/merge/"}]}]</script>
 </head>
 <body class="ws tp">
@@ -54,11 +54,8 @@
 
     <section class="tp-editor">
       <div class="tp-editorwrap">
-        <div class="ws-window tp-window">
-          <div class="ws-winbar"><span class="ws-wintitle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 16V4M8 8l4-4 4 4"/><path d="M4 16v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg><span class="t">여기에 PDF를 놓고 바로 작업</span></span></div>
-          <div class="tp-toolbody"><div class="tool" data-tool="merge">
-      <div class="tool__left">
-        <div class="dropzone js-drop" tabindex="0" role="button" aria-label="PDF 파일 선택 또는 끌어다 놓기">
+        <div class="tp-toolbody"><div class="tool" data-tool="merge">
+      <div class="tool__left ws-window"><div class="ws-winbar"><span class="ws-wintitle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 16V4M8 8l4-4 4 4"/><path d="M4 16v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg><span class="t">여기에 PDF를 놓고 바로 작업</span></span></div><div class="tool__leftbody"><div class="dropzone js-drop" tabindex="0" role="button" aria-label="PDF 파일 선택 또는 끌어다 놓기">
           <input type="file" class="js-file" accept="application/pdf" multiple hidden>
           <svg class="dropzone__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 16V4M12 4l-4 4M12 4l4 4"/><path d="M4 16v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg>
           <p class="dropzone__title">합칠 PDF들을 끌어다 놓으세요</p>
@@ -66,8 +63,7 @@
           <p class="dropzone__hint">또는 끌어다 놓기 · 파일은 내 브라우저에서만 처리됩니다</p>
         </div>
         <ul class="filelist js-files"></ul>
-        <div class="pagegrid js-pagegrid" hidden></div>
-      </div>
+        <div class="pagegrid js-pagegrid" hidden></div></div></div>
       <div class="tool__right">
         <div class="options">
   <label class="checkbox"><input type="checkbox" id="merge-blank"> 파일 사이에 빈 페이지 넣기</label>
@@ -82,7 +78,6 @@
         <noscript><p class="callout callout--warn" style="margin-top:16px"><span class="callout__ic"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><line x1="12" y1="11" x2="12" y2="16.5"/><circle cx="12" cy="7.8" r=".7" fill="currentColor" stroke="none"/></svg></span><span>이 도구는 자바스크립트가 필요합니다. 브라우저의 자바스크립트를 켜 주세요. 파일은 여전히 서버로 전송되지 않고 내 브라우저에서만 처리됩니다.</span></p></noscript>
       </div>
     </div></div>
-        </div>
       </div>
     </section>
 
@@ -149,10 +144,10 @@
   <script src="../assets/vendor/pdf-lib.min.js" defer></script>
   <script src="../assets/vendor/pdf.min.js" defer></script>
   <script src="../assets/vendor/jszip.min.js" defer></script>
-  <script src="../assets/js/ui.js?v=1781592916749" defer></script>
-  <script src="../assets/js/pdf-engine.js?v=1781592916749" defer></script>
-  <script src="../assets/js/tool-core.js?v=1781592916749" defer></script>
-  <script src="../assets/js/tools/merge.js?v=1781592916749" defer></script>
-  <script src="../assets/js/workspace.js?v=1781592916749" defer></script>
+  <script src="../assets/js/ui.js?v=1781594787712" defer></script>
+  <script src="../assets/js/pdf-engine.js?v=1781594787712" defer></script>
+  <script src="../assets/js/tool-core.js?v=1781594787712" defer></script>
+  <script src="../assets/js/tools/merge.js?v=1781594787712" defer></script>
+  <script src="../assets/js/workspace.js?v=1781594787712" defer></script>
 </body>
 </html>

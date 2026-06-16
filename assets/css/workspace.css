@@ -353,9 +353,7 @@
 .tp-toolbody { flex: 1 1 auto; min-height: 0; overflow: auto; padding: 26px; display: flex; flex-direction: column; justify-content: safe center; }
 @media (max-width: 560px) { .tp-toolbody { padding: 16px; justify-content: flex-start; } .tp-window { min-height: calc(100vh - 220px); } }
 .ws .tp-toolbody .tool { background: transparent; border: 0; border-radius: 0; box-shadow: none; padding: 0; width: 100%; max-width: 760px; margin: 0 auto; }
-/* 풀스크린: 드롭존 컴팩트 → 옵션·실행 버튼이 더 잘 보이게 */
-.ws .tp-toolbody .dropzone { padding: 28px 22px; }
-.ws .tp-toolbody .dropzone__icon { width: 42px; height: 42px; margin-bottom: 8px; }
+/* 상세 드롭존은 홈과 동일한 기본 .dropzone 크기를 그대로 사용(오버라이드 없음) */
 
 /* 상세: 업로드한 PDF 페이지를 왼쪽 도구 안에서 크게(페이지별 2열) */
 .tp-toolbody .pagegrid { margin-top: 18px; }
@@ -371,9 +369,14 @@
 .tp-editorwrap { max-width: 1280px; margin: 0 auto; padding: 0 clamp(18px, 4vw, 40px); }
 .tp-editor .tp-window { height: auto; min-height: 0; }
 .tp-editor .tp-toolbody { display: block; padding: 0; overflow: visible; }
-/* 도구 위젯을 2단으로: 왼쪽 페이지 영역 / 오른쪽 옵션·실행 패널 */
-.tp-editor .tp-toolbody .tool { display: grid; grid-template-columns: 1.62fr 1fr; gap: 22px; padding: 24px; max-width: none; width: 100%; margin: 0; align-items: start; }
-.tp-editor .tool__left { min-width: 0; }
+/* 두 카드: ① 드롭 카드(ws-window) ② 옵션 카드 — 나란히 */
+.tp-editor .tp-toolbody .tool { display: grid; grid-template-columns: 1.2fr 1fr; gap: 22px; padding: 24px 0; max-width: none; width: 100%; margin: 0; align-items: start; }
+.tp-editor .tool__left { min-width: 0; align-self: start; }
+/* 드롭 카드는 홈 윈도우와 동일한 ws-window 스타일(타이틀바 + 본문 패딩) */
+.tp-editor .tool__left.ws-window { border-radius: var(--radius-lg); }
+.tp-editor .tool__left .ws-winbar { padding: 15px 22px; }
+.tp-editor .tool__leftbody { padding: 22px; }
+@media (max-width: 560px) { .tp-editor .tool__leftbody { padding: 16px; } }
 /* 오른쪽 옵션·실행 패널: 스크롤해도 항상 보이는 sticky 카드 */
 /* 우측은 투명 컨테이너 — 옵션은 별도 카드, 실행 버튼은 그 아래 prominent CTA로 분리 */
 /* 옵션 + 실행 버튼을 하나의 카드로 묶음 — 설정→실행이 한 패널에 응집 */
@@ -410,11 +413,8 @@
 /* 페이지 선택 시 체크 배지가 톡 튀어나오게(spring) */
 .ws .pagecell.is-sel .pagecell__img::before { animation: aapPop var(--d-enter) var(--ez-spring); }
 
-/* ===== 토스풍 UX/UI 폴리시 (상세 에디터) — 여백·둥근 카드·큰 친근한 버튼 ===== */
-.tp-editor .tp-window { border-radius: 26px; box-shadow: 0 1px 2px rgba(23, 23, 42, .04), 0 14px 44px rgba(23, 23, 42, .09); }
-.tp-editor .dropzone { border-radius: 20px; }
-.tp-editor .dropzone__title { font-size: 1.16rem; font-weight: 700; color: var(--ink); }
-.tp-editor .dropzone__btn { font-size: 1.02rem; padding: 14px 30px; }
+/* ===== 토스풍 UX/UI 폴리시 (상세 에디터) ===== */
+/* (드롭존은 홈과 동일한 기본 크기를 쓰기 위해 별도 오버라이드를 두지 않음) */
 .tp-editor .tool__right .option__label { font-weight: 700; font-size: .95rem; color: var(--ink); }
 .tp-editor .field { border-radius: 14px; padding: 13px 16px; font-size: 1rem; font-variant-numeric: tabular-nums; }
 .ws .option__hint { font-variant-numeric: tabular-nums; color: var(--ink-soft); }
@@ -601,3 +601,26 @@ body.ws-app-open .ws-scrim { opacity: 1; pointer-events: auto; }
 .ws .infotable th { width: 38%; color: var(--ink-soft); font-weight: 600; white-space: nowrap; }
 .ws .infotable td { color: var(--ink); font-weight: 500; word-break: break-all; font-variant-numeric: tabular-nums; }
 .ws .infotable tr:last-child th, .ws .infotable tr:last-child td { border-bottom: 0; }
+
+/* ============ 홈 2단: 드롭 윈도우(왼) ↔ 카탈로그(오) 나란히 ============ */
+.ws-home2 { padding: 24px 0 72px; }
+.ws-home2grid { display: grid; grid-template-columns: 1fr 1.08fr; gap: 34px; align-items: start; max-width: 1340px; margin: 0 auto; }
+.ws-home2left { position: sticky; top: 88px; align-self: start; min-width: 0; }
+.ws-home2right { min-width: 0; }
+.ws-home2right .ws-cat { margin-top: 28px; }
+.ws-home2right .ws-cat:first-child { margin-top: 0; }
+.ws-home2right .ws-cat__head { margin-bottom: 12px; }
+.ws-home2right .ws-cat__title { font-size: 1.22rem; }
+.ws-home2right .ws-cat__desc { font-size: .9rem; }
+/* 카탈로그를 가로 스크롤 선반 → 컬럼에 맞는 2열 그리드(전부 보임, fan-in 유지) */
+.ws-home2right .ws-shelf { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; overflow: visible; padding: 6px 2px 2px; scroll-snap-type: none; }
+.ws-home2right .ws-card { flex: none; padding: 18px; gap: 10px; border-radius: 14px; }
+.ws-home2right .ws-card__ico, .ws-home2right .ws-card__ico .ic-svg { width: 40px; height: 40px; flex-basis: 40px; }
+.ws-home2right .ws-card__name { font-size: 1.02rem; }
+.ws-home2right .ws-card__desc { font-size: .85rem; margin-top: 4px; line-height: 1.5; }
+.ws-home2right .ws-shelf > .ws-card:only-child { grid-column: 1 / -1; }
+@media (max-width: 1000px) {
+  .ws-home2grid { grid-template-columns: 1fr; gap: 26px; }
+  .ws-home2left { position: static; max-width: 760px; margin: 0 auto; width: 100%; }
+}
+@media (max-width: 560px) { .ws-home2right .ws-shelf { grid-template-columns: 1fr; } }

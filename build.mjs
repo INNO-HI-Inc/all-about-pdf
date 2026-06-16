@@ -558,9 +558,8 @@ function widget(t, opts) {
   const pc = t.pagecount ? `\n      <p class="pagecount js-pagecount"></p>` : '';
   const accept = t.accept === 'image' ? 'image/png,image/jpeg' : t.accept === 'svg' ? 'image/svg+xml,.svg' : 'application/pdf';
   const aria = t.accept === 'image' ? '이미지 파일 선택 또는 끌어다 놓기' : t.accept === 'svg' ? 'SVG 파일 선택 또는 끌어다 놓기' : 'PDF 파일 선택 또는 끌어다 놓기';
-  return `<div class="tool${extraClass}" data-tool="${t.slug}">
-      <div class="tool__left">
-        <div class="dropzone js-drop" tabindex="0" role="button" aria-label="${aria}">
+  const noun = t.accept === 'image' ? '이미지' : t.accept === 'svg' ? 'SVG' : 'PDF';
+  const dropBody = `<div class="dropzone js-drop" tabindex="0" role="button" aria-label="${aria}">
           <input type="file" class="js-file" accept="${accept}" ${t.multiple ? 'multiple ' : ''}hidden>
           <svg class="dropzone__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 16V4M12 4l-4 4M12 4l4 4"/><path d="M4 16v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg>
           <p class="dropzone__title">${t.dropTitle}</p>
@@ -568,8 +567,14 @@ function widget(t, opts) {
           <p class="dropzone__hint">또는 끌어다 놓기 · 파일은 내 브라우저에서만 처리됩니다</p>
         </div>${pc}
         <ul class="filelist js-files"></ul>
-        <div class="pagegrid js-pagegrid" hidden></div>
-      </div>
+        <div class="pagegrid js-pagegrid" hidden></div>`;
+  // editor 모드(상세): 드롭 영역을 홈과 동일한 ws-window 카드 + 타이틀바로
+  const winbar = `<div class="ws-winbar"><span class="ws-wintitle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 16V4M8 8l4-4 4 4"/><path d="M4 16v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg><span class="t">여기에 ${noun}를 놓고 바로 작업</span></span></div>`;
+  const left = opts.editor
+    ? `<div class="tool__left ws-window">${winbar}<div class="tool__leftbody">${dropBody}</div></div>`
+    : `<div class="tool__left">${dropBody}</div>`;
+  return `<div class="tool${extraClass}" data-tool="${t.slug}">
+      ${left}
       <div class="tool__right">
         ${t.options}
         <div class="actions"><button class="btn btn--primary btn--lg btn--block js-run" disabled>${t.runLabel}</button></div>
@@ -665,10 +670,7 @@ function buildTool(t) {
 
     <section class="tp-editor">
       <div class="tp-editorwrap">
-        <div class="ws-window tp-window">
-          <div class="ws-winbar"><span class="ws-wintitle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 16V4M8 8l4-4 4 4"/><path d="M4 16v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg><span class="t">여기에 ${t.accept === 'image' ? '이미지' : t.accept === 'svg' ? 'SVG' : 'PDF'}를 놓고 바로 작업</span></span></div>
-          <div class="tp-toolbody">${widget(t)}</div>
-        </div>
+        <div class="tp-toolbody">${widget(t, { editor: true })}</div>
       </div>
     </section>
 
@@ -754,27 +756,27 @@ function buildHome() {
         </div>
       </section>`).join('\n');
 
-  const main = `    <section class="ws-hero" id="tools">
+  const main = `    <section class="ws-home2" id="tools">
       <h1 class="sr-only">${esc(c.metaTitle || 'PDF의 모든 것')} — 설치 없이 무료로 쓰는 한국어 PDF 도구 모음</h1>
-      <div class="ws-wrap">
-        <div class="ws-winwrap ws-hero__win">
-          <div class="ws-window" data-ws-window>
-            <div class="ws-winbar"><span class="ws-wintitle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 16V4M8 8l4-4 4 4"/><path d="M4 16v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg><span class="t">여기에 PDF를 놓고 바로 작업</span></span><button class="ws-winclose" type="button" data-ws-close aria-label="작업 닫고 처음으로">처음으로 ✕</button></div>
-            <div class="herotool">
-              <div class="herotool__tabs" role="tablist" aria-label="PDF 도구 선택">
-              ${heroTabs}
-              </div>
-              <div class="herotool__panels">
-          ${heroPanels}
+      <div class="ws-wrap ws-home2grid">
+        <div class="ws-home2left">
+          <div class="ws-winwrap">
+            <div class="ws-window" data-ws-window>
+              <div class="ws-winbar"><span class="ws-wintitle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 16V4M8 8l4-4 4 4"/><path d="M4 16v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg><span class="t">여기에 PDF를 놓고 바로 작업</span></span><button class="ws-winclose" type="button" data-ws-close aria-label="작업 닫고 처음으로">처음으로 ✕</button></div>
+              <div class="herotool">
+                <div class="herotool__tabs" role="tablist" aria-label="PDF 도구 선택">
+                ${heroTabs}
+                </div>
+                <div class="herotool__panels">
+            ${heroPanels}
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-    </section>
-    <section class="ws-catalog">
-      <div class="ws-wrap">
+        <div class="ws-home2right">
 ${catalog}
+        </div>
       </div>
     </section>`;
 
