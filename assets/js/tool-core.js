@@ -409,6 +409,7 @@
     function changed() {
       result.hidden = true; result.innerHTML = '';
       selected = {}; cutsBefore = {}; organizeOrder = []; organizeTail = []; previewPageShown = 0;
+      root.classList.toggle('is-loaded', state.files.length > 0);   // 업로드 후 드롭존 컴팩트화 트리거
       render(); updatePageCount(); renderGrid();
       announce(state.files.length ? (state.files.length + '개 파일이 선택되었습니다') : '파일 목록이 비워졌습니다');
       if (state.files.length) probeEncrypted();
