@@ -612,32 +612,30 @@ body.ws-app-open .ws-scrim { opacity: 1; pointer-events: auto; }
   .ws-home2left { position: static; max-width: 760px; margin: 0 auto; width: 100%; }
 }
 
-/* ===== 정사각형 카테고리 타일 + 도구 선반(탭) — 타일 클릭하면 도구가 옆으로 촤라락 ===== */
-/* 세로 6단 — 컴팩트한 가로 행 카드를 아래로 쌓음 */
-.ws-catgrid { display: flex; flex-direction: column; gap: 8px; }
-.ws-cattile { position: relative; display: flex; flex-direction: row; align-items: center; gap: 12px; padding: 11px 14px; text-align: left; background: #fff; border: 1px solid var(--line-2); border-radius: 12px; cursor: pointer; font-family: inherit; color: var(--ink); box-shadow: 0 1px 2px rgba(23, 23, 42, .04); transition: transform var(--d-micro) var(--ez), box-shadow var(--d-hover) var(--ez), border-color var(--d-hover) var(--ez); }
-.ws-cattile:hover { border-color: rgba(229, 37, 42, .25); box-shadow: 0 1px 2px rgba(23, 23, 42, .04), 0 6px 16px rgba(23, 23, 42, .07); }
-.ws-cattile.is-active { border-color: var(--red); box-shadow: 0 1px 2px rgba(229, 37, 42, .08), 0 6px 16px rgba(229, 37, 42, .12); }
-.ws-cattile__count { flex: 0 0 auto; min-width: 22px; height: 22px; display: inline-grid; place-items: center; padding: 0 7px; font-size: 11.5px; font-weight: 700; color: var(--red-deep); background: var(--grad-soft); border-radius: var(--pill); font-variant-numeric: tabular-nums; }
+/* ===== 가로 아코디언: 정사각 카테고리 타일 + 클릭하면 도구가 타일 옆으로 분신술 촤라락 ===== */
+.ws-cats { display: flex; flex-direction: column; gap: 10px; }
+.ws-cat-row { display: flex; align-items: center; gap: 12px; min-width: 0; }
+.ws-cattile { flex: 0 0 auto; width: 118px; aspect-ratio: 1 / 1; position: relative; display: flex; flex-direction: column; gap: 3px; padding: 13px; text-align: left; background: #fff; border: 1px solid var(--line-2); border-radius: 14px; cursor: pointer; font-family: inherit; color: var(--ink); box-shadow: 0 1px 2px rgba(23, 23, 42, .04), 0 4px 11px rgba(23, 23, 42, .05); transition: transform var(--d-hover) var(--ez), box-shadow var(--d-hover) var(--ez), border-color var(--d-hover) var(--ez); }
+.ws-cattile:hover { transform: translateY(-2px); box-shadow: 0 2px 4px rgba(23, 23, 42, .05), 0 10px 22px rgba(23, 23, 42, .1); }
+.ws-cattile.is-active { border-color: var(--red); box-shadow: 0 2px 4px rgba(229, 37, 42, .1), 0 10px 22px rgba(229, 37, 42, .14); }
+.ws-cattile__count { align-self: flex-start; min-width: 21px; height: 21px; display: inline-grid; place-items: center; padding: 0 6px; font-size: 11.5px; font-weight: 700; color: var(--red-deep); background: var(--grad-soft); border-radius: var(--pill); font-variant-numeric: tabular-nums; }
 .ws-cattile.is-active .ws-cattile__count { color: #fff; background: var(--red); }
-.ws-cattile__meta { min-width: 0; display: flex; flex-direction: column; gap: 1px; }
-.ws-cattile__title { font-family: var(--font); font-weight: 700; font-size: .98rem; letter-spacing: -.018em; line-height: 1.2; color: var(--ink); }
-.ws-cattile__desc { font-size: .76rem; line-height: 1.3; color: var(--ink-soft); word-break: keep-all; display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden; }
-/* 도구 선반: 활성 카테고리만 표시 */
-.ws-catpanel { display: none; }
-.ws-catpanel.is-active { display: block; }
-.ws-catpanel .ws-shelf { display: flex; gap: 12px; overflow-x: auto; padding: 6px 2px 14px; scrollbar-width: thin; scrollbar-color: var(--line-2) transparent; }
-.ws-catpanel .ws-shelf::-webkit-scrollbar { height: 7px; }
-.ws-catpanel .ws-shelf::-webkit-scrollbar-thumb { background: var(--line-2); border-radius: 4px; }
-.ws-catpanel .ws-card { flex: 0 0 210px; scroll-snap-align: start; padding: 16px; gap: 10px; border-radius: 13px; box-shadow: 0 1px 2px rgba(23, 23, 42, .04), 0 3px 10px rgba(23, 23, 42, .05); }
-.ws-catpanel .ws-card__ico, .ws-catpanel .ws-card__ico .ic-svg { width: 38px; height: 38px; flex-basis: 38px; }
-.ws-catpanel .ws-card__name { font-size: .98rem; }
-.ws-catpanel .ws-card__desc { font-size: .82rem; margin-top: 4px; line-height: 1.45; }
-/* 촤라락 — 활성 패널의 카드가 좌→우 순차 슬라이드 */
-.js .ws-catpanel.is-active .ws-card { animation: fanIn var(--d-enter) var(--ez-out) both; animation-delay: calc(var(--i, 0) * 52ms); }
-@keyframes fanIn { from { opacity: 0; transform: translateX(-26px) scale(.95); } to { opacity: 1; transform: none; } }
-@media (prefers-reduced-motion: reduce) { .js .ws-catpanel.is-active .ws-card { animation: none; } }
-@media (max-width: 560px) { .ws-catpanel .ws-card { flex-basis: 74vw; } }
+.ws-cattile__title { margin-top: auto; font-family: var(--font); font-weight: 700; font-size: .92rem; letter-spacing: -.018em; line-height: 1.2; color: var(--ink); word-break: keep-all; }
+/* 옆으로 펼쳐지는 도구 — 활성 행만 */
+.ws-cat-tools { flex: 1 1 0; min-width: 0; }
+.ws-cat-row:not(.is-active) .ws-cat-tools { display: none; }
+.ws-cat-tools .ws-shelf { display: flex; gap: 10px; overflow-x: auto; padding: 2px 2px 8px; scrollbar-width: thin; scrollbar-color: var(--line-2) transparent; }
+.ws-cat-tools .ws-shelf::-webkit-scrollbar { height: 6px; }
+.ws-cat-tools .ws-shelf::-webkit-scrollbar-thumb { background: var(--line-2); border-radius: 4px; }
+.ws-cat-tools .ws-card { flex: 0 0 auto; width: auto; flex-direction: row; align-items: center; padding: 11px 15px; gap: 11px; border-radius: 12px; box-shadow: 0 1px 2px rgba(23, 23, 42, .04), 0 3px 10px rgba(23, 23, 42, .05); }
+.ws-cat-tools .ws-card__ico, .ws-cat-tools .ws-card__ico .ic-svg { width: 30px; height: 30px; flex-basis: 30px; }
+.ws-cat-tools .ws-card__name { font-size: .94rem; white-space: nowrap; }
+.ws-cat-tools .ws-card__desc { display: none; }
+/* 분신술 — 활성 행 도구가 타일 옆에서 좌→우 순차 슬라이드 */
+.js .ws-cat-row.is-active .ws-card { animation: fanIn var(--d-enter) var(--ez-out) both; animation-delay: calc(var(--i, 0) * 50ms); }
+@keyframes fanIn { from { opacity: 0; transform: translateX(-22px) scale(.94); } to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) { .js .ws-cat-row.is-active .ws-card { animation: none; } }
+@media (max-width: 560px) { .ws-cattile { width: 102px; } }
 
 /* 홈: 박스1(드롭 카드 = 제목+드롭존) · 박스2(옵션 카드) 두 개의 완전히 다른 카드 + 위에 도구 탭 */
 .ws-deck:not(.is-max) { background: none; border: 0; box-shadow: none; overflow: visible; }

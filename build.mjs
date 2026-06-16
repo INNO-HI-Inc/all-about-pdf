@@ -803,20 +803,17 @@ function buildHome() {
           <span class="ws-card__ico">${ICONS_PDF[slug]}</span>
           <span class="ws-card__tx"><span class="ws-card__name">${esc(read(slug).h1)}</span><span class="ws-card__desc">${esc(APP_DESC[slug] || '')}</span></span>
         </a>`;
-  const catTiles = CATEGORIES.map((cat, ci) => `        <button class="ws-cattile${ci === 0 ? ' is-active' : ''}" type="button" data-cat="${cat.id}" aria-selected="${ci === 0 ? 'true' : 'false'}" aria-controls="catpanel-${cat.id}">
-          <span class="ws-cattile__count">${cat.slugs.length}</span>
-          <span class="ws-cattile__meta"><span class="ws-cattile__title">${esc(cat.title)}</span><span class="ws-cattile__desc">${esc(cat.desc)}</span></span>
-        </button>`).join('\n');
-  const catPanels = CATEGORIES.map((cat, ci) => `        <div class="ws-catpanel${ci === 0 ? ' is-active' : ''}" id="catpanel-${cat.id}" data-panel="${cat.id}" role="region" aria-label="${esc(cat.title)} 도구">
-          <div class="ws-shelf">
+  const catRows = CATEGORIES.map((cat, ci) => `        <div class="ws-cat-row${ci === 0 ? ' is-active' : ''}" data-cat="${cat.id}">
+          <button class="ws-cattile${ci === 0 ? ' is-active' : ''}" type="button" data-cat="${cat.id}" aria-expanded="${ci === 0 ? 'true' : 'false'}">
+            <span class="ws-cattile__count">${cat.slugs.length}</span>
+            <span class="ws-cattile__title">${esc(cat.title)}</span>
+          </button>
+          <div class="ws-cat-tools"><div class="ws-shelf">
           ${cat.slugs.map((s, i) => card(s, i)).join('\n          ')}
-          </div>
+          </div></div>
         </div>`).join('\n');
-  const catalog = `      <div class="ws-catgrid" role="tablist" aria-label="도구 카테고리">
-${catTiles}
-      </div>
-      <div class="ws-catpanels">
-${catPanels}
+  const catalog = `      <div class="ws-cats" aria-label="도구 카테고리">
+${catRows}
       </div>`;
 
   const main = `    <section class="ws-home2" id="tools">
