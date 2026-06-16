@@ -805,8 +805,7 @@ function buildHome() {
         </a>`;
   const catTiles = CATEGORIES.map((cat, ci) => `        <button class="ws-cattile${ci === 0 ? ' is-active' : ''}" type="button" data-cat="${cat.id}" aria-selected="${ci === 0 ? 'true' : 'false'}" aria-controls="catpanel-${cat.id}">
           <span class="ws-cattile__count">${cat.slugs.length}</span>
-          <span class="ws-cattile__title">${esc(cat.title)}</span>
-          <span class="ws-cattile__desc">${esc(cat.desc)}</span>
+          <span class="ws-cattile__meta"><span class="ws-cattile__title">${esc(cat.title)}</span><span class="ws-cattile__desc">${esc(cat.desc)}</span></span>
         </button>`).join('\n');
   const catPanels = CATEGORIES.map((cat, ci) => `        <div class="ws-catpanel${ci === 0 ? ' is-active' : ''}" id="catpanel-${cat.id}" data-panel="${cat.id}" role="region" aria-label="${esc(cat.title)} 도구">
           <div class="ws-shelf">

@@ -22,9 +22,9 @@
   <link rel="apple-touch-icon" href="assets/img/logo.png">
   <link rel="manifest" href="site.webmanifest">
   <meta name="theme-color" content="#ffffff">
-  <link rel="stylesheet" href="assets/css/style.css?v=1781598251923">
+  <link rel="stylesheet" href="assets/css/style.css?v=1781599782659">
   <script>document.documentElement.className+=" js";</script>
-  <link rel="stylesheet" href="assets/css/workspace.css?v=1781598251923">
+  <link rel="stylesheet" href="assets/css/workspace.css?v=1781599782659">
   <script type="application/ld+json">[{"@context":"https://schema.org","@type":"WebSite","name":"PDF의 모든 것","url":"https://inno-hi-inc.github.io/all-about-pdf/","inLanguage":"ko","description":"설치도 회원가입도 없이 무료로 쓰는 PDF 도구 모음. 파일을 서버에 올리지 않고 내 브라우저에서 바로 합치기·분할·변환·잠금해제까지 처리합니다."},{"@context":"https://schema.org","@type":"Organization","name":"PDF의 모든 것","url":"https://inno-hi-inc.github.io/all-about-pdf/","sameAs":["https://github.com/INNO-HI-Inc/all-about-pdf"]}]</script>
 </head>
 <body class="ws home">
@@ -864,33 +864,27 @@
       <div class="ws-catgrid" role="tablist" aria-label="도구 카테고리">
         <button class="ws-cattile is-active" type="button" data-cat="organize" aria-selected="true" aria-controls="catpanel-organize">
           <span class="ws-cattile__count">6</span>
-          <span class="ws-cattile__title">PDF 구성</span>
-          <span class="ws-cattile__desc">여러 PDF를 합치고, 나누고, 페이지를 자유롭게 정리하세요.</span>
+          <span class="ws-cattile__meta"><span class="ws-cattile__title">PDF 구성</span><span class="ws-cattile__desc">여러 PDF를 합치고, 나누고, 페이지를 자유롭게 정리하세요.</span></span>
         </button>
         <button class="ws-cattile" type="button" data-cat="convert" aria-selected="false" aria-controls="catpanel-convert">
           <span class="ws-cattile__count">11</span>
-          <span class="ws-cattile__title">PDF 변환</span>
-          <span class="ws-cattile__desc">PDF와 이미지를 서로 바꾸세요. 모두 내 브라우저에서 처리됩니다.</span>
+          <span class="ws-cattile__meta"><span class="ws-cattile__title">PDF 변환</span><span class="ws-cattile__desc">PDF와 이미지를 서로 바꾸세요. 모두 내 브라우저에서 처리됩니다.</span></span>
         </button>
         <button class="ws-cattile" type="button" data-cat="security" aria-selected="false" aria-controls="catpanel-security">
           <span class="ws-cattile__count">1</span>
-          <span class="ws-cattile__title">PDF 보안</span>
-          <span class="ws-cattile__desc">비밀번호·편집 제한을 풀어 자유롭게 사용하세요.</span>
+          <span class="ws-cattile__meta"><span class="ws-cattile__title">PDF 보안</span><span class="ws-cattile__desc">비밀번호·편집 제한을 풀어 자유롭게 사용하세요.</span></span>
         </button>
         <button class="ws-cattile" type="button" data-cat="optimize" aria-selected="false" aria-controls="catpanel-optimize">
           <span class="ws-cattile__count">1</span>
-          <span class="ws-cattile__title">PDF 최적화</span>
-          <span class="ws-cattile__desc">용량을 줄여 가볍게. 메일·제출 용량 제한에 맞추세요.</span>
+          <span class="ws-cattile__meta"><span class="ws-cattile__title">PDF 최적화</span><span class="ws-cattile__desc">용량을 줄여 가볍게. 메일·제출 용량 제한에 맞추세요.</span></span>
         </button>
         <button class="ws-cattile" type="button" data-cat="edit" aria-selected="false" aria-controls="catpanel-edit">
           <span class="ws-cattile__count">2</span>
-          <span class="ws-cattile__title">PDF 편집</span>
-          <span class="ws-cattile__desc">방향을 바로잡고 여백을 정리해 문서를 다듬으세요.</span>
+          <span class="ws-cattile__meta"><span class="ws-cattile__title">PDF 편집</span><span class="ws-cattile__desc">방향을 바로잡고 여백을 정리해 문서를 다듬으세요.</span></span>
         </button>
         <button class="ws-cattile" type="button" data-cat="analyze" aria-selected="false" aria-controls="catpanel-analyze">
           <span class="ws-cattile__count">1</span>
-          <span class="ws-cattile__title">PDF 분석</span>
-          <span class="ws-cattile__desc">페이지 수·용량·메타데이터 등 문서 정보를 확인하세요.</span>
+          <span class="ws-cattile__meta"><span class="ws-cattile__title">PDF 분석</span><span class="ws-cattile__desc">페이지 수·용량·메타데이터 등 문서 정보를 확인하세요.</span></span>
         </button>
       </div>
       <div class="ws-catpanels">
@@ -1016,24 +1010,24 @@
   <script src="assets/vendor/pdf-lib.min.js" defer></script>
   <script src="assets/vendor/pdf.min.js" defer></script>
   <script src="assets/vendor/jszip.min.js" defer></script>
-  <script src="assets/js/ui.js?v=1781598251923" defer></script>
-  <script src="assets/js/pdf-engine.js?v=1781598251923" defer></script>
-  <script src="assets/js/tool-core.js?v=1781598251923" defer></script>
-  <script src="assets/js/tools/merge.js?v=1781598251923" defer></script>
-  <script src="assets/js/tools/split.js?v=1781598251923" defer></script>
-  <script src="assets/js/tools/unlock.js?v=1781598251923" defer></script>
-  <script src="assets/js/tools/extract.js?v=1781598251923" defer></script>
-  <script src="assets/js/tools/delete.js?v=1781598251923" defer></script>
-  <script src="assets/js/tools/organize.js?v=1781598251923" defer></script>
-  <script src="assets/js/tools/page-numbers.js?v=1781598251923" defer></script>
-  <script src="assets/js/tools/to-image.js?v=1781598251923" defer></script>
-  <script src="assets/js/tools/image-to-pdf.js?v=1781598251923" defer></script>
-  <script src="assets/js/tools/svg-to-png.js?v=1781598251923" defer></script>
-  <script src="assets/js/tools/rotate.js?v=1781598251923" defer></script>
-  <script src="assets/js/tools/crop.js?v=1781598251923" defer></script>
-  <script src="assets/js/tools/compress.js?v=1781598251923" defer></script>
-  <script src="assets/js/tools/pdf-info.js?v=1781598251923" defer></script>
-  <script src="assets/js/tools/img-convert.js?v=1781598251923" defer></script>
-  <script src="assets/js/workspace.js?v=1781598251923" defer></script>
+  <script src="assets/js/ui.js?v=1781599782659" defer></script>
+  <script src="assets/js/pdf-engine.js?v=1781599782659" defer></script>
+  <script src="assets/js/tool-core.js?v=1781599782659" defer></script>
+  <script src="assets/js/tools/merge.js?v=1781599782659" defer></script>
+  <script src="assets/js/tools/split.js?v=1781599782659" defer></script>
+  <script src="assets/js/tools/unlock.js?v=1781599782659" defer></script>
+  <script src="assets/js/tools/extract.js?v=1781599782659" defer></script>
+  <script src="assets/js/tools/delete.js?v=1781599782659" defer></script>
+  <script src="assets/js/tools/organize.js?v=1781599782659" defer></script>
+  <script src="assets/js/tools/page-numbers.js?v=1781599782659" defer></script>
+  <script src="assets/js/tools/to-image.js?v=1781599782659" defer></script>
+  <script src="assets/js/tools/image-to-pdf.js?v=1781599782659" defer></script>
+  <script src="assets/js/tools/svg-to-png.js?v=1781599782659" defer></script>
+  <script src="assets/js/tools/rotate.js?v=1781599782659" defer></script>
+  <script src="assets/js/tools/crop.js?v=1781599782659" defer></script>
+  <script src="assets/js/tools/compress.js?v=1781599782659" defer></script>
+  <script src="assets/js/tools/pdf-info.js?v=1781599782659" defer></script>
+  <script src="assets/js/tools/img-convert.js?v=1781599782659" defer></script>
+  <script src="assets/js/workspace.js?v=1781599782659" defer></script>
 </body>
 </html>
