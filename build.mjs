@@ -803,16 +803,22 @@ function buildHome() {
           <span class="ws-card__ico">${ICONS_PDF[slug]}</span>
           <span class="ws-card__tx"><span class="ws-card__name">${esc(read(slug).h1)}</span><span class="ws-card__desc">${esc(APP_DESC[slug] || '')}</span></span>
         </a>`;
-  const chev = '<svg class="ws-cat__chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>';
-  const catalog = CATEGORIES.map((cat, ci) => `      <div class="ws-cat${ci === 0 ? ' is-open' : ''}" id="cat-${cat.id}">
-        <button class="ws-cat__btn" type="button" aria-expanded="${ci === 0 ? 'true' : 'false'}" aria-controls="catp-${cat.id}">
-          <span class="ws-cat__meta"><span class="ws-cat__title">${esc(cat.title)}</span><span class="ws-cat__desc">${esc(cat.desc)}</span></span>
-          <span class="ws-cat__count">${cat.slugs.length}</span>${chev}
-        </button>
-        <div class="ws-cat__panel" id="catp-${cat.id}"><div class="ws-cat__inner"><div class="ws-shelf">
+  const catTiles = CATEGORIES.map((cat, ci) => `        <button class="ws-cattile${ci === 0 ? ' is-active' : ''}" type="button" data-cat="${cat.id}" aria-selected="${ci === 0 ? 'true' : 'false'}" aria-controls="catpanel-${cat.id}">
+          <span class="ws-cattile__count">${cat.slugs.length}</span>
+          <span class="ws-cattile__title">${esc(cat.title)}</span>
+          <span class="ws-cattile__desc">${esc(cat.desc)}</span>
+        </button>`).join('\n');
+  const catPanels = CATEGORIES.map((cat, ci) => `        <div class="ws-catpanel${ci === 0 ? ' is-active' : ''}" id="catpanel-${cat.id}" data-panel="${cat.id}" role="region" aria-label="${esc(cat.title)} 도구">
+          <div class="ws-shelf">
           ${cat.slugs.map((s, i) => card(s, i)).join('\n          ')}
-        </div></div></div>
-      </div>`).join('\n');
+          </div>
+        </div>`).join('\n');
+  const catalog = `      <div class="ws-catgrid" role="tablist" aria-label="도구 카테고리">
+${catTiles}
+      </div>
+      <div class="ws-catpanels">
+${catPanels}
+      </div>`;
 
   const main = `    <section class="ws-home2" id="tools">
       <h1 class="sr-only">${esc(c.metaTitle || 'PDF의 모든 것')} — 설치 없이 무료로 쓰는 한국어 PDF 도구 모음</h1>

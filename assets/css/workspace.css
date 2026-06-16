@@ -612,38 +612,40 @@ body.ws-app-open .ws-scrim { opacity: 1; pointer-events: auto; }
   .ws-home2left { position: static; max-width: 760px; margin: 0 auto; width: 100%; }
 }
 
-/* ===== 카테고리 아코디언: 클릭하면 도구가 옆으로 촤라락 ===== */
-.ws-cat { background: #fff; border: 1px solid var(--line-2); border-radius: 16px; overflow: hidden; box-shadow: 0 1px 2px rgba(23, 23, 42, .04), 0 5px 14px rgba(23, 23, 42, .05); transition: box-shadow var(--d-hover) var(--ez), border-color var(--d-hover) var(--ez); }
-.ws-cat.is-open { border-color: var(--line-2); box-shadow: 0 2px 4px rgba(23, 23, 42, .05), 0 12px 28px rgba(23, 23, 42, .08); }
-.ws-cat__btn { width: 100%; display: flex; align-items: center; gap: 14px; padding: 17px 20px; background: none; border: 0; cursor: pointer; text-align: left; font-family: inherit; color: var(--ink); transition: background var(--d-micro) var(--ez); }
-.ws-cat__btn:hover { background: var(--surf-2); }
-.ws-cat__meta { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
-.ws-cat__title { font-family: var(--font); font-weight: 700; font-size: 1.12rem; letter-spacing: -.018em; color: var(--ink); }
-.ws-cat__desc { font-size: .86rem; color: var(--ink-soft); word-break: keep-all; }
-.ws-cat__count { margin-left: auto; flex: 0 0 auto; min-width: 26px; height: 24px; display: inline-grid; place-items: center; padding: 0 8px; font-size: 12.5px; font-weight: 700; color: var(--red-deep); background: var(--grad-soft); border-radius: var(--pill); font-variant-numeric: tabular-nums; }
-.ws-cat__chev { flex: 0 0 auto; width: 20px; height: 20px; color: var(--ink-faint); transition: transform var(--d-enter) var(--ez-out); }
-.ws-cat.is-open .ws-cat__chev { transform: rotate(90deg); color: var(--red); }
-/* 펼침: grid-rows 0fr→1fr 로 부드럽게 */
-.ws-cat__panel { display: grid; grid-template-rows: 0fr; transition: grid-template-rows var(--d-enter) var(--ez-out); }
-.ws-cat.is-open .ws-cat__panel { grid-template-rows: 1fr; }
-.ws-cat__inner { overflow: hidden; min-height: 0; }
-/* 도구가 옆으로 펼쳐지는 가로 선반 */
-.ws-cat .ws-shelf { display: flex; gap: 12px; overflow-x: auto; padding: 4px 20px 20px; scrollbar-width: thin; scrollbar-color: var(--line-2) transparent; }
-.ws-cat .ws-shelf::-webkit-scrollbar { height: 7px; }
-.ws-cat .ws-shelf::-webkit-scrollbar-thumb { background: var(--line-2); border-radius: 4px; }
-.ws-cat .ws-card { flex: 0 0 210px; scroll-snap-align: start; padding: 16px; gap: 10px; border-radius: 13px; box-shadow: 0 1px 2px rgba(23, 23, 42, .04), 0 3px 10px rgba(23, 23, 42, .05); }
-.ws-cat .ws-card__ico, .ws-cat .ws-card__ico .ic-svg { width: 38px; height: 38px; flex-basis: 38px; }
-.ws-cat .ws-card__name { font-size: .98rem; }
-.ws-cat .ws-card__desc { font-size: .82rem; margin-top: 4px; line-height: 1.45; }
-/* 촤라락 — 펼칠 때 카드가 좌→우 순차 슬라이드 */
-.js .ws-cat.is-open .ws-card { animation: fanIn var(--d-enter) var(--ez-out) both; animation-delay: calc(var(--i, 0) * 52ms); }
+/* ===== 정사각형 카테고리 타일 + 도구 선반(탭) — 타일 클릭하면 도구가 옆으로 촤라락 ===== */
+.ws-catgrid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+.ws-cattile { position: relative; display: flex; flex-direction: column; gap: 4px; aspect-ratio: 1 / 1; padding: 18px; text-align: left; background: #fff; border: 1px solid var(--line-2); border-radius: 16px; cursor: pointer; font-family: inherit; color: var(--ink); box-shadow: 0 1px 2px rgba(23, 23, 42, .04), 0 5px 14px rgba(23, 23, 42, .05); transition: transform var(--d-hover) var(--ez), box-shadow var(--d-hover) var(--ez), border-color var(--d-hover) var(--ez); }
+.ws-cattile:hover { transform: translateY(-3px); box-shadow: 0 2px 4px rgba(23, 23, 42, .05), 0 14px 30px rgba(23, 23, 42, .1); }
+.ws-cattile.is-active { border-color: var(--red); box-shadow: 0 2px 4px rgba(229, 37, 42, .1), 0 14px 30px rgba(229, 37, 42, .14); }
+.ws-cattile__count { align-self: flex-start; min-width: 24px; height: 24px; display: inline-grid; place-items: center; padding: 0 8px; font-size: 12px; font-weight: 700; color: var(--red-deep); background: var(--grad-soft); border-radius: var(--pill); font-variant-numeric: tabular-nums; }
+.ws-cattile.is-active .ws-cattile__count { color: #fff; background: var(--red); }
+.ws-cattile__title { margin-top: auto; font-family: var(--font); font-weight: 700; font-size: 1.08rem; letter-spacing: -.018em; color: var(--ink); }
+.ws-cattile__desc { font-size: .82rem; line-height: 1.42; color: var(--ink-soft); word-break: keep-all; }
+/* 도구 선반: 활성 카테고리만 표시 */
+.ws-catpanel { display: none; }
+.ws-catpanel.is-active { display: block; }
+.ws-catpanel .ws-shelf { display: flex; gap: 12px; overflow-x: auto; padding: 6px 2px 14px; scrollbar-width: thin; scrollbar-color: var(--line-2) transparent; }
+.ws-catpanel .ws-shelf::-webkit-scrollbar { height: 7px; }
+.ws-catpanel .ws-shelf::-webkit-scrollbar-thumb { background: var(--line-2); border-radius: 4px; }
+.ws-catpanel .ws-card { flex: 0 0 210px; scroll-snap-align: start; padding: 16px; gap: 10px; border-radius: 13px; box-shadow: 0 1px 2px rgba(23, 23, 42, .04), 0 3px 10px rgba(23, 23, 42, .05); }
+.ws-catpanel .ws-card__ico, .ws-catpanel .ws-card__ico .ic-svg { width: 38px; height: 38px; flex-basis: 38px; }
+.ws-catpanel .ws-card__name { font-size: .98rem; }
+.ws-catpanel .ws-card__desc { font-size: .82rem; margin-top: 4px; line-height: 1.45; }
+/* 촤라락 — 활성 패널의 카드가 좌→우 순차 슬라이드 */
+.js .ws-catpanel.is-active .ws-card { animation: fanIn var(--d-enter) var(--ez-out) both; animation-delay: calc(var(--i, 0) * 52ms); }
 @keyframes fanIn { from { opacity: 0; transform: translateX(-26px) scale(.95); } to { opacity: 1; transform: none; } }
-@media (prefers-reduced-motion: reduce) { .js .ws-cat.is-open .ws-card { animation: none; } .ws-cat__panel { transition: none; } }
-@media (max-width: 560px) { .ws-cat .ws-card { flex-basis: 74vw; } }
+@media (prefers-reduced-motion: reduce) { .js .ws-catpanel.is-active .ws-card { animation: none; } }
+@media (max-width: 560px) { .ws-catgrid { grid-template-columns: 1fr; } .ws-cattile { aspect-ratio: auto; min-height: 92px; } .ws-catpanel .ws-card { flex-basis: 74vw; } }
 
-/* 홈 작업창: 'PDF 올려두는 곳(드롭존)' 과 '옵션 하는 곳' 을 분리 — 옵션을 별도 카드로 */
-.ws-window .herotool__panel .tool { display: flex; flex-direction: column; gap: 16px; }
-.ws-window .herotool__panel .tool__right { background: #fff; border: 1px solid var(--line-2); border-radius: 14px; padding: 16px 16px 18px; box-shadow: 0 1px 2px rgba(23, 23, 42, .04), 0 6px 16px rgba(23, 23, 42, .05); }
+/* 홈: 드롭 윈도우 박스를 풀어(풀스크린 제외) '업로드 카드'와 '옵션 카드'를 완전히 다른 두 카드로 */
+.ws-home2left .ws-window:not(.is-max) { background: none; border: 0; box-shadow: none; overflow: visible; }
+.ws-home2left .ws-window:not(.is-max) > .ws-winbar { padding: 2px 2px 0; border-bottom: 0; background: none; }
+.ws-home2left .ws-window:not(.is-max) .herotool { padding: 0; background: none; }
+.ws-home2left .ws-window:not(.is-max) .herotool__tabs { padding: 8px 0 10px; }
+.ws-home2left .ws-window:not(.is-max) .herotool__panel.is-active { padding: 0; }
+.ws-window .herotool__panel .tool { display: flex; flex-direction: column; gap: 14px; }
+.ws-window .herotool__panel .tool__left .dropzone { background: #fff; border: 1.5px dashed var(--line-2); box-shadow: 0 1px 2px rgba(23, 23, 42, .04), 0 6px 16px rgba(23, 23, 42, .05); }
+.ws-window .herotool__panel .tool__right { background: #fff; border: 1px solid var(--line-2); border-radius: 16px; padding: 18px; box-shadow: 0 1px 2px rgba(23, 23, 42, .04), 0 6px 16px rgba(23, 23, 42, .05); }
 .ws-window .herotool__panel .tool__right .options { margin: 0; }
 .ws-window .herotool__panel .tool__right .actions { margin-top: 14px; }
 .ws-window .herotool__panel .tool__right .field { background: var(--surf-2); }

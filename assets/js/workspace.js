@@ -69,12 +69,14 @@
     d.addEventListener('keydown', function (e) { if (e.key === 'Escape') close(); });
   }
 
-  // 2-b) 카테고리 아코디언 — 클릭하면 도구가 옆으로 촤라락 펼쳐짐
-  Array.prototype.slice.call(d.querySelectorAll('.ws-cat__btn')).forEach(function (btn) {
-    btn.addEventListener('click', function () {
-      var cat = btn.parentNode;
-      var open = cat.classList.toggle('is-open');
-      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+  // 2-b) 정사각 카테고리 타일(탭) — 클릭하면 그 카테고리 도구가 옆으로 촤라락
+  var catTiles = Array.prototype.slice.call(d.querySelectorAll('.ws-cattile'));
+  var catPanels = Array.prototype.slice.call(d.querySelectorAll('.ws-catpanel'));
+  catTiles.forEach(function (tile) {
+    tile.addEventListener('click', function () {
+      var id = tile.getAttribute('data-cat');
+      catTiles.forEach(function (t) { var on = t === tile; t.classList.toggle('is-active', on); t.setAttribute('aria-selected', on ? 'true' : 'false'); });
+      catPanels.forEach(function (pn) { pn.classList.toggle('is-active', pn.getAttribute('data-panel') === id); });
     });
   });
 

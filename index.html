@@ -22,9 +22,9 @@
   <link rel="apple-touch-icon" href="assets/img/logo.png">
   <link rel="manifest" href="site.webmanifest">
   <meta name="theme-color" content="#ffffff">
-  <link rel="stylesheet" href="assets/css/style.css?v=1781596497025">
+  <link rel="stylesheet" href="assets/css/style.css?v=1781597327689">
   <script>document.documentElement.className+=" js";</script>
-  <link rel="stylesheet" href="assets/css/workspace.css?v=1781596497025">
+  <link rel="stylesheet" href="assets/css/workspace.css?v=1781597327689">
   <script type="application/ld+json">[{"@context":"https://schema.org","@type":"WebSite","name":"PDF의 모든 것","url":"https://inno-hi-inc.github.io/all-about-pdf/","inLanguage":"ko","description":"설치도 회원가입도 없이 무료로 쓰는 PDF 도구 모음. 파일을 서버에 올리지 않고 내 브라우저에서 바로 합치기·분할·변환·잠금해제까지 처리합니다."},{"@context":"https://schema.org","@type":"Organization","name":"PDF의 모든 것","url":"https://inno-hi-inc.github.io/all-about-pdf/","sameAs":["https://github.com/INNO-HI-Inc/all-about-pdf"]}]</script>
 </head>
 <body class="ws home">
@@ -861,12 +861,41 @@
           </div>
         </div>
         <div class="ws-home2right">
-      <div class="ws-cat is-open" id="cat-organize">
-        <button class="ws-cat__btn" type="button" aria-expanded="true" aria-controls="catp-organize">
-          <span class="ws-cat__meta"><span class="ws-cat__title">PDF 구성</span><span class="ws-cat__desc">여러 PDF를 합치고, 나누고, 페이지를 자유롭게 정리하세요.</span></span>
-          <span class="ws-cat__count">6</span><svg class="ws-cat__chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>
+      <div class="ws-catgrid" role="tablist" aria-label="도구 카테고리">
+        <button class="ws-cattile is-active" type="button" data-cat="organize" aria-selected="true" aria-controls="catpanel-organize">
+          <span class="ws-cattile__count">6</span>
+          <span class="ws-cattile__title">PDF 구성</span>
+          <span class="ws-cattile__desc">여러 PDF를 합치고, 나누고, 페이지를 자유롭게 정리하세요.</span>
         </button>
-        <div class="ws-cat__panel" id="catp-organize"><div class="ws-cat__inner"><div class="ws-shelf">
+        <button class="ws-cattile" type="button" data-cat="convert" aria-selected="false" aria-controls="catpanel-convert">
+          <span class="ws-cattile__count">11</span>
+          <span class="ws-cattile__title">PDF 변환</span>
+          <span class="ws-cattile__desc">PDF와 이미지를 서로 바꾸세요. 모두 내 브라우저에서 처리됩니다.</span>
+        </button>
+        <button class="ws-cattile" type="button" data-cat="security" aria-selected="false" aria-controls="catpanel-security">
+          <span class="ws-cattile__count">1</span>
+          <span class="ws-cattile__title">PDF 보안</span>
+          <span class="ws-cattile__desc">비밀번호·편집 제한을 풀어 자유롭게 사용하세요.</span>
+        </button>
+        <button class="ws-cattile" type="button" data-cat="optimize" aria-selected="false" aria-controls="catpanel-optimize">
+          <span class="ws-cattile__count">1</span>
+          <span class="ws-cattile__title">PDF 최적화</span>
+          <span class="ws-cattile__desc">용량을 줄여 가볍게. 메일·제출 용량 제한에 맞추세요.</span>
+        </button>
+        <button class="ws-cattile" type="button" data-cat="edit" aria-selected="false" aria-controls="catpanel-edit">
+          <span class="ws-cattile__count">2</span>
+          <span class="ws-cattile__title">PDF 편집</span>
+          <span class="ws-cattile__desc">방향을 바로잡고 여백을 정리해 문서를 다듬으세요.</span>
+        </button>
+        <button class="ws-cattile" type="button" data-cat="analyze" aria-selected="false" aria-controls="catpanel-analyze">
+          <span class="ws-cattile__count">1</span>
+          <span class="ws-cattile__title">PDF 분석</span>
+          <span class="ws-cattile__desc">페이지 수·용량·메타데이터 등 문서 정보를 확인하세요.</span>
+        </button>
+      </div>
+      <div class="ws-catpanels">
+        <div class="ws-catpanel is-active" id="catpanel-organize" data-panel="organize" role="region" aria-label="PDF 구성 도구">
+          <div class="ws-shelf">
           <a class="ws-card" href="merge/" style="--i:0">
           <span class="ws-card__ico"><svg viewBox="0 0 24 24" class="ic-svg ic-pdf" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M6.4 2.6h6.6L17.6 7v11.4a1.5 1.5 0 0 1-1.5 1.5H6.4a1.5 1.5 0 0 1-1.5-1.5V4.1a1.5 1.5 0 0 1 1.5-1.5z" fill="#E5252A"/><path d="M12.7 2.6 17.6 7h-3.8a1.1 1.1 0 0 1-1.1-1.1z" fill="#B3160F"/><rect x="7.2" y="8.7" width="6" height="1.2" rx=".6" fill="#fff" opacity=".9"/><rect x="7.2" y="11" width="4.2" height="1.2" rx=".6" fill="#fff" opacity=".9"/><circle cx="17.4" cy="17.4" r="4.4" fill="#18a957" stroke="#fff" stroke-width="1.2"/><path d="M17.4 15.5v3.8M15.5 17.4h3.8" stroke="#fff" stroke-width="1.5" stroke-linecap="round"/></svg></span>
           <span class="ws-card__tx"><span class="ws-card__name">PDF 합치기</span><span class="ws-card__desc">여러 PDF를 순서대로 끌어다 하나로. 과제 묶음, 보고서 취합, 스캔본 결합까지 한 번에 끝냅니다.</span></span>
@@ -891,14 +920,10 @@
           <span class="ws-card__ico"><svg viewBox="0 0 24 24" class="ic-svg ic-pdf" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M6.4 2.6h6.6L17.6 7v11.4a1.5 1.5 0 0 1-1.5 1.5H6.4a1.5 1.5 0 0 1-1.5-1.5V4.1a1.5 1.5 0 0 1 1.5-1.5z" fill="#E5252A"/><path d="M12.7 2.6 17.6 7h-3.8a1.1 1.1 0 0 1-1.1-1.1z" fill="#B3160F"/><rect x="7.2" y="8.7" width="6" height="1.2" rx=".6" fill="#fff" opacity=".9"/><rect x="7.2" y="11" width="4.2" height="1.2" rx=".6" fill="#fff" opacity=".9"/><circle cx="11.3" cy="17.6" r="3.6" fill="#4f46e5" stroke="#fff" stroke-width="1.1"/><path d="M11.55 15.9v3.4M10.5 16.5l1.05-.6" stroke="#fff" stroke-width="1" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
           <span class="ws-card__tx"><span class="ws-card__name">PDF 페이지 번호 넣기</span><span class="ws-card__desc">문서 하단에 페이지 번호를 자동으로. 위치·시작 번호·서식을 골라 보고서 형식을 갖춥니다.</span></span>
         </a>
-        </div></div></div>
-      </div>
-      <div class="ws-cat" id="cat-convert">
-        <button class="ws-cat__btn" type="button" aria-expanded="false" aria-controls="catp-convert">
-          <span class="ws-cat__meta"><span class="ws-cat__title">PDF 변환</span><span class="ws-cat__desc">PDF와 이미지를 서로 바꾸세요. 모두 내 브라우저에서 처리됩니다.</span></span>
-          <span class="ws-cat__count">11</span><svg class="ws-cat__chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>
-        </button>
-        <div class="ws-cat__panel" id="catp-convert"><div class="ws-cat__inner"><div class="ws-shelf">
+          </div>
+        </div>
+        <div class="ws-catpanel" id="catpanel-convert" data-panel="convert" role="region" aria-label="PDF 변환 도구">
+          <div class="ws-shelf">
           <a class="ws-card" href="to-image/" style="--i:0">
           <span class="ws-card__ico"><svg viewBox="0 0 24 24" class="ic-svg ic-pdf" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M6.4 2.6h6.6L17.6 7v11.4a1.5 1.5 0 0 1-1.5 1.5H6.4a1.5 1.5 0 0 1-1.5-1.5V4.1a1.5 1.5 0 0 1 1.5-1.5z" fill="#E5252A"/><path d="M12.7 2.6 17.6 7h-3.8a1.1 1.1 0 0 1-1.1-1.1z" fill="#B3160F"/><rect x="7.2" y="8.7" width="6" height="1.2" rx=".6" fill="#fff" opacity=".9"/><rect x="13" y="13" width="7.8" height="7.8" rx="1.4" fill="#18a957" stroke="#fff" stroke-width="1"/><circle cx="15.5" cy="15.7" r="1" fill="#fff"/><path d="M13.7 19.7l2.1-2.4 1.4 1.5 1.3-1.5 1.9 2.4z" fill="#fff"/></svg></span>
           <span class="ws-card__tx"><span class="ws-card__name">PDF JPG 변환</span><span class="ws-card__desc">PDF 페이지를 JPG·PNG 이미지로. 블로그·SNS·발표 자료에 그대로 붙여 쓰기 좋습니다.</span></span>
@@ -943,38 +968,26 @@
           <span class="ws-card__ico"><svg viewBox="0 0 24 24" class="ic-svg ic-pdf" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="3" y="5.2" width="8.4" height="8.4" rx="1.5" fill="#9aa0ad"/><path d="M5 11.6l1.6-2 1.05 1.2 1-1.2 1.55 2z" fill="#fff"/><circle cx="5.5" cy="8" r=".9" fill="#fff"/><rect x="11.6" y="10.4" width="9.4" height="9.4" rx="1.6" fill="#0ea5e9" stroke="#fff" stroke-width="1.1"/><path d="M14 17.6l1.7-2.1 1.1 1.25 1.05-1.25 1.6 2.1z" fill="#fff"/><circle cx="14.3" cy="13.6" r="1" fill="#fff"/></svg></span>
           <span class="ws-card__tx"><span class="ws-card__name">SVG WEBP 변환</span><span class="ws-card__desc">벡터 SVG를 가벼운 WEBP로. 배율 선택, 투명 유지.</span></span>
         </a>
-        </div></div></div>
-      </div>
-      <div class="ws-cat" id="cat-security">
-        <button class="ws-cat__btn" type="button" aria-expanded="false" aria-controls="catp-security">
-          <span class="ws-cat__meta"><span class="ws-cat__title">PDF 보안</span><span class="ws-cat__desc">비밀번호·편집 제한을 풀어 자유롭게 사용하세요.</span></span>
-          <span class="ws-cat__count">1</span><svg class="ws-cat__chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>
-        </button>
-        <div class="ws-cat__panel" id="catp-security"><div class="ws-cat__inner"><div class="ws-shelf">
+          </div>
+        </div>
+        <div class="ws-catpanel" id="catpanel-security" data-panel="security" role="region" aria-label="PDF 보안 도구">
+          <div class="ws-shelf">
           <a class="ws-card" href="unlock/" style="--i:0">
           <span class="ws-card__ico"><svg viewBox="0 0 24 24" class="ic-svg ic-pdf" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M6.4 2.6h6.6L17.6 7v11.4a1.5 1.5 0 0 1-1.5 1.5H6.4a1.5 1.5 0 0 1-1.5-1.5V4.1a1.5 1.5 0 0 1 1.5-1.5z" fill="#E5252A"/><path d="M12.7 2.6 17.6 7h-3.8a1.1 1.1 0 0 1-1.1-1.1z" fill="#B3160F"/><rect x="7.2" y="8.7" width="6" height="1.2" rx=".6" fill="#fff" opacity=".9"/><path d="M15.4 15.5v-1.7a2 2 0 0 1 3.8-.9" fill="none" stroke="#f5a623" stroke-width="1.4" stroke-linecap="round"/><rect x="13.8" y="15.3" width="6.5" height="5.4" rx="1.1" fill="#f5a623" stroke="#fff" stroke-width="1"/><circle cx="17.05" cy="17.7" r=".95" fill="#fff"/></svg></span>
           <span class="ws-card__tx"><span class="ws-card__name">PDF 잠금해제</span><span class="ws-card__desc">비밀번호가 걸린 PDF를 풀어 자유롭게. 내가 아는 암호로 내 기기에서만 처리합니다.</span></span>
         </a>
-        </div></div></div>
-      </div>
-      <div class="ws-cat" id="cat-optimize">
-        <button class="ws-cat__btn" type="button" aria-expanded="false" aria-controls="catp-optimize">
-          <span class="ws-cat__meta"><span class="ws-cat__title">PDF 최적화</span><span class="ws-cat__desc">용량을 줄여 가볍게. 메일·제출 용량 제한에 맞추세요.</span></span>
-          <span class="ws-cat__count">1</span><svg class="ws-cat__chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>
-        </button>
-        <div class="ws-cat__panel" id="catp-optimize"><div class="ws-cat__inner"><div class="ws-shelf">
+          </div>
+        </div>
+        <div class="ws-catpanel" id="catpanel-optimize" data-panel="optimize" role="region" aria-label="PDF 최적화 도구">
+          <div class="ws-shelf">
           <a class="ws-card" href="compress/" style="--i:0">
           <span class="ws-card__ico"><svg viewBox="0 0 24 24" class="ic-svg ic-pdf" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M6.4 2.6h6.6L17.6 7v11.4a1.5 1.5 0 0 1-1.5 1.5H6.4a1.5 1.5 0 0 1-1.5-1.5V4.1a1.5 1.5 0 0 1 1.5-1.5z" fill="#E5252A"/><path d="M12.7 2.6 17.6 7h-3.8a1.1 1.1 0 0 1-1.1-1.1z" fill="#B3160F"/><rect x="7.2" y="8.7" width="6" height="1.2" rx=".6" fill="#fff" opacity=".9"/><rect x="7.2" y="11" width="4.2" height="1.2" rx=".6" fill="#fff" opacity=".9"/><circle cx="17.4" cy="17.4" r="4.4" fill="#f59e0b" stroke="#fff" stroke-width="1.2"/><path d="M15.6 17.4h3.6" stroke="#fff" stroke-width="1.1"/><path d="M16.2 15.5l1.2 1.1 1.2-1.1M16.2 19.3l1.2-1.1 1.2 1.1" fill="none" stroke="#fff" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
           <span class="ws-card__tx"><span class="ws-card__name">PDF 압축</span><span class="ws-card__desc">스캔본·사진이 많은 PDF의 용량을 줄여요. 메일 첨부나 제출 사이트의 용량 제한에 맞출 때 좋습니다.</span></span>
         </a>
-        </div></div></div>
-      </div>
-      <div class="ws-cat" id="cat-edit">
-        <button class="ws-cat__btn" type="button" aria-expanded="false" aria-controls="catp-edit">
-          <span class="ws-cat__meta"><span class="ws-cat__title">PDF 편집</span><span class="ws-cat__desc">방향을 바로잡고 여백을 정리해 문서를 다듬으세요.</span></span>
-          <span class="ws-cat__count">2</span><svg class="ws-cat__chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>
-        </button>
-        <div class="ws-cat__panel" id="catp-edit"><div class="ws-cat__inner"><div class="ws-shelf">
+          </div>
+        </div>
+        <div class="ws-catpanel" id="catpanel-edit" data-panel="edit" role="region" aria-label="PDF 편집 도구">
+          <div class="ws-shelf">
           <a class="ws-card" href="rotate/" style="--i:0">
           <span class="ws-card__ico"><svg viewBox="0 0 24 24" class="ic-svg ic-pdf" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M6.4 2.6h6.6L17.6 7v11.4a1.5 1.5 0 0 1-1.5 1.5H6.4a1.5 1.5 0 0 1-1.5-1.5V4.1a1.5 1.5 0 0 1 1.5-1.5z" fill="#E5252A"/><path d="M12.7 2.6 17.6 7h-3.8a1.1 1.1 0 0 1-1.1-1.1z" fill="#B3160F"/><rect x="7.2" y="8.7" width="6" height="1.2" rx=".6" fill="#fff" opacity=".9"/><rect x="7.2" y="11" width="4.2" height="1.2" rx=".6" fill="#fff" opacity=".9"/><circle cx="17.4" cy="17.4" r="4.4" fill="#2f6df6" stroke="#fff" stroke-width="1.2"/><path d="M19.6 17.7a2.3 2.3 0 1 1-.7-1.9" fill="none" stroke="#fff" stroke-width="1.25" stroke-linecap="round"/><path d="M19.5 15.1v1.8h-1.8" fill="none" stroke="#fff" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
           <span class="ws-card__tx"><span class="ws-card__name">PDF 회전</span><span class="ws-card__desc">옆으로 누운 스캔본, 거꾸로 들어간 문서를 왼쪽·오른쪽 90도나 180도로 한 번에 바로잡아요. 글자·화질은 그대로.</span></span>
@@ -983,19 +996,16 @@
           <span class="ws-card__ico"><svg viewBox="0 0 24 24" class="ic-svg ic-pdf" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M6.4 2.6h6.6L17.6 7v11.4a1.5 1.5 0 0 1-1.5 1.5H6.4a1.5 1.5 0 0 1-1.5-1.5V4.1a1.5 1.5 0 0 1 1.5-1.5z" fill="#E5252A"/><path d="M12.7 2.6 17.6 7h-3.8a1.1 1.1 0 0 1-1.1-1.1z" fill="#B3160F"/><rect x="7.2" y="8.7" width="6" height="1.2" rx=".6" fill="#fff" opacity=".9"/><rect x="7.2" y="11" width="4.2" height="1.2" rx=".6" fill="#fff" opacity=".9"/><circle cx="17.4" cy="17.4" r="4.4" fill="#0d9488" stroke="#fff" stroke-width="1.2"/><path d="M15.9 15.2v3.3a.5.5 0 0 0 .5.5h3.3M18.9 19.6v-3.3a.5.5 0 0 0-.5-.5h-3.3" fill="none" stroke="#fff" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
           <span class="ws-card__tx"><span class="ws-card__name">PDF 자르기 (여백 제거)</span><span class="ws-card__desc">페이지 사방의 넓은 여백을 적게·보통·많이로 잘라내 내용에 맞게 정리해요. 글자·화질은 그대로 보존합니다.</span></span>
         </a>
-        </div></div></div>
-      </div>
-      <div class="ws-cat" id="cat-analyze">
-        <button class="ws-cat__btn" type="button" aria-expanded="false" aria-controls="catp-analyze">
-          <span class="ws-cat__meta"><span class="ws-cat__title">PDF 분석</span><span class="ws-cat__desc">페이지 수·용량·메타데이터 등 문서 정보를 확인하세요.</span></span>
-          <span class="ws-cat__count">1</span><svg class="ws-cat__chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>
-        </button>
-        <div class="ws-cat__panel" id="catp-analyze"><div class="ws-cat__inner"><div class="ws-shelf">
+          </div>
+        </div>
+        <div class="ws-catpanel" id="catpanel-analyze" data-panel="analyze" role="region" aria-label="PDF 분석 도구">
+          <div class="ws-shelf">
           <a class="ws-card" href="pdf-info/" style="--i:0">
           <span class="ws-card__ico"><svg viewBox="0 0 24 24" class="ic-svg ic-pdf" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M6.4 2.6h6.6L17.6 7v11.4a1.5 1.5 0 0 1-1.5 1.5H6.4a1.5 1.5 0 0 1-1.5-1.5V4.1a1.5 1.5 0 0 1 1.5-1.5z" fill="#E5252A"/><path d="M12.7 2.6 17.6 7h-3.8a1.1 1.1 0 0 1-1.1-1.1z" fill="#B3160F"/><rect x="7.2" y="8.7" width="6" height="1.2" rx=".6" fill="#fff" opacity=".9"/><rect x="7.2" y="11" width="4.2" height="1.2" rx=".6" fill="#fff" opacity=".9"/><circle cx="17.4" cy="17.4" r="4.4" fill="#2f6df6" stroke="#fff" stroke-width="1.2"/><circle cx="17.4" cy="15.5" r=".75" fill="#fff"/><path d="M17.4 16.9v2.4" stroke="#fff" stroke-width="1.4" stroke-linecap="round"/></svg></span>
           <span class="ws-card__tx"><span class="ws-card__name">PDF 정보 보기</span><span class="ws-card__desc">페이지 수·용량·크기·제목·작성자·잠김 여부를 표로 한눈에. 파일은 바꾸지 않고 정보만 읽어요.</span></span>
         </a>
-        </div></div></div>
+          </div>
+        </div>
       </div>
         </div>
       </div>
@@ -1006,24 +1016,24 @@
   <script src="assets/vendor/pdf-lib.min.js" defer></script>
   <script src="assets/vendor/pdf.min.js" defer></script>
   <script src="assets/vendor/jszip.min.js" defer></script>
-  <script src="assets/js/ui.js?v=1781596497025" defer></script>
-  <script src="assets/js/pdf-engine.js?v=1781596497025" defer></script>
-  <script src="assets/js/tool-core.js?v=1781596497025" defer></script>
-  <script src="assets/js/tools/merge.js?v=1781596497025" defer></script>
-  <script src="assets/js/tools/split.js?v=1781596497025" defer></script>
-  <script src="assets/js/tools/unlock.js?v=1781596497025" defer></script>
-  <script src="assets/js/tools/extract.js?v=1781596497025" defer></script>
-  <script src="assets/js/tools/delete.js?v=1781596497025" defer></script>
-  <script src="assets/js/tools/organize.js?v=1781596497025" defer></script>
-  <script src="assets/js/tools/page-numbers.js?v=1781596497025" defer></script>
-  <script src="assets/js/tools/to-image.js?v=1781596497025" defer></script>
-  <script src="assets/js/tools/image-to-pdf.js?v=1781596497025" defer></script>
-  <script src="assets/js/tools/svg-to-png.js?v=1781596497025" defer></script>
-  <script src="assets/js/tools/rotate.js?v=1781596497025" defer></script>
-  <script src="assets/js/tools/crop.js?v=1781596497025" defer></script>
-  <script src="assets/js/tools/compress.js?v=1781596497025" defer></script>
-  <script src="assets/js/tools/pdf-info.js?v=1781596497025" defer></script>
-  <script src="assets/js/tools/img-convert.js?v=1781596497025" defer></script>
-  <script src="assets/js/workspace.js?v=1781596497025" defer></script>
+  <script src="assets/js/ui.js?v=1781597327689" defer></script>
+  <script src="assets/js/pdf-engine.js?v=1781597327689" defer></script>
+  <script src="assets/js/tool-core.js?v=1781597327689" defer></script>
+  <script src="assets/js/tools/merge.js?v=1781597327689" defer></script>
+  <script src="assets/js/tools/split.js?v=1781597327689" defer></script>
+  <script src="assets/js/tools/unlock.js?v=1781597327689" defer></script>
+  <script src="assets/js/tools/extract.js?v=1781597327689" defer></script>
+  <script src="assets/js/tools/delete.js?v=1781597327689" defer></script>
+  <script src="assets/js/tools/organize.js?v=1781597327689" defer></script>
+  <script src="assets/js/tools/page-numbers.js?v=1781597327689" defer></script>
+  <script src="assets/js/tools/to-image.js?v=1781597327689" defer></script>
+  <script src="assets/js/tools/image-to-pdf.js?v=1781597327689" defer></script>
+  <script src="assets/js/tools/svg-to-png.js?v=1781597327689" defer></script>
+  <script src="assets/js/tools/rotate.js?v=1781597327689" defer></script>
+  <script src="assets/js/tools/crop.js?v=1781597327689" defer></script>
+  <script src="assets/js/tools/compress.js?v=1781597327689" defer></script>
+  <script src="assets/js/tools/pdf-info.js?v=1781597327689" defer></script>
+  <script src="assets/js/tools/img-convert.js?v=1781597327689" defer></script>
+  <script src="assets/js/workspace.js?v=1781597327689" defer></script>
 </body>
 </html>
