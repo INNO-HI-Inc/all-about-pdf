@@ -587,6 +587,7 @@ function buildTool(t) {
     <section class="tp-editor">
       <div class="tp-editorwrap">
         <div class="ws-window tp-window">
+          <div class="ws-winbar"><span class="ws-wintitle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 16V4M8 8l4-4 4 4"/><path d="M4 16v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg><span class="t">여기에 ${t.accept === 'image' ? '이미지' : t.accept === 'svg' ? 'SVG' : 'PDF'}를 놓고 바로 작업</span></span></div>
           <div class="tp-toolbody">${widget(t)}</div>
         </div>
       </div>

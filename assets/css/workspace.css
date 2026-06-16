@@ -21,7 +21,8 @@
    (홈은 활성 패널 하나만, 상세는 하나뿐이라 이름 중복 없음) */
 .herotool__panel.is-active .dropzone { view-transition-name: vt-dropzone; }
 .tp-editor .dropzone { view-transition-name: vt-dropzone; }
-::view-transition-group(vt-dropzone) { animation-duration: 320ms; animation-timing-function: cubic-bezier(.16, 1, .3, 1); }
+.ws-wintitle { view-transition-name: vt-wintitle; }
+::view-transition-group(vt-dropzone), ::view-transition-group(vt-wintitle) { animation-duration: 320ms; animation-timing-function: cubic-bezier(.16, 1, .3, 1); }
 ::view-transition-group(vt-dock-active) {
   animation-timing-function: cubic-bezier(.34, 1.56, .64, 1); animation-duration: 320ms;
 }
@@ -375,10 +376,11 @@
 .tp-editor .tool__left { min-width: 0; }
 /* 오른쪽 옵션·실행 패널: 스크롤해도 항상 보이는 sticky 카드 */
 /* 우측은 투명 컨테이너 — 옵션은 별도 카드, 실행 버튼은 그 아래 prominent CTA로 분리 */
-.tp-editor .tool__right { position: sticky; top: 92px; align-self: start; min-width: 0; display: flex; flex-direction: column; gap: 16px; background: none; border: 0; box-shadow: none; padding: 0; }
-.tp-editor .tool__right .options { margin: 0; background: #fff; border: 1px solid var(--line-2); border-radius: 18px; padding: 22px; box-shadow: 0 1px 2px rgba(23, 23, 42, .04), 0 8px 22px rgba(23, 23, 42, .06); }
+/* 옵션 + 실행 버튼을 하나의 카드로 묶음 — 설정→실행이 한 패널에 응집 */
+.tp-editor .tool__right { position: sticky; top: 92px; align-self: start; min-width: 0; background: #fff; border: 1px solid var(--line-2); border-radius: 18px; padding: 22px; box-shadow: 0 1px 2px rgba(23, 23, 42, .04), 0 8px 22px rgba(23, 23, 42, .06); }
+.tp-editor .tool__right .options { margin: 0; background: none; border: 0; padding: 0; box-shadow: none; }
 .tp-editor .tool__right .field { background: var(--surf-2); }
-.tp-editor .tool__right .actions { margin-top: 0; }
+.tp-editor .tool__right .actions { margin-top: 18px; padding-top: 18px; border-top: 1px solid var(--line); }
 @media (max-width: 880px) { .tp-editor .tp-toolbody .tool { grid-template-columns: 1fr; gap: 18px; padding: 18px; } .tp-editor .tool__right { position: static; } .tp-editor .tool.is-loaded .tool__right { order: -1; } }
 
 /* 업로드 후: 큰 드롭존을 슬림한 '다른 파일 선택' 바로 축소 → 작업(페이지·옵션)에 집중 */
