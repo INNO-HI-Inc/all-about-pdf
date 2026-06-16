@@ -841,8 +841,10 @@ function buildHome() {
     { '@context': 'https://schema.org', '@type': 'Organization', name: BRAND, url: SITE_URL + '/', sameAs: [GITHUB_URL] }
   ];
 
-  const heroTabs = TOOLS.map((t, i) => `<button class="herotool__tab" type="button" role="tab" data-tab="${t.slug}" aria-selected="${i === 0 ? 'true' : 'false'}">${t.icon}<span>${t.nav}</span></button>`).join('\n              ');
-  const heroPanels = TOOLS.map((t, i) => `<div class="herotool__panel${i === 0 ? ' is-active' : ''}" role="tabpanel" data-panel="${t.slug}">
+  // 좌측 빠른 작업 탭: 대표 도구 5개만(전체 탐색은 우측 카탈로그가 전담)
+  const FEATURED = ['merge', 'split', 'compress', 'to-image', 'unlock'].map((s) => TOOL_BY[s]).filter(Boolean);
+  const heroTabs = FEATURED.map((t, i) => `<button class="herotool__tab" type="button" role="tab" data-tab="${t.slug}" aria-selected="${i === 0 ? 'true' : 'false'}">${t.icon}<span>${t.nav}</span></button>`).join('\n              ');
+  const heroPanels = FEATURED.map((t, i) => `<div class="herotool__panel${i === 0 ? ' is-active' : ''}" role="tabpanel" data-panel="${t.slug}">
             ${widget(t, { editor: true })}
           </div>`).join('\n          ');
 
@@ -856,10 +858,10 @@ function buildHome() {
 
   const card = (slug, i) => `<a class="ws-card" href="${slug}/" style="--i:${i}">
           <span class="ws-card__ico">${ICONS_PDF[slug]}</span>
-          <span class="ws-card__tx"><span class="ws-card__name">${esc(read(slug).h1)}</span><span class="ws-card__desc">${esc(APP_DESC[slug] || '')}</span></span>
+          <span class="ws-card__tx"><span class="ws-card__name">${esc(read(slug).h1.replace(/^PDF\s*/, ''))}</span><span class="ws-card__desc">${esc(APP_DESC[slug] || '')}</span></span>
         </a>`;
-  const catRows = CATEGORIES.map((cat) => `        <div class="ws-cat-row is-active" data-cat="${cat.id}">
-          <button class="ws-cattile is-active" type="button" data-cat="${cat.id}" aria-expanded="true">
+  const catRows = CATEGORIES.map((cat, ci) => `        <div class="ws-cat-row${ci === 0 ? ' is-active' : ''}" data-cat="${cat.id}">
+          <button class="ws-cattile${ci === 0 ? ' is-active' : ''}" type="button" data-cat="${cat.id}" aria-expanded="${ci === 0 ? 'true' : 'false'}">
             <span class="ws-cattile__count">${cat.slugs.length}</span>
             <span class="ws-cattile__title">${esc(cat.title)}</span>
           </button>
@@ -890,6 +892,7 @@ ${catRows}
           </div>
         </div>
         <div class="ws-home2right">
+          <p class="ws-cats__cap">카테고리별 전체 도구 둘러보기</p>
 ${catalog}
         </div>
       </div>
@@ -898,7 +901,7 @@ ${catalog}
   const html = page({
     title: c.metaTitle, desc: c.metaDescription, canonical,
     ogTitle: c.metaTitle, rel, jsonld, main, noChrome: true, noFooter: true,
-    withScripts: [...new Set(TOOLS.map((t) => t.script || t.slug))],
+    withScripts: [...new Set(FEATURED.map((t) => t.script || t.slug))],
     bodyClass: 'ws home',
     extraScripts: ['assets/js/workspace.js'],
     headExtra: `\n  <script>document.documentElement.className+=" js";</script>\n  <link rel="stylesheet" href="assets/css/workspace.css?v=${ASSET_VER}">`
