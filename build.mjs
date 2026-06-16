@@ -788,7 +788,7 @@ function buildHome() {
 
   const heroTabs = TOOLS.map((t, i) => `<button class="herotool__tab" type="button" role="tab" data-tab="${t.slug}" aria-selected="${i === 0 ? 'true' : 'false'}">${t.icon}<span>${t.nav}</span></button>`).join('\n              ');
   const heroPanels = TOOLS.map((t, i) => `<div class="herotool__panel${i === 0 ? ' is-active' : ''}" role="tabpanel" data-panel="${t.slug}">
-            ${widget(t)}
+            ${widget(t, { editor: true })}
           </div>`).join('\n          ');
 
   const tiles = TOOLS.map((t) => `<a class="ws-tile" href="${t.slug}/" data-reveal>
@@ -825,8 +825,8 @@ ${catPanels}
       <div class="ws-wrap ws-home2grid">
         <div class="ws-home2left">
           <div class="ws-winwrap">
-            <div class="ws-window" data-ws-window>
-              <div class="ws-winbar"><span class="ws-wintitle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 16V4M8 8l4-4 4 4"/><path d="M4 16v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg><span class="t">여기에 PDF를 놓고 바로 작업</span></span><button class="ws-winclose" type="button" data-ws-close aria-label="작업 닫고 처음으로">처음으로 ✕</button></div>
+            <div class="ws-window ws-deck" data-ws-window>
+              <button class="ws-winclose ws-deck__close" type="button" data-ws-close aria-label="작업 닫고 처음으로">처음으로 ✕</button>
               <div class="herotool">
                 <div class="herotool__tabs" role="tablist" aria-label="PDF 도구 선택">
                 ${heroTabs}

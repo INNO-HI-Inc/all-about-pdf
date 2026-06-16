@@ -613,14 +613,15 @@ body.ws-app-open .ws-scrim { opacity: 1; pointer-events: auto; }
 }
 
 /* ===== 정사각형 카테고리 타일 + 도구 선반(탭) — 타일 클릭하면 도구가 옆으로 촤라락 ===== */
-.ws-catgrid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
-.ws-cattile { position: relative; display: flex; flex-direction: column; gap: 4px; aspect-ratio: 1 / 1; padding: 18px; text-align: left; background: #fff; border: 1px solid var(--line-2); border-radius: 16px; cursor: pointer; font-family: inherit; color: var(--ink); box-shadow: 0 1px 2px rgba(23, 23, 42, .04), 0 5px 14px rgba(23, 23, 42, .05); transition: transform var(--d-hover) var(--ez), box-shadow var(--d-hover) var(--ez), border-color var(--d-hover) var(--ez); }
-.ws-cattile:hover { transform: translateY(-3px); box-shadow: 0 2px 4px rgba(23, 23, 42, .05), 0 14px 30px rgba(23, 23, 42, .1); }
-.ws-cattile.is-active { border-color: var(--red); box-shadow: 0 2px 4px rgba(229, 37, 42, .1), 0 14px 30px rgba(229, 37, 42, .14); }
-.ws-cattile__count { align-self: flex-start; min-width: 24px; height: 24px; display: inline-grid; place-items: center; padding: 0 8px; font-size: 12px; font-weight: 700; color: var(--red-deep); background: var(--grad-soft); border-radius: var(--pill); font-variant-numeric: tabular-nums; }
+.ws-catgrid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+.ws-cattile { position: relative; display: flex; flex-direction: column; gap: 3px; aspect-ratio: 1 / 1; padding: 13px; text-align: left; background: #fff; border: 1px solid var(--line-2); border-radius: 14px; cursor: pointer; font-family: inherit; color: var(--ink); box-shadow: 0 1px 2px rgba(23, 23, 42, .04), 0 4px 11px rgba(23, 23, 42, .05); transition: transform var(--d-hover) var(--ez), box-shadow var(--d-hover) var(--ez), border-color var(--d-hover) var(--ez); }
+.ws-cattile:hover { transform: translateY(-3px); box-shadow: 0 2px 4px rgba(23, 23, 42, .05), 0 12px 26px rgba(23, 23, 42, .1); }
+.ws-cattile.is-active { border-color: var(--red); box-shadow: 0 2px 4px rgba(229, 37, 42, .1), 0 12px 26px rgba(229, 37, 42, .14); }
+.ws-cattile__count { align-self: flex-start; min-width: 21px; height: 21px; display: inline-grid; place-items: center; padding: 0 6px; font-size: 11.5px; font-weight: 700; color: var(--red-deep); background: var(--grad-soft); border-radius: var(--pill); font-variant-numeric: tabular-nums; }
 .ws-cattile.is-active .ws-cattile__count { color: #fff; background: var(--red); }
-.ws-cattile__title { margin-top: auto; font-family: var(--font); font-weight: 700; font-size: 1.08rem; letter-spacing: -.018em; color: var(--ink); }
-.ws-cattile__desc { font-size: .82rem; line-height: 1.42; color: var(--ink-soft); word-break: keep-all; }
+.ws-cattile__title { margin-top: auto; font-family: var(--font); font-weight: 700; font-size: .92rem; letter-spacing: -.018em; line-height: 1.2; color: var(--ink); }
+.ws-cattile__desc { font-size: .71rem; line-height: 1.32; color: var(--ink-soft); word-break: keep-all; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+@media (max-width: 1180px) { .ws-catgrid { grid-template-columns: repeat(2, 1fr); } }
 /* 도구 선반: 활성 카테고리만 표시 */
 .ws-catpanel { display: none; }
 .ws-catpanel.is-active { display: block; }
@@ -637,15 +638,20 @@ body.ws-app-open .ws-scrim { opacity: 1; pointer-events: auto; }
 @media (prefers-reduced-motion: reduce) { .js .ws-catpanel.is-active .ws-card { animation: none; } }
 @media (max-width: 560px) { .ws-catgrid { grid-template-columns: 1fr; } .ws-cattile { aspect-ratio: auto; min-height: 92px; } .ws-catpanel .ws-card { flex-basis: 74vw; } }
 
-/* 홈: 드롭 윈도우 박스를 풀어(풀스크린 제외) '업로드 카드'와 '옵션 카드'를 완전히 다른 두 카드로 */
-.ws-home2left .ws-window:not(.is-max) { background: none; border: 0; box-shadow: none; overflow: visible; }
-.ws-home2left .ws-window:not(.is-max) > .ws-winbar { padding: 2px 2px 0; border-bottom: 0; background: none; }
-.ws-home2left .ws-window:not(.is-max) .herotool { padding: 0; background: none; }
-.ws-home2left .ws-window:not(.is-max) .herotool__tabs { padding: 8px 0 10px; }
-.ws-home2left .ws-window:not(.is-max) .herotool__panel.is-active { padding: 0; }
-.ws-window .herotool__panel .tool { display: flex; flex-direction: column; gap: 14px; }
-.ws-window .herotool__panel .tool__left .dropzone { background: #fff; border: 1.5px dashed var(--line-2); box-shadow: 0 1px 2px rgba(23, 23, 42, .04), 0 6px 16px rgba(23, 23, 42, .05); }
-.ws-window .herotool__panel .tool__right { background: #fff; border: 1px solid var(--line-2); border-radius: 16px; padding: 18px; box-shadow: 0 1px 2px rgba(23, 23, 42, .04), 0 6px 16px rgba(23, 23, 42, .05); }
-.ws-window .herotool__panel .tool__right .options { margin: 0; }
-.ws-window .herotool__panel .tool__right .actions { margin-top: 14px; }
-.ws-window .herotool__panel .tool__right .field { background: var(--surf-2); }
+/* 홈: 박스1(드롭 카드 = 제목+드롭존) · 박스2(옵션 카드) 두 개의 완전히 다른 카드 + 위에 도구 탭 */
+.ws-deck:not(.is-max) { background: none; border: 0; box-shadow: none; overflow: visible; }
+.ws-deck:not(.is-max) .herotool { padding: 0; background: none; }
+.ws-deck:not(.is-max) .herotool__tabs { padding: 0 0 12px; }
+.ws-deck:not(.is-max) .herotool__panel.is-active { padding: 0; }
+.ws-deck .tool { display: flex; flex-direction: column; gap: 16px; }
+.ws-deck .tool__left.ws-window { border-radius: var(--radius-lg); }
+.ws-deck .tool__left .ws-winbar { padding: 14px 18px; }
+.ws-deck .tool__leftbody { padding: 16px; }
+.ws-deck .tool__right { background: #fff; border: 1px solid var(--line-2); border-radius: var(--radius-lg); padding: 18px; box-shadow: 0 1px 2px rgba(23, 23, 42, .04), 0 6px 16px rgba(23, 23, 42, .05); }
+.ws-deck .tool__right .options { margin: 0; }
+.ws-deck .tool__right .actions { margin-top: 14px; }
+.ws-deck .tool__right .field { background: var(--surf-2); }
+/* 풀스크린 닫기 버튼 */
+.ws-deck__close { display: none; }
+.ws-deck.is-max .ws-deck__close { display: inline-flex; position: absolute; top: 14px; right: 16px; z-index: 5; }
+.ws-deck.is-max .herotool { padding: 12px; overflow: auto; }

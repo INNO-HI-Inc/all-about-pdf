@@ -22,9 +22,9 @@
   <link rel="apple-touch-icon" href="assets/img/logo.png">
   <link rel="manifest" href="site.webmanifest">
   <meta name="theme-color" content="#ffffff">
-  <link rel="stylesheet" href="assets/css/style.css?v=1781597327689">
+  <link rel="stylesheet" href="assets/css/style.css?v=1781598251923">
   <script>document.documentElement.className+=" js";</script>
-  <link rel="stylesheet" href="assets/css/workspace.css?v=1781597327689">
+  <link rel="stylesheet" href="assets/css/workspace.css?v=1781598251923">
   <script type="application/ld+json">[{"@context":"https://schema.org","@type":"WebSite","name":"PDF의 모든 것","url":"https://inno-hi-inc.github.io/all-about-pdf/","inLanguage":"ko","description":"설치도 회원가입도 없이 무료로 쓰는 PDF 도구 모음. 파일을 서버에 올리지 않고 내 브라우저에서 바로 합치기·분할·변환·잠금해제까지 처리합니다."},{"@context":"https://schema.org","@type":"Organization","name":"PDF의 모든 것","url":"https://inno-hi-inc.github.io/all-about-pdf/","sameAs":["https://github.com/INNO-HI-Inc/all-about-pdf"]}]</script>
 </head>
 <body class="ws home">
@@ -39,8 +39,8 @@
       <div class="ws-wrap ws-home2grid">
         <div class="ws-home2left">
           <div class="ws-winwrap">
-            <div class="ws-window" data-ws-window>
-              <div class="ws-winbar"><span class="ws-wintitle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 16V4M8 8l4-4 4 4"/><path d="M4 16v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg><span class="t">여기에 PDF를 놓고 바로 작업</span></span><button class="ws-winclose" type="button" data-ws-close aria-label="작업 닫고 처음으로">처음으로 ✕</button></div>
+            <div class="ws-window ws-deck" data-ws-window>
+              <button class="ws-winclose ws-deck__close" type="button" data-ws-close aria-label="작업 닫고 처음으로">처음으로 ✕</button>
               <div class="herotool">
                 <div class="herotool__tabs" role="tablist" aria-label="PDF 도구 선택">
                 <button class="herotool__tab" type="button" role="tab" data-tab="merge" aria-selected="true"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="8" width="11" height="12.5" rx="2"/><path d="M9 8V5.5A2 2 0 0 1 11 3.5h7.5A2 2 0 0 1 20.5 5.5V15a2 2 0 0 1-2 2H14.5"/></svg><span>합치기</span></button>
@@ -69,7 +69,7 @@
                 <div class="herotool__panels">
             <div class="herotool__panel is-active" role="tabpanel" data-panel="merge">
             <div class="tool" data-tool="merge">
-      <div class="tool__left"><div class="dropzone js-drop" tabindex="0" role="button" aria-label="PDF 파일 선택 또는 끌어다 놓기">
+      <div class="tool__left ws-window"><div class="ws-winbar"><span class="ws-wintitle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 16V4M8 8l4-4 4 4"/><path d="M4 16v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg><span class="t">여기에 PDF를 놓고 바로 작업</span></span></div><div class="tool__leftbody"><div class="dropzone js-drop" tabindex="0" role="button" aria-label="PDF 파일 선택 또는 끌어다 놓기">
           <input type="file" class="js-file" accept="application/pdf" multiple hidden>
           <svg class="dropzone__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 16V4M12 4l-4 4M12 4l4 4"/><path d="M4 16v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg>
           <p class="dropzone__title">합칠 PDF들을 끌어다 놓으세요</p>
@@ -77,7 +77,7 @@
           <p class="dropzone__hint">또는 끌어다 놓기 · 파일은 내 브라우저에서만 처리됩니다</p>
         </div>
         <ul class="filelist js-files"></ul>
-        <div class="pagegrid js-pagegrid" hidden></div></div>
+        <div class="pagegrid js-pagegrid" hidden></div></div></div>
       <div class="tool__right">
         <div class="options">
   <label class="checkbox"><input type="checkbox" id="merge-blank"> 파일 사이에 빈 페이지 넣기</label>
@@ -95,7 +95,7 @@
           </div>
           <div class="herotool__panel" role="tabpanel" data-panel="split">
             <div class="tool" data-tool="split">
-      <div class="tool__left"><div class="dropzone js-drop" tabindex="0" role="button" aria-label="PDF 파일 선택 또는 끌어다 놓기">
+      <div class="tool__left ws-window"><div class="ws-winbar"><span class="ws-wintitle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 16V4M8 8l4-4 4 4"/><path d="M4 16v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg><span class="t">여기에 PDF를 놓고 바로 작업</span></span></div><div class="tool__leftbody"><div class="dropzone js-drop" tabindex="0" role="button" aria-label="PDF 파일 선택 또는 끌어다 놓기">
           <input type="file" class="js-file" accept="application/pdf" hidden>
           <svg class="dropzone__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 16V4M12 4l-4 4M12 4l4 4"/><path d="M4 16v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg>
           <p class="dropzone__title">분할할 PDF를 끌어다 놓으세요</p>
@@ -104,7 +104,7 @@
         </div>
       <p class="pagecount js-pagecount"></p>
         <ul class="filelist js-files"></ul>
-        <div class="pagegrid js-pagegrid" hidden></div></div>
+        <div class="pagegrid js-pagegrid" hidden></div></div></div>
       <div class="tool__right">
         <div class="options">
   <div class="option">
@@ -140,7 +140,7 @@
           </div>
           <div class="herotool__panel" role="tabpanel" data-panel="unlock">
             <div class="tool" data-tool="unlock">
-      <div class="tool__left"><div class="dropzone js-drop" tabindex="0" role="button" aria-label="PDF 파일 선택 또는 끌어다 놓기">
+      <div class="tool__left ws-window"><div class="ws-winbar"><span class="ws-wintitle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 16V4M8 8l4-4 4 4"/><path d="M4 16v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg><span class="t">여기에 PDF를 놓고 바로 작업</span></span></div><div class="tool__leftbody"><div class="dropzone js-drop" tabindex="0" role="button" aria-label="PDF 파일 선택 또는 끌어다 놓기">
           <input type="file" class="js-file" accept="application/pdf" hidden>
           <svg class="dropzone__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 16V4M12 4l-4 4M12 4l4 4"/><path d="M4 16v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg>
           <p class="dropzone__title">잠금을 풀 PDF를 끌어다 놓으세요</p>
@@ -148,7 +148,7 @@
           <p class="dropzone__hint">또는 끌어다 놓기 · 파일은 내 브라우저에서만 처리됩니다</p>
         </div>
         <ul class="filelist js-files"></ul>
-        <div class="pagegrid js-pagegrid" hidden></div></div>
+        <div class="pagegrid js-pagegrid" hidden></div></div></div>
       <div class="tool__right">
         <div class="options">
   <div class="option">
@@ -181,7 +181,7 @@
           </div>
           <div class="herotool__panel" role="tabpanel" data-panel="extract">
             <div class="tool" data-tool="extract">
-      <div class="tool__left"><div class="dropzone js-drop" tabindex="0" role="button" aria-label="PDF 파일 선택 또는 끌어다 놓기">
+      <div class="tool__left ws-window"><div class="ws-winbar"><span class="ws-wintitle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 16V4M8 8l4-4 4 4"/><path d="M4 16v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg><span class="t">여기에 PDF를 놓고 바로 작업</span></span></div><div class="tool__leftbody"><div class="dropzone js-drop" tabindex="0" role="button" aria-label="PDF 파일 선택 또는 끌어다 놓기">
           <input type="file" class="js-file" accept="application/pdf" hidden>
           <svg class="dropzone__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 16V4M12 4l-4 4M12 4l4 4"/><path d="M4 16v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg>
           <p class="dropzone__title">페이지를 추출할 PDF를 끌어다 놓으세요</p>
@@ -190,7 +190,7 @@
         </div>
       <p class="pagecount js-pagecount"></p>
         <ul class="filelist js-files"></ul>
-        <div class="pagegrid js-pagegrid" hidden></div></div>
+        <div class="pagegrid js-pagegrid" hidden></div></div></div>
       <div class="tool__right">
         <div class="options">
   <div class="option">
@@ -211,7 +211,7 @@
           </div>
           <div class="herotool__panel" role="tabpanel" data-panel="delete">
             <div class="tool" data-tool="delete">
-      <div class="tool__left"><div class="dropzone js-drop" tabindex="0" role="button" aria-label="PDF 파일 선택 또는 끌어다 놓기">
+      <div class="tool__left ws-window"><div class="ws-winbar"><span class="ws-wintitle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 16V4M8 8l4-4 4 4"/><path d="M4 16v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg><span class="t">여기에 PDF를 놓고 바로 작업</span></span></div><div class="tool__leftbody"><div class="dropzone js-drop" tabindex="0" role="button" aria-label="PDF 파일 선택 또는 끌어다 놓기">
           <input type="file" class="js-file" accept="application/pdf" hidden>
           <svg class="dropzone__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 16V4M12 4l-4 4M12 4l4 4"/><path d="M4 16v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg>
           <p class="dropzone__title">페이지를 삭제할 PDF를 끌어다 놓으세요</p>
@@ -220,7 +220,7 @@
         </div>
       <p class="pagecount js-pagecount"></p>
         <ul class="filelist js-files"></ul>
-        <div class="pagegrid js-pagegrid" hidden></div></div>
+        <div class="pagegrid js-pagegrid" hidden></div></div></div>
       <div class="tool__right">
         <div class="options">
   <div class="option">
@@ -241,7 +241,7 @@
           </div>
           <div class="herotool__panel" role="tabpanel" data-panel="organize">
             <div class="tool" data-tool="organize">
-      <div class="tool__left"><div class="dropzone js-drop" tabindex="0" role="button" aria-label="PDF 파일 선택 또는 끌어다 놓기">
+      <div class="tool__left ws-window"><div class="ws-winbar"><span class="ws-wintitle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 16V4M8 8l4-4 4 4"/><path d="M4 16v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg><span class="t">여기에 PDF를 놓고 바로 작업</span></span></div><div class="tool__leftbody"><div class="dropzone js-drop" tabindex="0" role="button" aria-label="PDF 파일 선택 또는 끌어다 놓기">
           <input type="file" class="js-file" accept="application/pdf" hidden>
           <svg class="dropzone__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 16V4M12 4l-4 4M12 4l4 4"/><path d="M4 16v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg>
           <p class="dropzone__title">정리할 PDF를 끌어다 놓으세요</p>
@@ -250,7 +250,7 @@
         </div>
       <p class="pagecount js-pagecount"></p>
         <ul class="filelist js-files"></ul>
-        <div class="pagegrid js-pagegrid" hidden></div></div>
+        <div class="pagegrid js-pagegrid" hidden></div></div></div>
       <div class="tool__right">
         <div class="options">
   <p class="option__hint" style="margin:0 0 2px">PDF를 올리면 모든 페이지가 아래에 펼쳐집니다. 끌어서 순서를 바꾸고, <b>↺ ↻</b>로 회전, <b>✕</b>로 삭제하세요.</p>
@@ -268,7 +268,7 @@
           </div>
           <div class="herotool__panel" role="tabpanel" data-panel="page-numbers">
             <div class="tool" data-tool="page-numbers">
-      <div class="tool__left"><div class="dropzone js-drop" tabindex="0" role="button" aria-label="PDF 파일 선택 또는 끌어다 놓기">
+      <div class="tool__left ws-window"><div class="ws-winbar"><span class="ws-wintitle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 16V4M8 8l4-4 4 4"/><path d="M4 16v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg><span class="t">여기에 PDF를 놓고 바로 작업</span></span></div><div class="tool__leftbody"><div class="dropzone js-drop" tabindex="0" role="button" aria-label="PDF 파일 선택 또는 끌어다 놓기">
           <input type="file" class="js-file" accept="application/pdf" hidden>
           <svg class="dropzone__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 16V4M12 4l-4 4M12 4l4 4"/><path d="M4 16v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg>
           <p class="dropzone__title">번호를 넣을 PDF를 끌어다 놓으세요</p>
@@ -277,7 +277,7 @@
         </div>
       <p class="pagecount js-pagecount"></p>
         <ul class="filelist js-files"></ul>
-        <div class="pagegrid js-pagegrid" hidden></div></div>
+        <div class="pagegrid js-pagegrid" hidden></div></div></div>
       <div class="tool__right">
         <div class="options">
   <div class="option-row">
@@ -360,7 +360,7 @@
           </div>
           <div class="herotool__panel" role="tabpanel" data-panel="to-image">
             <div class="tool" data-tool="to-image">
-      <div class="tool__left"><div class="dropzone js-drop" tabindex="0" role="button" aria-label="PDF 파일 선택 또는 끌어다 놓기">
+      <div class="tool__left ws-window"><div class="ws-winbar"><span class="ws-wintitle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 16V4M8 8l4-4 4 4"/><path d="M4 16v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg><span class="t">여기에 PDF를 놓고 바로 작업</span></span></div><div class="tool__leftbody"><div class="dropzone js-drop" tabindex="0" role="button" aria-label="PDF 파일 선택 또는 끌어다 놓기">
           <input type="file" class="js-file" accept="application/pdf" hidden>
           <svg class="dropzone__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 16V4M12 4l-4 4M12 4l4 4"/><path d="M4 16v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg>
           <p class="dropzone__title">이미지로 바꿀 PDF를 끌어다 놓으세요</p>
@@ -369,7 +369,7 @@
         </div>
       <p class="pagecount js-pagecount"></p>
         <ul class="filelist js-files"></ul>
-        <div class="pagegrid js-pagegrid" hidden></div></div>
+        <div class="pagegrid js-pagegrid" hidden></div></div></div>
       <div class="tool__right">
         <div class="options">
   <div class="option-row">
@@ -427,7 +427,7 @@
           </div>
           <div class="herotool__panel" role="tabpanel" data-panel="image-to-pdf">
             <div class="tool" data-tool="image-to-pdf">
-      <div class="tool__left"><div class="dropzone js-drop" tabindex="0" role="button" aria-label="이미지 파일 선택 또는 끌어다 놓기">
+      <div class="tool__left ws-window"><div class="ws-winbar"><span class="ws-wintitle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 16V4M8 8l4-4 4 4"/><path d="M4 16v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg><span class="t">여기에 이미지를 놓고 바로 작업</span></span></div><div class="tool__leftbody"><div class="dropzone js-drop" tabindex="0" role="button" aria-label="이미지 파일 선택 또는 끌어다 놓기">
           <input type="file" class="js-file" accept="image/png,image/jpeg" multiple hidden>
           <svg class="dropzone__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 16V4M12 4l-4 4M12 4l4 4"/><path d="M4 16v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg>
           <p class="dropzone__title">이미지(JPG·PNG)를 끌어다 놓으세요</p>
@@ -435,7 +435,7 @@
           <p class="dropzone__hint">또는 끌어다 놓기 · 파일은 내 브라우저에서만 처리됩니다</p>
         </div>
         <ul class="filelist js-files"></ul>
-        <div class="pagegrid js-pagegrid" hidden></div></div>
+        <div class="pagegrid js-pagegrid" hidden></div></div></div>
       <div class="tool__right">
         <div class="options">
   <div class="option">
@@ -459,7 +459,7 @@
           </div>
           <div class="herotool__panel" role="tabpanel" data-panel="svg-to-png">
             <div class="tool" data-tool="svg-to-png">
-      <div class="tool__left"><div class="dropzone js-drop" tabindex="0" role="button" aria-label="SVG 파일 선택 또는 끌어다 놓기">
+      <div class="tool__left ws-window"><div class="ws-winbar"><span class="ws-wintitle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 16V4M8 8l4-4 4 4"/><path d="M4 16v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg><span class="t">여기에 SVG를 놓고 바로 작업</span></span></div><div class="tool__leftbody"><div class="dropzone js-drop" tabindex="0" role="button" aria-label="SVG 파일 선택 또는 끌어다 놓기">
           <input type="file" class="js-file" accept="image/svg+xml,.svg" multiple hidden>
           <svg class="dropzone__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 16V4M12 4l-4 4M12 4l4 4"/><path d="M4 16v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg>
           <p class="dropzone__title">SVG 파일을 끌어다 놓으세요</p>
@@ -467,7 +467,7 @@
           <p class="dropzone__hint">또는 끌어다 놓기 · 파일은 내 브라우저에서만 처리됩니다</p>
         </div>
         <ul class="filelist js-files"></ul>
-        <div class="pagegrid js-pagegrid" hidden></div></div>
+        <div class="pagegrid js-pagegrid" hidden></div></div></div>
       <div class="tool__right">
         <div class="options">
   <div class="option">
@@ -500,7 +500,7 @@
           </div>
           <div class="herotool__panel" role="tabpanel" data-panel="rotate">
             <div class="tool" data-tool="rotate">
-      <div class="tool__left"><div class="dropzone js-drop" tabindex="0" role="button" aria-label="PDF 파일 선택 또는 끌어다 놓기">
+      <div class="tool__left ws-window"><div class="ws-winbar"><span class="ws-wintitle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 16V4M8 8l4-4 4 4"/><path d="M4 16v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg><span class="t">여기에 PDF를 놓고 바로 작업</span></span></div><div class="tool__leftbody"><div class="dropzone js-drop" tabindex="0" role="button" aria-label="PDF 파일 선택 또는 끌어다 놓기">
           <input type="file" class="js-file" accept="application/pdf" hidden>
           <svg class="dropzone__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 16V4M12 4l-4 4M12 4l4 4"/><path d="M4 16v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg>
           <p class="dropzone__title">회전할 PDF를 끌어다 놓으세요</p>
@@ -509,7 +509,7 @@
         </div>
       <p class="pagecount js-pagecount"></p>
         <ul class="filelist js-files"></ul>
-        <div class="pagegrid js-pagegrid" hidden></div></div>
+        <div class="pagegrid js-pagegrid" hidden></div></div></div>
       <div class="tool__right">
         <div class="options">
   <div class="option">
@@ -534,7 +534,7 @@
           </div>
           <div class="herotool__panel" role="tabpanel" data-panel="crop">
             <div class="tool" data-tool="crop">
-      <div class="tool__left"><div class="dropzone js-drop" tabindex="0" role="button" aria-label="PDF 파일 선택 또는 끌어다 놓기">
+      <div class="tool__left ws-window"><div class="ws-winbar"><span class="ws-wintitle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 16V4M8 8l4-4 4 4"/><path d="M4 16v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg><span class="t">여기에 PDF를 놓고 바로 작업</span></span></div><div class="tool__leftbody"><div class="dropzone js-drop" tabindex="0" role="button" aria-label="PDF 파일 선택 또는 끌어다 놓기">
           <input type="file" class="js-file" accept="application/pdf" hidden>
           <svg class="dropzone__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 16V4M12 4l-4 4M12 4l4 4"/><path d="M4 16v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg>
           <p class="dropzone__title">여백을 자를 PDF를 끌어다 놓으세요</p>
@@ -543,7 +543,7 @@
         </div>
       <p class="pagecount js-pagecount"></p>
         <ul class="filelist js-files"></ul>
-        <div class="pagegrid js-pagegrid" hidden></div></div>
+        <div class="pagegrid js-pagegrid" hidden></div></div></div>
       <div class="tool__right">
         <div class="options">
   <div class="option">
@@ -568,7 +568,7 @@
           </div>
           <div class="herotool__panel" role="tabpanel" data-panel="compress">
             <div class="tool" data-tool="compress">
-      <div class="tool__left"><div class="dropzone js-drop" tabindex="0" role="button" aria-label="PDF 파일 선택 또는 끌어다 놓기">
+      <div class="tool__left ws-window"><div class="ws-winbar"><span class="ws-wintitle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 16V4M8 8l4-4 4 4"/><path d="M4 16v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg><span class="t">여기에 PDF를 놓고 바로 작업</span></span></div><div class="tool__leftbody"><div class="dropzone js-drop" tabindex="0" role="button" aria-label="PDF 파일 선택 또는 끌어다 놓기">
           <input type="file" class="js-file" accept="application/pdf" hidden>
           <svg class="dropzone__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 16V4M12 4l-4 4M12 4l4 4"/><path d="M4 16v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg>
           <p class="dropzone__title">압축할 PDF를 끌어다 놓으세요</p>
@@ -577,7 +577,7 @@
         </div>
       <p class="pagecount js-pagecount"></p>
         <ul class="filelist js-files"></ul>
-        <div class="pagegrid js-pagegrid" hidden></div></div>
+        <div class="pagegrid js-pagegrid" hidden></div></div></div>
       <div class="tool__right">
         <div class="options">
   <div class="option">
@@ -603,7 +603,7 @@
           </div>
           <div class="herotool__panel" role="tabpanel" data-panel="pdf-info">
             <div class="tool" data-tool="pdf-info">
-      <div class="tool__left"><div class="dropzone js-drop" tabindex="0" role="button" aria-label="PDF 파일 선택 또는 끌어다 놓기">
+      <div class="tool__left ws-window"><div class="ws-winbar"><span class="ws-wintitle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 16V4M8 8l4-4 4 4"/><path d="M4 16v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg><span class="t">여기에 PDF를 놓고 바로 작업</span></span></div><div class="tool__leftbody"><div class="dropzone js-drop" tabindex="0" role="button" aria-label="PDF 파일 선택 또는 끌어다 놓기">
           <input type="file" class="js-file" accept="application/pdf" hidden>
           <svg class="dropzone__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 16V4M12 4l-4 4M12 4l4 4"/><path d="M4 16v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg>
           <p class="dropzone__title">정보를 볼 PDF를 끌어다 놓으세요</p>
@@ -611,7 +611,7 @@
           <p class="dropzone__hint">또는 끌어다 놓기 · 파일은 내 브라우저에서만 처리됩니다</p>
         </div>
         <ul class="filelist js-files"></ul>
-        <div class="pagegrid js-pagegrid" hidden></div></div>
+        <div class="pagegrid js-pagegrid" hidden></div></div></div>
       <div class="tool__right">
         <div class="options">
   <p class="option__hint" style="margin:0">PDF를 올리면 페이지 수·용량·크기·메타데이터·잠김 여부를 표로 보여줘요. 파일을 바꾸거나 저장하지 않습니다.</p>
@@ -625,7 +625,7 @@
           </div>
           <div class="herotool__panel" role="tabpanel" data-panel="jpg-to-png">
             <div class="tool" data-tool="jpg-to-png" data-from="jpg" data-to="png">
-      <div class="tool__left"><div class="dropzone js-drop" tabindex="0" role="button" aria-label="JPG 파일 선택 또는 끌어다 놓기">
+      <div class="tool__left ws-window"><div class="ws-winbar"><span class="ws-wintitle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 16V4M8 8l4-4 4 4"/><path d="M4 16v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg><span class="t">여기에 JPG를 놓고 바로 작업</span></span></div><div class="tool__leftbody"><div class="dropzone js-drop" tabindex="0" role="button" aria-label="JPG 파일 선택 또는 끌어다 놓기">
           <input type="file" class="js-file" accept="image/jpeg,.jpg,.jpeg" multiple hidden>
           <svg class="dropzone__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 16V4M12 4l-4 4M12 4l4 4"/><path d="M4 16v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg>
           <p class="dropzone__title">JPG 파일을 끌어다 놓으세요</p>
@@ -633,7 +633,7 @@
           <p class="dropzone__hint">또는 끌어다 놓기 · 파일은 내 브라우저에서만 처리됩니다</p>
         </div>
         <ul class="filelist js-files"></ul>
-        <div class="pagegrid js-pagegrid" hidden></div></div>
+        <div class="pagegrid js-pagegrid" hidden></div></div></div>
       <div class="tool__right">
         <div class="options">
   <div class="option">
@@ -650,7 +650,7 @@
           </div>
           <div class="herotool__panel" role="tabpanel" data-panel="png-to-jpg">
             <div class="tool" data-tool="png-to-jpg" data-from="png" data-to="jpg">
-      <div class="tool__left"><div class="dropzone js-drop" tabindex="0" role="button" aria-label="PNG 파일 선택 또는 끌어다 놓기">
+      <div class="tool__left ws-window"><div class="ws-winbar"><span class="ws-wintitle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 16V4M8 8l4-4 4 4"/><path d="M4 16v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg><span class="t">여기에 PNG를 놓고 바로 작업</span></span></div><div class="tool__leftbody"><div class="dropzone js-drop" tabindex="0" role="button" aria-label="PNG 파일 선택 또는 끌어다 놓기">
           <input type="file" class="js-file" accept="image/png,.png" multiple hidden>
           <svg class="dropzone__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 16V4M12 4l-4 4M12 4l4 4"/><path d="M4 16v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg>
           <p class="dropzone__title">PNG 파일을 끌어다 놓으세요</p>
@@ -658,7 +658,7 @@
           <p class="dropzone__hint">또는 끌어다 놓기 · 파일은 내 브라우저에서만 처리됩니다</p>
         </div>
         <ul class="filelist js-files"></ul>
-        <div class="pagegrid js-pagegrid" hidden></div></div>
+        <div class="pagegrid js-pagegrid" hidden></div></div></div>
       <div class="tool__right">
         <div class="options">
   <div class="option">
@@ -679,7 +679,7 @@
           </div>
           <div class="herotool__panel" role="tabpanel" data-panel="webp-to-png">
             <div class="tool" data-tool="webp-to-png" data-from="webp" data-to="png">
-      <div class="tool__left"><div class="dropzone js-drop" tabindex="0" role="button" aria-label="WEBP 파일 선택 또는 끌어다 놓기">
+      <div class="tool__left ws-window"><div class="ws-winbar"><span class="ws-wintitle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 16V4M8 8l4-4 4 4"/><path d="M4 16v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg><span class="t">여기에 WEBP를 놓고 바로 작업</span></span></div><div class="tool__leftbody"><div class="dropzone js-drop" tabindex="0" role="button" aria-label="WEBP 파일 선택 또는 끌어다 놓기">
           <input type="file" class="js-file" accept="image/webp,.webp" multiple hidden>
           <svg class="dropzone__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 16V4M12 4l-4 4M12 4l4 4"/><path d="M4 16v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg>
           <p class="dropzone__title">WEBP 파일을 끌어다 놓으세요</p>
@@ -687,7 +687,7 @@
           <p class="dropzone__hint">또는 끌어다 놓기 · 파일은 내 브라우저에서만 처리됩니다</p>
         </div>
         <ul class="filelist js-files"></ul>
-        <div class="pagegrid js-pagegrid" hidden></div></div>
+        <div class="pagegrid js-pagegrid" hidden></div></div></div>
       <div class="tool__right">
         <div class="options">
   <div class="option">
@@ -704,7 +704,7 @@
           </div>
           <div class="herotool__panel" role="tabpanel" data-panel="webp-to-jpg">
             <div class="tool" data-tool="webp-to-jpg" data-from="webp" data-to="jpg">
-      <div class="tool__left"><div class="dropzone js-drop" tabindex="0" role="button" aria-label="WEBP 파일 선택 또는 끌어다 놓기">
+      <div class="tool__left ws-window"><div class="ws-winbar"><span class="ws-wintitle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 16V4M8 8l4-4 4 4"/><path d="M4 16v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg><span class="t">여기에 WEBP를 놓고 바로 작업</span></span></div><div class="tool__leftbody"><div class="dropzone js-drop" tabindex="0" role="button" aria-label="WEBP 파일 선택 또는 끌어다 놓기">
           <input type="file" class="js-file" accept="image/webp,.webp" multiple hidden>
           <svg class="dropzone__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 16V4M12 4l-4 4M12 4l4 4"/><path d="M4 16v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg>
           <p class="dropzone__title">WEBP 파일을 끌어다 놓으세요</p>
@@ -712,7 +712,7 @@
           <p class="dropzone__hint">또는 끌어다 놓기 · 파일은 내 브라우저에서만 처리됩니다</p>
         </div>
         <ul class="filelist js-files"></ul>
-        <div class="pagegrid js-pagegrid" hidden></div></div>
+        <div class="pagegrid js-pagegrid" hidden></div></div></div>
       <div class="tool__right">
         <div class="options">
   <div class="option">
@@ -733,7 +733,7 @@
           </div>
           <div class="herotool__panel" role="tabpanel" data-panel="png-to-webp">
             <div class="tool" data-tool="png-to-webp" data-from="png" data-to="webp">
-      <div class="tool__left"><div class="dropzone js-drop" tabindex="0" role="button" aria-label="PNG 파일 선택 또는 끌어다 놓기">
+      <div class="tool__left ws-window"><div class="ws-winbar"><span class="ws-wintitle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 16V4M8 8l4-4 4 4"/><path d="M4 16v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg><span class="t">여기에 PNG를 놓고 바로 작업</span></span></div><div class="tool__leftbody"><div class="dropzone js-drop" tabindex="0" role="button" aria-label="PNG 파일 선택 또는 끌어다 놓기">
           <input type="file" class="js-file" accept="image/png,.png" multiple hidden>
           <svg class="dropzone__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 16V4M12 4l-4 4M12 4l4 4"/><path d="M4 16v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg>
           <p class="dropzone__title">PNG 파일을 끌어다 놓으세요</p>
@@ -741,7 +741,7 @@
           <p class="dropzone__hint">또는 끌어다 놓기 · 파일은 내 브라우저에서만 처리됩니다</p>
         </div>
         <ul class="filelist js-files"></ul>
-        <div class="pagegrid js-pagegrid" hidden></div></div>
+        <div class="pagegrid js-pagegrid" hidden></div></div></div>
       <div class="tool__right">
         <div class="options">
   <div class="option">
@@ -762,7 +762,7 @@
           </div>
           <div class="herotool__panel" role="tabpanel" data-panel="jpg-to-webp">
             <div class="tool" data-tool="jpg-to-webp" data-from="jpg" data-to="webp">
-      <div class="tool__left"><div class="dropzone js-drop" tabindex="0" role="button" aria-label="JPG 파일 선택 또는 끌어다 놓기">
+      <div class="tool__left ws-window"><div class="ws-winbar"><span class="ws-wintitle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 16V4M8 8l4-4 4 4"/><path d="M4 16v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg><span class="t">여기에 JPG를 놓고 바로 작업</span></span></div><div class="tool__leftbody"><div class="dropzone js-drop" tabindex="0" role="button" aria-label="JPG 파일 선택 또는 끌어다 놓기">
           <input type="file" class="js-file" accept="image/jpeg,.jpg,.jpeg" multiple hidden>
           <svg class="dropzone__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 16V4M12 4l-4 4M12 4l4 4"/><path d="M4 16v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg>
           <p class="dropzone__title">JPG 파일을 끌어다 놓으세요</p>
@@ -770,7 +770,7 @@
           <p class="dropzone__hint">또는 끌어다 놓기 · 파일은 내 브라우저에서만 처리됩니다</p>
         </div>
         <ul class="filelist js-files"></ul>
-        <div class="pagegrid js-pagegrid" hidden></div></div>
+        <div class="pagegrid js-pagegrid" hidden></div></div></div>
       <div class="tool__right">
         <div class="options">
   <div class="option">
@@ -791,7 +791,7 @@
           </div>
           <div class="herotool__panel" role="tabpanel" data-panel="svg-to-jpg">
             <div class="tool" data-tool="svg-to-jpg" data-from="svg" data-to="jpg">
-      <div class="tool__left"><div class="dropzone js-drop" tabindex="0" role="button" aria-label="SVG 파일 선택 또는 끌어다 놓기">
+      <div class="tool__left ws-window"><div class="ws-winbar"><span class="ws-wintitle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 16V4M8 8l4-4 4 4"/><path d="M4 16v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg><span class="t">여기에 SVG를 놓고 바로 작업</span></span></div><div class="tool__leftbody"><div class="dropzone js-drop" tabindex="0" role="button" aria-label="SVG 파일 선택 또는 끌어다 놓기">
           <input type="file" class="js-file" accept="image/svg+xml,.svg" multiple hidden>
           <svg class="dropzone__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 16V4M12 4l-4 4M12 4l4 4"/><path d="M4 16v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg>
           <p class="dropzone__title">SVG 파일을 끌어다 놓으세요</p>
@@ -799,7 +799,7 @@
           <p class="dropzone__hint">또는 끌어다 놓기 · 파일은 내 브라우저에서만 처리됩니다</p>
         </div>
         <ul class="filelist js-files"></ul>
-        <div class="pagegrid js-pagegrid" hidden></div></div>
+        <div class="pagegrid js-pagegrid" hidden></div></div></div>
       <div class="tool__right">
         <div class="options">
   <div class="option">
@@ -824,7 +824,7 @@
           </div>
           <div class="herotool__panel" role="tabpanel" data-panel="svg-to-webp">
             <div class="tool" data-tool="svg-to-webp" data-from="svg" data-to="webp">
-      <div class="tool__left"><div class="dropzone js-drop" tabindex="0" role="button" aria-label="SVG 파일 선택 또는 끌어다 놓기">
+      <div class="tool__left ws-window"><div class="ws-winbar"><span class="ws-wintitle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 16V4M8 8l4-4 4 4"/><path d="M4 16v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg><span class="t">여기에 SVG를 놓고 바로 작업</span></span></div><div class="tool__leftbody"><div class="dropzone js-drop" tabindex="0" role="button" aria-label="SVG 파일 선택 또는 끌어다 놓기">
           <input type="file" class="js-file" accept="image/svg+xml,.svg" multiple hidden>
           <svg class="dropzone__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 16V4M12 4l-4 4M12 4l4 4"/><path d="M4 16v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg>
           <p class="dropzone__title">SVG 파일을 끌어다 놓으세요</p>
@@ -832,7 +832,7 @@
           <p class="dropzone__hint">또는 끌어다 놓기 · 파일은 내 브라우저에서만 처리됩니다</p>
         </div>
         <ul class="filelist js-files"></ul>
-        <div class="pagegrid js-pagegrid" hidden></div></div>
+        <div class="pagegrid js-pagegrid" hidden></div></div></div>
       <div class="tool__right">
         <div class="options">
   <div class="option">
@@ -1016,24 +1016,24 @@
   <script src="assets/vendor/pdf-lib.min.js" defer></script>
   <script src="assets/vendor/pdf.min.js" defer></script>
   <script src="assets/vendor/jszip.min.js" defer></script>
-  <script src="assets/js/ui.js?v=1781597327689" defer></script>
-  <script src="assets/js/pdf-engine.js?v=1781597327689" defer></script>
-  <script src="assets/js/tool-core.js?v=1781597327689" defer></script>
-  <script src="assets/js/tools/merge.js?v=1781597327689" defer></script>
-  <script src="assets/js/tools/split.js?v=1781597327689" defer></script>
-  <script src="assets/js/tools/unlock.js?v=1781597327689" defer></script>
-  <script src="assets/js/tools/extract.js?v=1781597327689" defer></script>
-  <script src="assets/js/tools/delete.js?v=1781597327689" defer></script>
-  <script src="assets/js/tools/organize.js?v=1781597327689" defer></script>
-  <script src="assets/js/tools/page-numbers.js?v=1781597327689" defer></script>
-  <script src="assets/js/tools/to-image.js?v=1781597327689" defer></script>
-  <script src="assets/js/tools/image-to-pdf.js?v=1781597327689" defer></script>
-  <script src="assets/js/tools/svg-to-png.js?v=1781597327689" defer></script>
-  <script src="assets/js/tools/rotate.js?v=1781597327689" defer></script>
-  <script src="assets/js/tools/crop.js?v=1781597327689" defer></script>
-  <script src="assets/js/tools/compress.js?v=1781597327689" defer></script>
-  <script src="assets/js/tools/pdf-info.js?v=1781597327689" defer></script>
-  <script src="assets/js/tools/img-convert.js?v=1781597327689" defer></script>
-  <script src="assets/js/workspace.js?v=1781597327689" defer></script>
+  <script src="assets/js/ui.js?v=1781598251923" defer></script>
+  <script src="assets/js/pdf-engine.js?v=1781598251923" defer></script>
+  <script src="assets/js/tool-core.js?v=1781598251923" defer></script>
+  <script src="assets/js/tools/merge.js?v=1781598251923" defer></script>
+  <script src="assets/js/tools/split.js?v=1781598251923" defer></script>
+  <script src="assets/js/tools/unlock.js?v=1781598251923" defer></script>
+  <script src="assets/js/tools/extract.js?v=1781598251923" defer></script>
+  <script src="assets/js/tools/delete.js?v=1781598251923" defer></script>
+  <script src="assets/js/tools/organize.js?v=1781598251923" defer></script>
+  <script src="assets/js/tools/page-numbers.js?v=1781598251923" defer></script>
+  <script src="assets/js/tools/to-image.js?v=1781598251923" defer></script>
+  <script src="assets/js/tools/image-to-pdf.js?v=1781598251923" defer></script>
+  <script src="assets/js/tools/svg-to-png.js?v=1781598251923" defer></script>
+  <script src="assets/js/tools/rotate.js?v=1781598251923" defer></script>
+  <script src="assets/js/tools/crop.js?v=1781598251923" defer></script>
+  <script src="assets/js/tools/compress.js?v=1781598251923" defer></script>
+  <script src="assets/js/tools/pdf-info.js?v=1781598251923" defer></script>
+  <script src="assets/js/tools/img-convert.js?v=1781598251923" defer></script>
+  <script src="assets/js/workspace.js?v=1781598251923" defer></script>
 </body>
 </html>
