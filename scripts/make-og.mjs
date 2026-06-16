@@ -27,7 +27,7 @@ body{font-family:-apple-system,'Apple SD Gothic Neo','Noto Sans KR',sans-serif}
 </style></head><body>
 <div class="card">
   <div class="brand"><img class="logo" src="${LOGO}"><div class="bname">PDF의 모든 것</div></div>
-  <div class="title">설치 없이 무료로,<br><span class="mk">22가지 PDF 도구</span>를 한곳에서</div>
+  <div class="title">설치 없이 무료로,<br><span class="mk">26가지 PDF 도구</span>를 한곳에서</div>
   <div class="sub">합치기 · 분할 · 변환 · 잠금해제 · 페이지 정리까지 — 파일은 서버에 올리지 않고 내 브라우저에서</div>
   <div class="tags"><span class="tag"><i></i>서버에 안 올림</span><span class="tag"><i></i>완전 무료</span><span class="tag"><i></i>설치 불필요</span></div>
 </div></body></html>`;

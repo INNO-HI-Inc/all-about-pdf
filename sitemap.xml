@@ -91,6 +91,30 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://inno-hi-inc.github.io/all-about-pdf/remove-metadata/</loc>
+    <lastmod>2026-06-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://inno-hi-inc.github.io/all-about-pdf/remove-blank/</loc>
+    <lastmod>2026-06-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://inno-hi-inc.github.io/all-about-pdf/add-margin/</loc>
+    <lastmod>2026-06-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://inno-hi-inc.github.io/all-about-pdf/extract-text/</loc>
+    <lastmod>2026-06-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://inno-hi-inc.github.io/all-about-pdf/jpg-to-png/</loc>
     <lastmod>2026-06-04</lastmod>
     <changefreq>monthly</changefreq>

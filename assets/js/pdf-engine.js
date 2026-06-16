@@ -539,6 +539,84 @@
     return items;
   }
 
+  // ── 개인정보(메타데이터) 제거 ──────────────────────────────
+  async function removeMetadata(file) {
+    var doc = await loadDoc(file);
+    try {
+      doc.setTitle(''); doc.setAuthor(''); doc.setSubject(''); doc.setKeywords([]);
+      doc.setProducer(''); doc.setCreator('');
+    } catch (e) {}
+    try { var PDFName = L().PDFName; doc.catalog.delete(PDFName.of('Metadata')); } catch (e) {}
+    return toBlob(await doc.save());
+  }
+
+  // ── 빈 페이지 제거 ─────────────────────────────────────────
+  async function removeBlank(file, onProgress) {
+    var PDFDocument = L().PDFDocument;
+    var pdfjs = await loadPdfjs(file);
+    var src = await loadDoc(file);
+    var total = pdfjs.numPages;
+    var keep = [];
+    for (var n = 1; n <= total; n++) {
+      var page = await pdfjs.getPage(n);
+      var vp = page.getViewport({ scale: 0.35 });
+      var canvas = document.createElement('canvas');
+      canvas.width = Math.max(1, Math.floor(vp.width));
+      canvas.height = Math.max(1, Math.floor(vp.height));
+      var ctx = canvas.getContext('2d');
+      ctx.fillStyle = '#ffffff'; ctx.fillRect(0, 0, canvas.width, canvas.height);
+      await page.render({ canvasContext: ctx, viewport: vp }).promise;
+      var blank = true;
+      try {
+        var data = ctx.getImageData(0, 0, canvas.width, canvas.height).data;
+        var nonWhite = 0, totalPx = canvas.width * canvas.height;
+        for (var i = 0; i < data.length; i += 4) {
+          if (data[i] < 245 || data[i + 1] < 245 || data[i + 2] < 245) nonWhite++;
+        }
+        blank = (nonWhite / totalPx) < 0.003;
+      } catch (e) { blank = false; }
+      if (!blank) keep.push(n - 1);
+      canvas.width = canvas.height = 0;
+      if (onProgress) onProgress(n / total);
+    }
+    if (!keep.length) throw new Error('모든 페이지가 빈 페이지로 판단됐어요. 원본을 확인해 주세요.');
+    var out = await PDFDocument.create();
+    var pages = await out.copyPages(src, keep);
+    pages.forEach(function (p) { out.addPage(p); });
+    var blob = toBlob(await out.save());
+    try { blob._removed = total - keep.length; } catch (e) {}
+    return blob;
+  }
+
+  // ── 여백 추가 ──────────────────────────────────────────────
+  async function addMargin(file, margin) {
+    var doc = await loadDoc(file);
+    var m = margin || 40;
+    doc.getPages().forEach(function (p) {
+      var s = p.getSize();
+      p.setMediaBox(-m, -m, s.width + 2 * m, s.height + 2 * m);
+      if (p.setCropBox) p.setCropBox(-m, -m, s.width + 2 * m, s.height + 2 * m);
+    });
+    return toBlob(await doc.save());
+  }
+
+  // ── 텍스트 추출 (.txt) ─────────────────────────────────────
+  async function extractText(file, onProgress) {
+    var pdfjs = await loadPdfjs(file);
+    var total = pdfjs.numPages;
+    var pages = [];
+    for (var n = 1; n <= total; n++) {
+      var page = await pdfjs.getPage(n);
+      var tc = await page.getTextContent();
+      var lines = [], cur = '';
+      tc.items.forEach(function (it) { cur += (it.str || ''); if (it.hasEOL) { lines.push(cur); cur = ''; } });
+      if (cur) lines.push(cur);
+      pages.push(lines.join('\n'));
+      if (onProgress) onProgress(n / total);
+    }
+    return pages.join('\n\n');
+  }
+
   // 페이지 썸네일 렌더링 (시각적 선택용)
   async function renderThumbs(file, opts, onProgress) {
     opts = opts || {};
@@ -610,6 +688,10 @@
     compress: compress,
     getInfo: getInfo,
     convertImages: convertImages,
+    removeMetadata: removeMetadata,
+    removeBlank: removeBlank,
+    addMargin: addMargin,
+    extractText: extractText,
     renderThumbs: renderThumbs,
     getPageCount: getPageCount,
     isPasswordError: isPasswordError,

@@ -43,6 +43,10 @@ const ICONS = {
   rotate: IC('<path d="M20.5 12a8.5 8.5 0 1 1-2.5-6"/><path d="M20.5 4.5V10H15"/>'),
   crop: IC('<path d="M6.5 2.5v13.5a1.5 1.5 0 0 0 1.5 1.5h13.5"/><path d="M2.5 6.5h13.5a1.5 1.5 0 0 1 1.5 1.5v13.5"/>'),
   compress: IC('<line x1="4" y1="12" x2="20" y2="12"/><path d="M8.5 5.5 12 9l3.5-3.5M8.5 18.5 12 15l3.5 3.5"/>'),
+  shield: IC('<path d="M12 3l7 2.6v5.4c0 4.3-3 7.3-7 8.8-4-1.5-7-4.5-7-8.8V5.6z"/><path d="M9 11.6h6"/>'),
+  blankpage: IC('<path d="M14 3.5H7.5a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h9a2 2 0 0 0 2-2V8l-5-4.5z"/><path d="M14 3.5V8h5"/><path d="M9.5 15.5h5"/>'),
+  margin: IC('<rect x="3.5" y="3.5" width="17" height="17" rx="2"/><rect x="7.5" y="7.5" width="9" height="9" rx="1" stroke-dasharray="2.2 2"/>'),
+  text: IC('<path d="M14 3.5H7.5a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h9a2 2 0 0 0 2-2V8l-5-4.5z"/><path d="M14 3.5V8h5"/><path d="M8.5 12h7M8.5 15h7M8.5 9h3"/>'),
 };
 const DOT_SVG = '<svg class="pill-dot" viewBox="0 0 8 8" aria-hidden="true"><circle cx="4" cy="4" r="4" fill="currentColor"/></svg>';
 
@@ -66,6 +70,10 @@ const ICONS_PDF = {
   crop: pdfSvg(pdfPage(2) + pdfBadge(17.4, 17.4, '#0d9488', '<path d="M15.9 15.2v3.3a.5.5 0 0 0 .5.5h3.3M18.9 19.6v-3.3a.5.5 0 0 0-.5-.5h-3.3" fill="none" stroke="#fff" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>')),
   compress: pdfSvg(pdfPage(2) + pdfBadge(17.4, 17.4, '#f59e0b', '<path d="M15.6 17.4h3.6" stroke="#fff" stroke-width="1.1"/><path d="M16.2 15.5l1.2 1.1 1.2-1.1M16.2 19.3l1.2-1.1 1.2 1.1" fill="none" stroke="#fff" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/>')),
   'pdf-info': pdfSvg(pdfPage(2) + pdfBadge(17.4, 17.4, '#2f6df6', '<circle cx="17.4" cy="15.5" r=".75" fill="#fff"/><path d="M17.4 16.9v2.4" stroke="#fff" stroke-width="1.4" stroke-linecap="round"/>')),
+  'remove-metadata': pdfSvg(pdfPage(2) + pdfBadge(17.4, 17.4, '#2b303b', '<path d="M17.4 14.5l2.3.85v1.85c0 1.45-1 2.45-2.3 2.95-1.3-.5-2.3-1.5-2.3-2.95V15.35z" fill="none" stroke="#fff" stroke-width="1.05"/>')),
+  'remove-blank': pdfSvg(pdfPage(1) + pdfBadge(17.4, 17.4, '#f59e0b', '<path d="M15.4 17.4h4" stroke="#fff" stroke-width="1.7" stroke-linecap="round"/>')),
+  'add-margin': pdfSvg(pdfPage(2) + pdfBadge(17.4, 17.4, '#0d9488', '<rect x="15.3" y="15.3" width="4.2" height="4.2" rx=".6" fill="none" stroke="#fff" stroke-width="1.05" stroke-dasharray="1.6 1.2"/>')),
+  'extract-text': pdfSvg(pdfPage(2) + pdfBadge(17.4, 17.4, '#2f6df6', '<path d="M15.6 15.9h3.6M15.9 17.5h3M16.1 19h2.6" stroke="#fff" stroke-width="1" stroke-linecap="round"/>')),
 };
 
 // ───────── 유틸 ─────────
@@ -120,6 +128,18 @@ const TOOLS = [
   { slug: 'pdf-info', icon: ICONS.info, nav: 'PDF 정보', multiple: false,
     runLabel: '정보 보기', dropTitle: '정보를 볼 PDF를 끌어다 놓으세요', pagecount: false,
     feature: ['페이지·용량·크기', '메타데이터 확인', '잠김 여부'], options: optInfo() },
+  { slug: 'remove-metadata', icon: ICONS.shield, nav: '개인정보 제거', multiple: false,
+    runLabel: '개인정보 지우기', dropTitle: '개인정보를 지울 PDF를 끌어다 놓으세요', pagecount: true,
+    feature: ['작성자·제목 등 제거', '본문은 그대로', '브라우저 내 처리'], options: optRemoveMeta() },
+  { slug: 'remove-blank', icon: ICONS.blankpage, nav: '빈 페이지 제거', multiple: false,
+    runLabel: '빈 페이지 제거하기', dropTitle: '빈 페이지를 정리할 PDF를 끌어다 놓으세요', pagecount: true,
+    feature: ['빈 페이지 자동 감지', '양면 스캔 정리', '새 PDF로 저장'], options: optRemoveBlank() },
+  { slug: 'add-margin', icon: ICONS.margin, nav: '여백 추가', multiple: false,
+    runLabel: '여백 추가하기', dropTitle: '여백을 더할 PDF를 끌어다 놓으세요', pagecount: true,
+    feature: ['사방 흰 여백', '좁게·보통·넓게', '내용 보존'], options: optAddMargin() },
+  { slug: 'extract-text', icon: ICONS.text, nav: '텍스트 추출', multiple: false,
+    runLabel: '텍스트 추출하기', dropTitle: '글자를 뽑을 PDF를 끌어다 놓으세요', pagecount: true,
+    feature: ['글자를 .txt로', '복사·검색·재활용', 'OCR 아님'], options: optExtractText() },
 ];
 const TOOL_BY = Object.fromEntries(TOOLS.map((t) => [t.slug, t]));
 
@@ -127,15 +147,15 @@ const TOOL_BY = Object.fromEntries(TOOLS.map((t) => [t.slug, t]));
 const CATEGORIES = [
   { id: 'organize', title: 'PDF 구성', desc: '여러 PDF를 합치고, 나누고, 페이지를 자유롭게 정리하세요.', slugs: ['merge', 'split', 'organize', 'extract', 'delete', 'page-numbers'] },
   { id: 'convert', title: 'PDF 변환', desc: 'PDF와 이미지를 서로 바꾸세요. 모두 내 브라우저에서 처리됩니다.', slugs: ['to-image', 'image-to-pdf', 'svg-to-png'] },
-  { id: 'security', title: 'PDF 보안', desc: '비밀번호·편집 제한을 풀어 자유롭게 사용하세요.', slugs: ['unlock'] },
-  { id: 'optimize', title: 'PDF 최적화', desc: '용량을 줄여 가볍게. 메일·제출 용량 제한에 맞추세요.', slugs: ['compress'] },
-  { id: 'edit', title: 'PDF 편집', desc: '방향을 바로잡고 여백을 정리해 문서를 다듬으세요.', slugs: ['rotate', 'crop'] },
-  { id: 'analyze', title: 'PDF 분석', desc: '페이지 수·용량·메타데이터 등 문서 정보를 확인하세요.', slugs: ['pdf-info'] },
+  { id: 'security', title: 'PDF 보안', desc: '비밀번호·편집 제한을 풀고, 개인정보를 지워 안전하게.', slugs: ['unlock', 'remove-metadata'] },
+  { id: 'optimize', title: 'PDF 최적화', desc: '용량을 줄이고 빈 페이지를 정리해 가볍게.', slugs: ['compress', 'remove-blank'] },
+  { id: 'edit', title: 'PDF 편집', desc: '방향·여백·자르기로 문서를 보기 좋게 다듬으세요.', slugs: ['rotate', 'crop', 'add-margin'] },
+  { id: 'analyze', title: 'PDF 분석', desc: '문서 정보를 확인하고 글자를 텍스트로 뽑으세요.', slugs: ['pdf-info', 'extract-text'] },
 ];
 
 // 작업실 OS 공용 자원 (홈 + 도구 상세 공통)
 const CHIP = '<svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4"/></svg>';
-const APP_FILE = { merge: 'merge.app', split: 'split.app', unlock: 'unlock.app', extract: 'extract.app', delete: 'delete.app', organize: 'organize.app', 'to-image': 'to-image.app', 'page-numbers': 'page-num.app', 'image-to-pdf': 'img-to-pdf.app', 'svg-to-png': 'svg-to-png.app', rotate: 'rotate.app', crop: 'crop.app', compress: 'compress.app', 'pdf-info': 'pdf-info.app' };
+const APP_FILE = { merge: 'merge.app', split: 'split.app', unlock: 'unlock.app', extract: 'extract.app', delete: 'delete.app', organize: 'organize.app', 'to-image': 'to-image.app', 'page-numbers': 'page-num.app', 'image-to-pdf': 'img-to-pdf.app', 'svg-to-png': 'svg-to-png.app', rotate: 'rotate.app', crop: 'crop.app', compress: 'compress.app', 'pdf-info': 'pdf-info.app', 'remove-metadata': 'remove-metadata.app', 'remove-blank': 'remove-blank.app', 'add-margin': 'add-margin.app', 'extract-text': 'extract-text.app' };
 const APP_DESC = {
   merge: '여러 PDF를 순서대로 끌어다 하나로. 과제 묶음, 보고서 취합, 스캔본 결합까지 한 번에 끝냅니다.',
   split: '한 파일을 여러 개로. 자르는 지점을 눌러 필요한 부분만 깔끔하게 나눕니다.',
@@ -151,12 +171,17 @@ const APP_DESC = {
   crop: '페이지 사방의 넓은 여백을 적게·보통·많이로 잘라내 내용에 맞게 정리해요. 글자·화질은 그대로 보존합니다.',
   compress: '스캔본·사진이 많은 PDF의 용량을 줄여요. 메일 첨부나 제출 사이트의 용량 제한에 맞출 때 좋습니다.',
   'pdf-info': '페이지 수·용량·크기·제목·작성자·잠김 여부를 표로 한눈에. 파일은 바꾸지 않고 정보만 읽어요.',
+  'remove-metadata': '제목·작성자·생성 프로그램 등 PDF에 숨은 문서 속성을 모두 비워 개인정보 흔적을 지워요. 본문은 그대로.',
+  'remove-blank': '스캔에 섞인 빈 페이지를 자동으로 찾아 제거해 새 PDF로. 양면 스캔의 빈 뒷면 정리에 좋아요.',
+  'add-margin': '모든 페이지 둘레에 흰 여백을 더해요. 제본 여백·필기 공간·가장자리 잘림 방지에 좋습니다.',
+  'extract-text': 'PDF 속 글자를 .txt로 뽑아 복사·검색·재활용. 사진처럼 스캔된 PDF는 글자가 없어 제외(OCR 아님).',
 };
 const APP_SHORT = {
   merge: '여러 PDF를 하나로', split: '한 파일을 여러 개로', unlock: '비밀번호·제한 해제',
   extract: '원하는 페이지만 추출', delete: '불필요한 페이지 삭제', organize: '순서·회전·삭제 한 번에', 'to-image': 'JPG·PNG로 변환', 'page-numbers': '페이지 번호 넣기',
   'image-to-pdf': 'JPG·PNG를 PDF로', 'svg-to-png': 'SVG를 PNG로',
   rotate: '페이지 회전', crop: '여백 제거', compress: '용량 줄이기', 'pdf-info': '문서 정보 보기',
+  'remove-metadata': '개인정보 제거', 'remove-blank': '빈 페이지 제거', 'add-margin': '여백 추가', 'extract-text': '텍스트 추출',
 };
 // 태블릿 대시보드 타일 색(도구별 컬러 구분)
 const TILE_COLOR = {
@@ -319,6 +344,36 @@ function optCompress() {
 function optInfo() {
   return `<div class="options">
   <p class="option__hint" style="margin:0">PDF를 올리면 페이지 수·용량·크기·메타데이터·잠김 여부를 표로 보여줘요. 파일을 바꾸거나 저장하지 않습니다.</p>
+</div>`;
+}
+function optRemoveMeta() {
+  return `<div class="options">
+  <p class="option__hint" style="margin:0 0 4px">제목·작성자·생성 프로그램·키워드 등 숨은 문서 속성을 모두 비웁니다. 본문 내용은 그대로 유지돼요.</p>
+  ${optOutName('개인정보제거-PDF')}
+</div>`;
+}
+function optRemoveBlank() {
+  return `<div class="options">
+  <p class="option__hint" style="margin:0 0 4px">거의 흰 페이지를 자동으로 찾아 제거합니다. 아주 옅은 내용은 빈 페이지로 볼 수 있으니 결과를 확인하세요.</p>
+  ${optOutName('빈페이지제거-PDF')}
+</div>`;
+}
+function optAddMargin() {
+  return `<div class="options">
+  <div class="option">
+    <span class="option__label">여백 너비</span>
+    <div class="segmented" role="radiogroup" aria-label="여백 너비">
+      <label><input type="radio" name="mg-amt" value="small"><span>좁게</span></label>
+      <label><input type="radio" name="mg-amt" value="medium" checked><span>보통</span></label>
+      <label><input type="radio" name="mg-amt" value="large"><span>넓게</span></label>
+    </div>
+  </div>
+  ${optOutName('여백추가-PDF')}
+</div>`;
+}
+function optExtractText() {
+  return `<div class="options">
+  <p class="option__hint" style="margin:0">PDF 속 글자를 .txt 파일로 뽑아요. 사진처럼 스캔된 PDF(이미지)는 글자가 없어 추출되지 않아요(OCR 아님).</p>
 </div>`;
 }
 function optConv(conv) {
