@@ -614,19 +614,17 @@ body.ws-app-open .ws-scrim { opacity: 1; pointer-events: auto; }
 
 /* ===== 가로 아코디언: 정사각 카테고리 타일 + 클릭하면 도구가 타일 옆으로 분신술 촤라락 ===== */
 .ws-cats { display: flex; flex-direction: column; gap: 10px; }
-.ws-cat-row { display: flex; align-items: center; gap: 12px; min-width: 0; }
-.ws-cattile { flex: 0 0 auto; width: 118px; aspect-ratio: 1 / 1; position: relative; display: flex; flex-direction: column; gap: 3px; padding: 13px; text-align: left; background: #fff; border: 1px solid var(--line-2); border-radius: 14px; cursor: pointer; font-family: inherit; color: var(--ink); box-shadow: 0 1px 2px rgba(23, 23, 42, .04), 0 4px 11px rgba(23, 23, 42, .05); transition: transform var(--d-hover) var(--ez), box-shadow var(--d-hover) var(--ez), border-color var(--d-hover) var(--ez); }
+.ws-cat-row { display: flex; align-items: flex-start; gap: 12px; min-width: 0; }
+.ws-cattile { flex: 0 0 auto; width: 132px; position: relative; display: flex; flex-direction: column; gap: 7px; padding: 12px 14px; text-align: left; background: #fff; border: 1px solid var(--line-2); border-radius: 13px; cursor: pointer; font-family: inherit; color: var(--ink); box-shadow: 0 1px 2px rgba(23, 23, 42, .04), 0 4px 11px rgba(23, 23, 42, .05); transition: transform var(--d-hover) var(--ez), box-shadow var(--d-hover) var(--ez), border-color var(--d-hover) var(--ez); }
 .ws-cattile:hover { transform: translateY(-2px); box-shadow: 0 2px 4px rgba(23, 23, 42, .05), 0 10px 22px rgba(23, 23, 42, .1); }
 .ws-cattile.is-active { border-color: var(--red); box-shadow: 0 2px 4px rgba(229, 37, 42, .1), 0 10px 22px rgba(229, 37, 42, .14); }
 .ws-cattile__count { align-self: flex-start; min-width: 21px; height: 21px; display: inline-grid; place-items: center; padding: 0 6px; font-size: 11.5px; font-weight: 700; color: var(--red-deep); background: var(--grad-soft); border-radius: var(--pill); font-variant-numeric: tabular-nums; }
 .ws-cattile.is-active .ws-cattile__count { color: #fff; background: var(--red); }
-.ws-cattile__title { margin-top: auto; font-family: var(--font); font-weight: 700; font-size: .92rem; letter-spacing: -.018em; line-height: 1.2; color: var(--ink); word-break: keep-all; }
+.ws-cattile__title { font-family: var(--font); font-weight: 700; font-size: .92rem; letter-spacing: -.018em; line-height: 1.2; color: var(--ink); word-break: keep-all; }
 /* 옆으로 펼쳐지는 도구 — 활성 행만 */
 .ws-cat-tools { flex: 1 1 0; min-width: 0; }
 .ws-cat-row:not(.is-active) .ws-cat-tools { display: none; }
-.ws-cat-tools .ws-shelf { display: flex; gap: 10px; overflow-x: auto; padding: 2px 2px 8px; scrollbar-width: thin; scrollbar-color: var(--line-2) transparent; }
-.ws-cat-tools .ws-shelf::-webkit-scrollbar { height: 6px; }
-.ws-cat-tools .ws-shelf::-webkit-scrollbar-thumb { background: var(--line-2); border-radius: 4px; }
+.ws-cat-tools .ws-shelf { display: flex; flex-wrap: wrap; gap: 10px; padding: 2px; }
 .ws-cat-tools .ws-card { flex: 0 0 auto; width: auto; flex-direction: row; align-items: center; padding: 11px 15px; gap: 11px; border-radius: 12px; box-shadow: 0 1px 2px rgba(23, 23, 42, .04), 0 3px 10px rgba(23, 23, 42, .05); }
 .ws-cat-tools .ws-card__ico, .ws-cat-tools .ws-card__ico .ic-svg { width: 30px; height: 30px; flex-basis: 30px; }
 .ws-cat-tools .ws-card__name { font-size: .94rem; white-space: nowrap; }
