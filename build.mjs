@@ -242,6 +242,12 @@ CONVERTS.forEach((c) => {
 });
 CATEGORIES.find((x) => x.id === 'convert').slugs.push(...CONVERTS.map((c) => c.from + '-to-' + c.to));
 Object.assign(TOOL_BY, Object.fromEntries(TOOLS.map((t) => [t.slug, t])));
+// 카드/네비에 보일 짧은 표시명 — 변환 도구는 "GIF → PNG"처럼 화살표로 한눈에
+const dispName = (slug) => {
+  const t = TOOL_BY[slug];
+  if (t && t.conv) return UP[t.conv.from] + ' → ' + UP[t.conv.to];
+  return read(slug).h1.replace(/^PDF\s*/, '');
+};
 const ARR_SVG = '<svg class="arr" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>';
 
 // 작업실 OS 태스크바 / 푸터 (rel: 홈은 '', 하위는 '../')
@@ -745,7 +751,7 @@ function widget(t, opts) {
 function related(slug, rel) {
   const others = TOOLS.filter((t) => t.slug !== slug);
   const cards = others.map((t) => `<a class="tp-rel" href="${rel}${t.slug}/">
-          <div class="tp-rel__body"><span class="tp-rel__ico">${ICONS_PDF[t.slug]}</span><div class="tp-rel__tx"><h3>${read(t.slug).h1}</h3><p>${APP_SHORT[t.slug]}</p></div><span class="tp-rel__arr" aria-hidden="true">→</span></div>
+          <div class="tp-rel__body"><span class="tp-rel__ico">${ICONS_PDF[t.slug]}</span><div class="tp-rel__tx"><h3>${esc(dispName(t.slug))}</h3><p>${APP_SHORT[t.slug]}</p></div><span class="tp-rel__arr" aria-hidden="true">→</span></div>
         </a>`).join('\n        ');
   return `    <section class="tp-related" id="related">
       <div class="ws-wrap">
@@ -905,7 +911,7 @@ function buildHome() {
 
   const card = (slug, i) => `<a class="ws-card" href="${slug}/" style="--i:${i}">
           <span class="ws-card__ico">${ICONS_PDF[slug]}</span>
-          <span class="ws-card__tx"><span class="ws-card__name">${esc(read(slug).h1.replace(/^PDF\s*/, ''))}</span><span class="ws-card__desc">${esc(APP_DESC[slug] || '')}</span></span>
+          <span class="ws-card__tx"><span class="ws-card__name">${esc(dispName(slug))}</span><span class="ws-card__desc">${esc(APP_DESC[slug] || '')}</span></span>
         </a>`;
   const catRows = CATEGORIES.map((cat, ci) => `        <div class="ws-cat-row${ci === 0 ? ' is-active' : ''}" data-cat="${cat.id}">
           <button class="ws-cattile${ci === 0 ? ' is-active' : ''}" type="button" data-cat="${cat.id}" aria-expanded="${ci === 0 ? 'true' : 'false'}">

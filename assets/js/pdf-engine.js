@@ -542,12 +542,27 @@
   // ── 개인정보(메타데이터) 제거 ──────────────────────────────
   async function removeMetadata(file) {
     var doc = await loadDoc(file);
+    var lib = L(), PDFName = lib.PDFName, PDFDocument = lib.PDFDocument;
     try {
       doc.setTitle(''); doc.setAuthor(''); doc.setSubject(''); doc.setKeywords([]);
       doc.setProducer(''); doc.setCreator('');
     } catch (e) {}
-    try { var PDFName = L().PDFName; doc.catalog.delete(PDFName.of('Metadata')); } catch (e) {}
-    return toBlob(await doc.save());
+    // Info 딕셔너리의 식별·날짜 키를 통째로 제거
+    try {
+      var info = doc.getInfoDict();
+      ['Producer', 'Creator', 'Title', 'Author', 'Subject', 'Keywords', 'CreationDate', 'ModDate']
+        .forEach(function (k) { try { info.delete(PDFName.of(k)); } catch (e) {} });
+    } catch (e) {}
+    // XMP 메타데이터 스트림 제거
+    try { doc.catalog.delete(PDFName.of('Metadata')); } catch (e) {}
+    // ⚠ pdf-lib는 save() 때 updateInfoDict()로 Producer="pdf-lib..."와 ModDate를 강제 재주입한다.
+    //    저장 동안만 무력화해 진짜로 비운 상태를 유지한다.
+    var orig = PDFDocument && PDFDocument.prototype && PDFDocument.prototype.updateInfoDict;
+    try { if (orig) PDFDocument.prototype.updateInfoDict = function () {}; } catch (e) {}
+    var bytes;
+    try { bytes = await doc.save(); }
+    finally { try { if (orig) PDFDocument.prototype.updateInfoDict = orig; } catch (e) {} }
+    return toBlob(bytes);
   }
 
   // ── 빈 페이지 제거 ─────────────────────────────────────────
