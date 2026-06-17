@@ -47,6 +47,9 @@ const ICONS = {
   blankpage: IC('<path d="M14 3.5H7.5a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h9a2 2 0 0 0 2-2V8l-5-4.5z"/><path d="M14 3.5V8h5"/><path d="M9.5 15.5h5"/>'),
   margin: IC('<rect x="3.5" y="3.5" width="17" height="17" rx="2"/><rect x="7.5" y="7.5" width="9" height="9" rx="1" stroke-dasharray="2.2 2"/>'),
   text: IC('<path d="M14 3.5H7.5a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h9a2 2 0 0 0 2-2V8l-5-4.5z"/><path d="M14 3.5V8h5"/><path d="M8.5 12h7M8.5 15h7M8.5 9h3"/>'),
+  reverse: IC('<path d="M7 8h10M7 8l3-3M7 8l3 3"/><path d="M17 16H7M17 16l-3-3M17 16l-3 3"/>'),
+  grayscale: IC('<circle cx="12" cy="12" r="8.5"/><path d="M12 3.5a8.5 8.5 0 0 1 0 17z" fill="currentColor" stroke="none"/>'),
+  nup: IC('<rect x="3.8" y="3.8" width="7" height="7" rx="1.2"/><rect x="13.2" y="3.8" width="7" height="7" rx="1.2"/><rect x="3.8" y="13.2" width="7" height="7" rx="1.2"/><rect x="13.2" y="13.2" width="7" height="7" rx="1.2"/>'),
 };
 const DOT_SVG = '<svg class="pill-dot" viewBox="0 0 8 8" aria-hidden="true"><circle cx="4" cy="4" r="4" fill="currentColor"/></svg>';
 
@@ -74,6 +77,9 @@ const ICONS_PDF = {
   'remove-blank': pdfSvg(pdfPage(1) + pdfBadge(17.4, 17.4, '#f59e0b', '<path d="M15.4 17.4h4" stroke="#fff" stroke-width="1.7" stroke-linecap="round"/>')),
   'add-margin': pdfSvg(pdfPage(2) + pdfBadge(17.4, 17.4, '#0d9488', '<rect x="15.3" y="15.3" width="4.2" height="4.2" rx=".6" fill="none" stroke="#fff" stroke-width="1.05" stroke-dasharray="1.6 1.2"/>')),
   'extract-text': pdfSvg(pdfPage(2) + pdfBadge(17.4, 17.4, '#2f6df6', '<path d="M15.6 15.9h3.6M15.9 17.5h3M16.1 19h2.6" stroke="#fff" stroke-width="1" stroke-linecap="round"/>')),
+  reverse: pdfSvg(pdfPage(2) + pdfBadge(17.4, 17.4, '#2f6df6', '<path d="M16 16l1.4-1.4 1.4 1.4M17.4 14.7v2.2M18.8 18.8l-1.4 1.4-1.4-1.4M17.4 20.3v-2.2" fill="none" stroke="#fff" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>')),
+  grayscale: pdfSvg(pdfPage(2) + pdfBadge(17.4, 17.4, '#2b303b', '<circle cx="17.4" cy="17.4" r="2.7" fill="none" stroke="#fff" stroke-width="1"/><path d="M17.4 14.7a2.7 2.7 0 0 1 0 5.4z" fill="#fff"/>')),
+  nup: pdfSvg(pdfPage(1) + pdfBadge(17.4, 17.4, '#0d9488', '<rect x="15.5" y="15.5" width="1.5" height="1.5" rx=".2" fill="#fff"/><rect x="17.8" y="15.5" width="1.5" height="1.5" rx=".2" fill="#fff"/><rect x="15.5" y="17.8" width="1.5" height="1.5" rx=".2" fill="#fff"/><rect x="17.8" y="17.8" width="1.5" height="1.5" rx=".2" fill="#fff"/>')),
 };
 
 // ───────── 유틸 ─────────
@@ -140,22 +146,31 @@ const TOOLS = [
   { slug: 'extract-text', icon: ICONS.text, nav: '텍스트 추출', multiple: false,
     runLabel: '텍스트 추출하기', dropTitle: '글자를 뽑을 PDF를 끌어다 놓으세요', pagecount: true,
     feature: ['글자를 .txt로', '복사·검색·재활용', 'OCR 아님'], options: optExtractText() },
+  { slug: 'reverse', icon: ICONS.reverse, nav: '페이지 역순', multiple: false,
+    runLabel: '역순으로 만들기', dropTitle: '순서를 뒤집을 PDF를 끌어다 놓으세요', pagecount: true,
+    feature: ['페이지 순서 거꾸로', '마지막→처음', '원본 보존'], options: optReverse() },
+  { slug: 'grayscale', icon: ICONS.grayscale, nav: '흑백 변환', multiple: false,
+    runLabel: '흑백으로 변환하기', dropTitle: '흑백으로 바꿀 PDF를 끌어다 놓으세요', pagecount: true,
+    feature: ['컬러→흑백', '용량 줄이기', '흑백 인쇄용'], options: optGrayscale() },
+  { slug: 'nup', icon: ICONS.nup, nav: '모아찍기', multiple: false,
+    runLabel: '모아찍기', dropTitle: '모아찍을 PDF를 끌어다 놓으세요', pagecount: true,
+    feature: ['2·4쪽 한 장에', '종이 절약', '핸드아웃'], options: optNup() },
 ];
 const TOOL_BY = Object.fromEntries(TOOLS.map((t) => [t.slug, t]));
 
 // ───────── 카테고리(카탈로그) ─────────
 const CATEGORIES = [
-  { id: 'organize', title: 'PDF 구성', desc: '여러 PDF를 합치고, 나누고, 페이지를 자유롭게 정리하세요.', slugs: ['merge', 'split', 'organize', 'extract', 'delete', 'page-numbers'] },
+  { id: 'organize', title: 'PDF 구성', desc: '여러 PDF를 합치고, 나누고, 페이지를 자유롭게 정리하세요.', slugs: ['merge', 'split', 'organize', 'extract', 'delete', 'page-numbers', 'reverse', 'nup'] },
   { id: 'convert', title: 'PDF 변환', desc: 'PDF와 이미지를 서로 바꾸세요. 모두 내 브라우저에서 처리됩니다.', slugs: ['to-image', 'image-to-pdf', 'svg-to-png'] },
   { id: 'security', title: 'PDF 보안', desc: '비밀번호·편집 제한을 풀고, 개인정보를 지워 안전하게.', slugs: ['unlock', 'remove-metadata'] },
-  { id: 'optimize', title: 'PDF 최적화', desc: '용량을 줄이고 빈 페이지를 정리해 가볍게.', slugs: ['compress', 'remove-blank'] },
+  { id: 'optimize', title: 'PDF 최적화', desc: '용량을 줄이고 빈 페이지를 정리해 가볍게.', slugs: ['compress', 'remove-blank', 'grayscale'] },
   { id: 'edit', title: 'PDF 편집', desc: '방향·여백·자르기로 문서를 보기 좋게 다듬으세요.', slugs: ['rotate', 'crop', 'add-margin'] },
   { id: 'analyze', title: 'PDF 분석', desc: '문서 정보를 확인하고 글자를 텍스트로 뽑으세요.', slugs: ['pdf-info', 'extract-text'] },
 ];
 
 // 작업실 OS 공용 자원 (홈 + 도구 상세 공통)
 const CHIP = '<svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4"/></svg>';
-const APP_FILE = { merge: 'merge.app', split: 'split.app', unlock: 'unlock.app', extract: 'extract.app', delete: 'delete.app', organize: 'organize.app', 'to-image': 'to-image.app', 'page-numbers': 'page-num.app', 'image-to-pdf': 'img-to-pdf.app', 'svg-to-png': 'svg-to-png.app', rotate: 'rotate.app', crop: 'crop.app', compress: 'compress.app', 'pdf-info': 'pdf-info.app', 'remove-metadata': 'remove-metadata.app', 'remove-blank': 'remove-blank.app', 'add-margin': 'add-margin.app', 'extract-text': 'extract-text.app' };
+const APP_FILE = { merge: 'merge.app', split: 'split.app', unlock: 'unlock.app', extract: 'extract.app', delete: 'delete.app', organize: 'organize.app', 'to-image': 'to-image.app', 'page-numbers': 'page-num.app', 'image-to-pdf': 'img-to-pdf.app', 'svg-to-png': 'svg-to-png.app', rotate: 'rotate.app', crop: 'crop.app', compress: 'compress.app', 'pdf-info': 'pdf-info.app', 'remove-metadata': 'remove-metadata.app', 'remove-blank': 'remove-blank.app', 'add-margin': 'add-margin.app', 'extract-text': 'extract-text.app', reverse: 'reverse.app', grayscale: 'grayscale.app', nup: 'nup.app' };
 const APP_DESC = {
   merge: '여러 PDF를 순서대로 끌어다 하나로. 과제 묶음, 보고서 취합, 스캔본 결합까지 한 번에 끝냅니다.',
   split: '한 파일을 여러 개로. 자르는 지점을 눌러 필요한 부분만 깔끔하게 나눕니다.',
@@ -175,6 +190,9 @@ const APP_DESC = {
   'remove-blank': '스캔에 섞인 빈 페이지를 자동으로 찾아 제거해 새 PDF로. 양면 스캔의 빈 뒷면 정리에 좋아요.',
   'add-margin': '모든 페이지 둘레에 흰 여백을 더해요. 제본 여백·필기 공간·가장자리 잘림 방지에 좋습니다.',
   'extract-text': 'PDF 속 글자를 .txt로 뽑아 복사·검색·재활용. 사진처럼 스캔된 PDF는 글자가 없어 제외(OCR 아님).',
+  reverse: 'PDF 페이지 순서를 거꾸로 뒤집어 새 PDF로. 마지막 페이지가 처음으로 — 거꾸로 스캔된 문서 바로잡기에.',
+  grayscale: '컬러 PDF를 흑백으로. 용량을 줄이고 흑백 인쇄에 맞춰요. 글자가 이미지로 바뀌어 선택은 안 될 수 있어요.',
+  nup: '여러 페이지를 한 장에 2·4쪽씩 모아 배치해요. 인쇄 종이 절약, 핸드아웃 만들기에 좋습니다.',
 };
 const APP_SHORT = {
   merge: '여러 PDF를 하나로', split: '한 파일을 여러 개로', unlock: '비밀번호·제한 해제',
@@ -182,6 +200,7 @@ const APP_SHORT = {
   'image-to-pdf': 'JPG·PNG를 PDF로', 'svg-to-png': 'SVG를 PNG로',
   rotate: '페이지 회전', crop: '여백 제거', compress: '용량 줄이기', 'pdf-info': '문서 정보 보기',
   'remove-metadata': '개인정보 제거', 'remove-blank': '빈 페이지 제거', 'add-margin': '여백 추가', 'extract-text': '텍스트 추출',
+  reverse: '페이지 역순', grayscale: '흑백 변환', nup: '모아찍기',
 };
 // 태블릿 대시보드 타일 색(도구별 컬러 구분)
 const TILE_COLOR = {
@@ -190,8 +209,12 @@ const TILE_COLOR = {
 };
 
 // ───────── 이미지 변환 도구 자동 생성 (JPG/PNG/WEBP/SVG 상호변환) ─────────
-const UP = { jpg: 'JPG', png: 'PNG', webp: 'WEBP', svg: 'SVG' };
+const UP = { jpg: 'JPG', png: 'PNG', webp: 'WEBP', svg: 'SVG', gif: 'GIF', avif: 'AVIF' };
 const CONVERTS = [
+  { from: 'gif', to: 'png', feat: ['첫 장면 정지', '투명 유지'], desc: '움직이는 GIF의 첫 장면을 PNG로. 무손실·투명 유지. 어디서나 열리는 정지 이미지로.' },
+  { from: 'gif', to: 'jpg', feat: ['첫 장면 정지', '용량↓'], desc: 'GIF를 가벼운 JPG로. 움직이는 GIF는 첫 장면만, 투명은 흰 배경 처리.' },
+  { from: 'avif', to: 'png', feat: ['어디서나 열림', '투명 유지'], desc: '최신 AVIF를 어디서나 열리는 무손실 PNG로. 투명 배경 그대로 유지돼요.' },
+  { from: 'avif', to: 'jpg', feat: ['호환성↑', '화질 선택'], desc: 'AVIF를 호환성 좋은 JPG로. 카톡·문서·메일에 바로 올릴 수 있어요.' },
   { from: 'jpg', to: 'png', feat: ['무손실·투명', '여러 장 ZIP'], desc: 'JPG 사진을 무손실·투명 지원 PNG로. PNG만 받는 곳이나 편집·보관용으로 좋아요.' },
   { from: 'png', to: 'jpg', feat: ['용량 축소', '화질 선택'], desc: '무거운 PNG를 가벼운 JPG로. 투명 배경은 흰색으로 채워지고, 화질을 고를 수 있어요.' },
   { from: 'webp', to: 'png', feat: ['어디서나 열림', '투명 유지'], desc: '웹용 WEBP를 어디서나 열리는 무손실 PNG로. 투명 배경 그대로 유지돼요.' },
@@ -374,6 +397,30 @@ function optAddMargin() {
 function optExtractText() {
   return `<div class="options">
   <p class="option__hint" style="margin:0">PDF 속 글자를 .txt 파일로 뽑아요. 사진처럼 스캔된 PDF(이미지)는 글자가 없어 추출되지 않아요(OCR 아님).</p>
+</div>`;
+}
+function optReverse() {
+  return `<div class="options">
+  <p class="option__hint" style="margin:0 0 4px">모든 페이지의 순서를 거꾸로 뒤집어요. 마지막 페이지가 첫 페이지가 됩니다. 본문은 그대로.</p>
+  ${optOutName('역순-PDF')}
+</div>`;
+}
+function optGrayscale() {
+  return `<div class="options">
+  <p class="option__hint" style="margin:0 0 4px">컬러를 흑백으로. 각 페이지를 이미지로 다시 그리는 방식이라 글자 선택·검색은 안 될 수 있어요. 흑백 인쇄·용량 절감에 좋아요.</p>
+  ${optOutName('흑백-PDF')}
+</div>`;
+}
+function optNup() {
+  return `<div class="options">
+  <div class="option">
+    <span class="option__label">한 장에</span>
+    <div class="segmented" role="radiogroup" aria-label="한 장에 모을 쪽수">
+      <label><input type="radio" name="nup-per" value="2" checked><span>2쪽</span></label>
+      <label><input type="radio" name="nup-per" value="4"><span>4쪽</span></label>
+    </div>
+  </div>
+  ${optOutName('모아찍기-PDF')}
 </div>`;
 }
 function optConv(conv) {
@@ -662,8 +709,8 @@ function widget(t, opts) {
   opts = opts || {};
   const extraClass = opts.class ? ' ' + opts.class : '';
   const pc = t.pagecount ? `\n      <p class="pagecount js-pagecount"></p>` : '';
-  const ACC = { image: 'image/png,image/jpeg', jpg: 'image/jpeg,.jpg,.jpeg', png: 'image/png,.png', webp: 'image/webp,.webp', svg: 'image/svg+xml,.svg' };
-  const NOUN = { image: '이미지', jpg: 'JPG', png: 'PNG', webp: 'WEBP', svg: 'SVG' };
+  const ACC = { image: 'image/png,image/jpeg', jpg: 'image/jpeg,.jpg,.jpeg', png: 'image/png,.png', webp: 'image/webp,.webp', gif: 'image/gif,.gif', avif: 'image/avif,.avif', svg: 'image/svg+xml,.svg' };
+  const NOUN = { image: '이미지', jpg: 'JPG', png: 'PNG', webp: 'WEBP', gif: 'GIF', avif: 'AVIF', svg: 'SVG' };
   const accept = ACC[t.accept] || 'application/pdf';
   const noun = NOUN[t.accept] || 'PDF';
   const aria = noun + ' 파일 선택 또는 끌어다 놓기';

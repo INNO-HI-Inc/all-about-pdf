@@ -617,6 +617,81 @@
     return pages.join('\n\n');
   }
 
+  // ── 페이지 역순 ────────────────────────────────────────────
+  async function reverse(file) {
+    var PDFDocument = L().PDFDocument;
+    var src = await loadDoc(file);
+    var n = src.getPageCount();
+    var idx = [];
+    for (var i = n - 1; i >= 0; i--) idx.push(i);
+    var out = await PDFDocument.create();
+    var pages = await out.copyPages(src, idx);
+    pages.forEach(function (p) { out.addPage(p); });
+    return toBlob(await out.save());
+  }
+
+  // ── 흑백(그레이스케일) 변환 ────────────────────────────────
+  async function grayscale(file, opts, onProgress) {
+    opts = opts || {};
+    var PDFDocument = L().PDFDocument;
+    var scale = opts.scale || 1.5;
+    var quality = opts.quality != null ? opts.quality : 0.78;
+    var pdf = await loadPdfjs(file);
+    var total = pdf.numPages;
+    var out = await PDFDocument.create();
+    for (var n = 1; n <= total; n++) {
+      var page = await pdf.getPage(n);
+      var vp = page.getViewport({ scale: scale });
+      var canvas = document.createElement('canvas');
+      canvas.width = Math.floor(vp.width); canvas.height = Math.floor(vp.height);
+      var ctx = canvas.getContext('2d');
+      ctx.fillStyle = '#ffffff'; ctx.fillRect(0, 0, canvas.width, canvas.height);
+      await page.render({ canvasContext: ctx, viewport: vp }).promise;
+      try {
+        var im = ctx.getImageData(0, 0, canvas.width, canvas.height), d = im.data;
+        for (var i = 0; i < d.length; i += 4) { var g = (d[i] * 0.299 + d[i + 1] * 0.587 + d[i + 2] * 0.114) | 0; d[i] = d[i + 1] = d[i + 2] = g; }
+        ctx.putImageData(im, 0, 0);
+      } catch (e) {}
+      var blob = await canvasToBlob(canvas, 'image/jpeg', quality);
+      var bytes = new Uint8Array(await blob.arrayBuffer());
+      var img = await out.embedJpg(bytes);
+      var base = page.getViewport({ scale: 1 });
+      var pg = out.addPage([base.width, base.height]);
+      pg.drawImage(img, { x: 0, y: 0, width: base.width, height: base.height });
+      canvas.width = canvas.height = 0;
+      if (onProgress) onProgress(n / total);
+    }
+    return toBlob(await out.save());
+  }
+
+  // ── 모아찍기 (N-up: 2쪽/4쪽을 한 장에) ─────────────────────
+  async function nup(file, per, onProgress) {
+    var PDFDocument = L().PDFDocument;
+    var srcBytes = await readArrayBuffer(file);
+    var src = await PDFDocument.load(srcBytes, { ignoreEncryption: true });
+    var out = await PDFDocument.create();
+    var embeds = await out.embedPdf(srcBytes, src.getPageIndices());
+    var p = per === 4 ? 4 : 2;
+    var cols = p === 4 ? 2 : 1, rows = 2;
+    var first = src.getPage(0).getSize();
+    var sheetW = first.width, sheetH = first.height;
+    var cellW = sheetW / cols, cellH = sheetH / rows, pad = 10;
+    var sheet = null;
+    for (var i = 0; i < embeds.length; i++) {
+      var slot = i % p;
+      if (slot === 0) sheet = out.addPage([sheetW, sheetH]);
+      var col = slot % cols, row = Math.floor(slot / cols);
+      var e = embeds[i], ew = e.width, eh = e.height;
+      var sc = Math.min((cellW - 2 * pad) / ew, (cellH - 2 * pad) / eh);
+      var dw = ew * sc, dh = eh * sc;
+      var cx = col * cellW + (cellW - dw) / 2;
+      var cy = sheetH - (row + 1) * cellH + (cellH - dh) / 2;
+      sheet.drawPage(e, { x: cx, y: cy, width: dw, height: dh });
+      if (onProgress) onProgress((i + 1) / embeds.length);
+    }
+    return toBlob(await out.save());
+  }
+
   // 페이지 썸네일 렌더링 (시각적 선택용)
   async function renderThumbs(file, opts, onProgress) {
     opts = opts || {};
@@ -692,6 +767,9 @@
     removeBlank: removeBlank,
     addMargin: addMargin,
     extractText: extractText,
+    reverse: reverse,
+    grayscale: grayscale,
+    nup: nup,
     renderThumbs: renderThumbs,
     getPageCount: getPageCount,
     isPasswordError: isPasswordError,

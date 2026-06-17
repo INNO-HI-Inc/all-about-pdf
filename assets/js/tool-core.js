@@ -434,6 +434,8 @@
       jpg: { re: /\.jpe?g$/i, mime: /^image\/jpeg$/i, label: 'JPG 이미지' },
       png: { re: /\.png$/i, mime: /^image\/png$/i, label: 'PNG 이미지' },
       webp: { re: /\.webp$/i, mime: /^image\/webp$/i, label: 'WEBP 이미지' },
+      gif: { re: /\.gif$/i, mime: /^image\/gif$/i, label: 'GIF 이미지' },
+      avif: { re: /\.avif$/i, mime: /^image\/avif$/i, label: 'AVIF 이미지' },
       svg: { re: /\.svg$/i, mime: /^image\/svg\+xml$/i, label: 'SVG 파일' },
       pdf: { re: /\.pdf$/i, mime: /^application\/pdf$/i, label: 'PDF 파일' }
     };
