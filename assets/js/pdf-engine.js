@@ -759,6 +759,33 @@
     }
   }
 
+  // ── 서명/도장 배치 ───────────────────────────────────────
+  // placements: [{ page:0기준, dataUrl, x, y, w, h }] — x,y,w,h는 이미 PDF 좌표(pt, 좌하단 기준).
+  // 화면→PDF 좌표 변환은 sign.js가 pdf.js viewport.convertToPdfPoint로 처리해 회전까지 정확.
+  async function placeSignatures(file, placements, onProgress) {
+    if (!placements || !placements.length) throw new Error('추가된 서명이 없어요. 서명을 만들어 페이지에 올려 주세요.');
+    var src = await loadDoc(file);
+    var total = placements.length;
+    var cache = {};
+    for (var i = 0; i < placements.length; i++) {
+      var pl = placements[i];
+      var page = src.getPage(pl.page);
+      var img = cache[pl.dataUrl];
+      if (!img) {
+        var c = pl.dataUrl.indexOf(',');
+        var meta = pl.dataUrl.substring(0, c);
+        var bin = atob(pl.dataUrl.substring(c + 1));
+        var bytes = new Uint8Array(bin.length);
+        for (var j = 0; j < bin.length; j++) bytes[j] = bin.charCodeAt(j);
+        img = /image\/png/i.test(meta) ? await src.embedPng(bytes) : await src.embedJpg(bytes);
+        cache[pl.dataUrl] = img;
+      }
+      page.drawImage(img, { x: pl.x, y: pl.y, width: pl.w, height: pl.h });
+      if (onProgress) onProgress((i + 1) / total);
+    }
+    return toBlob(await src.save());
+  }
+
   global.PDFEngine = {
     merge: merge,
     splitEach: splitEach,
@@ -785,6 +812,8 @@
     reverse: reverse,
     grayscale: grayscale,
     nup: nup,
+    placeSignatures: placeSignatures,
+    loadPdfjs: loadPdfjs,
     renderThumbs: renderThumbs,
     getPageCount: getPageCount,
     isPasswordError: isPasswordError,

@@ -50,6 +50,7 @@ const ICONS = {
   reverse: IC('<path d="M7 8h10M7 8l3-3M7 8l3 3"/><path d="M17 16H7M17 16l-3-3M17 16l-3 3"/>'),
   grayscale: IC('<circle cx="12" cy="12" r="8.5"/><path d="M12 3.5a8.5 8.5 0 0 1 0 17z" fill="currentColor" stroke="none"/>'),
   nup: IC('<rect x="3.8" y="3.8" width="7" height="7" rx="1.2"/><rect x="13.2" y="3.8" width="7" height="7" rx="1.2"/><rect x="3.8" y="13.2" width="7" height="7" rx="1.2"/><rect x="13.2" y="13.2" width="7" height="7" rx="1.2"/>'),
+  sign: IC('<path d="M4 16.8c2-.3 3-1.2 4.6-3.9.8-1.4 1.6-2.9 2.4-2.9.6 0 .7.7.4 1.6-.4 1.2-.9 2 0 2.5.7.4 1.6-.2 2.3-1.1"/><path d="M15.2 4.2l4.6 4.6"/><path d="M3.5 20.5h17"/>'),
 };
 const DOT_SVG = '<svg class="pill-dot" viewBox="0 0 8 8" aria-hidden="true"><circle cx="4" cy="4" r="4" fill="currentColor"/></svg>';
 
@@ -80,6 +81,7 @@ const ICONS_PDF = {
   reverse: pdfSvg(pdfPage(2) + pdfBadge(17.4, 17.4, '#2f6df6', '<path d="M16 16l1.4-1.4 1.4 1.4M17.4 14.7v2.2M18.8 18.8l-1.4 1.4-1.4-1.4M17.4 20.3v-2.2" fill="none" stroke="#fff" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>')),
   grayscale: pdfSvg(pdfPage(2) + pdfBadge(17.4, 17.4, '#2b303b', '<circle cx="17.4" cy="17.4" r="2.7" fill="none" stroke="#fff" stroke-width="1"/><path d="M17.4 14.7a2.7 2.7 0 0 1 0 5.4z" fill="#fff"/>')),
   nup: pdfSvg(pdfPage(1) + pdfBadge(17.4, 17.4, '#0d9488', '<rect x="15.5" y="15.5" width="1.5" height="1.5" rx=".2" fill="#fff"/><rect x="17.8" y="15.5" width="1.5" height="1.5" rx=".2" fill="#fff"/><rect x="15.5" y="17.8" width="1.5" height="1.5" rx=".2" fill="#fff"/><rect x="17.8" y="17.8" width="1.5" height="1.5" rx=".2" fill="#fff"/>')),
+  sign: pdfSvg(pdfPage(2) + pdfBadge(17.4, 17.4, '#db2777', '<path d="M15.4 19.1c1-.1 1.5-.7 2.2-2 .25-.45.5-.85.75-.85.2 0 .25.3.05.7-.18.36-.1.62.18.72" fill="none" stroke="#fff" stroke-width="1.05" stroke-linecap="round" stroke-linejoin="round"/><path d="M15.2 20.4h4.3" stroke="#fff" stroke-width="1.05" stroke-linecap="round"/>')),
 };
 
 // ───────── 유틸 ─────────
@@ -155,6 +157,9 @@ const TOOLS = [
   { slug: 'nup', icon: ICONS.nup, nav: '모아찍기', multiple: false,
     runLabel: '모아찍기', dropTitle: '모아찍을 PDF를 끌어다 놓으세요', pagecount: true,
     feature: ['2·4쪽 한 장에', '종이 절약', '핸드아웃'], options: optNup() },
+  { slug: 'sign', icon: ICONS.sign, nav: '서명 넣기', multiple: false, script: 'sign',
+    runLabel: '서명 적용 후 다운로드', dropTitle: '서명할 PDF를 끌어다 놓으세요', pagecount: false,
+    feature: ['그리기·이미지·타이핑', '미리보기에 드래그 배치', '도장·사인 모두'], options: optSign() },
 ];
 const TOOL_BY = Object.fromEntries(TOOLS.map((t) => [t.slug, t]));
 
@@ -164,13 +169,13 @@ const CATEGORIES = [
   { id: 'convert', title: 'PDF 변환', desc: 'PDF와 이미지를 서로 바꾸세요. 모두 내 브라우저에서 처리됩니다.', slugs: ['to-image', 'image-to-pdf', 'svg-to-png'] },
   { id: 'security', title: 'PDF 보안', desc: '비밀번호·편집 제한을 풀고, 개인정보를 지워 안전하게.', slugs: ['unlock', 'remove-metadata'] },
   { id: 'optimize', title: 'PDF 최적화', desc: '용량을 줄이고 빈 페이지를 정리해 가볍게.', slugs: ['compress', 'remove-blank', 'grayscale'] },
-  { id: 'edit', title: 'PDF 편집', desc: '방향·여백·자르기로 문서를 보기 좋게 다듬으세요.', slugs: ['rotate', 'crop', 'add-margin'] },
+  { id: 'edit', title: 'PDF 편집', desc: '방향·여백·자르기·서명으로 문서를 보기 좋게 다듬으세요.', slugs: ['rotate', 'crop', 'add-margin', 'sign'] },
   { id: 'analyze', title: 'PDF 분석', desc: '문서 정보를 확인하고 글자를 텍스트로 뽑으세요.', slugs: ['pdf-info', 'extract-text'] },
 ];
 
 // 작업실 OS 공용 자원 (홈 + 도구 상세 공통)
 const CHIP = '<svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4"/></svg>';
-const APP_FILE = { merge: 'merge.app', split: 'split.app', unlock: 'unlock.app', extract: 'extract.app', delete: 'delete.app', organize: 'organize.app', 'to-image': 'to-image.app', 'page-numbers': 'page-num.app', 'image-to-pdf': 'img-to-pdf.app', 'svg-to-png': 'svg-to-png.app', rotate: 'rotate.app', crop: 'crop.app', compress: 'compress.app', 'pdf-info': 'pdf-info.app', 'remove-metadata': 'remove-metadata.app', 'remove-blank': 'remove-blank.app', 'add-margin': 'add-margin.app', 'extract-text': 'extract-text.app', reverse: 'reverse.app', grayscale: 'grayscale.app', nup: 'nup.app' };
+const APP_FILE = { merge: 'merge.app', split: 'split.app', unlock: 'unlock.app', extract: 'extract.app', delete: 'delete.app', organize: 'organize.app', 'to-image': 'to-image.app', 'page-numbers': 'page-num.app', 'image-to-pdf': 'img-to-pdf.app', 'svg-to-png': 'svg-to-png.app', rotate: 'rotate.app', crop: 'crop.app', compress: 'compress.app', 'pdf-info': 'pdf-info.app', 'remove-metadata': 'remove-metadata.app', 'remove-blank': 'remove-blank.app', 'add-margin': 'add-margin.app', 'extract-text': 'extract-text.app', reverse: 'reverse.app', grayscale: 'grayscale.app', nup: 'nup.app', sign: 'sign.app' };
 const APP_DESC = {
   merge: '여러 PDF를 순서대로 끌어다 하나로. 과제 묶음, 보고서 취합, 스캔본 결합까지 한 번에 끝냅니다.',
   split: '한 파일을 여러 개로. 자르는 지점을 눌러 필요한 부분만 깔끔하게 나눕니다.',
@@ -193,6 +198,7 @@ const APP_DESC = {
   reverse: 'PDF 페이지 순서를 거꾸로 뒤집어 새 PDF로. 마지막 페이지가 처음으로 — 거꾸로 스캔된 문서 바로잡기에.',
   grayscale: '컬러 PDF를 흑백으로. 용량을 줄이고 흑백 인쇄에 맞춰요. 글자가 이미지로 바뀌어 선택은 안 될 수 있어요.',
   nup: '여러 페이지를 한 장에 2·4쪽씩 모아 배치해요. 인쇄 종이 절약, 핸드아웃 만들기에 좋습니다.',
+  sign: '사인을 직접 그리거나 도장·사인 이미지를 올리거나 이름을 입력해 만들고, 미리보기에서 원하는 위치에 끌어다 놓아요. 계약서·동의서에 서명을 넣을 때 파일을 어디에도 올리지 않아 안전합니다.',
 };
 const APP_SHORT = {
   merge: '여러 PDF를 하나로', split: '한 파일을 여러 개로', unlock: '비밀번호·제한 해제',
@@ -200,7 +206,7 @@ const APP_SHORT = {
   'image-to-pdf': 'JPG·PNG를 PDF로', 'svg-to-png': 'SVG를 PNG로',
   rotate: '페이지 회전', crop: '여백 제거', compress: '용량 줄이기', 'pdf-info': '문서 정보 보기',
   'remove-metadata': '개인정보 제거', 'remove-blank': '빈 페이지 제거', 'add-margin': '여백 추가', 'extract-text': '텍스트 추출',
-  reverse: '페이지 역순', grayscale: '흑백 변환', nup: '모아찍기',
+  reverse: '페이지 역순', grayscale: '흑백 변환', nup: '모아찍기', sign: '서명·도장 넣기',
 };
 // 태블릿 대시보드 타일 색(도구별 컬러 구분)
 const TILE_COLOR = {
@@ -427,6 +433,47 @@ function optNup() {
     </div>
   </div>
   ${optOutName('모아찍기-PDF')}
+</div>`;
+}
+function optSign() {
+  return `<div class="options sign-panel">
+  <p class="option__hint" style="margin:0 0 10px">사인을 그리거나, 도장·사인 이미지를 올리거나, 이름을 입력해 만든 뒤 <b>오른쪽 미리보기에 끌어다</b> 놓으세요. 모서리를 끌면 크기가 바뀝니다.</p>
+  <div class="sign-tabs" role="tablist">
+    <button type="button" class="sign-tab is-active" data-sigtab="draw" role="tab" aria-selected="true">✍️ 그리기</button>
+    <button type="button" class="sign-tab" data-sigtab="upload" role="tab" aria-selected="false">🖼 이미지</button>
+    <button type="button" class="sign-tab" data-sigtab="type" role="tab" aria-selected="false">⌨️ 타이핑</button>
+  </div>
+  <div class="sign-pane" data-pane="draw">
+    <canvas class="js-sig-draw sign-draw" width="560" height="180" aria-label="여기에 서명을 그리세요"></canvas>
+    <div class="sign-ctl">
+      <span class="sign-pens" role="radiogroup" aria-label="펜 색">
+        <label><input type="radio" name="sig-pen" value="#16233a" checked><span class="pen" style="background:#16233a"></span></label>
+        <label><input type="radio" name="sig-pen" value="#1d4ed8"><span class="pen" style="background:#1d4ed8"></span></label>
+        <label><input type="radio" name="sig-pen" value="#dc2626"><span class="pen" style="background:#dc2626"></span></label>
+      </span>
+      <button type="button" class="btn btn--ghost btn--sm js-sig-clear">지우기</button>
+      <button type="button" class="btn btn--sm js-sig-usedraw">이 서명 사용</button>
+    </div>
+  </div>
+  <div class="sign-pane" data-pane="upload" hidden>
+    <label class="sign-upload"><input type="file" class="js-sig-img" accept="image/png,image/jpeg,.png,.jpg,.jpeg" hidden><span class="dropzone__btn">이미지 선택 (PNG·JPG)</span></label>
+    <p class="option__hint" style="margin:10px 0 0">투명 배경 PNG(도장·사인)를 권장해요. 흰 배경 이미지는 사각형으로 들어갑니다.</p>
+  </div>
+  <div class="sign-pane" data-pane="type" hidden>
+    <input type="text" class="js-sig-text sign-typein" maxlength="24" placeholder="이름을 입력하세요" aria-label="서명할 이름">
+    <div class="sign-fonts" role="radiogroup" aria-label="서명 글꼴">
+      <label><input type="radio" name="sig-font" value="cursive" checked><span>영문 필기체</span></label>
+      <label><input type="radio" name="sig-font" value="jeongja"><span>정자체</span></label>
+      <label><input type="radio" name="sig-font" value="heullim"><span>흘림체</span></label>
+    </div>
+    <div class="js-sig-typeprev sign-typeprev" aria-live="polite"></div>
+    <button type="button" class="btn btn--sm js-sig-usetype" disabled>이 서명 사용</button>
+  </div>
+  <div class="sign-cur">
+    <span class="sign-cur__label">현재 서명</span>
+    <div class="js-sig-preview sign-cur__prev"><span class="sign-cur__empty">아직 없음</span></div>
+  </div>
+  <button type="button" class="btn btn--block js-sig-add sign-add" disabled>＋ 페이지에 서명 올리기</button>
 </div>`;
 }
 function optConv(conv) {

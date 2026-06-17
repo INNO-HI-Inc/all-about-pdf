@@ -22,9 +22,9 @@
   <link rel="apple-touch-icon" href="assets/img/logo.png">
   <link rel="manifest" href="site.webmanifest">
   <meta name="theme-color" content="#ffffff">
-  <link rel="stylesheet" href="assets/css/style.css?v=1781681451483">
+  <link rel="stylesheet" href="assets/css/style.css?v=1781683950528">
   <script>document.documentElement.className+=" js";</script>
-  <link rel="stylesheet" href="assets/css/workspace.css?v=1781681451483">
+  <link rel="stylesheet" href="assets/css/workspace.css?v=1781683950528">
   <script type="application/ld+json">[{"@context":"https://schema.org","@type":"WebSite","name":"PDF의 모든 것","url":"https://inno-hi-inc.github.io/all-about-pdf/","inLanguage":"ko","description":"설치도 회원가입도 없이 무료로 쓰는 PDF 도구 모음. 파일을 서버에 올리지 않고 내 브라우저에서 바로 합치기·분할·변환·잠금해제까지 처리합니다."},{"@context":"https://schema.org","@type":"Organization","name":"PDF의 모든 것","url":"https://inno-hi-inc.github.io/all-about-pdf/","sameAs":["https://github.com/INNO-HI-Inc/all-about-pdf"]}]</script>
 </head>
 <body class="ws home">
@@ -418,7 +418,7 @@
         </div>
         <div class="ws-cat-row" data-cat="edit">
           <button class="ws-cattile" type="button" data-cat="edit" aria-expanded="false">
-            <span class="ws-cattile__count">3</span>
+            <span class="ws-cattile__count">4</span>
             <span class="ws-cattile__title">PDF 편집</span>
           </button>
           <div class="ws-cat-tools"><div class="ws-shelf">
@@ -433,6 +433,10 @@
           <a class="ws-card" href="add-margin/" style="--i:2">
           <span class="ws-card__ico"><svg viewBox="0 0 24 24" class="ic-svg ic-pdf" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M6.4 2.6h6.6L17.6 7v11.4a1.5 1.5 0 0 1-1.5 1.5H6.4a1.5 1.5 0 0 1-1.5-1.5V4.1a1.5 1.5 0 0 1 1.5-1.5z" fill="#E5252A"/><path d="M12.7 2.6 17.6 7h-3.8a1.1 1.1 0 0 1-1.1-1.1z" fill="#B3160F"/><rect x="7.2" y="8.7" width="6" height="1.2" rx=".6" fill="#fff" opacity=".9"/><rect x="7.2" y="11" width="4.2" height="1.2" rx=".6" fill="#fff" opacity=".9"/><circle cx="17.4" cy="17.4" r="4.4" fill="#0d9488" stroke="#fff" stroke-width="1.2"/><rect x="15.3" y="15.3" width="4.2" height="4.2" rx=".6" fill="none" stroke="#fff" stroke-width="1.05" stroke-dasharray="1.6 1.2"/></svg></span>
           <span class="ws-card__tx"><span class="ws-card__name">여백 추가</span><span class="ws-card__desc">모든 페이지 둘레에 흰 여백을 더해요. 제본 여백·필기 공간·가장자리 잘림 방지에 좋습니다.</span></span>
+        </a>
+          <a class="ws-card" href="sign/" style="--i:3">
+          <span class="ws-card__ico"><svg viewBox="0 0 24 24" class="ic-svg ic-pdf" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M6.4 2.6h6.6L17.6 7v11.4a1.5 1.5 0 0 1-1.5 1.5H6.4a1.5 1.5 0 0 1-1.5-1.5V4.1a1.5 1.5 0 0 1 1.5-1.5z" fill="#E5252A"/><path d="M12.7 2.6 17.6 7h-3.8a1.1 1.1 0 0 1-1.1-1.1z" fill="#B3160F"/><rect x="7.2" y="8.7" width="6" height="1.2" rx=".6" fill="#fff" opacity=".9"/><rect x="7.2" y="11" width="4.2" height="1.2" rx=".6" fill="#fff" opacity=".9"/><circle cx="17.4" cy="17.4" r="4.4" fill="#db2777" stroke="#fff" stroke-width="1.2"/><path d="M15.4 19.1c1-.1 1.5-.7 2.2-2 .25-.45.5-.85.75-.85.2 0 .25.3.05.7-.18.36-.1.62.18.72" fill="none" stroke="#fff" stroke-width="1.05" stroke-linecap="round" stroke-linejoin="round"/><path d="M15.2 20.4h4.3" stroke="#fff" stroke-width="1.05" stroke-linecap="round"/></svg></span>
+          <span class="ws-card__tx"><span class="ws-card__name">서명 넣기</span><span class="ws-card__desc">사인을 직접 그리거나 도장·사인 이미지를 올리거나 이름을 입력해 만들고, 미리보기에서 원하는 위치에 끌어다 놓아요. 계약서·동의서에 서명을 넣을 때 파일을 어디에도 올리지 않아 안전합니다.</span></span>
         </a>
           </div></div>
         </div>
@@ -462,14 +466,14 @@
   <script src="assets/vendor/pdf-lib.min.js" defer></script>
   <script src="assets/vendor/pdf.min.js" defer></script>
   <script src="assets/vendor/jszip.min.js" defer></script>
-  <script src="assets/js/ui.js?v=1781681451483" defer></script>
-  <script src="assets/js/pdf-engine.js?v=1781681451483" defer></script>
-  <script src="assets/js/tool-core.js?v=1781681451483" defer></script>
-  <script src="assets/js/tools/merge.js?v=1781681451483" defer></script>
-  <script src="assets/js/tools/split.js?v=1781681451483" defer></script>
-  <script src="assets/js/tools/compress.js?v=1781681451483" defer></script>
-  <script src="assets/js/tools/to-image.js?v=1781681451483" defer></script>
-  <script src="assets/js/tools/unlock.js?v=1781681451483" defer></script>
-  <script src="assets/js/workspace.js?v=1781681451483" defer></script>
+  <script src="assets/js/ui.js?v=1781683950528" defer></script>
+  <script src="assets/js/pdf-engine.js?v=1781683950528" defer></script>
+  <script src="assets/js/tool-core.js?v=1781683950528" defer></script>
+  <script src="assets/js/tools/merge.js?v=1781683950528" defer></script>
+  <script src="assets/js/tools/split.js?v=1781683950528" defer></script>
+  <script src="assets/js/tools/compress.js?v=1781683950528" defer></script>
+  <script src="assets/js/tools/to-image.js?v=1781683950528" defer></script>
+  <script src="assets/js/tools/unlock.js?v=1781683950528" defer></script>
+  <script src="assets/js/workspace.js?v=1781683950528" defer></script>
 </body>
 </html>

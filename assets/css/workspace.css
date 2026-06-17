@@ -654,3 +654,53 @@ body.ws-app-open .ws-scrim { opacity: 1; pointer-events: auto; }
 .ws-deck__close { display: none; }
 .ws-deck.is-max .ws-deck__close { display: inline-flex; position: absolute; top: 14px; right: 16px; z-index: 5; }
 .ws-deck.is-max .herotool { padding: 12px; overflow: auto; }
+
+/* ───────── 서명 넣기 ───────── */
+.sign-tabs { display: flex; gap: 6px; background: var(--surf-2); padding: 4px; border-radius: 12px; margin-bottom: 12px; }
+.sign-tab { flex: 1; border: 0; background: none; padding: 8px 6px; border-radius: 9px; font: inherit; font-size: .85rem; font-weight: 600; color: var(--ink-soft); cursor: pointer; transition: background var(--d-micro) var(--ez), color var(--d-micro) var(--ez); }
+.sign-tab.is-active { background: #fff; color: var(--ink); box-shadow: 0 1px 2px rgba(23, 23, 42, .08); }
+.sign-pane { display: flex; flex-direction: column; gap: 10px; }
+.sign-pane[hidden] { display: none; }
+.sign-draw { width: 100%; height: auto; aspect-ratio: 560 / 180; background: #fff; border: 1.5px dashed var(--line-2); border-radius: 12px; touch-action: none; cursor: crosshair; }
+.sign-ctl { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.sign-pens { display: inline-flex; gap: 7px; margin-right: auto; }
+.sign-pens label { cursor: pointer; line-height: 0; position: relative; }
+.sign-pens input { position: absolute; opacity: 0; width: 0; height: 0; }
+.sign-pens .pen { display: inline-block; width: 22px; height: 22px; border-radius: 50%; border: 2px solid #fff; box-shadow: 0 0 0 1.5px var(--line-2); transition: box-shadow var(--d-micro) var(--ez); }
+.sign-pens input:checked + .pen { box-shadow: 0 0 0 2px var(--ink); }
+.sign-upload { display: flex; justify-content: center; padding: 20px; border: 1.5px dashed var(--line-2); border-radius: 12px; cursor: pointer; transition: border-color var(--d-micro) var(--ez), background var(--d-micro) var(--ez); }
+.sign-upload:hover { border-color: var(--red); background: var(--surf-2); }
+.sign-typein { width: 100%; padding: 11px 14px; border: 1.5px solid var(--line-2); border-radius: 10px; font: inherit; font-size: 1rem; color: var(--ink); }
+.sign-typein:focus { outline: none; border-color: var(--ink); }
+.sign-fonts { display: flex; gap: 6px; }
+.sign-fonts label { flex: 1; position: relative; }
+.sign-fonts input { position: absolute; opacity: 0; width: 0; height: 0; }
+.sign-fonts span { display: block; text-align: center; padding: 7px 4px; border: 1px solid var(--line-2); border-radius: 9px; font-size: .8rem; color: var(--ink-soft); cursor: pointer; transition: border-color var(--d-micro) var(--ez), color var(--d-micro) var(--ez), background var(--d-micro) var(--ez); }
+.sign-fonts input:checked + span { border-color: var(--ink); color: var(--ink); font-weight: 600; background: var(--surf-2); }
+.sign-typeprev { min-height: 46px; display: flex; align-items: center; justify-content: center; background: var(--surf-2); border-radius: 10px; padding: 6px; }
+.sign-typeprev img { max-height: 58px; max-width: 100%; }
+.sign-cur { display: flex; align-items: center; gap: 12px; margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--line); }
+.sign-cur__label { flex: none; font-size: .82rem; font-weight: 600; color: var(--ink-soft); }
+.sign-cur__prev { flex: 1; min-height: 46px; display: flex; align-items: center; justify-content: center; background: var(--surf-2); border: 1px solid var(--line); border-radius: 10px; padding: 6px; }
+.sign-cur__prev img { max-height: 40px; max-width: 100%; }
+.sign-cur__empty { font-size: .82rem; color: var(--ink-faint); }
+.sign-add { margin-top: 12px; }
+
+/* 왼쪽 미리보기 스테이지 */
+.sign-stage { display: flex; flex-direction: column; gap: 14px; max-height: 72vh; overflow: auto; padding: 2px; }
+.sign-stage__head { display: flex; align-items: center; justify-content: space-between; gap: 10px; position: sticky; top: 0; z-index: 4; background: #fff; padding: 2px 2px 8px; border-bottom: 1px solid var(--line); }
+.sign-stage__name { font-size: .88rem; font-weight: 600; color: var(--ink); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.sign-stage__reset { flex: none; border: 1px solid var(--line-2); background: #fff; color: var(--ink-soft); font: inherit; font-size: .78rem; padding: 5px 10px; border-radius: 8px; cursor: pointer; transition: color var(--d-micro) var(--ez), border-color var(--d-micro) var(--ez); }
+.sign-stage__reset:hover { color: var(--red); border-color: var(--red); }
+.sign-page { position: relative; margin: 0 auto; box-shadow: 0 2px 12px rgba(23, 23, 42, .12); border-radius: 4px; overflow: hidden; }
+.sign-page__cv { display: block; width: 100%; height: 100%; }
+.sign-page__no { position: absolute; top: 6px; left: 6px; background: rgba(23, 23, 42, .58); color: #fff; font-size: .66rem; font-weight: 600; padding: 2px 8px; border-radius: 20px; pointer-events: none; }
+.sign-stamp { position: absolute; cursor: grab; touch-action: none; outline: 1.5px dashed transparent; outline-offset: 1px; border-radius: 2px; }
+.sign-stamp:active { cursor: grabbing; }
+.sign-stamp img { width: 100%; height: 100%; display: block; pointer-events: none; -webkit-user-select: none; user-select: none; }
+.sign-stamp.is-sel { outline-color: var(--red); }
+.sign-stamp__resize { position: absolute; right: -8px; bottom: -8px; width: 16px; height: 16px; background: #fff; border: 2px solid var(--red); border-radius: 50%; cursor: nwse-resize; opacity: 0; transition: opacity var(--d-micro) var(--ez); touch-action: none; }
+.sign-stamp__del { position: absolute; right: -9px; top: -9px; width: 20px; height: 20px; padding: 0; display: inline-flex; align-items: center; justify-content: center; background: var(--red); color: #fff; border: 2px solid #fff; border-radius: 50%; font-size: .62rem; line-height: 1; cursor: pointer; opacity: 0; transition: opacity var(--d-micro) var(--ez); }
+.sign-stamp:hover .sign-stamp__resize, .sign-stamp.is-sel .sign-stamp__resize,
+.sign-stamp:hover .sign-stamp__del, .sign-stamp.is-sel .sign-stamp__del { opacity: 1; }
+@media (max-width: 880px) { .sign-stage { max-height: none; } }
