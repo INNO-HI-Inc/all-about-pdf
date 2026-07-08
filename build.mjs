@@ -1152,81 +1152,48 @@ ${catRows}
       </div>`;
 
   const searchIco = '<svg class="ws-search__ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>';
-  const main = `    <section class="ws-hero">
-      <div class="ws-wrap ws-hero__inner">
-        <span class="ws-kicker"><span class="sq" aria-hidden="true"></span>서버 미전송 · 완전 무료 · 설치 없음</span>
-        <h1 class="ws-hero__h1">필요한 PDF 작업, <span class="mark">파일을 올리지 않고</span> <br>브라우저에서 무료로</h1>
-        <p class="ws-hero__sub">합치기·분할·변환·압축·서명·워터마크·비밀번호까지 <b>37가지 도구</b>를 한곳에서. 모든 처리는 내 기기 안에서만 이뤄져, 파일이 서버로 전송되지 않습니다.</p>
-        <form class="ws-hero__search" role="search" onsubmit="return false">
-          ${searchIco}
-          <input type="search" class="js-toolsearch" placeholder="어떤 PDF 작업이 필요하세요? — 예: 압축, 워터마크, jpg" aria-label="도구 검색" autocomplete="off">
-        </form>
-        <div class="ws-hero__pop">
-          <span class="ws-hero__pop-lb">인기</span>
-          <a href="merge/">합치기</a>
-          <a href="compress/">PDF 압축</a>
-          <a href="watermark/">워터마크</a>
-          <a href="unlock/">잠금해제</a>
-          <a href="jpg-to-png/">JPG→PNG</a>
-          <a href="protect/">비밀번호 설정</a>
-        </div>
-        <ul class="ws-hero__chips">
-          <li><span class="dot" aria-hidden="true"></span>100% 내 기기에서 처리</li>
-          <li><span class="dot" aria-hidden="true"></span>워터마크 없는 완전 무료</li>
-          <li><span class="dot" aria-hidden="true"></span>설치·회원가입 불필요</li>
-        </ul>
-      </div>
-    </section>
-
-    <section class="ws-home2" id="tools">
-      <div class="ws-wrap ws-home2grid">
-        <div class="ws-home2left">
-          <p class="ws-colcap">빠른 작업<span>자주 쓰는 도구는 여기서 바로</span></p>
-          <div class="ws-winwrap">
-            <div class="ws-window ws-deck" data-ws-window>
-              <button class="ws-winclose ws-deck__close" type="button" data-ws-close aria-label="작업 닫고 처음으로">처음으로 ✕</button>
-              <div class="herotool">
-                <div class="herotool__tabs" role="tablist" aria-label="PDF 도구 선택">
-                ${heroTabs}
-                </div>
-                <div class="herotool__panels">
-            ${heroPanels}
-                </div>
+  const gridIco = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="3.5" width="7" height="7" rx="1.6"/><rect x="13.5" y="3.5" width="7" height="7" rx="1.6"/><rect x="3.5" y="13.5" width="7" height="7" rx="1.6"/><rect x="13.5" y="13.5" width="7" height="7" rx="1.6"/></svg>';
+  const main = `    <section class="ws-home2" id="tools">
+      <h1 class="sr-only">${esc(c.metaTitle || 'PDF의 모든 것')} — 설치 없이 무료로 쓰는 한국어 PDF 도구 모음</h1>
+      <div class="ws-wrap ws-home2--solo">
+        <div class="ws-winwrap">
+          <div class="ws-window ws-deck" data-ws-window>
+            <button class="ws-winclose ws-deck__close" type="button" data-ws-close aria-label="작업 닫고 처음으로">처음으로 ✕</button>
+            <div class="herotool">
+              <div class="herotool__tabs" role="tablist" aria-label="PDF 도구 선택">
+              ${heroTabs}
+              </div>
+              <div class="herotool__panels">
+          ${heroPanels}
               </div>
             </div>
           </div>
         </div>
-        <div class="ws-home2right">
-          <p class="ws-colcap">전체 도구<span>카테고리를 눌러 골라보세요</span></p>
-          <p class="ws-search__empty js-search-empty" hidden>찾는 도구가 없어요. ‘압축’, ‘합치기’, ‘jpg’ 처럼 검색해 보세요.</p>
+      </div>
+    </section>
+
+    <button class="ws-drawer-handle" type="button" data-drawer-toggle aria-controls="tool-drawer" aria-expanded="false">
+      ${gridIco}<span>전체 도구</span>
+    </button>
+    <aside class="ws-drawer" id="tool-drawer" aria-label="전체 도구" aria-hidden="true">
+      <div class="ws-drawer__bar">
+        <span class="ws-drawer__title">${gridIco}전체 도구 <b>37</b></span>
+        <button class="ws-drawer__x" type="button" data-drawer-close aria-label="닫기">✕</button>
+      </div>
+      <div class="ws-drawer__scroll">
+        <div class="ws-search">
+          ${searchIco}
+          <input type="search" class="js-toolsearch ws-search__input" placeholder="도구 검색 — 예: 압축, 워터마크, jpg" aria-label="도구 검색" autocomplete="off">
+        </div>
+        <p class="ws-search__empty js-search-empty" hidden>찾는 도구가 없어요. ‘압축’, ‘합치기’, ‘jpg’ 처럼 검색해 보세요.</p>
 ${catalog}
-        </div>
       </div>
-    </section>
-
-    <section class="ws-usps-sec">
-      <div class="ws-wrap">
-        <div class="ws-sechead" data-reveal><h2><small>왜 「PDF의 모든 것」인가</small>업로드가 없어서, 그래서 안심됩니다</h2></div>
-        <div class="ws-usps">
-        ${usps}
-        </div>
-      </div>
-    </section>
-
-    <section class="ws-faq">
-      <div class="ws-wrap">
-        <div class="ws-sechead" data-reveal><h2><small>자주 묻는 질문</small>궁금한 점이 있나요?</h2></div>
-        <div class="ws-term">
-          <div class="ws-faqlist">
-        ${faqs}
-          </div>
-        </div>
-      </div>
-    </section>`;
+    </aside>
+    <div class="ws-drawer-scrim" data-drawer-close></div>`;
 
   const html = page({
     title: c.metaTitle, desc: c.metaDescription, canonical,
-    ogTitle: c.metaTitle, rel, jsonld, main, noChrome: true,
+    ogTitle: c.metaTitle, rel, jsonld, main, noChrome: true, noFooter: true,
     withScripts: [...new Set(FEATURED.map((t) => t.script || t.slug))],
     bodyClass: 'ws home',
     extraScripts: ['assets/js/workspace.js'],

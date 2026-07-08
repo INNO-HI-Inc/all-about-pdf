@@ -81,22 +81,32 @@
     });
   });
 
+  // 2-b2) 전체 도구 서랍(오른쪽 슬라이드 + 화면 밀림)
+  var drawer = d.getElementById('tool-drawer');
+  if (drawer) {
+    var dHandle = d.querySelector('[data-drawer-toggle]');
+    var root = d.documentElement;
+    function setDrawer(open) {
+      root.classList.toggle('drawer-open', open);
+      if (dHandle) dHandle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      drawer.setAttribute('aria-hidden', open ? 'false' : 'true');
+      if (open) { var f = drawer.querySelector('.js-toolsearch'); if (f) setTimeout(function () { try { f.focus(); } catch (e) {} }, 380); }
+    }
+    if (dHandle) dHandle.addEventListener('click', function () { setDrawer(!root.classList.contains('drawer-open')); });
+    Array.prototype.slice.call(d.querySelectorAll('[data-drawer-close]')).forEach(function (el) {
+      el.addEventListener('click', function () { setDrawer(false); });
+    });
+    d.addEventListener('keydown', function (e) { if (e.key === 'Escape' && root.classList.contains('drawer-open')) setDrawer(false); });
+  }
+
   // 2-c) 도구 검색/필터 — 이름·설명·동의어(data-keywords)로 즉시 필터
   var searchInput = d.querySelector('.js-toolsearch');
   if (searchInput) {
     var allCards = Array.prototype.slice.call(d.querySelectorAll('.ws-card'));
     var noRes = d.querySelector('.js-search-empty');
     var defaultActive = catRows.map(function (r) { return r.classList.contains('is-active'); });
-    var toolsSec = d.getElementById('tools');
-    var scrolledForSearch = false;
     searchInput.addEventListener('input', function () {
       var q = searchInput.value.trim().toLowerCase();
-      // 히어로 검색은 결과(카탈로그)가 아래에 있으므로, 검색 시작 시 도구 영역으로 스크롤
-      if (q && !scrolledForSearch && toolsSec) {
-        scrolledForSearch = true;
-        try { toolsSec.scrollIntoView({ behavior: 'smooth', block: 'start' }); } catch (e) {}
-      }
-      if (!q) scrolledForSearch = false;
       if (!q) { // 초기 상태 복원
         allCards.forEach(function (c) { c.style.display = ''; });
         catRows.forEach(function (row, i) {
