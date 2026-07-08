@@ -14,10 +14,19 @@ const ROOT = dirname(fileURLToPath(import.meta.url));
 const WS = join(ROOT, '_workspace');
 
 // ───────── 설정 (배포 시 여기만 수정) ─────────
-const SITE_URL = process.env.SITE_URL || 'https://inno-hi-inc.github.io/all-about-pdf';
+// 커스텀 도메인. 값이 있으면 SITE_URL이 이 도메인 기준이 되고 CNAME 파일이 자동 생성된다.
+// 커스텀 도메인을 쓰지 않으려면 '' 로 비우면 github.io 서브경로로 되돌아간다.
+const CUSTOM_DOMAIN = process.env.CUSTOM_DOMAIN ?? 'everything-pdf.site';
+const SITE_URL = process.env.SITE_URL || (CUSTOM_DOMAIN ? `https://${CUSTOM_DOMAIN}` : 'https://inno-hi-inc.github.io/all-about-pdf');
 const GITHUB_URL = process.env.GITHUB_URL || 'https://github.com/INNO-HI-Inc/all-about-pdf';
 const BRAND = 'PDF의 모든 것';
 const TODAY = '2026-06-04';
+// Google 애드센스: 승인받은 게시자 ID로 아래 한 줄만 교체하면 전 페이지에 로더가 삽입되고
+// ads.txt·개인정보 고지가 함께 켜집니다. (예: 'ca-pub-1234567890123456' — ca-pub- 뒤 16자리 숫자)
+// 자동 광고(Auto ads)를 쓰므로 로더 스크립트만 넣으면 되고, 광고 위치 배치는
+// 애드센스 대시보드 > 광고 > 자동 광고에서 켭니다. 수동 슬롯은 필요 없습니다.
+const ADSENSE_CLIENT = process.env.ADSENSE_CLIENT || 'ca-pub-XXXXXXXXXXXXXXXX';
+const ADSENSE_ENABLED = /^ca-pub-\d{16}$/.test(ADSENSE_CLIENT);
 // CSS/JS 캐시버스팅: 내용 해시 기반 — 파일 내용이 바뀔 때만 ?v= 가 변해 캐시가 유지되고
 // 빌드마다 전체 HTML이 diff되던 문제도 사라진다(내용 무변경 → URL 무변경).
 const _verCache = {};
@@ -855,6 +864,15 @@ function footer(rel) {
 </div></footer>`;
 }
 
+// Google 애드센스 로더(자동 광고). 실제 게시자 ID가 설정됐을 때만 스크립트를 넣고,
+// 플레이스홀더 상태에서는 위치 표시 주석만 남겨 잘못된 광고 요청(콘솔 에러)을 막는다.
+function adsenseHead() {
+  if (!ADSENSE_ENABLED) {
+    return `\n  <!-- Google AdSense: build.mjs의 ADSENSE_CLIENT 상수에 실제 ca-pub ID를 넣으면 여기에 로더가 자동 삽입됩니다. -->`;
+  }
+  return `\n  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${ADSENSE_CLIENT}" crossorigin="anonymous"></script>`;
+}
+
 function page({ title, desc, canonical, ogTitle, rel, jsonld, main, withScripts, headExtra, bodyClass, extraScripts, noChrome, noindex, noFooter, needs }) {
   const ld = jsonld ? `\n  <script type="application/ld+json">${JSON.stringify(jsonld)}</script>` : '';
   const extra = (extraScripts || []).map((s) => `\n  <script src="${rel}${s}?v=${assetVer(s)}" defer></script>`).join('');
@@ -879,7 +897,7 @@ ${toolList.map((s) => `  <script src="${rel}assets/js/tools/${s}.js?v=${assetVer
 <html lang="ko">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">${adsenseHead()}
   <title>${esc(title)}</title>
   <meta name="description" content="${escAttr(desc)}">${canonical ? `\n  <link rel="canonical" href="${escAttr(canonical)}">` : ''}
   <meta name="robots" content="${noindex ? 'noindex,follow' : 'index,follow'}">
@@ -1216,7 +1234,8 @@ function buildAbout() {
       <div class="tp-col">
         <p class="tp-lead">「${BRAND}」의 모든 작업은 여러분의 <strong>웹 브라우저 안(내 기기)</strong>에서만 이뤄집니다. 어떤 파일도 서버로 전송되지 않습니다.</p>
 ${sec('처리 방식', '파일은 어떻게 처리되나요?', '합치기·분할·변환 등 모든 작업은 여러분의 <strong>웹 브라우저 안(내 기기)</strong>에서만 이뤄집니다. PDF 파일은 어떤 서버로도 업로드되지 않으며, 작업이 끝나거나 창을 닫으면 메모리에서 사라집니다. 인터넷 연결이 끊긴 상태에서도 한 번 페이지를 열어두면 대부분의 기능이 동작합니다.')}
-${sec('개인정보', '개인정보 수집을 하나요?', '이 사이트는 회원가입을 받지 않고, 파일·이메일 등 어떤 개인정보도 수집·저장하지 않습니다. 파일을 외부로 전송하지 않으므로 업로드된 문서가 외부에 보관될 일이 없습니다.')}
+${sec('개인정보', '개인정보 수집을 하나요?', `이 사이트는 회원가입을 받지 않고, 파일·이메일 등 어떤 개인정보도 수집·저장하지 않습니다. 파일을 외부로 전송하지 않으므로 업로드된 문서가 외부에 보관될 일이 없습니다.${ADSENSE_ENABLED ? ' 다만 광고 표시를 위해 Google 등 제3자가 쿠키를 사용할 수 있습니다(아래 「광고·쿠키」 참고).' : ''}`)}
+${ADSENSE_ENABLED ? sec('광고 · 쿠키', '광고와 쿠키는 어떻게 쓰이나요?', '이 사이트는 무료 운영을 위해 Google 애드센스 광고를 표시합니다. Google을 포함한 제3자 광고 공급자는 <strong>쿠키</strong>를 사용해 이용자의 이전 방문 기록을 바탕으로 광고를 게재할 수 있습니다. 이용자는 <a href="https://www.google.com/settings/ads" rel="noopener" target="_blank">Google 광고 설정</a>에서 맞춤 광고를 끌 수 있고, <a href="https://www.aboutads.info/choices/" rel="noopener" target="_blank">aboutads.info</a>에서 제3자 광고 쿠키를 일괄 거부할 수도 있습니다. 광고와 무관하게 여러분이 올린 <strong>PDF 파일 자체는 여전히 서버로 전송되지 않고 내 브라우저에서만 처리</strong>됩니다.') : ''}
 ${sec('이용 요금', '무료인가요?', '네. 완전 무료이며 결과물에 워터마크가 붙지 않고, 파일 개수·용량 제한도 없습니다.')}
 ${sec('오픈소스', '오픈소스입니다', `「${BRAND}」은 누구나 코드를 보고 함께 개선할 수 있는 오픈소스 프로젝트입니다. 기능 제안·버그 제보·기여를 환영합니다. <a href="${escAttr(GITHUB_URL)}" rel="noopener" target="_blank">GitHub 저장소</a>에서 참여하실 수 있습니다.`)}
 ${sec('잠금해제 안내', '잠금해제 도구 안내', '잠금해제는 암호를 알아내는 크랙 도구가 아니라, 본인이 알고 있는 비밀번호 또는 인쇄·편집 제한을 제거하는 도구입니다. 권한이 있는 본인의 문서에만 사용해 주세요.')}
@@ -1295,6 +1314,20 @@ Sitemap: ${SITE_URL}/sitemap.xml
   };
   writeFileSync(join(ROOT, 'site.webmanifest'), JSON.stringify(manifest, null, 2));
   console.log('✓ /site.webmanifest');
+
+  // CNAME: GitHub Pages 커스텀 도메인. 배포 아티팩트(레포 루트)에 포함돼 도메인이 연결된다.
+  if (CUSTOM_DOMAIN) {
+    writeFileSync(join(ROOT, 'CNAME'), `${CUSTOM_DOMAIN}\n`);
+    console.log('✓ /CNAME');
+  }
+
+  // ads.txt: 애드센스 게시자 검증용. 실제 게시자 ID가 설정됐을 때만 생성한다.
+  // 커스텀 도메인을 쓰면 루트(everything-pdf.site/ads.txt)에서 정상 인식된다.
+  if (ADSENSE_ENABLED) {
+    const pub = ADSENSE_CLIENT.replace(/^ca-/, ''); // ca-pub-… → pub-…
+    writeFileSync(join(ROOT, 'ads.txt'), `google.com, ${pub}, DIRECT, f08c47fec0942fa0\n`);
+    console.log('✓ /ads.txt');
+  }
 }
 
 // ───────── 실행 ─────────
