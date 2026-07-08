@@ -24,10 +24,10 @@
   <meta name="theme-color" content="#0e1016" media="(prefers-color-scheme: dark)">
   <link rel="preload" as="font" type="font/woff2" href="../assets/vendor/fonts/a2z-Regular.woff2" crossorigin>
   <link rel="preload" as="font" type="font/woff2" href="../assets/vendor/fonts/a2z-Bold.woff2" crossorigin>
-  <link rel="stylesheet" href="../assets/css/style.css?v=047c43f2">
+  <link rel="stylesheet" href="../assets/css/style.css?v=547496ad">
   <script>document.documentElement.className+=" js";</script>
-  <link rel="stylesheet" href="../assets/css/workspace.css?v=98625845">
-  <script type="application/ld+json">[{"@context":"https://schema.org","@type":"WebApplication","name":"PDF 정보 보기 - PDF의 모든 것","url":"https://everything-pdf.site/pdf-info/","applicationCategory":"UtilitiesApplication","operatingSystem":"All","browserRequirements":"Requires JavaScript","inLanguage":"ko","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"KRW"},"featureList":["페이지·용량·크기","메타데이터 확인","잠김 여부"],"publisher":{"@type":"Organization","name":"PDF의 모든 것","url":"https://everything-pdf.site/"}},{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"홈","item":"https://everything-pdf.site/"},{"@type":"ListItem","position":2,"name":"PDF 정보 보기","item":"https://everything-pdf.site/pdf-info/"}]}]</script>
+  <link rel="stylesheet" href="../assets/css/workspace.css?v=b13470d6">
+  <script type="application/ld+json">[{"@context":"https://schema.org","@type":"WebApplication","name":"PDF 정보 보기 - PDF의 모든 것","url":"https://everything-pdf.site/pdf-info/","applicationCategory":"UtilitiesApplication","operatingSystem":"All","browserRequirements":"Requires JavaScript","inLanguage":"ko","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"KRW"},"featureList":["페이지·용량·크기","메타데이터 확인","잠김 여부"],"publisher":{"@type":"Organization","name":"PDF의 모든 것","url":"https://everything-pdf.site/"}},{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"홈","item":"https://everything-pdf.site/"},{"@type":"ListItem","position":2,"name":"PDF 정보 보기","item":"https://everything-pdf.site/pdf-info/"}]},{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"PDF가 몇 페이지인지 어떻게 확인하나요?","acceptedAnswer":{"@type":"Answer","text":"파일을 올리면 페이지 수가 표 맨 위에 바로 표시됩니다. 두꺼운 보고서나 스캔본도 열어보지 않고 전체 페이지 수를 한 번에 확인할 수 있어요. 인쇄나 제출 전에 분량을 가늠할 때 편리합니다."}},{"@type":"Question","name":"페이지 크기나 용량도 알 수 있나요?","acceptedAnswer":{"@type":"Answer","text":"네. 파일 용량과 함께 페이지 크기를 가로x세로로 보여줍니다. A4인지 다른 규격인지, 가로형인지 세로형인지 확인할 수 있어 인쇄 설정이나 규격 맞추기에 도움이 됩니다."}},{"@type":"Question","name":"제목·작성자 같은 메타데이터는 어디서 보나요?","acceptedAnswer":{"@type":"Answer","text":"PDF 안에 들어 있는 제목, 작성자 등 메타데이터를 표로 정리해 보여줍니다. 다만 만든 프로그램에 따라 이 정보가 비어 있을 수 있는데, 그럴 때는 해당 항목이 표시되지 않거나 빈 값으로 나옵니다."}},{"@type":"Question","name":"비밀번호가 걸린 PDF인지 알 수 있나요?","acceptedAnswer":{"@type":"Answer","text":"네. 비밀번호 잠김 여부를 함께 표시합니다. 다만 이 도구는 정보만 읽어 보여줄 뿐 잠금을 풀지는 않습니다. 본인이 아는 비밀번호로 제한을 풀려면 'PDF 잠금해제' 도구를 이용하세요."}},{"@type":"Question","name":"파일이 서버에 올라가나요? 무료인가요?","acceptedAnswer":{"@type":"Answer","text":"파일은 서버로 올라가지 않고 내 기기 안에서만 정보를 읽습니다. 회원가입과 설치 없이 무료로 쓸 수 있고, 워터마크나 파일 개수·용량 제한도 없습니다."}}]}]</script>
 </head>
 <body class="ws tp">
   <a class="skip-link" href="#main">본문 바로가기</a>
@@ -172,7 +172,7 @@
       </div>
     </nav>
 
-    <section class="tp-info sr-only">
+    <section class="tp-info">
       <div class="tp-col">
         <p class="tp-lead">올린 PDF가 몇 페이지인지, 용량은 얼마인지, 페이지 크기와 제목·작성자 같은 정보를 표로 보여주는 도구예요. 비밀번호가 걸려 있는지도 알려줍니다. 파일을 바꾸거나 다운로드하지 않고 정보만 읽어 보여주며, 모든 처리는 내 브라우저 안에서만 이뤄져 서버로 전송되지 않습니다.</p>
 
@@ -217,7 +217,7 @@
   <script src="../assets/vendor/jszip.min.js" defer></script>
   <script src="../assets/js/ui.js?v=e8bf6ebc" defer></script>
   <script src="../assets/js/pdf-engine.js?v=a30acd16" defer></script>
-  <script src="../assets/js/tool-core.js?v=931a1306" defer></script>
+  <script src="../assets/js/tool-core.js?v=b99a6fe1" defer></script>
   <script src="../assets/js/tools/pdf-info.js?v=f894f7f4" defer></script>
   <script src="../assets/js/workspace.js?v=6652b60c" defer></script>
 </body>

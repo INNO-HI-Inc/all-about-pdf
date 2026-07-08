@@ -425,6 +425,9 @@ a { transition: color .14s var(--ease); }
 .filelist__item.drag-over { box-shadow: inset 0 3px 0 -1px var(--accent); }
 .filelist__thumb { flex-shrink: 0; width: 30px; height: 40px; border-radius: 5px; overflow: hidden; border: 1px solid var(--line); background: var(--surface); box-shadow: var(--shadow-sm); }
 .filelist__thumb img { width: 100%; height: 100%; object-fit: cover; object-position: top; }
+/* 이미지 변환 도구: 업로드한 사진 전체가 잘리지 않고 보이도록 정사각 박스 + contain */
+.filelist__thumb--img { width: 46px; height: 46px; display: grid; place-items: center; background: var(--surface-2, #f1f3f7); }
+.filelist__thumb--img img { width: 100%; height: 100%; object-fit: contain; object-position: center; }
 
 /* 분할 모드: 구간 그룹 + 자르기 지점 */
 .pagecell--split { position: relative; padding: 4px; border-radius: 10px; transition: background .15s var(--ease); }

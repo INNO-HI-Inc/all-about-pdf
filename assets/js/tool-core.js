@@ -95,7 +95,7 @@
           li.appendChild(gripEl());
         }
         if (config.fileThumbs) {
-          var th = d.createElement('span'); th.className = 'filelist__thumb';
+          var th = d.createElement('span'); th.className = 'filelist__thumb' + (config.imageThumbs ? ' filelist__thumb--img' : '');
           var img = d.createElement('img'); img.alt = ''; th.appendChild(img); li.appendChild(th);
           fileThumb(f, img);
         }

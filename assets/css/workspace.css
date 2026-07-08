@@ -473,7 +473,7 @@
 .ws .progress, .ws .filebar { transition: opacity var(--d-enter) var(--ez), transform var(--d-enter) var(--ez-out); }
 .ws .progress__text, .ws .filebar__sum, .ws .result__size { font-variant-numeric: tabular-nums; }
 
-.tp-info { padding: 50px 0 84px; }
+.tp-info { padding: 50px 0 84px; border-top: 1px solid var(--line); margin-top: 8px; }
 .tp-lead { font-size: 1.18rem; line-height: 1.8; color: var(--ink-soft); max-width: 70ch; font-weight: 450; }
 .tp-lead b, .tp-lead strong { color: var(--ink); font-weight: 700; }
 .tp-sec { margin-top: 56px; }
@@ -664,6 +664,15 @@ html.drawer-open .ws-home2 { transform: translateX(-96px); }
 .ws-drawer-handle svg { width: 20px; height: 20px; }
 .ws-drawer-handle span { writing-mode: vertical-rl; font-weight: 800; font-size: 13.5px; letter-spacing: .06em; }
 html.drawer-open .ws-drawer-handle { opacity: 0; pointer-events: none; transform: translate(30px, -50%); }
+/* 모바일: 세로 손잡이가 카드 내용을 가리므로 우하단 가로 알약(FAB)으로 전환 */
+@media (max-width: 760px) {
+  .ws-drawer-handle { top: auto; bottom: 16px; right: 14px; transform: none;
+    flex-direction: row; gap: 7px; padding: 11px 16px; border-radius: 999px;
+    box-shadow: 0 10px 26px rgba(229, 37, 42, .42); }
+  .ws-drawer-handle:hover { transform: none; }
+  .ws-drawer-handle span { writing-mode: horizontal-tb; font-size: 13.5px; }
+  html.drawer-open .ws-drawer-handle { transform: translateY(40px); }
+}
 /* 서랍 본체 */
 .ws-drawer { position: fixed; top: 0; right: 0; height: 100dvh; width: min(460px, 92vw); z-index: 300;
   background: var(--surf); border-left: 1px solid var(--line-2); box-shadow: -24px 0 64px rgba(23, 23, 42, .2);

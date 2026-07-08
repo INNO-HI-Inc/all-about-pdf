@@ -9,6 +9,7 @@ import { readFileSync, writeFileSync, mkdirSync, existsSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
 import { createHash } from 'node:crypto';
+import { execSync } from 'node:child_process';
 
 const ROOT = dirname(fileURLToPath(import.meta.url));
 const WS = join(ROOT, '_workspace');
@@ -21,6 +22,7 @@ const SITE_URL = process.env.SITE_URL || (CUSTOM_DOMAIN ? `https://${CUSTOM_DOMA
 const GITHUB_URL = process.env.GITHUB_URL || 'https://github.com/INNO-HI-Inc/all-about-pdf';
 const BRAND = 'PDF의 모든 것';
 const TODAY = '2026-06-04';
+const BUILD_DATE = new Date().toISOString().slice(0, 10); // sitemap lastmod git 폴백용(실제 빌드일)
 // Google 애드센스: 승인받은 게시자 ID로 아래 한 줄만 교체하면 전 페이지에 로더가 삽입되고
 // ads.txt·개인정보 고지가 함께 켜집니다. (예: 'ca-pub-1234567890123456' — ca-pub- 뒤 16자리 숫자)
 // 자동 광고(Auto ads)를 쓰므로 로더 스크립트만 넣으면 되고, 광고 위치 배치는
@@ -1062,6 +1064,17 @@ function buildTool(t) {
       ]
     }
   ];
+  // FAQPage: 페이지에 실제로 노출된 FAQ를 구조화 → 구글 FAQ 리치결과 대상
+  // (구글 정책상 FAQ 본문이 화면에 보여야 유효 — tp-info 노출과 짝을 이룸)
+  if (c.faq && c.faq.length) {
+    jsonld.push({
+      '@context': 'https://schema.org', '@type': 'FAQPage',
+      mainEntity: c.faq.map((f) => ({
+        '@type': 'Question', name: f.q,
+        acceptedAnswer: { '@type': 'Answer', text: f.a }
+      }))
+    });
+  }
 
   const main = `<section class="tp-hero">
       <div class="tp-col">
@@ -1084,7 +1097,7 @@ function buildTool(t) {
 
 ${toolDock(t.slug, rel)}
 
-    <section class="tp-info sr-only">
+    <section class="tp-info">
       <div class="tp-col">
         <p class="tp-lead">${esc(c.intro)}</p>
 
@@ -1299,10 +1312,22 @@ function build404() {
 
 // ───────── SEO 파일 ─────────
 function buildSeoFiles() {
-  const urls = [SITE_URL + '/', ...TOOLS.map((t) => `${SITE_URL}/${t.slug}/`), SITE_URL + '/about/'];
+  // 각 페이지 HTML의 git 최종 커밋일(YYYY-MM-DD)을 lastmod로 사용 → 실제 갱신일 반영.
+  // git 실패 시 오늘(빌드일)로 폴백. 고정 날짜 박제 문제 해결.
+  const gitDate = (relPath) => {
+    try {
+      const d = execSync(`git log -1 --format=%cs -- "${relPath}"`, { cwd: ROOT, stdio: ['ignore', 'pipe', 'ignore'] }).toString().trim();
+      return /^\d{4}-\d{2}-\d{2}$/.test(d) ? d : BUILD_DATE;
+    } catch { return BUILD_DATE; }
+  };
+  const entries = [
+    { url: SITE_URL + '/', file: 'index.html', priority: '1.0' },
+    ...TOOLS.map((t) => ({ url: `${SITE_URL}/${t.slug}/`, file: `${t.slug}/index.html`, priority: '0.8' })),
+    { url: SITE_URL + '/about/', file: 'about/index.html', priority: '0.5' }
+  ];
   const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-${urls.map((u, i) => `  <url>\n    <loc>${u}</loc>\n    <lastmod>${TODAY}</lastmod>\n    <changefreq>monthly</changefreq>\n    <priority>${i === 0 ? '1.0' : '0.8'}</priority>\n  </url>`).join('\n')}
+${entries.map((e) => `  <url>\n    <loc>${e.url}</loc>\n    <lastmod>${gitDate(e.file)}</lastmod>\n    <changefreq>monthly</changefreq>\n    <priority>${e.priority}</priority>\n  </url>`).join('\n')}
 </urlset>
 `;
   writeFileSync(join(ROOT, 'sitemap.xml'), sitemap);
