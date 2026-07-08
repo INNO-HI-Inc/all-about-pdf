@@ -45,7 +45,9 @@
 
 /* ── 리셋 ───────────────────────────────────────────── */
 *, *::before, *::after { box-sizing: border-box; }
-html { background: var(--surface); -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+/* scrollbar-gutter: 페이지마다 스크롤바 유무가 달라 콘텐츠가 좌우로 툭 밀리던 문제 방지
+   (스크롤바 없는 페이지에도 그만큼의 공간을 항상 예약 → 페이지 이동 시 흔들림 없음) */
+html { background: var(--surface); -webkit-text-size-adjust: 100%; scroll-behavior: smooth; scrollbar-gutter: stable; }
 body {
   margin: 0; font-family: var(--font); color: var(--ink); background: var(--bg);
   line-height: 1.78; font-size: 16px; letter-spacing: -.005em;

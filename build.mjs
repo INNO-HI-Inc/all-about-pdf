@@ -1073,11 +1073,6 @@ function buildTool(t) {
             <p class="tp-sub">${esc(c.subtitle)}</p>
           </div>
         </div>
-        <ul class="tp-chips">
-          <li><span class="dot" aria-hidden="true"></span>서버 미전송 · 내 기기 처리</li>
-          <li><span class="dot" aria-hidden="true"></span>완전 무료 · 워터마크 없음</li>
-          <li><span class="dot" aria-hidden="true"></span>설치 · 회원가입 불필요</li>
-        </ul>
       </div>
     </section>
 

@@ -340,10 +340,6 @@
 .tp-ico .ic-svg { width: 48px; height: 48px; }
 .tp-h1 { font-family: var(--font); font-weight: 800; font-size: clamp(1.65rem, 3.2vw, 2.25rem); letter-spacing: -.035em; line-height: 1.08; color: var(--ink); }
 .tp-sub { margin-top: 7px; font-size: 1.06rem; line-height: 1.65; font-weight: 450; color: var(--ink-soft); max-width: 46ch; word-break: keep-all; }
-.tp-chips { list-style: none; margin: 16px 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 9px; }
-.tp-chips li { font-size: 12.5px; padding: 7px 13px; }
-.tp-chips li { display: flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 600; color: var(--ink); background: var(--surf); border: 1px solid var(--line-2); padding: 9px 15px; border-radius: var(--radius-sm); box-shadow: var(--sh-sm); }
-.tp-chips li .dot { width: 7px; height: 7px; border-radius: 50%; background: #18a957; flex: 0 0 7px; }
 @media (max-width: 560px) { .tp-head { flex-direction: column; align-items: flex-start; gap: 14px; } .tp-ico .ic-svg { width: 54px; height: 54px; } }
 
 .tp-stage { padding: 2px 0 24px; }
@@ -418,7 +414,22 @@
 .tp-dock__item:hover { background: var(--surf-2); color: var(--ink); text-decoration: none; transform: translateY(-2px); }
 .tp-dock__item.is-active { background: var(--grad); color: #fff; box-shadow: var(--sh-red); }
 @keyframes dockPop { from { opacity: 0; transform: translateY(10px) scale(.98); } to { opacity: 1; transform: none; } }
+@keyframes dockPopLeft { from { opacity: 0; transform: translateX(8px) scale(.98); } to { opacity: 1; transform: none; } }
 @media (prefers-reduced-motion: reduce) { .tp-dock__panel { animation: none; } }
+
+/* ───── 데스크톱: 플로팅 도구바를 하단 중앙 → 우측 세로 레일로 ─────
+   모바일/태블릿(≤880px)은 하단 바 유지(세로 레일은 좁은 화면에 부적합) */
+@media (min-width: 1000px) {
+  .tp-dock { bottom: auto; left: auto; right: 16px; top: 50%; transform: translateY(-50%); width: auto; }
+  .tp-dock__cats { flex-direction: column; gap: 4px; padding: 7px; border-radius: 20px; }
+  .tp-dock__cat { flex: 0 0 auto; width: 70px; padding: 11px 6px; border-radius: 14px; }
+  /* 패널을 레일 왼쪽으로 펼침 + 세로 중앙 정렬 */
+  .tp-dock__panels { top: 50%; bottom: auto; left: auto; right: calc(100% + 12px); transform: translateY(-50%); width: 320px; }
+  .tp-dock__panel { max-height: min(70vh, 560px); animation-name: dockPopLeft; }
+  /* 하단 바가 없으니 도구 영역 하단 여백 축소 + 우측 레일 레인 확보(카드가 레일에 가리지 않게) */
+  .tp-editor { padding-bottom: 56px; }
+  .tp-editorwrap { padding-right: clamp(48px, 10vw, 140px); }
+}
 @media (max-width: 560px) {
   .tp-dock { bottom: 12px; width: calc(100vw - 16px); }
   .tp-dock__cats { gap: 2px; padding: 6px; border-radius: 16px; }
