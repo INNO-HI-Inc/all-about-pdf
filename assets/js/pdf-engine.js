@@ -209,11 +209,12 @@
   async function toImages(file, opts, onProgress) {
     opts = opts || {};
     var scale = opts.scale || 2;
-    var format = opts.format === 'jpg' ? 'jpg' : 'png';
-    var mime = format === 'jpg' ? 'image/jpeg' : 'image/png';
+    var format = opts.format === 'jpg' ? 'jpg' : (opts.format === 'webp' ? 'webp' : 'png');
+    var mime = format === 'jpg' ? 'image/jpeg' : (format === 'webp' ? 'image/webp' : 'image/png');
     var quality = opts.quality != null ? opts.quality : 0.92;
     var prefix = opts.prefix ? String(opts.prefix).replace(/[\\/:*?"<>|]/g, '') : 'page';
-    var transparent = format === 'png' && !!opts.transparent;
+    // PNG·WEBP는 투명 배경 지원(JPG는 불가)
+    var transparent = (format === 'png' || format === 'webp') && !!opts.transparent;
     var pdf = await loadPdfjs(file, opts.password);
     var total = pdf.numPages;
     var list = opts.pageIndices && opts.pageIndices.length
@@ -786,8 +787,124 @@
     return toBlob(await src.save());
   }
 
+  // ── 워터마크(텍스트·이미지) ───────────────────────────────
+  // 한글 지원을 위해 문구를 캔버스에 렌더(사전 회전)→투명 PNG→embedPng→각 페이지 drawImage.
+  // opts: { type:'text'|'image', text, color(hex), imageDataUrl, opacity(0~1),
+  //         angle(0/45/90), mode:'center'|'tile', sizePct(0.08~1, 페이지폭 대비) }
+  function loadImageEl(src) {
+    return new Promise(function (res, rej) {
+      var im = new Image();
+      im.onload = function () { res(im); };
+      im.onerror = function () { rej(new Error('워터마크 이미지를 불러오지 못했어요.')); };
+      im.src = src;
+    });
+  }
+  async function addWatermark(file, opts, onProgress) {
+    opts = opts || {};
+    var doc = await loadDoc(file);
+    var pages = doc.getPages();
+    var total = pages.length;
+    var opacity = opts.opacity != null ? Math.max(0.03, Math.min(1, opts.opacity)) : 0.25;
+    var angle = (((opts.angle || 0) % 360) + 360) % 360;
+    var mode = opts.mode === 'tile' ? 'tile' : 'center';
+    var sizePct = opts.sizePct != null ? Math.max(0.08, Math.min(1, opts.sizePct)) : (mode === 'tile' ? 0.26 : 0.5);
+
+    // 워터마크 소스 준비(텍스트 메트릭 또는 이미지 엘리먼트) — 회전은 페이지별로 적용
+    var srcImg = null, srcW = 0, srcH = 0, wmText = '', fontStr = '', textW = 0, textH = 0;
+    if (opts.type === 'image' && opts.imageDataUrl) {
+      var img = await loadImageEl(opts.imageDataUrl);
+      var iw = img.naturalWidth || img.width || 300, ih = img.naturalHeight || img.height || 300;
+      // 폭·높이 모두 상한을 둬 세로로 매우 긴 이미지의 메모리 폭증 방지
+      var MAX = 1400;
+      if (iw > MAX) { ih = ih * MAX / iw; iw = MAX; }
+      if (ih > MAX) { iw = iw * MAX / ih; ih = MAX; }
+      srcImg = img; srcW = iw; srcH = ih;
+    } else {
+      wmText = String(opts.text == null ? '' : opts.text).trim();
+      if (!wmText) throw new Error('워터마크에 넣을 문구를 입력해 주세요.');
+      var fontPx = 180; // 3배 스케일(60pt×3) — 인쇄까지 또렷
+      fontStr = '700 ' + fontPx + 'px "Apple SD Gothic Neo","Malgun Gothic","AtoZ",sans-serif';
+      var mctx = document.createElement('canvas').getContext('2d');
+      mctx.font = fontStr;
+      textW = Math.ceil(mctx.measureText(wmText).width) + fontPx * 0.5;
+      textH = Math.ceil(fontPx * 1.4);
+    }
+
+    // 특정 회전각(netAngle)으로 사전 회전된 워터마크 캔버스를 만들어 embedPng.
+    // 페이지 /Rotate가 걸린 문서에서도 뷰어 기준으로 바르게 보이도록 회전각을 페이지별로 계산하고,
+    // 같은 회전각은 캐시해 재사용(대부분 문서는 회전이 균일 → 임베드 1회).
+    var embedCache = {};
+    async function embedForAngle(deg) {
+      if (embedCache[deg]) return embedCache[deg];
+      var rad = deg * Math.PI / 180, c = Math.abs(Math.cos(rad)), s = Math.abs(Math.sin(rad));
+      var cv;
+      if (srcImg) {
+        var cw = Math.max(1, Math.ceil(srcW * c + srcH * s)), ch = Math.max(1, Math.ceil(srcW * s + srcH * c));
+        cv = document.createElement('canvas'); cv.width = cw; cv.height = ch;
+        var ic = cv.getContext('2d'); ic.translate(cw / 2, ch / 2); ic.rotate(rad);
+        ic.drawImage(srcImg, -srcW / 2, -srcH / 2, srcW, srcH);
+      } else {
+        var cw2 = Math.max(1, Math.ceil(textW * c + textH * s)), ch2 = Math.max(1, Math.ceil(textW * s + textH * c));
+        cv = document.createElement('canvas'); cv.width = cw2; cv.height = ch2;
+        var tc = cv.getContext('2d'); tc.translate(cw2 / 2, ch2 / 2); tc.rotate(rad);
+        tc.font = fontStr; tc.fillStyle = opts.color || '#888888';
+        tc.textAlign = 'center'; tc.textBaseline = 'middle';
+        tc.fillText(wmText, 0, 0);
+      }
+      var blob = await canvasToBlob(cv, 'image/png');
+      var bytes = new Uint8Array(await blob.arrayBuffer());
+      var rec = { img: await doc.embedPng(bytes), aspect: cv.height / cv.width };
+      embedCache[deg] = rec; return rec;
+    }
+
+    for (var i = 0; i < total; i++) {
+      var page = pages[i];
+      var s = page.getSize(); // MediaBox 원본 폭/높이(회전 미반영)
+      var pr = 0; try { pr = (((page.getRotation().angle || 0) % 360) + 360) % 360; } catch (e) {}
+      var swap = (pr === 90 || pr === 270);
+      // 뷰어에 보이는 폭/높이
+      var vw = swap ? s.height : s.width, vh = swap ? s.width : s.height;
+      // 캔버스에 새길 회전각 = 원하는 각 - 페이지회전(뷰어가 pr을 더해 다시 angle이 됨)
+      var netAngle = (((angle - pr) % 360) + 360) % 360;
+      var rec = await embedForAngle(netAngle);
+      // MediaBox 중심 = 뷰어 중심(회전축) → 중앙 배치는 회전과 무관하게 중심 정렬로 OK
+      if (mode === 'center') {
+        var w = vw * sizePct, h = w * rec.aspect;
+        if (h > vh * 0.92) { h = vh * 0.92; w = h / rec.aspect; } // 페이지 높이 초과 시 축소(잘림 방지)
+        // 90/270 회전 페이지는 그리는 축이 뒤바뀌므로 MediaBox 기준 폭/높이를 교환
+        var dw = swap ? h : w, dh = swap ? w : h;
+        page.drawImage(rec.img, { x: (s.width - dw) / 2, y: (s.height - dh) / 2, width: dw, height: dh, opacity: opacity });
+      } else {
+        var tw2 = vw * sizePct, th2 = tw2 * rec.aspect;
+        var dw2 = swap ? th2 : tw2, dh2 = swap ? tw2 : th2;
+        var gx = dw2 * 0.35, gy = dh2 * 0.7; // 페이지 전반을 촘촘히 덮도록(반복 워터마크 취지)
+        for (var y = -dh2; y < s.height + dh2; y += dh2 + gy)
+          for (var x = -dw2; x < s.width + dw2; x += dw2 + gx)
+            page.drawImage(rec.img, { x: x, y: y, width: dw2, height: dh2, opacity: opacity });
+      }
+      if (onProgress) onProgress((i + 1) / total);
+    }
+    return toBlob(await doc.save());
+  }
+
+  // ── 양식(Form) 평탄화 ─────────────────────────────────────
+  // 입력값을 페이지에 '구워' 편집 불가·어디서나 동일하게 보이도록. 글자 보존(래스터화 아님).
+  async function flattenForm(file) {
+    var doc = await loadDoc(file);
+    var form;
+    try { form = doc.getForm(); } catch (e) { form = null; }
+    if (!form || !form.getFields().length) {
+      throw new Error('이 PDF에는 입력 양식(폼 필드)이 없어요. 평탄화할 대상이 없습니다.');
+    }
+    try { form.flatten(); }
+    catch (e) { throw new Error('양식을 평탄화하지 못했어요. 일부 특수 양식은 지원되지 않을 수 있어요.'); }
+    return toBlob(await doc.save());
+  }
+
   global.PDFEngine = {
     merge: merge,
+    addWatermark: addWatermark,
+    flattenForm: flattenForm,
     splitEach: splitEach,
     splitRanges: splitRanges,
     splitEvery: splitEvery,

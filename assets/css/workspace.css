@@ -34,7 +34,7 @@
   /* 그라데이션 전면 제거 — 솔리드 컬러로 통일 */
   --grad: #e5252a;
   --grad-soft: #fff1f0;
-  --ink: #17172a; --ink-soft: #585e6e; --ink-faint: #9aa0ad;
+  --ink: #17172a; --ink-soft: #585e6e; --ink-faint: #6b7280; /* AA(≈4.6:1) 대비 개선 */
   --bg: #ffffff; --surf: #ffffff; --surf-2: #f7f8fb; --surf-3: #f1f2f6;
   --line: #ececf2; --line-2: #e0e3ea;
   --radius: 16px; --radius-sm: 12px; --radius-lg: 22px; --pill: 999px;

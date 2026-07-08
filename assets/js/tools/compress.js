@@ -12,10 +12,17 @@ document.addEventListener('DOMContentLoaded', function () {
       var preset = Q[o.q] || Q.medium;
       try {
         var blob = await PDFEngine.compress(files[0], preset, ctx.onProgress);
-        if (files[0].size && blob.size >= files[0].size * 0.98) {
-          UI.toast('이 PDF는 더 줄지 않았어요. 글자 위주 문서라면 원본을 쓰는 게 좋아요.', 'info');
+        var base = (files[0].name || 'compressed').replace(/\.pdf$/i, '');
+        // 결과가 원본보다 크면(=압축 실패) 래스터화로 커진 파일을 강요하지 않고 원본을 그대로 반환.
+        // 원본은 글자 선택도 보존되므로 사용자에게 유리.
+        if (files[0].size && blob.size >= files[0].size) {
+          UI.toast('압축해도 용량이 줄지 않아 원본을 그대로 드려요. (글자 선택도 보존돼요)', 'info');
+          return { type: 'blob', blob: files[0], filename: base + '.pdf' };
         }
-        return { type: 'blob', blob: blob, filename: (files[0].name || 'compressed').replace(/\.pdf$/i, '') + '-압축.pdf' };
+        if (files[0].size && blob.size >= files[0].size * 0.9) {
+          UI.toast('용량이 많이 줄지는 않았어요. 글자 위주 문서는 원래 압축 효과가 작아요.', 'info');
+        }
+        return { type: 'blob', blob: blob, filename: base + '-압축.pdf' };
       } catch (e) {
         if (PDFEngine.isPasswordError(e)) throw new Error('비밀번호가 걸린 PDF예요. 먼저 잠금해제 도구로 푼 뒤 압축해 주세요.');
         throw e;

@@ -22,9 +22,11 @@
   <link rel="apple-touch-icon" href="assets/img/logo.png">
   <link rel="manifest" href="site.webmanifest">
   <meta name="theme-color" content="#ffffff">
-  <link rel="stylesheet" href="assets/css/style.css?v=1781683950528">
+  <link rel="preload" as="font" type="font/woff2" href="assets/vendor/fonts/a2z-Regular.woff2" crossorigin>
+  <link rel="preload" as="font" type="font/woff2" href="assets/vendor/fonts/a2z-Bold.woff2" crossorigin>
+  <link rel="stylesheet" href="assets/css/style.css?v=5247e13f">
   <script>document.documentElement.className+=" js";</script>
-  <link rel="stylesheet" href="assets/css/workspace.css?v=1781683950528">
+  <link rel="stylesheet" href="assets/css/workspace.css?v=04db854f">
   <script type="application/ld+json">[{"@context":"https://schema.org","@type":"WebSite","name":"PDF의 모든 것","url":"https://inno-hi-inc.github.io/all-about-pdf/","inLanguage":"ko","description":"설치도 회원가입도 없이 무료로 쓰는 PDF 도구 모음. 파일을 서버에 올리지 않고 내 브라우저에서 바로 합치기·분할·변환·잠금해제까지 처리합니다."},{"@context":"https://schema.org","@type":"Organization","name":"PDF의 모든 것","url":"https://inno-hi-inc.github.io/all-about-pdf/","sameAs":["https://github.com/INNO-HI-Inc/all-about-pdf"]}]</script>
 </head>
 <body class="ws home">
@@ -93,10 +95,10 @@
   <div class="option">
     <span class="option__label">분할 방식</span>
     <div class="segmented" role="radiogroup" aria-label="분할 방식">
-      <label><input type="radio" name="split-mode" value="each" checked><span>낱장으로</span></label>
-      <label><input type="radio" name="split-mode" value="every"><span>N매마다</span></label>
-      <label><input type="radio" name="split-mode" value="oddeven"><span>홀/짝 분리</span></label>
-      <label><input type="radio" name="split-mode" value="ranges"><span>범위 지정</span></label>
+      <label><input type="radio" name="split-mode" value="each" class="js-nopersist" checked><span>낱장으로</span></label>
+      <label><input type="radio" name="split-mode" value="every" class="js-nopersist"><span>N매마다</span></label>
+      <label><input type="radio" name="split-mode" value="oddeven" class="js-nopersist"><span>홀/짝 분리</span></label>
+      <label><input type="radio" name="split-mode" value="ranges" class="js-nopersist"><span>범위 지정</span></label>
     </div>
   </div>
   <div class="option-row">
@@ -111,7 +113,7 @@
   </div>
   <div class="option">
     <label class="option__label" for="split-ranges">페이지 범위 <span class="option__hint">'범위 지정' 선택 시 · 예: 1-3, 4-8, 9</span></label>
-    <input type="text" id="split-ranges" class="field" placeholder="1-3, 4-8, 9" inputmode="numeric" autocomplete="off">
+    <input type="text" id="split-ranges" class="field js-nopersist" placeholder="1-3, 4-8, 9" inputmode="numeric" autocomplete="off">
   </div>
 </div>
         <div class="actions"><button class="btn btn--primary btn--lg btn--block js-run" disabled>PDF 분할하기</button></div>
@@ -176,6 +178,7 @@
       <div class="segmented" role="radiogroup" aria-label="이미지 형식">
         <label><input type="radio" name="img-format" value="png" checked><span>PNG</span></label>
         <label><input type="radio" name="img-format" value="jpg"><span>JPG</span></label>
+        <label><input type="radio" name="img-format" value="webp"><span>WEBP</span></label>
       </div>
     </div>
     <div class="option">
@@ -189,7 +192,7 @@
   </div>
   <div class="option-row">
     <div class="option">
-      <label class="option__label" for="img-quality">JPG 품질 <span class="option__hint">JPG일 때</span></label>
+      <label class="option__label" for="img-quality">JPG·WEBP 품질 <span class="option__hint">JPG·WEBP일 때</span></label>
       <select id="img-quality" class="field">
         <option value="0.7">보통 (가벼움)</option>
         <option value="0.85">좋음</option>
@@ -205,16 +208,16 @@
   <div class="option">
     <span class="option__label">변환 범위</span>
     <div class="segmented" role="radiogroup" aria-label="변환 범위">
-      <label><input type="radio" name="img-pages-mode" value="all" checked><span>전체 페이지</span></label>
-      <label><input type="radio" name="img-pages-mode" value="custom"><span>특정 페이지</span></label>
+      <label><input type="radio" name="img-pages-mode" value="all" class="js-nopersist" checked><span>전체 페이지</span></label>
+      <label><input type="radio" name="img-pages-mode" value="custom" class="js-nopersist"><span>특정 페이지</span></label>
     </div>
   </div>
   <div class="option">
     <label class="option__label" for="img-pages">페이지 지정 <span class="option__hint">'특정 페이지' 선택 시 · 예: 1, 3, 5-7</span></label>
-    <input type="text" id="img-pages" class="field" placeholder="1, 3, 5-7" inputmode="numeric" autocomplete="off">
+    <input type="text" id="img-pages" class="field js-nopersist" placeholder="1, 3, 5-7" inputmode="numeric" autocomplete="off">
   </div>
   <label class="checkbox"><input type="checkbox" id="img-gray"> 흑백(그레이스케일)으로 변환</label>
-  <label class="checkbox"><input type="checkbox" id="img-transparent"> 투명 배경 (PNG만 적용)</label>
+  <label class="checkbox"><input type="checkbox" id="img-transparent"> 투명 배경 (PNG·WEBP)</label>
 </div>
         <div class="actions"><button class="btn btn--primary btn--lg btn--block js-run" disabled>이미지로 변환하기</button></div>
         <div class="progress js-progress" hidden><div class="progress__bar js-bar"></div><span class="progress__text js-ptext"></span></div>
@@ -238,7 +241,7 @@
         <div class="options">
   <div class="option">
     <label class="option__label" for="unlock-pw">비밀번호 <span class="option__hint">열 때 비밀번호를 묻는 경우에만 입력</span></label>
-    <input type="password" id="unlock-pw" class="field" placeholder="아는 비밀번호 (선택)" autocomplete="off">
+    <input type="password" id="unlock-pw" class="field js-nopersist" placeholder="아는 비밀번호 (선택)" autocomplete="off">
   </div>
   <label class="checkbox"><input type="checkbox" id="unlock-showpw"> 비밀번호 표시</label>
   <label class="checkbox"><input type="checkbox" id="unlock-raster"> 이미지로 해제 (비밀번호가 걸린 PDF용)</label>
@@ -382,7 +385,7 @@
         </div>
         <div class="ws-cat-row" data-cat="security">
           <button class="ws-cattile" type="button" data-cat="security" aria-expanded="false">
-            <span class="ws-cattile__count">2</span>
+            <span class="ws-cattile__count">3</span>
             <span class="ws-cattile__title">PDF 보안</span>
           </button>
           <div class="ws-cat-tools"><div class="ws-shelf">
@@ -393,6 +396,10 @@
           <a class="ws-card" href="remove-metadata/" style="--i:1">
           <span class="ws-card__ico"><svg viewBox="0 0 24 24" class="ic-svg ic-pdf" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M6.4 2.6h6.6L17.6 7v11.4a1.5 1.5 0 0 1-1.5 1.5H6.4a1.5 1.5 0 0 1-1.5-1.5V4.1a1.5 1.5 0 0 1 1.5-1.5z" fill="#E5252A"/><path d="M12.7 2.6 17.6 7h-3.8a1.1 1.1 0 0 1-1.1-1.1z" fill="#B3160F"/><rect x="7.2" y="8.7" width="6" height="1.2" rx=".6" fill="#fff" opacity=".9"/><rect x="7.2" y="11" width="4.2" height="1.2" rx=".6" fill="#fff" opacity=".9"/><circle cx="17.4" cy="17.4" r="4.4" fill="#2b303b" stroke="#fff" stroke-width="1.2"/><path d="M17.4 14.5l2.3.85v1.85c0 1.45-1 2.45-2.3 2.95-1.3-.5-2.3-1.5-2.3-2.95V15.35z" fill="none" stroke="#fff" stroke-width="1.05"/></svg></span>
           <span class="ws-card__tx"><span class="ws-card__name">개인정보 제거</span><span class="ws-card__desc">제목·작성자·생성 프로그램 등 PDF에 숨은 문서 속성을 모두 비워 개인정보 흔적을 지워요. 본문은 그대로.</span></span>
+        </a>
+          <a class="ws-card" href="watermark/" style="--i:2">
+          <span class="ws-card__ico"><svg viewBox="0 0 24 24" class="ic-svg ic-pdf" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M6.4 2.6h6.6L17.6 7v11.4a1.5 1.5 0 0 1-1.5 1.5H6.4a1.5 1.5 0 0 1-1.5-1.5V4.1a1.5 1.5 0 0 1 1.5-1.5z" fill="#E5252A"/><path d="M12.7 2.6 17.6 7h-3.8a1.1 1.1 0 0 1-1.1-1.1z" fill="#B3160F"/><path d="M11.2 6.8c2 2.4 3.6 4.2 3.6 6a3.6 3.6 0 0 1-7.2 0c0-1.8 1.6-3.6 3.6-6z" fill="#fff" opacity=".85"/></svg></span>
+          <span class="ws-card__tx"><span class="ws-card__name">워터마크</span><span class="ws-card__desc">‘대외비’·‘사본’ 같은 한글 문구나 로고 이미지를 모든 페이지에. 가운데 대각선 또는 바둑판 반복으로, 기울기·진하기까지 골라 무단 복제를 막아요.</span></span>
         </a>
           </div></div>
         </div>
@@ -418,7 +425,7 @@
         </div>
         <div class="ws-cat-row" data-cat="edit">
           <button class="ws-cattile" type="button" data-cat="edit" aria-expanded="false">
-            <span class="ws-cattile__count">4</span>
+            <span class="ws-cattile__count">5</span>
             <span class="ws-cattile__title">PDF 편집</span>
           </button>
           <div class="ws-cat-tools"><div class="ws-shelf">
@@ -437,6 +444,10 @@
           <a class="ws-card" href="sign/" style="--i:3">
           <span class="ws-card__ico"><svg viewBox="0 0 24 24" class="ic-svg ic-pdf" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M6.4 2.6h6.6L17.6 7v11.4a1.5 1.5 0 0 1-1.5 1.5H6.4a1.5 1.5 0 0 1-1.5-1.5V4.1a1.5 1.5 0 0 1 1.5-1.5z" fill="#E5252A"/><path d="M12.7 2.6 17.6 7h-3.8a1.1 1.1 0 0 1-1.1-1.1z" fill="#B3160F"/><rect x="7.2" y="8.7" width="6" height="1.2" rx=".6" fill="#fff" opacity=".9"/><rect x="7.2" y="11" width="4.2" height="1.2" rx=".6" fill="#fff" opacity=".9"/><circle cx="17.4" cy="17.4" r="4.4" fill="#db2777" stroke="#fff" stroke-width="1.2"/><path d="M15.4 19.1c1-.1 1.5-.7 2.2-2 .25-.45.5-.85.75-.85.2 0 .25.3.05.7-.18.36-.1.62.18.72" fill="none" stroke="#fff" stroke-width="1.05" stroke-linecap="round" stroke-linejoin="round"/><path d="M15.2 20.4h4.3" stroke="#fff" stroke-width="1.05" stroke-linecap="round"/></svg></span>
           <span class="ws-card__tx"><span class="ws-card__name">서명 넣기</span><span class="ws-card__desc">사인을 직접 그리거나 도장·사인 이미지를 올리거나 이름을 입력해 만들고, 미리보기에서 원하는 위치에 끌어다 놓아요. 계약서·동의서에 서명을 넣을 때 파일을 어디에도 올리지 않아 안전합니다.</span></span>
+        </a>
+          <a class="ws-card" href="flatten/" style="--i:4">
+          <span class="ws-card__ico"><svg viewBox="0 0 24 24" class="ic-svg ic-pdf" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M6.4 2.6h6.6L17.6 7v11.4a1.5 1.5 0 0 1-1.5 1.5H6.4a1.5 1.5 0 0 1-1.5-1.5V4.1a1.5 1.5 0 0 1 1.5-1.5z" fill="#E5252A"/><path d="M12.7 2.6 17.6 7h-3.8a1.1 1.1 0 0 1-1.1-1.1z" fill="#B3160F"/><rect x="7.2" y="8.7" width="6" height="1.2" rx=".6" fill="#fff" opacity=".9"/><rect x="7.2" y="11" width="4.2" height="1.2" rx=".6" fill="#fff" opacity=".9"/><circle cx="17.4" cy="17.4" r="4.4" fill="#7c3aed" stroke="#fff" stroke-width="1.2"/><path d="M17.4 14.6l2.5 1.35-2.5 1.35-2.5-1.35z" fill="#fff"/><path d="M14.9 17.4l2.5 1.35 2.5-1.35" fill="none" stroke="#fff" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          <span class="ws-card__tx"><span class="ws-card__name">양식 평탄화</span><span class="ws-card__desc">채워 넣은 신청서·계약서의 입력값을 페이지에 고정해, 받는 사람이 못 바꾸고 어디서나 똑같이 보이게. 각 페이지를 이미지로 바꾸지 않아 글자는 그대로 보존돼요.</span></span>
         </a>
           </div></div>
         </div>
@@ -466,14 +477,14 @@
   <script src="assets/vendor/pdf-lib.min.js" defer></script>
   <script src="assets/vendor/pdf.min.js" defer></script>
   <script src="assets/vendor/jszip.min.js" defer></script>
-  <script src="assets/js/ui.js?v=1781683950528" defer></script>
-  <script src="assets/js/pdf-engine.js?v=1781683950528" defer></script>
-  <script src="assets/js/tool-core.js?v=1781683950528" defer></script>
-  <script src="assets/js/tools/merge.js?v=1781683950528" defer></script>
-  <script src="assets/js/tools/split.js?v=1781683950528" defer></script>
-  <script src="assets/js/tools/compress.js?v=1781683950528" defer></script>
-  <script src="assets/js/tools/to-image.js?v=1781683950528" defer></script>
-  <script src="assets/js/tools/unlock.js?v=1781683950528" defer></script>
-  <script src="assets/js/workspace.js?v=1781683950528" defer></script>
+  <script src="assets/js/ui.js?v=e8bf6ebc" defer></script>
+  <script src="assets/js/pdf-engine.js?v=2ddd419d" defer></script>
+  <script src="assets/js/tool-core.js?v=1c5e8433" defer></script>
+  <script src="assets/js/tools/merge.js?v=7ee6150a" defer></script>
+  <script src="assets/js/tools/split.js?v=e6a79d52" defer></script>
+  <script src="assets/js/tools/compress.js?v=29c23f67" defer></script>
+  <script src="assets/js/tools/to-image.js?v=38a55d5e" defer></script>
+  <script src="assets/js/tools/unlock.js?v=5a8a5ef2" defer></script>
+  <script src="assets/js/workspace.js?v=e7f689b2" defer></script>
 </body>
 </html>

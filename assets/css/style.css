@@ -18,7 +18,7 @@
   --surface-2: #fafbfe;
   --ink: #181d27;
   --ink-soft: #5b6573;
-  --ink-faint: #8a93a3;
+  --ink-faint: #6b7280; /* WCAG AA(≈4.6:1) — 동작 안내 힌트 가독성 */
   --line: #e7ebf2;
   --line-strong: #d4dae5;
   --accent: #4f46e5;
@@ -308,6 +308,15 @@ select.field { cursor: pointer; }
 .toast--show { opacity: 1; transform: translateY(0); }
 .toast--error { background: var(--danger); }
 .toast--info { background: #222a37; }
+.toast--warn { background: #b45309; }
+.toast--success { background: #0f7a45; }
+
+/* 터치 기기: 파일 조작·페이지 편집 버튼을 오탭 없이 누를 수 있게 확대 */
+@media (pointer: coarse) {
+  .iconbtn { width: 40px; height: 40px; }
+  .pcop { width: 34px; height: 34px; font-size: 15px; }
+  .pagecell--org .pcops { gap: 6px; }
+}
 
 /* ── 유틸 ───────────────────────────────────────────── */
 .center { text-align: center; }

@@ -22,9 +22,11 @@
   <link rel="apple-touch-icon" href="../assets/img/logo.png">
   <link rel="manifest" href="../site.webmanifest">
   <meta name="theme-color" content="#ffffff">
-  <link rel="stylesheet" href="../assets/css/style.css?v=1781683950528">
+  <link rel="preload" as="font" type="font/woff2" href="../assets/vendor/fonts/a2z-Regular.woff2" crossorigin>
+  <link rel="preload" as="font" type="font/woff2" href="../assets/vendor/fonts/a2z-Bold.woff2" crossorigin>
+  <link rel="stylesheet" href="../assets/css/style.css?v=5247e13f">
   <script>document.documentElement.className+=" js";</script>
-  <link rel="stylesheet" href="../assets/css/workspace.css?v=1781683950528">
+  <link rel="stylesheet" href="../assets/css/workspace.css?v=04db854f">
   <script type="application/ld+json">[{"@context":"https://schema.org","@type":"WebApplication","name":"SVG PNG 변환 - PDF의 모든 것","url":"https://inno-hi-inc.github.io/all-about-pdf/svg-to-png/","applicationCategory":"UtilitiesApplication","operatingSystem":"All","browserRequirements":"Requires JavaScript","inLanguage":"ko","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"KRW"},"featureList":["SVG → PNG 변환","배율(고화질) 선택","여러 장 한 번에"],"publisher":{"@type":"Organization","name":"PDF의 모든 것","url":"https://inno-hi-inc.github.io/all-about-pdf/"}},{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"홈","item":"https://inno-hi-inc.github.io/all-about-pdf/"},{"@type":"ListItem","position":2,"name":"SVG PNG 변환","item":"https://inno-hi-inc.github.io/all-about-pdf/svg-to-png/"}]}]</script>
 </head>
 <body class="ws tp">
@@ -120,6 +122,8 @@
         <a class="tp-dock__item" href="../grayscale/"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M12 3.5a8.5 8.5 0 0 1 0 17z" fill="currentColor" stroke="none"/></svg><span>흑백 변환</span></a>
         <a class="tp-dock__item" href="../nup/"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.8" y="3.8" width="7" height="7" rx="1.2"/><rect x="13.2" y="3.8" width="7" height="7" rx="1.2"/><rect x="3.8" y="13.2" width="7" height="7" rx="1.2"/><rect x="13.2" y="13.2" width="7" height="7" rx="1.2"/></svg><span>모아찍기</span></a>
         <a class="tp-dock__item" href="../sign/"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 16.8c2-.3 3-1.2 4.6-3.9.8-1.4 1.6-2.9 2.4-2.9.6 0 .7.7.4 1.6-.4 1.2-.9 2 0 2.5.7.4 1.6-.2 2.3-1.1"/><path d="M15.2 4.2l4.6 4.6"/><path d="M3.5 20.5h17"/></svg><span>서명 넣기</span></a>
+        <a class="tp-dock__item" href="../watermark/"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.4c3.1 3.7 5.6 6.6 5.6 9.6a5.6 5.6 0 0 1-11.2 0c0-3 2.5-5.9 5.6-9.6z"/><path d="M9 13.4a3 3 0 0 0 3 3"/></svg><span>워터마크</span></a>
+        <a class="tp-dock__item" href="../flatten/"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.4 20 7.6l-8 4.2-8-4.2z"/><path d="M4 12l8 4.2 8-4.2"/><path d="M4 16.4l8 4.2 8-4.2"/></svg><span>양식 평탄화</span></a>
         <a class="tp-dock__item" href="../gif-to-png/"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="4.5" width="17" height="15" rx="2.5"/><circle cx="8.5" cy="9.5" r="1.7"/><path d="M20.5 15.5 16 11 6 21"/></svg><span>GIF→PNG</span></a>
         <a class="tp-dock__item" href="../gif-to-jpg/"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="4.5" width="17" height="15" rx="2.5"/><circle cx="8.5" cy="9.5" r="1.7"/><path d="M20.5 15.5 16 11 6 21"/></svg><span>GIF→JPG</span></a>
         <a class="tp-dock__item" href="../avif-to-png/"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="4.5" width="17" height="15" rx="2.5"/><circle cx="8.5" cy="9.5" r="1.7"/><path d="M20.5 15.5 16 11 6 21"/></svg><span>AVIF→PNG</span></a>
@@ -175,13 +179,11 @@
   </main>
 
   <script>window.AAP_BASE='../';</script>
-  <script src="../assets/vendor/pdf-lib.min.js" defer></script>
-  <script src="../assets/vendor/pdf.min.js" defer></script>
   <script src="../assets/vendor/jszip.min.js" defer></script>
-  <script src="../assets/js/ui.js?v=1781683950528" defer></script>
-  <script src="../assets/js/pdf-engine.js?v=1781683950528" defer></script>
-  <script src="../assets/js/tool-core.js?v=1781683950528" defer></script>
-  <script src="../assets/js/tools/svg-to-png.js?v=1781683950528" defer></script>
-  <script src="../assets/js/workspace.js?v=1781683950528" defer></script>
+  <script src="../assets/js/ui.js?v=e8bf6ebc" defer></script>
+  <script src="../assets/js/pdf-engine.js?v=2ddd419d" defer></script>
+  <script src="../assets/js/tool-core.js?v=1c5e8433" defer></script>
+  <script src="../assets/js/tools/svg-to-png.js?v=73995ae8" defer></script>
+  <script src="../assets/js/workspace.js?v=e7f689b2" defer></script>
 </body>
 </html>

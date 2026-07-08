@@ -13,7 +13,7 @@ const require = createRequire(import.meta.url);
 const { chromium } = require(process.env.PW_PATH || 'playwright');
 
 const BASE = process.env.BASE || 'http://localhost:8099';
-const PAGES = ['/', '/merge/', '/split/', '/unlock/', '/extract/', '/delete/', '/organize/', '/to-image/', '/page-numbers/', '/svg-to-png/', '/rotate/', '/crop/', '/compress/', '/pdf-info/', '/jpg-to-png/', '/png-to-jpg/', '/webp-to-png/', '/webp-to-jpg/', '/png-to-webp/', '/jpg-to-webp/', '/svg-to-jpg/', '/svg-to-webp/', '/remove-metadata/', '/remove-blank/', '/add-margin/', '/extract-text/', '/reverse/', '/grayscale/', '/nup/', '/sign/', '/gif-to-png/', '/gif-to-jpg/', '/avif-to-png/', '/avif-to-jpg/', '/about/'];
+const PAGES = ['/', '/merge/', '/split/', '/unlock/', '/extract/', '/delete/', '/organize/', '/to-image/', '/page-numbers/', '/svg-to-png/', '/rotate/', '/crop/', '/compress/', '/pdf-info/', '/watermark/', '/flatten/', '/jpg-to-png/', '/png-to-jpg/', '/webp-to-png/', '/webp-to-jpg/', '/png-to-webp/', '/jpg-to-webp/', '/svg-to-jpg/', '/svg-to-webp/', '/remove-metadata/', '/remove-blank/', '/add-margin/', '/extract-text/', '/reverse/', '/grayscale/', '/nup/', '/sign/', '/gif-to-png/', '/gif-to-jpg/', '/avif-to-png/', '/avif-to-jpg/', '/about/'];
 const results = [];
 const pass = (name, msg) => results.push({ ok: true, name, msg: msg || '' });
 const fail = (name, msg) => results.push({ ok: false, name, msg: msg || '' });
@@ -50,6 +50,26 @@ const ROTS = async (b64) => {
   const doc = await window.PDFLib.PDFDocument.load(u, { ignoreEncryption: true });
   return doc.getPages().map((p) => p.getRotation().angle);
 };
+// 폼(양식) 필드가 있는 PDF 생성 (평탄화 테스트용)
+const GENFORM = async () => {
+  const { PDFDocument } = window.PDFLib;
+  const doc = await PDFDocument.create();
+  const page = doc.addPage([595, 842]);
+  const form = doc.getForm();
+  const tf = form.createTextField('user.name'); tf.setText('John Doe');
+  tf.addToPage(page, { x: 50, y: 700, width: 220, height: 28 });
+  const cb = form.createCheckBox('agree'); cb.addToPage(page, { x: 50, y: 650, width: 18, height: 18 }); cb.check();
+  const bytes = await doc.save(); let bin = ''; const u = new Uint8Array(bytes);
+  for (let i = 0; i < u.length; i++) bin += String.fromCharCode(u[i]);
+  return btoa(bin);
+};
+// base64 → 폼 필드 개수
+const FIELDS = async (b64) => {
+  const bin = atob(b64); const u = new Uint8Array(bin.length);
+  for (let i = 0; i < bin.length; i++) u[i] = bin.charCodeAt(i);
+  const doc = await window.PDFLib.PDFDocument.load(u, { ignoreEncryption: true });
+  try { return doc.getForm().getFields().length; } catch (e) { return 0; }
+};
 // base64(zip) → 엔트리 이름들
 const ZIP = async (b64) => {
   const bin = atob(b64); const u = new Uint8Array(bin.length);
@@ -64,7 +84,9 @@ function b64ToFile(b64, name) {
 function bufToB64(buf) { return Buffer.from(buf).toString('base64'); }
 
 async function ready(page) {
-  await page.waitForFunction(() => window.PDFLib && window.JSZip && window.PDFEngine && window.ToolCore, null, { timeout: 10000 });
+  // 코어(PDFEngine·ToolCore)는 모든 도구 페이지에 존재. vendor(PDFLib/JSZip/pdf.js)는
+  // 도구별 needs에 따라 선택적으로 로드되므로 게이트에서 요구하지 않는다(defer 순서 보장).
+  await page.waitForFunction(() => window.PDFEngine && window.ToolCore, null, { timeout: 10000 });
 }
 async function setAndRun(page, files, before, scope) {
   var pre = scope ? scope + ' ' : '';
@@ -181,6 +203,53 @@ async function testOrganize(ctx) {
   await page.close();
 }
 
+async function testWatermark(ctx) {
+  const page = await ctx.newPage(); await page.goto(BASE + '/watermark/'); await ready(page);
+  const b = await page.evaluate(GEN, [[3, 'W']]);
+  const orig = Buffer.from(b[0], 'base64').length;
+  const { buf } = await setAndRun(page, [b64ToFile(b[0], 'w.pdf')], async () => { await page.fill('#wm-text', '대외비'); });
+  const cnt = await page.evaluate(COUNT, bufToB64(buf));
+  (cnt === 3 && buf.length > orig)
+    ? pass('워터마크(한글)', '대외비 3쪽 유지, 출력 ' + buf.length + 'B > 원본 ' + orig + 'B')
+    : fail('워터마크(한글)', '기대 3쪽·출력 증가, 실제 ' + cnt + '쪽 · ' + buf.length + 'B');
+  await page.close();
+}
+async function testFlatten(ctx) {
+  const page = await ctx.newPage(); await page.goto(BASE + '/flatten/'); await ready(page);
+  const b = await page.evaluate(GENFORM);
+  const before = await page.evaluate(FIELDS, b);
+  const { buf } = await setAndRun(page, [b64ToFile(b, 'form.pdf')]);
+  const after = await page.evaluate(FIELDS, bufToB64(buf));
+  (before >= 2 && after === 0)
+    ? pass('양식 평탄화', '폼 필드 ' + before + ' → ' + after + ' (고정 완료)')
+    : fail('양식 평탄화', '기대 0필드, 실제 전 ' + before + '/후 ' + after);
+  await page.close();
+}
+async function testRotatePages(ctx) {
+  const page = await ctx.newPage(); await page.goto(BASE + '/rotate/'); await ready(page);
+  const b = await page.evaluate(GEN, [[4, 'R']]);
+  const { buf } = await setAndRun(page, [b64ToFile(b[0], 'r.pdf')], async () => {
+    await page.evaluate(() => document.querySelector('input[name="rot-mode"][value="pages"]').click());
+    await page.fill('#rot-pages', '2');
+  });
+  const rots = await page.evaluate(ROTS, bufToB64(buf));
+  JSON.stringify(rots) === JSON.stringify([0, 90, 0, 0])
+    ? pass('회전(특정 페이지)', '4쪽 중 2쪽만 90° → [' + rots.join(',') + ']')
+    : fail('회전(특정 페이지)', '기대 0,90,0,0, 실제 [' + rots.join(',') + ']');
+  await page.close();
+}
+async function testWebp(ctx) {
+  const page = await ctx.newPage(); await page.goto(BASE + '/to-image/'); await ready(page);
+  const b = await page.evaluate(GEN, [[1, 'I']]);
+  const { buf, filename } = await setAndRun(page, [b64ToFile(b[0], 'i.pdf')], async () => {
+    await page.evaluate(() => document.querySelector('input[name="img-format"][value="webp"]').click());
+  });
+  const isWebp = buf[0] === 0x52 && buf[1] === 0x49 && buf[2] === 0x46 && buf[3] === 0x46 && buf[8] === 0x57 && buf[9] === 0x45 && buf[10] === 0x42 && buf[11] === 0x50;
+  (/\.webp$/i.test(filename) && isWebp) ? pass('이미지변환(WEBP)', filename + ' · RIFF/WEBP 헤더 확인')
+    : fail('이미지변환(WEBP)', 'WEBP 헤더/이름 불일치: ' + filename);
+  await page.close();
+}
+
 async function testHomeWidgets(ctx) {
   const page = await ctx.newPage(); await page.goto(BASE + '/'); await ready(page);
   const b = await page.evaluate(GEN, [[3, 'A'], [2, 'B']]);
@@ -252,6 +321,7 @@ async function auditPage(ctx, path) {
     console.log('▶ 기능 실측...');
     await testMerge(ctx); await testSplit(ctx); await testExtract(ctx);
     await testDelete(ctx); await testOrganize(ctx); await testToImage(ctx); await testPageNumbers(ctx); await testUnlock(ctx);
+    await testWatermark(ctx); await testFlatten(ctx); await testRotatePages(ctx); await testWebp(ctx);
     // 홈은 런처(도구 페이지로 링크)로 전환 — 도구 실동작은 각 도구 페이지에서 검증
     console.log('▶ 구조 감사...');
     for (const p of PAGES) await auditPage(ctx, p);

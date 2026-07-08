@@ -180,19 +180,25 @@
     function syncFromInput() { selected = {}; if (gridInput && gridInput.value) { UI.parsePageList(gridInput.value).list.forEach(function (n) { selected[n] = true; }); } }
     function writeInput() { if (gridInput) gridInput.value = compactRanges(Object.keys(selected).map(Number)); if (config.onGridChange) config.onGridChange(Object.keys(selected).length > 0, root); }
     function reflectInput() {
-      if (!config.pageGrid || !pagegrid) return;
+      if (!config.pageGrid) return;
       syncFromInput();
-      Array.prototype.forEach.call(pagegrid.querySelectorAll('.pagecell'), function (cell) {
+      if (pagegrid) Array.prototype.forEach.call(pagegrid.querySelectorAll('.pagecell'), function (cell) {
         var pg = +cell.getAttribute('data-page'), on = !!selected[pg];
         cell.classList.toggle('is-sel', on); cell.setAttribute('aria-pressed', on ? 'true' : 'false');
       });
+      // 입력창에 직접 타이핑해도 모드가 '특정/선택 페이지'로 전환되도록(클릭과 동일하게).
+      // 이게 없으면 rot-mode·img-pages-mode가 'all'로 남아 전체 페이지가 조용히 처리됨.
+      if (config.onGridChange) config.onGridChange(Object.keys(selected).length > 0, root);
     }
     function renderSelectGrid() {
       pagegrid.hidden = false; pagegrid.innerHTML = '<p class="pagegrid__loading">미리보기 불러오는 중…</p>';
       var fileRef = state.files[0];
       PDFEngine.renderThumbs(fileRef, {}).then(function (res) {
         if (state.files[0] !== fileRef) return;
-        gridTotal = res.shown;
+        // ⚠ gridTotal은 '실제 총 페이지 수'로 둔다(썸네일 표시 개수 res.shown이 아니라).
+        //    그래야 60쪽 초과 PDF에서 '전체 선택·반전·홀짝'이 뒷페이지까지 올바로 적용된다.
+        //    (썸네일은 앞 res.shown쪽만 보이지만 selected/입력값에는 전체가 반영됨)
+        gridTotal = res.total;
         syncFromInput();
         pagegrid.innerHTML = '';
         var grid = d.createElement('div'); grid.className = 'pagegrid__grid';
@@ -236,7 +242,9 @@
         });
         pagegrid.appendChild(grid);
         updateSelCount();
-        addHint(res, '페이지를 눌러 선택 · 위 버튼으로 일괄 선택');
+        var selBase = '페이지를 눌러 선택 · 위 버튼으로 일괄 선택';
+        // 미리보기가 앞 일부만 보여도 일괄 버튼은 전체 페이지를 대상으로 함을 명시
+        addHint(res, res.total > res.shown ? selBase + ' (일괄 버튼은 전체 ' + res.total + '쪽 대상)' : selBase);
       }).catch(function () { pagegrid.hidden = true; pagegrid.innerHTML = ''; });
     }
 
@@ -335,11 +343,22 @@
           cell.innerHTML =
             '<span class="pagecell__img"><img src="' + urlByPage[o.page] + '" alt="' + o.page + '페이지" data-rot="' + rot + '" loading="lazy"></span>' +
             '<span class="pcops">' +
+              '<button type="button" class="pcop pcop--mvl" title="앞으로 이동" aria-label="' + o.page + '페이지 앞으로 이동">◀</button>' +
               '<button type="button" class="pcop pcop--rotl" title="왼쪽으로 90° 회전" aria-label="' + o.page + '페이지 왼쪽 회전">↺</button>' +
               '<button type="button" class="pcop pcop--rotr" title="오른쪽으로 90° 회전" aria-label="' + o.page + '페이지 오른쪽 회전">↻</button>' +
+              '<button type="button" class="pcop pcop--mvr" title="뒤로 이동" aria-label="' + o.page + '페이지 뒤로 이동">▶</button>' +
               '<button type="button" class="pcop pcop--del" title="이 페이지 삭제" aria-label="' + o.page + '페이지 삭제">✕</button>' +
             '</span>' +
             '<span class="pagecell__no">' + o.page + '</span>';
+          // 터치·키보드 재정렬 대체 수단(드래그가 안 되는 모바일 대응)
+          cell.querySelector('.pcop--mvl').addEventListener('click', function (e) {
+            e.stopPropagation(); var pos = organizeOrder.indexOf(o);
+            if (pos > 0) { organizeOrder[pos] = organizeOrder[pos - 1]; organizeOrder[pos - 1] = o; rebuild(); }
+          });
+          cell.querySelector('.pcop--mvr').addEventListener('click', function (e) {
+            e.stopPropagation(); var pos = organizeOrder.indexOf(o);
+            if (pos > -1 && pos < organizeOrder.length - 1) { organizeOrder[pos] = organizeOrder[pos + 1]; organizeOrder[pos + 1] = o; rebuild(); }
+          });
           cell.querySelector('.pcop--rotl').addEventListener('click', function (e) { e.stopPropagation(); o.rot = (((o.rot - 90) % 360) + 360) % 360; rebuild(); });
           cell.querySelector('.pcop--rotr').addEventListener('click', function (e) { e.stopPropagation(); o.rot = (((o.rot + 90) % 360) + 360) % 360; rebuild(); });
           cell.querySelector('.pcop--del').addEventListener('click', function (e) {
@@ -361,8 +380,8 @@
         }
         rebuild();
         var note = res.total > res.shown
-          ? '페이지를 끌어 순서 변경 · ↺ ↻ 회전 · ✕ 삭제 · ' + (res.shown + 1) + '쪽부터는 화면엔 없지만 순서 그대로 유지돼요'
-          : '페이지를 끌어 순서 변경 · ↺ ↻ 회전 · ✕ 삭제';
+          ? '끌어서 순서 변경(또는 ◀ ▶) · ↺ ↻ 회전 · ✕ 삭제 · ' + (res.shown + 1) + '쪽부터는 화면엔 없지만 순서 그대로 유지돼요'
+          : '끌어서 순서 변경(또는 ◀ ▶) · ↺ ↻ 회전 · ✕ 삭제';
         var hint = d.createElement('p'); hint.className = 'pagegrid__hint'; hint.textContent = note;
         pagegrid.appendChild(hint);
       }).catch(function () { pagegrid.hidden = true; pagegrid.innerHTML = ''; });
@@ -505,7 +524,7 @@
       if (!res) return;
       if (res.type === 'blob') {
         UI.downloadBlob(res.blob, res.filename);
-        showSuccess(res.filename, function () { UI.downloadBlob(res.blob, res.filename); }, res.blob && res.blob.size);
+        showSuccess(res.filename, function () { UI.downloadBlob(res.blob, res.filename); }, res.blob && res.blob.size, res.blob && res.blob._skipped);
         // (개선 5) 결과 PDF 페이지 수 표시
         if (/\.pdf$/i.test(res.filename || '') && global.PDFEngine && PDFEngine.getPageCount) {
           PDFEngine.getPageCount(res.blob).then(function (n) { if (n) appendResultMeta(n + '페이지'); }).catch(function () {});
@@ -519,15 +538,23 @@
       var ok = result.querySelector('.result__ok .result__size');
       if (ok) ok.textContent = ok.textContent.replace(/\)$/, ' · ' + txt + ')');
     }
-    function showSuccess(label, again, size) {
+    function showSuccess(label, again, size, skipped) {
       result.hidden = false; result.innerHTML = '';
       var ok = d.createElement('p'); ok.className = 'result__ok';
       var sizeTxt = size ? ' <span class="result__size">(' + UI.humanSize(size) + ')</span>' : '';
-      ok.innerHTML = '<span class="result__check"></span> <strong>완료됐어요!</strong> ' + escapeHtml(label) + sizeTxt + ' 다운로드가 시작됐습니다.';
+      ok.innerHTML = '<span class="result__check"></span> <strong>완료됐어요!</strong> ' + escapeHtml(label) + sizeTxt + ' 다운로드가 시작됐어요.';
       result.appendChild(ok);
+      // 건너뛴(열 수 없던) 파일이 있으면 결과 카드에 '영구' 경고로 남긴다(토스트는 사라져 놓치기 쉬움)
+      if (skipped && skipped.length) {
+        var warn = d.createElement('p'); warn.className = 'callout callout--warn'; warn.style.margin = '12px 0 0';
+        warn.innerHTML = '<span class="callout__ic">!</span><span>' + skipped.length +
+          '개 파일은 열 수 없어 결과에서 빠졌어요: <b>' + escapeHtml(skipped.join(', ')) +
+          '</b>. 손상됐거나 비밀번호가 걸린 파일일 수 있어요.</span>';
+        result.appendChild(warn);
+      }
       if (again) { var b = d.createElement('button'); b.type = 'button'; b.className = 'btn btn--ghost btn--sm'; b.textContent = '다시 다운로드'; b.addEventListener('click', again); result.appendChild(b); }
       // (개선 6) 완료 시 결과로 스크롤 + 음성 안내
-      announce('완료됐습니다. ' + label + ' 다운로드가 시작됐습니다.');
+      announce('완료됐어요. ' + label + ' 다운로드가 시작됐어요.' + (skipped && skipped.length ? ' 다만 ' + skipped.length + '개 파일은 빠졌어요.' : ''));
       try { result.scrollIntoView({ behavior: 'smooth', block: 'nearest' }); } catch (e) {}
     }
 
@@ -541,7 +568,14 @@
         applyOutName(res);
         await handleResult(res);
       }
-      catch (e) { console.error('[ToolCore]', e); UI.toast(e && e.message ? e.message : '처리 중 오류가 발생했어요.', 'error'); }
+      catch (e) {
+        console.error('[ToolCore]', e);
+        var msg = (e && e.message) ? e.message : '처리 중 오류가 발생했어요.';
+        UI.toast(msg, 'error');
+        // 오류를 결과 영역에 '영구'로 남긴다 — 3.4초 토스트만으로는 원인을 놓치기 쉬움
+        result.hidden = false;
+        result.innerHTML = '<p class="callout callout--warn" style="margin:0"><span class="callout__ic">!</span><span>' + escapeHtml(msg) + '</span></p>';
+      }
       finally { setBusy(false); }
     });
 
@@ -555,10 +589,31 @@
     }
 
     // (개선 7) 옵션 기억 (localStorage · 파일은 저장하지 않음)
+    // ⚠ 저장 제외: 파일 선택/출력명은 물론, 비밀번호(민감정보)와
+    //    파일에 종속된 값(js-nopersist: 페이지 범위/지정)도 저장·복원하지 않는다.
+    //    — 비번 평문 저장 방지 + 지난 파일의 범위가 새 파일에 몰래 적용되는 오출력 방지.
     var OPT_KEY = 'aap:opts:' + config.tool;
-    function eachOpt(fn) { Array.prototype.forEach.call(root.querySelectorAll('input, select'), function (el) { if (el.classList.contains('js-file') || el.classList.contains('js-outname')) return; var k = el.name || el.id; if (!k) return; fn(el, k); }); }
+    function eachOpt(fn) {
+      Array.prototype.forEach.call(root.querySelectorAll('input, select'), function (el) {
+        if (el.classList.contains('js-file') || el.classList.contains('js-outname') || el.classList.contains('js-nopersist')) return;
+        if (el.type === 'password') return;
+        var k = el.name || el.id; if (!k) return; fn(el, k);
+      });
+    }
     function persistOptions() { try { var data = {}; eachOpt(function (el, k) { if (el.type === 'radio') { if (el.checked) data[k] = el.value; } else if (el.type === 'checkbox') { data[k] = !!el.checked; } else { data[k] = el.value; } }); global.localStorage.setItem(OPT_KEY, JSON.stringify(data)); } catch (e) {} }
     function restoreOptions() { try { var raw = global.localStorage.getItem(OPT_KEY); if (!raw) return; var data = JSON.parse(raw); eachOpt(function (el, k) { if (!(k in data)) return; if (el.type === 'radio') el.checked = (el.value === data[k]); else if (el.type === 'checkbox') el.checked = !!data[k]; else el.value = data[k]; }); } catch (e) {} }
+    // 과거 버전이 저장해 둔 비밀번호·파일종속 값 정리(1회성 마이그레이션)
+    function purgeStored() {
+      try {
+        var raw = global.localStorage.getItem(OPT_KEY); if (!raw) return;
+        var data = JSON.parse(raw), dirty = false;
+        Array.prototype.forEach.call(root.querySelectorAll('input[type="password"], .js-nopersist'), function (el) {
+          var k = el.name || el.id; if (k && (k in data)) { delete data[k]; dirty = true; }
+        });
+        if (dirty) global.localStorage.setItem(OPT_KEY, JSON.stringify(data));
+      } catch (e) {}
+    }
+    purgeStored();
     restoreOptions();
     root.addEventListener('change', persistOptions);
 
@@ -568,6 +623,11 @@
         var t = e.target;
         if (t && t.tagName === 'INPUT' && t.type !== 'checkbox' && t.type !== 'radio' && !runBtn.disabled) { e.preventDefault(); runBtn.click(); }
       } else if (e.key === 'Escape') {
+        // 정리(organize) 편집 중이면 Esc로 통째 유실되지 않도록 보호
+        if (config.organizeGrid && organizeOrder.length) {
+          UI.toast('편집 중이에요. 비우려면 파일의 ✕ 또는 “전체 비우기”를 눌러 주세요.', 'info');
+          return;
+        }
         if (state.files.length) { state.files = []; changed(); }
       }
     });

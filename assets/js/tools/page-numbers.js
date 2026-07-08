@@ -28,6 +28,12 @@ document.addEventListener('DOMContentLoaded', function () {
       };
     },
     run: async function (files, o, ctx) {
+      // 한글·특수문자 접두/접미는 기본 글꼴(Helvetica)로 인코딩 불가 → 조용히 삭제되던 것을 명확히 안내
+      var rawPre = (ctx.root.querySelector('#pn-prefix') || {}).value || '';
+      var rawSuf = (ctx.root.querySelector('#pn-suffix') || {}).value || '';
+      if (/[^\x20-\x7E\xA0-\xFF]/.test(rawPre + rawSuf)) {
+        UI.toast('앞·뒤 글자의 한글은 아직 넣을 수 없어 제외했어요. (영문·숫자·기호만 지원)', 'warn');
+      }
       var blob = await PDFEngine.addPageNumbers(files[0], {
         position: o.position, startAt: o.startAt, skipCover: o.skipCover, format: o.format,
         fontSize: o.fontSize, color: o.color, margin: o.margin,
