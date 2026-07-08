@@ -81,6 +81,24 @@
     });
   });
 
+  // 2-b2) 전체 도구 서랍(오른쪽 슬라이드 + 화면 밀림)
+  var drawer = d.getElementById('tool-drawer');
+  if (drawer) {
+    var dHandle = d.querySelector('[data-drawer-toggle]');
+    var root = d.documentElement;
+    function setDrawer(open) {
+      root.classList.toggle('drawer-open', open);
+      if (dHandle) dHandle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      drawer.setAttribute('aria-hidden', open ? 'false' : 'true');
+      if (open) { var f = drawer.querySelector('.js-toolsearch'); if (f) setTimeout(function () { try { f.focus(); } catch (e) {} }, 380); }
+    }
+    if (dHandle) dHandle.addEventListener('click', function () { setDrawer(!root.classList.contains('drawer-open')); });
+    Array.prototype.slice.call(d.querySelectorAll('[data-drawer-close]')).forEach(function (el) {
+      el.addEventListener('click', function () { setDrawer(false); });
+    });
+    d.addEventListener('keydown', function (e) { if (e.key === 'Escape' && root.classList.contains('drawer-open')) setDrawer(false); });
+  }
+
   // 2-c) 도구 검색/필터 — 이름·설명·동의어(data-keywords)로 즉시 필터
   var searchInput = d.querySelector('.js-toolsearch');
   if (searchInput) {

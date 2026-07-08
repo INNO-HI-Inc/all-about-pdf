@@ -1156,8 +1156,8 @@ function buildHome() {
           <span class="ws-card__ico">${ICONS_PDF[slug]}</span>
           <span class="ws-card__tx"><span class="ws-card__name">${esc(dispName(slug))}</span><span class="ws-card__desc">${esc(APP_DESC[slug] || '')}</span></span>
         </a>`;
-  const catRows = CATEGORIES.map((cat) => `        <div class="ws-cat-row" data-cat="${cat.id}">
-          <button class="ws-cattile" type="button" data-cat="${cat.id}" aria-expanded="false">
+  const catRows = CATEGORIES.map((cat, ci) => `        <div class="ws-cat-row${ci === 0 ? ' is-active' : ''}" data-cat="${cat.id}">
+          <button class="ws-cattile${ci === 0 ? ' is-active' : ''}" type="button" data-cat="${cat.id}" aria-expanded="${ci === 0 ? 'true' : 'false'}">
             <span class="ws-cattile__count">${cat.slugs.length}</span>
             <span class="ws-cattile__title">${esc(cat.title)}</span>
           </button>
@@ -1170,35 +1170,44 @@ ${catRows}
       </div>`;
 
   const searchIco = '<svg class="ws-search__ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>';
+  const gridIco = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="3.5" width="7" height="7" rx="1.6"/><rect x="13.5" y="3.5" width="7" height="7" rx="1.6"/><rect x="3.5" y="13.5" width="7" height="7" rx="1.6"/><rect x="13.5" y="13.5" width="7" height="7" rx="1.6"/></svg>';
   const main = `    <section class="ws-home2" id="tools">
       <h1 class="sr-only">${esc(c.metaTitle || 'PDF의 모든 것')} — 설치 없이 무료로 쓰는 한국어 PDF 도구 모음</h1>
-      <div class="ws-wrap ws-home2grid">
-        <div class="ws-home2left">
-          <div class="ws-winwrap">
-            <div class="ws-window ws-deck" data-ws-window>
-              <button class="ws-winclose ws-deck__close" type="button" data-ws-close aria-label="작업 닫고 처음으로">처음으로 ✕</button>
-              <div class="herotool">
-                <div class="herotool__tabs" role="tablist" aria-label="PDF 도구 선택">
-                ${heroTabs}
-                </div>
-                <div class="herotool__panels">
-            ${heroPanels}
-                </div>
+      <div class="ws-wrap ws-home2--solo">
+        <div class="ws-winwrap">
+          <div class="ws-window ws-deck" data-ws-window>
+            <button class="ws-winclose ws-deck__close" type="button" data-ws-close aria-label="작업 닫고 처음으로">처음으로 ✕</button>
+            <div class="herotool">
+              <div class="herotool__tabs" role="tablist" aria-label="PDF 도구 선택">
+              ${heroTabs}
+              </div>
+              <div class="herotool__panels">
+          ${heroPanels}
               </div>
             </div>
           </div>
         </div>
-        <aside class="ws-home2right ws-catrail" aria-label="전체 도구">
-          <div class="ws-search">
-            ${searchIco}
-            <input type="search" class="js-toolsearch ws-search__input" placeholder="도구 검색" aria-label="도구 검색" autocomplete="off">
-          </div>
-          <p class="ws-catrail__cap">전체 도구 <b>37</b> <span>카테고리를 눌러 펼치기</span></p>
-          <p class="ws-search__empty js-search-empty" hidden>찾는 도구가 없어요. ‘압축’, ‘합치기’, ‘jpg’ 처럼 검색해 보세요.</p>
-${catalog}
-        </aside>
       </div>
-    </section>`;
+    </section>
+
+    <button class="ws-drawer-handle" type="button" data-drawer-toggle aria-controls="tool-drawer" aria-expanded="false">
+      ${gridIco}<span>전체 도구</span>
+    </button>
+    <aside class="ws-drawer" id="tool-drawer" aria-label="전체 도구" aria-hidden="true">
+      <div class="ws-drawer__bar">
+        <span class="ws-drawer__title">${gridIco}전체 도구 <b>37</b></span>
+        <button class="ws-drawer__x" type="button" data-drawer-close aria-label="닫기">✕</button>
+      </div>
+      <div class="ws-drawer__scroll">
+        <div class="ws-search">
+          ${searchIco}
+          <input type="search" class="js-toolsearch ws-search__input" placeholder="도구 검색 — 예: 압축, 워터마크, jpg" aria-label="도구 검색" autocomplete="off">
+        </div>
+        <p class="ws-search__empty js-search-empty" hidden>찾는 도구가 없어요. ‘압축’, ‘합치기’, ‘jpg’ 처럼 검색해 보세요.</p>
+${catalog}
+      </div>
+    </aside>
+    <div class="ws-drawer-scrim" data-drawer-close></div>`;
 
   const html = page({
     title: c.metaTitle, desc: c.metaDescription, canonical,

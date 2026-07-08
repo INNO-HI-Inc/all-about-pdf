@@ -28,7 +28,7 @@
   <link rel="preload" as="font" type="font/woff2" href="assets/vendor/fonts/a2z-Bold.woff2" crossorigin>
   <link rel="stylesheet" href="assets/css/style.css?v=8978e4fa">
   <script>document.documentElement.className+=" js";</script>
-  <link rel="stylesheet" href="assets/css/workspace.css?v=3cab9eef">
+  <link rel="stylesheet" href="assets/css/workspace.css?v=1ac9ce5c">
   <script type="application/ld+json">[{"@context":"https://schema.org","@type":"WebSite","name":"PDF의 모든 것","url":"https://everything-pdf.site/","inLanguage":"ko","description":"설치도 회원가입도 없이 무료로 쓰는 PDF 도구 모음. 파일을 서버에 올리지 않고 내 브라우저에서 바로 합치기·분할·변환·잠금해제까지 처리합니다."},{"@context":"https://schema.org","@type":"Organization","name":"PDF의 모든 것","url":"https://everything-pdf.site/","sameAs":["https://github.com/INNO-HI-Inc/all-about-pdf"]}]</script>
 </head>
 <body class="ws home">
@@ -40,21 +40,20 @@
   <main id="main">
     <section class="ws-home2" id="tools">
       <h1 class="sr-only">PDF의 모든 것 | 무료 PDF 합치기·분할·변환 — 설치 없이 무료로 쓰는 한국어 PDF 도구 모음</h1>
-      <div class="ws-wrap ws-home2grid">
-        <div class="ws-home2left">
-          <div class="ws-winwrap">
-            <div class="ws-window ws-deck" data-ws-window>
-              <button class="ws-winclose ws-deck__close" type="button" data-ws-close aria-label="작업 닫고 처음으로">처음으로 ✕</button>
-              <div class="herotool">
-                <div class="herotool__tabs" role="tablist" aria-label="PDF 도구 선택">
-                <button class="herotool__tab" type="button" role="tab" data-tab="merge" aria-selected="true"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="8" width="11" height="12.5" rx="2"/><path d="M9 8V5.5A2 2 0 0 1 11 3.5h7.5A2 2 0 0 1 20.5 5.5V15a2 2 0 0 1-2 2H14.5"/></svg><span>합치기</span></button>
+      <div class="ws-wrap ws-home2--solo">
+        <div class="ws-winwrap">
+          <div class="ws-window ws-deck" data-ws-window>
+            <button class="ws-winclose ws-deck__close" type="button" data-ws-close aria-label="작업 닫고 처음으로">처음으로 ✕</button>
+            <div class="herotool">
+              <div class="herotool__tabs" role="tablist" aria-label="PDF 도구 선택">
+              <button class="herotool__tab" type="button" role="tab" data-tab="merge" aria-selected="true"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="8" width="11" height="12.5" rx="2"/><path d="M9 8V5.5A2 2 0 0 1 11 3.5h7.5A2 2 0 0 1 20.5 5.5V15a2 2 0 0 1-2 2H14.5"/></svg><span>합치기</span></button>
               <button class="herotool__tab" type="button" role="tab" data-tab="split" aria-selected="false"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="6" cy="6" r="2.4"/><circle cx="6" cy="18" r="2.4"/><line x1="20" y1="4" x2="8.6" y2="15.4"/><line x1="14.6" y1="14.6" x2="20" y2="20"/><line x1="8.6" y1="8.6" x2="11.4" y2="11.4"/></svg><span>분할</span></button>
               <button class="herotool__tab" type="button" role="tab" data-tab="compress" aria-selected="false"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="4" y1="12" x2="20" y2="12"/><path d="M8.5 5.5 12 9l3.5-3.5M8.5 18.5 12 15l3.5 3.5"/></svg><span>PDF 압축</span></button>
               <button class="herotool__tab" type="button" role="tab" data-tab="to-image" aria-selected="false"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="4.5" width="17" height="15" rx="2.5"/><circle cx="8.5" cy="9.5" r="1.7"/><path d="M20.5 15.5 16 11 6 21"/></svg><span>PDF→이미지</span></button>
               <button class="herotool__tab" type="button" role="tab" data-tab="unlock" aria-selected="false"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="9.5" rx="2"/><path d="M8 11V7a4 4 0 0 1 7.5-1.9"/></svg><span>잠금해제</span></button>
-                </div>
-                <div class="herotool__panels">
-            <div class="herotool__panel is-active" role="tabpanel" data-panel="merge">
+              </div>
+              <div class="herotool__panels">
+          <div class="herotool__panel is-active" role="tabpanel" data-panel="merge">
             <div class="tool" data-tool="merge">
       <div class="tool__left ws-window"><div class="ws-winbar"><span class="ws-wintitle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 16V4M8 8l4-4 4 4"/><path d="M4 16v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg><span class="t">여기에 PDF를 놓고 바로 작업</span></span></div><div class="tool__leftbody"><div class="dropzone js-drop" tabindex="0" role="button" aria-label="PDF 파일 선택 또는 끌어다 놓기">
           <input type="file" class="js-file" accept="application/pdf" multiple hidden>
@@ -269,21 +268,30 @@
       </div>
     </div>
           </div>
-                </div>
               </div>
             </div>
           </div>
         </div>
-        <aside class="ws-home2right ws-catrail" aria-label="전체 도구">
-          <div class="ws-search">
-            <svg class="ws-search__ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
-            <input type="search" class="js-toolsearch ws-search__input" placeholder="도구 검색" aria-label="도구 검색" autocomplete="off">
-          </div>
-          <p class="ws-catrail__cap">전체 도구 <b>37</b> <span>카테고리를 눌러 펼치기</span></p>
-          <p class="ws-search__empty js-search-empty" hidden>찾는 도구가 없어요. ‘압축’, ‘합치기’, ‘jpg’ 처럼 검색해 보세요.</p>
+      </div>
+    </section>
+
+    <button class="ws-drawer-handle" type="button" data-drawer-toggle aria-controls="tool-drawer" aria-expanded="false">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="3.5" width="7" height="7" rx="1.6"/><rect x="13.5" y="3.5" width="7" height="7" rx="1.6"/><rect x="3.5" y="13.5" width="7" height="7" rx="1.6"/><rect x="13.5" y="13.5" width="7" height="7" rx="1.6"/></svg><span>전체 도구</span>
+    </button>
+    <aside class="ws-drawer" id="tool-drawer" aria-label="전체 도구" aria-hidden="true">
+      <div class="ws-drawer__bar">
+        <span class="ws-drawer__title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="3.5" width="7" height="7" rx="1.6"/><rect x="13.5" y="3.5" width="7" height="7" rx="1.6"/><rect x="3.5" y="13.5" width="7" height="7" rx="1.6"/><rect x="13.5" y="13.5" width="7" height="7" rx="1.6"/></svg>전체 도구 <b>37</b></span>
+        <button class="ws-drawer__x" type="button" data-drawer-close aria-label="닫기">✕</button>
+      </div>
+      <div class="ws-drawer__scroll">
+        <div class="ws-search">
+          <svg class="ws-search__ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+          <input type="search" class="js-toolsearch ws-search__input" placeholder="도구 검색 — 예: 압축, 워터마크, jpg" aria-label="도구 검색" autocomplete="off">
+        </div>
+        <p class="ws-search__empty js-search-empty" hidden>찾는 도구가 없어요. ‘압축’, ‘합치기’, ‘jpg’ 처럼 검색해 보세요.</p>
       <div class="ws-cats" aria-label="도구 카테고리">
-        <div class="ws-cat-row" data-cat="organize">
-          <button class="ws-cattile" type="button" data-cat="organize" aria-expanded="false">
+        <div class="ws-cat-row is-active" data-cat="organize">
+          <button class="ws-cattile is-active" type="button" data-cat="organize" aria-expanded="true">
             <span class="ws-cattile__count">8</span>
             <span class="ws-cattile__title">PDF 구성</span>
           </button>
@@ -479,9 +487,9 @@
           </div></div>
         </div>
       </div>
-        </aside>
       </div>
-    </section>
+    </aside>
+    <div class="ws-drawer-scrim" data-drawer-close></div>
   </main>
 
   <script>window.AAP_BASE='';</script>
@@ -496,6 +504,6 @@
   <script src="assets/js/tools/compress.js?v=29c23f67" defer></script>
   <script src="assets/js/tools/to-image.js?v=38a55d5e" defer></script>
   <script src="assets/js/tools/unlock.js?v=5a8a5ef2" defer></script>
-  <script src="assets/js/workspace.js?v=5d152272" defer></script>
+  <script src="assets/js/workspace.js?v=6652b60c" defer></script>
 </body>
 </html>
