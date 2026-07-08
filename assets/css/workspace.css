@@ -74,7 +74,15 @@
 .ws-nav a:hover { color: var(--ink); background: var(--surf-2); text-decoration: none; }
 .ws-nav a.gh { color: #fff; background: var(--grad); box-shadow: var(--sh-red); padding: 10px 18px; margin-left: 8px; }
 .ws-nav a.gh:hover { transform: translateY(-1px); filter: brightness(1.04); }
-@media (max-width: 760px) { .ws-taskbar { height: 62px; padding: 0 18px; gap: 12px; } .ws-nav a:not(.gh) { display: none; } }
+/* 상단 메뉴바 '전체 도구' 항목(버튼/링크 공통) — 우측 플로팅 손잡이 대체 */
+.ws-nav { --allico: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='currentColor'%3E%3Crect x='3.5' y='3.5' width='7' height='7' rx='1.6'/%3E%3Crect x='13.5' y='3.5' width='7' height='7' rx='1.6'/%3E%3Crect x='3.5' y='13.5' width='7' height='7' rx='1.6'/%3E%3Crect x='13.5' y='13.5' width='7' height='7' rx='1.6'/%3E%3C/svg%3E"); }
+.ws-nav__alltools { font-family: inherit; font-size: 14.5px; font-weight: 700; color: var(--ink); padding: 9px 15px; border-radius: var(--radius);
+  border: 1px solid var(--line-2); background: var(--surf-2); cursor: pointer; display: inline-flex; align-items: center; gap: 7px; line-height: 1;
+  transition: background var(--d-micro) var(--ez), color var(--d-micro) var(--ez), border-color var(--d-micro) var(--ez); }
+.ws-nav__alltools::before { content: ""; width: 15px; height: 15px; flex: none; background: currentColor;
+  -webkit-mask: var(--allico) center/contain no-repeat; mask: var(--allico) center/contain no-repeat; }
+.ws-nav__alltools:hover { color: var(--ink); background: var(--surf-3); border-color: var(--line); text-decoration: none; }
+@media (max-width: 760px) { .ws-taskbar { height: 62px; padding: 0 18px; gap: 12px; } .ws-nav a:not(.gh):not(.ws-nav__alltools) { display: none; } .ws-nav__alltools { padding: 8px 12px; font-size: 14px; } }
 
 /* ============ 히어로 ============ */
 .ws-hero { position: relative; padding: 84px 0 76px; }
@@ -125,6 +133,13 @@
 .herotool__panel { display: none; }
 .herotool__panel.is-active { display: block; animation: aapFadeUp var(--d-enter) var(--ez-out) both; }
 .ws-window .herotool__panel.is-active { padding: 8px 16px 18px; }
+/* 홈 히어로 드롭존 — 첫 화면에서 크고 시원하게(파일 올리기 전 기본 상태) */
+.ws-window .herotool .tool:not(.is-loaded) .dropzone { min-height: 340px; padding: 60px 24px; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+.ws-window .herotool .tool:not(.is-loaded) .dropzone__icon { width: 66px; height: 66px; margin-bottom: 14px; }
+.ws-window .herotool .tool:not(.is-loaded) .dropzone__title { font-size: 1.32rem; }
+.ws-window .herotool .tool:not(.is-loaded) .dropzone__btn { font-size: 1rem; padding: 13px 32px; margin: 6px 0 14px; }
+.ws-window .herotool .tool:not(.is-loaded) .dropzone__hint { font-size: .92rem; }
+@media (max-width: 560px) { .ws-window .herotool .tool:not(.is-loaded) .dropzone { min-height: 300px; padding: 44px 18px; } }
 
 /* 콘텐츠 진입 키프레임 — 패널/썸네일/결과 공용 */
 @keyframes aapFadeUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }

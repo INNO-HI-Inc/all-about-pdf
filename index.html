@@ -4,8 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4315758870466399" crossorigin="anonymous"></script>
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
-  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XXXXXXXXXX');</script>
+  <!-- Google Analytics: build.mjs의 GA_ID 상수에 실제 G- 측정 ID를 넣으면 여기에 gtag가 자동 삽입됩니다. -->
   <title>PDF의 모든 것 | 무료 PDF 합치기·분할·변환</title>
   <meta name="description" content="설치도 회원가입도 없이 무료로 쓰는 PDF 도구 모음. 파일을 서버에 올리지 않고 내 브라우저에서 바로 합치기·분할·변환·잠금해제까지 처리합니다.">
   <link rel="canonical" href="https://everything-pdf.site/">
@@ -28,14 +27,14 @@
   <link rel="preload" as="font" type="font/woff2" href="assets/vendor/fonts/a2z-Bold.woff2" crossorigin>
   <link rel="stylesheet" href="assets/css/style.css?v=547496ad">
   <script>document.documentElement.className+=" js";</script>
-  <link rel="stylesheet" href="assets/css/workspace.css?v=48064566">
+  <link rel="stylesheet" href="assets/css/workspace.css?v=b44037c4">
   <script type="application/ld+json">[{"@context":"https://schema.org","@type":"WebSite","name":"PDF의 모든 것","url":"https://everything-pdf.site/","inLanguage":"ko","description":"설치도 회원가입도 없이 무료로 쓰는 PDF 도구 모음. 파일을 서버에 올리지 않고 내 브라우저에서 바로 합치기·분할·변환·잠금해제까지 처리합니다."},{"@context":"https://schema.org","@type":"Organization","name":"PDF의 모든 것","url":"https://everything-pdf.site/","sameAs":["https://github.com/INNO-HI-Inc/all-about-pdf"]}]</script>
 </head>
 <body class="ws home">
   <a class="skip-link" href="#main">본문 바로가기</a>
     <header class="ws-taskbar">
       <a href="./" class="ws-logo"><span class="chip" aria-hidden="true"><img src="assets/img/logo.png" alt="" width="30" height="30" decoding="async"></span><span class="ko">PDF의 모든 것</span><b class="sep" aria-hidden="true">/</b><span class="wk">workspace</span></a>
-      <nav class="ws-nav"><a href="./">도구</a><a href="./about/">소개</a><a class="gh" href="https://github.com/INNO-HI-Inc/all-about-pdf" rel="noopener" target="_blank">오픈소스 ↗</a></nav>
+      <nav class="ws-nav"><button class="ws-nav__alltools" type="button" data-drawer-toggle aria-controls="tool-drawer" aria-expanded="false">전체 도구</button><a href="./about/">소개</a><a class="gh" href="https://github.com/INNO-HI-Inc/all-about-pdf" rel="noopener" target="_blank">오픈소스 ↗</a></nav>
     </header>
   <main id="main">
     <section class="ws-home2" id="tools">
@@ -275,9 +274,6 @@
       </div>
     </section>
 
-    <button class="ws-drawer-handle" type="button" data-drawer-toggle aria-controls="tool-drawer" aria-expanded="false">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="3.5" width="7" height="7" rx="1.6"/><rect x="13.5" y="3.5" width="7" height="7" rx="1.6"/><rect x="3.5" y="13.5" width="7" height="7" rx="1.6"/><rect x="13.5" y="13.5" width="7" height="7" rx="1.6"/></svg><span>전체 도구</span>
-    </button>
     <aside class="ws-drawer" id="tool-drawer" aria-label="전체 도구" aria-hidden="true">
       <div class="ws-drawer__bar">
         <span class="ws-drawer__title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="3.5" width="7" height="7" rx="1.6"/><rect x="13.5" y="3.5" width="7" height="7" rx="1.6"/><rect x="3.5" y="13.5" width="7" height="7" rx="1.6"/><rect x="13.5" y="13.5" width="7" height="7" rx="1.6"/></svg>전체 도구 <b>37</b></span>
@@ -491,7 +487,19 @@
     </aside>
     <div class="ws-drawer-scrim" data-drawer-close></div>
   </main>
-
+    <footer class="ws-foot">
+      <div class="ws-wrap">
+        <div class="ws-footgrid">
+          <div class="ws-footbrand"><span class="fb"><span class="chip" aria-hidden="true"><img src="assets/img/logo.png" alt="" width="30" height="30" decoding="async"></span>PDF의 모든 것</span><p>설치도 회원가입도 없이, 파일을 서버에 올리지 않고 내 브라우저에서 바로 처리하는 한국어 무료 PDF 도구 모음입니다.</p></div>
+          <div class="ws-footcols">
+            <div class="ws-footcol"><h5>인기 도구</h5><a href="./merge/">합치기</a><a href="./split/">분할</a><a href="./compress/">PDF 압축</a><a href="./to-image/">PDF→이미지</a><a href="./image-to-pdf/">이미지→PDF</a><a href="./unlock/">잠금해제</a><a href="./protect/">비밀번호 설정</a><a href="./watermark/">워터마크</a><a class="ws-footcol__all" href="./#tools">전체 37개 도구 →</a></div>
+            <div class="ws-footcol"><h5>이미지 변환</h5><a href="./jpg-to-png/">JPG→PNG</a><a href="./png-to-jpg/">PNG→JPG</a><a href="./webp-to-png/">WEBP→PNG</a><a href="./jpg-to-webp/">JPG→WEBP</a><a class="ws-footcol__all" href="./#tools">모든 변환 →</a></div>
+            <div class="ws-footcol"><h5>정보</h5><a href="./about/">서비스 소개</a><a href="./privacy/">개인정보 처리방침</a><a href="./contact/">문의 · 제안</a><a href="https://github.com/INNO-HI-Inc/all-about-pdf" rel="noopener" target="_blank">오픈소스 (GitHub) ↗</a></div>
+          </div>
+        </div>
+        <div class="ws-footbottom"><span>© 2026 PDF의 모든 것 — made in Korea, runs on your device.</span><span>오픈소스 · MIT License</span></div>
+      </div>
+    </footer>
   <script>window.AAP_BASE='';</script>
   <script src="assets/vendor/pdf-lib.min.js" defer></script>
   <script src="assets/vendor/pdf.min.js" defer></script>

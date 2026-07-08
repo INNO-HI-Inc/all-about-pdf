@@ -36,7 +36,8 @@ const ADSENSE_ENABLED = /^ca-pub-\d{16}$/.test(ADSENSE_CLIENT);
 // gtag가 삽입되고 개인정보 고지에 분석 쿠키 문구가 함께 켜집니다.
 // GA4 속성 만들기 > 데이터 스트림(웹) 생성 > '측정 ID'(G-로 시작) 복사.
 const GA_ID = process.env.GA_ID || 'G-XXXXXXXXXX';
-const GA_ENABLED = /^G-[A-Z0-9]{8,}$/.test(GA_ID);
+// 실제 GA4 ID만 활성화. 플레이스홀더(G-XXXX…)는 영숫자라 정규식에 걸리므로 명시적으로 제외.
+const GA_ENABLED = /^G-[A-Z0-9]{8,}$/.test(GA_ID) && !/^G-X+$/.test(GA_ID);
 // 검색엔진 소유확인(HTML 태그 방식). 값이 있으면 전 페이지 <head>에 meta가 자동 삽입된다.
 // 구글 서치콘솔: 'HTML 태그' 방식의 content 값(google-site-verification= 뒤 문자열)만 넣으면 됨.
 // 네이버 서치어드바이저: 사이트 등록 후 받은 meta content 값을 NAVER_SITE_VERIFICATION에 넣으면 됨.
