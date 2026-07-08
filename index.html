@@ -21,12 +21,13 @@
   <link rel="icon" href="assets/img/favicon.png" type="image/png">
   <link rel="apple-touch-icon" href="assets/img/logo.png">
   <link rel="manifest" href="site.webmanifest">
-  <meta name="theme-color" content="#ffffff">
+  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0e1016" media="(prefers-color-scheme: dark)">
   <link rel="preload" as="font" type="font/woff2" href="assets/vendor/fonts/a2z-Regular.woff2" crossorigin>
   <link rel="preload" as="font" type="font/woff2" href="assets/vendor/fonts/a2z-Bold.woff2" crossorigin>
-  <link rel="stylesheet" href="assets/css/style.css?v=5247e13f">
+  <link rel="stylesheet" href="assets/css/style.css?v=8978e4fa">
   <script>document.documentElement.className+=" js";</script>
-  <link rel="stylesheet" href="assets/css/workspace.css?v=04db854f">
+  <link rel="stylesheet" href="assets/css/workspace.css?v=c8c3f600">
   <script type="application/ld+json">[{"@context":"https://schema.org","@type":"WebSite","name":"PDF의 모든 것","url":"https://inno-hi-inc.github.io/all-about-pdf/","inLanguage":"ko","description":"설치도 회원가입도 없이 무료로 쓰는 PDF 도구 모음. 파일을 서버에 올리지 않고 내 브라우저에서 바로 합치기·분할·변환·잠금해제까지 처리합니다."},{"@context":"https://schema.org","@type":"Organization","name":"PDF의 모든 것","url":"https://inno-hi-inc.github.io/all-about-pdf/","sameAs":["https://github.com/INNO-HI-Inc/all-about-pdf"]}]</script>
 </head>
 <body class="ws home">
@@ -273,7 +274,12 @@
           </div>
         </div>
         <div class="ws-home2right">
+          <div class="ws-search">
+            <svg class="ws-search__ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+            <input type="search" class="js-toolsearch ws-search__input" placeholder="도구 검색 — 예: 압축, 워터마크, jpg" aria-label="도구 검색" autocomplete="off">
+          </div>
           <p class="ws-cats__cap">카테고리별 전체 도구 둘러보기</p>
+          <p class="ws-search__empty js-search-empty" hidden>찾는 도구가 없어요. ‘압축’, ‘합치기’, ‘jpg’ 처럼 검색해 보세요.</p>
       <div class="ws-cats" aria-label="도구 카테고리">
         <div class="ws-cat-row is-active" data-cat="organize">
           <button class="ws-cattile is-active" type="button" data-cat="organize" aria-expanded="true">
@@ -281,35 +287,35 @@
             <span class="ws-cattile__title">PDF 구성</span>
           </button>
           <div class="ws-cat-tools"><div class="ws-shelf">
-          <a class="ws-card" href="merge/" style="--i:0">
+          <a class="ws-card" href="merge/" style="--i:0" data-keywords="합치기 합치기 여러 pdf를 하나로 merge 합치기 병합 하나로 묶기 결합 ">
           <span class="ws-card__ico"><svg viewBox="0 0 24 24" class="ic-svg ic-pdf" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M6.4 2.6h6.6L17.6 7v11.4a1.5 1.5 0 0 1-1.5 1.5H6.4a1.5 1.5 0 0 1-1.5-1.5V4.1a1.5 1.5 0 0 1 1.5-1.5z" fill="#E5252A"/><path d="M12.7 2.6 17.6 7h-3.8a1.1 1.1 0 0 1-1.1-1.1z" fill="#B3160F"/><rect x="7.2" y="8.7" width="6" height="1.2" rx=".6" fill="#fff" opacity=".9"/><rect x="7.2" y="11" width="4.2" height="1.2" rx=".6" fill="#fff" opacity=".9"/><circle cx="17.4" cy="17.4" r="4.4" fill="#18a957" stroke="#fff" stroke-width="1.2"/><path d="M17.4 15.5v3.8M15.5 17.4h3.8" stroke="#fff" stroke-width="1.5" stroke-linecap="round"/></svg></span>
           <span class="ws-card__tx"><span class="ws-card__name">합치기</span><span class="ws-card__desc">여러 PDF를 순서대로 끌어다 하나로. 과제 묶음, 보고서 취합, 스캔본 결합까지 한 번에 끝냅니다.</span></span>
         </a>
-          <a class="ws-card" href="split/" style="--i:1">
+          <a class="ws-card" href="split/" style="--i:1" data-keywords="분할 분할 한 파일을 여러 개로 split 분할 나누기 쪼개기 낱장 ">
           <span class="ws-card__ico"><svg viewBox="0 0 24 24" class="ic-svg ic-pdf" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M6.4 2.6h7.4L17.6 7v12.3a1.5 1.5 0 0 1-1.5 1.5H6.4a1.5 1.5 0 0 1-1.5-1.5V4.1a1.5 1.5 0 0 1 1.5-1.5z" fill="#E5252A"/><path d="M12.7 2.6 17.6 7h-3.8a1.1 1.1 0 0 1-1.1-1.1z" fill="#B3160F"/><path d="M11.4 7.4v11.4" stroke="#fff" stroke-width="1.2" stroke-dasharray="1.8 1.6" stroke-linecap="round"/><g stroke="#fff" stroke-width="1.05" fill="none"><circle cx="9.4" cy="5.5" r="1.05"/><circle cx="9.4" cy="8.1" r="1.05"/><path d="M10.4 6 13.3 6.9M10.4 7.6 13.3 6.7" stroke-linecap="round"/></g></svg></span>
           <span class="ws-card__tx"><span class="ws-card__name">분할</span><span class="ws-card__desc">한 파일을 여러 개로. 자르는 지점을 눌러 필요한 부분만 깔끔하게 나눕니다.</span></span>
         </a>
-          <a class="ws-card" href="organize/" style="--i:2">
+          <a class="ws-card" href="organize/" style="--i:2" data-keywords="페이지 정리 페이지 정리 순서·회전·삭제 한 번에 organize 정리 순서 재배열 ">
           <span class="ws-card__ico"><svg viewBox="0 0 24 24" class="ic-svg ic-pdf" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M6.4 2.6h6.6L17.6 7v11.4a1.5 1.5 0 0 1-1.5 1.5H6.4a1.5 1.5 0 0 1-1.5-1.5V4.1a1.5 1.5 0 0 1 1.5-1.5z" fill="#E5252A"/><path d="M12.7 2.6 17.6 7h-3.8a1.1 1.1 0 0 1-1.1-1.1z" fill="#B3160F"/><rect x="7.2" y="8.7" width="6" height="1.2" rx=".6" fill="#fff" opacity=".9"/><rect x="7.2" y="11" width="4.2" height="1.2" rx=".6" fill="#fff" opacity=".9"/><circle cx="17.4" cy="17.4" r="4.4" fill="#7c3aed" stroke="#fff" stroke-width="1.2"/><path d="M19.4 16.5a2.5 2.5 0 1 0 .35 2.4" fill="none" stroke="#fff" stroke-width="1.3" stroke-linecap="round"/><path d="M19.6 15.3v1.7h-1.7" fill="none" stroke="#fff" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
           <span class="ws-card__tx"><span class="ws-card__name">페이지 정리</span><span class="ws-card__desc">페이지를 한눈에 펼쳐 끌어서 순서 변경·회전·삭제까지 한 번에. 뒤섞인 스캔과 엉킨 순서를 보이는 그대로 정리합니다.</span></span>
         </a>
-          <a class="ws-card" href="extract/" style="--i:3">
+          <a class="ws-card" href="extract/" style="--i:3" data-keywords="페이지 추출 페이지 추출 원하는 페이지만 추출 extract 추출 뽑기 특정 페이지 ">
           <span class="ws-card__ico"><svg viewBox="0 0 24 24" class="ic-svg ic-pdf" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M6.4 2.6h6.6L17.6 7v11.4a1.5 1.5 0 0 1-1.5 1.5H6.4a1.5 1.5 0 0 1-1.5-1.5V4.1a1.5 1.5 0 0 1 1.5-1.5z" fill="#E5252A"/><path d="M12.7 2.6 17.6 7h-3.8a1.1 1.1 0 0 1-1.1-1.1z" fill="#B3160F"/><rect x="7.2" y="8.7" width="6" height="1.2" rx=".6" fill="#fff" opacity=".9"/><rect x="7.2" y="11" width="4.2" height="1.2" rx=".6" fill="#fff" opacity=".9"/><circle cx="17.4" cy="17.4" r="4.4" fill="#2f6df6" stroke="#fff" stroke-width="1.2"/><path d="M17.4 19.6v-4.3M15.4 17l2-2 2 2" fill="none" stroke="#fff" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
           <span class="ws-card__tx"><span class="ws-card__name">페이지 추출</span><span class="ws-card__desc">원하는 페이지만 콕 집어 새 PDF로. 썸네일을 눌러 특정 조항·핵심 장만 뽑아냅니다.</span></span>
         </a>
-          <a class="ws-card" href="delete/" style="--i:4">
+          <a class="ws-card" href="delete/" style="--i:4" data-keywords="페이지 삭제 페이지 삭제 불필요한 페이지 삭제 delete 삭제 제거 페이지 빼기 ">
           <span class="ws-card__ico"><svg viewBox="0 0 24 24" class="ic-svg ic-pdf" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M6.4 2.6h6.6L17.6 7v11.4a1.5 1.5 0 0 1-1.5 1.5H6.4a1.5 1.5 0 0 1-1.5-1.5V4.1a1.5 1.5 0 0 1 1.5-1.5z" fill="#E5252A"/><path d="M12.7 2.6 17.6 7h-3.8a1.1 1.1 0 0 1-1.1-1.1z" fill="#B3160F"/><rect x="7.2" y="8.7" width="6" height="1.2" rx=".6" fill="#fff" opacity=".9"/><rect x="7.2" y="11" width="4.2" height="1.2" rx=".6" fill="#fff" opacity=".9"/><circle cx="17.4" cy="17.4" r="4.4" fill="#2b303b" stroke="#fff" stroke-width="1.2"/><path d="M15.4 17.4h4" stroke="#fff" stroke-width="1.7" stroke-linecap="round"/></svg></span>
           <span class="ws-card__tx"><span class="ws-card__name">페이지 삭제</span><span class="ws-card__desc">빈 페이지나 불필요한 장을 제거. 제출 전 군더더기를 정리해 문서를 깔끔하게.</span></span>
         </a>
-          <a class="ws-card" href="page-numbers/" style="--i:5">
+          <a class="ws-card" href="page-numbers/" style="--i:5" data-keywords="페이지 번호 페이지 번호 넣기 페이지 번호 넣기 page numbers 페이지 번호 쪽번호 넘버링 ">
           <span class="ws-card__ico"><svg viewBox="0 0 24 24" class="ic-svg ic-pdf" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M6.4 2.6h6.6L17.6 7v11.4a1.5 1.5 0 0 1-1.5 1.5H6.4a1.5 1.5 0 0 1-1.5-1.5V4.1a1.5 1.5 0 0 1 1.5-1.5z" fill="#E5252A"/><path d="M12.7 2.6 17.6 7h-3.8a1.1 1.1 0 0 1-1.1-1.1z" fill="#B3160F"/><rect x="7.2" y="8.7" width="6" height="1.2" rx=".6" fill="#fff" opacity=".9"/><rect x="7.2" y="11" width="4.2" height="1.2" rx=".6" fill="#fff" opacity=".9"/><circle cx="11.3" cy="17.6" r="3.6" fill="#4f46e5" stroke="#fff" stroke-width="1.1"/><path d="M11.55 15.9v3.4M10.5 16.5l1.05-.6" stroke="#fff" stroke-width="1" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
           <span class="ws-card__tx"><span class="ws-card__name">페이지 번호 넣기</span><span class="ws-card__desc">문서 하단에 페이지 번호를 자동으로. 위치·시작 번호·서식을 골라 보고서 형식을 갖춥니다.</span></span>
         </a>
-          <a class="ws-card" href="reverse/" style="--i:6">
+          <a class="ws-card" href="reverse/" style="--i:6" data-keywords="페이지 역순 페이지 역순 페이지 역순 reverse 역순 거꾸로 뒤집기 ">
           <span class="ws-card__ico"><svg viewBox="0 0 24 24" class="ic-svg ic-pdf" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M6.4 2.6h6.6L17.6 7v11.4a1.5 1.5 0 0 1-1.5 1.5H6.4a1.5 1.5 0 0 1-1.5-1.5V4.1a1.5 1.5 0 0 1 1.5-1.5z" fill="#E5252A"/><path d="M12.7 2.6 17.6 7h-3.8a1.1 1.1 0 0 1-1.1-1.1z" fill="#B3160F"/><rect x="7.2" y="8.7" width="6" height="1.2" rx=".6" fill="#fff" opacity=".9"/><rect x="7.2" y="11" width="4.2" height="1.2" rx=".6" fill="#fff" opacity=".9"/><circle cx="17.4" cy="17.4" r="4.4" fill="#2f6df6" stroke="#fff" stroke-width="1.2"/><path d="M16 16l1.4-1.4 1.4 1.4M17.4 14.7v2.2M18.8 18.8l-1.4 1.4-1.4-1.4M17.4 20.3v-2.2" fill="none" stroke="#fff" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
           <span class="ws-card__tx"><span class="ws-card__name">페이지 역순</span><span class="ws-card__desc">PDF 페이지 순서를 거꾸로 뒤집어 새 PDF로. 마지막 페이지가 처음으로 — 거꾸로 스캔된 문서 바로잡기에.</span></span>
         </a>
-          <a class="ws-card" href="nup/" style="--i:7">
+          <a class="ws-card" href="nup/" style="--i:7" data-keywords="모아찍기 모아찍기 모아찍기 nup 모아찍기 2쪽 4쪽 절약 핸드아웃 ">
           <span class="ws-card__ico"><svg viewBox="0 0 24 24" class="ic-svg ic-pdf" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M6.4 2.6h6.6L17.6 7v11.4a1.5 1.5 0 0 1-1.5 1.5H6.4a1.5 1.5 0 0 1-1.5-1.5V4.1a1.5 1.5 0 0 1 1.5-1.5z" fill="#E5252A"/><path d="M12.7 2.6 17.6 7h-3.8a1.1 1.1 0 0 1-1.1-1.1z" fill="#B3160F"/><rect x="7.2" y="8.7" width="6" height="1.2" rx=".6" fill="#fff" opacity=".9"/><circle cx="17.4" cy="17.4" r="4.4" fill="#0d9488" stroke="#fff" stroke-width="1.2"/><rect x="15.5" y="15.5" width="1.5" height="1.5" rx=".2" fill="#fff"/><rect x="17.8" y="15.5" width="1.5" height="1.5" rx=".2" fill="#fff"/><rect x="15.5" y="17.8" width="1.5" height="1.5" rx=".2" fill="#fff"/><rect x="17.8" y="17.8" width="1.5" height="1.5" rx=".2" fill="#fff"/></svg></span>
           <span class="ws-card__tx"><span class="ws-card__name">모아찍기</span><span class="ws-card__desc">여러 페이지를 한 장에 2·4쪽씩 모아 배치해요. 인쇄 종이 절약, 핸드아웃 만들기에 좋습니다.</span></span>
         </a>
@@ -321,63 +327,63 @@
             <span class="ws-cattile__title">PDF 변환</span>
           </button>
           <div class="ws-cat-tools"><div class="ws-shelf">
-          <a class="ws-card" href="to-image/" style="--i:0">
+          <a class="ws-card" href="to-image/" style="--i:0" data-keywords="pdf→이미지 jpg 변환 jpg·png로 변환 to image 이미지 변환 캡처 그림 ">
           <span class="ws-card__ico"><svg viewBox="0 0 24 24" class="ic-svg ic-pdf" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M6.4 2.6h6.6L17.6 7v11.4a1.5 1.5 0 0 1-1.5 1.5H6.4a1.5 1.5 0 0 1-1.5-1.5V4.1a1.5 1.5 0 0 1 1.5-1.5z" fill="#E5252A"/><path d="M12.7 2.6 17.6 7h-3.8a1.1 1.1 0 0 1-1.1-1.1z" fill="#B3160F"/><rect x="7.2" y="8.7" width="6" height="1.2" rx=".6" fill="#fff" opacity=".9"/><rect x="13" y="13" width="7.8" height="7.8" rx="1.4" fill="#18a957" stroke="#fff" stroke-width="1"/><circle cx="15.5" cy="15.7" r="1" fill="#fff"/><path d="M13.7 19.7l2.1-2.4 1.4 1.5 1.3-1.5 1.9 2.4z" fill="#fff"/></svg></span>
           <span class="ws-card__tx"><span class="ws-card__name">JPG 변환</span><span class="ws-card__desc">PDF 페이지를 JPG·PNG 이미지로. 블로그·SNS·발표 자료에 그대로 붙여 쓰기 좋습니다.</span></span>
         </a>
-          <a class="ws-card" href="image-to-pdf/" style="--i:1">
+          <a class="ws-card" href="image-to-pdf/" style="--i:1" data-keywords="이미지→pdf 이미지 pdf 변환 jpg·png를 pdf로 image to pdf 이미지 사진 캡처 pdf로 ">
           <span class="ws-card__ico"><svg viewBox="0 0 24 24" class="ic-svg ic-pdf" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M6.4 2.6h6.6L17.6 7v11.4a1.5 1.5 0 0 1-1.5 1.5H6.4a1.5 1.5 0 0 1-1.5-1.5V4.1a1.5 1.5 0 0 1 1.5-1.5z" fill="#E5252A"/><path d="M12.7 2.6 17.6 7h-3.8a1.1 1.1 0 0 1-1.1-1.1z" fill="#B3160F"/><rect x="6.8" y="8.2" width="6.8" height="5.4" rx="1" fill="#0ea5e9"/><circle cx="8.9" cy="10.1" r=".85" fill="#fff"/><path d="M7.2 13.2l1.9-2.2 1.25 1.35 1.15-1.25 1.7 2.1z" fill="#fff"/><circle cx="17.4" cy="17.4" r="4.4" fill="#e5252a" stroke="#fff" stroke-width="1.2"/><path d="M15.6 17.4h3.6M17.4 15.6v3.6" stroke="#fff" stroke-width="1.5" stroke-linecap="round"/></svg></span>
           <span class="ws-card__tx"><span class="ws-card__name">이미지 PDF 변환</span><span class="ws-card__desc">사진·캡처 이미지를 한 PDF로. JPG·PNG 여러 장을 끌어다 순서대로 묶어 제출용 문서를 만듭니다.</span></span>
         </a>
-          <a class="ws-card" href="svg-to-png/" style="--i:2">
+          <a class="ws-card" href="svg-to-png/" style="--i:2" data-keywords="svg→png svg png 변환 svg를 png로 svg to png 벡터 이미지 ">
           <span class="ws-card__ico"><svg viewBox="0 0 24 24" class="ic-svg ic-pdf" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="3.4" y="4.2" width="9.6" height="9.6" rx="1.6" fill="#8b5cf6"/><path d="M6 11.2l1.9-2.3 1.25 1.4 1.2-1.4 1.75 2.3z" fill="#fff"/><circle cx="6.4" cy="7.2" r="1.05" fill="#fff"/><rect x="11" y="10.4" width="9.6" height="9.6" rx="1.6" fill="${PDF_RED}" stroke="#fff" stroke-width="1.1"/><path d="M13.5 17.4l1.9-2.3 1.25 1.4 1.2-1.4 1.75 2.3z" fill="#fff"/><circle cx="13.9" cy="13.4" r="1.05" fill="#fff"/></svg></span>
           <span class="ws-card__tx"><span class="ws-card__name">SVG PNG 변환</span><span class="ws-card__desc">벡터 SVG를 또렷한 PNG 이미지로. 배율을 올려 고화질로 뽑고, 투명·흰색 배경을 골라 블로그·발표·디자인에 바로 씁니다.</span></span>
         </a>
-          <a class="ws-card" href="gif-to-png/" style="--i:3">
+          <a class="ws-card" href="gif-to-png/" style="--i:3" data-keywords="gif→png gif → png gif→png gif to png  gif png gif png 변환">
           <span class="ws-card__ico"><svg viewBox="0 0 24 24" class="ic-svg ic-pdf" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="3" y="5.2" width="8.4" height="8.4" rx="1.5" fill="#9aa0ad"/><path d="M5 11.6l1.6-2 1.05 1.2 1-1.2 1.55 2z" fill="#fff"/><circle cx="5.5" cy="8" r=".9" fill="#fff"/><rect x="11.6" y="10.4" width="9.4" height="9.4" rx="1.6" fill="#18a957" stroke="#fff" stroke-width="1.1"/><path d="M14 17.6l1.7-2.1 1.1 1.25 1.05-1.25 1.6 2.1z" fill="#fff"/><circle cx="14.3" cy="13.6" r="1" fill="#fff"/></svg></span>
           <span class="ws-card__tx"><span class="ws-card__name">GIF → PNG</span><span class="ws-card__desc">움직이는 GIF의 첫 장면을 PNG로. 무손실·투명 유지. 어디서나 열리는 정지 이미지로.</span></span>
         </a>
-          <a class="ws-card" href="gif-to-jpg/" style="--i:4">
+          <a class="ws-card" href="gif-to-jpg/" style="--i:4" data-keywords="gif→jpg gif → jpg gif→jpg gif to jpg  gif jpg gif jpg 변환">
           <span class="ws-card__ico"><svg viewBox="0 0 24 24" class="ic-svg ic-pdf" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="3" y="5.2" width="8.4" height="8.4" rx="1.5" fill="#9aa0ad"/><path d="M5 11.6l1.6-2 1.05 1.2 1-1.2 1.55 2z" fill="#fff"/><circle cx="5.5" cy="8" r=".9" fill="#fff"/><rect x="11.6" y="10.4" width="9.4" height="9.4" rx="1.6" fill="#f59e0b" stroke="#fff" stroke-width="1.1"/><path d="M14 17.6l1.7-2.1 1.1 1.25 1.05-1.25 1.6 2.1z" fill="#fff"/><circle cx="14.3" cy="13.6" r="1" fill="#fff"/></svg></span>
           <span class="ws-card__tx"><span class="ws-card__name">GIF → JPG</span><span class="ws-card__desc">GIF를 가벼운 JPG로. 움직이는 GIF는 첫 장면만, 투명은 흰 배경 처리.</span></span>
         </a>
-          <a class="ws-card" href="avif-to-png/" style="--i:5">
+          <a class="ws-card" href="avif-to-png/" style="--i:5" data-keywords="avif→png avif → png avif→png avif to png  avif png avif png 변환">
           <span class="ws-card__ico"><svg viewBox="0 0 24 24" class="ic-svg ic-pdf" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="3" y="5.2" width="8.4" height="8.4" rx="1.5" fill="#9aa0ad"/><path d="M5 11.6l1.6-2 1.05 1.2 1-1.2 1.55 2z" fill="#fff"/><circle cx="5.5" cy="8" r=".9" fill="#fff"/><rect x="11.6" y="10.4" width="9.4" height="9.4" rx="1.6" fill="#18a957" stroke="#fff" stroke-width="1.1"/><path d="M14 17.6l1.7-2.1 1.1 1.25 1.05-1.25 1.6 2.1z" fill="#fff"/><circle cx="14.3" cy="13.6" r="1" fill="#fff"/></svg></span>
           <span class="ws-card__tx"><span class="ws-card__name">AVIF → PNG</span><span class="ws-card__desc">최신 AVIF를 어디서나 열리는 무손실 PNG로. 투명 배경 그대로 유지돼요.</span></span>
         </a>
-          <a class="ws-card" href="avif-to-jpg/" style="--i:6">
+          <a class="ws-card" href="avif-to-jpg/" style="--i:6" data-keywords="avif→jpg avif → jpg avif→jpg avif to jpg  avif jpg avif jpg 변환">
           <span class="ws-card__ico"><svg viewBox="0 0 24 24" class="ic-svg ic-pdf" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="3" y="5.2" width="8.4" height="8.4" rx="1.5" fill="#9aa0ad"/><path d="M5 11.6l1.6-2 1.05 1.2 1-1.2 1.55 2z" fill="#fff"/><circle cx="5.5" cy="8" r=".9" fill="#fff"/><rect x="11.6" y="10.4" width="9.4" height="9.4" rx="1.6" fill="#f59e0b" stroke="#fff" stroke-width="1.1"/><path d="M14 17.6l1.7-2.1 1.1 1.25 1.05-1.25 1.6 2.1z" fill="#fff"/><circle cx="14.3" cy="13.6" r="1" fill="#fff"/></svg></span>
           <span class="ws-card__tx"><span class="ws-card__name">AVIF → JPG</span><span class="ws-card__desc">AVIF를 호환성 좋은 JPG로. 카톡·문서·메일에 바로 올릴 수 있어요.</span></span>
         </a>
-          <a class="ws-card" href="jpg-to-png/" style="--i:7">
+          <a class="ws-card" href="jpg-to-png/" style="--i:7" data-keywords="jpg→png jpg → png jpg→png jpg to png  jpg png jpg png 변환">
           <span class="ws-card__ico"><svg viewBox="0 0 24 24" class="ic-svg ic-pdf" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="3" y="5.2" width="8.4" height="8.4" rx="1.5" fill="#9aa0ad"/><path d="M5 11.6l1.6-2 1.05 1.2 1-1.2 1.55 2z" fill="#fff"/><circle cx="5.5" cy="8" r=".9" fill="#fff"/><rect x="11.6" y="10.4" width="9.4" height="9.4" rx="1.6" fill="#18a957" stroke="#fff" stroke-width="1.1"/><path d="M14 17.6l1.7-2.1 1.1 1.25 1.05-1.25 1.6 2.1z" fill="#fff"/><circle cx="14.3" cy="13.6" r="1" fill="#fff"/></svg></span>
           <span class="ws-card__tx"><span class="ws-card__name">JPG → PNG</span><span class="ws-card__desc">JPG 사진을 무손실·투명 지원 PNG로. PNG만 받는 곳이나 편집·보관용으로 좋아요.</span></span>
         </a>
-          <a class="ws-card" href="png-to-jpg/" style="--i:8">
+          <a class="ws-card" href="png-to-jpg/" style="--i:8" data-keywords="png→jpg png → jpg png→jpg png to jpg  png jpg png jpg 변환">
           <span class="ws-card__ico"><svg viewBox="0 0 24 24" class="ic-svg ic-pdf" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="3" y="5.2" width="8.4" height="8.4" rx="1.5" fill="#9aa0ad"/><path d="M5 11.6l1.6-2 1.05 1.2 1-1.2 1.55 2z" fill="#fff"/><circle cx="5.5" cy="8" r=".9" fill="#fff"/><rect x="11.6" y="10.4" width="9.4" height="9.4" rx="1.6" fill="#f59e0b" stroke="#fff" stroke-width="1.1"/><path d="M14 17.6l1.7-2.1 1.1 1.25 1.05-1.25 1.6 2.1z" fill="#fff"/><circle cx="14.3" cy="13.6" r="1" fill="#fff"/></svg></span>
           <span class="ws-card__tx"><span class="ws-card__name">PNG → JPG</span><span class="ws-card__desc">무거운 PNG를 가벼운 JPG로. 투명 배경은 흰색으로 채워지고, 화질을 고를 수 있어요.</span></span>
         </a>
-          <a class="ws-card" href="webp-to-png/" style="--i:9">
+          <a class="ws-card" href="webp-to-png/" style="--i:9" data-keywords="webp→png webp → png webp→png webp to png  webp png webp png 변환">
           <span class="ws-card__ico"><svg viewBox="0 0 24 24" class="ic-svg ic-pdf" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="3" y="5.2" width="8.4" height="8.4" rx="1.5" fill="#9aa0ad"/><path d="M5 11.6l1.6-2 1.05 1.2 1-1.2 1.55 2z" fill="#fff"/><circle cx="5.5" cy="8" r=".9" fill="#fff"/><rect x="11.6" y="10.4" width="9.4" height="9.4" rx="1.6" fill="#18a957" stroke="#fff" stroke-width="1.1"/><path d="M14 17.6l1.7-2.1 1.1 1.25 1.05-1.25 1.6 2.1z" fill="#fff"/><circle cx="14.3" cy="13.6" r="1" fill="#fff"/></svg></span>
           <span class="ws-card__tx"><span class="ws-card__name">WEBP → PNG</span><span class="ws-card__desc">웹용 WEBP를 어디서나 열리는 무손실 PNG로. 투명 배경 그대로 유지돼요.</span></span>
         </a>
-          <a class="ws-card" href="webp-to-jpg/" style="--i:10">
+          <a class="ws-card" href="webp-to-jpg/" style="--i:10" data-keywords="webp→jpg webp → jpg webp→jpg webp to jpg  webp jpg webp jpg 변환">
           <span class="ws-card__ico"><svg viewBox="0 0 24 24" class="ic-svg ic-pdf" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="3" y="5.2" width="8.4" height="8.4" rx="1.5" fill="#9aa0ad"/><path d="M5 11.6l1.6-2 1.05 1.2 1-1.2 1.55 2z" fill="#fff"/><circle cx="5.5" cy="8" r=".9" fill="#fff"/><rect x="11.6" y="10.4" width="9.4" height="9.4" rx="1.6" fill="#f59e0b" stroke="#fff" stroke-width="1.1"/><path d="M14 17.6l1.7-2.1 1.1 1.25 1.05-1.25 1.6 2.1z" fill="#fff"/><circle cx="14.3" cy="13.6" r="1" fill="#fff"/></svg></span>
           <span class="ws-card__tx"><span class="ws-card__name">WEBP → JPG</span><span class="ws-card__desc">WEBP를 호환성 좋은 JPG로. 카톡·문서·메일에 바로 올릴 수 있어요.</span></span>
         </a>
-          <a class="ws-card" href="png-to-webp/" style="--i:11">
+          <a class="ws-card" href="png-to-webp/" style="--i:11" data-keywords="png→webp png → webp png→webp png to webp  png webp png webp 변환">
           <span class="ws-card__ico"><svg viewBox="0 0 24 24" class="ic-svg ic-pdf" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="3" y="5.2" width="8.4" height="8.4" rx="1.5" fill="#9aa0ad"/><path d="M5 11.6l1.6-2 1.05 1.2 1-1.2 1.55 2z" fill="#fff"/><circle cx="5.5" cy="8" r=".9" fill="#fff"/><rect x="11.6" y="10.4" width="9.4" height="9.4" rx="1.6" fill="#0ea5e9" stroke="#fff" stroke-width="1.1"/><path d="M14 17.6l1.7-2.1 1.1 1.25 1.05-1.25 1.6 2.1z" fill="#fff"/><circle cx="14.3" cy="13.6" r="1" fill="#fff"/></svg></span>
           <span class="ws-card__tx"><span class="ws-card__name">PNG → WEBP</span><span class="ws-card__desc">무거운 PNG를 가벼운 WEBP로. 보이는 모양은 그대로, 용량만 줄여 웹을 빠르게.</span></span>
         </a>
-          <a class="ws-card" href="jpg-to-webp/" style="--i:12">
+          <a class="ws-card" href="jpg-to-webp/" style="--i:12" data-keywords="jpg→webp jpg → webp jpg→webp jpg to webp  jpg webp jpg webp 변환">
           <span class="ws-card__ico"><svg viewBox="0 0 24 24" class="ic-svg ic-pdf" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="3" y="5.2" width="8.4" height="8.4" rx="1.5" fill="#9aa0ad"/><path d="M5 11.6l1.6-2 1.05 1.2 1-1.2 1.55 2z" fill="#fff"/><circle cx="5.5" cy="8" r=".9" fill="#fff"/><rect x="11.6" y="10.4" width="9.4" height="9.4" rx="1.6" fill="#0ea5e9" stroke="#fff" stroke-width="1.1"/><path d="M14 17.6l1.7-2.1 1.1 1.25 1.05-1.25 1.6 2.1z" fill="#fff"/><circle cx="14.3" cy="13.6" r="1" fill="#fff"/></svg></span>
           <span class="ws-card__tx"><span class="ws-card__name">JPG → WEBP</span><span class="ws-card__desc">JPG를 더 가벼운 WEBP로. 같은 화질에 작은 용량으로 웹페이지를 빠르게.</span></span>
         </a>
-          <a class="ws-card" href="svg-to-jpg/" style="--i:13">
+          <a class="ws-card" href="svg-to-jpg/" style="--i:13" data-keywords="svg→jpg svg → jpg svg→jpg svg to jpg  svg jpg svg jpg 변환">
           <span class="ws-card__ico"><svg viewBox="0 0 24 24" class="ic-svg ic-pdf" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="3" y="5.2" width="8.4" height="8.4" rx="1.5" fill="#9aa0ad"/><path d="M5 11.6l1.6-2 1.05 1.2 1-1.2 1.55 2z" fill="#fff"/><circle cx="5.5" cy="8" r=".9" fill="#fff"/><rect x="11.6" y="10.4" width="9.4" height="9.4" rx="1.6" fill="#f59e0b" stroke="#fff" stroke-width="1.1"/><path d="M14 17.6l1.7-2.1 1.1 1.25 1.05-1.25 1.6 2.1z" fill="#fff"/><circle cx="14.3" cy="13.6" r="1" fill="#fff"/></svg></span>
           <span class="ws-card__tx"><span class="ws-card__name">SVG → JPG</span><span class="ws-card__desc">벡터 SVG를 어디서나 쓰는 JPG로. 배율을 올려 고화질로, 투명은 흰 배경 처리.</span></span>
         </a>
-          <a class="ws-card" href="svg-to-webp/" style="--i:14">
+          <a class="ws-card" href="svg-to-webp/" style="--i:14" data-keywords="svg→webp svg → webp svg→webp svg to webp  svg webp svg webp 변환">
           <span class="ws-card__ico"><svg viewBox="0 0 24 24" class="ic-svg ic-pdf" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="3" y="5.2" width="8.4" height="8.4" rx="1.5" fill="#9aa0ad"/><path d="M5 11.6l1.6-2 1.05 1.2 1-1.2 1.55 2z" fill="#fff"/><circle cx="5.5" cy="8" r=".9" fill="#fff"/><rect x="11.6" y="10.4" width="9.4" height="9.4" rx="1.6" fill="#0ea5e9" stroke="#fff" stroke-width="1.1"/><path d="M14 17.6l1.7-2.1 1.1 1.25 1.05-1.25 1.6 2.1z" fill="#fff"/><circle cx="14.3" cy="13.6" r="1" fill="#fff"/></svg></span>
           <span class="ws-card__tx"><span class="ws-card__name">SVG → WEBP</span><span class="ws-card__desc">벡터 SVG를 가벼운 WEBP로. 배율 선택, 투명 유지.</span></span>
         </a>
@@ -389,15 +395,15 @@
             <span class="ws-cattile__title">PDF 보안</span>
           </button>
           <div class="ws-cat-tools"><div class="ws-shelf">
-          <a class="ws-card" href="unlock/" style="--i:0">
+          <a class="ws-card" href="unlock/" style="--i:0" data-keywords="잠금해제 잠금해제 비밀번호·제한 해제 unlock 잠금해제 비밀번호 암호 제한 풀기 ">
           <span class="ws-card__ico"><svg viewBox="0 0 24 24" class="ic-svg ic-pdf" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M6.4 2.6h6.6L17.6 7v11.4a1.5 1.5 0 0 1-1.5 1.5H6.4a1.5 1.5 0 0 1-1.5-1.5V4.1a1.5 1.5 0 0 1 1.5-1.5z" fill="#E5252A"/><path d="M12.7 2.6 17.6 7h-3.8a1.1 1.1 0 0 1-1.1-1.1z" fill="#B3160F"/><rect x="7.2" y="8.7" width="6" height="1.2" rx=".6" fill="#fff" opacity=".9"/><path d="M15.4 15.5v-1.7a2 2 0 0 1 3.8-.9" fill="none" stroke="#f5a623" stroke-width="1.4" stroke-linecap="round"/><rect x="13.8" y="15.3" width="6.5" height="5.4" rx="1.1" fill="#f5a623" stroke="#fff" stroke-width="1"/><circle cx="17.05" cy="17.7" r=".95" fill="#fff"/></svg></span>
           <span class="ws-card__tx"><span class="ws-card__name">잠금해제</span><span class="ws-card__desc">비밀번호가 걸린 PDF를 풀어 자유롭게. 내가 아는 암호로 내 기기에서만 처리합니다.</span></span>
         </a>
-          <a class="ws-card" href="remove-metadata/" style="--i:1">
+          <a class="ws-card" href="remove-metadata/" style="--i:1" data-keywords="개인정보 제거 개인정보 제거 개인정보 제거 remove metadata 개인정보 메타데이터 작성자 제거 흔적 ">
           <span class="ws-card__ico"><svg viewBox="0 0 24 24" class="ic-svg ic-pdf" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M6.4 2.6h6.6L17.6 7v11.4a1.5 1.5 0 0 1-1.5 1.5H6.4a1.5 1.5 0 0 1-1.5-1.5V4.1a1.5 1.5 0 0 1 1.5-1.5z" fill="#E5252A"/><path d="M12.7 2.6 17.6 7h-3.8a1.1 1.1 0 0 1-1.1-1.1z" fill="#B3160F"/><rect x="7.2" y="8.7" width="6" height="1.2" rx=".6" fill="#fff" opacity=".9"/><rect x="7.2" y="11" width="4.2" height="1.2" rx=".6" fill="#fff" opacity=".9"/><circle cx="17.4" cy="17.4" r="4.4" fill="#2b303b" stroke="#fff" stroke-width="1.2"/><path d="M17.4 14.5l2.3.85v1.85c0 1.45-1 2.45-2.3 2.95-1.3-.5-2.3-1.5-2.3-2.95V15.35z" fill="none" stroke="#fff" stroke-width="1.05"/></svg></span>
           <span class="ws-card__tx"><span class="ws-card__name">개인정보 제거</span><span class="ws-card__desc">제목·작성자·생성 프로그램 등 PDF에 숨은 문서 속성을 모두 비워 개인정보 흔적을 지워요. 본문은 그대로.</span></span>
         </a>
-          <a class="ws-card" href="watermark/" style="--i:2">
+          <a class="ws-card" href="watermark/" style="--i:2" data-keywords="워터마크 워터마크 워터마크 넣기 watermark 워터마크 대외비 사본 도장 로고 반복 보호 ">
           <span class="ws-card__ico"><svg viewBox="0 0 24 24" class="ic-svg ic-pdf" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M6.4 2.6h6.6L17.6 7v11.4a1.5 1.5 0 0 1-1.5 1.5H6.4a1.5 1.5 0 0 1-1.5-1.5V4.1a1.5 1.5 0 0 1 1.5-1.5z" fill="#E5252A"/><path d="M12.7 2.6 17.6 7h-3.8a1.1 1.1 0 0 1-1.1-1.1z" fill="#B3160F"/><path d="M11.2 6.8c2 2.4 3.6 4.2 3.6 6a3.6 3.6 0 0 1-7.2 0c0-1.8 1.6-3.6 3.6-6z" fill="#fff" opacity=".85"/></svg></span>
           <span class="ws-card__tx"><span class="ws-card__name">워터마크</span><span class="ws-card__desc">‘대외비’·‘사본’ 같은 한글 문구나 로고 이미지를 모든 페이지에. 가운데 대각선 또는 바둑판 반복으로, 기울기·진하기까지 골라 무단 복제를 막아요.</span></span>
         </a>
@@ -409,15 +415,15 @@
             <span class="ws-cattile__title">PDF 최적화</span>
           </button>
           <div class="ws-cat-tools"><div class="ws-shelf">
-          <a class="ws-card" href="compress/" style="--i:0">
+          <a class="ws-card" href="compress/" style="--i:0" data-keywords="pdf 압축 압축 용량 줄이기 compress 압축 용량 줄이기 가볍게 ">
           <span class="ws-card__ico"><svg viewBox="0 0 24 24" class="ic-svg ic-pdf" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M6.4 2.6h6.6L17.6 7v11.4a1.5 1.5 0 0 1-1.5 1.5H6.4a1.5 1.5 0 0 1-1.5-1.5V4.1a1.5 1.5 0 0 1 1.5-1.5z" fill="#E5252A"/><path d="M12.7 2.6 17.6 7h-3.8a1.1 1.1 0 0 1-1.1-1.1z" fill="#B3160F"/><rect x="7.2" y="8.7" width="6" height="1.2" rx=".6" fill="#fff" opacity=".9"/><rect x="7.2" y="11" width="4.2" height="1.2" rx=".6" fill="#fff" opacity=".9"/><circle cx="17.4" cy="17.4" r="4.4" fill="#f59e0b" stroke="#fff" stroke-width="1.2"/><path d="M15.6 17.4h3.6" stroke="#fff" stroke-width="1.1"/><path d="M16.2 15.5l1.2 1.1 1.2-1.1M16.2 19.3l1.2-1.1 1.2 1.1" fill="none" stroke="#fff" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
           <span class="ws-card__tx"><span class="ws-card__name">압축</span><span class="ws-card__desc">스캔본·사진이 많은 PDF의 용량을 줄여요. 메일 첨부나 제출 사이트의 용량 제한에 맞출 때 좋습니다.</span></span>
         </a>
-          <a class="ws-card" href="remove-blank/" style="--i:1">
+          <a class="ws-card" href="remove-blank/" style="--i:1" data-keywords="빈 페이지 제거 빈 페이지 제거 빈 페이지 제거 remove blank 빈 페이지 공백 제거 ">
           <span class="ws-card__ico"><svg viewBox="0 0 24 24" class="ic-svg ic-pdf" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M6.4 2.6h6.6L17.6 7v11.4a1.5 1.5 0 0 1-1.5 1.5H6.4a1.5 1.5 0 0 1-1.5-1.5V4.1a1.5 1.5 0 0 1 1.5-1.5z" fill="#E5252A"/><path d="M12.7 2.6 17.6 7h-3.8a1.1 1.1 0 0 1-1.1-1.1z" fill="#B3160F"/><rect x="7.2" y="8.7" width="6" height="1.2" rx=".6" fill="#fff" opacity=".9"/><circle cx="17.4" cy="17.4" r="4.4" fill="#f59e0b" stroke="#fff" stroke-width="1.2"/><path d="M15.4 17.4h4" stroke="#fff" stroke-width="1.7" stroke-linecap="round"/></svg></span>
           <span class="ws-card__tx"><span class="ws-card__name">빈 페이지 제거</span><span class="ws-card__desc">스캔에 섞인 빈 페이지를 자동으로 찾아 제거해 새 PDF로. 양면 스캔의 빈 뒷면 정리에 좋아요.</span></span>
         </a>
-          <a class="ws-card" href="grayscale/" style="--i:2">
+          <a class="ws-card" href="grayscale/" style="--i:2" data-keywords="흑백 변환 흑백 변환 흑백 변환 grayscale 흑백 그레이 회색 인쇄 ">
           <span class="ws-card__ico"><svg viewBox="0 0 24 24" class="ic-svg ic-pdf" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M6.4 2.6h6.6L17.6 7v11.4a1.5 1.5 0 0 1-1.5 1.5H6.4a1.5 1.5 0 0 1-1.5-1.5V4.1a1.5 1.5 0 0 1 1.5-1.5z" fill="#E5252A"/><path d="M12.7 2.6 17.6 7h-3.8a1.1 1.1 0 0 1-1.1-1.1z" fill="#B3160F"/><rect x="7.2" y="8.7" width="6" height="1.2" rx=".6" fill="#fff" opacity=".9"/><rect x="7.2" y="11" width="4.2" height="1.2" rx=".6" fill="#fff" opacity=".9"/><circle cx="17.4" cy="17.4" r="4.4" fill="#2b303b" stroke="#fff" stroke-width="1.2"/><circle cx="17.4" cy="17.4" r="2.7" fill="none" stroke="#fff" stroke-width="1"/><path d="M17.4 14.7a2.7 2.7 0 0 1 0 5.4z" fill="#fff"/></svg></span>
           <span class="ws-card__tx"><span class="ws-card__name">흑백 변환</span><span class="ws-card__desc">컬러 PDF를 흑백으로. 용량을 줄이고 흑백 인쇄에 맞춰요. 글자가 이미지로 바뀌어 선택은 안 될 수 있어요.</span></span>
         </a>
@@ -429,23 +435,23 @@
             <span class="ws-cattile__title">PDF 편집</span>
           </button>
           <div class="ws-cat-tools"><div class="ws-shelf">
-          <a class="ws-card" href="rotate/" style="--i:0">
+          <a class="ws-card" href="rotate/" style="--i:0" data-keywords="pdf 회전 회전 페이지 회전 rotate 회전 방향 돌리기 눕힘 세우기 ">
           <span class="ws-card__ico"><svg viewBox="0 0 24 24" class="ic-svg ic-pdf" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M6.4 2.6h6.6L17.6 7v11.4a1.5 1.5 0 0 1-1.5 1.5H6.4a1.5 1.5 0 0 1-1.5-1.5V4.1a1.5 1.5 0 0 1 1.5-1.5z" fill="#E5252A"/><path d="M12.7 2.6 17.6 7h-3.8a1.1 1.1 0 0 1-1.1-1.1z" fill="#B3160F"/><rect x="7.2" y="8.7" width="6" height="1.2" rx=".6" fill="#fff" opacity=".9"/><rect x="7.2" y="11" width="4.2" height="1.2" rx=".6" fill="#fff" opacity=".9"/><circle cx="17.4" cy="17.4" r="4.4" fill="#2f6df6" stroke="#fff" stroke-width="1.2"/><path d="M19.6 17.7a2.3 2.3 0 1 1-.7-1.9" fill="none" stroke="#fff" stroke-width="1.25" stroke-linecap="round"/><path d="M19.5 15.1v1.8h-1.8" fill="none" stroke="#fff" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
           <span class="ws-card__tx"><span class="ws-card__name">회전</span><span class="ws-card__desc">옆으로 누운 스캔본, 거꾸로 들어간 문서를 왼쪽·오른쪽 90도나 180도로 한 번에 바로잡아요. 글자·화질은 그대로.</span></span>
         </a>
-          <a class="ws-card" href="crop/" style="--i:1">
+          <a class="ws-card" href="crop/" style="--i:1" data-keywords="pdf 자르기 자르기 (여백 제거) 여백 제거 crop 자르기 여백 제거 크롭 ">
           <span class="ws-card__ico"><svg viewBox="0 0 24 24" class="ic-svg ic-pdf" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M6.4 2.6h6.6L17.6 7v11.4a1.5 1.5 0 0 1-1.5 1.5H6.4a1.5 1.5 0 0 1-1.5-1.5V4.1a1.5 1.5 0 0 1 1.5-1.5z" fill="#E5252A"/><path d="M12.7 2.6 17.6 7h-3.8a1.1 1.1 0 0 1-1.1-1.1z" fill="#B3160F"/><rect x="7.2" y="8.7" width="6" height="1.2" rx=".6" fill="#fff" opacity=".9"/><rect x="7.2" y="11" width="4.2" height="1.2" rx=".6" fill="#fff" opacity=".9"/><circle cx="17.4" cy="17.4" r="4.4" fill="#0d9488" stroke="#fff" stroke-width="1.2"/><path d="M15.9 15.2v3.3a.5.5 0 0 0 .5.5h3.3M18.9 19.6v-3.3a.5.5 0 0 0-.5-.5h-3.3" fill="none" stroke="#fff" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
           <span class="ws-card__tx"><span class="ws-card__name">자르기 (여백 제거)</span><span class="ws-card__desc">페이지 사방의 넓은 여백을 적게·보통·많이로 잘라내 내용에 맞게 정리해요. 글자·화질은 그대로 보존합니다.</span></span>
         </a>
-          <a class="ws-card" href="add-margin/" style="--i:2">
+          <a class="ws-card" href="add-margin/" style="--i:2" data-keywords="여백 추가 여백 추가 여백 추가 add margin 여백 추가 제본 필기공간 ">
           <span class="ws-card__ico"><svg viewBox="0 0 24 24" class="ic-svg ic-pdf" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M6.4 2.6h6.6L17.6 7v11.4a1.5 1.5 0 0 1-1.5 1.5H6.4a1.5 1.5 0 0 1-1.5-1.5V4.1a1.5 1.5 0 0 1 1.5-1.5z" fill="#E5252A"/><path d="M12.7 2.6 17.6 7h-3.8a1.1 1.1 0 0 1-1.1-1.1z" fill="#B3160F"/><rect x="7.2" y="8.7" width="6" height="1.2" rx=".6" fill="#fff" opacity=".9"/><rect x="7.2" y="11" width="4.2" height="1.2" rx=".6" fill="#fff" opacity=".9"/><circle cx="17.4" cy="17.4" r="4.4" fill="#0d9488" stroke="#fff" stroke-width="1.2"/><rect x="15.3" y="15.3" width="4.2" height="4.2" rx=".6" fill="none" stroke="#fff" stroke-width="1.05" stroke-dasharray="1.6 1.2"/></svg></span>
           <span class="ws-card__tx"><span class="ws-card__name">여백 추가</span><span class="ws-card__desc">모든 페이지 둘레에 흰 여백을 더해요. 제본 여백·필기 공간·가장자리 잘림 방지에 좋습니다.</span></span>
         </a>
-          <a class="ws-card" href="sign/" style="--i:3">
+          <a class="ws-card" href="sign/" style="--i:3" data-keywords="서명 넣기 서명 넣기 서명·도장 넣기 sign 서명 사인 도장 계약서 동의서 ">
           <span class="ws-card__ico"><svg viewBox="0 0 24 24" class="ic-svg ic-pdf" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M6.4 2.6h6.6L17.6 7v11.4a1.5 1.5 0 0 1-1.5 1.5H6.4a1.5 1.5 0 0 1-1.5-1.5V4.1a1.5 1.5 0 0 1 1.5-1.5z" fill="#E5252A"/><path d="M12.7 2.6 17.6 7h-3.8a1.1 1.1 0 0 1-1.1-1.1z" fill="#B3160F"/><rect x="7.2" y="8.7" width="6" height="1.2" rx=".6" fill="#fff" opacity=".9"/><rect x="7.2" y="11" width="4.2" height="1.2" rx=".6" fill="#fff" opacity=".9"/><circle cx="17.4" cy="17.4" r="4.4" fill="#db2777" stroke="#fff" stroke-width="1.2"/><path d="M15.4 19.1c1-.1 1.5-.7 2.2-2 .25-.45.5-.85.75-.85.2 0 .25.3.05.7-.18.36-.1.62.18.72" fill="none" stroke="#fff" stroke-width="1.05" stroke-linecap="round" stroke-linejoin="round"/><path d="M15.2 20.4h4.3" stroke="#fff" stroke-width="1.05" stroke-linecap="round"/></svg></span>
           <span class="ws-card__tx"><span class="ws-card__name">서명 넣기</span><span class="ws-card__desc">사인을 직접 그리거나 도장·사인 이미지를 올리거나 이름을 입력해 만들고, 미리보기에서 원하는 위치에 끌어다 놓아요. 계약서·동의서에 서명을 넣을 때 파일을 어디에도 올리지 않아 안전합니다.</span></span>
         </a>
-          <a class="ws-card" href="flatten/" style="--i:4">
+          <a class="ws-card" href="flatten/" style="--i:4" data-keywords="양식 평탄화 양식 평탄화 양식 값 고정 flatten 양식 평탄화 폼 고정 신청서 ">
           <span class="ws-card__ico"><svg viewBox="0 0 24 24" class="ic-svg ic-pdf" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M6.4 2.6h6.6L17.6 7v11.4a1.5 1.5 0 0 1-1.5 1.5H6.4a1.5 1.5 0 0 1-1.5-1.5V4.1a1.5 1.5 0 0 1 1.5-1.5z" fill="#E5252A"/><path d="M12.7 2.6 17.6 7h-3.8a1.1 1.1 0 0 1-1.1-1.1z" fill="#B3160F"/><rect x="7.2" y="8.7" width="6" height="1.2" rx=".6" fill="#fff" opacity=".9"/><rect x="7.2" y="11" width="4.2" height="1.2" rx=".6" fill="#fff" opacity=".9"/><circle cx="17.4" cy="17.4" r="4.4" fill="#7c3aed" stroke="#fff" stroke-width="1.2"/><path d="M17.4 14.6l2.5 1.35-2.5 1.35-2.5-1.35z" fill="#fff"/><path d="M14.9 17.4l2.5 1.35 2.5-1.35" fill="none" stroke="#fff" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
           <span class="ws-card__tx"><span class="ws-card__name">양식 평탄화</span><span class="ws-card__desc">채워 넣은 신청서·계약서의 입력값을 페이지에 고정해, 받는 사람이 못 바꾸고 어디서나 똑같이 보이게. 각 페이지를 이미지로 바꾸지 않아 글자는 그대로 보존돼요.</span></span>
         </a>
@@ -457,11 +463,11 @@
             <span class="ws-cattile__title">PDF 분석</span>
           </button>
           <div class="ws-cat-tools"><div class="ws-shelf">
-          <a class="ws-card" href="pdf-info/" style="--i:0">
+          <a class="ws-card" href="pdf-info/" style="--i:0" data-keywords="pdf 정보 정보 보기 문서 정보 보기 pdf info 정보 페이지수 크기 메타 ">
           <span class="ws-card__ico"><svg viewBox="0 0 24 24" class="ic-svg ic-pdf" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M6.4 2.6h6.6L17.6 7v11.4a1.5 1.5 0 0 1-1.5 1.5H6.4a1.5 1.5 0 0 1-1.5-1.5V4.1a1.5 1.5 0 0 1 1.5-1.5z" fill="#E5252A"/><path d="M12.7 2.6 17.6 7h-3.8a1.1 1.1 0 0 1-1.1-1.1z" fill="#B3160F"/><rect x="7.2" y="8.7" width="6" height="1.2" rx=".6" fill="#fff" opacity=".9"/><rect x="7.2" y="11" width="4.2" height="1.2" rx=".6" fill="#fff" opacity=".9"/><circle cx="17.4" cy="17.4" r="4.4" fill="#2f6df6" stroke="#fff" stroke-width="1.2"/><circle cx="17.4" cy="15.5" r=".75" fill="#fff"/><path d="M17.4 16.9v2.4" stroke="#fff" stroke-width="1.4" stroke-linecap="round"/></svg></span>
           <span class="ws-card__tx"><span class="ws-card__name">정보 보기</span><span class="ws-card__desc">페이지 수·용량·크기·제목·작성자·잠김 여부를 표로 한눈에. 파일은 바꾸지 않고 정보만 읽어요.</span></span>
         </a>
-          <a class="ws-card" href="extract-text/" style="--i:1">
+          <a class="ws-card" href="extract-text/" style="--i:1" data-keywords="텍스트 추출 텍스트 추출 텍스트 추출 extract text 텍스트 추출 글자 복사 ">
           <span class="ws-card__ico"><svg viewBox="0 0 24 24" class="ic-svg ic-pdf" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M6.4 2.6h6.6L17.6 7v11.4a1.5 1.5 0 0 1-1.5 1.5H6.4a1.5 1.5 0 0 1-1.5-1.5V4.1a1.5 1.5 0 0 1 1.5-1.5z" fill="#E5252A"/><path d="M12.7 2.6 17.6 7h-3.8a1.1 1.1 0 0 1-1.1-1.1z" fill="#B3160F"/><rect x="7.2" y="8.7" width="6" height="1.2" rx=".6" fill="#fff" opacity=".9"/><rect x="7.2" y="11" width="4.2" height="1.2" rx=".6" fill="#fff" opacity=".9"/><circle cx="17.4" cy="17.4" r="4.4" fill="#2f6df6" stroke="#fff" stroke-width="1.2"/><path d="M15.6 15.9h3.6M15.9 17.5h3M16.1 19h2.6" stroke="#fff" stroke-width="1" stroke-linecap="round"/></svg></span>
           <span class="ws-card__tx"><span class="ws-card__name">텍스트 추출</span><span class="ws-card__desc">PDF 속 글자를 .txt로 뽑아 복사·검색·재활용. 사진처럼 스캔된 PDF는 글자가 없어 제외(OCR 아님).</span></span>
         </a>
@@ -479,12 +485,12 @@
   <script src="assets/vendor/jszip.min.js" defer></script>
   <script src="assets/js/ui.js?v=e8bf6ebc" defer></script>
   <script src="assets/js/pdf-engine.js?v=2ddd419d" defer></script>
-  <script src="assets/js/tool-core.js?v=1c5e8433" defer></script>
+  <script src="assets/js/tool-core.js?v=74ad8356" defer></script>
   <script src="assets/js/tools/merge.js?v=7ee6150a" defer></script>
   <script src="assets/js/tools/split.js?v=e6a79d52" defer></script>
   <script src="assets/js/tools/compress.js?v=29c23f67" defer></script>
   <script src="assets/js/tools/to-image.js?v=38a55d5e" defer></script>
   <script src="assets/js/tools/unlock.js?v=5a8a5ef2" defer></script>
-  <script src="assets/js/workspace.js?v=e7f689b2" defer></script>
+  <script src="assets/js/workspace.js?v=8ac1117e" defer></script>
 </body>
 </html>

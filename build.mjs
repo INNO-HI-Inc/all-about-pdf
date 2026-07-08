@@ -231,6 +231,24 @@ const APP_SHORT = {
   reverse: '페이지 역순', grayscale: '흑백 변환', nup: '모아찍기', sign: '서명·도장 넣기',
   watermark: '워터마크 넣기', flatten: '양식 값 고정',
 };
+// 도구 검색용 동의어/키워드(자연어로 찾을 수 있게). 이름·설명에 없는 표현만 보강.
+const SEARCH_SYN = {
+  merge: '합치기 병합 하나로 묶기 결합', split: '분할 나누기 쪼개기 낱장', organize: '정리 순서 재배열',
+  extract: '추출 뽑기 특정 페이지', delete: '삭제 제거 페이지 빼기', 'page-numbers': '페이지 번호 쪽번호 넘버링',
+  reverse: '역순 거꾸로 뒤집기', nup: '모아찍기 2쪽 4쪽 절약 핸드아웃', 'to-image': '이미지 변환 캡처 그림',
+  'image-to-pdf': '이미지 사진 캡처 pdf로', 'svg-to-png': '벡터 이미지', unlock: '잠금해제 비밀번호 암호 제한 풀기',
+  'remove-metadata': '개인정보 메타데이터 작성자 제거 흔적', watermark: '워터마크 대외비 사본 도장 로고 반복 보호',
+  compress: '압축 용량 줄이기 가볍게', 'remove-blank': '빈 페이지 공백 제거', grayscale: '흑백 그레이 회색 인쇄',
+  rotate: '회전 방향 돌리기 눕힘 세우기', crop: '자르기 여백 제거 크롭', 'add-margin': '여백 추가 제본 필기공간',
+  sign: '서명 사인 도장 계약서 동의서', flatten: '양식 평탄화 폼 고정 신청서', 'pdf-info': '정보 페이지수 크기 메타',
+  'extract-text': '텍스트 추출 글자 복사',
+};
+const searchKeywords = (slug) => {
+  const t = TOOL_BY[slug];
+  const conv = t && t.conv ? `${UP[t.conv.from]} ${UP[t.conv.to]} ${t.conv.from} ${t.conv.to} 변환` : '';
+  return [t ? t.nav : '', dispName(slug), APP_SHORT[slug] || '', slug.replace(/-/g, ' '), SEARCH_SYN[slug] || '', conv]
+    .join(' ').toLowerCase();
+};
 // 태블릿 대시보드 타일 색(도구별 컬러 구분)
 const TILE_COLOR = {
   merge: '#e5252a', split: '#2f6df6', unlock: '#f59e0b', extract: '#10b981',
@@ -855,7 +873,8 @@ ${toolList.map((s) => `  <script src="${rel}assets/js/tools/${s}.js?v=${assetVer
   <link rel="icon" href="${rel}assets/img/favicon.png" type="image/png">
   <link rel="apple-touch-icon" href="${rel}assets/img/logo.png">
   <link rel="manifest" href="${rel}site.webmanifest">
-  <meta name="theme-color" content="#ffffff">
+  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0e1016" media="(prefers-color-scheme: dark)">
   <link rel="preload" as="font" type="font/woff2" href="${rel}assets/vendor/fonts/a2z-Regular.woff2" crossorigin>
   <link rel="preload" as="font" type="font/woff2" href="${rel}assets/vendor/fonts/a2z-Bold.woff2" crossorigin>
   <link rel="stylesheet" href="${rel}assets/css/style.css?v=${assetVer('assets/css/style.css')}">${headExtra || ''}${ld}
@@ -1071,7 +1090,7 @@ function buildHome() {
   const usps = c.uspCards.map((u, i) => `<div class="ws-usp" data-reveal><span class="n">0${i + 1}</span><div><h4>${esc(u.title)}</h4><p>${esc(u.desc)}</p></div></div>`).join('\n        ');
   const faqs = c.faq.map((f, i) => `<details><summary><span class="q">Q${i + 1}</span><span>${esc(f.q)}</span></summary><div class="a">${esc(f.a)}</div></details>`).join('\n        ');
 
-  const card = (slug, i) => `<a class="ws-card" href="${slug}/" style="--i:${i}">
+  const card = (slug, i) => `<a class="ws-card" href="${slug}/" style="--i:${i}" data-keywords="${escAttr(searchKeywords(slug))}">
           <span class="ws-card__ico">${ICONS_PDF[slug]}</span>
           <span class="ws-card__tx"><span class="ws-card__name">${esc(dispName(slug))}</span><span class="ws-card__desc">${esc(APP_DESC[slug] || '')}</span></span>
         </a>`;
@@ -1107,7 +1126,12 @@ ${catRows}
           </div>
         </div>
         <div class="ws-home2right">
+          <div class="ws-search">
+            <svg class="ws-search__ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+            <input type="search" class="js-toolsearch ws-search__input" placeholder="도구 검색 — 예: 압축, 워터마크, jpg" aria-label="도구 검색" autocomplete="off">
+          </div>
           <p class="ws-cats__cap">카테고리별 전체 도구 둘러보기</p>
+          <p class="ws-search__empty js-search-empty" hidden>찾는 도구가 없어요. ‘압축’, ‘합치기’, ‘jpg’ 처럼 검색해 보세요.</p>
 ${catalog}
         </div>
       </div>

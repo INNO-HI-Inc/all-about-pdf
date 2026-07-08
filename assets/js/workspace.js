@@ -81,6 +81,51 @@
     });
   });
 
+  // 2-c) 도구 검색/필터 — 이름·설명·동의어(data-keywords)로 즉시 필터
+  var searchInput = d.querySelector('.js-toolsearch');
+  if (searchInput) {
+    var allCards = Array.prototype.slice.call(d.querySelectorAll('.ws-card'));
+    var noRes = d.querySelector('.js-search-empty');
+    var defaultActive = catRows.map(function (r) { return r.classList.contains('is-active'); });
+    searchInput.addEventListener('input', function () {
+      var q = searchInput.value.trim().toLowerCase();
+      if (!q) { // 초기 상태 복원
+        allCards.forEach(function (c) { c.style.display = ''; });
+        catRows.forEach(function (row, i) {
+          row.style.display = '';
+          var on = defaultActive[i];
+          row.classList.toggle('is-active', on);
+          var tile = row.querySelector('.ws-cattile');
+          if (tile) { tile.classList.toggle('is-active', on); tile.setAttribute('aria-expanded', on ? 'true' : 'false'); }
+        });
+        if (noRes) noRes.hidden = true;
+        return;
+      }
+      var total = 0;
+      catRows.forEach(function (row) {
+        var shown = 0;
+        Array.prototype.forEach.call(row.querySelectorAll('.ws-card'), function (c) {
+          var kw = (c.getAttribute('data-keywords') || '').toLowerCase();
+          var match = kw.indexOf(q) >= 0;
+          c.style.display = match ? '' : 'none';
+          if (match) shown++;
+        });
+        row.style.display = shown ? '' : 'none';
+        row.classList.toggle('is-active', shown > 0);   // 매칭 카테고리는 자동 펼침
+        var tile = row.querySelector('.ws-cattile');
+        if (tile) { tile.classList.toggle('is-active', shown > 0); tile.setAttribute('aria-expanded', shown > 0 ? 'true' : 'false'); }
+        total += shown;
+      });
+      if (noRes) noRes.hidden = total > 0;
+    });
+    // Enter로 결과가 하나뿐이면 바로 이동
+    searchInput.addEventListener('keydown', function (e) {
+      if (e.key !== 'Enter') return;
+      var visible = allCards.filter(function (c) { return c.style.display !== 'none'; });
+      if (visible.length === 1) window.location.href = visible[0].getAttribute('href');
+    });
+  }
+
   // 3) 숫자키(1–7)로 도구 전환 — 입력 중이 아닐 때만
   d.addEventListener('keydown', function (e) {
     if (e.metaKey || e.ctrlKey || e.altKey) return;

@@ -529,10 +529,34 @@
         if (/\.pdf$/i.test(res.filename || '') && global.PDFEngine && PDFEngine.getPageCount) {
           PDFEngine.getPageCount(res.blob).then(function (n) { if (n) appendResultMeta(n + '페이지'); }).catch(function () {});
         }
+        // (개선 9) 결과 미리보기 — 다운로드 전 결과 PDF 앞장 썸네일(파일 열지 않고 확인).
+        //   pdf.js가 로드된 도구에서만(이미지·경량 도구는 미로드) 렌더.
+        if (/\.pdf$/i.test(res.filename || '') && global.pdfjsLib && global.PDFEngine && PDFEngine.renderThumbs) {
+          renderResultPreview(res.blob);
+        }
       }
       else if (res.type === 'zip') { await UI.zipAndDownload(res.items, res.zipName, onProgress); showSuccess(res.zipName + ' (' + res.items.length + '개 파일)', function () { UI.zipAndDownload(res.items, res.zipName); }, sumSize(res.items)); }
       else if (res.type === 'files') { res.items.forEach(function (it) { UI.downloadBlob(it.blob, it.name); }); showSuccess(res.items.length + '개 파일', null, sumSize(res.items)); }
       else if (res.type === 'message') { result.hidden = false; result.innerHTML = res.html; }
+    }
+    function renderResultPreview(blob) {
+      PDFEngine.renderThumbs(blob, { max: 3, scale: 0.5 }).then(function (r) {
+        if (!r.thumbs.length || result.hidden) return;
+        var wrap = d.createElement('div'); wrap.className = 'result__preview';
+        var cap = d.createElement('span'); cap.className = 'result__preview-cap'; cap.textContent = '미리보기';
+        wrap.appendChild(cap);
+        var strip = d.createElement('div'); strip.className = 'result__preview-strip';
+        r.thumbs.forEach(function (t) {
+          var im = d.createElement('img'); im.src = t.url; im.alt = t.page + '페이지 미리보기'; im.loading = 'lazy';
+          strip.appendChild(im);
+        });
+        if (r.total > r.thumbs.length) {
+          var more = d.createElement('span'); more.className = 'result__preview-more'; more.textContent = '+' + (r.total - r.thumbs.length) + '쪽';
+          strip.appendChild(more);
+        }
+        wrap.appendChild(strip);
+        result.appendChild(wrap);
+      }).catch(function () {});
     }
     function appendResultMeta(txt) {
       var ok = result.querySelector('.result__ok .result__size');
