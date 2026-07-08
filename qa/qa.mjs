@@ -15,6 +15,7 @@ const { chromium } = require(process.env.PW_PATH || 'playwright');
 const BASE = process.env.BASE || 'http://localhost:8099';
 const PAGES = ['/', '/merge/', '/split/', '/unlock/', '/extract/', '/delete/', '/organize/', '/to-image/', '/page-numbers/', '/svg-to-png/', '/rotate/', '/crop/', '/compress/', '/pdf-info/', '/watermark/', '/flatten/', '/protect/', '/jpg-to-png/', '/png-to-jpg/', '/webp-to-png/', '/webp-to-jpg/', '/png-to-webp/', '/jpg-to-webp/', '/svg-to-jpg/', '/svg-to-webp/', '/remove-metadata/', '/remove-blank/', '/add-margin/', '/extract-text/', '/reverse/', '/grayscale/', '/nup/', '/sign/', '/gif-to-png/', '/gif-to-jpg/', '/avif-to-png/', '/avif-to-jpg/', '/about/'];
 const results = [];
+const _linkChecked = new Set();   // 감사 중 이미 확인한 링크 URL(전역 중복 제거)
 const pass = (name, msg) => results.push({ ok: true, name, msg: msg || '' });
 const fail = (name, msg) => results.push({ ok: false, name, msg: msg || '' });
 
@@ -293,7 +294,7 @@ async function auditPage(ctx, path) {
   const consoleErrors = [];
   page.on('console', m => { if (m.type() === 'error') consoleErrors.push(m.text()); });
   page.on('pageerror', e => consoleErrors.push('pageerror: ' + e.message));
-  const resp = await page.goto(BASE + path, { waitUntil: 'load' });
+  const resp = await page.goto(BASE + path, { waitUntil: 'load', timeout: 20000 });
   const status = resp ? resp.status() : 0;
   const data = await page.evaluate(() => {
     const m = (sel, attr) => { const e = document.querySelector(sel); return e ? e.getAttribute(attr) : null; };
@@ -327,8 +328,10 @@ async function auditPage(ctx, path) {
   const base = new URL(BASE + path);
   for (const href of [...new Set(data.links)]) {
     const u = new URL(href, base).toString();
+    if (_linkChecked.has(u)) continue;   // 전역 1회만 검사(페이지마다 중복 fetch 방지 → CI 병목 제거)
+    _linkChecked.add(u);
     // Playwright 요청 컨텍스트로 링크 점검(Node fetch/undici의 CI 크래시 회피)
-    try { const r = await page.request.get(u); if (r.status() >= 400) probs.push('링크 ' + href + ' → ' + r.status()); }
+    try { const r = await page.request.get(u, { timeout: 8000 }); if (r.status() >= 400) probs.push('링크 ' + href + ' → ' + r.status()); }
     catch (e) { probs.push('링크 ' + href + ' 실패'); }
   }
   probs.length ? fail(tag, probs.join('; ')) : pass(tag, '"' + data.h1text.trim() + '" 메타·링크·콘솔 정상');

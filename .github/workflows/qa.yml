@@ -49,4 +49,4 @@ jobs:
           done
 
       - name: Run QA
-        run: BASE=http://localhost:8099 node qa/qa.mjs
+        run: BASE=http://localhost:8099 timeout 420 node qa/qa.mjs
