@@ -819,6 +819,34 @@ html.drawer-open { overflow: hidden; }
 .sign-stamp:hover .sign-stamp__del, .sign-stamp.is-sel .sign-stamp__del { opacity: 1; }
 @media (max-width: 880px) { .sign-stage { max-height: none; } }
 
+/* ===== 홈 설명 콘텐츠(신뢰 배지 · 이용법 · 왜 · FAQ) — 토큰 기반 자동 테마 대응 ===== */
+.home-explain { padding: 4px 0 76px; }
+.home-trust { list-style: none; display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin: 0 0 46px; padding: 0; }
+.home-trust li { background: var(--surf); border: 1px solid var(--line); border-radius: var(--radius); padding: 18px 16px; text-align: center; box-shadow: var(--sh-sm); }
+.home-trust b { display: block; font-size: 1.02rem; font-weight: 800; color: var(--ink); letter-spacing: -.01em; }
+.home-trust span { display: block; margin-top: 5px; font-size: 12.5px; color: var(--ink-faint); }
+.home-explain__grid { display: grid; grid-template-columns: 1fr 1.15fr; gap: 44px; margin-bottom: 46px; }
+.home-block__h { font-size: 1.42rem; font-weight: 800; letter-spacing: -.02em; color: var(--ink); margin: 0 0 22px; }
+.home-steps { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 18px; }
+.home-steps li { display: flex; gap: 14px; align-items: flex-start; }
+.home-steps__n { flex: none; width: 30px; height: 30px; border-radius: 50%; background: var(--grad, var(--accent)); color: #fff; font-weight: 800; display: grid; place-items: center; font-size: 15px; box-shadow: var(--sh-red, none); }
+.home-steps li b { display: block; color: var(--ink); font-size: 1.02rem; }
+.home-steps li p { margin: 4px 0 0; color: var(--ink-soft); font-size: .95rem; line-height: 1.6; }
+.home-why { display: flex; flex-direction: column; gap: 14px; }
+.home-why__card { background: var(--surf); border: 1px solid var(--line); border-radius: var(--radius); padding: 18px 20px; box-shadow: var(--sh-sm); }
+.home-why__card h3 { margin: 0 0 6px; font-size: 1.02rem; font-weight: 800; color: var(--ink); }
+.home-why__card p { margin: 0; color: var(--ink-soft); font-size: .95rem; line-height: 1.65; }
+.home-faqblock { max-width: 840px; }
+.home-faq { display: flex; flex-direction: column; gap: 10px; }
+.home-faq details { background: var(--surf); border: 1px solid var(--line); border-radius: var(--radius); }
+.home-faq summary { cursor: pointer; padding: 15px 44px 15px 16px; font-weight: 700; color: var(--ink); list-style: none; position: relative; }
+.home-faq summary::-webkit-details-marker { display: none; }
+.home-faq summary::after { content: "+"; position: absolute; right: 16px; top: 50%; transform: translateY(-50%); color: var(--ink-faint); font-weight: 700; font-size: 1.2rem; }
+.home-faq details[open] summary::after { content: "\2013"; }
+.home-faq details p { margin: 0; padding: 0 16px 15px; color: var(--ink-soft); font-size: .95rem; line-height: 1.7; }
+@media (max-width: 860px) { .home-explain__grid { grid-template-columns: 1fr; gap: 32px; } .home-trust { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 460px) { .home-trust { grid-template-columns: 1fr; } }
+
 /* ===== 다크 모드 (prefers-color-scheme) — 토큰 반전 + 유리/하이라이트 보정 ===== */
 @media (prefers-color-scheme: dark) {
   .ws {
