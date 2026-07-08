@@ -1161,6 +1161,15 @@ ${catRows}
           ${searchIco}
           <input type="search" class="js-toolsearch" placeholder="어떤 PDF 작업이 필요하세요? — 예: 압축, 워터마크, jpg" aria-label="도구 검색" autocomplete="off">
         </form>
+        <div class="ws-hero__pop">
+          <span class="ws-hero__pop-lb">인기</span>
+          <a href="merge/">합치기</a>
+          <a href="compress/">PDF 압축</a>
+          <a href="watermark/">워터마크</a>
+          <a href="unlock/">잠금해제</a>
+          <a href="jpg-to-png/">JPG→PNG</a>
+          <a href="protect/">비밀번호 설정</a>
+        </div>
         <ul class="ws-hero__chips">
           <li><span class="dot" aria-hidden="true"></span>100% 내 기기에서 처리</li>
           <li><span class="dot" aria-hidden="true"></span>워터마크 없는 완전 무료</li>
