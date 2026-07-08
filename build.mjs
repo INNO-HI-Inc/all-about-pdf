@@ -899,6 +899,20 @@ function adsenseHead() {
   return `\n  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${ADSENSE_CLIENT}" crossorigin="anonymous"></script>`;
 }
 
+// 제3자(광고·분석) 도메인에 미리 연결 → 스크립트 로드 지연 단축(CWV 개선). 활성 시에만.
+function perfHints() {
+  const h = [];
+  if (ADSENSE_ENABLED) {
+    h.push('<link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin>');
+    h.push('<link rel="dns-prefetch" href="https://googleads.g.doubleclick.net">');
+  }
+  if (GA_ENABLED) {
+    h.push('<link rel="preconnect" href="https://www.googletagmanager.com">');
+    h.push('<link rel="dns-prefetch" href="https://www.google-analytics.com">');
+  }
+  return h.length ? '\n  ' + h.join('\n  ') : '';
+}
+
 // Google 애널리틱스(GA4) gtag. 실제 측정 ID가 설정됐을 때만 삽입한다.
 function gaHead() {
   if (!GA_ENABLED) {
@@ -932,7 +946,7 @@ ${toolList.map((s) => `  <script src="${rel}assets/js/tools/${s}.js?v=${assetVer
 <html lang="ko">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">${adsenseHead()}${gaHead()}
+  <meta name="viewport" content="width=device-width, initial-scale=1">${perfHints()}${adsenseHead()}${gaHead()}
   <title>${esc(title)}</title>
   <meta name="description" content="${escAttr(desc)}">${canonical ? `\n  <link rel="canonical" href="${escAttr(canonical)}">` : ''}
   <meta name="robots" content="${noindex ? 'noindex,follow' : 'index,follow'}">${verifyHead()}
