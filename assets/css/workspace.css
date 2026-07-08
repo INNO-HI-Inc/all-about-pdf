@@ -630,58 +630,34 @@ body.ws-app-open .ws-scrim { opacity: 1; pointer-events: auto; }
 
 /* ============ 홈 2단: 드롭 윈도우(왼) ↔ 카탈로그(오) 나란히 ============ */
 .ws-home2 { padding: 24px 0 72px; }
-.ws-home2grid { display: grid; grid-template-columns: 1.06fr .94fr; gap: 36px; align-items: start; max-width: 1340px; margin: 0 auto; }
+.ws-home2grid { display: grid; grid-template-columns: minmax(0, 1fr) 300px; gap: 30px; align-items: start; max-width: 1300px; margin: 0 auto; }
 .ws-home2left { position: sticky; top: 88px; align-self: start; min-width: 0; }
 .ws-home2right { min-width: 0; display: flex; flex-direction: column; gap: 12px; }
 @media (max-width: 1000px) {
-  .ws-home2grid { grid-template-columns: 1fr; gap: 26px; }
+  .ws-home2grid { grid-template-columns: 1fr; gap: 24px; }
   .ws-home2left { position: static; max-width: 760px; margin: 0 auto; width: 100%; }
 }
-/* 워크스페이스 단독(중앙) — 카탈로그는 우측 서랍으로 분리 */
-.ws-home2--solo { max-width: 820px; margin: 0 auto; padding: 0 20px; }
 
-/* ===== 전체 도구 서랍(오른쪽 슬라이드 + 화면 밀림) ===== */
-.ws-home2 { transition: transform .38s var(--ez-out); }
-html.drawer-open .ws-home2 { transform: translateX(-96px); }
-@media (max-width: 1023px) { html.drawer-open .ws-home2 { transform: none; } }
-/* 오른쪽 가장자리 손잡이(탭) */
-.ws-drawer-handle { position: fixed; top: 50%; right: 0; transform: translateY(-50%); z-index: 240;
-  display: inline-flex; flex-direction: column; align-items: center; gap: 9px; padding: 18px 11px;
-  background: var(--grad); color: #fff; border: none; border-radius: 15px 0 0 15px; cursor: pointer;
-  box-shadow: var(--sh-red); font-family: inherit; transition: transform .22s var(--ez), opacity .22s var(--ez), filter .16s; }
-.ws-drawer-handle:hover { filter: brightness(1.05); transform: translate(-3px, -50%); }
-.ws-drawer-handle svg { width: 20px; height: 20px; }
-.ws-drawer-handle span { writing-mode: vertical-rl; font-weight: 800; font-size: 13.5px; letter-spacing: .06em; }
-html.drawer-open .ws-drawer-handle { opacity: 0; pointer-events: none; transform: translate(30px, -50%); }
-/* 서랍 본체 */
-.ws-drawer { position: fixed; top: 0; right: 0; height: 100dvh; width: min(460px, 92vw); z-index: 300;
-  background: var(--surf); border-left: 1px solid var(--line-2); box-shadow: -24px 0 64px rgba(23, 23, 42, .2);
-  transform: translateX(100%); transition: transform .38s var(--ez-out); display: flex; flex-direction: column; }
-html.drawer-open .ws-drawer { transform: translateX(0); }
-.ws-drawer__bar { flex: none; display: flex; align-items: center; justify-content: space-between; padding: 16px 20px; border-bottom: 1px solid var(--line); }
-.ws-drawer__title { display: inline-flex; align-items: center; gap: 9px; font-family: var(--font); font-weight: 800; font-size: 1.06rem; color: var(--ink); }
-.ws-drawer__title svg { width: 20px; height: 20px; color: var(--red); }
-.ws-drawer__title b { color: var(--red); }
-.ws-drawer__x { width: 38px; height: 38px; border-radius: 11px; border: 1px solid var(--line-2); background: var(--surf-2); color: var(--ink-soft); font-size: 16px; cursor: pointer; transition: .15s; }
-.ws-drawer__x:hover { background: #fff; color: var(--red); box-shadow: var(--sh-sm); }
-.ws-drawer__scroll { flex: 1; overflow-y: auto; overscroll-behavior: contain; padding: 16px 18px 28px; display: flex; flex-direction: column; gap: 12px; }
-.ws-drawer__scroll .ws-search { margin: 0; }
-/* 스크림 */
-.ws-drawer-scrim { position: fixed; inset: 0; z-index: 280; background: rgba(15, 17, 22, .42); opacity: 0; pointer-events: none; transition: opacity .38s var(--ez); }
-html.drawer-open .ws-drawer-scrim { opacity: 1; pointer-events: auto; }
-html.drawer-open { overflow: hidden; }
-/* 서랍 안 카탈로그: 세로 아코디언 + 컴팩트 2열 카드 */
-.ws-drawer .ws-cats { gap: 10px; }
-.ws-drawer .ws-cat-row { flex-direction: column; gap: 0; align-items: stretch; }
-.ws-drawer .ws-cattile { width: 100%; flex-direction: row; align-items: center; justify-content: space-between; padding: 13px 15px; }
-.ws-drawer .ws-cat-tools { width: 100%; }
-.ws-drawer .ws-shelf { display: grid; grid-template-columns: 1fr 1fr; overflow: visible; gap: 8px; padding: 10px 0 4px; scroll-snap-type: none; }
-.ws-drawer .ws-card { flex: none; width: auto; min-width: 0; scroll-snap-align: none; flex-direction: row; align-items: center; padding: 13px; gap: 10px; border-radius: 13px; }
-.ws-drawer .ws-card__ico { width: 32px; height: 32px; flex: 0 0 32px; }
-.ws-drawer .ws-card__ico .ic-svg { width: 32px; height: 32px; }
-.ws-drawer .ws-card__name { font-size: .95rem; }
-.ws-drawer .ws-card__desc { display: none; }
-@media (max-width: 460px) { .ws-drawer .ws-shelf { grid-template-columns: 1fr; } }
+/* ===== 우측 전체 도구 레일(항상 보임 · 카테고리 클릭 시 펼침) ===== */
+.ws-catrail { position: sticky; top: 88px; align-self: start; max-height: calc(100vh - 104px); overflow-y: auto; overscroll-behavior: contain; }
+.ws-catrail__cap { font-size: 12.5px; font-weight: 800; color: var(--ink); margin: 4px 0 2px; }
+.ws-catrail__cap b { color: var(--red); }
+.ws-catrail__cap span { font-weight: 600; color: var(--ink-faint); font-size: 11.5px; margin-left: 4px; }
+.ws-catrail .ws-search { margin: 0; }
+.ws-catrail .ws-cats { gap: 7px; }
+.ws-catrail .ws-cat-row { flex-direction: column; gap: 0; align-items: stretch; }
+.ws-catrail .ws-cattile { width: 100%; flex-direction: row; align-items: center; justify-content: space-between; padding: 12px 14px; }
+.ws-catrail .ws-cat-tools { width: 100%; }
+.ws-catrail .ws-shelf { display: grid; grid-template-columns: 1fr; overflow: visible; gap: 6px; padding: 8px 0 4px; scroll-snap-type: none; }
+.ws-catrail .ws-card { flex: none; width: auto; min-width: 0; scroll-snap-align: none; flex-direction: row; align-items: center; padding: 10px 12px; gap: 10px; border-radius: 10px; }
+.ws-catrail .ws-card__ico { width: 26px; height: 26px; flex: 0 0 26px; }
+.ws-catrail .ws-card__ico .ic-svg { width: 26px; height: 26px; }
+.ws-catrail .ws-card__name { font-size: .9rem; }
+.ws-catrail .ws-card__desc { display: none; }
+@media (max-width: 1000px) {
+  .ws-catrail { position: static; max-height: none; overflow: visible; }
+  .ws-catrail .ws-shelf { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); }
+}
 
 /* ===== 도구 검색 ===== */
 .ws-search { position: relative; margin: 0 0 14px; }
@@ -800,9 +776,6 @@ html.drawer-open { overflow: hidden; }
   .ws-taskbar { background: rgba(16, 18, 24, .82); }
   .tp-dock__cats { background: rgba(22, 25, 32, .92); border-color: var(--line-2); box-shadow: 0 18px 50px rgba(0, 0, 0, .5); }
   .tp-dock__panel { background: rgba(24, 27, 34, .97); border-color: var(--line-2); box-shadow: 0 18px 50px rgba(0, 0, 0, .55); }
-  /* 서랍 다크 */
-  .ws-drawer { background: #171a21; border-left-color: var(--line-2); box-shadow: -24px 0 64px rgba(0, 0, 0, .6); }
-  .ws-drawer__x:hover { background: var(--surf-3); }
   /* 타일 상단 흰 하이라이트 제거 + 그림자 강화 */
   .ws-tile { box-shadow: 0 1px 1px rgba(0, 0, 0, .3), 0 6px 14px rgba(0, 0, 0, .4), 0 16px 30px rgba(0, 0, 0, .45); }
   .ws-tile:hover { box-shadow: 0 2px 5px rgba(0, 0, 0, .45), 0 18px 34px rgba(0, 0, 0, .55); }
