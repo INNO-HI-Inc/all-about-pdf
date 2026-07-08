@@ -126,6 +126,38 @@
     });
   }
 
+  // 2-d) 상세 페이지 하단 독: 카테고리 먼저 선택 → 해당 카테고리 도구가 위로 열림
+  var dock = d.querySelector('.tp-dock');
+  if (dock) {
+    var dockCats = Array.prototype.slice.call(dock.querySelectorAll('.tp-dock__cat'));
+    var dockPanels = Array.prototype.slice.call(dock.querySelectorAll('.tp-dock__panel'));
+    var panelByCat = {};
+    dockPanels.forEach(function (p) { panelByCat[p.getAttribute('data-cat')] = p; });
+    function closeDock() {
+      dockCats.forEach(function (b) { b.setAttribute('aria-expanded', 'false'); b.classList.remove('is-open'); });
+      dockPanels.forEach(function (p) { p.hidden = true; });
+      dock.classList.remove('is-open');
+    }
+    function openCat(cat, btn) {
+      closeDock();
+      btn.classList.add('is-open'); btn.setAttribute('aria-expanded', 'true');
+      var panel = panelByCat[cat];
+      if (panel) { panel.hidden = false; }
+      dock.classList.add('is-open');
+    }
+    dockCats.forEach(function (btn) {
+      btn.addEventListener('click', function (e) {
+        e.stopPropagation();
+        var cat = btn.getAttribute('data-cat');
+        if (btn.classList.contains('is-open')) closeDock();
+        else openCat(cat, btn);
+      });
+    });
+    // 바깥 클릭 / ESC로 닫기 (도구 링크 클릭은 페이지 이동이라 자연히 사라짐)
+    d.addEventListener('click', function (e) { if (!dock.contains(e.target)) closeDock(); });
+    d.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeDock(); });
+  }
+
   // 3) 숫자키(1–7)로 도구 전환 — 입력 중이 아닐 때만
   d.addEventListener('keydown', function (e) {
     if (e.metaKey || e.ctrlKey || e.altKey) return;

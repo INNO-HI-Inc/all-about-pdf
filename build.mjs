@@ -969,12 +969,32 @@ function related(slug, rel) {
     </section>`;
 }
 
-// ───────── 하단 중앙 플로팅 도구 선택 바 ─────────
+// ───────── 하단 중앙 플로팅 도구 선택 바 (카테고리 우선 → 도구 열림) ─────────
 function toolDock(slug, rel) {
-  const items = TOOLS.map((o) => `<a class="tp-dock__item${o.slug === slug ? ' is-active' : ''}" href="${rel}${o.slug}/"${o.slug === slug ? ' aria-current="page"' : ''}>${o.icon}<span>${o.nav}</span></a>`).join('\n        ');
+  // 현재 도구가 속한 카테고리(있으면 강조)
+  const curCat = (CATEGORIES.find((c) => c.slugs.includes(slug)) || {}).id || '';
+  const panels = CATEGORIES.map((cat) => {
+    const items = cat.slugs.map((s) => {
+      const o = TOOL_BY[s];
+      return `<a class="tp-dock__item${s === slug ? ' is-active' : ''}" href="${rel}${s}/"${s === slug ? ' aria-current="page"' : ''}>${o.icon}<span>${esc(o.nav)}</span></a>`;
+    }).join('\n            ');
+    return `<div class="tp-dock__panel" data-cat="${cat.id}" role="menu" aria-label="${escAttr(cat.title)} 도구" hidden>
+          <div class="tp-dock__panel-head">${esc(cat.title)} <span>${cat.slugs.length}</span></div>
+          <div class="tp-dock__grid">
+            ${items}
+          </div>
+        </div>`;
+  }).join('\n        ');
+  const cats = CATEGORIES.map((cat) => `<button type="button" class="tp-dock__cat${cat.id === curCat ? ' is-current' : ''}" data-cat="${cat.id}" aria-expanded="false" aria-haspopup="menu">
+          <span class="tp-dock__cat-name">${esc(cat.title.replace(/^PDF\s*/, ''))}</span>
+          <span class="tp-dock__cat-count">${cat.slugs.length}</span>
+        </button>`).join('\n        ');
   return `    <nav class="tp-dock" aria-label="PDF 도구 선택">
-      <div class="tp-dock__inner">
-        ${items}
+      <div class="tp-dock__panels">
+        ${panels}
+      </div>
+      <div class="tp-dock__cats" role="tablist">
+        ${cats}
       </div>
     </nav>`;
 }
