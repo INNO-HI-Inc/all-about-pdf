@@ -27,6 +27,17 @@ const TODAY = '2026-06-04';
 // 애드센스 대시보드 > 광고 > 자동 광고에서 켭니다. 수동 슬롯은 필요 없습니다.
 const ADSENSE_CLIENT = process.env.ADSENSE_CLIENT || 'ca-pub-4315758870466399';
 const ADSENSE_ENABLED = /^ca-pub-\d{16}$/.test(ADSENSE_CLIENT);
+// 검색엔진 소유확인(HTML 태그 방식). 값이 있으면 전 페이지 <head>에 meta가 자동 삽입된다.
+// 구글 서치콘솔: 'HTML 태그' 방식의 content 값(google-site-verification= 뒤 문자열)만 넣으면 됨.
+// 네이버 서치어드바이저: 사이트 등록 후 받은 meta content 값을 NAVER_SITE_VERIFICATION에 넣으면 됨.
+const GOOGLE_SITE_VERIFICATION = process.env.GSV || 'iu1zwZYBeFRbASv8E0ZcW3ge3H1p0eMzTcESJHWYhvA';
+const NAVER_SITE_VERIFICATION = process.env.NSV || '';
+function verifyHead() {
+  var out = '';
+  if (GOOGLE_SITE_VERIFICATION) out += `\n  <meta name="google-site-verification" content="${escAttr(GOOGLE_SITE_VERIFICATION)}">`;
+  if (NAVER_SITE_VERIFICATION) out += `\n  <meta name="naver-site-verification" content="${escAttr(NAVER_SITE_VERIFICATION)}">`;
+  return out;
+}
 // CSS/JS 캐시버스팅: 내용 해시 기반 — 파일 내용이 바뀔 때만 ?v= 가 변해 캐시가 유지되고
 // 빌드마다 전체 HTML이 diff되던 문제도 사라진다(내용 무변경 → URL 무변경).
 const _verCache = {};
@@ -900,10 +911,7 @@ ${toolList.map((s) => `  <script src="${rel}assets/js/tools/${s}.js?v=${assetVer
   <meta name="viewport" content="width=device-width, initial-scale=1">${adsenseHead()}
   <title>${esc(title)}</title>
   <meta name="description" content="${escAttr(desc)}">${canonical ? `\n  <link rel="canonical" href="${escAttr(canonical)}">` : ''}
-  <meta name="robots" content="${noindex ? 'noindex,follow' : 'index,follow'}">
-  <!-- 검색엔진 소유확인: 등록 후 아래 두 줄의 content 값을 채워 주석 해제 -->
-  <!-- <meta name="naver-site-verification" content=""> -->
-  <!-- <meta name="google-site-verification" content=""> -->
+  <meta name="robots" content="${noindex ? 'noindex,follow' : 'index,follow'}">${verifyHead()}
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="${escAttr(BRAND)}">
   <meta property="og:title" content="${escAttr(ogTitle || title)}">
