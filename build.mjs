@@ -20,9 +20,8 @@ const WS = join(ROOT, '_workspace');
 const CUSTOM_DOMAIN = process.env.CUSTOM_DOMAIN ?? 'everything-pdf.site';
 const SITE_URL = process.env.SITE_URL || (CUSTOM_DOMAIN ? `https://${CUSTOM_DOMAIN}` : 'https://inno-hi-inc.github.io/all-about-pdf');
 const GITHUB_URL = process.env.GITHUB_URL || 'https://github.com/INNO-HI-Inc/all-about-pdf';
-// 공개 문의 이메일. 도메인 기반 주소 권장(everything-pdf.site에서 이 주소로 포워딩 설정 필요).
-// 애드센스 심사·이용자 신뢰용. 다른 주소를 쓰려면 이 한 줄만 교체.
-const CONTACT_EMAIL = process.env.CONTACT_EMAIL || 'contact@everything-pdf.site';
+// 공개 문의 이메일(애드센스 심사·이용자 신뢰용). 다른 주소를 쓰려면 이 한 줄만 교체.
+const CONTACT_EMAIL = process.env.CONTACT_EMAIL || 'board@innohi.ai.kr';
 const BRAND = 'PDF의 모든 것';
 const TODAY = '2026-06-04';
 const BUILD_DATE = new Date().toISOString().slice(0, 10); // sitemap lastmod git 폴백용(실제 빌드일)
