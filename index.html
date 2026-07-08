@@ -27,7 +27,7 @@
   <link rel="preload" as="font" type="font/woff2" href="assets/vendor/fonts/a2z-Bold.woff2" crossorigin>
   <link rel="stylesheet" href="assets/css/style.css?v=8978e4fa">
   <script>document.documentElement.className+=" js";</script>
-  <link rel="stylesheet" href="assets/css/workspace.css?v=d9a299ad">
+  <link rel="stylesheet" href="assets/css/workspace.css?v=ff6c3019">
   <script type="application/ld+json">[{"@context":"https://schema.org","@type":"WebSite","name":"PDF의 모든 것","url":"https://inno-hi-inc.github.io/all-about-pdf/","inLanguage":"ko","description":"설치도 회원가입도 없이 무료로 쓰는 PDF 도구 모음. 파일을 서버에 올리지 않고 내 브라우저에서 바로 합치기·분할·변환·잠금해제까지 처리합니다."},{"@context":"https://schema.org","@type":"Organization","name":"PDF의 모든 것","url":"https://inno-hi-inc.github.io/all-about-pdf/","sameAs":["https://github.com/INNO-HI-Inc/all-about-pdf"]}]</script>
 </head>
 <body class="ws home">
@@ -37,10 +37,27 @@
       <nav class="ws-nav"><a href="./">도구</a><a href="./about/">소개</a><a class="gh" href="https://github.com/INNO-HI-Inc/all-about-pdf" rel="noopener" target="_blank">오픈소스 ↗</a></nav>
     </header>
   <main id="main">
+    <section class="ws-hero">
+      <div class="ws-wrap ws-hero__inner">
+        <span class="ws-kicker"><span class="sq" aria-hidden="true"></span>서버 미전송 · 완전 무료 · 설치 없음</span>
+        <h1 class="ws-hero__h1">필요한 PDF 작업, <span class="mark">파일을 올리지 않고</span> <br>브라우저에서 무료로</h1>
+        <p class="ws-hero__sub">합치기·분할·변환·압축·서명·워터마크·비밀번호까지 <b>37가지 도구</b>를 한곳에서. 모든 처리는 내 기기 안에서만 이뤄져, 파일이 서버로 전송되지 않습니다.</p>
+        <form class="ws-hero__search" role="search" onsubmit="return false">
+          <svg class="ws-search__ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+          <input type="search" class="js-toolsearch" placeholder="어떤 PDF 작업이 필요하세요? — 예: 압축, 워터마크, jpg" aria-label="도구 검색" autocomplete="off">
+        </form>
+        <ul class="ws-hero__chips">
+          <li><span class="dot" aria-hidden="true"></span>100% 내 기기에서 처리</li>
+          <li><span class="dot" aria-hidden="true"></span>워터마크 없는 완전 무료</li>
+          <li><span class="dot" aria-hidden="true"></span>설치·회원가입 불필요</li>
+        </ul>
+      </div>
+    </section>
+
     <section class="ws-home2" id="tools">
-      <h1 class="sr-only">PDF의 모든 것 | 무료 PDF 합치기·분할·변환 — 설치 없이 무료로 쓰는 한국어 PDF 도구 모음</h1>
       <div class="ws-wrap ws-home2grid">
         <div class="ws-home2left">
+          <p class="ws-colcap">빠른 작업<span>자주 쓰는 도구는 여기서 바로</span></p>
           <div class="ws-winwrap">
             <div class="ws-window ws-deck" data-ws-window>
               <button class="ws-winclose ws-deck__close" type="button" data-ws-close aria-label="작업 닫고 처음으로">처음으로 ✕</button>
@@ -274,11 +291,7 @@
           </div>
         </div>
         <div class="ws-home2right">
-          <div class="ws-search">
-            <svg class="ws-search__ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
-            <input type="search" class="js-toolsearch ws-search__input" placeholder="도구 검색 — 예: 압축, 워터마크, jpg" aria-label="도구 검색" autocomplete="off">
-          </div>
-          <p class="ws-cats__cap">카테고리별 전체 도구 둘러보기</p>
+          <p class="ws-colcap">전체 도구<span>카테고리를 눌러 골라보세요</span></p>
           <p class="ws-search__empty js-search-empty" hidden>찾는 도구가 없어요. ‘압축’, ‘합치기’, ‘jpg’ 처럼 검색해 보세요.</p>
       <div class="ws-cats" aria-label="도구 카테고리">
         <div class="ws-cat-row is-active" data-cat="organize">
@@ -481,8 +494,46 @@
         </div>
       </div>
     </section>
-  </main>
 
+    <section class="ws-usps-sec">
+      <div class="ws-wrap">
+        <div class="ws-sechead" data-reveal><h2><small>왜 「PDF의 모든 것」인가</small>업로드가 없어서, 그래서 안심됩니다</h2></div>
+        <div class="ws-usps">
+        <div class="ws-usp" data-reveal><span class="n">01</span><div><h4>100% 내 기기에서 처리</h4><p>모든 작업이 브라우저 안에서 끝납니다. 파일이 서버로 전송되지 않으니 계약서·업무 문서도 안심하고 다루세요.</p></div></div>
+        <div class="ws-usp" data-reveal><span class="n">02</span><div><h4>완전 무료 · 무제한</h4><p>워터마크도, 파일 개수나 용량 제한도 없습니다. 결제나 가입 유도 없이 필요한 만큼 쓰세요.</p></div></div>
+        <div class="ws-usp" data-reveal><span class="n">03</span><div><h4>설치·회원가입 불필요</h4><p>프로그램 설치도 로그인도 필요 없습니다. 페이지를 열면 바로 작업할 수 있고, 자연스러운 한국어로 안내합니다.</p></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="ws-faq">
+      <div class="ws-wrap">
+        <div class="ws-sechead" data-reveal><h2><small>자주 묻는 질문</small>궁금한 점이 있나요?</h2></div>
+        <div class="ws-term">
+          <div class="ws-faqlist">
+        <details><summary><span class="q">Q1</span><span>정말 무료인가요?</span></summary><div class="a">네, 전부 무료입니다. 결과물에 워터마크가 붙지 않고 파일 개수나 용량 제한도 없으며, 중간에 결제를 요구하지 않습니다.</div></details>
+        <details><summary><span class="q">Q2</span><span>내 파일이 안전한가요?</span></summary><div class="a">안전합니다. 모든 작업이 사용자의 브라우저 안에서 처리되며 파일이 서버로 전송되지 않습니다. 업로드 자체가 없으므로 외부에 파일이 보관될 일이 없습니다.</div></details>
+        <details><summary><span class="q">Q3</span><span>프로그램을 설치해야 하나요?</span></summary><div class="a">아니요. 설치나 회원가입 없이 웹페이지를 열기만 하면 바로 사용할 수 있습니다.</div></details>
+        <details><summary><span class="q">Q4</span><span>어떤 작업을 할 수 있나요?</span></summary><div class="a">PDF 합치기, 분할, 잠금해제, 특정 페이지 추출·삭제, JPG·이미지로 변환, 페이지 번호 넣기, 이미지를 PDF로 만들기, 회전·자르기·압축·정보 보기까지 37가지 도구를 제공합니다.</div></details>
+        <details><summary><span class="q">Q5</span><span>모바일에서도 되나요?</span></summary><div class="a">네. 스마트폰이나 태블릿의 웹 브라우저에서도 별도 앱 설치 없이 동일하게 이용할 수 있습니다.</div></details>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+    <footer class="ws-foot">
+      <div class="ws-wrap">
+        <div class="ws-footgrid">
+          <div class="ws-footbrand"><span class="fb"><span class="chip" aria-hidden="true"><img src="assets/img/logo.png" alt="" width="30" height="30" decoding="async"></span>PDF의 모든 것</span><p>설치도 회원가입도 없이, 파일을 서버에 올리지 않고 내 브라우저에서 바로 처리하는 한국어 무료 PDF 도구 모음입니다.</p></div>
+          <div class="ws-footcols">
+            <div class="ws-footcol"><h5>인기 도구</h5><a href="./merge/">합치기</a><a href="./split/">분할</a><a href="./compress/">PDF 압축</a><a href="./to-image/">PDF→이미지</a><a href="./image-to-pdf/">이미지→PDF</a><a href="./unlock/">잠금해제</a><a href="./protect/">비밀번호 설정</a><a href="./watermark/">워터마크</a><a class="ws-footcol__all" href="./#tools">전체 37개 도구 →</a></div>
+            <div class="ws-footcol"><h5>이미지 변환</h5><a href="./jpg-to-png/">JPG→PNG</a><a href="./png-to-jpg/">PNG→JPG</a><a href="./webp-to-png/">WEBP→PNG</a><a href="./jpg-to-webp/">JPG→WEBP</a><a class="ws-footcol__all" href="./#tools">모든 변환 →</a></div>
+            <div class="ws-footcol"><h5>정보</h5><a href="./about/">서비스 소개</a><a href="./about/">개인정보 처리방침</a><a href="https://github.com/INNO-HI-Inc/all-about-pdf" rel="noopener" target="_blank">오픈소스 (GitHub) ↗</a><a href="https://github.com/INNO-HI-Inc/all-about-pdf/issues" rel="noopener" target="_blank">문의 · 제안</a></div>
+          </div>
+        </div>
+        <div class="ws-footbottom"><span>© 2026 PDF의 모든 것 — made in Korea, runs on your device.</span><span>오픈소스 · MIT License</span></div>
+      </div>
+    </footer>
   <script>window.AAP_BASE='';</script>
   <script src="assets/vendor/pdf-lib.min.js" defer></script>
   <script src="assets/vendor/pdf.min.js" defer></script>
@@ -495,6 +546,6 @@
   <script src="assets/js/tools/compress.js?v=29c23f67" defer></script>
   <script src="assets/js/tools/to-image.js?v=38a55d5e" defer></script>
   <script src="assets/js/tools/unlock.js?v=5a8a5ef2" defer></script>
-  <script src="assets/js/workspace.js?v=5d152272" defer></script>
+  <script src="assets/js/workspace.js?v=c9bf1dd0" defer></script>
 </body>
 </html>

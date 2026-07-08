@@ -314,16 +314,18 @@ function wsTaskbar(rel) {
 }
 function wsFooter(rel) {
   const home = rel === '' ? './' : rel;
-  const t1 = TOOLS.slice(0, 4).map((t) => `<a href="${home}${t.slug}/">${read(t.slug).h1}</a>`).join('');
-  const t2 = TOOLS.slice(4).map((t) => `<a href="${home}${t.slug}/">${read(t.slug).h1}</a>`).join('');
+  // 링크 팜 방지: 전체 37개 대신 인기 도구만 큐레이션 + '전체 도구' 링크로 유도
+  const popular = ['merge', 'split', 'compress', 'to-image', 'image-to-pdf', 'unlock', 'protect', 'watermark'];
+  const convPop = ['jpg-to-png', 'png-to-jpg', 'webp-to-png', 'jpg-to-webp'];
+  const linkList = (slugs) => slugs.filter((s) => TOOL_BY[s]).map((s) => `<a href="${home}${s}/">${esc(TOOL_BY[s].nav)}</a>`).join('');
   return `    <footer class="ws-foot">
       <div class="ws-wrap">
         <div class="ws-footgrid">
           <div class="ws-footbrand"><span class="fb"><span class="chip" aria-hidden="true"><img src="${rel}assets/img/logo.png" alt="" width="30" height="30" decoding="async"></span>PDF의 모든 것</span><p>설치도 회원가입도 없이, 파일을 서버에 올리지 않고 내 브라우저에서 바로 처리하는 한국어 무료 PDF 도구 모음입니다.</p></div>
           <div class="ws-footcols">
-            <div class="ws-footcol"><h5>도구</h5>${t1}</div>
-            <div class="ws-footcol"><h5>더보기</h5>${t2}</div>
-            <div class="ws-footcol"><h5>정보</h5><a href="${home}about/">서비스 소개</a><a href="${escAttr(GITHUB_URL)}" rel="noopener" target="_blank">오픈소스 (GitHub) ↗</a></div>
+            <div class="ws-footcol"><h5>인기 도구</h5>${linkList(popular)}<a class="ws-footcol__all" href="${home}#tools">전체 37개 도구 →</a></div>
+            <div class="ws-footcol"><h5>이미지 변환</h5>${linkList(convPop)}<a class="ws-footcol__all" href="${home}#tools">모든 변환 →</a></div>
+            <div class="ws-footcol"><h5>정보</h5><a href="${home}about/">서비스 소개</a><a href="${home}about/">개인정보 처리방침</a><a href="${escAttr(GITHUB_URL)}" rel="noopener" target="_blank">오픈소스 (GitHub) ↗</a><a href="${escAttr(GITHUB_URL)}/issues" rel="noopener" target="_blank">문의 · 제안</a></div>
           </div>
         </div>
         <div class="ws-footbottom"><span>© 2026 PDF의 모든 것 — made in Korea, runs on your device.</span><span>오픈소스 · MIT License</span></div>
@@ -1149,10 +1151,28 @@ function buildHome() {
 ${catRows}
       </div>`;
 
-  const main = `    <section class="ws-home2" id="tools">
-      <h1 class="sr-only">${esc(c.metaTitle || 'PDF의 모든 것')} — 설치 없이 무료로 쓰는 한국어 PDF 도구 모음</h1>
+  const searchIco = '<svg class="ws-search__ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>';
+  const main = `    <section class="ws-hero">
+      <div class="ws-wrap ws-hero__inner">
+        <span class="ws-kicker"><span class="sq" aria-hidden="true"></span>서버 미전송 · 완전 무료 · 설치 없음</span>
+        <h1 class="ws-hero__h1">필요한 PDF 작업, <span class="mark">파일을 올리지 않고</span> <br>브라우저에서 무료로</h1>
+        <p class="ws-hero__sub">합치기·분할·변환·압축·서명·워터마크·비밀번호까지 <b>37가지 도구</b>를 한곳에서. 모든 처리는 내 기기 안에서만 이뤄져, 파일이 서버로 전송되지 않습니다.</p>
+        <form class="ws-hero__search" role="search" onsubmit="return false">
+          ${searchIco}
+          <input type="search" class="js-toolsearch" placeholder="어떤 PDF 작업이 필요하세요? — 예: 압축, 워터마크, jpg" aria-label="도구 검색" autocomplete="off">
+        </form>
+        <ul class="ws-hero__chips">
+          <li><span class="dot" aria-hidden="true"></span>100% 내 기기에서 처리</li>
+          <li><span class="dot" aria-hidden="true"></span>워터마크 없는 완전 무료</li>
+          <li><span class="dot" aria-hidden="true"></span>설치·회원가입 불필요</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="ws-home2" id="tools">
       <div class="ws-wrap ws-home2grid">
         <div class="ws-home2left">
+          <p class="ws-colcap">빠른 작업<span>자주 쓰는 도구는 여기서 바로</span></p>
           <div class="ws-winwrap">
             <div class="ws-window ws-deck" data-ws-window>
               <button class="ws-winclose ws-deck__close" type="button" data-ws-close aria-label="작업 닫고 처음으로">처음으로 ✕</button>
@@ -1168,20 +1188,36 @@ ${catRows}
           </div>
         </div>
         <div class="ws-home2right">
-          <div class="ws-search">
-            <svg class="ws-search__ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
-            <input type="search" class="js-toolsearch ws-search__input" placeholder="도구 검색 — 예: 압축, 워터마크, jpg" aria-label="도구 검색" autocomplete="off">
-          </div>
-          <p class="ws-cats__cap">카테고리별 전체 도구 둘러보기</p>
+          <p class="ws-colcap">전체 도구<span>카테고리를 눌러 골라보세요</span></p>
           <p class="ws-search__empty js-search-empty" hidden>찾는 도구가 없어요. ‘압축’, ‘합치기’, ‘jpg’ 처럼 검색해 보세요.</p>
 ${catalog}
+        </div>
+      </div>
+    </section>
+
+    <section class="ws-usps-sec">
+      <div class="ws-wrap">
+        <div class="ws-sechead" data-reveal><h2><small>왜 「PDF의 모든 것」인가</small>업로드가 없어서, 그래서 안심됩니다</h2></div>
+        <div class="ws-usps">
+        ${usps}
+        </div>
+      </div>
+    </section>
+
+    <section class="ws-faq">
+      <div class="ws-wrap">
+        <div class="ws-sechead" data-reveal><h2><small>자주 묻는 질문</small>궁금한 점이 있나요?</h2></div>
+        <div class="ws-term">
+          <div class="ws-faqlist">
+        ${faqs}
+          </div>
         </div>
       </div>
     </section>`;
 
   const html = page({
     title: c.metaTitle, desc: c.metaDescription, canonical,
-    ogTitle: c.metaTitle, rel, jsonld, main, noChrome: true, noFooter: true,
+    ogTitle: c.metaTitle, rel, jsonld, main, noChrome: true,
     withScripts: [...new Set(FEATURED.map((t) => t.script || t.slug))],
     bodyClass: 'ws home',
     extraScripts: ['assets/js/workspace.js'],

@@ -87,8 +87,16 @@
     var allCards = Array.prototype.slice.call(d.querySelectorAll('.ws-card'));
     var noRes = d.querySelector('.js-search-empty');
     var defaultActive = catRows.map(function (r) { return r.classList.contains('is-active'); });
+    var toolsSec = d.getElementById('tools');
+    var scrolledForSearch = false;
     searchInput.addEventListener('input', function () {
       var q = searchInput.value.trim().toLowerCase();
+      // 히어로 검색은 결과(카탈로그)가 아래에 있으므로, 검색 시작 시 도구 영역으로 스크롤
+      if (q && !scrolledForSearch && toolsSec) {
+        scrolledForSearch = true;
+        try { toolsSec.scrollIntoView({ behavior: 'smooth', block: 'start' }); } catch (e) {}
+      }
+      if (!q) scrolledForSearch = false;
       if (!q) { // 초기 상태 복원
         allCards.forEach(function (c) { c.style.display = ''; });
         catRows.forEach(function (row, i) {

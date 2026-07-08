@@ -322,6 +322,7 @@
 .ws-footcol h5 { font-size: 12px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; color: var(--ink-faint); margin-bottom: 14px; }
 .ws-footcol a { display: block; font-size: 14px; color: var(--ink-soft); padding: 5px 0; transition: color .15s, transform .15s; }
 .ws-footcol a:hover { color: var(--red); transform: translateX(3px); text-decoration: none; }
+.ws-footcol__all { color: var(--red) !important; font-weight: 700; margin-top: 4px; }
 .ws-footbottom { margin-top: 40px; padding-top: 22px; border-top: 1px solid var(--line); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px; font-size: 13px; color: var(--ink-faint); }
 
 /* ============ 도구 상세 페이지 ============ */
@@ -633,6 +634,37 @@ body.ws-app-open .ws-scrim { opacity: 1; pointer-events: auto; }
 @media (max-width: 1000px) {
   .ws-home2grid { grid-template-columns: 1fr; gap: 26px; }
   .ws-home2left { position: static; max-width: 760px; margin: 0 auto; width: 100%; }
+}
+
+/* ===== 홈 히어로 (첫화면 가치제안) ===== */
+.ws-hero { padding: clamp(42px, 7vw, 96px) 0 clamp(28px, 4vw, 52px); text-align: center; }
+.ws-hero__inner { display: flex; flex-direction: column; align-items: center; }
+.ws-hero__h1 { font-family: var(--font); font-weight: 800; font-size: clamp(1.95rem, 4.8vw, 3.25rem); line-height: 1.1; letter-spacing: -.038em; color: var(--ink); text-wrap: balance; margin: 0; }
+.ws-hero__h1 .mark { color: var(--red); }
+.ws-hero__sub { margin: 20px auto 0; max-width: 56ch; font-size: clamp(1rem, 1.55vw, 1.16rem); line-height: 1.72; color: var(--ink-soft); font-weight: 450; word-break: keep-all; }
+.ws-hero__sub b { font-weight: 800; color: var(--ink); }
+.ws-hero__search { position: relative; width: min(580px, 100%); margin: 32px auto 0; }
+.ws-hero__search .ws-search__ico { position: absolute; left: 20px; top: 50%; transform: translateY(-50%); width: 21px; height: 21px; color: var(--ink-faint); pointer-events: none; }
+.ws-hero__search input { width: 100%; box-sizing: border-box; padding: 17px 22px 17px 52px; font-family: inherit; font-size: 1.04rem; color: var(--ink); background: var(--surf); border: 1.5px solid var(--line-2); border-radius: var(--pill); box-shadow: var(--sh); transition: border-color .15s var(--ez), box-shadow .15s var(--ez); }
+.ws-hero__search input::placeholder { color: var(--ink-faint); }
+.ws-hero__search input:focus { outline: none; border-color: var(--red); box-shadow: 0 0 0 4px rgba(229, 37, 42, .14), var(--sh); }
+.ws-hero__chips { display: flex; flex-wrap: wrap; justify-content: center; gap: 9px; margin: 22px 0 0; padding: 0; list-style: none; }
+.ws-hero__chips li { display: inline-flex; align-items: center; gap: 8px; font-size: 13.5px; font-weight: 600; color: var(--ink-soft); background: var(--surf); border: 1px solid var(--line-2); padding: 8px 15px; border-radius: var(--pill); box-shadow: var(--sh-sm); }
+.ws-hero__chips .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--red); flex: none; box-shadow: 0 0 0 3px rgba(229, 37, 42, .16); }
+
+/* 컬럼 캡션(빠른 작업 / 전체 도구) */
+.ws-colcap { font-size: 15px; font-weight: 800; color: var(--ink); letter-spacing: -.015em; margin: 0 0 14px; display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap; }
+.ws-colcap span { font-weight: 600; color: var(--ink-faint); font-size: 12.5px; }
+
+/* USP 섹션 그리드 + FAQ 섹션 여백 */
+.ws-usps-sec { padding: clamp(44px, 6vw, 82px) 0; margin-top: clamp(20px, 4vw, 48px); background: var(--surf-2); border-top: 1px solid var(--line); }
+.ws-usps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.ws-faq { padding: clamp(44px, 6vw, 82px) 0; }
+@media (max-width: 860px) { .ws-usps { grid-template-columns: 1fr; } }
+@media (max-width: 640px) {
+  .ws-hero { padding: 34px 0 22px; }
+  .ws-hero__h1 br { display: none; }
+  .ws-hero__search input { padding: 15px 18px 15px 48px; font-size: .98rem; }
 }
 
 /* ===== 도구 검색 ===== */
