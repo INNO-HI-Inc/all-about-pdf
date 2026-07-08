@@ -435,6 +435,7 @@
 
     function changed() {
       result.hidden = true; result.innerHTML = '';
+      var nextReset = root.querySelector('.tool__next'); if (nextReset) nextReset.hidden = true;
       selected = {}; cutsBefore = {}; organizeOrder = []; organizeTail = []; previewPageShown = 0;
       root.classList.toggle('is-loaded', state.files.length > 0);   // 업로드 후 드롭존 컴팩트화 트리거
       render(); updatePageCount(); renderGrid();
@@ -504,6 +505,16 @@
       if (!e.dataTransfer || !e.dataTransfer.files || !e.dataTransfer.files.length) return;
       e.preventDefault(); dragDepth = 0; drop.classList.remove('dropzone--over');
       addFiles(e.dataTransfer.files);
+    });
+    // 붙여넣기(Ctrl/⌘+V) 업로드 — 클립보드의 이미지/파일을 드롭과 동일하게 처리
+    d.addEventListener('paste', function (e) {
+      var cd = e.clipboardData; if (!cd) return;
+      if (cd.files && cd.files.length) { e.preventDefault(); addFiles(cd.files); return; }
+      if (cd.items && cd.items.length) {
+        var picked = [], i;
+        for (i = 0; i < cd.items.length; i++) { if (cd.items[i].kind === 'file') { var pf = cd.items[i].getAsFile(); if (pf) picked.push(pf); } }
+        if (picked.length) { e.preventDefault(); addFiles(picked); }
+      }
     });
     if (gridInput && config.pageGrid) gridInput.addEventListener('input', reflectInput);
     if (config.numberPreview) { root.addEventListener('change', onNumChange); root.addEventListener('input', onNumChange); }
@@ -590,6 +601,7 @@
       // (개선 6) 완료 시 결과로 스크롤 + 음성 안내
       announce('완료됐어요. ' + label + ' 다운로드가 시작됐어요.' + (skipped && skipped.length ? ' 다만 ' + skipped.length + '개 파일은 빠졌어요.' : ''));
       try { result.scrollIntoView({ behavior: 'smooth', block: 'nearest' }); } catch (e) {}
+      var nextBox = root.querySelector('.tool__next'); if (nextBox) nextBox.hidden = false;
     }
 
     runBtn.addEventListener('click', async function () {
@@ -604,7 +616,12 @@
       }
       catch (e) {
         console.error('[ToolCore]', e);
-        var msg = (e && e.message) ? e.message : '처리 중 오류가 발생했어요.';
+        var msg = (e && e.message) ? String(e.message) : '처리 중 오류가 발생했어요. 파일이 올바른지 확인해 주세요.';
+        if (e && e.message) {
+          if (/password|encrypt|PasswordException/i.test(msg)) msg = '비밀번호가 걸린 PDF예요. 먼저 [잠금해제] 도구로 푼 뒤 사용해 주세요.';
+          else if (/invalid|corrupt|malformed|structure|not a pdf|xref/i.test(msg)) msg = '파일을 열 수 없어요. 손상됐거나 올바른 PDF 형식이 아닐 수 있어요.';
+          else if (/memory|allocation|out of/i.test(msg)) msg = '파일이 너무 커서 처리에 실패했어요. 더 작게 나눠 시도해 주세요.';
+        }
         UI.toast(msg, 'error');
         // 오류를 결과 영역에 '영구'로 남긴다 — 3.4초 토스트만으로는 원인을 놓치기 쉬움
         result.hidden = false;

@@ -59,6 +59,17 @@ function assetVer(relPath) {
   } catch (e) { return '0'; }
 }
 
+// 파일의 git 최종 커밋일(YYYY-MM-DD). JSON-LD dateModified·sitemap lastmod 공용.
+// git 실패 시 실제 빌드일로 폴백. 결과를 캐시해 중복 git 호출을 막는다.
+const _dateCache = {};
+function fileDate(relPath) {
+  if (_dateCache[relPath]) return _dateCache[relPath];
+  try {
+    const d = execSync(`git log -1 --format=%cs -- "${relPath}"`, { cwd: ROOT, stdio: ['ignore', 'pipe', 'ignore'] }).toString().trim();
+    return (_dateCache[relPath] = /^\d{4}-\d{2}-\d{2}$/.test(d) ? d : BUILD_DATE);
+  } catch { return BUILD_DATE; }
+}
+
 // 로고 마크 (글로시 그라디언트 오브) — 헤더·푸터 공통
 const LOGO_SVG = '<svg class="logo-mark" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><defs><radialGradient id="aapOrb" cx="34%" cy="27%" r="84%"><stop offset="0%" stop-color="#c8b9ff"/><stop offset="36%" stop-color="#6d6af6"/><stop offset="74%" stop-color="#4f46e5"/><stop offset="100%" stop-color="#36178a"/></radialGradient></defs><circle cx="16" cy="16" r="13.6" fill="url(#aapOrb)"/><ellipse cx="11.6" cy="10.4" rx="4.7" ry="3" fill="#fff" opacity=".5" transform="rotate(-18 11.6 10.4)"/></svg>';
 
@@ -889,13 +900,26 @@ function footer(rel) {
 </div></footer>`;
 }
 
+// Consent Mode v2 기본값. AdSense/GA 로더보다 먼저 실행돼 자동광고·측정에 함께 적용된다.
+// CMP가 없으므로 비EEA/영국은 granted, EEA·UK·CH는 광고·분석 저장을 denied로 시작한다
+// (denied 상태에서도 비개인화 광고는 계속 게재 → 수익 유지 + 프라이버시 준수).
+function consentHead() {
+  if (!ADSENSE_ENABLED && !GA_ENABLED) return '';
+  const eea = ['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE','IS','LI','NO','GB','CH'];
+  return `\n  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}`
+    + `gtag('consent','default',{ad_storage:'granted',ad_user_data:'granted',ad_personalization:'granted',analytics_storage:'granted'});`
+    + `gtag('consent','default',{region:${JSON.stringify(eea)},ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied'});</script>`;
+}
+
 // Google 애드센스 로더(자동 광고). 실제 게시자 ID가 설정됐을 때만 스크립트를 넣고,
 // 플레이스홀더 상태에서는 위치 표시 주석만 남겨 잘못된 광고 요청(콘솔 에러)을 막는다.
 function adsenseHead() {
   if (!ADSENSE_ENABLED) {
     return `\n  <!-- Google AdSense: build.mjs의 ADSENSE_CLIENT 상수에 실제 ca-pub ID를 넣으면 여기에 로더가 자동 삽입됩니다. -->`;
   }
-  return `\n  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${ADSENSE_CLIENT}" crossorigin="anonymous"></script>`;
+  return `\n  <meta name="google-adsense-account" content="${ADSENSE_CLIENT}">`
+    + `\n  <style>ins.adsbygoogle[data-ad-status="unfilled"]{display:none!important;}</style>`
+    + `\n  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${ADSENSE_CLIENT}" crossorigin="anonymous"></script>`;
 }
 
 // 제3자(광고·분석) 도메인에 미리 연결 → 스크립트 로드 지연 단축(CWV 개선). 활성 시에만.
@@ -904,6 +928,8 @@ function perfHints() {
   if (ADSENSE_ENABLED) {
     h.push('<link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin>');
     h.push('<link rel="dns-prefetch" href="https://googleads.g.doubleclick.net">');
+    h.push('<link rel="dns-prefetch" href="https://tpc.googlesyndication.com">');
+    h.push('<link rel="dns-prefetch" href="https://adservice.google.com">');
   }
   if (GA_ENABLED) {
     h.push('<link rel="preconnect" href="https://www.googletagmanager.com">');
@@ -936,7 +962,7 @@ function page({ title, desc, canonical, ogTitle, rel, jsonld, main, withScripts,
   if (need.indexOf('zip') >= 0) vendors.push('assets/vendor/jszip.min.js');
   const scripts = toolList.length ? `
   <script>window.AAP_BASE='${rel}';</script>
-${vendors.map((v) => `  <script src="${rel}${v}" defer></script>`).join('\n')}
+${vendors.map((v) => `  <script src="${rel}${v}" defer fetchpriority="low"></script>`).join('\n')}
   <script src="${rel}assets/js/ui.js?v=${assetVer('assets/js/ui.js')}" defer></script>
   <script src="${rel}assets/js/pdf-engine.js?v=${assetVer('assets/js/pdf-engine.js')}" defer></script>
   <script src="${rel}assets/js/tool-core.js?v=${assetVer('assets/js/tool-core.js')}" defer></script>
@@ -945,25 +971,33 @@ ${toolList.map((s) => `  <script src="${rel}assets/js/tools/${s}.js?v=${assetVer
 <html lang="ko">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">${perfHints()}${adsenseHead()}${gaHead()}
+  <meta name="viewport" content="width=device-width, initial-scale=1">${perfHints()}${consentHead()}${noindex ? '' : adsenseHead()}${gaHead()}
   <title>${esc(title)}</title>
-  <meta name="description" content="${escAttr(desc)}">${canonical ? `\n  <link rel="canonical" href="${escAttr(canonical)}">` : ''}
-  <meta name="robots" content="${noindex ? 'noindex,follow' : 'index,follow'}">${verifyHead()}
+  <meta name="description" content="${escAttr(desc)}">${canonical ? `\n  <link rel="canonical" href="${escAttr(canonical)}">\n  <link rel="alternate" hreflang="ko" href="${escAttr(canonical)}">\n  <link rel="alternate" hreflang="x-default" href="${escAttr(canonical)}">` : ''}
+  <meta name="robots" content="${noindex ? 'noindex,follow' : 'index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1'}">${verifyHead()}
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="${escAttr(BRAND)}">
   <meta property="og:title" content="${escAttr(ogTitle || title)}">
   <meta property="og:description" content="${escAttr(desc)}">
   <meta property="og:url" content="${escAttr(canonical)}">
   <meta property="og:image" content="${SITE_URL}/assets/img/og-default.png">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="${escAttr(BRAND)} — 무료 한국어 PDF 도구 모음">
   <meta property="og:locale" content="ko_KR">
   <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="${escAttr(ogTitle || title)}">
+  <meta name="twitter:description" content="${escAttr(desc)}">
+  <meta name="twitter:image" content="${SITE_URL}/assets/img/og-default.png">
+  <link rel="icon" href="${rel}assets/img/favicon.svg" type="image/svg+xml">
   <link rel="icon" href="${rel}assets/img/favicon.png" type="image/png">
   <link rel="apple-touch-icon" href="${rel}assets/img/logo.png">
   <link rel="manifest" href="${rel}site.webmanifest">
   <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
   <meta name="theme-color" content="#0e1016" media="(prefers-color-scheme: dark)">
   <link rel="preload" as="font" type="font/woff2" href="${rel}assets/vendor/fonts/a2z-Regular.woff2" crossorigin>
-  <link rel="preload" as="font" type="font/woff2" href="${rel}assets/vendor/fonts/a2z-Bold.woff2" crossorigin>
+  <link rel="preload" as="font" type="font/woff2" href="${rel}assets/vendor/fonts/a2z-ExtraBold.woff2" crossorigin>
   <link rel="stylesheet" href="${rel}assets/css/style.css?v=${assetVer('assets/css/style.css')}">${headExtra || ''}${ld}
 </head>
 <body${bodyClass ? ` class="${bodyClass}"` : ''}>
@@ -994,7 +1028,7 @@ function widget(t, opts) {
           <svg class="dropzone__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 16V4M12 4l-4 4M12 4l4 4"/><path d="M4 16v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg>
           <p class="dropzone__title">${t.dropTitle}</p>
           <span class="dropzone__btn">파일 선택</span>
-          <p class="dropzone__hint">또는 끌어다 놓기 · 파일은 내 브라우저에서만 처리됩니다</p>
+          <p class="dropzone__hint">또는 끌어다 놓기·붙여넣기${t.multiple ? '(여러 개 가능)' : ''} · 파일은 내 브라우저에서만 처리됩니다</p>
         </div>${pc}
         <ul class="filelist js-files"></ul>
         <div class="pagegrid js-pagegrid" hidden></div>`;
@@ -1009,7 +1043,7 @@ function widget(t, opts) {
         ${t.options}
         <div class="actions"><button class="btn btn--primary btn--lg btn--block js-run" disabled>${t.runLabel}</button></div>
         <div class="progress js-progress" hidden><div class="progress__bar js-bar"></div><span class="progress__text js-ptext"></span></div>
-        <div class="result js-result" hidden></div>
+        <div class="result js-result" hidden></div>${opts.nextHtml || ''}
         <noscript><p class="callout callout--warn" style="margin-top:16px"><span class="callout__ic">${ICONS.info}</span><span>이 도구는 자바스크립트가 필요합니다. 브라우저의 자바스크립트를 켜 주세요. 파일은 여전히 서버로 전송되지 않고 내 브라우저에서만 처리됩니다.</span></p></noscript>
       </div>
     </div>`;
@@ -1064,6 +1098,20 @@ function toolDock(slug, rel) {
     </nav>`;
 }
 
+// ───────── 완료 후 다음 작업 추천(같은 카테고리 우선 + 인기 도구 보강) ─────────
+function nextSteps(slug, rel) {
+  const cat = CATEGORIES.find((c) => c.slugs.includes(slug));
+  const recs = (cat ? cat.slugs.filter((s) => s !== slug) : []).slice();
+  ['compress', 'merge', 'to-image', 'split'].forEach((s) => { if (s !== slug && recs.indexOf(s) < 0) recs.push(s); });
+  const links = recs.slice(0, 3).map((s) => `<a class="btn btn--ghost btn--sm" href="${rel}${s}/">${esc(TOOL_BY[s].nav)} · ${esc(APP_SHORT[s] || '')} →</a>`).join('\n          ');
+  return `<div class="tool__next" hidden style="margin-top:20px;padding-top:18px;border-top:1px solid var(--line)">
+        <p style="margin:0 0 10px;font-weight:700;font-size:.92rem;color:var(--ink-soft)">완료됐어요 · 이어서 해보세요</p>
+        <div style="display:flex;flex-wrap:wrap;gap:8px">
+          ${links}
+        </div>
+      </div>`;
+}
+
 // ───────── 도구 페이지 ─────────
 function buildTool(t) {
   const c = read(t.slug);
@@ -1087,6 +1135,7 @@ function buildTool(t) {
       applicationCategory: 'UtilitiesApplication', operatingSystem: 'All',
       browserRequirements: 'Requires JavaScript', inLanguage: 'ko',
       isAccessibleForFree: true,
+      datePublished: TODAY, dateModified: fileDate(`_workspace/content_${t.slug}.json`),
       offers: { '@type': 'Offer', price: '0', priceCurrency: 'KRW' },
       featureList: t.feature,
       publisher: { '@type': 'Organization', name: BRAND, url: SITE_URL + '/' }
@@ -1099,6 +1148,18 @@ function buildTool(t) {
       ]
     }
   ];
+  // HowTo: '사용 방법' 스텝(c.steps)을 구조화 → 구글 '방법(How-to)' 리치결과 대상.
+  // 본문 tp-steps에 동일 내용이 실제 노출되어 정책을 충족한다(선두 원문자는 화면과 동일하게 제거).
+  if (c.steps && c.steps.length) {
+    jsonld.push({
+      '@context': 'https://schema.org', '@type': 'HowTo',
+      name: `${c.h1} 사용 방법`, inLanguage: 'ko',
+      step: c.steps.map((s, i) => ({
+        '@type': 'HowToStep', position: i + 1, name: `${i + 1}단계`,
+        text: s.replace(/^\s*[①②③④⑤⑥⑦⑧⑨⑩⑪⑫⑬⑭⑮]\s*/, '')
+      }))
+    });
+  }
   // FAQPage: 페이지에 실제로 노출된 FAQ를 구조화 → 구글 FAQ 리치결과 대상
   // (구글 정책상 FAQ 본문이 화면에 보여야 유효 — tp-info 노출과 짝을 이룸)
   if (c.faq && c.faq.length) {
@@ -1126,7 +1187,7 @@ function buildTool(t) {
 
     <section class="tp-editor">
       <div class="tp-editorwrap">
-        <div class="tp-toolbody">${widget(t, { editor: true })}</div>
+        <div class="tp-toolbody">${widget(t, { editor: true, nextHtml: nextSteps(t.slug, rel) })}</div>
       </div>
     </section>
 
