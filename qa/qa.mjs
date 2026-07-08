@@ -339,6 +339,10 @@ async function auditPage(ctx, path) {
 (async () => {
   const browser = await chromium.launch();
   const ctx = await browser.newContext({ acceptDownloads: true });
+  // 제3자(광고·분석) 요청을 빈 200으로 스텁 → networkidle 즉시 안정 + 광고 콘솔노이즈 제거.
+  // 우리 사이트를 검증하는 것이 목적이므로 외부 광고/측정 스크립트는 로드하지 않는다.
+  await ctx.route(/googlesyndication\.com|googletagmanager\.com|google-analytics\.com|doubleclick\.net|adservice\.google/, (r) =>
+    r.fulfill({ status: 200, contentType: 'application/javascript', body: '' }));
   try {
     console.log('▶ 기능 실측...');
     await testMerge(ctx); await testSplit(ctx); await testExtract(ctx);
