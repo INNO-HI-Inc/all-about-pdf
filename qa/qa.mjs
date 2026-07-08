@@ -327,7 +327,8 @@ async function auditPage(ctx, path) {
   const base = new URL(BASE + path);
   for (const href of [...new Set(data.links)]) {
     const u = new URL(href, base).toString();
-    try { const r = await fetch(u, { method: 'GET' }); if (r.status >= 400) probs.push('링크 ' + href + ' → ' + r.status); }
+    // Playwright 요청 컨텍스트로 링크 점검(Node fetch/undici의 CI 크래시 회피)
+    try { const r = await page.request.get(u); if (r.status() >= 400) probs.push('링크 ' + href + ' → ' + r.status()); }
     catch (e) { probs.push('링크 ' + href + ' 실패'); }
   }
   probs.length ? fail(tag, probs.join('; ')) : pass(tag, '"' + data.h1text.trim() + '" 메타·링크·콘솔 정상');
