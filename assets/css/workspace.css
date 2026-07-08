@@ -522,7 +522,7 @@
 .ws .dropzone:hover .dropzone__btn { filter: brightness(1.04); }
 .ws .btn--primary { background: var(--grad); border: none; border-radius: var(--radius); box-shadow: var(--sh-red); font-weight: 700; }
 .ws .btn--primary:hover { transform: translateY(-2px); box-shadow: 0 18px 38px rgba(229, 37, 42, .4); }
-.ws .btn--primary:disabled { background: var(--surf-3); color: var(--ink-faint); box-shadow: none; border: 1px solid var(--line); cursor: not-allowed; }
+.ws .btn--primary:disabled { background: var(--surf-3); color: var(--ink-soft); box-shadow: none; border: 1px solid var(--line-2); cursor: not-allowed; }
 .ws .segmented input:not(:checked) + span:hover { background: var(--surf); color: var(--ink); box-shadow: var(--sh-sm); }
 .ws .field { border: 1px solid var(--line-2); border-radius: var(--radius-sm); box-shadow: var(--sh-sm); background: var(--surf); }
 .ws .field:focus { border-color: var(--red-2); box-shadow: 0 0 0 3px rgba(229, 37, 42, .14); outline: none; }
