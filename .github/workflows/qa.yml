@@ -1,0 +1,52 @@
+name: QA (기능 실측 + 구조 감사)
+
+# 푸시/PR마다 실제 브라우저(Playwright)로 7개 도구의 PDF 처리 동작과
+# 전 페이지 메타/canonical/OG/JSON-LD/콘솔에러를 자동 검증한다.
+# 배포(deploy-pages.yml)와 독립적으로 돌며, 실패해도 배포를 막지 않는다.
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: qa-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  qa:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Install Playwright
+        run: |
+          npm install
+          npx playwright install --with-deps chromium
+
+      - name: Build static site
+        run: node build.mjs
+
+      - name: Serve site
+        run: |
+          python3 -m http.server 8099 &
+          # 서버가 뜰 때까지 대기(최대 ~20초)
+          for i in $(seq 1 40); do
+            if curl -sf http://localhost:8099/ >/dev/null; then echo "server up"; break; fi
+            sleep 0.5
+          done
+
+      - name: Run QA
+        run: BASE=http://localhost:8099 node qa/qa.mjs

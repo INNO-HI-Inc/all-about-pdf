@@ -1,0 +1,15 @@
+{
+  "name": "all-about-pdf",
+  "version": "1.0.0",
+  "private": true,
+  "description": "PDF의 모든 것 — 파일을 서버에 올리지 않는 무료 PDF 도구 모음(정적 사이트)",
+  "type": "module",
+  "scripts": {
+    "build": "node build.mjs",
+    "serve": "python3 -m http.server 8099",
+    "qa": "BASE=http://localhost:8099 node qa/qa.mjs"
+  },
+  "devDependencies": {
+    "playwright": "^1.61.0"
+  }
+}

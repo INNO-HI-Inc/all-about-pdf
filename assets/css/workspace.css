@@ -322,7 +322,7 @@
 .ws-footcol h5 { font-size: 12px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; color: var(--ink-faint); margin-bottom: 14px; }
 .ws-footcol a { display: block; font-size: 14px; color: var(--ink-soft); padding: 5px 0; transition: color .15s, transform .15s; }
 .ws-footcol a:hover { color: var(--red); transform: translateX(3px); text-decoration: none; }
-.ws-footcol__all { color: var(--red) !important; font-weight: 700; margin-top: 4px; }
+.ws-footcol__all { color: #c81f26 !important; font-weight: 700; margin-top: 4px; }
 .ws-footbottom { margin-top: 40px; padding-top: 22px; border-top: 1px solid var(--line); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px; font-size: 13px; color: var(--ink-faint); }
 
 /* ============ 도구 상세 페이지 ============ */
@@ -399,7 +399,7 @@
 .tp-dock__cat { flex: 1 1 0; min-width: 0; display: inline-flex; flex-direction: column; align-items: center; gap: 3px; padding: 10px 6px; border: none; background: transparent; border-radius: 13px; cursor: pointer; font-family: inherit; color: var(--ink); transition: background var(--d-micro) var(--ez), color var(--d-micro) var(--ez); }
 .tp-dock__cat:hover { background: var(--surf-2); }
 .tp-dock__cat-name { font-size: 13px; font-weight: 700; letter-spacing: -.01em; white-space: nowrap; }
-.tp-dock__cat-count { font-size: 10.5px; font-weight: 700; opacity: .55; }
+.tp-dock__cat-count { font-size: 10.5px; font-weight: 700; color: #5f6473; }
 .tp-dock__cat.is-current .tp-dock__cat-name { color: var(--red); }               /* 현재 도구의 카테고리 강조 */
 .tp-dock__cat.is-open { background: var(--grad); color: #fff; box-shadow: var(--sh-red); }
 .tp-dock__cat.is-open .tp-dock__cat-name, .tp-dock__cat.is-open .tp-dock__cat-count { color: #fff; opacity: 1; }
@@ -676,8 +676,8 @@ html.drawer-open .ws-drawer-handle { opacity: 0; pointer-events: none; transform
 /* 서랍 본체 */
 .ws-drawer { position: fixed; top: 0; right: 0; height: 100dvh; width: min(460px, 92vw); z-index: 300;
   background: var(--surf); border-left: 1px solid var(--line-2); box-shadow: -24px 0 64px rgba(23, 23, 42, .2);
-  transform: translateX(100%); transition: transform .38s var(--ez-out); display: flex; flex-direction: column; }
-html.drawer-open .ws-drawer { transform: translateX(0); }
+  transform: translateX(100%); visibility: hidden; transition: transform .38s var(--ez-out), visibility .38s; display: flex; flex-direction: column; }
+html.drawer-open .ws-drawer { transform: translateX(0); visibility: visible; }
 .ws-drawer__bar { flex: none; display: flex; align-items: center; justify-content: space-between; padding: 16px 20px; border-bottom: 1px solid var(--line); }
 .ws-drawer__title { display: inline-flex; align-items: center; gap: 9px; font-family: var(--font); font-weight: 800; font-size: 1.06rem; color: var(--ink); }
 .ws-drawer__title svg { width: 20px; height: 20px; color: var(--red); }
