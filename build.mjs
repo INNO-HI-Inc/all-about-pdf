@@ -63,6 +63,7 @@ const ICONS = {
   sign: IC('<path d="M4 16.8c2-.3 3-1.2 4.6-3.9.8-1.4 1.6-2.9 2.4-2.9.6 0 .7.7.4 1.6-.4 1.2-.9 2 0 2.5.7.4 1.6-.2 2.3-1.1"/><path d="M15.2 4.2l4.6 4.6"/><path d="M3.5 20.5h17"/>'),
   watermark: IC('<path d="M12 3.4c3.1 3.7 5.6 6.6 5.6 9.6a5.6 5.6 0 0 1-11.2 0c0-3 2.5-5.9 5.6-9.6z"/><path d="M9 13.4a3 3 0 0 0 3 3"/>'),
   flatten: IC('<path d="M12 3.4 20 7.6l-8 4.2-8-4.2z"/><path d="M4 12l8 4.2 8-4.2"/><path d="M4 16.4l8 4.2 8-4.2"/>'),
+  protect: IC('<rect x="5" y="11" width="14" height="9.5" rx="2"/><path d="M8 11V7.5a4 4 0 0 1 8 0V11"/><circle cx="12" cy="15.4" r="1.3"/><path d="M12 16.4v2"/>'),
 };
 const DOT_SVG = '<svg class="pill-dot" viewBox="0 0 8 8" aria-hidden="true"><circle cx="4" cy="4" r="4" fill="currentColor"/></svg>';
 
@@ -96,6 +97,7 @@ const ICONS_PDF = {
   sign: pdfSvg(pdfPage(2) + pdfBadge(17.4, 17.4, '#db2777', '<path d="M15.4 19.1c1-.1 1.5-.7 2.2-2 .25-.45.5-.85.75-.85.2 0 .25.3.05.7-.18.36-.1.62.18.72" fill="none" stroke="#fff" stroke-width="1.05" stroke-linecap="round" stroke-linejoin="round"/><path d="M15.2 20.4h4.3" stroke="#fff" stroke-width="1.05" stroke-linecap="round"/>')),
   watermark: pdfSvg('<path d="M6.4 2.6h6.6L17.6 7v11.4a1.5 1.5 0 0 1-1.5 1.5H6.4a1.5 1.5 0 0 1-1.5-1.5V4.1a1.5 1.5 0 0 1 1.5-1.5z" fill="' + PDF_RED + '"/><path d="M12.7 2.6 17.6 7h-3.8a1.1 1.1 0 0 1-1.1-1.1z" fill="' + PDF_FOLD + '"/><path d="M11.2 6.8c2 2.4 3.6 4.2 3.6 6a3.6 3.6 0 0 1-7.2 0c0-1.8 1.6-3.6 3.6-6z" fill="#fff" opacity=".85"/>'),
   flatten: pdfSvg(pdfPage(2) + pdfBadge(17.4, 17.4, '#7c3aed', '<path d="M17.4 14.6l2.5 1.35-2.5 1.35-2.5-1.35z" fill="#fff"/><path d="M14.9 17.4l2.5 1.35 2.5-1.35" fill="none" stroke="#fff" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>')),
+  protect: pdfSvg(pdfPage(1) + '<rect x="13.6" y="15" width="6.8" height="5.6" rx="1.1" fill="#f59e0b" stroke="#fff" stroke-width="1"/><path d="M15 15v-1.5a2 2 0 0 1 4 0V15" fill="none" stroke="#f59e0b" stroke-width="1.3"/><circle cx="17" cy="17.6" r=".95" fill="#fff"/>'),
 };
 
 // ───────── 유틸 ─────────
@@ -180,6 +182,9 @@ const TOOLS = [
   { slug: 'flatten', icon: ICONS.flatten, nav: '양식 평탄화', multiple: false, script: 'flatten', needs: ['pdflib'],
     runLabel: '양식 고정하기', dropTitle: '양식을 고정할 PDF를 끌어다 놓으세요', pagecount: true,
     feature: ['입력값 페이지에 고정', '어디서나 동일하게', '글자 그대로 보존'], options: optFlatten() },
+  { slug: 'protect', icon: ICONS.protect, nav: '비밀번호 설정', multiple: false, script: 'protect', needs: ['pdflib-crypto'],
+    runLabel: '비밀번호 걸기', dropTitle: '비밀번호를 걸 PDF를 끌어다 놓으세요', pagecount: true,
+    feature: ['열기 비밀번호', '인쇄·복사 제한', '브라우저 내 처리'], options: optProtect() },
 ];
 const TOOL_BY = Object.fromEntries(TOOLS.map((t) => [t.slug, t]));
 
@@ -187,7 +192,7 @@ const TOOL_BY = Object.fromEntries(TOOLS.map((t) => [t.slug, t]));
 const CATEGORIES = [
   { id: 'organize', title: 'PDF 구성', desc: '여러 PDF를 합치고, 나누고, 페이지를 자유롭게 정리하세요.', slugs: ['merge', 'split', 'organize', 'extract', 'delete', 'page-numbers', 'reverse', 'nup'] },
   { id: 'convert', title: 'PDF 변환', desc: 'PDF와 이미지를 서로 바꾸세요. 모두 내 브라우저에서 처리됩니다.', slugs: ['to-image', 'image-to-pdf', 'svg-to-png'] },
-  { id: 'security', title: 'PDF 보안', desc: '비밀번호·편집 제한을 풀고, 개인정보를 지우고, 워터마크로 지켜 안전하게.', slugs: ['unlock', 'remove-metadata', 'watermark'] },
+  { id: 'security', title: 'PDF 보안', desc: '비밀번호를 걸거나 풀고, 개인정보를 지우고, 워터마크로 지켜 안전하게.', slugs: ['protect', 'unlock', 'remove-metadata', 'watermark'] },
   { id: 'optimize', title: 'PDF 최적화', desc: '용량을 줄이고 빈 페이지를 정리해 가볍게.', slugs: ['compress', 'remove-blank', 'grayscale'] },
   { id: 'edit', title: 'PDF 편집', desc: '방향·여백·자르기·서명·양식으로 문서를 보기 좋게 다듬으세요.', slugs: ['rotate', 'crop', 'add-margin', 'sign', 'flatten'] },
   { id: 'analyze', title: 'PDF 분석', desc: '문서 정보를 확인하고 글자를 텍스트로 뽑으세요.', slugs: ['pdf-info', 'extract-text'] },
@@ -195,7 +200,7 @@ const CATEGORIES = [
 
 // 작업실 OS 공용 자원 (홈 + 도구 상세 공통)
 const CHIP = '<svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4"/></svg>';
-const APP_FILE = { merge: 'merge.app', split: 'split.app', unlock: 'unlock.app', extract: 'extract.app', delete: 'delete.app', organize: 'organize.app', 'to-image': 'to-image.app', 'page-numbers': 'page-num.app', 'image-to-pdf': 'img-to-pdf.app', 'svg-to-png': 'svg-to-png.app', rotate: 'rotate.app', crop: 'crop.app', compress: 'compress.app', 'pdf-info': 'pdf-info.app', 'remove-metadata': 'remove-metadata.app', 'remove-blank': 'remove-blank.app', 'add-margin': 'add-margin.app', 'extract-text': 'extract-text.app', reverse: 'reverse.app', grayscale: 'grayscale.app', nup: 'nup.app', sign: 'sign.app', watermark: 'watermark.app', flatten: 'flatten.app' };
+const APP_FILE = { merge: 'merge.app', split: 'split.app', unlock: 'unlock.app', extract: 'extract.app', delete: 'delete.app', organize: 'organize.app', 'to-image': 'to-image.app', 'page-numbers': 'page-num.app', 'image-to-pdf': 'img-to-pdf.app', 'svg-to-png': 'svg-to-png.app', rotate: 'rotate.app', crop: 'crop.app', compress: 'compress.app', 'pdf-info': 'pdf-info.app', 'remove-metadata': 'remove-metadata.app', 'remove-blank': 'remove-blank.app', 'add-margin': 'add-margin.app', 'extract-text': 'extract-text.app', reverse: 'reverse.app', grayscale: 'grayscale.app', nup: 'nup.app', sign: 'sign.app', watermark: 'watermark.app', flatten: 'flatten.app', protect: 'protect.app' };
 const APP_DESC = {
   merge: '여러 PDF를 순서대로 끌어다 하나로. 과제 묶음, 보고서 취합, 스캔본 결합까지 한 번에 끝냅니다.',
   split: '한 파일을 여러 개로. 자르는 지점을 눌러 필요한 부분만 깔끔하게 나눕니다.',
@@ -221,6 +226,7 @@ const APP_DESC = {
   sign: '사인을 직접 그리거나 도장·사인 이미지를 올리거나 이름을 입력해 만들고, 미리보기에서 원하는 위치에 끌어다 놓아요. 계약서·동의서에 서명을 넣을 때 파일을 어디에도 올리지 않아 안전합니다.',
   watermark: '‘대외비’·‘사본’ 같은 한글 문구나 로고 이미지를 모든 페이지에. 가운데 대각선 또는 바둑판 반복으로, 기울기·진하기까지 골라 무단 복제를 막아요.',
   flatten: '채워 넣은 신청서·계약서의 입력값을 페이지에 고정해, 받는 사람이 못 바꾸고 어디서나 똑같이 보이게. 각 페이지를 이미지로 바꾸지 않아 글자는 그대로 보존돼요.',
+  protect: 'PDF에 열기 비밀번호를 걸어 아는 사람만 열 수 있게. 인쇄·복사 제한도 선택할 수 있어요. 잠금해제(unlock)의 반대이며, 파일을 어디에도 올리지 않고 내 브라우저에서 암호화합니다.',
 };
 const APP_SHORT = {
   merge: '여러 PDF를 하나로', split: '한 파일을 여러 개로', unlock: '비밀번호·제한 해제',
@@ -229,7 +235,7 @@ const APP_SHORT = {
   rotate: '페이지 회전', crop: '여백 제거', compress: '용량 줄이기', 'pdf-info': '문서 정보 보기',
   'remove-metadata': '개인정보 제거', 'remove-blank': '빈 페이지 제거', 'add-margin': '여백 추가', 'extract-text': '텍스트 추출',
   reverse: '페이지 역순', grayscale: '흑백 변환', nup: '모아찍기', sign: '서명·도장 넣기',
-  watermark: '워터마크 넣기', flatten: '양식 값 고정',
+  watermark: '워터마크 넣기', flatten: '양식 값 고정', protect: '비밀번호 걸기',
 };
 // 도구 검색용 동의어/키워드(자연어로 찾을 수 있게). 이름·설명에 없는 표현만 보강.
 const SEARCH_SYN = {
@@ -241,7 +247,7 @@ const SEARCH_SYN = {
   compress: '압축 용량 줄이기 가볍게', 'remove-blank': '빈 페이지 공백 제거', grayscale: '흑백 그레이 회색 인쇄',
   rotate: '회전 방향 돌리기 눕힘 세우기', crop: '자르기 여백 제거 크롭', 'add-margin': '여백 추가 제본 필기공간',
   sign: '서명 사인 도장 계약서 동의서', flatten: '양식 평탄화 폼 고정 신청서', 'pdf-info': '정보 페이지수 크기 메타',
-  'extract-text': '텍스트 추출 글자 복사',
+  'extract-text': '텍스트 추출 글자 복사', protect: '비밀번호 설정 암호화 암호 걸기 보호 잠금 encrypt',
 };
 const searchKeywords = (slug) => {
   const t = TOOL_BY[slug];
@@ -601,6 +607,20 @@ function optFlatten() {
   ${optOutName('평탄화-PDF')}
 </div>`;
 }
+function optProtect() {
+  return `<div class="options">
+  <div class="option">
+    <label class="option__label" for="protect-pw">열기 비밀번호 <span class="option__hint">이 비밀번호를 알아야 PDF를 열 수 있어요</span></label>
+    <input type="password" id="protect-pw" class="field js-nopersist" placeholder="설정할 비밀번호" autocomplete="new-password">
+  </div>
+  <label class="checkbox"><input type="checkbox" id="protect-showpw"> 비밀번호 표시</label>
+  <label class="checkbox"><input type="checkbox" id="protect-allow-print" checked> 인쇄 허용</label>
+  <label class="checkbox"><input type="checkbox" id="protect-allow-copy" checked> 텍스트 복사 허용</label>
+  <p class="option__hint" style="margin:2px 0 0">인쇄·복사를 끄면 열기 비밀번호와 별개의 소유자 암호로 제한이 걸립니다(뷰어에 따라 제한 적용이 다를 수 있어요).</p>
+  ${optOutName('비밀번호-PDF')}
+  <p class="callout callout--warn"><span class="callout__ic">${ICONS.info}</span><span><strong>비밀번호를 잊으면 되돌릴 수 없어요.</strong> 설정한 비밀번호는 이 기기 어디에도 저장되지 않으니 꼭 따로 기억해 두세요. 파일은 서버로 전송되지 않고 브라우저에서 암호화됩니다.</span></p>
+</div>`;
+}
 function optConv(conv) {
   const lossy = (conv.to === 'jpg' || conv.to === 'webp');
   const parts = [];
@@ -841,7 +861,9 @@ function page({ title, desc, canonical, ogTitle, rel, jsonld, main, withScripts,
   // 이미지 형식 변환 계열은 canvas만 쓰므로 pdf-lib·pdf.js(약 845KB)를 싣지 않는다.
   const need = toolList.length ? (needs || ['pdflib', 'pdfjs', 'zip']) : [];
   const vendors = [];
-  if (need.indexOf('pdflib') >= 0) vendors.push('assets/vendor/pdf-lib.min.js');
+  // pdflib-crypto: 암호화 지원 포크(@cantoo/pdf-lib) — protect 도구 전용(+126KB). 그 외는 원본 pdf-lib.
+  if (need.indexOf('pdflib-crypto') >= 0) vendors.push('assets/vendor/pdf-lib-cantoo.min.js');
+  else if (need.indexOf('pdflib') >= 0) vendors.push('assets/vendor/pdf-lib.min.js');
   if (need.indexOf('pdfjs') >= 0) vendors.push('assets/vendor/pdf.min.js');
   if (need.indexOf('zip') >= 0) vendors.push('assets/vendor/jszip.min.js');
   const scripts = toolList.length ? `

@@ -887,6 +887,34 @@
     return toBlob(await doc.save());
   }
 
+  // ── 비밀번호 설정(암호화) ─────────────────────────────────
+  // @cantoo/pdf-lib(암호화 지원 포크)가 로드된 페이지에서만 동작(protect 페이지 전용).
+  // opts: { userPassword(필수), allowPrint(기본 허용), allowCopy(기본 허용) }
+  async function protect(file, opts) {
+    opts = opts || {};
+    var doc = await loadDoc(file);
+    if (typeof doc.encrypt !== 'function') throw new Error('암호화 모듈을 불러오지 못했어요. 새로고침 후 다시 시도해 주세요.');
+    var userPw = String(opts.userPassword || '');
+    if (!userPw) throw new Error('설정할 비밀번호를 입력해 주세요.');
+    var allowPrint = opts.allowPrint !== false;
+    var allowCopy = opts.allowCopy !== false;
+    var restrict = !allowPrint || !allowCopy;
+    // 인쇄·복사를 실제로 제한하려면 소유자 암호가 열기 암호와 달라야 함(뷰어가 열기암호=소유자면 제한 무시)
+    var ownerPw = restrict ? (userPw + '.' + Math.random().toString(36).slice(2, 10)) : userPw;
+    if (restrict) {
+      await doc.encrypt({
+        userPassword: userPw, ownerPassword: ownerPw,
+        permissions: {
+          printing: allowPrint ? 'highResolution' : undefined, copying: allowCopy,
+          modifying: false, annotating: true, fillingForms: true, contentAccessibility: true, documentAssembly: false
+        }
+      });
+    } else {
+      await doc.encrypt({ userPassword: userPw, ownerPassword: ownerPw });
+    }
+    return toBlob(await doc.save());
+  }
+
   // ── 양식(Form) 평탄화 ─────────────────────────────────────
   // 입력값을 페이지에 '구워' 편집 불가·어디서나 동일하게 보이도록. 글자 보존(래스터화 아님).
   async function flattenForm(file) {
@@ -905,6 +933,7 @@
     merge: merge,
     addWatermark: addWatermark,
     flattenForm: flattenForm,
+    protect: protect,
     splitEach: splitEach,
     splitRanges: splitRanges,
     splitEvery: splitEvery,

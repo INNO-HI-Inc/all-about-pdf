@@ -13,7 +13,7 @@ const require = createRequire(import.meta.url);
 const { chromium } = require(process.env.PW_PATH || 'playwright');
 
 const BASE = process.env.BASE || 'http://localhost:8099';
-const PAGES = ['/', '/merge/', '/split/', '/unlock/', '/extract/', '/delete/', '/organize/', '/to-image/', '/page-numbers/', '/svg-to-png/', '/rotate/', '/crop/', '/compress/', '/pdf-info/', '/watermark/', '/flatten/', '/jpg-to-png/', '/png-to-jpg/', '/webp-to-png/', '/webp-to-jpg/', '/png-to-webp/', '/jpg-to-webp/', '/svg-to-jpg/', '/svg-to-webp/', '/remove-metadata/', '/remove-blank/', '/add-margin/', '/extract-text/', '/reverse/', '/grayscale/', '/nup/', '/sign/', '/gif-to-png/', '/gif-to-jpg/', '/avif-to-png/', '/avif-to-jpg/', '/about/'];
+const PAGES = ['/', '/merge/', '/split/', '/unlock/', '/extract/', '/delete/', '/organize/', '/to-image/', '/page-numbers/', '/svg-to-png/', '/rotate/', '/crop/', '/compress/', '/pdf-info/', '/watermark/', '/flatten/', '/protect/', '/jpg-to-png/', '/png-to-jpg/', '/webp-to-png/', '/webp-to-jpg/', '/png-to-webp/', '/jpg-to-webp/', '/svg-to-jpg/', '/svg-to-webp/', '/remove-metadata/', '/remove-blank/', '/add-margin/', '/extract-text/', '/reverse/', '/grayscale/', '/nup/', '/sign/', '/gif-to-png/', '/gif-to-jpg/', '/avif-to-png/', '/avif-to-jpg/', '/about/'];
 const results = [];
 const pass = (name, msg) => results.push({ ok: true, name, msg: msg || '' });
 const fail = (name, msg) => results.push({ ok: false, name, msg: msg || '' });
@@ -250,6 +250,27 @@ async function testWebp(ctx) {
   await page.close();
 }
 
+async function testProtect(ctx) {
+  const page = await ctx.newPage(); await page.goto(BASE + '/protect/'); await ready(page);
+  const b = await page.evaluate(GEN, [[2, 'P']]);
+  const { buf } = await setAndRun(page, [b64ToFile(b[0], 'p.pdf')], async () => { await page.fill('#protect-pw', 'myPass123'); });
+  await page.close();
+  const enc = Buffer.from(buf).toString('latin1').includes('/Encrypt');
+  // pdf.js 있는 페이지에서 암호화 검증(무비번 차단 / 비번으로 열림)
+  const vp = await ctx.newPage(); await vp.goto(BASE + '/to-image/'); await vp.waitForFunction(() => window.pdfjsLib, null, { timeout: 10000 });
+  const v = await vp.evaluate(async (b64) => {
+    const bin = atob(b64); const u = new Uint8Array(bin.length); for (let i = 0; i < bin.length; i++) u[i] = bin.charCodeAt(i);
+    let noPw = 'opened', withPw = 'fail';
+    try { await pdfjsLib.getDocument({ data: new Uint8Array(u.slice(0)) }).promise; } catch (e) { noPw = e.name; }
+    try { const d = await pdfjsLib.getDocument({ data: new Uint8Array(u.slice(0)), password: 'myPass123' }).promise; withPw = 'opened ' + d.numPages; } catch (e) { withPw = 'FAIL ' + e.name; }
+    return { noPw, withPw };
+  }, bufToB64(buf));
+  await vp.close();
+  (enc && v.noPw === 'PasswordException' && /opened 2/.test(v.withPw))
+    ? pass('비밀번호 설정', '암호화 → 무비번 차단(' + v.noPw + '), 비번으로 ' + v.withPw)
+    : fail('비밀번호 설정', 'enc=' + enc + ' noPw=' + v.noPw + ' withPw=' + v.withPw);
+}
+
 async function testHomeWidgets(ctx) {
   const page = await ctx.newPage(); await page.goto(BASE + '/'); await ready(page);
   const b = await page.evaluate(GEN, [[3, 'A'], [2, 'B']]);
@@ -321,7 +342,7 @@ async function auditPage(ctx, path) {
     console.log('▶ 기능 실측...');
     await testMerge(ctx); await testSplit(ctx); await testExtract(ctx);
     await testDelete(ctx); await testOrganize(ctx); await testToImage(ctx); await testPageNumbers(ctx); await testUnlock(ctx);
-    await testWatermark(ctx); await testFlatten(ctx); await testRotatePages(ctx); await testWebp(ctx);
+    await testWatermark(ctx); await testFlatten(ctx); await testRotatePages(ctx); await testWebp(ctx); await testProtect(ctx);
     // 홈은 런처(도구 페이지로 링크)로 전환 — 도구 실동작은 각 도구 페이지에서 검증
     console.log('▶ 구조 감사...');
     for (const p of PAGES) await auditPage(ctx, p);
