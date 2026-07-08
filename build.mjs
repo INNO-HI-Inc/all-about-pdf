@@ -25,7 +25,7 @@ const TODAY = '2026-06-04';
 // ads.txt·개인정보 고지가 함께 켜집니다. (예: 'ca-pub-1234567890123456' — ca-pub- 뒤 16자리 숫자)
 // 자동 광고(Auto ads)를 쓰므로 로더 스크립트만 넣으면 되고, 광고 위치 배치는
 // 애드센스 대시보드 > 광고 > 자동 광고에서 켭니다. 수동 슬롯은 필요 없습니다.
-const ADSENSE_CLIENT = process.env.ADSENSE_CLIENT || 'ca-pub-XXXXXXXXXXXXXXXX';
+const ADSENSE_CLIENT = process.env.ADSENSE_CLIENT || 'ca-pub-4315758870466399';
 const ADSENSE_ENABLED = /^ca-pub-\d{16}$/.test(ADSENSE_CLIENT);
 // CSS/JS 캐시버스팅: 내용 해시 기반 — 파일 내용이 바뀔 때만 ?v= 가 변해 캐시가 유지되고
 // 빌드마다 전체 HTML이 diff되던 문제도 사라진다(내용 무변경 → URL 무변경).
