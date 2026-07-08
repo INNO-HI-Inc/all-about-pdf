@@ -166,6 +166,14 @@
       PDFEngine.getPageCount(state.files[0]).then(function (n) { if (n) pagecount.textContent = '총 ' + n + '페이지'; });
     }
 
+    // 그리드 렌더 실패 처리 — 암호 PDF면 안내(probeEncrypted 중복 파싱을 대체).
+    function gridFail(err) {
+      pagegrid.hidden = true; pagegrid.innerHTML = '';
+      if (global.PDFEngine && PDFEngine.isPasswordError && PDFEngine.isPasswordError(err)) {
+        UI.toast('이 PDF는 열기 비밀번호가 걸려 있어요. 먼저 [잠금해제] 도구로 푼 뒤 사용해 주세요.', 'warn');
+      }
+    }
+
     // ── 썸네일 영역 dispatcher ──
     function renderGrid() {
       if (!pagegrid || !global.PDFEngine || !PDFEngine.renderThumbs) return;
@@ -245,7 +253,7 @@
         var selBase = '페이지를 눌러 선택 · 위 버튼으로 일괄 선택';
         // 미리보기가 앞 일부만 보여도 일괄 버튼은 전체 페이지를 대상으로 함을 명시
         addHint(res, res.total > res.shown ? selBase + ' (일괄 버튼은 전체 ' + res.total + '쪽 대상)' : selBase);
-      }).catch(function () { pagegrid.hidden = true; pagegrid.innerHTML = ''; });
+      }).catch(gridFail);
     }
 
     // 분할 모드 (split): 페이지를 누르면 그 앞에서 새 구간으로 나뉨
@@ -300,7 +308,7 @@
         pagegrid.appendChild(grid);
         paint();
         addHint(res, '나눌 페이지를 누르면 거기서부터 새 파일로 분리돼요');
-      }).catch(function () { pagegrid.hidden = true; pagegrid.innerHTML = ''; });
+      }).catch(gridFail);
     }
 
     // 정리 모드 (organize): 모든 페이지를 펼쳐 드래그 재정렬 + 페이지별 회전/삭제
@@ -384,7 +392,7 @@
           : '끌어서 순서 변경(또는 ◀ ▶) · ↺ ↻ 회전 · ✕ 삭제';
         var hint = d.createElement('p'); hint.className = 'pagegrid__hint'; hint.textContent = note;
         pagegrid.appendChild(hint);
-      }).catch(function () { pagegrid.hidden = true; pagegrid.innerHTML = ''; });
+      }).catch(gridFail);
     }
 
     // 번호 미리보기 (page-numbers)
@@ -402,7 +410,7 @@
         previewPageShown = want; previewTotal = res.total;
         pagegrid.innerHTML = '<div class="numprev"><img src="' + t.url + '" alt="미리보기"><span class="numprev__badge"></span></div><p class="pagegrid__hint">번호가 들어갈 위치 미리보기</p>';
         updateNumberBadge();
-      }).catch(function () { pagegrid.hidden = true; pagegrid.innerHTML = ''; });
+      }).catch(gridFail);
     }
     function updateNumberBadge() {
       var badge = pagegrid && pagegrid.querySelector('.numprev__badge'); if (!badge) return;
@@ -439,6 +447,8 @@
     var probedKey = '';
     function probeEncrypted() {
       if (config.tool === 'unlock' || config.accept === 'image' || config.accept === 'svg' || !global.PDFEngine || !PDFEngine.probe) return;
+      // 썸네일 그리드가 렌더되는 도구는 그 실패 처리(gridFail)가 암호 안내를 하므로 중복 pdf.js 파싱 생략
+      if (config.pageGrid || config.splitGrid || config.organizeGrid || config.numberPreview) return;
       var f = state.files[0]; if (!f) return;
       var key = f.name + '|' + f.size; if (key === probedKey) return; probedKey = key;
       PDFEngine.probe(f).then(function (info) {
