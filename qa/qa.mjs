@@ -293,7 +293,7 @@ async function auditPage(ctx, path) {
   const consoleErrors = [];
   page.on('console', m => { if (m.type() === 'error') consoleErrors.push(m.text()); });
   page.on('pageerror', e => consoleErrors.push('pageerror: ' + e.message));
-  const resp = await page.goto(BASE + path, { waitUntil: 'networkidle' });
+  const resp = await page.goto(BASE + path, { waitUntil: 'load' });
   const status = resp ? resp.status() : 0;
   const data = await page.evaluate(() => {
     const m = (sel, attr) => { const e = document.querySelector(sel); return e ? e.getAttribute(attr) : null; };
@@ -343,6 +343,9 @@ async function auditPage(ctx, path) {
   // 우리 사이트를 검증하는 것이 목적이므로 외부 광고/측정 스크립트는 로드하지 않는다.
   await ctx.route(/googlesyndication\.com|googletagmanager\.com|google-analytics\.com|doubleclick\.net|adservice\.google/, (r) =>
     r.fulfill({ status: 200, contentType: 'application/javascript', body: '' }));
+  // 어떤 작업도 무한 대기하지 않도록 상한을 둔다(CI에서 매달림 방지 → 빠른 실패·진단).
+  ctx.setDefaultTimeout(20000);
+  ctx.setDefaultNavigationTimeout(20000);
   try {
     console.log('▶ 기능 실측...');
     await testMerge(ctx); await testSplit(ctx); await testExtract(ctx);
