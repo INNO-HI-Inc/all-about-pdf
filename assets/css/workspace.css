@@ -947,29 +947,6 @@ html.drawer-open { overflow: hidden; }
 @media (prefers-color-scheme: dark) { .ws-dropveil { background: rgba(14, 16, 22, .58); } }
 @media (prefers-reduced-motion: reduce) { .ws-dropveil, .ws-dropveil__box { transition: none; } }
 
-/* ===== 홈 히어로 연출: 브랜드 워드마크 + 떠다니는 포맷 칩 (Codle/PickCare 참고) ===== */
-.ws-home2 { position: relative; overflow: hidden; background: radial-gradient(1100px 560px at 50% -6%, rgba(229,37,42,.05), rgba(255,255,255,0) 60%); }
-.ws-home2 > .ws-wrap, .ws-home2 > .home-explain { position: relative; z-index: 1; }
-.ws-herofx { position: absolute; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
-.ws-herofx__word { position: absolute; top: 40px; left: 50%; transform: translateX(-50%); font-family: var(--font, inherit); font-weight: 900; font-size: clamp(4rem, 13vw, 11rem); letter-spacing: -.04em; color: var(--ink); opacity: .035; white-space: nowrap; user-select: none; }
-.ws-chip { position: absolute; padding: 11px 16px; border-radius: 16px; font-family: var(--font, inherit); font-weight: 800; font-size: 14px; letter-spacing: .01em; color: var(--ink-soft);
-  background: rgba(255, 255, 255, .62); border: 1px solid var(--line-2); box-shadow: 0 14px 34px rgba(23, 23, 42, .09), inset 0 1px 0 rgba(255, 255, 255, .8);
-  -webkit-backdrop-filter: blur(9px) saturate(1.2); backdrop-filter: blur(9px) saturate(1.2); animation: wsFloat 7s ease-in-out infinite; }
-@keyframes wsFloat { 0%, 100% { transform: translateY(0) rotate(-4deg); } 50% { transform: translateY(-18px) rotate(4deg); } }
-.ws-chip--1 { top: 132px; left: 5.5%; animation-delay: 0s; }
-.ws-chip--2 { top: 306px; left: 3%; animation-delay: 1.3s; }
-.ws-chip--3 { top: 486px; left: 7.5%; animation-delay: .6s; }
-.ws-chip--4 { top: 150px; right: 5.5%; animation-delay: .35s; }
-.ws-chip--5 { top: 330px; right: 3%; animation-delay: 1.6s; }
-.ws-chip--6 { top: 500px; right: 7.5%; animation-delay: .95s; }
-@media (max-width: 1160px) { .ws-chip { display: none; } }
-@media (prefers-reduced-motion: reduce) { .ws-chip { animation: none; } }
-@media (prefers-color-scheme: dark) {
-  .ws-home2 { background: radial-gradient(1100px 560px at 50% -6%, rgba(120, 40, 160, .12), rgba(14, 16, 22, 0) 60%); }
-  .ws-chip { background: rgba(30, 34, 43, .5); box-shadow: 0 14px 34px rgba(0, 0, 0, .5), inset 0 1px 0 rgba(255, 255, 255, .05); }
-  .ws-herofx__word { opacity: .05; }
-}
-
 /* ===== 인기 도구 행 + 카테고리 색 + 글래스 카드 ===== */
 .home-pop { padding: 44px 0 4px; position: relative; z-index: 1; }
 .home-pop__h { font-size: 1.42rem; font-weight: 800; letter-spacing: -.02em; color: var(--ink); margin: 0 0 20px; }
@@ -994,3 +971,10 @@ html.drawer-open { overflow: hidden; }
 @media (max-width: 860px) { .home-pop__grid { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 520px) { .home-pop__grid { grid-template-columns: 1fr; } }
 .ws-card { -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); }
+
+/* ===== 홈 브랜드 히어로 (Apple/Linear 절제 스타일) ===== */
+.ws-hero { text-align: center; max-width: 800px; margin: 0 auto; padding: 46px 20px 8px; position: relative; z-index: 1; }
+.ws-hero__brand { display: inline-block; font-size: 12.5px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; color: var(--red); margin-bottom: 14px; }
+.ws-hero__title { font-size: clamp(1.9rem, 4.4vw, 3rem); font-weight: 800; letter-spacing: -.03em; line-height: 1.12; color: var(--ink); margin: 0; word-break: keep-all; }
+.ws-hero__sub { margin: 15px auto 0; max-width: 540px; font-size: clamp(1rem, 1.5vw, 1.12rem); line-height: 1.6; color: var(--ink-soft); font-weight: 450; word-break: keep-all; }
+@media (max-width: 560px) { .ws-hero { padding: 26px 16px 2px; } .ws-hero__title { font-size: 1.75rem; } }

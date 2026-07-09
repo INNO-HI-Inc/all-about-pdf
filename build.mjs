@@ -1410,6 +1410,7 @@ ${related(t.slug, rel)}`;
 // ───────── 홈 ─────────
 function buildHome() {
   const c = read('home');
+  const HERO_PUNCH = { ko: '필요한 모든 PDF 작업, 한곳에서', en: 'Every PDF tool, in one place', es: 'Todas tus herramientas PDF en un solo lugar', ja: '必要なPDF作業が、ここにすべて', zh: '你需要的所有 PDF 工具，一站搞定' };
   const rel = '';
   const canonical = SITE_URL + '/';
 
@@ -1458,10 +1459,10 @@ ${catRows}
   const gridIco = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="3.5" width="7" height="7" rx="1.6"/><rect x="13.5" y="3.5" width="7" height="7" rx="1.6"/><rect x="3.5" y="13.5" width="7" height="7" rx="1.6"/><rect x="13.5" y="13.5" width="7" height="7" rx="1.6"/></svg>';
   const main = `    <section class="ws-home2" id="tools">
       <h1 class="sr-only">${esc(c.metaTitle || 'PDF의 모든 것')} — 설치 없이 무료로 쓰는 한국어 PDF 도구 모음</h1>
-      <div class="ws-herofx" aria-hidden="true">
-        <span class="ws-herofx__word">EVERYTHING PDF</span>
-        <span class="ws-chip ws-chip--1">PDF</span><span class="ws-chip ws-chip--2">DOCX</span><span class="ws-chip ws-chip--3">JPG</span>
-        <span class="ws-chip ws-chip--4">XLSX</span><span class="ws-chip ws-chip--5">PPT</span><span class="ws-chip ws-chip--6">PNG</span>
+      <div class="ws-hero">
+        <span class="ws-hero__brand">${esc(BRAND)}</span>
+        <p class="ws-hero__title">${esc(HERO_PUNCH[CUR_LANG] || HERO_PUNCH.ko)}</p>
+        <p class="ws-hero__sub">${esc(c.heroSubtitle || '')}</p>
       </div>
       <div class="ws-wrap ws-home2--solo">
         <div class="ws-winwrap">
