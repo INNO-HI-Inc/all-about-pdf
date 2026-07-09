@@ -199,3 +199,28 @@
     }
   }
 })();
+
+/* Drop Anywhere — 전체화면 시각 오버레이 (파일 처리는 tool-core가 담당) */
+(function () {
+  var d = document;
+  if (!d.querySelector('.js-drop')) return;
+  var lang = d.documentElement.getAttribute('lang') || 'ko';
+  var TX = {
+    ko: ['여기에 놓으세요', '화면 어디든 PDF·이미지를 놓으면 시작돼요'],
+    en: ['Drop it here', 'Drop a PDF or image anywhere to start'],
+    es: ['Suéltalo aquí', 'Suelta un PDF o imagen en cualquier lugar'],
+    ja: ['ここにドロップ', '画面のどこにでもPDF・画像をドロップ'],
+    zh: ['拖放到这里', '将 PDF 或图片拖放到页面任意位置']
+  };
+  var t = TX[lang] || TX.ko;
+  var veil = d.createElement('div');
+  veil.className = 'ws-dropveil'; veil.setAttribute('aria-hidden', 'true');
+  veil.innerHTML = '<div class="ws-dropveil__box"><svg class="ws-dropveil__ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 16V4M12 4l-4 4M12 4l4 4"/><path d="M4 16v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg><div class="ws-dropveil__t">' + t[0] + '</div><div class="ws-dropveil__s">' + t[1] + '</div></div>';
+  d.body.appendChild(veil);
+  var depth = 0;
+  function hasFiles(e) { return e.dataTransfer && Array.prototype.indexOf.call(e.dataTransfer.types || [], 'Files') >= 0; }
+  d.addEventListener('dragenter', function (e) { if (hasFiles(e)) { depth++; veil.classList.add('is-on'); } });
+  d.addEventListener('dragleave', function () { depth = Math.max(0, depth - 1); if (!depth) veil.classList.remove('is-on'); });
+  d.addEventListener('drop', function () { depth = 0; veil.classList.remove('is-on'); });
+  d.addEventListener('dragend', function () { depth = 0; veil.classList.remove('is-on'); });
+})();

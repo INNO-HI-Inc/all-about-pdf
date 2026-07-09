@@ -909,3 +909,31 @@ html.drawer-open { overflow: hidden; }
 /* i18n 언어 스위처 (상단 메뉴바) */
 .ws-langswitch { font-family: inherit; font-size: 13.5px; font-weight: 700; color: var(--ink-soft); padding: 8px 12px; border-radius: var(--radius); border: 1px solid var(--line-2); background: transparent; text-decoration: none; margin-right: 4px; }
 .ws-langswitch:hover { color: var(--ink); background: var(--surf-2); text-decoration: none; }
+
+/* ===== 비주얼 폴리시: 프리미엄 호버 · Drop Anywhere 오버레이 (빨강 유지) ===== */
+.ws { --ez-spring: cubic-bezier(.22, 1, .36, 1); }
+.ws-card, .tp-rel { transition: transform var(--d-hover) var(--ez-spring), box-shadow var(--d-hover) var(--ez-out), border-color var(--d-micro) var(--ez); }
+.ws-card:hover, .tp-rel:hover { transform: translateY(-4px) scale(1.012); }
+.ws-card__ico, .tp-rel__ico { transition: transform var(--d-hover) var(--ez-spring); }
+.ws-card:hover .ws-card__ico, .tp-rel:hover .tp-rel__ico { transform: scale(1.09) rotate(-2deg); }
+.ws-card:hover .ws-card__name { color: var(--red); }
+.home-why__card { transition: transform var(--d-hover) var(--ez-spring), box-shadow var(--d-hover) var(--ez-out), border-color var(--d-micro) var(--ez); }
+.home-why__card:hover { transform: translateY(-3px); box-shadow: 0 2px 4px rgba(23, 23, 42, .05), 0 16px 34px rgba(23, 23, 42, .11); border-color: var(--line-2); }
+.home-trust li { transition: transform var(--d-hover) var(--ez-spring), box-shadow var(--d-hover) var(--ez-out); }
+.home-trust li:hover { transform: translateY(-3px); box-shadow: 0 10px 26px rgba(23, 23, 42, .1); }
+.ws .dropzone { transition: border-color .18s var(--ez), background .18s var(--ez), box-shadow .18s var(--ez), transform .18s var(--ez-spring); }
+.ws .dropzone--over { transform: scale(1.008); }
+.ws .btn--primary:not(:disabled):active, .ws-nav__cta:active, .ws-btn.primary:active { transform: translateY(1px) scale(.985); }
+/* Drop Anywhere 전체화면 오버레이 (시각 피드백; 실제 처리는 tool-core) */
+.ws-dropveil { position: fixed; inset: 0; z-index: 9999; display: grid; place-items: center; pointer-events: none;
+  background: rgba(255, 255, 255, .5); -webkit-backdrop-filter: blur(10px) saturate(1.2); backdrop-filter: blur(10px) saturate(1.2);
+  opacity: 0; transition: opacity .16s var(--ez-out); }
+.ws-dropveil.is-on { opacity: 1; }
+.ws-dropveil__box { text-align: center; padding: 46px 58px; border-radius: 24px; border: 2.5px dashed var(--red);
+  background: var(--surf); box-shadow: 0 30px 80px rgba(23, 23, 42, .22); transform: scale(.95); transition: transform .2s var(--ez-spring); }
+.ws-dropveil.is-on .ws-dropveil__box { transform: scale(1); }
+.ws-dropveil__ico { width: 60px; height: 60px; margin: 0 auto 14px; color: var(--red); }
+.ws-dropveil__t { font-size: 1.55rem; font-weight: 800; color: var(--ink); letter-spacing: -.02em; }
+.ws-dropveil__s { margin-top: 8px; color: var(--ink-soft); font-size: 1rem; }
+@media (prefers-color-scheme: dark) { .ws-dropveil { background: rgba(14, 16, 22, .58); } }
+@media (prefers-reduced-motion: reduce) { .ws-dropveil, .ws-dropveil__box { transition: none; } }
