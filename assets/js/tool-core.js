@@ -617,15 +617,18 @@
       catch (e) {
         console.error('[ToolCore]', e);
         var msg = (e && e.message) ? String(e.message) : '처리 중 오류가 발생했어요. 파일이 올바른지 확인해 주세요.';
+        var pwErr = false;
         if (e && e.message) {
-          if (/password|encrypt|PasswordException/i.test(msg)) msg = '비밀번호가 걸린 PDF예요. 먼저 [잠금해제] 도구로 푼 뒤 사용해 주세요.';
+          if (/password|encrypt|PasswordException/i.test(msg)) { msg = '비밀번호가 걸린 PDF예요. 먼저 [잠금해제] 도구로 푼 뒤 사용해 주세요.'; pwErr = true; }
           else if (/invalid|corrupt|malformed|structure|not a pdf|xref/i.test(msg)) msg = '파일을 열 수 없어요. 손상됐거나 올바른 PDF 형식이 아닐 수 있어요.';
           else if (/memory|allocation|out of/i.test(msg)) msg = '파일이 너무 커서 처리에 실패했어요. 더 작게 나눠 시도해 주세요.';
         }
         UI.toast(msg, 'error');
-        // 오류를 결과 영역에 '영구'로 남긴다 — 3.4초 토스트만으로는 원인을 놓치기 쉬움
+        // 오류를 결과 영역에 '영구'로 남긴다(role=alert로 낭독) — 3.4초 토스트만으로는 원인을 놓치기 쉬움.
+        // 비밀번호 오류면 잠금해제 도구로 바로 갈 수 있는 링크를 함께 제공(막다른 오류 방지).
         result.hidden = false;
-        result.innerHTML = '<p class="callout callout--warn" style="margin:0"><span class="callout__ic">!</span><span>' + escapeHtml(msg) + '</span></p>';
+        var recover = pwErr ? '<a class="btn btn--ghost btn--sm" style="margin-top:12px;display:inline-flex" href="' + ((window.AAP_BASE || '') + 'unlock/') + '">잠금해제 도구 열기 →</a>' : '';
+        result.innerHTML = '<p class="callout callout--warn" role="alert" style="margin:0"><span class="callout__ic">!</span><span>' + escapeHtml(msg) + '</span></p>' + recover;
       }
       finally { setBusy(false); }
     });

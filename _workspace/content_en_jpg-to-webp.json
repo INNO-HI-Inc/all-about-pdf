@@ -1,0 +1,42 @@
+{
+  "title": "JPG to WEBP Converter Free | Everything PDF",
+  "metaDescription": "Convert JPG to WEBP for free. Processed in your browser with no uploads — safe, and saved at a smaller size for the same quality.",
+  "h1": "JPG to WEBP Converter",
+  "subtitle": "Turn JPGs into lightweight WEBP files — free, no install, no sign-up.",
+  "intro": "Convert your JPG photos to WEBP to make web pages and blogs load faster. At a similar quality, WEBP is smaller than JPG, which makes it great for image optimization. Your files never touch a server — everything is processed right in your browser (on your device), so you can use it with complete peace of mind.",
+  "steps": [
+    "Drag and drop your JPG files, or browse to select them. You can convert several at once.",
+    "Set the quality value. The lower it is, the smaller the file.",
+    "Click Convert. Each image is redrawn on a canvas and turned into WEBP.",
+    "Download the results. A single image downloads directly; multiple images come bundled in a ZIP."
+  ],
+  "security": "Every conversion happens entirely inside your browser (on your device), and everything disappears the moment you close the tab. No file is ever sent to a server, so you can safely convert even sensitive images like personal photos or unreleased work.",
+  "faq": [
+    {
+      "q": "What is WEBP, and why use it?",
+      "a": "WEBP is a web image format created by Google. At a similar quality, it's smaller than JPG, so you can post the same photo in a lighter file. That's why it's so often used for web image optimization — to load web pages and blogs faster and save on data."
+    },
+    {
+      "q": "Won't the quality drop?",
+      "a": "Set the quality value high and the difference is barely visible to the eye while only the file size shrinks. Want it even lighter? Lower the quality a touch. You can dial in the balance of size and quality yourself as you download."
+    },
+    {
+      "q": "Can I convert several images at once?",
+      "a": "Yes — drag in multiple JPGs and convert them all in one go. A single image downloads right away, while multiple images come bundled in a ZIP file."
+    },
+    {
+      "q": "How much smaller does it get?",
+      "a": "It varies by photo, but at the same quality it's usually noticeably smaller than JPG. The simpler the colors or the larger the image, the bigger the difference. Compare the size after converting and you'll see right away."
+    },
+    {
+      "q": "Does WEBP open everywhere?",
+      "a": "It opens fine in today's browsers (Chrome, Safari, Edge, and more) and on most websites. That said, some older programs may not open it, so in those cases it's safest to use the original JPG."
+    }
+  ],
+  "extraSections": [
+    {
+      "heading": "When this comes in handy",
+      "body": "It's handy when you want to lighten photos for a blog or website to boost loading speed, when you want to trim the size of online-shop product images for a cleaner upload, or when you want to batch-convert several JPGs to WEBP. Just adjust the quality and you can turn the same photo into a smaller file while keeping the picture sharp."
+    }
+  ]
+}

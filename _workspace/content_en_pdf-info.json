@@ -1,0 +1,42 @@
+{
+  "title": "View PDF Info Free | Everything PDF",
+  "metaDescription": "Check your PDF info for free. See page count, file size, dimensions, metadata, and whether it's locked in a table. Files stay on your device and are never uploaded.",
+  "h1": "View PDF Info",
+  "subtitle": "See page count, file size, dimensions, title, and author at a glance. Free, with nothing to install.",
+  "intro": "This tool shows you how many pages your PDF has, its file size, its page dimensions, and details like the title and author, all laid out in a table. It even tells you whether the file is password-protected. It only reads and displays the info without changing or downloading the file, and everything is processed inside your browser, so nothing is sent to a server.",
+  "steps": [
+    "Add the PDF file you want to inspect.",
+    "The page count and file size appear in a table.",
+    "Check the page dimensions (width x height) and metadata like the title and author.",
+    "See whether it's password-locked, all on one screen."
+  ],
+  "security": "The entire process of reading the info happens only inside your browser, meaning on your device. Your file is never uploaded to a server, and its content is never changed or saved elsewhere; only the info is shown on screen. Even when checking the details of a sensitive PDF like a contract or official paperwork, nothing leaks out, so you can use it with confidence.",
+  "faq": [
+    {
+      "q": "How do I check how many pages a PDF has?",
+      "a": "Add the file and the page count appears right at the top of the table. You can check the total page count of a thick report or scan at a glance without even opening it. Handy for gauging the length before printing or submitting."
+    },
+    {
+      "q": "Can I also see the page dimensions and file size?",
+      "a": "Yes. Along with the file size, it shows the page dimensions as width x height. You can check whether it's A4 or another size, and whether it's landscape or portrait, which helps with print settings or matching a required format."
+    },
+    {
+      "q": "Where do I see metadata like the title and author?",
+      "a": "It lays out the title, author, and other metadata stored inside the PDF in a table. Depending on the program that created it, some of this info may be empty, in which case that item simply won't appear or shows as a blank value."
+    },
+    {
+      "q": "Can I tell if a PDF is password-protected?",
+      "a": "Yes. It shows whether the file is password-locked. That said, this tool only reads and displays the info; it doesn't remove the lock. To lift a restriction with a password you know, use the 'Unlock PDF' tool."
+    },
+    {
+      "q": "Does my file go to a server? Is it free?",
+      "a": "Your file is never uploaded to a server; the info is read only on your device. It's free to use with no sign-up and no install, and there are no watermarks or limits on the number or size of files."
+    }
+  ],
+  "extraSections": [
+    {
+      "heading": "Handy for moments like these",
+      "body": "It's useful for gauging in advance how many pages a PDF you received by email has, or how much paper it will take to print. It's also great for checking whether a file meets a required size or format (such as A4) for submission, or simply for finding out whether a document you received is password-protected. Use it whenever you want to quickly check the details without opening or changing the file."
+    }
+  ]
+}

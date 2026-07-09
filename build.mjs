@@ -25,6 +25,7 @@ const CONTACT_EMAIL = process.env.CONTACT_EMAIL || 'board@innohi.ai.kr';
 const BRAND = 'PDF의 모든 것';
 const TODAY = '2026-06-04';
 const BUILD_DATE = new Date().toISOString().slice(0, 10); // sitemap lastmod git 폴백용(실제 빌드일)
+let _outNameSeq = 0; // out-name 입력 id를 인스턴스마다 유니크하게(홈 다중 패널 중복 방지)
 // Google 애드센스: 승인받은 게시자 ID로 아래 한 줄만 교체하면 전 페이지에 로더가 삽입되고
 // ads.txt·개인정보 고지가 함께 켜집니다. (예: 'ca-pub-1234567890123456' — ca-pub- 뒤 16자리 숫자)
 // 자동 광고(Auto ads)를 쓰므로 로더 스크립트만 넣으면 되고, 광고 위치 배치는
@@ -373,7 +374,7 @@ function wsFooter(rel) {
             <div class="ws-footcol"><h5>정보</h5><a href="${home}about/">서비스 소개</a><a href="${home}privacy/">개인정보 처리방침</a><a href="${home}contact/">문의 · 제안</a><a href="${escAttr(GITHUB_URL)}" rel="noopener" target="_blank">오픈소스 (GitHub) ↗</a></div>
           </div>
         </div>
-        <div class="ws-footbottom"><span>© 2026 PDF의 모든 것 — made in Korea, runs on your device.</span><span>오픈소스 · MIT License</span></div>
+        <div class="ws-footbottom"><span>© 2026 PDF의 모든 것 · 이노하이(INNO-HI Inc) — made in Korea, runs on your device.</span><span>오픈소스 · MIT License</span></div>
       </div>
     </footer>`;
 }
@@ -381,9 +382,12 @@ function wsFooter(rel) {
 // ───────── 옵션 마크업 (tools/*.js의 ID와 일치) ─────────
 // 공통: 저장 파일명(선택). 비우면 도구 기본 이름. class js-outname을 ToolCore가 읽음.
 function optOutName(ph) {
+  // id를 인스턴스마다 유니크하게 — 홈은 도구 패널을 여러 개 렌더하므로 고정 id면 중복(라벨 연결 깨짐).
+  // 값은 class(js-outname)로 읽으므로 id 변경은 기능에 영향 없음.
+  const uid = 'out-name-' + (++_outNameSeq);
   return `<div class="option">
-    <label class="option__label" for="out-name">저장 파일명 <span class="option__hint">선택 · 비우면 기본 이름</span></label>
-    <input type="text" id="out-name" class="field js-outname" placeholder="${ph}" autocomplete="off">
+    <label class="option__label" for="${uid}">저장 파일명 <span class="option__hint">선택 · 비우면 기본 이름</span></label>
+    <input type="text" id="${uid}" class="field js-outname" placeholder="${ph}" autocomplete="off">
   </div>`;
 }
 function optMerge() {
@@ -894,7 +898,7 @@ function footer(rel) {
     </ul></div>
   </div>
   <div class="site-footer__bottom">
-    <span>© 2026 ${BRAND} · 오픈소스 · 모든 파일은 내 기기에서만 처리됩니다.</span>
+    <span>© 2026 ${BRAND} · 이노하이(INNO-HI Inc) · 오픈소스 · 모든 파일은 내 기기에서만 처리됩니다.</span>
     <span>광고·추적·업로드 없음</span>
   </div>
 </div></footer>`;
@@ -1221,8 +1225,11 @@ ${toolDock(t.slug, rel)}
             </div>
           </div>
         </div>
+        <p class="tp-updated" style="margin-top:28px;font-size:.86rem;color:var(--ink-soft)">마지막 업데이트: <time datetime="${fileDate(`_workspace/content_${t.slug}.json`)}">${fileDate(`_workspace/content_${t.slug}.json`)}</time></p>
       </div>
-    </section>`;
+    </section>
+
+${related(t.slug, rel)}`;
 
   const html = page({
     title: c.title, desc: c.metaDescription, canonical,
@@ -1246,7 +1253,11 @@ function buildHome() {
 
   const jsonld = [
     { '@context': 'https://schema.org', '@type': 'WebSite', name: BRAND, url: SITE_URL + '/', inLanguage: 'ko', description: c.metaDescription },
-    { '@context': 'https://schema.org', '@type': 'Organization', name: BRAND, url: SITE_URL + '/', sameAs: [GITHUB_URL] }
+    { '@context': 'https://schema.org', '@type': 'Organization', name: BRAND, legalName: 'INNO-HI Inc', url: SITE_URL + '/',
+      logo: SITE_URL + '/assets/img/logo.png', sameAs: [GITHUB_URL],
+      contactPoint: { '@type': 'ContactPoint', contactType: 'customer support', email: CONTACT_EMAIL } },
+    { '@context': 'https://schema.org', '@type': 'ItemList', name: `${BRAND} 도구 목록`, inLanguage: 'ko', numberOfItems: TOOLS.length,
+      itemListElement: TOOLS.map((t, i) => ({ '@type': 'ListItem', position: i + 1, name: dispName(t.slug), url: `${SITE_URL}/${t.slug}/` })) }
   ];
 
   // 좌측 빠른 작업 탭: 대표 도구 5개만(전체 탐색은 우측 카탈로그가 전담)

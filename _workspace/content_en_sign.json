@@ -1,0 +1,42 @@
+{
+  "title": "Sign a PDF Free | Everything PDF",
+  "metaDescription": "Add a signature or stamp to a PDF for free. Draw your signature or upload an image and drag it into place. Files are processed only in your browser.",
+  "h1": "Sign a PDF",
+  "subtitle": "Draw your signature by hand, upload a stamp or signature image, or type your name — then drag it into place right on the preview. Free, with no install and no sign-up.",
+  "intro": "This is the tool for when you need to add a signature or stamp to a contract, consent form, or any other document. Draw your signature by hand with a mouse or finger, upload a stamp or signature image you scanned earlier, or type your name to generate one in a handwriting style. Once it's made, just drag your signature onto the page preview, drop it wherever you want, and grab a corner to resize it. You can even place several across multiple pages. Best of all, your file is never uploaded anywhere and is processed entirely on your device, so you can sign even sensitive contracts without any upload worries.",
+  "steps": [
+    "Drag and drop the PDF you want to sign, or click Choose File to upload it.",
+    "Create your signature by drawing it, uploading an image, or typing it.",
+    "Click Place Signature on Page, then drag it wherever you want in the preview and resize it by the corners.",
+    "Click Apply Signature and Download to save your signed PDF."
+  ],
+  "security": "Every step of creating your signature and merging it into the PDF happens entirely inside your browser (your device) — neither your original file nor your signature image is ever sent to a server. So even contracts and consent forms you'd hesitate to upload can be signed without any upload worries.",
+  "faq": [
+    {
+      "q": "Is this a legally binding electronic signature?",
+      "a": "This tool draws a signature image onto your PDF, which is different from a certificate-based digital signature. It works well for everyday use where a handwritten signature would do — consent forms, confirmations, submitting filled-in forms, and the like. For contracts where legal enforceability matters, follow the electronic signature method the other party requires."
+    },
+    {
+      "q": "How do I prepare a stamp image?",
+      "a": "Press your stamp onto white paper, take a photo or scan it, then remove the background to make a transparent PNG for a clean result. If you upload it with the white background still there, it'll come in as a rectangular block, so use a transparent-background PNG whenever possible."
+    },
+    {
+      "q": "Can I sign in several places on one document?",
+      "a": "Yes. After creating your signature, click Place Signature on Page as many times as you like to add several, and scroll through the pages to sign on whichever ones you want. Each signature's position and size can be adjusted independently."
+    },
+    {
+      "q": "What if I place a signature in the wrong spot or size?",
+      "a": "Before you download, you can drag the signature to reposition it, grab a corner to resize it, or remove it with the ✕ button above it. The original is left untouched and only the result is saved as a new file, so adjust freely until you're happy with it."
+    },
+    {
+      "q": "Is it really free? Any watermarks or usage limits?",
+      "a": "It's completely free with no watermarks. There are no limits on the number of uses or file size, and no sign-up. Add signatures to your PDFs freely, whenever you need to."
+    }
+  ],
+  "extraSections": [
+    {
+      "heading": "Great for moments like these",
+      "body": "It's perfect for signing a contract or consent form you received by email and replying right back, skipping the whole print-sign-rescan routine, or cleanly applying a company stamp or seal to a document. You can finish signing right on screen without a printer or scanner, and since your file never leaves your device, you can handle sensitive documents with complete peace of mind."
+    }
+  ]
+}

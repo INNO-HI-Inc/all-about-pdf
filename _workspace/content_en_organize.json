@@ -1,0 +1,46 @@
+{
+  "title": "Organize PDF Pages (Reorder, Rotate, Delete) Free | Everything PDF",
+  "metaDescription": "Drag to reorder PDF pages and rotate or delete them, all on one screen. Organize visually with thumbnails, processed in your browser with no upload — safe and secure.",
+  "h1": "Organize PDF Pages",
+  "subtitle": "See every page at a glance, then drag to reorder, rotate, and delete — all in one place. No install, no sign-up, free.",
+  "intro": "A page that came in upside down from the scanner, a report with its pages out of order, a blank page stuck in the middle — handle it all on one screen instead of fixing each thing separately. Spread every page out as thumbnails, drag to change the order, rotate a sideways page right where it sits, and tap to drop any page you don't need. Because you organize with your eyes instead of memorizing and typing numbers, you make fewer mistakes — and since everything is processed on your device, you can tidy up sensitive documents with total confidence.",
+  "steps": [
+    "Drag your PDF in, or upload it with [Choose File].",
+    "Once every page is laid out as a thumbnail, drag pages to reorder them.",
+    "Rotate sideways pages with ↺ ↻, and remove unwanted pages with ✕.",
+    "Click [Organize Pages] to download your tidied-up PDF."
+  ],
+  "security": "Reordering, rotating, and deleting pages all happen inside your browser — on your device — and no file is ever sent to a server. Even when you're rearranging pages in sensitive documents like contracts, medical certificates, or ID paperwork, you can organize without a second thought about uploading.",
+  "faq": [
+    {
+      "q": "How do I change the page order?",
+      "a": "Drag a thumbnail and drop it where you want, and the order updates. Grab a page with your mouse to move it, or press and hold to drag on a touch device. The number under each page is its original page number, so you can always see at a glance which page you're moving."
+    },
+    {
+      "q": "Can I rotate just one page?",
+      "a": "Yes. Each page has ↺ (left) and ↻ (right) buttons to rotate that page 90 degrees at a time. The 'Rotate all ↺' and 'Rotate all ↻' buttons up top turn every page at once. It's perfect for straightening just the pages that came in sideways from a scan."
+    },
+    {
+      "q": "Can I reorder, rotate, and delete all at once?",
+      "a": "Yes. This tool handles all three on a single screen. Change the order, rotate a few pages, delete the ones you don't need, then download just once — and you get a PDF with every change applied. No need to run through several tools."
+    },
+    {
+      "q": "I organized it wrong by accident. Can I undo?",
+      "a": "The 'Reset' button up top returns the order and rotation to how they were when you first uploaded the file. On top of that, your original file is never altered — the result is saved as a separate new PDF, so the original stays perfectly safe."
+    },
+    {
+      "q": "Does it work on documents with a lot of pages?",
+      "a": "It does. To keep the screen from getting too long, it shows thumbnails for the first 120 pages; pages beyond that aren't displayed on screen but are still included in the result in their original order. To finely rearrange the tail end of a very long document, we recommend using [Split] first, then organizing."
+    },
+    {
+      "q": "Will rotating break the text or lower the quality?",
+      "a": "Rotating doesn't re-render the page as an image — it just adds 'orientation' information to the PDF. So text stays selectable and copyable, and the quality doesn't drop. You keep the original's sharpness while simply fixing the orientation."
+    }
+  ],
+  "extraSections": [
+    {
+      "heading": "Great for moments like these",
+      "body": "When the scanner caught a page or two sideways and the orientation is all mixed up, when several scanning passes left the page order scrambled, or when you want to drop a blank or note page from the middle before submitting. Instead of jumping between the merge, split, and delete tools, just drag things into place exactly as you see them — and you're done."
+    }
+  ]
+}

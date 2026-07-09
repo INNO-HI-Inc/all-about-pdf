@@ -1,0 +1,42 @@
+{
+  "title": "Crop PDF Free | Everything PDF",
+  "metaDescription": "Crop your PDF to trim margins on all four sides for free. Cut a little, moderate, or a lot. Processed in your browser with no upload, so it's safe.",
+  "h1": "Crop PDF (Remove Margins)",
+  "subtitle": "Trim the wide margins on all four sides to fit the content. Free, with no install and no sign-up.",
+  "intro": "Clean up those wide white margins scanning leaves along the edges, or the oversized borders set for printing, all at once. Trim all four sides by your choice of a little, moderate, or a lot to fit the content. Text and images stay put while only the outer margins are trimmed, and every step is processed only on your device without uploading your file, so you can tidy up even sensitive documents worry-free.",
+  "steps": [
+    "Drag in the PDF you want to tidy up, or add it with [Choose File].",
+    "Choose how much to trim: a little, moderate, or a lot.",
+    "Check the cropped result in the preview.",
+    "Click [Crop] and download the tidied PDF."
+  ],
+  "security": "The entire margin-trimming process happens only inside your browser, on your device, and no file is ever sent to a server. Even when tidying up the margins of a sensitive document like a scanned contract, official paperwork, or medical certificate, nothing is uploaded, so you can crop your PDF with peace of mind.",
+  "faq": [
+    {
+      "q": "Can I choose how much margin to trim?",
+      "a": "Just pick one of three levels: a little, moderate, or a lot. It trims all four sides by the same proportion, so choose 'a lot' for scans with wide margins and 'a little' when you just want a light trim. You can check the cropped result in the preview before you crop."
+    },
+    {
+      "q": "Can I crop just one side?",
+      "a": "This tool trims all four sides by the same proportion. Cropping the top, bottom, left, and right by different amounts isn't supported. It works best for tidying up scans or print documents with similarly wide margins on all sides."
+    },
+    {
+      "q": "Will cropping cut off text or images?",
+      "a": "If you trim too much, edge content can get cut off too. That's why we recommend checking the preview to make sure your content is safe before cropping. If it looks like content might be cut, just choose the next level down."
+    },
+    {
+      "q": "Does cropping reduce the quality?",
+      "a": "No. Rather than redrawing the page as an image, it simply shrinks the visible area (outside the margins) to adjust the display range, so text stays selectable and copyable and the quality doesn't drop. Scans and documents with photos stay just as sharp."
+    },
+    {
+      "q": "Is the original file preserved?",
+      "a": "Yes. The original is left untouched, and the trimmed result is saved separately as a new PDF. If you don't like the result, just crop from the original again. There are no watermarks and no limits on count or size."
+    }
+  ],
+  "extraSections": [
+    {
+      "heading": "Great for moments like these",
+      "body": "It's handy for tidying up documents where the scanner captured more than the paper and left thick white margins, materials with oversized print borders, or PDFs where the content looks small on screen. Trimming the margins makes the content appear larger in the same view so it's easier to read, and prints cleanly with no wasted margins."
+    }
+  ]
+}

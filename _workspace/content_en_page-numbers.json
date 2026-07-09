@@ -1,0 +1,51 @@
+{
+  "title": "Add Page Numbers to PDF Free | Everything PDF",
+  "metaDescription": "Add page numbers to your PDF for free. Choose the position, start number, and whether to skip the cover. Files stay on your device and are never sent to a server.",
+  "h1": "Add Page Numbers to PDF",
+  "subtitle": "Number your pages right in your browser, free and with nothing to install.",
+  "intro": "Ever gone to submit a report or paper and realized your PDF has no page numbers? Just add your file, pick the position and format, and page numbers go in all at once. No watermarks, no sign-up.",
+  "steps": [
+    "Add your PDF file.",
+    "Choose the number position (top or bottom, and left, center, or right).",
+    "Set the start number and format (1, 1/N, or - 1 -).",
+    "Choose whether to skip the cover and check the preview.",
+    "Download the finished PDF."
+  ],
+  "security": "Files are processed only inside the browser on your own computer. Unlike other PDF tools, your file is never sent to a server, so you can add page numbers with peace of mind, even to documents you'd rather keep private like contracts, official paperwork, and assignments.",
+  "faq": [
+    {
+      "q": "Can I start the page numbers from a number other than 1?",
+      "a": "Yes, you can set any start number you like. If the first pages were carried over from another file, just set it to start from 5 or 10. Numbering runs in order from the number you enter."
+    },
+    {
+      "q": "Can I put the page number at the bottom center?",
+      "a": "Yes, you can combine top or bottom with left, center, or right to choose the position. Reports usually use bottom center. Check the position in the preview before you download."
+    },
+    {
+      "q": "Can I skip the cover and start the body at 1?",
+      "a": "Yes, turn on 'skip cover' and the first page gets no number. The first page of the body, right after the cover, becomes page 1. It's great for matching the submission format of a paper or proposal."
+    },
+    {
+      "q": "Can I number the PDF in a format like 1/N?",
+      "a": "Yes, you can choose between 1 (number only), 1/N (which shows the total page count too), and - 1 - (with dashes on either side). For reports that need to show the overall length, 1/N is handy."
+    },
+    {
+      "q": "Is there a limit on the number or size of files?",
+      "a": "There are no separate limits on count or size. That said, since everything is processed on your device, very large files may take a bit longer depending on your computer's performance."
+    },
+    {
+      "q": "Can I add page numbers to a scanned PDF?",
+      "a": "Yes, you can add page numbers even to image-based PDFs like scans. Since it just lays the numbers over the existing content, your original content stays intact."
+    }
+  ],
+  "extraSections": [
+    {
+      "heading": "Give it a try when",
+      "body": "It's handy right before you submit an assignment or report and realize the page numbers are missing, or when you've combined several documents and need to renumber them. You can number your PDF to match whatever the submission format requires, like starting the body at 1 after skipping the cover, or using the 1/N format that shows the total length."
+    },
+    {
+      "heading": "Good to know before you start",
+      "body": "If you add new numbers to a document that already has printed page numbers, the two may overlap, so choose a position that's empty. The numbered PDF downloads as a new file, so your original stays untouched. If you don't like the result, just change the settings and make it again."
+    }
+  ]
+}

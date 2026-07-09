@@ -1,0 +1,42 @@
+{
+  "title": "JPG to PNG Converter Free | Everything PDF",
+  "metaDescription": "Convert JPG to PNG for free. Everything runs right in your browser with no uploads, so it's safe — and saves as lossless PNG with transparency support.",
+  "h1": "JPG to PNG Converter",
+  "subtitle": "Turn JPG photos into lossless PNGs for free — no install, no sign-up.",
+  "intro": "Convert your JPG photos to PNG for editing and archiving, or upload them straight to sites that only accept PNG. Because PNG is lossless, re-saving won't degrade the quality further, and it can handle transparent backgrounds too. Your files never touch a server — everything is converted right in your browser (on your device), so you can use it with complete peace of mind.",
+  "steps": [
+    "Drag and drop your JPG files, or browse to select them. You can convert several at once.",
+    "Check the preview to make sure your files loaded correctly.",
+    "Click Convert. Each image is redrawn on a canvas and saved as PNG.",
+    "Download your PNGs. A single image downloads directly; multiple images come bundled in a ZIP."
+  ],
+  "security": "Every conversion happens entirely inside your browser (on your device), and everything disappears the moment you close the tab. No file is ever sent to a server, so you can safely convert even sensitive images like ID photos or unreleased work.",
+  "faq": [
+    {
+      "q": "Does converting JPG to PNG improve the quality?",
+      "a": "No — quality that was already lost when the image was saved as JPG can't be brought back by switching to PNG. That said, PNG is lossless, so once you convert you can edit and re-save without any further quality loss. It's great for archiving and editing."
+    },
+    {
+      "q": "Will converting to PNG make the background transparent?",
+      "a": "No. A JPG holds no transparency data, so your converted PNG keeps the original background (usually white). PNG does support transparency, but making the background transparent takes a separate background-removal edit."
+    },
+    {
+      "q": "Can I convert several images at once?",
+      "a": "Yes — drag in multiple JPGs and convert them all in one go. A single image downloads as a PNG right away, while multiple images come bundled in a ZIP file."
+    },
+    {
+      "q": "Will the file size get bigger?",
+      "a": "For photos, PNG is often larger than JPG. That's because PNG stores images losslessly, without cutting quality. If you want to keep file sizes small, JPG is the way to go; for lossless archiving and editing, PNG is the right fit."
+    },
+    {
+      "q": "Are there watermarks or limits?",
+      "a": "None. No watermarks, and no limits on the number of files or their size. It's completely free to use right away — no install, no sign-up."
+    }
+  ],
+  "extraSections": [
+    {
+      "heading": "When this comes in handy",
+      "body": "It's handy when you need to submit JPG photos to a site or form that only accepts PNG, when you want to convert a JPG to a lossless format before editing, or when you want to keep charts and text-heavy images crisp for archiving. You can convert right on your phone and use the result on the spot."
+    }
+  ]
+}

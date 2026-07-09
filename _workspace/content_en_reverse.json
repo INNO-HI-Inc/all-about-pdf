@@ -1,0 +1,42 @@
+{
+  "title": "Reverse PDF Page Order Free | Everything PDF",
+  "metaDescription": "Reverse PDF page order for free. Flip your pages back to front and save. Processed only in your browser — safe, with no upload.",
+  "h1": "Reverse PDF Page Order",
+  "subtitle": "Bring the last page to the front. Fix a document scanned backwards or pages in the wrong order in one click, and save it as a new PDF. Free, with no install and no sign-up.",
+  "intro": "When you're scanning in a hurry, pages can go in starting from the last sheet, leaving your first page stuck at the very back. Instead of rescanning one sheet at a time, just upload the PDF and we'll flip the whole page order for you. The last page moves to the front and the first page moves to the back, and the reordered result is saved as a new PDF. Since your file is never uploaded anywhere and is processed entirely on your device, you can set even sensitive paperwork straight with complete peace of mind.",
+  "steps": [
+    "Drag and drop the PDF you want to flip, or click Choose File to upload it.",
+    "Check the preview to see the current order of all the pages.",
+    "Click Reverse Order to flip the pages so the last one comes first.",
+    "Download your new, correctly ordered PDF."
+  ],
+  "security": "Every step of reversing the pages and saving happens entirely inside your browser (your device), and no file is ever sent to a server. So even documents you'd hesitate to upload — contracts, medical records, ID paperwork — can be reordered without any upload worries.",
+  "faq": [
+    {
+      "q": "When would I need to reverse page order?",
+      "a": "Use it to fix any PDF whose entire order came out backwards — like a document scanned from the last sheet up because the paper went into the feeder upside down, or material captured from the back of a book forward. It flips everything back to the correct order in one go."
+    },
+    {
+      "q": "Can I reorder just some of the pages?",
+      "a": "This tool flips all the pages back to front as a whole. To move a specific page or swap just a sheet or two, use the Organize Pages tool instead — there you can drag pages one at a time to any position you like."
+    },
+    {
+      "q": "Will reversing the order break the text or quality?",
+      "a": "No. It only changes the order the pages are arranged in, so the content of each page stays exactly the same. Text remains selectable and copyable, quality doesn't drop, and pages aren't rotated upside down — only the order is reversed."
+    },
+    {
+      "q": "Is my original file kept intact?",
+      "a": "Yes — we never touch your original. The reordered version is saved as a separate new PDF. If you don't like the result, you can just upload the original again and redo it, so use it with confidence."
+    },
+    {
+      "q": "Is it really free? Any watermarks or usage limits?",
+      "a": "It's completely free with no watermarks. There are no limits on the number of uses or file size, and no sign-up. Fix your PDF order freely, whenever you need to."
+    }
+  ],
+  "extraSections": [
+    {
+      "heading": "Great for moments like these",
+      "body": "It's perfect for setting things right when the paper went into an automatic feeder backwards and saved from the last sheet up, or when old material was photographed from the back forward so the whole order came out reversed. Instead of rescanning each sheet or moving pages one by one, a single click swaps the beginning and end into an easy-to-read order."
+    }
+  ]
+}

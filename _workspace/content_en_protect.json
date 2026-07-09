@@ -1,0 +1,42 @@
+{
+  "title": "Password Protect PDF (Encrypt) Free | Everything PDF",
+  "metaDescription": "Free tool to add an open password to your PDF. Optionally restrict printing and copying. Encrypted right in your browser, safe with no upload.",
+  "h1": "Password Protect PDF",
+  "subtitle": "Add an open password so only the right people can open your PDF, and optionally restrict printing and copying. Encrypted in your browser without uploading your file anywhere.",
+  "intro": "Sometimes a PDF like a contract, pay stub, or medical record shouldn't be open to just anyone. This tool encrypts your file directly in your browser instead of uploading it to a server, so the document only opens once the password you set is entered. Beyond an open password, you can also restrict printing and copying (text selection), so recipients can't freely pull and reuse the content. It's the exact opposite of the Unlock tool, and it's perfect for that final lock before you send a sensitive document by email or messenger. The password you set is never stored anywhere on this device, so be sure to remember it separately, because if you forget it, there's no way to recover it.",
+  "steps": [
+    "Drag in the PDF you want to protect, or add it with [Choose File].",
+    "Enter an open password, and if you like, choose whether to allow printing and copying.",
+    "Click [Set Password] to create a new encrypted PDF.",
+    "Download the password-protected PDF. That password is required to open it."
+  ],
+  "security": "The entire process of setting the password and encrypting happens only inside your browser, on your device, and neither the original PDF nor the password is ever sent to any server. That's why you can safely lock even sensitive documents like contracts, HR records, and medical certificates without worrying about a leak.",
+  "faq": [
+    {
+      "q": "What kind of encryption is used?",
+      "a": "It uses standard PDF encryption, so the document only opens once the open password you set is entered. Common PDF viewers like Acrobat, Chrome, and Preview will prompt for the password. All processing happens inside your browser."
+    },
+    {
+      "q": "What if I forget the password?",
+      "a": "It can't be recovered. This tool doesn't store your password on the device, so if you forget it, there's no way to open that PDF. Keep the original file separately and store the password somewhere safe."
+    },
+    {
+      "q": "Are the print and copy restrictions strictly enforced?",
+      "a": "When you turn off print and copy permissions, the restriction is set with an owner password, which is separate from the open password. How strictly that restriction is honored can vary by the viewer used to open the file. If you truly need to block it, we recommend adding an open password as well."
+    },
+    {
+      "q": "Can I add a password to a PDF that already has one?",
+      "a": "First remove the existing password with the [Unlock PDF] tool, then set a new one. If you add an already-locked file directly, it can't be opened and you'll see a notice."
+    },
+    {
+      "q": "Is it really free? Does my file go to a server?",
+      "a": "It's completely free, and neither your file nor your password is sent to a server. Everything is encrypted only in your browser. There are no usage or size limits either."
+    }
+  ],
+  "extraSections": [
+    {
+      "heading": "Great for moments like these",
+      "body": "It's ideal for locking documents that only specific people should open, like pay stubs, contracts, or medical certificates, before you send them by email or messenger. Add print and copy restrictions too, and you can go some way toward discouraging recipients from lifting the content and redistributing it. On the flip side, when you want to remove a password or restriction you know, use the [Unlock PDF] tool."
+    }
+  ]
+}

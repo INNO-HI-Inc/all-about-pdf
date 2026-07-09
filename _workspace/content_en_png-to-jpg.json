@@ -1,0 +1,42 @@
+{
+  "title": "PNG to JPG Converter Free | Everything PDF",
+  "metaDescription": "Convert PNG to JPG for free. Everything runs in your browser with no uploads, so it's safe — and the file size shrinks too.",
+  "h1": "PNG to JPG Converter",
+  "subtitle": "Turn PNGs into lightweight JPGs right on your device — free, no install, no sign-up.",
+  "intro": "Shrink bulky PNG photos into JPGs so they're light enough to email, message, or post to your blog. Each image is redrawn on a canvas and saved as JPG, so file sizes drop noticeably and you get to pick the quality yourself. Your files never touch a server — everything is processed right in your browser (on your device).",
+  "steps": [
+    "Drag and drop your PNG files, or browse to select them. You can convert several at once.",
+    "Set the quality. Lower means smaller files; higher means sharper images.",
+    "Click Convert. Transparent backgrounds are filled with white.",
+    "Download your JPGs. A single image downloads directly; multiple images come bundled in a ZIP."
+  ],
+  "security": "Every conversion happens entirely inside your browser (on your device), and no file is ever uploaded to a server. That means sensitive files — like ID photos or unreleased images — never leave your hands. Unlike overseas tools that upload your file and delete it after a while, we simply never upload it in the first place.",
+  "faq": [
+    {
+      "q": "Why convert PNG to JPG?",
+      "a": "Photo-heavy PNGs tend to be large. Converting to JPG makes the same picture far lighter, which helps when you're bumping into an email attachment limit or when messaging and blog uploads feel slow. What you see on screen stays almost exactly the same."
+    },
+    {
+      "q": "What happens to a transparent background?",
+      "a": "JPG doesn't support transparency, so any transparent areas of the PNG are filled with white. If you need to keep a transparent background, stick with PNG, and use JPG only for images where a white background looks fine."
+    },
+    {
+      "q": "How do I choose the quality?",
+      "a": "Lower the quality to shrink the file as much as possible; raise it to keep more sharpness. The middle is usually a safe bet. If you're up against an email or upload size limit, start low and bump it up a notch if the result looks blurry."
+    },
+    {
+      "q": "Can I convert several images at once?",
+      "a": "Yes — drag in multiple PNGs and convert them all in one go. A single image downloads right away, while multiple images come bundled in a ZIP file. No need to save them one by one."
+    },
+    {
+      "q": "Do I need to sign up or install anything?",
+      "a": "No. You can start using it right away, with no sign-up and no install. It's completely free, adds no watermark, and has no limit on the number of files."
+    }
+  ],
+  "extraSections": [
+    {
+      "heading": "When this comes in handy",
+      "body": "It's great for emailing or messaging the heavy PNGs that come from your phone or screenshots, for keeping photo-heavy blog posts light, or when you hit a size limit on a submission site. Just keep in mind that images that need a transparent background — like logos or icons — get filled with white, so in those cases it's better to stick with the PNG."
+    }
+  ]
+}

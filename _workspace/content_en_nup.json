@@ -1,0 +1,42 @@
+{
+  "title": "PDF Multiple Pages Per Sheet Free | Everything PDF",
+  "metaDescription": "Combine PDF pages onto one sheet for free. Fit 2 or 4 pages per sheet to save paper. Processed only in your browser — safe and private.",
+  "h1": "Multiple Pages Per Sheet",
+  "subtitle": "Arrange 2 or 4 pages onto a single sheet. Great for saving paper and making handouts. Free, with no install and no sign-up.",
+  "intro": "This is the tool for when you want to save paper printing a multi-page document, or make a clean handout for a meeting. It shrinks your original pages and lays them out in a grid, 2 or 4 per sheet. Turn a 10-page document into a 4-up layout and it fits on just 3 sheets — a big saving on paper and toner. And since your file is never uploaded anywhere and is processed entirely on your device, you can build it with complete peace of mind.",
+  "steps": [
+    "Drag and drop the PDF you want to combine, or click Choose File to upload it.",
+    "Choose how many pages to fit per sheet: 2 or 4.",
+    "Check the preview to make sure the pages are laid out neatly in the grid.",
+    "Click Combine Pages and download a new PDF with several pages per sheet."
+  ],
+  "security": "Every step of arranging the pages and saving happens entirely inside your browser (your device), and no file is ever sent to a server. So even meeting material and course packs you'd hesitate to upload can be combined without any upload worries.",
+  "faq": [
+    {
+      "q": "How many pages can I fit per sheet?",
+      "a": "You can choose 2 or 4 pages per sheet. Two-up keeps the text large and easy to read, while four-up saves even more paper. Pick whichever suits your document's text size and purpose."
+    },
+    {
+      "q": "Won't the text get too small?",
+      "a": "Since the original pages are shrunk to fit, the more pages per sheet, the smaller the text. For documents with small text, go with two-up; for those with larger text, four-up reads well. Check the size in the preview before you print."
+    },
+    {
+      "q": "What order are the pages arranged in?",
+      "a": "They're placed in the original page order, filling the grid left to right, top to bottom. Pages 1 and 2 go on the first sheet and the rest follow in sequence, so the reading order never gets confusing."
+    },
+    {
+      "q": "Is my original file kept intact?",
+      "a": "Yes — we never touch your original. The combined version is saved as a separate new PDF. If you need the original one-page-at-a-time view again, just use it as it is, so use this with confidence."
+    },
+    {
+      "q": "Is it really free? Any watermarks or usage limits?",
+      "a": "It's completely free with no watermarks. There are no limits on the number of uses or file size, and no sign-up. Combine your PDF pages freely, whenever you need to."
+    }
+  ],
+  "extraSections": [
+    {
+      "heading": "Great for moments like these",
+      "body": "It's perfect for making handouts to pass out to meeting attendees, printing multi-page lecture material while saving paper, or bundling presentation slides so people can take them in at a glance. A four-up layout cuts the page count to a quarter — a big saving on paper and toner, while still gathering the content onto a single sheet."
+    }
+  ]
+}

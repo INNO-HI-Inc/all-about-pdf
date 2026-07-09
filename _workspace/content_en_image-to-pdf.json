@@ -1,0 +1,42 @@
+{
+  "title": "Image to PDF (JPG & PNG to PDF) Free | Everything PDF",
+  "metaDescription": "Turn JPG and PNG images into a PDF for free. Bundle several photos or screenshots into one ordered PDF. Processed in your browser, never uploaded — safe and private.",
+  "h1": "Image to PDF",
+  "subtitle": "Drag in your JPG and PNG photos and bundle them into one ordered PDF. Free, with no install and no sign-up.",
+  "intro": "Bundle images — scanned photos, documents snapped on your phone, screenshots — into a single PDF. Drag in several images, set the order, and they become one document just like that. It's handy for building paperwork to submit or a portfolio, and since your files are processed only on your device, you can use it with complete peace of mind.",
+  "steps": [
+    "Upload the images (JPG or PNG) you want to turn into a PDF. You can add several at once.",
+    "Set the page order in the list with the up/down arrows or by dragging.",
+    "Choose a page size: \"Match image size\" or \"Fit to A4.\"",
+    "Click Create PDF to download it as a single file."
+  ],
+  "security": "Every step of bundling your images into a PDF happens entirely inside your browser (your device), and no file is ever sent to a server. So even sensitive images like a copy of your ID or contract paperwork can be turned into a PDF without any upload worries.",
+  "faq": [
+    {
+      "q": "Can I combine several images into one PDF?",
+      "a": "Yes. Upload several images, set the order in the list, and you'll get a single PDF with each image on its own page in sequence. You can change the page order with the up/down buttons or by dragging."
+    },
+    {
+      "q": "Which image formats are supported?",
+      "a": "JPG and PNG are supported. Just upload phone photos (JPG) or screenshots (PNG) as they are. For other formats (HEIC, WebP, and so on), save them as JPG or PNG first, then upload."
+    },
+    {
+      "q": "What's the difference between \"Match image size\" and \"Fit to A4\"?",
+      "a": "\"Match image size\" builds each page to match the image's resolution, holding the whole thing without any cropping. \"Fit to A4\" centers every image on an A4 sheet while keeping its proportions — great for standardizing sizes for printing or submission."
+    },
+    {
+      "q": "Will the photo quality drop?",
+      "a": "The original image goes straight into the PDF, so quality isn't lowered arbitrarily. That said, with \"Fit to A4,\" blowing up a small image can make it look blurry due to the limits of the original resolution."
+    },
+    {
+      "q": "Is there a limit on file count or size?",
+      "a": "There are no limits on count or size, and no watermarks. Just keep in mind that bundling a huge number of high-resolution photos at once uses a lot of your device's memory, so if it's slow, try splitting it into batches."
+    }
+  ],
+  "extraSections": [
+    {
+      "heading": "Great for moments like these",
+      "body": "It's handy for bundling phone photos of documents into one PDF to submit, turning several screenshots into a document for reference, or organizing sketches and portfolio images into a single file. You can even build it right on your phone and send it off on the spot."
+    }
+  ]
+}

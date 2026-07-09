@@ -1,0 +1,42 @@
+{
+  "title": "Extract Text from PDF Free | Everything PDF",
+  "metaDescription": "Extract text from PDF for free. Pull the text out into a .txt file. Files are processed on your device and never uploaded to a server.",
+  "h1": "Extract Text from PDF",
+  "subtitle": "Pull the text out of your PDF into a .txt file. Free, no install, right on your device.",
+  "intro": "This tool pulls the text inside a PDF into a text (.txt) file you can download. The extracted text is easy to copy into other documents, search, or edit further. Everything is processed inside your browser and never sent to a server.",
+  "steps": [
+    "Upload the PDF you want to pull text from.",
+    "The tool reads the text data in the document and gathers it together.",
+    "Preview the extracted text right on screen.",
+    "Click Save Text to download it to your device as a .txt file."
+  ],
+  "security": "Every part of the extraction happens entirely inside your browser — that is, on your own device. The text from sensitive documents like contracts and reports never leaves your machine, so you can use it with total peace of mind. Unlike overseas tools that upload your file and delete it afterward, we never send your file to a server in the first place.",
+  "faq": [
+    {
+      "q": "Can I extract text from a scanned PDF?",
+      "a": "No. A scanned PDF is made entirely of images, like photos, so it contains no actual text data — which means this tool can't extract anything from it. This feature isn't OCR that reads images and converts them into text; it simply pulls out the text that's already embedded in the PDF."
+    },
+    {
+      "q": "What format is the extracted text saved in?",
+      "a": "It's saved as a plain text (.txt) file containing only the text. You can open it right away in Notepad, Word, Hangul, or any other editor. Tables, images, and formatting like fonts and colors are dropped — you get the pure text only."
+    },
+    {
+      "q": "The text comes out fine, but the line breaks and tables are jumbled. Why?",
+      "a": "PDFs record the position of each character as coordinates, so documents with columns or tables can end up with scrambled order or lines when moved into plain text. The text itself is extracted intact, so just save it and tidy up the parts you need afterward."
+    },
+    {
+      "q": "How can I tell whether my PDF is a scan or a text document?",
+      "a": "Open the PDF and try dragging your mouse across the body text. If the text highlights in blue, the document contains real text data and can be extracted. If nothing gets selected and it grabs the whole page like a photo, it's a scan and can't be extracted."
+    },
+    {
+      "q": "Does my file get uploaded to a server? Is it free?",
+      "a": "Your file is never uploaded — it's processed entirely on your device. It's free to use with no sign-up and no install, and there are no watermarks and no limits on file count or size."
+    }
+  ],
+  "extraSections": [
+    {
+      "heading": "Handy for moments like these",
+      "body": "It's useful when you want to pull a few key sentences from a long report or paper and paste them into another document, bring PDF content into Notepad or Word to edit it again, or search the body for spots that contain a specific word. It's also a quick way to copy and reuse the text from a notice or contract exactly as written."
+    }
+  ]
+}

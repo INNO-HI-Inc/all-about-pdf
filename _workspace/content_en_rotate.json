@@ -1,0 +1,42 @@
+{
+  "title": "Rotate PDF Free | Everything PDF",
+  "metaDescription": "Rotate PDF free. Straighten pages left or right 90 degrees, or 180 degrees, and save. Your files are processed only in your browser, with no upload — safe and secure.",
+  "h1": "Rotate PDF",
+  "subtitle": "Straighten sideways scans and upside-down documents with a 90-degree left, 90-degree right, or 180-degree turn, then save. No install, no sign-up, free.",
+  "intro": "This is the tool for when a document went into the scanner crooked and came out sideways, or a scan turned out upside down and you can't submit it as is. Upload your PDF, choose left 90 degrees, right 90 degrees, or 180 degrees, and every page straightens out at once. Your file is never uploaded anywhere — it's processed on your device only — so you can fix the orientation of sensitive paperwork with complete peace of mind.",
+  "steps": [
+    "Drag your PDF in, or upload it with [Choose File].",
+    "Choose your rotation: left 90 degrees, right 90 degrees, or 180 degrees.",
+    "Use the preview to confirm the pages are now upright.",
+    "Click [Rotate] to download the corrected new PDF."
+  ],
+  "security": "Rotating the PDF and saving it all happen inside your browser — on your device — and no file is ever sent to a server. So even documents you'd rather not upload, like contracts, medical certificates, or ID paperwork, can have their orientation fixed without any upload worries.",
+  "faq": [
+    {
+      "q": "How do I choose the rotation direction?",
+      "a": "Pick from three options: left 90 degrees, right 90 degrees, or 180 degrees. Turn a sideways document 90 degrees, and a fully upside-down one 180 degrees. Set the direction while watching the preview, and you won't get turned around."
+    },
+    {
+      "q": "Can I rotate just specific pages?",
+      "a": "This tool rotates every page of the document the same way at once. If you need different pages turned in different directions, use the [Organize Pages] tool — there you can rotate page by page with the ↺ ↻ buttons."
+    },
+    {
+      "q": "Will rotating break the text or lower the quality?",
+      "a": "Rotating doesn't re-render the page as an image — it just adds 'orientation' information to the PDF. So text stays selectable and copyable, and the quality doesn't drop. You keep the original's sharpness while simply fixing the orientation."
+    },
+    {
+      "q": "Is my original file left intact?",
+      "a": "Yes — the original is never touched, and the rotated result is saved as a separate new PDF. If you're not happy with the direction, just re-upload the original and rotate it a different way. Use it with peace of mind."
+    },
+    {
+      "q": "Is it really free? Any watermarks or usage limits?",
+      "a": "It's completely free with no watermarks. There's no limit on how many times you rotate, no file size limit, and no sign-up. Straighten your PDFs as freely as you need, whenever you need to."
+    }
+  ],
+  "extraSections": [
+    {
+      "heading": "Great for moments like these",
+      "body": "Straightening a contract that went sideways into the scanner, an application that got scanned upside down, or a document shot with a camera at the wrong angle — all before you submit. Pick a single direction and every page turns upright at once, so your reader never has to tilt their head to read it."
+    }
+  ]
+}

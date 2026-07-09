@@ -1,0 +1,47 @@
+{
+  "title": "Split PDF Free | Everything PDF",
+  "metaDescription": "Split a PDF for free. Separate every page or pull out custom ranges, then download as a ZIP. Your files stay on your device and never get uploaded.",
+  "h1": "Split PDF",
+  "subtitle": "Break a PDF apart right on your device — free, no install.",
+  "intro": "Use this whenever you need just part of a large PDF. Separate every page into individual files, or cut by custom ranges like 1-3 and 4-8. You'll get everything back in a single ZIP.",
+  "steps": [
+    "Upload the PDF you want to split.",
+    "Choose 'Separate every page' or 'Custom ranges.'",
+    "For custom ranges, type the sections to split out, like 1-3, 4-8.",
+    "Click Split.",
+    "Download the split files as a ZIP."
+  ],
+  "security": "Everything is processed 100% inside your browser. Sensitive documents like contracts, official paperwork, and scans are never uploaded anywhere, so you can split with complete peace of mind.",
+  "faq": [
+    {
+      "q": "How do I save just one specific page on its own?",
+      "a": "In custom ranges, just type that single page number. Enter '5,' for example, and only page 5 comes out on its own. If you want to pull several pages into one combined file instead, use the 'Extract PDF Pages' tool."
+    },
+    {
+      "q": "What's the difference between separating every page and custom ranges?",
+      "a": "Separating every page breaks the whole document into individual one-page files. Custom ranges group only the sections you want, like 1-3 and 4-8. Ranges are the handy choice when you want to split a report chapter by chapter."
+    },
+    {
+      "q": "Will splitting reduce the quality?",
+      "a": "No. Pages are lifted out exactly as they are, so text and images stay pixel-perfect. Even scans and photo-heavy documents split with no loss of quality."
+    },
+    {
+      "q": "How do I get the results?",
+      "a": "The split files are bundled into a single ZIP for one easy download. Unzip it and you'll find each PDF inside. There's no limit on the number of files or their size."
+    },
+    {
+      "q": "Do I need to sign up or install anything?",
+      "a": "Nope. No account, no software — just split your PDF right in the browser. And there are no watermarks."
+    }
+  ],
+  "extraSections": [
+    {
+      "heading": "Great for moments like these",
+      "body": "Pulling just your section out of a 100-page group assignment, splitting a contract clause by clause, or organizing scanned application paperwork page by page. It's also handy for breaking a thick report into chapters to archive separately or attach to an email."
+    },
+    {
+      "heading": "Tips for custom ranges",
+      "body": "You can enter several ranges at once, separated by commas. Put in 1-3, 4-8 together, for instance, and you'll get two files. Want to cut a PDF in half? Just enter the first range and the second range separately."
+    }
+  ]
+}

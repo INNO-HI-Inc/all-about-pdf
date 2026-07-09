@@ -1,0 +1,42 @@
+{
+  "title": "GIF to PNG Converter Free | Everything PDF",
+  "metaDescription": "Convert GIF to PNG for free. Transparency-friendly PNG output, ZIP for batches. Everything is processed right in your browser, so it stays private.",
+  "h1": "GIF to PNG Converter",
+  "subtitle": "Convert GIF images to PNG. Animated GIFs are saved as a still of the first frame. Free, with no install and no sign-up.",
+  "intro": "This is the tool for when you want to turn a GIF into a PNG, a format that works pretty much everywhere. It redraws the image onto a canvas and converts it to PNG, and animated GIFs are saved as a still of the first frame only. Drop in several images at once and the converted PNGs come back bundled in a single ZIP. Nothing is ever uploaded anywhere; it's all processed right on your own device, so you can convert with confidence.",
+  "steps": [
+    "Drag in the GIF images you want to convert, or add them with [Choose Files]. You can do several at once.",
+    "Use the preview to double-check which images you've added.",
+    "Click [Convert to PNG] to redraw them onto a canvas and convert.",
+    "Download a single PNG, or a ZIP if you converted several."
+  ],
+  "security": "The entire process of converting and saving your GIF as a PNG happens inside your own browser, and no file is ever sent to a server. That means you can convert work files and personal images without any upload worries.",
+  "faq": [
+    {
+      "q": "Do animated GIFs convert too?",
+      "a": "For an animated GIF, only the first frame is saved as a still PNG image. PNG can't hold motion, so the animation isn't preserved. Think of it as converting to a single still picture."
+    },
+    {
+      "q": "What happens to transparent areas?",
+      "a": "PNG supports transparency, so the transparent areas of your GIF are preserved exactly as they are. Even a see-through logo or icon comes out transparent, with no white background added underneath."
+    },
+    {
+      "q": "Can I convert several files at once?",
+      "a": "Yes, upload multiple GIFs at once and they'll all be converted to PNG and bundled into a single ZIP for download. No need to save them one by one, you can handle them all in one go."
+    },
+    {
+      "q": "Does my original GIF stay intact?",
+      "a": "Yes, your original GIF is left untouched and the converted PNG is saved separately. If you need the GIF again, just use your original, so convert with confidence."
+    },
+    {
+      "q": "Is it really free? Any watermarks or usage limits?",
+      "a": "It's completely free with no watermarks. There are no conversion limits, file size caps, or sign-ups. Convert GIF to PNG freely, whenever you need to."
+    }
+  ],
+  "extraSections": [
+    {
+      "heading": "When this comes in handy",
+      "body": "It's great for when you need to drop a GIF-only asset into a document or editing program that only accepts PNG, or when you want to archive it losslessly while keeping the transparent background. Since animated GIFs keep only their first frame, it's an especially good fit when you need a single still image to represent the file. Multiple files get tidied up into one ZIP, too."
+    }
+  ]
+}

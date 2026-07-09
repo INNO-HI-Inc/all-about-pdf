@@ -1,0 +1,46 @@
+{
+  "title": "Extract PDF Pages Free | Everything PDF",
+  "metaDescription": "Extract PDF pages — pick just the pages you want and save them as one file. Free, no install or sign-up, processed only on your device and never uploaded.",
+  "h1": "Extract PDF Pages",
+  "subtitle": "Pick just the pages you want and save them as a single PDF. Free, no install.",
+  "intro": "This is the tool for when you need to pull out only certain pages. Enter the page numbers you want, and just those pages are gathered into one new PDF. Perfect for submitting a specific clause of a contract or a particular chapter of a report.",
+  "steps": [
+    "Upload your PDF.",
+    "Enter the pages to extract (e.g., 1, 3, 5-7).",
+    "Preview to confirm the pages come out in the order you entered.",
+    "Click Extract to save them as a new PDF."
+  ],
+  "security": "Every extraction happens inside your browser — on your device only. Sensitive documents like contracts or official paperwork never leave your hands, so use it with confidence.",
+  "faq": [
+    {
+      "q": "Can I pull out just one specific page from a PDF?",
+      "a": "Yes — just enter the page number you want, and only that page is extracted. If you only need page 3 of a 30-page report, for example, simply enter '3.' None of the other pages make it into the result file."
+    },
+    {
+      "q": "Can I extract several ranges at once?",
+      "a": "Absolutely. Enter pages and ranges together separated by commas, like '1, 3, 5-7,' and they're all handled in one pass. Feel free to mix scattered single pages with continuous ranges."
+    },
+    {
+      "q": "Does extraction keep the page order?",
+      "a": "It follows exactly the order you type. Enter '5, 1, 3' and the result is saved as page 5, then 1, then 3. You can even use this to rearrange pages into a different order than the original."
+    },
+    {
+      "q": "How do I save each page as a separate file?",
+      "a": "This tool gathers your chosen pages into a single PDF. If you'd rather peel pages off individually into separate files, the 'Split PDF' tool is a better fit. Use this extract tool when you want to collect a selection into one file."
+    },
+    {
+      "q": "Are my files uploaded to a server? Is it free?",
+      "a": "Your files are never uploaded — everything is processed on your device only. It's free to use with no sign-up or install, and there are no watermarks or limits on file count or size."
+    }
+  ],
+  "extraSections": [
+    {
+      "heading": "Great for moments like these",
+      "body": "Sending someone just the few pages of a contract that hold the key clause, pulling out only the chapter you were assigned from a thick report, or setting aside just the pages you need from an application or official document. It works the same way on scanned PDFs — pick out exactly the pages you want."
+    },
+    {
+      "heading": "Good to know when entering pages",
+      "body": "Enter page numbers based on the original PDF. If you enter a number that doesn't exist (like 25 in a 20-page document), that part simply won't be extracted. And if you list the same page more than once, it'll be included that many times — so use the result preview to double-check before saving and avoid slip-ups."
+    }
+  ]
+}
