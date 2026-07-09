@@ -1411,6 +1411,7 @@ ${related(t.slug, rel)}`;
 function buildHome() {
   const c = read('home');
   const HERO_PUNCH = { ko: '필요한 모든 PDF 작업, 한곳에서', en: 'Every PDF tool, in one place', es: 'Todas tus herramientas PDF en un solo lugar', ja: '必要なPDF作業が、ここにすべて', zh: '你需要的所有 PDF 工具，一站搞定' };
+  const FREE_LINE = { ko: '100% 무료 · 워터마크·회원가입·용량 제한 없음', en: '100% free · no watermark, no sign-up, no limits', es: '100% gratis · sin marcas de agua, sin registro, sin límites', ja: '100%無料 · 透かし・登録・容量制限なし', zh: '100% 免费 · 无水印、无需注册、无限制' };
   const rel = '';
   const canonical = SITE_URL + '/';
 
@@ -1463,6 +1464,7 @@ ${catRows}
         <span class="ws-hero__brand">${esc(BRAND)}</span>
         <p class="ws-hero__title">${esc(HERO_PUNCH[CUR_LANG] || HERO_PUNCH.ko)}</p>
         <p class="ws-hero__sub">${esc(c.heroSubtitle || '')}</p>
+        <span class="ws-hero__free">${IC('<circle cx="12" cy="12" r="9"/><path d="M8.2 12.4l2.4 2.4 5-5.2"/>')}${esc(FREE_LINE[CUR_LANG] || FREE_LINE.ko)}</span>
       </div>
       <div class="ws-wrap ws-home2--solo">
         <div class="ws-winwrap">
@@ -1497,10 +1499,10 @@ ${catRows}
     <section class="home-explain" aria-label="서비스 안내">
       <div class="ws-wrap">
         <ul class="home-trust">
-          <li><b>서버 미전송</b><span>100% 내 브라우저 처리</span></li>
-          <li><b>완전 무료</b><span>워터마크·가입 없음</span></li>
-          <li><b>설치 불필요</b><span>열면 바로 사용</span></li>
-          <li><b>37개 도구</b><span>합치기부터 변환까지</span></li>
+          <li class="home-trust--free"><span class="home-trust__ic">${IC('<path d="M3.7 12.4l7.9-7.9a2 2 0 0 1 1.4-.6H18.8a2 2 0 0 1 2 2v5.8a2 2 0 0 1-.6 1.4l-7.9 7.9a2 2 0 0 1-2.8 0l-5.8-5.8a2 2 0 0 1 0-2.8z"/><circle cx="16" cy="8" r="1.25"/>')}</span><b>완전 무료</b><small>워터마크·가입 없음</small></li>
+          <li><span class="home-trust__ic">${IC('<path d="M12 3l7 3v5.2c0 4.4-3 7.4-7 8.8-4-1.4-7-4.4-7-8.8V6z"/><path d="M9 12l2.1 2.1L15.4 9.8"/>')}</span><b>서버 미전송</b><small>100% 내 브라우저 처리</small></li>
+          <li><span class="home-trust__ic">${IC('<path d="M13 3L5 13.5h5.2L9.5 21 19 10.5h-5.4z"/>')}</span><b>설치 불필요</b><small>열면 바로 사용</small></li>
+          <li><span class="home-trust__ic">${IC('<rect x="3.6" y="3.6" width="7" height="7" rx="1.7"/><rect x="13.4" y="3.6" width="7" height="7" rx="1.7"/><rect x="3.6" y="13.4" width="7" height="7" rx="1.7"/><rect x="13.4" y="13.4" width="7" height="7" rx="1.7"/>')}</span><b>37개 도구</b><small>합치기부터 변환까지</small></li>
         </ul>
         <div class="home-explain__grid">
           <div class="home-block">

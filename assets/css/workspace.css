@@ -824,9 +824,13 @@ html.drawer-open { overflow: hidden; }
 /* ===== 홈 설명 콘텐츠(신뢰 배지 · 이용법 · 왜 · FAQ) — 토큰 기반 자동 테마 대응 ===== */
 .home-explain { padding: 4px 0 76px; }
 .home-trust { list-style: none; display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin: 0 0 46px; padding: 0; }
-.home-trust li { background: var(--surf); border: 1px solid var(--line); border-radius: var(--radius); padding: 18px 16px; text-align: center; box-shadow: var(--sh-sm); }
+.home-trust li { background: var(--surf); border: 1px solid var(--line); border-radius: var(--radius); padding: 20px 16px; text-align: center; box-shadow: var(--sh-sm); }
+.home-trust__ic { display: grid; place-items: center; width: 42px; height: 42px; margin: 0 auto 12px; border-radius: 12px; background: var(--grad-soft, rgba(229, 37, 42, .07)); color: var(--red); }
+.home-trust__ic .ic-svg { width: 23px; height: 23px; }
 .home-trust b { display: block; font-size: 1.02rem; font-weight: 800; color: var(--ink); letter-spacing: -.01em; }
-.home-trust span { display: block; margin-top: 5px; font-size: 12.5px; color: var(--ink-faint); }
+.home-trust small { display: block; margin-top: 5px; font-size: 12.5px; color: var(--ink-faint); }
+.home-trust--free { border-color: rgba(229, 37, 42, .3); background: linear-gradient(180deg, rgba(229, 37, 42, .05), var(--surf)); }
+.home-trust--free .home-trust__ic { background: var(--grad); color: #fff; }
 .home-explain__grid { display: grid; grid-template-columns: 1fr 1.15fr; gap: 44px; margin-bottom: 46px; }
 .home-block__h { font-size: 1.42rem; font-weight: 800; letter-spacing: -.02em; color: var(--ink); margin: 0 0 22px; }
 .home-steps { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 18px; }
@@ -978,3 +982,8 @@ html.drawer-open { overflow: hidden; }
 .ws-hero__title { font-size: clamp(1.9rem, 4.4vw, 3rem); font-weight: 800; letter-spacing: -.03em; line-height: 1.12; color: var(--ink); margin: 0; word-break: keep-all; }
 .ws-hero__sub { margin: 15px auto 0; max-width: 540px; font-size: clamp(1rem, 1.5vw, 1.12rem); line-height: 1.6; color: var(--ink-soft); font-weight: 450; word-break: keep-all; }
 @media (max-width: 560px) { .ws-hero { padding: 26px 16px 2px; } .ws-hero__title { font-size: 1.75rem; } }
+
+/* 히어로 '완전 무료' 강조 배지 */
+.ws-hero__free { display: inline-flex; align-items: center; gap: 7px; margin-top: 18px; padding: 8px 16px; border-radius: 999px; font-size: 13.5px; font-weight: 700; color: #0e8f56; background: rgba(22, 196, 127, .1); border: 1px solid rgba(22, 196, 127, .32); }
+.ws-hero__free .ic-svg { width: 17px; height: 17px; flex: none; }
+@media (prefers-color-scheme: dark) { .ws-hero__free { color: #4fdd9a; background: rgba(22, 196, 127, .12); border-color: rgba(22, 196, 127, .28); } }
