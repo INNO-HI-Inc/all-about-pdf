@@ -904,3 +904,7 @@ html.drawer-open { overflow: hidden; }
   /* 7) 활성 히어로 탭 글로우 */
   .ws-window .herotool__tab[aria-selected="true"] { box-shadow: inset 0 0 0 1px rgba(229, 37, 42, .3); }
 }
+
+/* i18n 언어 스위처 (상단 메뉴바) */
+.ws-langswitch { font-family: inherit; font-size: 13.5px; font-weight: 700; color: var(--ink-soft); padding: 8px 12px; border-radius: var(--radius); border: 1px solid var(--line-2); background: transparent; text-decoration: none; margin-right: 4px; }
+.ws-langswitch:hover { color: var(--ink); background: var(--surf-2); text-decoration: none; }
