@@ -1457,6 +1457,11 @@ ${catRows}
   const gridIco = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="3.5" width="7" height="7" rx="1.6"/><rect x="13.5" y="3.5" width="7" height="7" rx="1.6"/><rect x="3.5" y="13.5" width="7" height="7" rx="1.6"/><rect x="13.5" y="13.5" width="7" height="7" rx="1.6"/></svg>';
   const main = `    <section class="ws-home2" id="tools">
       <h1 class="sr-only">${esc(c.metaTitle || 'PDF의 모든 것')} — 설치 없이 무료로 쓰는 한국어 PDF 도구 모음</h1>
+      <div class="ws-herofx" aria-hidden="true">
+        <span class="ws-herofx__word">EVERYTHING PDF</span>
+        <span class="ws-chip ws-chip--1">PDF</span><span class="ws-chip ws-chip--2">DOCX</span><span class="ws-chip ws-chip--3">JPG</span>
+        <span class="ws-chip ws-chip--4">XLSX</span><span class="ws-chip ws-chip--5">PPT</span><span class="ws-chip ws-chip--6">PNG</span>
+      </div>
       <div class="ws-wrap ws-home2--solo">
         <div class="ws-winwrap">
           <div class="ws-window ws-deck" data-ws-window>
