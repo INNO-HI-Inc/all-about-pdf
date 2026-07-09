@@ -1411,7 +1411,6 @@ ${related(t.slug, rel)}`;
 function buildHome() {
   const c = read('home');
   const HERO_PUNCH = { ko: '필요한 모든 PDF 작업, 한곳에서', en: 'Every PDF tool, in one place', es: 'Todas tus herramientas PDF en un solo lugar', ja: '必要なPDF作業が、ここにすべて', zh: '你需要的所有 PDF 工具，一站搞定' };
-  const FREE_LINE = { ko: '100% 무료 · 워터마크·회원가입·용량 제한 없음', en: '100% free · no watermark, no sign-up, no limits', es: '100% gratis · sin marcas de agua, sin registro, sin límites', ja: '100%無料 · 透かし・登録・容量制限なし', zh: '100% 免费 · 无水印、无需注册、无限制' };
   const rel = '';
   const canonical = SITE_URL + '/';
 
@@ -1464,7 +1463,6 @@ ${catRows}
         <span class="ws-hero__brand">${esc(BRAND)}</span>
         <p class="ws-hero__title">${esc(HERO_PUNCH[CUR_LANG] || HERO_PUNCH.ko)}</p>
         <p class="ws-hero__sub">${esc(c.heroSubtitle || '')}</p>
-        <span class="ws-hero__free">${IC('<circle cx="12" cy="12" r="9"/><path d="M8.2 12.4l2.4 2.4 5-5.2"/>')}${esc(FREE_LINE[CUR_LANG] || FREE_LINE.ko)}</span>
       </div>
       <div class="ws-wrap ws-home2--solo">
         <div class="ws-winwrap">

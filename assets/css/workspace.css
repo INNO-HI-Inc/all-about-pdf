@@ -38,10 +38,10 @@
   --bg: #ffffff; --surf: #ffffff; --surf-2: #f7f8fb; --surf-3: #f1f2f6;
   --line: #ececf2; --line-2: #e0e3ea;
   --radius: 16px; --radius-sm: 12px; --radius-lg: 22px; --pill: 999px;
-  --sh-sm: 0 2px 10px rgba(23, 23, 42, .05), 0 1px 3px rgba(23, 23, 42, .04);
-  --sh: 0 14px 36px rgba(23, 23, 42, .09);
-  --sh-lg: 0 30px 70px rgba(23, 23, 42, .14);
-  --sh-red: 0 8px 22px rgba(23, 23, 42, .13);
+  --sh-sm: 0 1px 4px rgba(23, 23, 42, .04), 0 1px 2px rgba(23, 23, 42, .03);
+  --sh: 0 8px 22px rgba(23, 23, 42, .06);
+  --sh-lg: 0 18px 44px rgba(23, 23, 42, .09);
+  --sh-red: 0 5px 14px rgba(23, 23, 42, .07);
   --ez: cubic-bezier(.22, .61, .36, 1);
   --ez-out: cubic-bezier(.16, 1, .3, 1);          /* 강한 감속 — 패널/모달/콘텐츠 진입 */
   --ez-spring: cubic-bezier(.34, 1.56, .64, 1);   /* 살짝 탄성 — 강조 인터랙션 한정 */
@@ -62,7 +62,7 @@
 .js [data-reveal].in { opacity: 1; transform: none; }
 
 /* ============ 내비게이션 ============ */
-.ws-taskbar { position: sticky; top: 12px; z-index: 200; height: 62px; display: flex; align-items: center; gap: 22px; padding: 0 22px; margin: 12px 16px 0; border-radius: 18px; background: rgba(255, 255, 255, .82); backdrop-filter: saturate(180%) blur(16px); -webkit-backdrop-filter: saturate(180%) blur(16px); border: 1px solid var(--line); box-shadow: 0 8px 30px rgba(23, 23, 42, .1), inset 0 1px 0 rgba(255, 255, 255, .6); }
+.ws-taskbar { position: sticky; top: 12px; z-index: 200; height: 62px; display: flex; align-items: center; gap: 22px; padding: 0 22px; margin: 12px 16px 0; border-radius: 18px; background: rgba(255, 255, 255, .82); backdrop-filter: saturate(180%) blur(16px); -webkit-backdrop-filter: saturate(180%) blur(16px); border: 1px solid var(--line); box-shadow: 0 4px 16px rgba(23, 23, 42, .06), inset 0 1px 0 rgba(255, 255, 255, .5); }
 @media (max-width: 760px) { .ws-taskbar { margin: 8px 10px 0; top: 8px; } }
 .ws-logo { display: flex; align-items: center; gap: 11px; color: var(--ink); font-weight: 800; font-size: 17px; }
 .ws-logo:hover { text-decoration: none; }
@@ -101,7 +101,7 @@
 .ws-btn:active { transform: translateY(0) scale(.98); }
 .ws-btn svg { width: 17px; height: 17px; }
 .ws-btn.primary { background: var(--grad); color: #fff; box-shadow: var(--sh-red); }
-.ws-btn.primary:hover { transform: translateY(-2px); box-shadow: 0 18px 40px rgba(23, 23, 42, .42); text-decoration: none; }
+.ws-btn.primary:hover { transform: translateY(-2px); box-shadow: 0 10px 24px rgba(23, 23, 42, .13); text-decoration: none; }
 .ws-btn:not(.primary) { background: var(--surf); color: var(--ink); border-color: var(--line-2); box-shadow: var(--sh-sm); }
 .ws-btn:not(.primary):hover { transform: translateY(-2px); box-shadow: var(--sh); text-decoration: none; }
 .ws-meta { margin-top: 40px; display: flex; gap: 30px; flex-wrap: wrap; }
@@ -422,7 +422,7 @@
 .tp-dock__cat.is-open .tp-dock__cat-name, .tp-dock__cat.is-open .tp-dock__cat-count { color: #fff; opacity: 1; }
 /* 위로 열리는 도구 패널 */
 .tp-dock__panels { position: absolute; bottom: calc(100% + 10px); left: 0; right: 0; }
-.tp-dock__panel { background: rgba(255, 255, 255, .96); backdrop-filter: blur(20px) saturate(180%); -webkit-backdrop-filter: blur(20px) saturate(180%); border: 1px solid rgba(23, 23, 42, .08); border-radius: 18px; padding: 12px 14px 14px; box-shadow: 0 18px 50px rgba(23, 23, 42, .18); max-height: 46vh; overflow-y: auto; animation: dockPop .22s var(--ez-out) both; }
+.tp-dock__panel { background: rgba(255, 255, 255, .96); backdrop-filter: blur(20px) saturate(180%); -webkit-backdrop-filter: blur(20px) saturate(180%); border: 1px solid rgba(23, 23, 42, .08); border-radius: 18px; padding: 12px 14px 14px; box-shadow: 0 12px 30px rgba(23, 23, 42, .1); max-height: 46vh; overflow-y: auto; animation: dockPop .22s var(--ez-out) both; }
 .tp-dock__panel-head { font-size: 11.5px; font-weight: 700; color: var(--ink-faint); margin: 0 0 10px; text-transform: none; }
 .tp-dock__panel-head span { opacity: .7; }
 .tp-dock__grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(84px, 1fr)); gap: 5px; }
@@ -685,7 +685,7 @@ html.drawer-open .ws-drawer-handle { opacity: 0; pointer-events: none; transform
 @media (max-width: 760px) {
   .ws-drawer-handle { top: auto; bottom: 16px; right: 14px; transform: none;
     flex-direction: row; gap: 7px; padding: 11px 16px; border-radius: 999px;
-    box-shadow: 0 10px 26px rgba(23, 23, 42, .42); }
+    box-shadow: 0 6px 16px rgba(23, 23, 42, .12); }
   .ws-drawer-handle:hover { transform: none; }
   .ws-drawer-handle span { writing-mode: horizontal-tb; font-size: 13.5px; }
   html.drawer-open .ws-drawer-handle { transform: translateY(40px); }
@@ -860,9 +860,9 @@ html.drawer-open { overflow: hidden; }
     --bg: #0e1016; --surf: #171a21; --surf-2: #1e222b; --surf-3: #262b36;
     --line: #2a2f3a; --line-2: #363d4a;
     --accent-soft: #2a1618; --grad-soft: #2a1618;
-    --sh-sm: 0 2px 10px rgba(0, 0, 0, .5), 0 1px 3px rgba(0, 0, 0, .4);
-    --sh: 0 14px 36px rgba(0, 0, 0, .55);
-    --sh-lg: 0 30px 70px rgba(0, 0, 0, .65);
+    --sh-sm: 0 2px 8px rgba(0, 0, 0, .38), 0 1px 2px rgba(0, 0, 0, .3);
+    --sh: 0 10px 26px rgba(0, 0, 0, .42);
+    --sh-lg: 0 20px 48px rgba(0, 0, 0, .5);
   }
   .ws body, body.ws { background: var(--bg); }
   /* 유리(글래스) 헤더·독을 어둡게 */
@@ -958,7 +958,7 @@ html.drawer-open { overflow: hidden; }
 .home-pop__card { display: flex; align-items: center; gap: 14px; background: var(--surf); border: 1px solid var(--line-2); border-radius: 18px; padding: 17px 20px; color: var(--ink); text-decoration: none; box-shadow: var(--sh-sm); position: relative; overflow: hidden;
   transition: transform var(--d-hover) var(--ez-spring), box-shadow var(--d-hover) var(--ez-out), border-color var(--d-micro) var(--ez); }
 .home-pop__card::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 4px; background: var(--cat-color, var(--red)); }
-.home-pop__card:hover { transform: translateY(-4px); box-shadow: 0 18px 40px rgba(23, 23, 42, .13); border-color: var(--line); text-decoration: none; }
+.home-pop__card:hover { transform: translateY(-4px); box-shadow: 0 10px 22px rgba(23, 23, 42, .08); border-color: var(--line); text-decoration: none; }
 .home-pop__ico { flex: none; width: 46px; height: 46px; display: grid; place-items: center; }
 .home-pop__ico .ic-svg, .home-pop__ico > svg { width: 40px; height: 40px; }
 .home-pop__tx { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
