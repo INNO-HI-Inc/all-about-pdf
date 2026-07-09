@@ -187,6 +187,7 @@ function langPairs(lang) {
   add('전체 도구', C.allTools);
   add('>소개</a>', '>' + (C.about || 'About') + '</a>');
   add('>인기 도구</h5>', '>' + (C.footPopular || '') + '</h5>');
+  add('가장 많이 쓰는 도구', C.footPopular || 'Popular tools');
   add('>이미지 변환</h5>', '>' + (C.footImageConv || '') + '</h5>');
   add('>정보</h5>', '>' + (C.footInfo || '') + '</h5>');
   add('전체 37개 도구 →', C.footAllTools); add('모든 변환 →', C.footAllConv);
@@ -1475,6 +1476,19 @@ ${catRows}
               </div>
             </div>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="home-pop" aria-label="인기 도구">
+      <div class="ws-wrap">
+        <h2 class="home-pop__h">가장 많이 쓰는 도구</h2>
+        <div class="home-pop__grid">
+          ${['merge', 'compress', 'to-image', 'image-to-pdf', 'unlock', 'watermark'].map((s) => `<a class="home-pop__card" href="${s}/" data-cat="${(CATEGORIES.find((c) => c.slugs.includes(s)) || {}).id || ''}">
+            <span class="home-pop__ico">${ICONS_PDF[s]}</span>
+            <span class="home-pop__tx"><b>${esc(dispName(s))}</b><span>${esc(APP_SHORT[s] || '')}</span></span>
+            <span class="home-pop__arr" aria-hidden="true">→</span>
+          </a>`).join('\n          ')}
         </div>
       </div>
     </section>

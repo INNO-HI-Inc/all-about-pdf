@@ -513,3 +513,9 @@ a { transition: color .14s var(--ease); }
   /* 성공 체크·프리뷰 썸네일 테두리 */
   .result__preview-strip img { border-color: var(--line-strong); }
 }
+
+/* 결과 완료 링 펄스 애니메이션 */
+.result__check { position: relative; }
+.result__check::after { content: ""; position: absolute; inset: -6px; border-radius: 50%; border: 2px solid var(--success); opacity: 0; animation: aapRing .65s var(--ease) .12s both; pointer-events: none; }
+@keyframes aapRing { 0% { transform: scale(.55); opacity: .55; } 100% { transform: scale(1.45); opacity: 0; } }
+@media (prefers-reduced-motion: reduce) { .result__check::after { animation: none; } }
