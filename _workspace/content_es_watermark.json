@@ -1,0 +1,42 @@
+{
+  "title": "Marca de agua en PDF gratis (con tildes y ñ) | Everything PDF",
+  "metaDescription": "Marca de agua en PDF gratis. Añade textos en español como «CONFIDENCIAL» o «COPIA», o imágenes, en todas las páginas. Se procesa solo en tu navegador, sin subir nada, con total seguridad.",
+  "h1": "Marca de agua en PDF",
+  "subtitle": "Añade textos como «CONFIDENCIAL» o «PROHIBIDO COPIAR», o la imagen de un logo, en todas las páginas de una vez. Textos en español nítidos, con la posición, la inclinación y la intensidad que elijas. Gratis, sin instalación ni registro.",
+  "intro": "A veces necesitas marcar un documento de entrega o un material de difusión con indicaciones como «CONFIDENCIAL», «COPIA» o «BORRADOR». En las herramientas extranjeras, las marcas de agua con tildes y ñ se ven mal, o hay que subir el archivo a un servidor, algo poco recomendable para documentos sensibles. Esta herramienta renderiza el texto que escribas de forma nítida, incluso con tildes y ñ, y lo superpone en todas las páginas; también puedes usar como marca de agua la imagen de un logo o un sello. Puedes elegir ponerla grande en diagonal en el centro, o repetirla por toda la página en mosaico para dificultar la copia no autorizada. Ajustas la inclinación (0°, 45°, 90°), el tamaño y la intensidad (de tenue a intensa) y, sobre todo, como el archivo no se sube a ningún sitio y se procesa solo dentro de tu navegador, puedes marcar con tranquilidad documentos como contratos o propuestas.",
+  "steps": [
+    "① Arrastra el PDF que quieras marcar o súbelo con [Seleccionar archivo].",
+    "② Elige «texto» o «imagen» e indica las palabras (por ejemplo, CONFIDENCIAL) o la imagen del logo.",
+    "③ Elige la disposición (centro o mosaico), la inclinación, el color, el tamaño y la intensidad.",
+    "④ Pulsa [Añadir marca de agua] y descarga el PDF nuevo con la marca en todas las páginas."
+  ],
+  "security": "Todo el proceso de renderizar el texto, superponer la marca de agua y guardar ocurre únicamente dentro de tu navegador (tu dispositivo), y ni el PDF original ni la imagen de la marca se envían a ningún servidor. Por eso puedes marcar con total tranquilidad incluso documentos que da reparo subir a internet, como documentos confidenciales, contratos o propuestas internas.",
+  "faq": [
+    {
+      "q": "¿Se añaden bien las marcas de agua con tildes y ñ, sin verse mal?",
+      "a": "Sí. Renderiza de forma nítida textos en español como «CONFIDENCIAL» o «PROHIBIDO COPIAR». Como el texto se dibuja y se superpone en forma de imagen, se ve idéntico aunque el ordenador de quien lo reciba no tenga una tipografía concreta."
+    },
+    {
+      "q": "¿Puedo usar como marca de agua la imagen de un logo o un sello?",
+      "a": "Sí. Elige «imagen» y sube un archivo PNG o JPG. Si usas un PNG con fondo transparente (logo o sello), se superpone de forma natural, sin fondo. También puedes ajustar la intensidad y el tamaño."
+    },
+    {
+      "q": "¿Se añade a todas las páginas de una vez?",
+      "a": "Sí, se aplica igual a todas las páginas del documento. Puedes elegir entre ponerla grande una vez en el centro o repetirla por toda la página (mosaico) para dificultar la copia no autorizada."
+    },
+    {
+      "q": "¿La marca de agua estropea el texto o la calidad del original?",
+      "a": "No. Como se superpone una marca semitransparente sobre la página original, el texto y la calidad del cuerpo se mantienen intactos. Si pones la intensidad en «tenue», puedes dejar solo la marca sin tapar el contenido."
+    },
+    {
+      "q": "¿Es realmente gratis? ¿Se añade publicidad a la marca de agua?",
+      "a": "Es totalmente gratis y, aparte del texto o la imagen que tú añadas, no se incluye ningún anuncio ni distintivo del servicio. No hay límite de usos ni de tamaño, ni hace falta registrarse."
+    }
+  ],
+  "extraSections": [
+    {
+      "heading": "Cuándo te vendrá bien",
+      "body": "Va bien para poner «CONFIDENCIAL» en una propuesta que compartes fuera, para marcar «COPIA» o «BORRADOR» y distinguirla del original, o para superponer de forma sutil el logo de la empresa en un material de difusión. La disposición en mosaico (repetida) va bien para documentos internos en los que quieres disuadir de la captura o la redistribución, y la disposición central encaja con portadas o contratos, donde hay que reconocer el estado de un vistazo."
+    }
+  ]
+}

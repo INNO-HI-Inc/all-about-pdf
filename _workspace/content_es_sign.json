@@ -1,0 +1,42 @@
+{
+  "title": "Firmar PDF gratis | Everything PDF",
+  "metaDescription": "Añade firmas y sellos a tus PDF gratis. Dibuja tu firma o sube una imagen y colócala arrastrando. Los archivos se procesan solo en tu navegador, con total seguridad.",
+  "h1": "Firmar PDF",
+  "subtitle": "Crea tu firma dibujándola a mano, subiendo la imagen de un sello o una firma, o escribiendo tu nombre, y colócala arrastrándola donde quieras en la vista previa. Gratis, sin instalación ni registro.",
+  "intro": "Es la herramienta que usar cuando necesitas añadir una firma o un sello a un contrato, un consentimiento o cualquier formulario. Puedes dibujar tu firma directamente con el ratón o el dedo, subir la imagen de un sello o una firma que hayas escaneado, o escribir tu nombre y convertirlo en firma con una tipografía. La firma que crees la arrastras sobre la vista previa de la página hasta la posición que quieras y ajustas el tamaño tirando de las esquinas. También puedes poner varias firmas en varias páginas. Y lo más importante: como el archivo no se sube a ningún sitio y se procesa solo dentro de tu dispositivo, puedes firmar incluso contratos sensibles sin preocuparte por las subidas.",
+  "steps": [
+    "① Arrastra el PDF que quieras firmar o súbelo con [Seleccionar archivo].",
+    "② Crea tu firma eligiendo entre dibujar, imagen o escribir.",
+    "③ Pulsa [Colocar firma en la página] y, en la vista previa, arrástrala donde quieras y ajusta el tamaño con las esquinas.",
+    "④ Pulsa [Aplicar firma y descargar] para descargar el PDF nuevo con la firma incluida."
+  ],
+  "security": "Todo el proceso de crear la firma y combinarla con el PDF para guardarlo ocurre únicamente dentro de tu navegador (tu dispositivo), y ni el archivo original ni la imagen de la firma se envían a ningún servidor. Por eso, incluso documentos que da reparo subir a internet —como contratos o consentimientos— pueden firmarse sin preocuparte por las subidas.",
+  "faq": [
+    {
+      "q": "¿Es una firma electrónica con validez legal?",
+      "a": "Esta herramienta dibuja la imagen de la firma sobre el PDF, algo distinto de una firma electrónica (digital) basada en certificado. Va bien para usos cotidianos como consentimientos, justificantes o formularios, con el mismo valor que una firma manuscrita. Si se trata de un contrato en el que la validez legal es determinante, sigue el método de firma electrónica que exija la otra parte."
+    },
+    {
+      "q": "¿Cómo preparo la imagen de un sello?",
+      "a": "Estampa el sello en un papel blanco, fotografíalo o escanéalo, y súbelo como un PNG con fondo transparente tras borrar el fondo: así queda limpio. Si lo subes con el fondo blanco tal cual, entrará con todo el recuadro de fondo, así que, a ser posible, usa un PNG con fondo transparente."
+    },
+    {
+      "q": "¿Puedo firmar en varios sitios de un mismo documento?",
+      "a": "Sí. Tras crear la firma, puedes pulsar [Colocar firma en la página] varias veces para poner varias, y desplazarte por las páginas para firmar en cada una que quieras. Cada firma se puede ajustar por separado en posición y tamaño."
+    },
+    {
+      "q": "¿Qué hago si coloco la firma en una posición o un tamaño equivocados?",
+      "a": "Antes de descargar, puedes volver a arrastrar la firma en la vista previa o cambiar su tamaño tirando de las esquinas, y eliminarla con el botón ✕ que aparece encima. Como el original se mantiene intacto y solo se guarda el resultado en un archivo nuevo, ajústala con total libertad hasta que te convenza."
+    },
+    {
+      "q": "¿Es realmente gratis? ¿Hay marca de agua o límite de usos?",
+      "a": "Es totalmente gratis y no añade marca de agua. No hay límite de usos ni de tamaño de archivo, ni hace falta registrarse. Añade firmas a tus PDF con total libertad siempre que lo necesites."
+    }
+  ],
+  "extraSections": [
+    {
+      "heading": "Cuándo te vendrá bien",
+      "body": "Va bien para firmar y responder al momento un contrato o un consentimiento recibido por correo, para saltarte el proceso de imprimir → firmar → volver a escanear, o cuando necesitas estampar de forma limpia el sello o el cuño de tu empresa en un documento. Puedes terminar la firma directamente en pantalla sin impresora ni escáner y, como el archivo no se sube al exterior, puedes tramitar incluso documentos sensibles con total tranquilidad."
+    }
+  ]
+}

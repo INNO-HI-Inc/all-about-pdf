@@ -1,0 +1,42 @@
+{
+  "title": "Convertir SVG a PNG gratis | Everything PDF",
+  "metaDescription": "Convierte SVG a PNG gratis. Se procesa de forma segura en tu navegador, sin subir nada, y guarda un PNG de alta calidad con fondo transparente subiendo la escala.",
+  "h1": "Convertir SVG a PNG",
+  "subtitle": "Gratis, sin instalar nada, convierte tus SVG vectoriales en nítidas imágenes PNG.",
+  "intro": "Convierte tus archivos vectoriales SVG —como logos o iconos— en imágenes PNG para subirlas al momento al blog, a una presentación o a WhatsApp. Si subes la escala, sale nítido y sin pixelarse, y puedes guardarlo con el fondo transparente tal cual o eligiendo fondo blanco. Los archivos no se suben a ningún servidor: se procesan solo en tu navegador (tu dispositivo), así que úsalo con total tranquilidad.",
+  "steps": [
+    "① Arrastra o elige el archivo SVG que quieras convertir. Puedes hacerlo con varios a la vez.",
+    "② Define la escala de salida (de 1x a 4x). Cuanto mayor, más nítido y grande será el PNG.",
+    "③ Elige el fondo, transparente o blanco.",
+    "④ Pulsa el botón de conversión para descargar el PNG. Si son varios, se agrupan en un ZIP."
+  ],
+  "security": "Todas las conversiones ocurren dentro de tu navegador (tu dispositivo) y, al terminar, desaparecen en cuanto cierras la pantalla. Ningún archivo se envía a ningún servidor, así que puedes convertir con tranquilidad incluso SVG sensibles, como el logo de una empresa o un diseño inédito.",
+  "faq": [
+    {
+      "q": "¿Por qué convertir SVG a PNG?",
+      "a": "El SVG puede no verse en sitios que no admiten vectores, como WhatsApp, los blogs o algunos editores de documentos. Al pasarlo a PNG, puedes pegarlo como una imagen en cualquier parte y, además, puedes conservar el fondo transparente tal cual."
+    },
+    {
+      "q": "¿No se pierde calidad?",
+      "a": "Como el SVG es vectorial, no se pixela por mucho que subas la escala. Si la subes a 2x-4x, se genera un PNG nítido incluso para pantallas grandes o para imprimir. Si vas a usarlo en pequeño, con 1x-2x es suficiente."
+    },
+    {
+      "q": "¿Se guarda con fondo transparente?",
+      "a": "Sí. Si dejas el fondo en «transparente», sale un PNG que conserva tal cual las zonas transparentes del SVG. Si necesitas fondo blanco, elige «blanco»."
+    },
+    {
+      "q": "¿Puedo convertir varios a la vez?",
+      "a": "Sí, puedes arrastrar varios SVG y convertirlos de una vez. Si es uno solo, se descarga directamente; si son varios, se reciben agrupados en un archivo ZIP."
+    },
+    {
+      "q": "¿Hay SVG que no se pueden convertir?",
+      "a": "Los SVG que cargan tipografías externas o imágenes de internet pueden mostrar esa parte vacía, debido a la política de no enviar los archivos al exterior. Si usas un SVG con las tipografías ya convertidas en contornos (path), saldrá idéntico."
+    }
+  ],
+  "extraSections": [
+    {
+      "heading": "Cuándo te vendrá bien",
+      "body": "Va bien para pegar en una presentación el logo SVG exportado desde una herramienta de diseño (Figma, Illustrator), para subir un icono a WhatsApp o Notion, o para sacar un vector web como un PNG de alta resolución para imprimir. Con solo subir la escala, del mismo SVG puedes crear desde una miniatura pequeña hasta un banner grande sin que se pixele."
+    }
+  ]
+}

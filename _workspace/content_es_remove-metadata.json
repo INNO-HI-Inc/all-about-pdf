@@ -1,0 +1,42 @@
+{
+  "title": "Eliminar datos personales de PDF gratis | Everything PDF",
+  "metaDescription": "Elimina los datos personales de tus PDF (metadatos como autor o título) gratis. Se procesa solo en tu dispositivo y no se sube a ningún servidor.",
+  "h1": "Eliminar datos personales de PDF",
+  "subtitle": "Vacía propiedades ocultas del documento, como el nombre del autor o el programa con el que se creó. Gratis, sin instalar nada y directamente en tu dispositivo.",
+  "intro": "Además del contenido, los PDF ocultan propiedades del documento (metadatos) como el título, el autor, el programa con el que se crearon o las palabras clave. Al enviar un archivo a una empresa o a un destinatario, el nombre del autor y otros datos pueden quedar a la vista; esta herramienta vacía todas esas propiedades y borra el rastro de datos personales. No toca el contenido, solo elimina las propiedades, y todo el procesamiento ocurre únicamente dentro de tu navegador (tu dispositivo), sin que el archivo se envíe a ningún servidor.",
+  "steps": [
+    "① Sube el archivo PDF cuyos datos personales quieras borrar.",
+    "② Comprueba las propiedades que contiene: título, autor, programa de creación, palabras clave, etc.",
+    "③ Pulsa el botón «Eliminar metadatos» para vaciar todas las propiedades.",
+    "④ Guarda en tu dispositivo el PDF con el contenido intacto y las propiedades vaciadas."
+  ],
+  "security": "Todo el proceso de borrado de las propiedades ocurre únicamente dentro de tu navegador, es decir, en tu dispositivo. El archivo no se sube a ningún servidor y no se modifica ni se guarda su contenido. Por eso, documentos sensibles con el nombre del autor —como un currículum, un contrato o un trámite— no salen al exterior. A diferencia de las herramientas extranjeras que suben el archivo y lo borran pasado un tiempo, aquí directamente no se sube nada.",
+  "faq": [
+    {
+      "q": "¿Qué datos personales se ocultan en un PDF?",
+      "a": "Aunque no se vean en el contenido, en las propiedades del documento (metadatos) pueden quedar datos como el título, el autor, el programa con el que se creó o las palabras clave. En especial, el nombre del autor suele añadirse automáticamente al guardar como PDF desde Word o un procesador de textos, así que, si lo entregas sin darte cuenta, tu nombre puede quedar a la vista."
+    },
+    {
+      "q": "¿Cambia también el contenido?",
+      "a": "No. Deja tal cual el texto, las imágenes y las páginas del documento, y solo vacía las propiedades (metadatos). Lo que se ve en pantalla es idéntico antes y después: solo desaparece la información oculta, como el autor o el título."
+    },
+    {
+      "q": "¿De qué forma se borran los metadatos?",
+      "a": "Cambia por un valor vacío todos los campos del diccionario de información del documento (Info) que contiene el PDF: título, autor, programa de creación, palabras clave, etc. Como no toca la estructura del contenido, el archivo no se corrompe y se abre con normalidad."
+    },
+    {
+      "q": "¿Puedo comprobar que se ha borrado correctamente?",
+      "a": "Si subes el archivo guardado a la herramienta «Ver información de un PDF», podrás comprobar en una tabla si los metadatos como el título o el autor están vacíos. Revisarlo una vez más antes de entregar te permite enviarlo con tranquilidad."
+    },
+    {
+      "q": "¿Se sube el archivo a un servidor? ¿Es gratis?",
+      "a": "El archivo no se sube a ningún servidor: se procesa solo dentro de tu dispositivo. Puedes usarla gratis, sin registro ni instalación, y no hay marca de agua ni límite de número de archivos o de tamaño."
+    }
+  ],
+  "extraSections": [
+    {
+      "heading": "Cuándo te vendrá bien",
+      "body": "Va bien cuando quieres borrar el nombre del autor o los datos del programa antes de entregar un currículum o una carta de presentación a una empresa. También es útil para depurar la información interna que queda en las propiedades al enviar fuera un contrato o un informe que has creado, o para vaciar el rastro del autor original antes de redistribuir un PDF que has recibido. Úsala cuando quieras borrar de forma limpia solo los datos personales ocultos, dejando intacto el contenido."
+    }
+  ]
+}

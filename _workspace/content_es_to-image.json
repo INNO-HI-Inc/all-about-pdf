@@ -1,0 +1,43 @@
+{
+  "title": "Convertir PDF a JPG gratis | Everything PDF",
+  "metaDescription": "Convierte PDF a JPG gratis al instante. Se procesa en tu navegador sin subir el archivo, con total seguridad. Cada página se guarda como imagen.",
+  "h1": "Convertir PDF a JPG",
+  "subtitle": "Gratis, sin instalar nada ni registrarte, guárdalo como imagen al instante.",
+  "intro": "Convierte tus PDF en fotos JPG o PNG para subirlas al momento a WhatsApp o al blog. También va bien para guardar como imagen una diapositiva de una presentación. Los archivos se procesan solo en tu dispositivo, así que úsalo con total tranquilidad.",
+  "steps": [
+    "① Sube el archivo PDF que quieras convertir.",
+    "② Elige el formato, JPG o PNG.",
+    "③ Define la escala de calidad (de 1x a 3x).",
+    "④ Selecciona todas las páginas o las que quieras.",
+    "⑤ Pulsa el botón de conversión y descarga las imágenes. Si son varias, se reciben en un ZIP."
+  ],
+  "security": "Todas las conversiones ocurren dentro de tu navegador (tu dispositivo) y, al terminar, desaparecen en cuanto cierras la pantalla. Por eso puedes convertir en imagen con tranquilidad incluso documentos sensibles, como contratos o trámites.",
+  "faq": [
+    {
+      "q": "¿También convierte a PNG?",
+      "a": "Sí, basta con elegir PNG en el formato. Puedes seleccionar el formato que quieras entre JPG y PNG para la conversión. Se guarda en un solo formato cada vez."
+    },
+    {
+      "q": "¿Se conserva la calidad?",
+      "a": "Si subes la escala de calidad, sale más nítido. 1x es la calidad básica; subiéndola a 2x-3x, el texto y los gráficos se ven más definidos. Para capturar o imprimir una presentación, prueba a subir la escala."
+    },
+    {
+      "q": "¿Se guarda una imagen por cada página?",
+      "a": "Sí, cada página se convierte en una imagen. Si son varias, se reciben agrupadas en un archivo ZIP; si es una sola, se descarga directamente. También puedes elegir solo páginas concretas para convertir."
+    },
+    {
+      "q": "¿Cuál elijo, JPG o PNG?",
+      "a": "Si necesitas fondo transparente o el documento tiene mucho texto, el PNG queda más limpio. Para reducir el tamaño y subirlo ligero a WhatsApp o al blog, el JPG va mejor. Para compartir fotos, normalmente con JPG basta."
+    },
+    {
+      "q": "¿Hay límite de número de archivos o de tamaño?",
+      "a": "No hay límite de número ni de tamaño. Tampoco se añade marca de agua. Puedes convertir en imagen incluso informes con muchas páginas tal cual."
+    }
+  ],
+  "extraSections": [
+    {
+      "heading": "Cuándo te vendrá bien",
+      "body": "Va bien para llevar una página de un trabajo o un informe al blog, para capturar como foto un gráfico de una presentación, o para enviar por WhatsApp una hoja concreta de una solicitud o un contrato. Puedes convertir directamente desde el móvil y compartir al momento, allí donde estés."
+    }
+  ]
+}

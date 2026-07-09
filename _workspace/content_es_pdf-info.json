@@ -1,0 +1,42 @@
+{
+  "title": "Ver información de un PDF gratis | Everything PDF",
+  "metaDescription": "Consulta la información de tus PDF gratis: número de páginas, tamaño, dimensiones, metadatos y si están bloqueados, todo en una tabla. Los archivos se procesan solo en tu dispositivo, sin subirlos.",
+  "h1": "Ver información de un PDF",
+  "subtitle": "Número de páginas, tamaño del archivo, dimensiones e incluso título y autor de un vistazo. Consúltalo gratis y sin instalar nada.",
+  "intro": "Es una herramienta que muestra en una tabla cuántas páginas tiene el PDF que subes, cuánto ocupa, sus dimensiones y datos como el título o el autor. También te indica si tiene contraseña. No modifica ni descarga el archivo: solo lee y muestra la información, y todo el procesamiento ocurre únicamente dentro de tu navegador, sin enviarse a ningún servidor.",
+  "steps": [
+    "① Sube el archivo PDF cuya información quieras consultar.",
+    "② El número de páginas y el tamaño del archivo aparecen en una tabla.",
+    "③ Consulta las dimensiones de página (ancho x alto) y metadatos como el título o el autor.",
+    "④ Revisa incluso si tiene contraseña, todo en una sola pantalla."
+  ],
+  "security": "Todo el proceso de lectura de la información ocurre únicamente dentro de tu navegador, es decir, en tu dispositivo. El archivo no se sube a ningún servidor, no se modifica ni se guarda su contenido: solo se muestra la información en pantalla. Así, puedes consultar los datos de PDF sensibles —como contratos o trámites— sin que se filtren al exterior, con total tranquilidad.",
+  "faq": [
+    {
+      "q": "¿Cómo compruebo cuántas páginas tiene un PDF?",
+      "a": "Al subir el archivo, el número de páginas aparece justo en la parte superior de la tabla. Puedes ver el total de páginas de un informe voluminoso o un escaneo de una sola vez, sin necesidad de abrirlo. Es práctico para hacerte una idea de la extensión antes de imprimir o entregar."
+    },
+    {
+      "q": "¿También puedo saber las dimensiones o el tamaño?",
+      "a": "Sí. Junto con el tamaño del archivo, mostramos las dimensiones de página en ancho x alto. Podrás comprobar si es A4 u otro formato, y si está en horizontal o vertical, lo que ayuda a configurar la impresión o ajustar el formato."
+    },
+    {
+      "q": "¿Dónde veo metadatos como el título o el autor?",
+      "a": "Mostramos en una tabla los metadatos que contiene el PDF, como el título o el autor. Ahora bien, según el programa con el que se creó, esta información puede estar vacía; en ese caso, el campo correspondiente no se muestra o aparece con un valor vacío."
+    },
+    {
+      "q": "¿Puedo saber si un PDF tiene contraseña?",
+      "a": "Sí. Indicamos también si tiene contraseña. Eso sí, esta herramienta solo lee y muestra la información, no desbloquea nada. Si quieres quitar una restricción con una contraseña que conoces, usa la herramienta «Desbloquear PDF»."
+    },
+    {
+      "q": "¿Se suben los archivos a un servidor? ¿Es gratis?",
+      "a": "Los archivos no se suben a ningún servidor: la información se lee solo dentro de tu dispositivo. Puedes usarla gratis, sin registro ni instalación, y no hay marca de agua ni límite de número de archivos o de tamaño."
+    }
+  ],
+  "extraSections": [
+    {
+      "heading": "Cuándo te resultará cómoda",
+      "body": "Es útil para hacerte una idea de cuántas páginas tiene un PDF que has recibido por correo o de cuánto papel gastarás al imprimirlo. También va bien para comprobar si cumple el tamaño o el formato (por ejemplo, A4) que exige el destinatario, o simplemente para averiguar de entrada si un documento recibido tiene contraseña. Úsala cuando quieras consultar rápidamente la información sin abrir ni modificar el archivo."
+    }
+  ]
+}

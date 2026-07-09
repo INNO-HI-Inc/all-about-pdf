@@ -1,0 +1,43 @@
+{
+  "title": "Eliminar páginas en blanco de PDF gratis | Everything PDF",
+  "metaDescription": "Elimina páginas en blanco de tus PDF gratis. Detecta automáticamente las páginas vacías coladas en un escaneo y las quita, procesando todo solo en tu navegador, con total seguridad.",
+  "h1": "Eliminar páginas en blanco de PDF",
+  "subtitle": "Detecta automáticamente las páginas en blanco coladas en un escaneo, las quita y las guarda en un PDF nuevo y limpio. Gratis, sin instalación ni registro.",
+  "intro": "Al escanear a doble cara, el reverso sin texto suele colarse como una página completamente en blanco. Esta herramienta revisa cada página una a una, selecciona solo las que están casi blancas y deja tal cual las que tienen aunque sea algo de texto o imagen. Se guarda un PDF nuevo sin las páginas vacías, así que va de maravilla para poner en orden de una vez los reversos en blanco de un escaneo a doble cara. Todo el procesamiento ocurre únicamente dentro de tu navegador (tu dispositivo), sin subir el archivo a ningún servidor, de modo que puedes retocar incluso documentos sensibles con total tranquilidad.",
+  "steps": [
+    "① Arrastra el PDF que quieras depurar o súbelo con [Seleccionar archivo].",
+    "② Se revisa cada página y se detectan automáticamente las que están casi en blanco.",
+    "③ Comprueba en la vista previa las páginas marcadas como en blanco.",
+    "④ Pulsa [Eliminar páginas en blanco] para crear un PDF nuevo.",
+    "⑤ Descarga el PDF ya sin las páginas en blanco."
+  ],
+  "security": "Todo el proceso de detectar y eliminar las páginas en blanco ocurre únicamente dentro de tu navegador, es decir, en tu dispositivo, y ningún archivo se envía a ningún servidor. Por eso puedes usarla sin preocuparte por las subidas incluso al depurar los reversos en blanco de escaneos sensibles, como contratos, informes médicos o trámites.",
+  "faq": [
+    {
+      "q": "¿Cómo detecta automáticamente las páginas en blanco?",
+      "a": "Revisa cada página una a una y selecciona como página en blanco las que están casi blancas. Las páginas que tienen aunque sea algo de texto o imagen se consideran con contenido y se mantienen tal cual. No necesitas introducir los números uno a uno: encuentra por sí sola las páginas vacías."
+    },
+    {
+      "q": "¿Qué significa que va bien para depurar los reversos en blanco de un escaneo a doble cara?",
+      "a": "Al escanear a doble cara, es habitual que el reverso sin impresión se cuele como una página completamente en blanco. Como esta herramienta busca y quita esas páginas casi blancas, puedes poner en orden de una vez un escaneo con varios reversos en blanco mezclados."
+    },
+    {
+      "q": "¿Se borra también una página con un texto muy tenue como si estuviera en blanco?",
+      "a": "Si el contenido es muy tenue, puede parecer una página casi blanca y clasificarse como en blanco. Por eso te recomendamos comprobar antes en la vista previa las páginas marcadas como en blanco. Si se ha colado alguna que quieres conservar, puedes revisarla y decidir antes de continuar."
+    },
+    {
+      "q": "¿Se conserva intacto el archivo original?",
+      "a": "Sí, no se toca el original: solo se guarda en un PDF nuevo el resultado sin las páginas en blanco. Puedes comparar el original con el resultado antes de decidir, así que, si se elimina algo por error, puedes volver a intentarlo con el original."
+    },
+    {
+      "q": "¿Es realmente gratis? ¿Hay límite de número de archivos o de tamaño?",
+      "a": "Es totalmente gratis y no añade marca de agua. Tampoco hace falta registrarse ni instalar nada. Como todo el procesamiento ocurre en tu dispositivo, depura las páginas en blanco con total libertad siempre que lo necesites."
+    }
+  ],
+  "extraSections": [
+    {
+      "heading": "Cuándo te vendrá bien",
+      "body": "Va bien cuando un escaneo a doble cara tiene varios reversos en blanco, cuando al escanear varios documentos de golpe se han colado páginas vacías por el medio, o cuando quieres quitar de una vez las hojas en blanco antes de entregar o imprimir. Como selecciona automáticamente las páginas casi blancas sin que tengas que buscar e introducir los números uno a uno, la limpieza es rápida. Eso sí, un contenido muy tenue puede tomarse por una página en blanco, así que conviene revisar el resultado antes de descargar."
+    }
+  ]
+}

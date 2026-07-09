@@ -1,0 +1,42 @@
+{
+  "title": "Convertir WEBP a JPG gratis | Everything PDF",
+  "metaDescription": "Convierte WEBP a JPG gratis. Se procesa en tu navegador sin subir archivos, con total seguridad. Elige la calidad y convierte varios a la vez en un ZIP.",
+  "h1": "Convertir WEBP a JPG",
+  "subtitle": "Gratis, sin instalar nada ni registrarte, convierte tus WEBP en JPG, compatibles en todas partes.",
+  "intro": "Cuando una imagen WEBP que has recibido de la web no se abre bien o no se puede adjuntar, conviértela a JPG, un formato que funciona en cualquier sitio. Podrás subirla al momento a WhatsApp, al blog, a un documento o al correo. Los archivos no se suben a ningún servidor: se convierten solo dentro de tu navegador (tu dispositivo), así que úsalo con total tranquilidad.",
+  "steps": [
+    "① Arrastra o elige el archivo WEBP que quieras convertir. Puedes hacerlo con varios a la vez.",
+    "② Ajusta la calidad del JPG. Si la subes, sale más nítido; si la bajas, pesa menos.",
+    "③ Al pulsar el botón de conversión, se vuelve a dibujar en un lienzo y se pasa a JPG.",
+    "④ Descarga el JPG convertido. Si son varios, se agrupan en un ZIP."
+  ],
+  "security": "Todas las conversiones ocurren dentro de tu navegador (tu dispositivo) y, al terminar, desaparecen en cuanto cierras la pantalla. Ningún archivo se envía a ningún servidor, así que puedes convertir con tranquilidad incluso WEBP sensibles, como capturas de pantalla o imágenes inéditas.",
+  "faq": [
+    {
+      "q": "¿Por qué convertir WEBP a JPG?",
+      "a": "El WEBP se usa mucho en la web por su poco peso, pero a veces no se abre o no se puede adjuntar en algunas apps de mensajería, editores de documentos o programas antiguos. Al pasarlo a JPG, se abre y se sube como una foto en prácticamente cualquier sitio."
+    },
+    {
+      "q": "¿Cómo se trata un WEBP transparente?",
+      "a": "El JPG no admite transparencia, así que las zonas transparentes se guardan rellenas de blanco. Si necesitas conservar el fondo transparente tal cual, es mejor usar un formato que lo mantenga, como el PNG, en lugar del JPG."
+    },
+    {
+      "q": "¿Baja mucho la calidad?",
+      "a": "Al pasar a JPG puedes elegir tú mismo la calidad. Si la dejas alta, sale nítido y cercano al original; si la bajas, pesa menos. Para WhatsApp o el blog va bien un punto intermedio, y para imprimir o archivar, mejor dejarla alta."
+    },
+    {
+      "q": "¿Puedo convertir varios a la vez?",
+      "a": "Sí, puedes arrastrar varios WEBP y convertirlos de una vez. Si es uno solo, se descarga directamente; si son varios, se reciben agrupados en un archivo ZIP."
+    },
+    {
+      "q": "¿Hay límite de tamaño o de número?",
+      "a": "No hay límite de número ni de tamaño, y tampoco se añade marca de agua. Ahora bien, como todas las conversiones ocurren en tu dispositivo, las imágenes muy numerosas o muy grandes pueden tardar algo según la potencia del equipo."
+    }
+  ],
+  "extraSections": [
+    {
+      "heading": "Cuándo te vendrá bien",
+      "body": "Cuando una foto WEBP que has guardado de internet no se pega en WhatsApp, en Word o en tu procesador de textos, cuando el correo bloquea el adjunto, o cuando no se abre en una app de fotos antigua, pasarla a JPG lo resuelve de forma limpia. También es cómodo reunir varias, convertirlas de una vez y recibirlas en un ZIP para tenerlo todo ordenado."
+    }
+  ]
+}

@@ -1,0 +1,43 @@
+{
+  "title": "Convertir PNG a WEBP gratis | Everything PDF",
+  "metaDescription": "Convierte PNG a WEBP gratis. Sin subir nada a un servidor: se procesa en tu navegador, con total seguridad, y con un tamaño menor.",
+  "h1": "Convertir PNG a WEBP",
+  "subtitle": "Gratis, sin instalar nada, convierte tus pesados PNG en ligeros WEBP.",
+  "intro": "Cuando un PNG de tu blog o tu web pesa tanto que carga lento, conviértelo a WEBP para reducir mucho su tamaño. El aspecto que se ve en pantalla se mantiene igual y solo baja el peso del archivo, así que la página carga más rápido; además, el fondo transparente del PNG se conserva. Los archivos no se suben a ningún servidor: se procesan solo en tu navegador (tu dispositivo), así que úsalo con total tranquilidad.",
+  "steps": [
+    "① Arrastra o elige el archivo PNG que quieras convertir. Puedes hacerlo con varios a la vez.",
+    "② Ajusta el nivel de calidad (tamaño). Cuanto más bajo, menor será el peso.",
+    "③ Pulsa el botón de conversión.",
+    "④ Compara el tamaño reducido con el del original.",
+    "⑤ Descarga el WEBP. Si son varias imágenes, se agrupan en un ZIP."
+  ],
+  "security": "Todas las conversiones ocurren dentro de tu navegador (tu dispositivo) y ningún archivo se envía a ningún servidor. Por eso, imágenes sensibles como diseños inéditos o fotos de producto no salen al exterior. A diferencia de las herramientas extranjeras que suben el archivo y lo borran pasado un tiempo, aquí directamente no se sube nada.",
+  "faq": [
+    {
+      "q": "¿Qué gano al convertir a WEBP?",
+      "a": "WEBP es un formato de imagen que guarda la misma imagen con menos peso. Al pasar un PNG a WEBP, el aspecto se mantiene casi igual pero el archivo queda más ligero, así que tu blog o tu web cargan más rápido y ahorras espacio de almacenamiento."
+    },
+    {
+      "q": "¿Se conserva el fondo transparente?",
+      "a": "Sí. Las zonas transparentes del PNG se conservan igual al pasar a WEBP. Convierte con tranquilidad incluso imágenes con el fondo vacío, como logos o iconos."
+    },
+    {
+      "q": "¿No baja mucho la calidad?",
+      "a": "Si dejas la calidad alta, se reduce el peso apenas de forma perceptible a simple vista. Si quieres reducir aún más el tamaño, baja la calidad. Compara con el original tras la conversión y, si no te convence, cambia la calidad y vuelve a intentarlo."
+    },
+    {
+      "q": "¿Puedo convertir varias imágenes a la vez?",
+      "a": "Sí, puedes arrastrar varios PNG y convertirlos de una vez. Si es una sola imagen, se descarga directamente; si son varias, se reciben agrupadas en un archivo ZIP."
+    },
+    {
+      "q": "¿Se ve bien el WEBP en cualquier sitio?",
+      "a": "Se ve bien en los navegadores actuales y en la mayoría de blogs y webs. Ahora bien, algunos programas antiguos o editores anticuados pueden no abrirlo, así que, si vas a subirlo a un sitio así, guarda también el PNG original."
+    }
+  ],
+  "extraSections": [
+    {
+      "heading": "Cuándo te vendrá bien",
+      "body": "Va genial cuando las fotos de tu blog o tu tienda online pesan tanto que la página carga lenta, cuando necesitas reducir de golpe el tamaño de las imágenes de tu web, o cuando quieres aligerar un logo con fondo transparente para subirlo a la web. Si arrastras varios PNG y los conviertes de una vez a WEBP, reduces mucho el tamaño total manteniendo el mismo aspecto."
+    }
+  ]
+}

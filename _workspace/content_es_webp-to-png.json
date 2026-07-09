@@ -1,0 +1,42 @@
+{
+  "title": "Convertir WEBP a PNG gratis | Everything PDF",
+  "metaDescription": "Convierte WEBP a PNG gratis. De forma segura en tu navegador, sin subir nada, y conservando la transparencia sin pérdidas.",
+  "h1": "Convertir WEBP a PNG",
+  "subtitle": "Gratis, sin instalar nada ni registrarte, convierte tus WEBP web en PNG que se abren en cualquier sitio.",
+  "intro": "Cuando una imagen WEBP que has guardado de la web no se abre en algunos programas o en WhatsApp, al pasarla a PNG se abre al momento en cualquier parte. Se vuelve a dibujar en un lienzo y se convierte sin pérdidas, conservando el fondo transparente tal cual. Los archivos no se suben a ningún servidor: se procesan solo en tu navegador (tu dispositivo), así que úsalo con total tranquilidad.",
+  "steps": [
+    "① Arrastra o elige el archivo WEBP que quieras convertir. Puedes hacerlo con varios a la vez.",
+    "② Al pulsar el botón de conversión, se vuelve a dibujar en un lienzo y se pasa a PNG.",
+    "③ El fondo transparente se conserva tal cual al guardar.",
+    "④ Descarga el PNG creado. Si son varios, se agrupan en un ZIP."
+  ],
+  "security": "Todas las conversiones ocurren dentro de tu navegador (tu dispositivo) y, al terminar, desaparecen en cuanto cierras la pantalla. Ningún archivo se envía a ningún servidor, así que puedes convertir con tranquilidad incluso imágenes sensibles, como diseños inéditos o fotos personales.",
+  "faq": [
+    {
+      "q": "¿Por qué convertir WEBP a PNG?",
+      "a": "El WEBP es un formato que se usa para reducir el peso en la web, así que puede no abrirse en programas antiguos o en algunos editores de documentos o apps de mensajería. Al pasarlo a PNG, puedes abrirlo y pegarlo como una imagen al momento en cualquier sitio."
+    },
+    {
+      "q": "¿No baja la calidad?",
+      "a": "El PNG es un formato sin pérdidas, así que, al volver a dibujar el WEBP, se guarda tal cual se ve, sin pérdida de calidad. Ahora bien, si el WEBP original se guardó con compresión con pérdidas, la información perdida no se recupera."
+    },
+    {
+      "q": "¿Se conserva el fondo transparente?",
+      "a": "Sí. Un WEBP con zonas transparentes se convierte en un PNG que conserva esa transparencia tal cual. El fondo transparente se mantiene sin ningún ajuste adicional."
+    },
+    {
+      "q": "¿Puedo convertir varios a la vez?",
+      "a": "Sí, puedes arrastrar varios WEBP y convertirlos de una vez. Si es uno solo, se descarga directamente; si son varios, se reciben agrupados en un archivo ZIP."
+    },
+    {
+      "q": "¿Funciona con WEBP animados?",
+      "a": "De un WEBP animado solo se guarda el primer fotograma como PNG. Como el PNG es un formato de imagen fija de un solo cuadro, no puede contener toda la animación."
+    }
+  ],
+  "extraSections": [
+    {
+      "heading": "Cuándo te vendrá bien",
+      "body": "Va bien cuando una imagen WEBP que has guardado de una web no se abre en WhatsApp, Notion o una presentación, cuando necesitas meterla en un programa de edición antiguo, o cuando tienes que recibir un logo con fondo transparente como PNG. Si arrastras varias de una vez y las recibes en un ZIP, es fácil tenerlo todo ordenado."
+    }
+  ]
+}

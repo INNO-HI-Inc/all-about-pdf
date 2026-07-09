@@ -1,0 +1,42 @@
+{
+  "title": "Convertir PNG a JPG gratis | Everything PDF",
+  "metaDescription": "Convierte PNG a JPG gratis. Se procesa en tu navegador sin subir nada, con total seguridad, y además reduce el tamaño.",
+  "h1": "Convertir PNG a JPG",
+  "subtitle": "Gratis, sin instalar nada ni registrarte, convierte tus PNG en JPG más ligeros directamente en tu dispositivo.",
+  "intro": "Convierte esas fotos PNG que tanto pesan en JPG para subirlas ligeras al correo, a WhatsApp o al blog. Como la imagen se vuelve a dibujar en un lienzo y se guarda como JPG, el tamaño se reduce notablemente y además puedes elegir la calidad. Los archivos no se suben a ningún servidor: se procesan solo en tu navegador (tu dispositivo).",
+  "steps": [
+    "① Arrastra o elige el archivo PNG que quieras convertir. Puedes hacerlo con varios a la vez.",
+    "② Ajusta la calidad. Cuanto más baja, menor será el tamaño; cuanto más alta, más nítida se verá.",
+    "③ Pulsa el botón de conversión. El fondo transparente se rellena de blanco.",
+    "④ Descarga el JPG. Si es una sola imagen, directamente; si son varias, se agrupan en un ZIP."
+  ],
+  "security": "Todas las conversiones ocurren dentro de tu navegador (tu dispositivo) y los archivos no se suben a ningún servidor. Por eso, archivos sensibles como la foto de un documento de identidad o imágenes inéditas no salen al exterior. A diferencia de las herramientas extranjeras que suben el archivo y lo borran pasado un tiempo, aquí directamente no se sube nada.",
+  "faq": [
+    {
+      "q": "¿Por qué convertir PNG a JPG?",
+      "a": "Los PNG con muchas fotos tienden a pesar mucho. Al pasarlos a JPG, puedes obtener la misma imagen mucho más ligera, lo que ayuda cuando superas el límite de tamaño de un correo o cuando subir a WhatsApp o al blog va lento. El aspecto que se ve en pantalla se mantiene prácticamente igual."
+    },
+    {
+      "q": "¿Qué pasa con el fondo transparente?",
+      "a": "El JPG no admite transparencia, así que las zonas transparentes del PNG se rellenan de blanco. Si necesitas conservar el fondo transparente, mantén el PNG tal cual o usa la conversión a JPG solo en imágenes a las que les venga bien un fondo blanco."
+    },
+    {
+      "q": "¿Cómo elijo la calidad?",
+      "a": "Para reducir el tamaño al máximo, baja la calidad; para conservar más nitidez, súbela. Por lo general, un punto intermedio va bien. Si superas el límite de tamaño de un correo o una subida, empieza probando con una calidad baja y, si el resultado sale borroso, súbela un escalón."
+    },
+    {
+      "q": "¿Puedo convertir varias imágenes a la vez?",
+      "a": "Sí, puedes arrastrar varios PNG y convertirlos de una vez. Si es una sola imagen, se descarga directamente; si son varias, se reciben agrupadas en un archivo ZIP. No hace falta guardarlas una a una."
+    },
+    {
+      "q": "¿Hace falta registrarse o instalar algún programa?",
+      "a": "No. Puedes usarla directamente, sin registro ni instalación. Es totalmente gratis, no añade marca de agua y no hay límite de número de archivos."
+    }
+  ],
+  "extraSections": [
+    {
+      "heading": "Cuándo te vendrá bien",
+      "body": "Va genial para enviar por correo o WhatsApp esos PNG tan pesados que generan el móvil o las capturas de pantalla, para subir ligera una entrada de blog con muchas fotos, o cuando superas el límite de tamaño de una web de entregas. Eso sí, las imágenes que necesitan sí o sí un fondo transparente —como logos o iconos— se rellenarán de blanco, así que en esos casos es mejor usar el PNG tal cual."
+    }
+  ]
+}

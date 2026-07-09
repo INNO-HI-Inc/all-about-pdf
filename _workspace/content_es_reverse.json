@@ -1,0 +1,42 @@
+{
+  "title": "Invertir páginas de PDF gratis | Everything PDF",
+  "metaDescription": "Invierte el orden de las páginas de un PDF gratis. Da la vuelta al orden y guárdalo. Se procesa solo en tu navegador, sin subir nada, con total seguridad.",
+  "h1": "Invertir páginas de PDF",
+  "subtitle": "La última página pasa a ser la primera. Corrige de una vez un documento escaneado del revés o con el orden dado la vuelta y guárdalo en un PDF nuevo. Gratis, sin instalación ni registro.",
+  "intro": "Cuando escaneas con prisa, a veces las hojas entran desde la última y la primera página acaba al final del todo. En esos casos no necesitas volver a escanear hoja por hoja: basta con subir el PDF para dar la vuelta al orden de todas las páginas. La última página pasa al principio y la primera al final, invirtiendo por completo el orden, y se guarda en un PDF nuevo. Como el archivo no se sube a ningún sitio y se procesa solo dentro de tu dispositivo, puedes corregir el orden incluso de documentos sensibles con total tranquilidad.",
+  "steps": [
+    "① Arrastra el PDF cuyo orden quieras invertir o súbelo con [Seleccionar archivo].",
+    "② Comprueba en la vista previa en qué orden están todas las páginas.",
+    "③ Pulsa [Invertir orden] para que la última página pase a ser la primera.",
+    "④ Descarga el PDF nuevo con el orden ya corregido."
+  ],
+  "security": "Todo el proceso de invertir el orden de las páginas y guardar ocurre únicamente dentro de tu navegador (tu dispositivo), y ningún archivo se envía a ningún servidor. Por eso, incluso documentos que da reparo subir a internet —como contratos, informes médicos o documentos de identidad— pueden corregirse de orden sin preocuparte por las subidas.",
+  "faq": [
+    {
+      "q": "¿En qué casos hace falta invertir las páginas?",
+      "a": "Se usa para corregir PDF cuyo orden ha quedado del revés por completo: documentos escaneados desde la última hoja porque el papel entró al revés en el alimentador, o materiales fotografiados de atrás hacia delante. Se invierten de una vez para dejarlos en el orden correcto."
+    },
+    {
+      "q": "¿Puedo cambiar el orden solo de algunas páginas?",
+      "a": "Esta herramienta da la vuelta a todas las páginas de golpe. Si quieres mover solo una página concreta o cambiar de sitio una o dos, usa la herramienta [Organizar páginas]. Allí puedes arrastrar las páginas y moverlas una a una a la posición que quieras."
+    },
+    {
+      "q": "¿Se estropea el texto o la calidad al invertir el orden?",
+      "a": "No. Como solo se cambia el orden de colocación de las páginas, el contenido de cada una se mantiene igual. Se conserva la selección y la copia de texto, la calidad no baja y las páginas tampoco se giran del revés: solo se reordenan en sentido inverso."
+    },
+    {
+      "q": "¿Se conserva el archivo original?",
+      "a": "Sí, no se toca el original: el resultado con el orden invertido se guarda aparte en un PDF nuevo. Si el resultado no te convence, puedes volver a subir el original y trabajar de nuevo, así que úsala con tranquilidad."
+    },
+    {
+      "q": "¿Es realmente gratis? ¿Hay marca de agua o límite de usos?",
+      "a": "Es totalmente gratis y no añade marca de agua. No hay límite de usos ni de tamaño de archivo, ni hace falta registrarse. Corrige el orden de tus PDF con total libertad siempre que lo necesites."
+    }
+  ],
+  "extraSections": [
+    {
+      "heading": "Cuándo te vendrá bien",
+      "body": "Va bien para devolver al orden correcto documentos guardados desde la última hoja porque el papel entró al revés en un alimentador automático, o PDF con el orden dado la vuelta por completo tras fotografiar de atrás hacia delante un material antiguo. Sin necesidad de volver a escanear hoja por hoja ni de moverlas una a una, con un solo botón intercambias el principio y el final para dejarlo en un orden cómodo de leer."
+    }
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "title": "Girar PDF gratis | Everything PDF",
+  "metaDescription": "Gira tus PDF gratis. Endereza las páginas 90° a la izquierda o a la derecha, o 180°, y guárdalas. Los archivos se procesan solo en tu navegador, sin subir nada, con total seguridad.",
+  "h1": "Girar PDF",
+  "subtitle": "Endereza y guarda escaneos tumbados de lado o documentos que entraron del revés, girándolos 90° a la izquierda, 90° a la derecha o 180°. Gratis, sin instalación ni registro.",
+  "intro": "Es la herramienta que usar cuando resulta incómodo entregar un documento tumbado de lado por haber entrado torcido en el escáner, o un escaneo con la parte de arriba y de abajo al revés. Sube el PDF, elige el sentido que quieras entre 90° a la izquierda, 90° a la derecha o 180°, y todas las páginas se enderezan de una vez. Como el archivo no se sube a ningún sitio y se procesa solo dentro de tu dispositivo, puedes corregir la orientación incluso de documentos sensibles con total tranquilidad.",
+  "steps": [
+    "① Arrastra el PDF que quieras girar o súbelo con [Seleccionar archivo].",
+    "② Elige el sentido de giro que quieras entre 90° a la izquierda · 90° a la derecha · 180°.",
+    "③ Comprueba en la vista previa que las páginas han quedado derechas.",
+    "④ Pulsa [Girar] y descarga el PDF nuevo con la orientación ya corregida."
+  ],
+  "security": "Todo el proceso de girar el PDF y guardarlo ocurre únicamente dentro de tu navegador (tu dispositivo), y ningún archivo se envía a ningún servidor. Por eso, incluso documentos que da reparo subir a internet —como contratos, informes médicos o documentos de identidad— pueden corregirse de orientación sin preocuparte por las subidas.",
+  "faq": [
+    {
+      "q": "¿Cómo elijo el sentido de giro?",
+      "a": "Puedes elegir entre tres opciones: 90° a la izquierda, 90° a la derecha o 180°. Para un documento tumbado de lado, gíralo 90°; para uno que entró completamente del revés, 180°. Si defines el sentido mirando la vista previa, no te harás un lío."
+    },
+    {
+      "q": "¿Puedo girar solo algunas páginas por separado?",
+      "a": "Esta herramienta gira todas las páginas del documento en el mismo sentido de una vez. Si necesitas girar cada página en un sentido distinto, usa la herramienta [Organizar páginas]. Allí puedes girar hoja por hoja con los botones ↺ ↻ de cada página."
+    },
+    {
+      "q": "¿Se estropea el texto o la calidad al girar?",
+      "a": "El giro no vuelve a dibujar la página como una imagen, sino que solo añade información de «orientación» al PDF, así que se conserva la selección y la copia de texto y la calidad no baja. Se corrige solo la orientación manteniendo la nitidez del original."
+    },
+    {
+      "q": "¿Se conserva el archivo original?",
+      "a": "Sí, no se toca el original: el resultado girado se guarda aparte en un PDF nuevo. Si la orientación no te convence, puedes volver a subir el original y girarlo en otro ángulo, así que úsala con tranquilidad."
+    },
+    {
+      "q": "¿Es realmente gratis? ¿Hay marca de agua o límite de usos?",
+      "a": "Es totalmente gratis y no añade marca de agua. No hay límite de giros ni de tamaño de archivo, ni hace falta registrarse. Corrige la orientación de tus PDF con total libertad siempre que lo necesites."
+    }
+  ],
+  "extraSections": [
+    {
+      "heading": "Cuándo te vendrá bien",
+      "body": "Va bien para enderezar antes de entregar un contrato tumbado de lado por entrar en horizontal en el escáner, una solicitud escaneada con la parte de arriba y de abajo al revés, o un documento con la orientación torcida por haberlo fotografiado. Con solo elegir un sentido, todas las páginas se enderezan de una vez y quien lo reciba no tiene que ladear la cabeza para leerlo."
+    }
+  ]
+}
