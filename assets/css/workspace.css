@@ -76,13 +76,14 @@
 .ws-nav a.gh:hover { transform: translateY(-1px); filter: brightness(1.04); }
 /* 상단 메뉴바 '전체 도구' 항목(버튼/링크 공통) — 우측 플로팅 손잡이 대체 */
 .ws-nav { --allico: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='currentColor'%3E%3Crect x='3.5' y='3.5' width='7' height='7' rx='1.6'/%3E%3Crect x='13.5' y='3.5' width='7' height='7' rx='1.6'/%3E%3Crect x='3.5' y='13.5' width='7' height='7' rx='1.6'/%3E%3Crect x='13.5' y='13.5' width='7' height='7' rx='1.6'/%3E%3C/svg%3E"); }
-.ws-nav__alltools { font-family: inherit; font-size: 14.5px; font-weight: 700; color: var(--ink); padding: 9px 15px; border-radius: var(--radius);
-  border: 1px solid var(--line-2); background: var(--surf-2); cursor: pointer; display: inline-flex; align-items: center; gap: 7px; line-height: 1;
-  transition: background var(--d-micro) var(--ez), color var(--d-micro) var(--ez), border-color var(--d-micro) var(--ez); }
-.ws-nav__alltools::before { content: ""; width: 15px; height: 15px; flex: none; background: currentColor;
+/* '전체 도구' = 메뉴바 주요(우측) 버튼 — 빨강 그라데이션 CTA */
+.ws-nav__cta { font-family: inherit; font-size: 14.5px; font-weight: 800; color: #fff; padding: 10px 18px; border-radius: var(--radius); margin-left: 4px;
+  border: none; background: var(--grad); box-shadow: var(--sh-red); cursor: pointer; display: inline-flex; align-items: center; gap: 7px; line-height: 1;
+  transition: transform var(--d-micro) var(--ez), filter var(--d-micro) var(--ez); text-decoration: none; }
+.ws-nav__cta::before { content: ""; width: 15px; height: 15px; flex: none; background: currentColor;
   -webkit-mask: var(--allico) center/contain no-repeat; mask: var(--allico) center/contain no-repeat; }
-.ws-nav__alltools:hover { color: var(--ink); background: var(--surf-3); border-color: var(--line); text-decoration: none; }
-@media (max-width: 760px) { .ws-taskbar { height: 62px; padding: 0 18px; gap: 12px; } .ws-nav a:not(.gh):not(.ws-nav__alltools) { display: none; } .ws-nav__alltools { padding: 8px 12px; font-size: 14px; } }
+.ws-nav__cta:hover { transform: translateY(-1px); filter: brightness(1.05); text-decoration: none; }
+@media (max-width: 760px) { .ws-taskbar { height: 62px; padding: 0 18px; gap: 12px; } .ws-nav a:not(.ws-nav__cta):not(.ws-langswitch) { display: none; } .ws-nav__cta { padding: 8px 13px; font-size: 14px; } }
 
 /* ============ 히어로 ============ */
 .ws-hero { position: relative; padding: 84px 0 76px; }

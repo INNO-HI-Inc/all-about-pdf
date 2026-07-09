@@ -83,7 +83,10 @@
     }
     var el = document.createElement('div');
     el.className = 'toast toast--' + (type || 'info');
-    el.setAttribute('role', 'status');
+    // 오류/경고는 assertive(alert)로 즉시 낭독, 나머지는 polite(status)
+    var assertive = (type === 'error' || type === 'warn');
+    el.setAttribute('role', assertive ? 'alert' : 'status');
+    el.setAttribute('aria-live', assertive ? 'assertive' : 'polite');
     el.textContent = msg;
     wrap.appendChild(el);
     requestAnimationFrame(function () { el.classList.add('toast--show'); });

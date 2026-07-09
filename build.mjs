@@ -25,6 +25,7 @@ const CONTACT_EMAIL = process.env.CONTACT_EMAIL || 'board@innohi.ai.kr';
 const BRAND = 'PDF의 모든 것';
 const TODAY = '2026-06-04';
 const BUILD_DATE = new Date().toISOString().slice(0, 10); // sitemap lastmod git 폴백용(실제 빌드일)
+let _outNameSeq = 0; // out-name 입력 id를 인스턴스마다 유니크하게(홈 다중 패널 중복 방지)
 // Google 애드센스: 승인받은 게시자 ID로 아래 한 줄만 교체하면 전 페이지에 로더가 삽입되고
 // ads.txt·개인정보 고지가 함께 켜집니다. (예: 'ca-pub-1234567890123456' — ca-pub- 뒤 16자리 숫자)
 // 자동 광고(Auto ads)를 쓰므로 로더 스크립트만 넣으면 되고, 광고 위치 배치는
@@ -192,6 +193,13 @@ function enPairs() {
   add('또는 끌어다 놓기 · 파일은 내 브라우저에서만 처리됩니다', dh);
   add('무료 한국어 PDF 도구 모음', 'Free online PDF tools');
   add('소개 · 개인정보', 'About · Privacy');
+  add('마지막 업데이트: ', 'Last updated: '); add('마지막 업데이트', 'Last updated');
+  add('이용약관', 'Terms of Service'); add('이노하이', 'INNO-HI');
+  add('>이용약관<', '>Terms of Service<');
+  const nf = (E.pages && E.pages.notFound) || {};
+  add('페이지를 찾을 수 없어요', nf.h1 || "We can't find that page");
+  add('주소가 바뀌었거나 삭제된 페이지일 수 있어요.<br>아래에서 처음으로 돌아가세요.', nf.body || 'The address may have changed. Head back to the start below.');
+  add('홈으로 돌아가기', nf.button || 'Back to home');
   add('소개 · 개인정보 처리방침', 'About & Privacy Policy');
   add('설치 없이 무료로 쓰는 한국어 PDF 도구 모음', 'Free online PDF tools — no install, right in your browser');
   add('찾는 도구가 없어요.', 'No tools found.');
@@ -245,6 +253,8 @@ function localizeEn(html, canonical) {
   out = out.replace(/(src|href)="\.\.\/assets\//g, '$1="/assets/').replace(/(src|href)="assets\//g, '$1="/assets/')
     .replace(/href="\.\.\/site\.webmanifest"/g, 'href="/site.webmanifest"').replace(/href="site\.webmanifest"/g, 'href="/site.webmanifest"')
     .replace(/window\.AAP_BASE='[^']*'/g, "window.AAP_BASE='/'");
+  // 아직 영어판이 없는 페이지(카테고리 허브·이용약관)는 링크를 한국어(루트) 절대경로로 고정 → /en/ 하위 404 방지
+  out = out.replace(/href="(?:\.\.\/)*terms\/"/g, 'href="/terms/"').replace(/href="(?:\.\.\/)*category\//g, 'href="/category/');
   out = out.replace('<html lang="ko">', '<html lang="en">').replace('content="ko_KR"', 'content="en_US"');
   if (canonical) {
     const enC = canonical.replace(SITE_URL + '/', SITE_URL + '/en/');
@@ -252,7 +262,7 @@ function localizeEn(html, canonical) {
       .replace('property="og:url" content="' + canonical + '"', 'property="og:url" content="' + enC + '"')
       .replace('rel="alternate" hreflang="ko" href="' + canonical + '"', 'rel="alternate" hreflang="en" href="' + enC + '">\n  <link rel="alternate" hreflang="ko" href="' + canonical + '"');
   }
-  out = out.replace('<a class="gh"', langSwitch(canonical, 'en') + '<a class="gh"');
+  out = out.replace('<nav class="ws-nav">', '<nav class="ws-nav">' + langSwitch(canonical, 'en'));
   return out;
 }
 function koPost(html, canonical) {
@@ -262,7 +272,7 @@ function koPost(html, canonical) {
     const enC = canonical.replace(SITE_URL + '/', SITE_URL + '/en/');
     out = out.replace('rel="alternate" hreflang="ko" href="' + canonical + '"', 'rel="alternate" hreflang="en" href="' + enC + '">\n  <link rel="alternate" hreflang="ko" href="' + canonical + '"');
   }
-  out = out.replace('<a class="gh"', langSwitch(canonical, 'ko') + '<a class="gh"');
+  out = out.replace('<nav class="ws-nav">', '<nav class="ws-nav">' + langSwitch(canonical, 'ko'));
   return out;
 }
 function emitPage(subPath, html, canonical) {
@@ -498,13 +508,13 @@ const ARR_SVG = '<svg class="arr" viewBox="0 0 24 24" width="20" height="20" fil
 // 작업실 OS 태스크바 / 푸터 (rel: 홈은 '', 하위는 '../')
 function wsTaskbar(rel) {
   const home = rel === '' ? './' : rel;
-  // '전체 도구'는 상단 메뉴바에서 연다. 홈이면 서랍 토글 버튼, 하위 페이지면 홈으로 이동.
+  // '전체 도구'를 상단 메뉴바의 주요 버튼(우측)으로. 홈이면 서랍 토글, 하위 페이지면 홈으로 이동.
   const allTools = rel === ''
-    ? `<button class="ws-nav__alltools" type="button" data-drawer-toggle aria-controls="tool-drawer" aria-expanded="false">전체 도구</button>`
-    : `<a class="ws-nav__alltools" href="${home}#tools">전체 도구</a>`;
+    ? `<button class="ws-nav__cta" type="button" data-drawer-toggle aria-controls="tool-drawer" aria-expanded="false">전체 도구</button>`
+    : `<a class="ws-nav__cta" href="${home}#tools">전체 도구</a>`;
   return `    <header class="ws-taskbar">
       <a href="${home}" class="ws-logo"><span class="chip" aria-hidden="true"><img src="${rel}assets/img/logo.png" alt="" width="30" height="30" decoding="async"></span><span class="ko">PDF의 모든 것</span><b class="sep" aria-hidden="true">/</b><span class="wk">workspace</span></a>
-      <nav class="ws-nav">${allTools}<a href="${home}about/">소개</a><a class="gh" href="${escAttr(GITHUB_URL)}" rel="noopener" target="_blank">오픈소스 ↗</a></nav>
+      <nav class="ws-nav"><a href="${home}about/">소개</a>${allTools}</nav>
     </header>`;
 }
 function wsFooter(rel) {
@@ -520,10 +530,10 @@ function wsFooter(rel) {
           <div class="ws-footcols">
             <div class="ws-footcol"><h5>인기 도구</h5>${linkList(popular)}<a class="ws-footcol__all" href="${home}#tools">전체 37개 도구 →</a></div>
             <div class="ws-footcol"><h5>이미지 변환</h5>${linkList(convPop)}<a class="ws-footcol__all" href="${home}#tools">모든 변환 →</a></div>
-            <div class="ws-footcol"><h5>정보</h5><a href="${home}about/">서비스 소개</a><a href="${home}privacy/">개인정보 처리방침</a><a href="${home}contact/">문의 · 제안</a><a href="${escAttr(GITHUB_URL)}" rel="noopener" target="_blank">오픈소스 (GitHub) ↗</a></div>
+            <div class="ws-footcol"><h5>정보</h5><a href="${home}about/">서비스 소개</a><a href="${home}terms/">이용약관</a><a href="${home}privacy/">개인정보 처리방침</a><a href="${home}contact/">문의 · 제안</a><a href="${escAttr(GITHUB_URL)}" rel="noopener" target="_blank">오픈소스 (GitHub) ↗</a></div>
           </div>
         </div>
-        <div class="ws-footbottom"><span>© 2026 PDF의 모든 것 — made in Korea, runs on your device.</span><span>오픈소스 · MIT License</span></div>
+        <div class="ws-footbottom"><span>© 2026 PDF의 모든 것 · 이노하이(INNO-HI Inc) — made in Korea, runs on your device.</span><span>오픈소스 · MIT License</span></div>
       </div>
     </footer>`;
 }
@@ -531,9 +541,12 @@ function wsFooter(rel) {
 // ───────── 옵션 마크업 (tools/*.js의 ID와 일치) ─────────
 // 공통: 저장 파일명(선택). 비우면 도구 기본 이름. class js-outname을 ToolCore가 읽음.
 function optOutName(ph) {
+  // id를 인스턴스마다 유니크하게 — 홈은 도구 패널을 여러 개 렌더하므로 고정 id면 중복(라벨 연결 깨짐).
+  // 값은 class(js-outname)로 읽으므로 id 변경은 기능에 영향 없음.
+  const uid = 'out-name-' + (++_outNameSeq);
   return `<div class="option">
-    <label class="option__label" for="out-name">저장 파일명 <span class="option__hint">선택 · 비우면 기본 이름</span></label>
-    <input type="text" id="out-name" class="field js-outname" placeholder="${ph}" autocomplete="off">
+    <label class="option__label" for="${uid}">저장 파일명 <span class="option__hint">선택 · 비우면 기본 이름</span></label>
+    <input type="text" id="${uid}" class="field js-outname" placeholder="${ph}" autocomplete="off">
   </div>`;
 }
 function optMerge() {
@@ -1044,7 +1057,7 @@ function footer(rel) {
     </ul></div>
   </div>
   <div class="site-footer__bottom">
-    <span>© 2026 ${BRAND} · 오픈소스 · 모든 파일은 내 기기에서만 처리됩니다.</span>
+    <span>© 2026 ${BRAND} · 이노하이(INNO-HI Inc) · 오픈소스 · 모든 파일은 내 기기에서만 처리됩니다.</span>
     <span>광고·추적·업로드 없음</span>
   </div>
 </div></footer>`;
@@ -1324,7 +1337,7 @@ function buildTool(t) {
 
   const main = `<section class="tp-hero">
       <div class="tp-col">
-        <nav class="tp-path" aria-label="위치"><a href="${rel}">홈</a><span class="s" aria-hidden="true">/</span><a href="${rel}#tools">도구</a><span class="s" aria-hidden="true">/</span><b>${esc(c.h1)}</b></nav>
+        <nav class="tp-path" aria-label="위치"><a href="${rel}">홈</a><span class="s" aria-hidden="true">/</span><a href="${rel}#tools">도구</a><span class="s" aria-hidden="true">/</span>${(() => { const _c = CATEGORIES.find((k) => k.slugs.includes(t.slug)); return _c ? `<a href="${rel}category/${_c.id}/">${esc(_c.title)}</a><span class="s" aria-hidden="true">/</span>` : ''; })()}<b>${esc(c.h1)}</b></nav>
         <div class="tp-head">
           <span class="tp-ico">${ICONS_PDF[t.slug]}</span>
           <div>
@@ -1371,8 +1384,11 @@ ${toolDock(t.slug, rel)}
             </div>
           </div>
         </div>
+        <p class="tp-updated" style="margin-top:28px;font-size:.86rem;color:var(--ink-soft)">마지막 업데이트: <time datetime="${fileDate(`_workspace/content_${t.slug}.json`)}">${fileDate(`_workspace/content_${t.slug}.json`)}</time></p>
       </div>
-    </section>`;
+    </section>
+
+${related(t.slug, rel)}`;
 
   const html = page({
     title: c.title, desc: c.metaDescription, canonical,
@@ -1394,7 +1410,11 @@ function buildHome() {
 
   const jsonld = [
     { '@context': 'https://schema.org', '@type': 'WebSite', name: BRAND, url: SITE_URL + '/', inLanguage: 'ko', description: c.metaDescription },
-    { '@context': 'https://schema.org', '@type': 'Organization', name: BRAND, url: SITE_URL + '/', sameAs: [GITHUB_URL] }
+    { '@context': 'https://schema.org', '@type': 'Organization', name: BRAND, legalName: 'INNO-HI Inc', url: SITE_URL + '/',
+      logo: SITE_URL + '/assets/img/logo.png', sameAs: [GITHUB_URL],
+      contactPoint: { '@type': 'ContactPoint', contactType: 'customer support', email: CONTACT_EMAIL } },
+    { '@context': 'https://schema.org', '@type': 'ItemList', name: `${BRAND} 도구 목록`, inLanguage: 'ko', numberOfItems: TOOLS.length,
+      itemListElement: TOOLS.map((t, i) => ({ '@type': 'ListItem', position: i + 1, name: dispName(t.slug), url: `${SITE_URL}/${t.slug}/` })) }
   ];
 
   // 좌측 빠른 작업 탭: 대표 도구 5개만(전체 탐색은 우측 카탈로그가 전담)
@@ -1680,8 +1700,10 @@ function buildSeoFiles() {
   };
   const entries = [
     { url: SITE_URL + '/', file: 'index.html', priority: '1.0' },
+    ...CATEGORIES.map((cat) => ({ url: `${SITE_URL}/category/${cat.id}/`, file: `category/${cat.id}/index.html`, priority: '0.7' })),
     ...TOOLS.map((t) => ({ url: `${SITE_URL}/${t.slug}/`, file: `${t.slug}/index.html`, priority: '0.8' })),
     { url: SITE_URL + '/about/', file: 'about/index.html', priority: '0.5' },
+    { url: SITE_URL + '/terms/', file: 'terms/index.html', priority: '0.3' },
     { url: SITE_URL + '/privacy/', file: 'privacy/index.html', priority: '0.3' },
     { url: SITE_URL + '/contact/', file: 'contact/index.html', priority: '0.3' },
     ...(I18N.en ? [
@@ -1734,6 +1756,101 @@ Sitemap: ${SITE_URL}/sitemap.xml
   }
 }
 
+// ───────── 카테고리 허브 페이지 (/category/<id>/) — 롱테일 카테고리 검색어 대응 ─────────
+// 주의: 카테고리 id 'organize'는 도구 slug와 충돌하므로 /category/ 접두어로 격리한다.
+function buildCategory(cat) {
+  const rel = '../../';
+  const canonical = `${SITE_URL}/category/${cat.id}/`;
+  const cards = cat.slugs.map((slug) => `<a class="tp-rel" href="${rel}${slug}/">
+          <div class="tp-rel__body"><span class="tp-rel__ico">${ICONS_PDF[slug]}</span><div class="tp-rel__tx"><h3>${esc(dispName(slug))}</h3><p>${esc(APP_SHORT[slug] || APP_DESC[slug] || '')}</p></div><span class="tp-rel__arr" aria-hidden="true">→</span></div>
+        </a>`).join('\n        ');
+  const jsonld = [
+    { '@context': 'https://schema.org', '@type': 'CollectionPage', name: `${cat.title} 도구 모음`, url: canonical, inLanguage: 'ko', description: cat.desc,
+      isPartOf: { '@type': 'WebSite', name: BRAND, url: SITE_URL + '/' } },
+    { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [
+      { '@type': 'ListItem', position: 1, name: '홈', item: SITE_URL + '/' },
+      { '@type': 'ListItem', position: 2, name: `${cat.title} 도구`, item: canonical }
+    ] },
+    { '@context': 'https://schema.org', '@type': 'ItemList', name: `${cat.title} 도구`, inLanguage: 'ko', numberOfItems: cat.slugs.length,
+      itemListElement: cat.slugs.map((slug, i) => ({ '@type': 'ListItem', position: i + 1, name: dispName(slug), url: `${SITE_URL}/${slug}/` })) }
+  ];
+  const main = `<section class="tp-hero">
+      <div class="tp-col">
+        <nav class="tp-path" aria-label="위치"><a href="${rel}">홈</a><span class="s" aria-hidden="true">/</span><b>${esc(cat.title)}</b></nav>
+        <div class="tp-head">
+          <span class="tp-ico">${ICONS_PDF[cat.slugs[0]] || ICONS.info}</span>
+          <div>
+            <h1 class="tp-h1">${esc(cat.title)} 도구 모음</h1>
+            <p class="tp-sub">${esc(cat.desc)}</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="tp-info">
+      <div class="tp-col">
+        <p class="tp-lead">${esc(cat.title)} 관련 무료 도구 ${cat.slugs.length}가지를 모았어요. 모두 설치·회원가입 없이, 파일을 서버에 올리지 않고 <strong>내 브라우저에서만</strong> 처리됩니다.</p>
+        <div class="tp-relgrid" style="margin-top:10px">
+        ${cards}
+        </div>
+      </div>
+    </section>
+
+${related('', rel).replace('다른 PDF 도구도 써보세요', '전체 도구 보기')}`;
+  const html = page({
+    title: `${cat.title} 도구 모음 무료 - ${BRAND}`,
+    desc: `${cat.title} 무료 도구 모음 — ${cat.desc}`,
+    canonical, ogTitle: `${cat.title} 도구 모음 - ${BRAND}`, rel, jsonld, main, withScripts: null,
+    noChrome: true, bodyClass: 'ws tp', extraScripts: ['assets/js/workspace.js'],
+    headExtra: `\n  <script>document.documentElement.className+=" js";</script>\n  <link rel="stylesheet" href="${rel}assets/css/workspace.css?v=${assetVer('assets/css/workspace.css')}">`
+  });
+  const dir = join(ROOT, 'category', cat.id);
+  if (!existsSync(dir)) mkdirSync(dir, { recursive: true });
+  writeFileSync(join(dir, 'index.html'), html);
+  console.log(`✓ /category/${cat.id}/index.html`);
+}
+
+// ───────── 이용약관 · 면책조항 (/terms/) — 민감 도구 다수, 애드센스·법적 신뢰 ─────────
+function buildTerms() {
+  const rel = '../';
+  const canonical = `${SITE_URL}/terms/`;
+  const sec = (eb, h, body) => `        <div class="tp-sec" data-reveal><span class="tp-eyebrow">${eb}</span><h2 class="tp-h2">${h}</h2><p>${body}</p></div>`;
+  const main = `<section class="tp-hero">
+      <div class="tp-col">
+        <nav class="tp-path" aria-label="위치"><a href="${rel}">홈</a><span class="s" aria-hidden="true">/</span><b>이용약관</b></nav>
+        <div class="tp-head">
+          <span class="tp-ico">${ICONS.info}</span>
+          <div>
+            <h1 class="tp-h1">이용약관 · 면책조항</h1>
+            <p class="tp-sub">「${BRAND}」 이용 조건과 책임 범위를 안내합니다. 시행일: 2026-07-09</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="tp-info">
+      <div class="tp-col">
+        <p class="tp-lead">「${BRAND}」(이하 '서비스')은 이노하이(INNO-HI Inc)가 운영하는 무료 오픈소스 PDF 도구입니다. 서비스를 이용함으로써 아래 약관에 동의하는 것으로 봅니다.</p>
+${sec('서비스 성격', '무료 · 무보증(as-is)', '서비스는 무료로 "있는 그대로(as-is)" 제공됩니다. 특정 목적에의 적합성·정확성·무중단·무오류를 보증하지 않으며, 브라우저 환경에 따라 결과가 달라질 수 있습니다.')}
+${sec('책임의 제한', '손해에 대한 책임', '서비스 이용 또는 이용 불능으로 발생한 직접·간접·부수적 손해(데이터 손실, 문서 손상, 영업 손실 등)에 대해 운영자는 관련 법이 허용하는 한도에서 책임을 지지 않습니다. 중요한 문서는 반드시 원본을 별도로 보관해 주세요.')}
+${sec('이용자 준수사항', '본인 권한 있는 문서에만', '이용자는 <strong>본인이 소유하거나 사용 권한이 있는 문서</strong>에만 서비스를 사용해야 합니다. 특히 잠금해제·비밀번호 설정·서명 등은 타인의 권리를 침해하지 않는 범위에서만 사용하며 그 책임은 이용자에게 있습니다. 잠금해제는 암호를 알아내는 크랙 도구가 아니라, 본인이 아는 암호·권한 제한을 다루는 도구입니다.')}
+${sec('지식재산 · 오픈소스', 'MIT 라이선스', `서비스 코드는 <a href="${escAttr(GITHUB_URL)}" rel="noopener" target="_blank">GitHub</a>에 MIT 라이선스로 공개되어 있습니다. 이용자가 처리하는 문서의 저작권은 이용자에게 있으며, 서비스는 그 문서를 저장·전송하지 않습니다.`)}
+${sec('약관 변경 · 준거법', '변경과 문의', `약관은 필요 시 개정될 수 있으며 개정 시 본 페이지에 게시합니다. 본 약관은 대한민국 법을 준거법으로 합니다. 문의는 <a href="${rel}contact/">문의 페이지</a> 또는 <a href="mailto:${escAttr(CONTACT_EMAIL)}">${esc(CONTACT_EMAIL)}</a>로 접수해 주세요.`)}
+      </div>
+    </section>`;
+  const html = page({
+    title: `이용약관 · 면책조항 | ${BRAND}`,
+    desc: `${BRAND} 이용약관·면책조항. 무료·무보증 제공, 책임 제한, 본인 권한 있는 문서에만 사용.`,
+    canonical, ogTitle: `이용약관 | ${BRAND}`, rel, jsonld: null, main, withScripts: null,
+    noChrome: true, bodyClass: 'ws tp', extraScripts: ['assets/js/workspace.js'],
+    headExtra: `\n  <script>document.documentElement.className+=" js";</script>\n  <link rel="stylesheet" href="${rel}assets/css/workspace.css?v=${assetVer('assets/css/workspace.css')}">`
+  });
+  const dir = join(ROOT, 'terms');
+  if (!existsSync(dir)) mkdirSync(dir, { recursive: true });
+  writeFileSync(join(dir, 'index.html'), html);
+  console.log('✓ /terms/index.html');
+}
+
 // ───────── 실행 ─────────
 console.log(`\nPDF의 모든 것 — 빌드 (SITE_URL=${SITE_URL})\n`);
 // 언어별 빌드: 한국어(루트) + 영어(/en/). 영어 자산(i18n_en.json)이 없으면 한국어만.
@@ -1748,6 +1865,9 @@ for (const lang of BUILD_LANGS) {
   buildContact();
   build404();
 }
+// 카테고리 허브·이용약관은 신규(배치2) — 우선 한국어만 생성(영어판은 후속). CUR_LANG='ko' 고정 상태.
 CUR_LANG = 'ko';
+CATEGORIES.forEach(buildCategory);
+buildTerms();
 buildSeoFiles();
 console.log('\n빌드 완료.\n');
