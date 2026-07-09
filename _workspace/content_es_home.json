@@ -1,0 +1,45 @@
+{
+  "metaTitle": "Everything PDF | Unir, dividir y convertir PDF gratis",
+  "metaDescription": "Colección de herramientas PDF gratis, sin instalar nada ni registrarte. Los archivos no se suben a ningún servidor: se unen, dividen, convierten y desbloquean directamente en tu navegador.",
+  "heroTitle": "Todo lo que necesitas hacer con tus PDF, gratis, sin instalar nada y sin subir tus archivos",
+  "heroSubtitle": "De unir, dividir, convertir y desbloquear hasta pasar imágenes a PDF: 37 herramientas en un solo sitio.",
+  "uspCards": [
+    {
+      "title": "100 % en tu dispositivo",
+      "desc": "Todo el trabajo se resuelve dentro del navegador. Los archivos no se envían a ningún servidor, así que puedes manejar contratos o documentos de trabajo con total tranquilidad."
+    },
+    {
+      "title": "Totalmente gratis y sin límites",
+      "desc": "Sin marcas de agua y sin límite de cantidad ni de tamaño de archivo. Úsalo tanto como necesites, sin pagos ni registros de por medio."
+    },
+    {
+      "title": "Sin instalar ni registrarse",
+      "desc": "No hace falta instalar programas ni iniciar sesión. Abres la página y trabajas al momento, con indicaciones claras en un lenguaje natural."
+    }
+  ],
+  "intro": "«Everything PDF» es una colección de herramientas gratuitas que reúne en un solo sitio las tareas más habituales con PDF: unir, dividir, desbloquear, extraer y eliminar páginas, convertir a JPG o a imagen, poner números de página, rotar, recortar, comprimir y mucho más. Empiezas al instante desde el navegador, sin instalar nada ni registrarte, y como los archivos no se suben a ningún servidor, puedes manejar hasta los documentos más delicados con total tranquilidad.",
+  "whyTitle": "¿Por qué «Everything PDF»?",
+  "why": "La mayoría de las herramientas PDF extranjeras suben el archivo a un servidor y lo borran pasado un tiempo. Nosotros sencillamente no lo subimos. Como todo el procesamiento ocurre dentro del dispositivo del usuario, puedes trabajar con documentos delicados —contratos o material interno— sin la menor preocupación por la subida. Además, en lugar de traducciones automáticas torpes, te guiamos con un lenguaje claro y natural, para que incluso quien lo usa por primera vez no se pierda.",
+  "faq": [
+    {
+      "q": "¿Es realmente gratis?",
+      "a": "Sí, todo es gratis. El resultado no lleva marcas de agua, no hay límite de cantidad ni de tamaño de archivo, y no te pedimos ningún pago por el camino."
+    },
+    {
+      "q": "¿Están seguros mis archivos?",
+      "a": "Sí. Todo el trabajo se procesa dentro del navegador del usuario y los archivos no se envían a ningún servidor. Como no hay subida, es imposible que tus archivos queden almacenados en ningún sitio externo."
+    },
+    {
+      "q": "¿Tengo que instalar algún programa?",
+      "a": "No. Puedes usarlo con solo abrir la página web, sin instalación ni registro."
+    },
+    {
+      "q": "¿Qué tareas puedo hacer?",
+      "a": "Ofrecemos 37 herramientas: unir PDF, dividir, desbloquear, extraer o eliminar páginas concretas, convertir a JPG o a imagen, poner números de página, crear un PDF a partir de imágenes, rotar, recortar, comprimir, ver la información del archivo y más."
+    },
+    {
+      "q": "¿Funciona también en el móvil?",
+      "a": "Sí. Puedes usarlo igual desde el navegador web de tu móvil o tablet, sin instalar ninguna aplicación aparte."
+    }
+  ]
+}

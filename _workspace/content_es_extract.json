@@ -1,0 +1,46 @@
+{
+  "title": "Extraer páginas de un PDF gratis | Everything PDF",
+  "metaDescription": "Extrae páginas de un PDF: elige solo las que quieras y guárdalas en uno solo. Gratis, sin instalar ni registrarte; el archivo se procesa en tu dispositivo, sin subir nada.",
+  "h1": "Extraer páginas de un PDF",
+  "subtitle": "Elige solo las páginas que quieras y reúnelas en un único PDF. Gratis y sin instalar nada.",
+  "intro": "Es la herramienta ideal cuando quieres sacar aparte solo las páginas que necesitas. Indica los números de las páginas a extraer y las reunimos en un único PDF. Muy práctica para entregar solo una cláusula concreta de un contrato o un capítulo determinado de un informe.",
+  "steps": [
+    "① Sube el archivo PDF.",
+    "② Indica las páginas que quieres extraer (por ejemplo: 1, 3, 5-7).",
+    "③ Comprueba en la vista previa que las páginas se reúnen en el orden indicado.",
+    "④ Pulsa «Extraer» y guárdalo como un PDF nuevo."
+  ],
+  "security": "Toda la extracción ocurre únicamente en tu navegador, es decir, en tu dispositivo. Ni siquiera los documentos delicados como contratos o trámites administrativos salen de tu equipo, así que puedes usarlo con total tranquilidad.",
+  "faq": [
+    {
+      "q": "¿Puedo sacar solo páginas concretas de un PDF?",
+      "a": "Sí, basta con indicar los números de las páginas que quieras y solo se extraen esas. Por ejemplo, si de un informe de 30 páginas solo necesitas la 3, escribe «3». El resto de páginas no entra en el archivo resultante."
+    },
+    {
+      "q": "¿Puedo extraer varios intervalos a la vez?",
+      "a": "Sí. Si escribes «1, 3, 5-7» combinando páginas sueltas e intervalos separados por comas, se procesa todo de una vez. Puedes mezclar páginas salteadas e intervalos consecutivos sin problema."
+    },
+    {
+      "q": "¿Se mantiene el orden de las páginas al extraer?",
+      "a": "Se respeta el orden que indiques. Si escribes «5, 1, 3», se guardan en el orden página 5, página 1 y página 3. También te sirve cuando quieres reordenarlas de forma distinta al original."
+    },
+    {
+      "q": "¿Cómo hago para guardar cada página por separado?",
+      "a": "Esta herramienta reúne las páginas elegidas en un único PDF. Si quieres separar las páginas una a una en varios archivos, la herramienta «Dividir PDF» te encaja mejor. Cuando quieras reunir solo algunas en un único archivo, usa esta función de extraer."
+    },
+    {
+      "q": "¿Se sube el archivo a un servidor? ¿Es gratis?",
+      "a": "El archivo no se sube a ningún servidor: se procesa solo en tu dispositivo. Puedes usarlo gratis, sin registro ni instalación, y no hay marcas de agua ni límite de cantidad o tamaño."
+    }
+  ],
+  "extraSections": [
+    {
+      "heading": "Cómodo para estos casos",
+      "body": "Va de maravilla cuando quieres enviar a alguien solo las hojas con la cláusula clave de un contrato, cuando quieres sacar de un informe voluminoso solo el capítulo del que te encargas para entregarlo, o cuando quieres guardar aparte solo las páginas que te interesan de un aviso de suscripción o de un trámite. También en un PDF escaneado puedes seleccionar de la misma forma solo las páginas que quieras."
+    },
+    {
+      "heading": "Conviene saberlo al escribir los números",
+      "body": "Indica los números de página tomando como referencia el PDF original. Si introduces un número que no existe (por ejemplo, «25» en un documento de 20 páginas), esa parte no se extrae. Si escribes la misma página varias veces, entrará repetida esas veces, así que revísala una vez en la vista previa antes de guardar para evitar errores."
+    }
+  ]
+}

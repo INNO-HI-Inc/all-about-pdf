@@ -1,0 +1,42 @@
+{
+  "title": "Convertir AVIF a PNG gratis | Everything PDF",
+  "metaDescription": "Convierte AVIF a PNG gratis. Pasa el moderno AVIF a un PNG que se abre en cualquier sitio, con la transparencia intacta, y descarga varios en un ZIP. Se procesa solo en tu navegador.",
+  "h1": "Convertir AVIF a PNG",
+  "subtitle": "Convierte el moderno formato web AVIF a un PNG que se abre en cualquier sitio. Sin pérdida de calidad y con la transparencia intacta, gratis.",
+  "intro": "El AVIF, tan usado hoy en la web, es estupendo por su poco peso, pero a veces no se abre en ciertos programas o en entornos antiguos. Esta herramienta pasa tus AVIF a un PNG que se abre en cualquier sitio. Al ser sin pérdida, la conversión no daña la calidad y conserva el fondo transparente tal cual. Si subes varias imágenes, puedes descargarlas juntas en un único ZIP. Como no se sube nada a ningún sitio y todo se procesa en tu dispositivo, puedes convertir con total tranquilidad.",
+  "steps": [
+    "① Arrastra aquí las imágenes AVIF que quieres convertir o súbelas con [Seleccionar archivo]. Puedes subir varias a la vez.",
+    "② Comprueba en la vista previa qué imágenes has subido.",
+    "③ Pulsa [Convertir a PNG] para convertir sin pérdida. Las zonas transparentes se conservan tal cual.",
+    "④ Descarga el PNG si es una sola imagen, o un ZIP si son varias."
+  ],
+  "security": "Todo el proceso de convertir y guardar el AVIF como PNG ocurre únicamente dentro de tu navegador (tu dispositivo) y ningún archivo se envía a ningún servidor. Por eso puedes convertir tus trabajos o imágenes personales sin preocuparte de que se suban a Internet.",
+  "faq": [
+    {
+      "q": "¿Qué es el AVIF y por qué pasarlo a PNG?",
+      "a": "El AVIF es un formato de imagen web moderno y muy ligero. Es un buen formato, pero puede no abrirse en algunos programas de edición o en entornos antiguos; si lo pasas a PNG, que se abre en cualquier sitio, evitas los problemas de compatibilidad."
+    },
+    {
+      "q": "¿Se pierde calidad al convertir?",
+      "a": "El PNG es un formato sin pérdida, así que la calidad no se degrada durante la conversión. El AVIF se guarda como PNG conservando toda su nitidez. Eso sí, un PNG puede pesar más que un AVIF."
+    },
+    {
+      "q": "¿Qué pasa con las zonas transparentes?",
+      "a": "El PNG admite transparencia, así que las zonas transparentes del AVIF se conservan tal cual. Incluso un logotipo o un icono con fondo transparente se convierte manteniendo la transparencia, sin rellenar de blanco."
+    },
+    {
+      "q": "¿Puedo convertir varias imágenes a la vez?",
+      "a": "Sí. Si subes varios AVIF de golpe, se convierten todos a PNG y se agrupan en un único ZIP para descargarlos juntos. No hace falta ir bajándolos de uno en uno: lo resuelves todo de una vez."
+    },
+    {
+      "q": "¿Es realmente gratis? ¿Hay marcas de agua o límites?",
+      "a": "Es totalmente gratis y sin marcas de agua. No hay límite de conversiones ni de tamaño de archivo, ni tampoco registro. Convierte tus AVIF a PNG siempre que lo necesites."
+    }
+  ],
+  "extraSections": [
+    {
+      "heading": "Ideal para estos casos",
+      "body": "Va de maravilla cuando una imagen AVIF descargada de la web no se abre en tu programa de edición o en un visor antiguo, o cuando quieres archivarla sin pérdida conservando el fondo transparente. El PNG se abre en casi cualquier entorno, así que puedes dejar tus imágenes en un formato que sirve en todas partes, sin preocuparte por la compatibilidad. Y si son varias, se agrupan en un ZIP de una sola vez."
+    }
+  ]
+}

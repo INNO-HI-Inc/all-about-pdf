@@ -1,0 +1,42 @@
+{
+  "title": "Aplanar formularios PDF gratis | Everything PDF",
+  "metaDescription": "Aplana formularios PDF gratis. Fija los valores que rellenaste para obtener un PDF que no se puede editar y se ve igual en cualquier visor. Se procesa solo en tu navegador, sin subir nada.",
+  "h1": "Aplanar formularios PDF",
+  "subtitle": "Fija en la página los datos que rellenaste en una solicitud o contrato, para que quien lo reciba no pueda modificarlos y se vea igual en cualquier visor. El texto se conserva intacto. Gratis, sin instalar nada ni registrarte.",
+  "intro": "Seguro que alguna vez rellenaste un formulario (PDF) y lo entregaste, pero en el visor del destinatario el texto que habías escrito no se veía, o al revés, se abría todavía editable y te dejó en un aprieto. «Aplanar» (flatten) consiste en fijar en la página los valores que rellenaste, de modo que ya no se pueden editar y se ven igual se abra con el programa que se abra. Esta herramienta no convierte cada página en imagen, sino que fija los valores como contenido de la propia página, así que puedes seguir seleccionando y buscando el texto y la calidad no se resiente. Como no se sube nada a ningún sitio y todo se procesa en tu dispositivo, puedes preparar para entregar hasta las solicitudes o consentimientos con datos personales con total tranquilidad.",
+  "steps": [
+    "① Arrastra aquí el formulario PDF ya relleno o súbelo con [Seleccionar archivo].",
+    "② La herramienta detecta automáticamente los campos del documento (texto, casillas, etc.).",
+    "③ Pulsa [Fijar formulario] para fijar los valores tal cual en la página.",
+    "④ Descarga el nuevo PDF, que se ve igual en cualquier sitio y no se puede modificar."
+  ],
+  "security": "Todo el proceso de detectar el formulario, fijar los valores y guardar ocurre únicamente dentro de tu navegador (tu dispositivo) y ningún archivo se envía a ningún servidor. Incluso las solicitudes con datos sensibles —nombre, número de identificación, teléfono— puedes prepararlas para entregar sin temor a que se filtren.",
+  "faq": [
+    {
+      "q": "¿Qué gano con aplanar?",
+      "a": "Los valores que rellenaste quedan fijados en la página, de modo que quien lo reciba no puede borrarlos ni cambiarlos por error y se ven igual se abra con el visor que se abra. Evita ese problema de «en mi ordenador se ve, pero en la pantalla del otro aparece en blanco»."
+    },
+    {
+      "q": "¿El texto se convierte en imagen y se ve borroso?",
+      "a": "No. No se vuelve a dibujar la página como una foto, sino que se fijan los valores como contenido de la propia página. Puedes seguir seleccionando, copiando y buscando el texto, y la calidad se mantiene igual."
+    },
+    {
+      "q": "¿Y si subo un PDF sin formulario?",
+      "a": "Si el PDF no tiene campos de formulario, no hay nada que aplanar y se avisa con un «No hay ningún formulario». Si el documento ya tiene los valores impresos como gráfico, no hace falta aplanarlo."
+    },
+    {
+      "q": "¿También se fijan las casillas y los botones de opción?",
+      "a": "Sí. No solo los campos de texto, sino también las casillas, los botones de opción y la mayoría de elementos de formulario se fijan en su estado actual. Algunos formularios especiales podrían no ser compatibles."
+    },
+    {
+      "q": "¿Se conserva el archivo original?",
+      "a": "Sí, el original no se toca: el resultado aplanado se guarda aparte, en un PDF nuevo. Si no te convence, puedes volver a subir el original y trabajar de nuevo."
+    }
+  ],
+  "extraSections": [
+    {
+      "heading": "Ideal para estos casos",
+      "body": "Va de maravilla cuando rellenas una solicitud, un consentimiento o un contrato para entregar en una administración, un centro educativo o una empresa y quieres dejarlo de forma que el destinatario no pueda modificarlo y se vea igual en cualquier sitio. Sobre todo en documentos que pasan por varias personas o que envías por correo, donde cada uno usa un visor distinto, evita el problema de que los valores rellenados desaparezcan o cambien."
+    }
+  ]
+}

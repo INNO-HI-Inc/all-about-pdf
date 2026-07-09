@@ -1,0 +1,42 @@
+{
+  "title": "Convertir GIF a JPG gratis | Everything PDF",
+  "metaDescription": "Convierte GIF a JPG gratis. Pasa tus GIF a JPG, elige la calidad y descarga varios en un ZIP. Se procesa solo en tu navegador, con total seguridad.",
+  "h1": "Convertir GIF a JPG",
+  "subtitle": "Convierte tus imágenes GIF a JPG. De los GIF animados solo se guarda el primer fotograma y las zonas transparentes pasan a blanco. Elige la calidad, gratis.",
+  "intro": "Es la herramienta ideal cuando quieres pasar una imagen GIF a JPG, un formato compatible con todo y de poco peso. De un GIF animado solo se guarda como JPG el primer fotograma, y como el JPG no admite transparencia, las zonas que eran transparentes se rellenan de blanco. Puedes elegir la calidad para equilibrar peso y nitidez, y si subes varias imágenes, descargarlas juntas en un único ZIP. Como no se sube nada a ningún sitio y todo se procesa en tu dispositivo, puedes convertir con total tranquilidad.",
+  "steps": [
+    "① Arrastra aquí las imágenes GIF que quieres convertir o súbelas con [Seleccionar archivo]. Puedes subir varias a la vez.",
+    "② Elige la calidad que prefieras. Cuanto más alta, más nítida y más pesada.",
+    "③ Pulsa [Convertir a JPG]. Las zonas transparentes se rellenan de blanco.",
+    "④ Descarga el JPG si es una sola imagen, o un ZIP si son varias."
+  ],
+  "security": "Todo el proceso de convertir y guardar el GIF como JPG ocurre únicamente dentro de tu navegador (tu dispositivo) y ningún archivo se envía a ningún servidor. Por eso puedes convertir tus trabajos o imágenes personales sin preocuparte de que se suban a Internet.",
+  "faq": [
+    {
+      "q": "¿Se pueden convertir también los GIF animados?",
+      "a": "De un GIF animado solo se guarda como imagen fija JPG el primer fotograma. El JPG es un formato que no admite movimiento, así que la animación no se conserva. Considéralo como una conversión a una única imagen estática."
+    },
+    {
+      "q": "¿Qué pasa con las zonas transparentes?",
+      "a": "El JPG no admite transparencia, así que las zonas que eran transparentes en el GIF se rellenan de blanco. Si necesitas conservar el fondo transparente, usa [Convertir GIF a PNG] en lugar de JPG: el PNG mantiene la transparencia."
+    },
+    {
+      "q": "¿Cómo elijo la calidad?",
+      "a": "Al subir la calidad se ve más nítido pero pesa más; al bajarla, se vuelve más ligero a costa de perder detalle. Para subir a la web o adjuntar en un correo, una calidad media va bien; para imprimir o archivar, mejor una calidad alta. Ajústala según el uso."
+    },
+    {
+      "q": "¿Puedo convertir varias imágenes a la vez?",
+      "a": "Sí. Si subes varios GIF de golpe, se convierten todos a JPG y se agrupan en un único ZIP para descargarlos juntos. No hace falta ir bajándolos de uno en uno: lo resuelves todo de una vez."
+    },
+    {
+      "q": "¿Es realmente gratis? ¿Hay marcas de agua o límites?",
+      "a": "Es totalmente gratis y sin marcas de agua. No hay límite de conversiones ni de tamaño de archivo, ni tampoco registro. Convierte tus GIF a JPG siempre que lo necesites."
+    }
+  ],
+  "extraSections": [
+    {
+      "heading": "Ideal para estos casos",
+      "body": "Va de maravilla cuando solo tienes una imagen en GIF y necesitas subirla a un foro o formulario que solo admite JPG, o cuando quieres aligerar el peso para enviarla por correo. De un GIF animado solo se guarda el primer fotograma y las zonas transparentes pasan a fondo blanco, así que encaja bien cuando necesitas una imagen fija de referencia. Si necesitas conservar la transparencia, usa la conversión a PNG."
+    }
+  ]
+}

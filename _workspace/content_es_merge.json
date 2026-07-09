@@ -1,0 +1,46 @@
+{
+  "title": "Unir PDF gratis | Everything PDF",
+  "metaDescription": "Une varios PDF en uno solo. Gratis, sin instalar nada ni registrarte; los archivos no se envían a ningún servidor: se procesan directamente en tu dispositivo.",
+  "h1": "Unir PDF",
+  "subtitle": "Gratis y sin instalar nada, junta varios PDF en un solo archivo desde tu navegador.",
+  "intro": "¿Tienes un trabajo, un informe, un contrato o un escaneado repartido en varias partes? Arrastra los PDF sueltos, decide el orden y se unen en un único archivo. Todo el trabajo ocurre dentro de tu dispositivo.",
+  "steps": [
+    "① Arrastra los archivos PDF a la pantalla.",
+    "② Ordénalos en la lista con los botones ↑↓.",
+    "③ Pulsa [Unir].",
+    "④ Descarga el PDF ya unido en uno solo."
+  ],
+  "security": "Todo el proceso de unir ocurre únicamente dentro de tu navegador (tu dispositivo) y, al cerrar la ventana, no queda ni rastro. Puedes unir con total tranquilidad hasta documentos delicados como contratos o trámites administrativos.",
+  "faq": [
+    {
+      "q": "¿Cuántos PDF puedo unir a la vez?",
+      "a": "No hemos puesto límite de cantidad ni de tamaño. Puedes unir de una vez varios capítulos de un informe o decenas de páginas escaneadas. Eso sí, si hay muchísimos archivos o muy grandes, puede tardar un poco según el rendimiento del dispositivo."
+    },
+    {
+      "q": "¿Se unen también imágenes como JPG junto con los PDF?",
+      "a": "Esta herramienta une archivos PDF entre sí. Las fotos e imágenes no se unen tal cual, así que primero conviértelas a PDF con «Imprimir → Guardar como PDF» desde Word, un procesador de textos o el visor de imágenes, y luego únelas aquí. Así queda todo ordenado en un solo archivo."
+    },
+    {
+      "q": "¿Puedo cambiar el orden en el que se unen?",
+      "a": "Sí, puedes reordenar libremente los archivos subidos con los botones ↑↓ de la lista. Colócalos como quieras —portada, cuerpo, anexos— y, al pulsar [Unir], quedan en un único archivo en ese mismo orden."
+    },
+    {
+      "q": "¿Se puede unir PDF también desde el iPhone o el móvil?",
+      "a": "Sí. Puedes usarlo directamente desde el navegador del móvil, sin instalar ninguna aplicación. Elige un PDF recibido por correo o un archivo hecho con una app de escaneo, ordénalos y únelos."
+    },
+    {
+      "q": "¿El PDF unido lleva marca de agua?",
+      "a": "No lleva ninguna marca de agua. Es totalmente gratis y no hace falta registrarse. Puedes entregarlo tal cual en un trabajo o en un documento de la empresa."
+    }
+  ],
+  "extraSections": [
+    {
+      "heading": "Ideal para estos casos",
+      "body": "Resulta cómodo cuando quieres unir en un solo archivo un contrato escaneado en varias hojas, cuando quieres juntar las partes que cada uno hizo de un trabajo en grupo para entregarlo, o cuando quieres reunir en uno solo los varios documentos que necesitas para una suscripción o un trámite. Si hiciste por separado la portada, el cuerpo y el anexo, solo tienes que ordenarlos y unirlos de una vez."
+    },
+    {
+      "heading": "Comprueba esto antes de unir",
+      "body": "Si los nombres de archivo se parecen, el orden puede confundirse, así que revisa una vez más la secuencia con los botones ↑↓ de la lista. Los PDF protegidos con contraseña hay que desbloquearlos antes de poder unirlos."
+    }
+  ]
+}

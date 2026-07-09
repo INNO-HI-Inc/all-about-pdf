@@ -1,0 +1,42 @@
+{
+  "title": "Recortar PDF gratis | Everything PDF",
+  "metaDescription": "Recorta los márgenes de tu PDF por los cuatro lados, gratis. Elige la proporción: poco, medio o mucho. Sin subir nada: se procesa en tu navegador, con total seguridad.",
+  "h1": "Recortar PDF (quitar márgenes)",
+  "subtitle": "Recorta los amplios márgenes de las páginas para ajustarlos al contenido. Gratis, sin instalar nada ni registrarte.",
+  "intro": "Ese margen blanco tan ancho que queda al escanear, o el borde excesivo pensado para imprimir, límpialos de una vez. Recorta los cuatro lados de la página en la proporción que elijas —poco, medio o mucho— para ajustarlos al contenido. El texto y las imágenes se quedan igual y solo se recorta el margen exterior; además, todo el proceso ocurre solo en tu dispositivo, sin subir el archivo a ningún servidor, así que puedes retocar hasta los documentos más delicados con total tranquilidad.",
+  "steps": [
+    "① Arrastra aquí el PDF cuyos márgenes quieres recortar o súbelo con [Seleccionar archivo].",
+    "② Elige cuánto recortar: poco, medio o mucho.",
+    "③ Comprueba en la vista previa cómo queda recortado.",
+    "④ Pulsa [Recortar] y descarga el PDF listo."
+  ],
+  "security": "Todo el proceso de recortar los márgenes ocurre únicamente dentro de tu navegador (tu dispositivo) y ningún archivo se envía a ningún servidor. Aunque recortes los márgenes de documentos delicados como contratos escaneados, trámites administrativos o informes médicos, nada se sube a Internet, así que puedes recortar tu PDF con total tranquilidad.",
+  "faq": [
+    {
+      "q": "¿Puedo decidir cuánto margen recortar?",
+      "a": "Puedes elegir entre tres niveles: poco, medio y mucho. Se recorta la misma proporción por los cuatro lados, así que elige «mucho» para un escaneado con márgenes muy anchos y «poco» cuando solo quieras retocarlo un poco. Antes de recortar, puedes ver el resultado en la vista previa."
+    },
+    {
+      "q": "¿Puedo recortar el margen de un solo lado?",
+      "a": "Esta herramienta recorta los cuatro lados de la página en la misma proporción a la vez. No permite recortar valores distintos arriba, abajo, a la izquierda y a la derecha. Funciona mejor para arreglar escaneados o documentos de imprenta cuyos márgenes son parecidos de ancho por los cuatro lados."
+    },
+    {
+      "q": "Al recortar los márgenes, ¿no se cortará el texto o las imágenes?",
+      "a": "Si eliges un recorte demasiado grande, el contenido de los bordes puede cortarse. Por eso te recomendamos comprobar en la vista previa que el contenido está a salvo antes de recortar. Si parece que se va a cortar algo, elige una proporción un nivel menor."
+    },
+    {
+      "q": "¿Se pierde calidad al recortar?",
+      "a": "No. La página no se vuelve a dibujar como imagen: solo se reduce el área visible (más allá del margen) para ajustar la zona que se muestra, así que puedes seguir seleccionando y copiando el texto y la calidad no se resiente. Incluso los documentos escaneados o con fotos conservan toda su nitidez."
+    },
+    {
+      "q": "¿Se conserva el archivo original?",
+      "a": "Sí. El original no se toca: el resultado con los márgenes recortados se guarda aparte, en un PDF nuevo. Si no te convence, puedes volver a recortar desde el original, y no hay marcas de agua ni límites de cantidad o tamaño."
+    }
+  ],
+  "extraSections": [
+    {
+      "heading": "Ideal para estos casos",
+      "body": "Resulta útil para arreglar documentos con un margen blanco grueso porque el escáner capturó más allá del papel, materiales con bordes excesivos pensados para imprimir o PDF en los que el contenido se ve pequeño en pantalla. Al reducir los márgenes, el contenido se ve más grande en la misma pantalla y resulta más cómodo de leer, y al imprimir sale limpio, sin desperdiciar papel en márgenes."
+    }
+  ]
+}

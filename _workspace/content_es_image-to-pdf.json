@@ -1,0 +1,42 @@
+{
+  "title": "Convertir imágenes a PDF (JPG y PNG a PDF) gratis | Everything PDF",
+  "metaDescription": "Convierte imágenes JPG y PNG a PDF gratis. Reúne varias fotos o capturas en orden en un solo PDF. Sin subir nada: se procesa en tu navegador, con total seguridad.",
+  "h1": "Convertir imágenes a PDF",
+  "subtitle": "Arrastra tus fotos JPG y PNG y reúnelas en orden en un solo PDF. Gratis, sin instalar nada ni registrarte.",
+  "intro": "Reúne en un único PDF imágenes como fotos escaneadas, documentos fotografiados con el móvil o capturas de pantalla. Arrastra varias, decide el orden y quedan convertidas en un solo documento. Es cómodo para preparar documentación para entregar o un porfolio, y como el archivo se procesa solo en tu dispositivo, puedes usarlo con total tranquilidad.",
+  "steps": [
+    "① Sube las imágenes (JPG y PNG) que quieres pasar a PDF. Puedes subir varias a la vez.",
+    "② En la lista, ordena las páginas con ↑↓ o arrastrándolas.",
+    "③ Elige el tamaño de página: «según el tamaño de la imagen» o «ajustar a A4».",
+    "④ Pulsa [Crear PDF] y descárgalo como un único PDF."
+  ],
+  "security": "Todo el proceso de reunir las imágenes en un PDF ocurre únicamente dentro de tu navegador (tu dispositivo) y ningún archivo se envía a ningún servidor. Incluso imágenes delicadas, como la copia de un documento de identidad o papeles de un contrato, puedes convertirlas a PDF sin preocuparte por la subida.",
+  "faq": [
+    {
+      "q": "¿Puedo reunir varias imágenes en un solo PDF?",
+      "a": "Sí. Sube varias imágenes, ordénalas en la lista y se crea un único PDF en el que cada imagen ocupa una página, por orden. Puedes cambiar el orden de las páginas con los botones ↑↓ o arrastrándolas."
+    },
+    {
+      "q": "¿Qué formatos de imagen admite?",
+      "a": "Admite JPG y PNG. Puedes subir directamente fotos del móvil (JPG) o capturas de pantalla (PNG). Para otros formatos (HEIC, WebP, etc.), guárdalos primero como JPG o PNG y luego súbelos."
+    },
+    {
+      "q": "¿En qué se diferencian «según el tamaño de la imagen» y «ajustar a A4»?",
+      "a": "«Según el tamaño de la imagen» crea el tamaño de página a partir de la resolución de cada imagen y la incluye tal cual, sin recortes. «Ajustar a A4» coloca todas las imágenes centradas en una hoja A4 conservando su proporción, ideal para unificar el tamaño de cara a imprimir o entregar."
+    },
+    {
+      "q": "¿Se pierde calidad en las fotos?",
+      "a": "La imagen original se incluye tal cual en el PDF, así que la calidad no baja por su cuenta. Eso sí, en «ajustar a A4», si agrandas mucho una imagen pequeña, puede verse borrosa por el límite de resolución del original."
+    },
+    {
+      "q": "¿Hay límite de cantidad o de tamaño?",
+      "a": "No hay límite de cantidad ni de tamaño, ni tampoco marcas de agua. Eso sí, reunir de golpe muchísimas fotos de alta resolución consume bastante memoria del dispositivo, así que, si va lento, prueba a crearlo por partes."
+    }
+  ],
+  "extraSections": [
+    {
+      "heading": "Ideal para estos casos",
+      "body": "Es cómodo cuando quieres reunir en un solo PDF las fotos de unos documentos que hiciste con el móvil para entregarlos, cuando quieres crear un documento de consulta a partir de varias capturas de pantalla, o cuando quieres recopilar en un único archivo dibujos a mano o imágenes de tu porfolio. También puedes crearlo directamente desde el móvil y enviarlo ahí mismo."
+    }
+  ]
+}

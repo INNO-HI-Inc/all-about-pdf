@@ -1,0 +1,47 @@
+{
+  "title": "Eliminar páginas de un PDF gratis | Everything PDF",
+  "metaDescription": "Elimina páginas de un PDF ahora mismo, gratis. Solo tienes que indicar los números. El archivo se procesa en tu dispositivo, sin subir nada, con total seguridad.",
+  "h1": "Eliminar páginas de un PDF",
+  "subtitle": "Sin registro ni instalación y gratis: quita solo las páginas que no necesitas y guárdalo como un archivo nuevo.",
+  "intro": "Esa página en blanco que se coló al escanear, o esa hoja de más al final del informe: ahora las borras con solo indicar los números. Quitamos las páginas que señales y lo guardamos como un PDF nuevo y limpio. Sin marcas de agua y sin límite de cantidad.",
+  "steps": [
+    "① Sube el archivo PDF a la pantalla.",
+    "② Indica los números de las páginas que quieres eliminar (por ejemplo: 2, 4, 6-8).",
+    "③ Comprueba en la vista previa las páginas que se conservan.",
+    "④ Pulsa el botón de eliminar.",
+    "⑤ Descarga el PDF nuevo, ya sin esas páginas."
+  ],
+  "security": "Todo el procesamiento ocurre únicamente en el navegador del usuario, es decir, en tu dispositivo. Por eso puedes eliminar páginas de archivos delicados —contratos, documentación de suscripción, trámites administrativos— sin subirlos a Internet.",
+  "faq": [
+    {
+      "q": "¿Puedo eliminar solo páginas concretas?",
+      "a": "Sí, basta con indicar los números de las páginas que quieres quitar. Por ejemplo, si solo quieres quitar la página 3, escribe «3». El resto de páginas conserva su orden original."
+    },
+    {
+      "q": "¿Cómo elimino varias páginas a la vez?",
+      "a": "Separa los números con comas o indica un intervalo. Por ejemplo, si escribes «2, 4, 6-8» se eliminan de una vez las páginas 2 y 4 y de la 6 a la 8."
+    },
+    {
+      "q": "¿Puedo quitar solo las páginas en blanco que aparecen al escanear?",
+      "a": "No las detecta automáticamente, pero puedes localizar en la vista previa los números de las páginas vacías e indicarlos a mano. Si escribes solo esos números y eliminas, quitas las páginas en blanco sin dejar rastro."
+    },
+    {
+      "q": "¿Se conserva el archivo original?",
+      "a": "Sí, el original no se toca: el resultado sin esas páginas se guarda como un archivo nuevo. Puedes comparar el original con el resultado antes de decidir, así que úsalo con total tranquilidad."
+    },
+    {
+      "q": "¿Es realmente gratis? ¿Hay límite de cantidad o de tamaño?",
+      "a": "Es totalmente gratis y sin marcas de agua. No hay límite de cantidad ni de tamaño de archivo, ni tampoco registro. Elimina las páginas que necesites siempre que quieras."
+    }
+  ],
+  "extraSections": [
+    {
+      "heading": "Práctico para ti si...",
+      "body": "Va de maravilla cuando se ha colado una página en blanco al escanear un trabajo o un informe, cuando necesitas quitar la última hoja de un contrato que solo tenía la firma, o cuando quieres depurar las páginas de aviso que sobran en un trámite administrativo. Si indicas bien los números, quitas las páginas que quieras en un momento."
+    },
+    {
+      "heading": "Conviene comprobar antes de eliminar",
+      "body": "Antes de eliminar, echa un vistazo en la vista previa a las páginas que se conservan. Aunque te equivoques con un número, el original queda intacto y puedes volver a intentarlo. En un escaneado a doble cara entran juntos los números de anverso y reverso, así que revisa una vez más el intervalo que vas a quitar."
+    }
+  ]
+}

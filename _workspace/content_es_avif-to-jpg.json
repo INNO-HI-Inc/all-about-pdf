@@ -1,0 +1,42 @@
+{
+  "title": "Convertir AVIF a JPG gratis | Everything PDF",
+  "metaDescription": "Convierte AVIF a JPG gratis. Pasa tus AVIF a un JPG compatible con todo, elige la calidad y descarga varios en un ZIP. Se procesa solo en tu navegador, sin riesgos.",
+  "h1": "Convertir AVIF a JPG",
+  "subtitle": "Convierte el moderno AVIF a un JPG compatible con todo. Las zonas transparentes se rellenan de blanco y tú eliges la calidad, gratis.",
+  "intro": "Es la herramienta ideal cuando quieres pasar el moderno y ligero formato AVIF a un JPG que funciona en cualquier sitio. El JPG se abre en casi todos los entornos y pesa poco, así que es cómodo para subir y compartir. Como el JPG no admite transparencia, las zonas que eran transparentes se rellenan de blanco, y puedes elegir la calidad para equilibrar peso y nitidez. Si subes varias imágenes, puedes descargarlas juntas en un único ZIP. Como no se sube nada a ningún sitio y todo se procesa en tu dispositivo, puedes convertir con total tranquilidad.",
+  "steps": [
+    "① Arrastra aquí las imágenes AVIF que quieres convertir o súbelas con [Seleccionar archivo]. Puedes subir varias a la vez.",
+    "② Elige la calidad que prefieras. Cuanto más alta, más nítida y más pesada.",
+    "③ Pulsa [Convertir a JPG]. Las zonas transparentes se rellenan de blanco.",
+    "④ Descarga el JPG si es una sola imagen, o un ZIP si son varias."
+  ],
+  "security": "Todo el proceso de convertir y guardar el AVIF como JPG ocurre únicamente dentro de tu navegador (tu dispositivo) y ningún archivo se envía a ningún servidor. Por eso puedes convertir tus trabajos o imágenes personales sin preocuparte de que se suban a Internet.",
+  "faq": [
+    {
+      "q": "¿Por qué pasar un AVIF a JPG?",
+      "a": "El AVIF es un formato moderno muy ligero, pero algunos programas o foros todavía no lo admiten. El JPG se abre en casi cualquier entorno y pesa poco, así que es ideal cuando la compatibilidad es importante al subir o compartir imágenes."
+    },
+    {
+      "q": "¿Qué pasa con las zonas transparentes?",
+      "a": "El JPG no admite transparencia, así que las zonas que eran transparentes en el AVIF se rellenan de blanco. Si necesitas conservar el fondo transparente, usa [Convertir AVIF a PNG] en lugar de JPG: el PNG mantiene la transparencia."
+    },
+    {
+      "q": "¿Cómo elijo la calidad?",
+      "a": "Al subir la calidad se ve más nítido pero pesa más; al bajarla, se vuelve más ligero a costa de perder detalle. Para subir a la web o adjuntar en un correo, una calidad media va bien; para imprimir o archivar, mejor una calidad alta. Ajústala según el uso."
+    },
+    {
+      "q": "¿Puedo convertir varias imágenes a la vez?",
+      "a": "Sí. Si subes varios AVIF de golpe, se convierten todos a JPG y se agrupan en un único ZIP para descargarlos juntos. No hace falta ir bajándolos de uno en uno: lo resuelves todo de una vez."
+    },
+    {
+      "q": "¿Es realmente gratis? ¿Hay marcas de agua o límites?",
+      "a": "Es totalmente gratis y sin marcas de agua. No hay límite de conversiones ni de tamaño de archivo, ni tampoco registro. Convierte tus AVIF a JPG siempre que lo necesites."
+    }
+  ],
+  "extraSections": [
+    {
+      "heading": "Ideal para estos casos",
+      "body": "Va de maravilla cuando tienes que subir una imagen AVIF descargada de la web a un foro o formulario que solo admite JPG, o cuando quieres aligerar el peso para enviarla por correo o mensajería. El JPG se abre casi en todas partes, así que te olvidas de problemas de compatibilidad. Las zonas transparentes pasan a fondo blanco, de modo que, si necesitas conservar la transparencia, usa la conversión a PNG."
+    }
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "title": "Añadir márgenes a PDF gratis | Everything PDF",
+  "metaDescription": "Añade márgenes blancos alrededor de cada página de tu PDF, gratis. Elige entre estrecho, normal o ancho. Todo se procesa solo en tu dispositivo.",
+  "h1": "Añadir márgenes a PDF",
+  "subtitle": "Añade un margen blanco alrededor de todas las páginas. Gratis, sin instalar nada ni registrarte.",
+  "intro": "¿Alguna vez la encuadernación te ha tapado el texto del margen interior, o la impresora te ha recortado los bordes? Añade un margen blanco alrededor de todas las páginas —estrecho, normal o ancho— para dejar sitio a la encuadernación y ganar espacio para tomar notas a mano. El contenido conserva su tamaño: solo se añade un borde blanco alrededor. Y como todo se procesa en tu dispositivo, sin subir ningún archivo a ningún servidor, puedes retocar hasta los documentos más delicados con total tranquilidad.",
+  "steps": [
+    "① Arrastra aquí el PDF al que quieres añadir márgenes o súbelo con [Seleccionar archivo].",
+    "② Elige el ancho del margen: estrecho, normal o ancho.",
+    "③ Comprueba en la vista previa cómo quedan los márgenes.",
+    "④ Pulsa [Añadir márgenes] y descarga el PDF listo."
+  ],
+  "security": "Todo el proceso de añadir márgenes ocurre únicamente dentro de tu navegador (tu dispositivo) y ningún archivo se envía a ningún servidor. Aunque añadas márgenes a documentos que prefieres no enseñar a nadie —contratos, trabajos por entregar o informes médicos—, nada se sube a Internet, así que puedes añadir márgenes a tu PDF con total tranquilidad.",
+  "faq": [
+    {
+      "q": "¿Puedo decidir cuánto margen añadir?",
+      "a": "Puedes elegir entre tres niveles: estrecho, normal y ancho. Se añade un margen blanco del mismo grosor por los cuatro lados, así que elige «ancho» si necesitas espacio para encuadernar o para tomar muchas notas, y «estrecho» si solo quieres añadir un poco. Antes de aplicarlo, puedes ver el resultado en la vista previa."
+    },
+    {
+      "q": "¿Puedo añadir margen a un solo lado?",
+      "a": "Esta herramienta añade el margen con el mismo grosor por los cuatro lados a la vez. No permite aplicar valores distintos arriba, abajo, a la izquierda y a la derecha. Funciona mejor cuando quieres ampliar el contorno de forma uniforme para dejar sitio a la encuadernación o evitar que se recorten los bordes."
+    },
+    {
+      "q": "¿Al añadir márgenes se reduce el texto o las imágenes?",
+      "a": "No. Solo se añade un borde blanco por fuera de la página y el contenido conserva su tamaño, así que el texto y las imágenes se mantienen igual. Eso sí, la página entera crece según el margen añadido, de modo que, si vas a imprimir, comprueba también el tamaño del papel."
+    },
+    {
+      "q": "¿Añadir márgenes reduce la calidad?",
+      "a": "No. La página no se vuelve a dibujar como imagen: solo se añade un margen blanco alrededor del contenido existente, así que puedes seguir seleccionando y copiando el texto y la calidad no se resiente. Incluso los documentos escaneados o con fotos conservan toda su nitidez."
+    },
+    {
+      "q": "¿Se conserva el archivo original?",
+      "a": "Sí. El original no se toca: el resultado con los márgenes se guarda aparte, en un PDF nuevo. Si no te convence, puedes volver a empezar desde el original, y no hay marcas de agua ni límites de cantidad o tamaño."
+    }
+  ],
+  "extraSections": [
+    {
+      "heading": "Ideal para estos casos",
+      "body": "Resulta útil cuando quieres reservar margen para que el lado interior de la encuadernación no tape el texto, cuando necesitas espacio para anotar a mano en apuntes o documentos de reunión, o cuando quieres evitar que la impresora se coma los bordes. Añadir un margen blanco alrededor deja la encuadernación, las anotaciones y la impresión mucho más limpias."
+    }
+  ]
+}

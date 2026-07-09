@@ -1,0 +1,42 @@
+{
+  "title": "Convertir PDF a blanco y negro gratis | Everything PDF",
+  "metaDescription": "Convierte PDF a blanco y negro gratis. Pasa un PDF a color a escala de grises para reducir peso e imprimir en blanco y negro. Se procesa solo en tu navegador, con total seguridad.",
+  "h1": "Convertir PDF a blanco y negro",
+  "subtitle": "Convierte un PDF a color a blanco y negro (escala de grises) para reducir peso e imprimirlo bien en blanco y negro. Gratis, sin instalar nada ni registrarte.",
+  "intro": "Es la herramienta ideal cuando quieres imprimir en blanco y negro un material hecho a color o reducir el peso del archivo. Cada página se vuelve a dibujar como imagen y se procesa en escala de grises, de modo que, al quitar el color, baja el peso y sale limpio en una impresora en blanco y negro. Eso sí, como el texto se convierte en imagen, tras la conversión puede que no puedas seleccionarlo ni buscarlo. Conviene saberlo de antemano. Como no se sube nada a ningún sitio y todo se procesa en tu dispositivo, puedes convertir con total tranquilidad.",
+  "steps": [
+    "① Arrastra aquí el PDF a color que quieres pasar a blanco y negro o súbelo con [Seleccionar archivo].",
+    "② Comprueba en la vista previa qué páginas contiene.",
+    "③ Pulsa [Convertir a blanco y negro] para redibujar cada página como imagen en escala de grises.",
+    "④ Descarga el PDF en blanco y negro, ya sin color."
+  ],
+  "security": "Todo el proceso de convertir a blanco y negro y guardar ocurre únicamente dentro de tu navegador (tu dispositivo) y ningún archivo se envía a ningún servidor. Por eso puedes pasar a blanco y negro hasta los documentos internos o informes que te da reparo subir a Internet, sin preocuparte por la subida.",
+  "faq": [
+    {
+      "q": "Al pasar a blanco y negro, ¿deja de poder seleccionarse o buscarse el texto?",
+      "a": "Siendo sinceros, puede que sí. Esta herramienta vuelve a dibujar cada página como imagen y la procesa en escala de grises, así que el texto pasa a ser gráfico y se vuelve difícil de seleccionar, copiar o buscar. Para imprimir o archivar es más que suficiente, pero si necesitas trabajar con el texto tal cual, guarda también el original."
+    },
+    {
+      "q": "¿Se reduce el peso al pasar a blanco y negro?",
+      "a": "En general, sí. Al quitar la información de color y procesarlo en un solo canal de grises, el ahorro de peso es mayor cuanto más color o fotos tenga el documento. Al aligerarse, resulta más cómodo de adjuntar en un correo o de archivar."
+    },
+    {
+      "q": "¿Por qué convertir a blanco y negro?",
+      "a": "Se usa sobre todo cuando quieres imprimir limpio en una impresora en blanco y negro sin que el color se corra, cuando quieres ahorrar tóner o cuando quieres reducir el peso del archivo. Es especialmente útil para imprimir y repartir materiales de texto que no necesitan color."
+    },
+    {
+      "q": "¿Se conserva el archivo original en color?",
+      "a": "Sí, el original no se toca: el resultado en blanco y negro se guarda aparte, en un PDF nuevo. Si vuelves a necesitar el color, puedes usar el original tal cual, así que convierte con total tranquilidad."
+    },
+    {
+      "q": "¿Es realmente gratis? ¿Hay marcas de agua o límites?",
+      "a": "Es totalmente gratis y sin marcas de agua. No hay límite de conversiones ni de tamaño de archivo, ni tampoco registro. Pasa tus PDF a blanco y negro siempre que lo necesites."
+    }
+  ],
+  "extraSections": [
+    {
+      "heading": "Ideal para estos casos",
+      "body": "Va de maravilla cuando quieres imprimir limpio en una impresora en blanco y negro una presentación o un informe hecho a color, cuando quieres ahorrar tóner, o cuando quieres reducir el peso de un PDF que pesa mucho por el color para enviarlo por correo. Tras la conversión puede costar seleccionar el texto, así que, si es un material en el que necesitas trabajar con el texto tal cual, guarda también el original."
+    }
+  ]
+}

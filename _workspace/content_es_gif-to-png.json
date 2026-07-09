@@ -1,0 +1,42 @@
+{
+  "title": "Convertir GIF a PNG gratis | Everything PDF",
+  "metaDescription": "Convierte GIF a PNG gratis. Pasa tus GIF a PNG con soporte de transparencia y descarga varios en un ZIP. Se procesa solo en tu navegador, con total seguridad.",
+  "h1": "Convertir GIF a PNG",
+  "subtitle": "Convierte tus imágenes GIF a PNG. De los GIF animados solo se guarda el primer fotograma como imagen fija. Gratis, sin instalar nada ni registrarte.",
+  "intro": "Es la herramienta ideal cuando quieres pasar una imagen GIF a PNG, un formato que sirve en cualquier sitio. Se convierte a PNG redibujándola en un lienzo, y de un GIF animado solo se guarda el primer fotograma como imagen fija. Si subes varias imágenes a la vez, puedes descargar los PNG resultantes juntos en un único ZIP. Como no se sube nada a ningún sitio y todo se procesa en tu dispositivo, puedes convertir con total tranquilidad.",
+  "steps": [
+    "① Arrastra aquí las imágenes GIF que quieres convertir o súbelas con [Seleccionar archivo]. Puedes subir varias a la vez.",
+    "② Comprueba en la vista previa qué imágenes has subido.",
+    "③ Pulsa [Convertir a PNG] para convertir redibujando en un lienzo.",
+    "④ Descarga el PNG si es una sola imagen, o un ZIP si son varias."
+  ],
+  "security": "Todo el proceso de convertir y guardar el GIF como PNG ocurre únicamente dentro de tu navegador (tu dispositivo) y ningún archivo se envía a ningún servidor. Por eso puedes convertir tus trabajos o imágenes personales sin preocuparte de que se suban a Internet.",
+  "faq": [
+    {
+      "q": "¿Se pueden convertir también los GIF animados?",
+      "a": "De un GIF animado solo se guarda como imagen fija PNG el primer fotograma. El PNG es un formato que no admite movimiento, así que la animación no se conserva. Considéralo como una conversión a una única imagen estática."
+    },
+    {
+      "q": "¿Qué pasa con las zonas transparentes?",
+      "a": "El PNG admite transparencia, así que las zonas transparentes del GIF se conservan tal cual. Incluso un logotipo o un icono con fondo transparente se convierte manteniendo la transparencia, sin rellenar de blanco."
+    },
+    {
+      "q": "¿Puedo convertir varias imágenes a la vez?",
+      "a": "Sí. Si subes varios GIF de golpe, se convierten todos a PNG y se agrupan en un único ZIP para descargarlos juntos. No hace falta ir bajándolos de uno en uno: lo resuelves todo de una vez."
+    },
+    {
+      "q": "¿Se conserva el GIF original?",
+      "a": "Sí, el GIF original no se toca: el PNG convertido se guarda aparte. Si vuelves a necesitar el GIF, puedes usar el original tal cual, así que convierte con total tranquilidad."
+    },
+    {
+      "q": "¿Es realmente gratis? ¿Hay marcas de agua o límites?",
+      "a": "Es totalmente gratis y sin marcas de agua. No hay límite de conversiones ni de tamaño de archivo, ni tampoco registro. Convierte tus GIF a PNG siempre que lo necesites."
+    }
+  ],
+  "extraSections": [
+    {
+      "heading": "Ideal para estos casos",
+      "body": "Va de maravilla cuando tienes que meter un material que solo estaba en GIF en un documento o programa de edición que solo admite PNG, o cuando quieres archivarlo sin pérdida conservando el fondo transparente. De un GIF animado solo se guarda el primer fotograma, así que encaja especialmente bien cuando necesitas una imagen fija de referencia. Y si son varias, se agrupan en un ZIP de una sola vez."
+    }
+  ]
+}

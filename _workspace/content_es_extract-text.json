@@ -1,0 +1,42 @@
+{
+  "title": "Extraer texto de un PDF gratis | Everything PDF",
+  "metaDescription": "Extrae texto de un PDF gratis. Saca el contenido a un archivo .txt. El archivo se procesa solo en tu dispositivo y no se sube a ningún servidor.",
+  "h1": "Extraer texto de un PDF",
+  "subtitle": "El texto de tu PDF, en un archivo .txt. Sin instalar nada y gratis, directo en tu dispositivo.",
+  "intro": "Es la herramienta para extraer el texto que contiene un PDF y descargarlo como archivo de texto (.txt). El texto extraído es cómodo para copiarlo en otro documento, buscarlo o volver a editarlo. El archivo se procesa solo dentro del navegador y no se envía a ningún servidor.",
+  "steps": [
+    "① Sube el PDF del que quieres extraer el texto.",
+    "② El documento se lee y su texto se reúne en un solo bloque.",
+    "③ Revisa el texto extraído en la vista previa.",
+    "④ Pulsa «Guardar texto» y descárgalo como archivo .txt en tu dispositivo."
+  ],
+  "security": "Toda la extracción ocurre únicamente en tu navegador, es decir, en tu dispositivo. Ni siquiera el texto de documentos delicados como contratos o informes sale de tu equipo, así que puedes usarlo con total tranquilidad. A diferencia de las herramientas extranjeras, que suben el archivo y luego lo borran, aquí sencillamente no se sube nada a ningún servidor.",
+  "faq": [
+    {
+      "q": "¿Se puede extraer texto de un PDF escaneado?",
+      "a": "No. Un PDF escaneado, como una foto, tiene la página entera como imagen y no contiene información de texto, así que esta herramienta no puede extraer nada de él. Esta función no es un OCR que convierte imágenes en texto, sino una herramienta que saca tal cual el texto que ya está dentro del PDF."
+    },
+    {
+      "q": "¿En qué formato se guarda el texto extraído?",
+      "a": "Se guarda como un archivo de texto (.txt) que solo contiene las letras. Puedes abrirlo al instante en cualquier editor, como el Bloc de notas, Word o cualquier procesador. Se pierden las tablas, las imágenes y el formato (fuente, color…), y solo queda el texto puro."
+    },
+    {
+      "q": "El texto se extrae bien, pero los saltos de línea o las tablas quedan desordenados. ¿Por qué?",
+      "a": "El PDF registra la posición del texto mediante coordenadas, así que en documentos con columnas o tablas el orden o las líneas pueden desordenarse al pasarlos a texto. El texto en sí se extrae tal cual, de modo que basta con guardarlo y reordenar después las partes que necesites."
+    },
+    {
+      "q": "¿Cómo sé si mi PDF es un escaneado o un documento con texto?",
+      "a": "Abre el PDF e intenta arrastrar el ratón sobre el texto del cuerpo. Si el texto se selecciona en azul, es un documento con información de texto y se puede extraer. Si no se selecciona y se comporta como una foto en bloque, es un escaneado y no se puede extraer."
+    },
+    {
+      "q": "¿Se sube el archivo a un servidor? ¿Es gratis?",
+      "a": "El archivo no se sube a ningún servidor: se procesa solo en tu dispositivo. Puedes usarlo gratis, sin registro ni instalación, y no hay marcas de agua ni límite de cantidad o tamaño."
+    }
+  ],
+  "extraSections": [
+    {
+      "heading": "Cómodo para estos casos",
+      "body": "Va de maravilla cuando quieres coger solo algunas frases de un informe largo o de una tesis para pegarlas en otro documento, cuando quieres llevarte el contenido de un PDF al Bloc de notas o a Word para volver a editarlo, o cuando quieres buscar en el cuerpo dónde aparece una palabra concreta. También cuando quieres copiar y reutilizar el texto de un aviso o de un contrato, lo extraes en un momento."
+    }
+  ]
+}

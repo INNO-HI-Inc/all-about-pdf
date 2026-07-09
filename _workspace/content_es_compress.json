@@ -1,0 +1,43 @@
+{
+  "title": "Comprimir PDF gratis | Everything PDF",
+  "metaDescription": "Reduce el peso de tus PDF gratis. No se suben a ningún servidor: se procesan en tu navegador, con total seguridad.",
+  "h1": "Comprimir PDF",
+  "subtitle": "Gratis, sin instalar nada ni registrarte, reduce el peso al instante en tu propio dispositivo.",
+  "intro": "Cuando un PDF choca con el límite de tamaño de un correo o de una web de entregas, reduce su peso. Cada página se vuelve a dibujar como imagen y se recomprime según la calidad elegida, así que el efecto es mayor en PDF escaneados o con muchas fotos. Los archivos no se suben a ningún servidor: se procesan solo en tu navegador (tu dispositivo).",
+  "steps": [
+    "① Sube el PDF cuyo peso quieres reducir.",
+    "② Elige la calidad: baja, normal o alta. Cuanto más baja, más se reduce el peso.",
+    "③ Pulsa el botón de comprimir.",
+    "④ Compara el peso reducido con el del original.",
+    "⑤ Guarda el PDF comprimido en tu dispositivo."
+  ],
+  "security": "Toda la compresión ocurre dentro de tu navegador (tu dispositivo) y el archivo no se sube a ningún servidor. Por eso los documentos delicados como contratos, currículums o trámites administrativos no salen de tu equipo. A diferencia de las herramientas extranjeras, que suben el archivo y lo borran pasado un tiempo, aquí sencillamente no se sube nada.",
+  "faq": [
+    {
+      "q": "¿Se reduce también el peso de un PDF con solo texto?",
+      "a": "En un documento de solo texto la reducción es pequeña, o incluso puede aumentar el peso. Esta herramienta comprime volviendo a dibujar cada página como imagen, así que no encaja bien con los PDF ligeros que son solo texto. El efecto es grande en PDF escaneados o con muchas fotos."
+    },
+    {
+      "q": "Después de comprimir, ¿puedo seleccionar o buscar el texto?",
+      "a": "Tras la compresión el texto pasa a ser imagen, así que puede que no puedas seleccionarlo, copiarlo ni buscarlo directamente. Si necesitas conservar el texto tal cual, guarda aparte el original. El aspecto que ves en pantalla se mantiene igual."
+    },
+    {
+      "q": "¿Cómo elijo entre calidad baja, normal y alta?",
+      "a": "Elige «baja» para reducir el peso al máximo y «alta» para mantener una buena nitidez; «normal» está en el punto medio. Si chocas con el límite de un adjunto de correo, empieza por «baja»; si vas a imprimir el documento, «alta» es lo más seguro."
+    },
+    {
+      "q": "¿Puedo saber de antemano cuánto se reducirá?",
+      "a": "Depende de cada documento. Un PDF escaneado o con fotos puede reducirse a menos de la mitad, mientras que uno de solo texto apenas baja o incluso aumenta. Compara el peso con el del original tras comprimir y, si no te convence, cambia la calidad y vuelve a intentarlo."
+    },
+    {
+      "q": "¿Hace falta registrarse o instalar algún programa?",
+      "a": "No. Puedes usarlo al momento, sin registro ni instalación. Es totalmente gratis, sin marcas de agua y sin límite de cantidad ni de tamaño de archivo."
+    }
+  ],
+  "extraSections": [
+    {
+      "heading": "Ideal para estos casos",
+      "body": "Va de maravilla cuando subes a una web de entregas un contrato escaneado o la copia de un documento de identidad y chocas con el límite de tamaño, cuando tienes que enviar por correo una presentación o un porfolio con muchas fotos, o cuando un informe escaneado pesa demasiado para mandarlo por mensajería. En cambio, si es un PDF ligero de solo texto, la compresión aporta poco, así que quizá sea mejor enviarlo tal cual."
+    }
+  ]
+}

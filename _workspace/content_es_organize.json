@@ -1,0 +1,46 @@
+{
+  "title": "Organizar páginas de un PDF (reordenar, rotar y eliminar) gratis | Everything PDF",
+  "metaDescription": "Reordena, rota y elimina páginas de un PDF en una sola pantalla, arrastrando. Organiza viendo las miniaturas; se procesa en tu navegador, sin subir nada, con total seguridad.",
+  "h1": "Organizar páginas de un PDF",
+  "subtitle": "Ve todas las páginas de un vistazo y reordénalas arrastrando, rótalas y elimínalas, todo de una vez. Gratis, sin instalar nada ni registrarte.",
+  "intro": "Esa página que entró del revés al escanear, ese informe con el orden liado, esa página en blanco colada en medio: no hace falta arreglarlos por separado, organízalo todo en una sola pantalla. Despliega todas las páginas en miniatura, arrástralas para cambiar el orden, rota ahí mismo las que quedaron de lado y quita con un toque las que no necesitas. Como no tienes que memorizar números para escribirlos y organizas viéndolo todo, cometes menos errores; y todo el proceso se hace solo en tu dispositivo, así que puedes retocar hasta los documentos más delicados con total tranquilidad.",
+  "steps": [
+    "① Arrastra aquí el PDF que quieres organizar o súbelo con [Seleccionar archivo].",
+    "② Cuando se desplieguen todas las páginas en miniatura, arrástralas para cambiar el orden.",
+    "③ Rota con ↺ ↻ las páginas que quedaron de lado y elimina con ✕ las que quieras quitar.",
+    "④ Pulsa [Organizar páginas] y descarga el PDF ya ordenado."
+  ],
+  "security": "Todo el proceso de reordenar, rotar y eliminar páginas ocurre únicamente dentro de tu navegador (tu dispositivo) y ningún archivo se envía a ningún servidor. Aunque reorganices las páginas de documentos delicados como contratos, informes médicos o papeles de identidad, puedes organizarlos sin preocuparte por la subida.",
+  "faq": [
+    {
+      "q": "¿Cómo cambio el orden de las páginas?",
+      "a": "Arrastra la miniatura y suéltala en el lugar que quieras para cambiar el orden. Con el ratón, coge la página y muévela; en dispositivos táctiles, mantén pulsado y arrastra. El número que aparece bajo cada página es su número en el original, así que ves de un vistazo qué página estás moviendo."
+    },
+    {
+      "q": "¿Puedo rotar una sola página?",
+      "a": "Sí. Con los botones ↺ (izquierda) y ↻ (derecha) de cada página, giras solo esa página en pasos de 90 grados. Y si pulsas «Todo ↺» o «Todo ↻» arriba, rotas todas las páginas de golpe. Es cómodo para enderezar solo las páginas que el escáner metió de lado."
+    },
+    {
+      "q": "¿Puedo reordenar, rotar y eliminar todo a la vez?",
+      "a": "Sí. Esta herramienta hace las tres cosas en una sola pantalla. Cambias el orden, rotas algunas páginas, eliminas las que no necesitas y, con una única descarga, obtienes un PDF con todos los cambios aplicados. No tienes que pasar por varias herramientas."
+    },
+    {
+      "q": "Me he equivocado organizando. ¿Puedo deshacerlo?",
+      "a": "Si pulsas el botón «Reiniciar» de arriba, el orden y las rotaciones vuelven al estado en que subiste el archivo por primera vez. Además, el original nunca cambia y el resultado se guarda aparte, en un PDF nuevo, así que el original queda intacto y a salvo."
+    },
+    {
+      "q": "¿Funciona con documentos de muchísimas páginas?",
+      "a": "Sí. Eso sí, para que la pantalla no se alargue demasiado, se muestran en miniatura hasta las primeras 120 páginas; las posteriores no aparecen en pantalla, pero se incluyen en el resultado en su orden original. Para reorganizar al detalle también el final de un documento muy largo, te recomendamos dividirlo antes con [Dividir] y organizarlo después."
+    },
+    {
+      "q": "¿No se estropea el texto o la calidad de una página rotada?",
+      "a": "Rotar no vuelve a dibujar la página como imagen, sino que solo añade al PDF la información de «orientación», así que puedes seguir seleccionando y copiando el texto y la calidad no se resiente. Enderezas solo la orientación conservando toda la nitidez del original."
+    }
+  ],
+  "extraSections": [
+    {
+      "heading": "Ideal para estos casos",
+      "body": "Va de maravilla cuando el escáner fotografió una o dos hojas de lado y quedaron con la orientación mezclada, cuando el orden de las páginas se lió por haber escaneado varias veces, o cuando quieres quitar antes de entregar una página en blanco o de notas del medio. Sin ir saltando entre las herramientas de unir, dividir y eliminar, lo ajustas arrastrando tal como lo ves y listo."
+    }
+  ]
+}

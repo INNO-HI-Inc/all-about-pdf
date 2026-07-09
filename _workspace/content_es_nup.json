@@ -1,0 +1,42 @@
+{
+  "title": "Varias páginas por hoja en PDF gratis | Everything PDF",
+  "metaDescription": "Combina varias páginas por hoja en PDF gratis. Reúne 2 o 4 páginas en una sola hoja y ahorra papel. Se procesa solo en tu navegador, con total seguridad.",
+  "h1": "Varias páginas por hoja en PDF",
+  "subtitle": "Reúne 2 o 4 páginas en una sola hoja. Ideal para ahorrar papel y crear documentos de mano. Gratis, sin instalar nada ni registrarte.",
+  "intro": "Es la herramienta ideal cuando quieres ahorrar papel al imprimir un documento de varias páginas o crear un documento de mano limpio para una reunión. Reduce las páginas originales y las coloca en cuadrícula, 2 o 4 por hoja. Si conviertes un documento de 10 páginas a 4 páginas por hoja, te bastan 3 hojas, con un gran ahorro de papel y tóner. Como no se sube nada a ningún sitio y todo se procesa en tu dispositivo, puedes crearlo con total tranquilidad.",
+  "steps": [
+    "① Arrastra aquí el PDF que quieres combinar por hoja o súbelo con [Seleccionar archivo].",
+    "② Elige cuántas páginas reunir por hoja: 2 o 4.",
+    "③ Comprueba en la vista previa que las páginas quedan bien colocadas en la cuadrícula.",
+    "④ Pulsa [Combinar por hoja] y descarga el nuevo PDF con varias páginas en cada hoja."
+  ],
+  "security": "Todo el proceso de reunir las páginas y guardar ocurre únicamente dentro de tu navegador (tu dispositivo) y ningún archivo se envía a ningún servidor. Por eso puedes combinar por hoja hasta los documentos que te da reparo subir a Internet, como material de reuniones o apuntes, sin preocuparte por la subida.",
+  "faq": [
+    {
+      "q": "¿Cuántas páginas puedo reunir por hoja?",
+      "a": "Puedes elegir entre 2 o 4 páginas por hoja. Con 2, el tamaño de letra se mantiene grande y se lee cómodo; con 4, ahorras más papel. Elige según el tamaño de letra y el uso del documento."
+    },
+    {
+      "q": "¿No queda la letra demasiado pequeña?",
+      "a": "Como se reducen las páginas originales para colocarlas, cuantas más páginas por hoja, más pequeña queda la letra. Si el documento tiene la letra pequeña, es mejor 2 por hoja; si la tiene grande, 4 por hoja. Comprueba el tamaño en la vista previa antes de imprimir."
+    },
+    {
+      "q": "¿En qué orden se colocan?",
+      "a": "Se rellena la cuadrícula respetando el orden original de las páginas, de izquierda a derecha y de arriba abajo. Las páginas 1 y 2 van en la primera hoja y las siguientes se encadenan a continuación, así que no te lías con el orden de lectura."
+    },
+    {
+      "q": "¿Se conserva el archivo original?",
+      "a": "Sí, el original no se toca: el resultado combinado por hoja se guarda aparte, en un PDF nuevo. Si vuelves a necesitar el original de una página por hoja, puedes usarlo tal cual, así que úsalo con total tranquilidad."
+    },
+    {
+      "q": "¿Es realmente gratis? ¿Hay marcas de agua o límites?",
+      "a": "Es totalmente gratis y sin marcas de agua. No hay límite de usos ni de tamaño de archivo, ni tampoco registro. Combina tus PDF por hoja siempre que lo necesites."
+    }
+  ],
+  "extraSections": [
+    {
+      "heading": "Ideal para estos casos",
+      "body": "Va de maravilla cuando preparas un documento de mano para repartir a los asistentes de una reunión, cuando quieres imprimir unos apuntes de varias páginas ahorrando papel, o cuando quieres distribuir las diapositivas de una presentación reunidas de un vistazo. Con 4 páginas por hoja, el volumen se reduce a una cuarta parte, así que ahorras mucho papel y tóner y, aun así, ves el contenido reunido en una sola hoja."
+    }
+  ]
+}

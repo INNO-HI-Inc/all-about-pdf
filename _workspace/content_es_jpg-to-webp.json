@@ -1,0 +1,42 @@
+{
+  "title": "Convertir JPG a WEBP gratis | Everything PDF",
+  "metaDescription": "Convierte JPG a WEBP gratis. Se procesa en tu navegador, sin subir nada, con total seguridad, y se guarda con la misma calidad y menos peso.",
+  "h1": "Convertir JPG a WEBP",
+  "subtitle": "Gratis, sin instalar nada ni registrarte, pasa tus JPG a un WEBP ligero.",
+  "intro": "Pasa tus fotos JPG a WEBP para que tu web o tu blog carguen más rápido. Con una calidad parecida, el WEBP pesa menos que el JPG, así que es ideal para optimizar imágenes. Los archivos no se suben a ningún servidor: se procesan solo en tu navegador (tu dispositivo), así que úsalo con total tranquilidad.",
+  "steps": [
+    "① Arrastra aquí los archivos JPG que quieres convertir o selecciónalos. Puedes subir varios a la vez.",
+    "② Fija el valor de calidad. Cuanto más lo bajes, menos pesará.",
+    "③ Pulsa el botón de convertir. La imagen se redibuja en un lienzo y pasa a WEBP.",
+    "④ Descarga el resultado. Si es uno, directamente; si son varios, se agrupan en un ZIP."
+  ],
+  "security": "Toda la conversión ocurre dentro de tu navegador (tu dispositivo) y, al terminar, desaparece en cuanto cierras la pestaña. Ningún archivo se envía a ningún servidor, así que puedes convertir con total tranquilidad hasta imágenes delicadas como fotos personales o trabajos aún sin publicar.",
+  "faq": [
+    {
+      "q": "¿Qué es el WEBP y por qué usarlo?",
+      "a": "El WEBP es un formato de imagen para web creado por Google. Con una calidad parecida pesa menos que el JPG, así que puedes subir la misma foto de forma más ligera. Por eso se usa mucho para optimizar imágenes web, para que la página o el blog carguen rápido y ahorrar datos."
+    },
+    {
+      "q": "¿No se pierde calidad?",
+      "a": "Si dejas el valor de calidad alto, a simple vista apenas se nota la diferencia y solo baja el peso. Si quieres que sea aún más ligero, prueba a bajar un poco la calidad. Puedes ir ajustando peso y calidad a tu gusto antes de descargar."
+    },
+    {
+      "q": "¿Puedo convertir varios a la vez?",
+      "a": "Sí, puedes arrastrar varios JPG y convertirlos de una vez. Si es uno, lo descargas directamente; si son varios, los recibes agrupados en un archivo ZIP."
+    },
+    {
+      "q": "¿Cuánto se reduce el peso?",
+      "a": "Depende de la foto, pero, con la misma calidad, suele quedar bastante más ligero que el JPG. La diferencia es mayor cuanto más simples son los colores o más grande es la imagen. Compara el peso tras convertir y lo verás enseguida."
+    },
+    {
+      "q": "¿El WEBP se abre en cualquier sitio?",
+      "a": "Se abre bien en los navegadores actuales (Chrome, Safari, Edge, etc.) y en la mayoría de las webs. Eso sí, algunos programas antiguos pueden no abrirlo; en ese caso, lo más seguro es usar el JPG original tal cual."
+    }
+  ],
+  "extraSections": [
+    {
+      "heading": "Ideal para estos casos",
+      "body": "Es cómodo cuando quieres aligerar las fotos de tu blog o tu web para que carguen más rápido, cuando quieres subir las imágenes de producto de una tienda online reduciendo solo el peso, o cuando quieres pasar de golpe varios JPG a WEBP. Con solo ajustar la calidad, dejas la misma foto en un archivo más pequeño sin sacrificar la nitidez."
+    }
+  ]
+}

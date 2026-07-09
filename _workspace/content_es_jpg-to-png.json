@@ -1,0 +1,42 @@
+{
+  "title": "Convertir JPG a PNG gratis | Everything PDF",
+  "metaDescription": "Convierte JPG a PNG gratis. Se procesa en tu navegador, sin subir nada, con total seguridad, y se guarda como PNG sin pérdida y con transparencia.",
+  "h1": "Convertir JPG a PNG",
+  "subtitle": "Gratis, sin instalar nada ni registrarte, pasa tus fotos JPG a PNG sin pérdida.",
+  "intro": "Pasa tus fotos JPG a PNG para editarlas o archivarlas, o para subirlas directamente donde solo se admite PNG. El PNG es sin pérdida, así que volver a guardarlo no empeora más la calidad y además permite manejar el fondo transparente. Los archivos no se suben a ningún servidor: se convierten solo en tu navegador (tu dispositivo), así que úsalo con total tranquilidad.",
+  "steps": [
+    "① Arrastra aquí los archivos JPG que quieres convertir o selecciónalos. Puedes subir varios a la vez.",
+    "② Comprueba en la vista previa que los archivos se han subido bien.",
+    "③ Pulsa el botón de convertir. Se redibujan en un lienzo y se crean los PNG.",
+    "④ Descarga los PNG. Si es uno, directamente; si son varios, se agrupan en un ZIP."
+  ],
+  "security": "Toda la conversión ocurre dentro de tu navegador (tu dispositivo) y, al terminar, desaparece en cuanto cierras la pestaña. Ningún archivo se envía a ningún servidor, así que puedes convertir con total tranquilidad hasta imágenes delicadas como la foto de un documento de identidad o un trabajo aún sin publicar.",
+  "faq": [
+    {
+      "q": "¿Pasar de JPG a PNG mejora la calidad?",
+      "a": "La calidad que ya se perdió al guardar en JPG no se recupera aunque lo pases a PNG. Ahora bien, como el PNG es sin pérdida, tras la conversión puedes editar y volver a guardar sin que la calidad empeore más. Es ideal para archivar y editar."
+    },
+    {
+      "q": "¿Al pasarlo a PNG obtengo un fondo transparente?",
+      "a": "No. El JPG no contiene información de transparencia, así que el fondo del PNG resultante queda igual que el original (normalmente blanco). El PNG admite transparencia, pero para hacerlo transparente hace falta editarlo aparte para borrar el fondo."
+    },
+    {
+      "q": "¿Puedo convertir varios a la vez?",
+      "a": "Sí, puedes arrastrar varios JPG y convertirlos de una vez. Si es uno, descargas el PNG directamente; si son varios, los recibes agrupados en un archivo ZIP."
+    },
+    {
+      "q": "¿Aumenta el tamaño del archivo?",
+      "a": "En las fotos, es habitual que el PNG pese más que el JPG, porque el PNG guarda sin pérdida, sin recortar la calidad. Si quieres mantener el peso bajo, el JPG te conviene; para archivar y editar sin pérdida, el PNG es lo adecuado."
+    },
+    {
+      "q": "¿Hay marcas de agua o límite de cantidad?",
+      "a": "No. No lleva marcas de agua y no hay límite de cantidad ni de tamaño de archivo. Puedes convertir gratis y al momento, sin instalar nada ni registrarte."
+    }
+  ],
+  "extraSections": [
+    {
+      "heading": "Ideal para estos casos",
+      "body": "Es cómodo cuando tienes que ajustar una foto JPG a una web o formulario que solo admite PNG, cuando quieres dejar un JPG en un formato sin pérdida antes de editarlo, o cuando quieres archivar con nitidez una imagen con muchos gráficos o texto. También puedes convertirlo directamente desde el móvil y usarlo ahí mismo."
+    }
+  ]
+}
