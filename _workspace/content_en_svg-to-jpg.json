@@ -1,0 +1,42 @@
+{
+  "title": "SVG to JPG Converter Free | Everything PDF",
+  "metaDescription": "Convert SVG to JPG for free. Processed safely in your browser with no uploads, and saved as high-quality JPG.",
+  "h1": "SVG to JPG Converter",
+  "subtitle": "Turn vector SVGs into JPG images you can use anywhere — free, no install.",
+  "intro": "Convert vector SVG files like logos and icons into JPG images to post straight to blogs, presentations, and messengers. Turn up the scale and they come out crisp instead of pixelated, and transparent areas are cleanly filled with a white background. Your files never touch a server — everything is processed right in your browser (on your device), so you can use it with complete peace of mind.",
+  "steps": [
+    "Drag and drop your SVG files, or browse to select them. You can convert several at once.",
+    "Set the output scale (1x–4x). The bigger it is, the sharper and larger the JPG.",
+    "Click Convert to download your JPG. Multiple files come bundled in a ZIP.",
+    "Transparent areas are filled with a white background so they look clean anywhere."
+  ],
+  "security": "Every conversion happens entirely inside your browser (on your device), and everything disappears the moment you close the tab. No file is ever sent to a server, so you can safely convert even sensitive SVGs like company logos or unreleased designs.",
+  "faq": [
+    {
+      "q": "Why convert SVG to JPG?",
+      "a": "SVG may not display in places that don't support vectors, like messengers, blogs, and some document editors. Convert it to JPG and you can paste it like any image anywhere — and it's light enough to share easily."
+    },
+    {
+      "q": "Won't it get pixelated?",
+      "a": "SVG is a vector, so it won't pixelate even as you scale it up. Raise the output scale to 2x–4x and you get a crisp JPG that holds up on big screens and in print. For small uses, 1x–2x is plenty."
+    },
+    {
+      "q": "What happens to a transparent background?",
+      "a": "JPG doesn't support transparency, so the transparent areas of the SVG are filled with a white background when saved. If you want to keep the transparent background, we recommend converting to PNG instead of JPG."
+    },
+    {
+      "q": "Can I convert several files at once?",
+      "a": "Yes — drag in multiple SVGs and convert them all in one go. A single image downloads right away, while multiple images come bundled in a ZIP file."
+    },
+    {
+      "q": "Are there SVGs that won't convert?",
+      "a": "SVGs that pull in external fonts or images from the internet may show those parts blank, since our policy is to never send your file outside your device. For fonts, use an SVG where the text has been converted to outlines (paths) ahead of time, and it will come out exactly as intended."
+    }
+  ],
+  "extraSections": [
+    {
+      "heading": "When this comes in handy",
+      "body": "It's handy when you're dropping a logo SVG exported from a design tool (Figma, Illustrator) into a presentation, adding an icon lightly to a messenger or Notion, or pulling a web vector into a high-resolution JPG for print. Just raise the scale and you can make everything from a small thumbnail to a large banner from the same SVG, without pixelation."
+    }
+  ]
+}

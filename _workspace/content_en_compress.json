@@ -1,0 +1,43 @@
+{
+  "title": "Compress PDF Free | Everything PDF",
+  "metaDescription": "Shrink your PDF's file size for free with PDF compression. Your files are processed right in your browser instead of on a server, so they stay safe.",
+  "h1": "Compress PDF",
+  "subtitle": "Shrink your file size right on your device — free, no install, no sign-up.",
+  "intro": "Bumping up against an email attachment cap or an upload-site size limit? Shrink your PDF down. It works by re-rendering each page as an image and recompressing it to fit your chosen quality, so it's especially effective on scans and photo-heavy PDFs. Your files are never uploaded to a server — everything happens right in your browser.",
+  "steps": [
+    "Upload the PDF you want to shrink.",
+    "Pick a quality level: Low, Medium, or High. Lower means smaller.",
+    "Click Compress.",
+    "Compare the new size against the original.",
+    "Save the compressed PDF to your device."
+  ],
+  "security": "All compression happens inside your browser, and files are never uploaded to a server — so sensitive documents like contracts, résumés, and official paperwork never leave your hands. Unlike foreign tools that upload your file and delete it after a while, we never upload it in the first place.",
+  "faq": [
+    {
+      "q": "Will a text-only PDF get smaller too?",
+      "a": "Text-only documents shrink very little — and can even grow larger. This tool works by re-rendering pages as images and compressing them, so it isn't a good fit for lightweight, text-only PDFs. It shines on scans and photo-heavy PDFs."
+    },
+    {
+      "q": "Can I still select or search the text after compressing?",
+      "a": "After compression, text becomes an image, so selecting, copying, or searching the body text may be difficult. If you need the text to stay live, keep a copy of the original. What you see on the page looks exactly the same."
+    },
+    {
+      "q": "How do I choose between Low, Medium, and High quality?",
+      "a": "Pick Low to shrink as much as possible, or High to keep things crisp and clear. Medium sits in between. If you're hitting an email attachment limit, start with Low; if the document will be printed, High is the safe bet."
+    },
+    {
+      "q": "Can I see how much it'll shrink beforehand?",
+      "a": "It varies by document. Scanned and photo PDFs can drop to less than half their size, while text-heavy documents may barely shrink or even grow. After compressing, compare the size to the original — and if you're not happy with the result, change the quality and try again."
+    },
+    {
+      "q": "Do I need to sign up or install software?",
+      "a": "No. You can start using it right away with no account and no install. It's completely free, adds no watermark, and has no limit on file count or size."
+    }
+  ],
+  "extraSections": [
+    {
+      "heading": "Great for moments like these",
+      "body": "When a scanned contract or ID copy is too big for an upload site's size cap, when you need to email a photo-heavy deck or portfolio, or when a scanned report is too heavy to send over messenger. On the flip side, a lightweight text-only PDF won't shrink much, so you may be better off sending the original as is."
+    }
+  ]
+}

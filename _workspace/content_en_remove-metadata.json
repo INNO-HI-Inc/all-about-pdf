@@ -1,0 +1,42 @@
+{
+  "title": "Remove PDF Personal Info Free | Everything PDF",
+  "metaDescription": "Remove personal info (metadata like author and title) from your PDF for free. Processed only on your device and never uploaded to a server.",
+  "h1": "Remove PDF Personal Info",
+  "subtitle": "Clear hidden document properties like the author's name and the creating program. Free, with no install, right on your device.",
+  "intro": "Beyond the visible content, a PDF hides document properties (metadata) like the title, author, creating program, and keywords. When you send a file to a company or an office, details like the author's name can be exposed as-is. This tool clears all of those properties to erase traces of personal info. It leaves the body content untouched and only clears the properties, and everything is processed inside your browser, on your device, so your file is never sent to a server.",
+  "steps": [
+    "Add the PDF file you want to clean.",
+    "Review the document properties it contains, such as title, author, creating program, and keywords.",
+    "Click the 'Remove Metadata' button to clear all the properties.",
+    "Save the PDF to your device with the body intact and only the properties cleared."
+  ],
+  "security": "The entire process of clearing the properties happens only inside your browser, meaning on your device. Your file is never uploaded to a server, and the body content is never changed or saved elsewhere. That's why sensitive documents with an author's name attached, like resumes, contracts, and official paperwork, never leak out. Unlike overseas tools that upload your file and delete it after a while, we never upload it in the first place.",
+  "faq": [
+    {
+      "q": "What personal info is hidden in a PDF?",
+      "a": "Even if it's not visible in the body, the document properties (metadata) can hold info like the title, author, creating program, and keywords. The author's name in particular is often added automatically when you save to PDF from Word or Hangul, so submitting it unknowingly can expose your name."
+    },
+    {
+      "q": "Does the body content change too?",
+      "a": "No. The body text, images, and pages are left as they are; only the document properties (metadata) are cleared. What you see on screen is identical before and after, and only hidden info like the author and title disappears."
+    },
+    {
+      "q": "How is the metadata removed?",
+      "a": "It replaces items in the PDF's document information dictionary (Info), such as title, author, creator program, and keywords, with empty values and saves the file. Since it doesn't touch the body structure, the file doesn't break and opens just fine."
+    },
+    {
+      "q": "Can I verify that it was properly removed?",
+      "a": "Add the saved file to the 'View PDF Info' tool and you can confirm in a table whether metadata like the title and author is empty. A quick double-check before you submit lets you send it with confidence."
+    },
+    {
+      "q": "Does my file go to a server? Is it free?",
+      "a": "Your file is never uploaded to a server; it's processed only on your device. It's free to use with no sign-up and no install, and there are no watermarks or limits on the number or size of files."
+    }
+  ],
+  "extraSections": [
+    {
+      "heading": "Great for moments like these",
+      "body": "It's great for erasing the author's name or creating-program info before you submit a resume or cover letter to a company. It's also useful for making sure no internal info lingers in the properties when you send a contract or report you created out to others, or for clearing traces of the original author before redistributing a PDF you received. Use it whenever you want to leave the body intact and cleanly wipe just the hidden personal info."
+    }
+  ]
+}

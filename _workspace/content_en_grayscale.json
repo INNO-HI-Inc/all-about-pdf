@@ -1,0 +1,42 @@
+{
+  "title": "Convert PDF to Grayscale Free | Everything PDF",
+  "metaDescription": "Convert PDF to black and white for free. Turn color PDFs grayscale to shrink file size and print cleanly in black and white. Processed only in your browser.",
+  "h1": "Convert PDF to Grayscale",
+  "subtitle": "Turn a color PDF into black and white (grayscale) to shrink the file size and print cleanly in mono. Free, with no install and no sign-up.",
+  "intro": "This is the tool to reach for when you want to print color material in black and white or trim down a file's size. It re-renders each page as an image in grayscale, so as the color drops away the file gets smaller and prints cleanly on a mono printer. One thing to know up front: because the text is converted to an image, selecting or searching text may not work after conversion — good to keep in mind. And since your file is never uploaded anywhere and is processed entirely on your device, you can convert with complete peace of mind.",
+  "steps": [
+    "Drag and drop the color PDF you want to convert, or click Choose File to upload it.",
+    "Use the preview to check which pages are in the document.",
+    "Click Convert to Grayscale to re-render each page as a grayscale image.",
+    "Download your black-and-white PDF with the color removed."
+  ],
+  "security": "Every step of converting to grayscale and saving happens entirely inside your browser (your device), and no file is ever sent to a server. So even internal material and reports you'd hesitate to upload can be turned black and white without any upload worries.",
+  "faq": [
+    {
+      "q": "After converting to grayscale, can I still select or search the text?",
+      "a": "To be honest, you may not be able to. This tool re-renders each page as a grayscale image, so the text becomes a picture and selecting, copying, or searching it gets difficult. It's plenty good for printing or archiving, but if you need to work with the text itself, keep the original on hand too."
+    },
+    {
+      "q": "Does converting to grayscale reduce the file size?",
+      "a": "Usually, yes. The color information is dropped and the file is processed as a single grayscale channel, so the more photos or color a document has, the bigger the size savings. It gets lighter and easier to handle for email attachments or storage."
+    },
+    {
+      "q": "Why would I convert to grayscale?",
+      "a": "It's mainly for when you want clean output from a mono printer without color bleeding, when you want to save toner, or when you want to shrink a file's size. It's especially useful for printing and sharing text-heavy material that doesn't need color."
+    },
+    {
+      "q": "Is my original color file kept intact?",
+      "a": "Yes — we never touch your original. The grayscale version is saved as a separate new PDF. If you need the color back, just use the original as it is, so convert with confidence."
+    },
+    {
+      "q": "Is it really free? Any watermarks or usage limits?",
+      "a": "It's completely free with no watermarks. There are no limits on the number of conversions or file size, and no sign-up. Convert your PDFs to black and white freely, whenever you need to."
+    }
+  ],
+  "extraSections": [
+    {
+      "heading": "Great for moments like these",
+      "body": "It's perfect for printing color presentations or reports cleanly on a mono printer, saving toner, or shrinking a heavy, color-rich PDF to send by email. Since selecting text may get difficult after conversion, keep the original on hand for any material where you need to work with the text itself."
+    }
+  ]
+}

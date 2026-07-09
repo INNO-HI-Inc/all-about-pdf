@@ -1,0 +1,46 @@
+{
+  "title": "Merge PDF Free | Everything PDF",
+  "metaDescription": "Combine several PDFs into one. Free, no sign-up, no install — your files never touch a server and are processed right on your device.",
+  "h1": "Merge PDF",
+  "subtitle": "Combine multiple PDFs into a single file — free, no install, right in your browser.",
+  "intro": "Got an assignment, report, contract, or scan split across several files? Just drag your PDFs in, set the order, and they become one clean file. Everything happens right on your device.",
+  "steps": [
+    "Drag your PDF files onto the screen.",
+    "Use the ↑↓ buttons to arrange them in order.",
+    "Click Merge.",
+    "Download your combined PDF."
+  ],
+  "security": "The entire merge happens inside your browser — nothing is uploaded, and nothing is left behind once you close the tab. So even sensitive documents like contracts or official paperwork are safe to combine.",
+  "faq": [
+    {
+      "q": "How many PDFs can I merge at once?",
+      "a": "There's no cap on the number of files or total size. Combine several report chapters or dozens of scanned pages in one go. Just keep in mind that very large or numerous files may take a little longer depending on your device."
+    },
+    {
+      "q": "Can I merge images like JPGs together with my PDFs?",
+      "a": "This tool merges PDF files with other PDFs. Photos and images won't combine directly, so convert them to PDF first (in Word, an image viewer, etc., choose Print → Save as PDF), then merge them here. Everything comes together as one tidy file."
+    },
+    {
+      "q": "Can I change the order they're merged in?",
+      "a": "Yes. Use the ↑↓ buttons in the file list to rearrange them however you like — cover, body, attachments — then click Merge, and they combine in exactly that order."
+    },
+    {
+      "q": "Does merging work on an iPhone or other phone?",
+      "a": "It does. No app to install — just open it in your phone's browser. Pick the PDFs from your email or scanning app, set the order, and merge."
+    },
+    {
+      "q": "Will the merged PDF have a watermark?",
+      "a": "No watermarks, ever. It's completely free with no sign-up required, so you can submit the result to your school or workplace as is."
+    }
+  ],
+  "extraSections": [
+    {
+      "heading": "Great for moments like these",
+      "body": "Combining a multi-page scanned contract into one file, pulling everyone's parts of a group project together for submission, or organizing several documents for an application into a single file. If you built your cover, body, and appendix separately, just set the order and merge them all at once."
+    },
+    {
+      "heading": "Before you merge",
+      "body": "If your files have similar names, the order can be easy to mix up — so double-check it with the ↑↓ buttons in the list. And password-protected PDFs need to be unlocked before they can be merged."
+    }
+  ]
+}

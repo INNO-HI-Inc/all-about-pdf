@@ -1,0 +1,43 @@
+{
+  "title": "PDF to JPG Free | Everything PDF",
+  "metaDescription": "Convert PDF to JPG for free, instantly. Your files are processed in your browser instead of being uploaded, so they stay safe. Each page is saved as an image.",
+  "h1": "PDF to JPG",
+  "subtitle": "Save your PDF as images instantly — free, no install, no sign-up.",
+  "intro": "Turn a PDF into JPG or PNG images to post straight to social media or your blog. It's also perfect for saving a single slide from a deck as a picture. Your files are processed only on your device, so use it with total peace of mind.",
+  "steps": [
+    "Upload the PDF you want to convert.",
+    "Choose JPG or PNG.",
+    "Set the resolution scale (1x–3x).",
+    "Select all pages or just the ones you want.",
+    "Click Convert and download your images. Multiple pages come as a ZIP."
+  ],
+  "security": "All conversion happens inside your browser, and everything disappears the moment you close the tab. So even sensitive documents like contracts or official paperwork are safe to turn into images.",
+  "faq": [
+    {
+      "q": "Can it convert to PNG as well?",
+      "a": "Yes — just choose PNG for the format. You can pick whichever you prefer, JPG or PNG. Each conversion saves to one format at a time."
+    },
+    {
+      "q": "Is the quality preserved?",
+      "a": "Raise the resolution scale for a sharper result. 1x is the default quality, and bumping it to 2x or 3x makes text and graphics crisper. Turn the scale up when you're capturing slides or planning to print."
+    },
+    {
+      "q": "Is each page saved as its own image?",
+      "a": "Yes, every page becomes a single image. Multiple pages come bundled in a ZIP, and a single page downloads directly. You can also choose to convert only specific pages."
+    },
+    {
+      "q": "Should I choose JPG or PNG?",
+      "a": "PNG looks cleaner for documents that need a transparent background or contain lots of text. JPG is great for keeping files small and light to post to social media or a blog. For everyday photo sharing, JPG is more than enough."
+    },
+    {
+      "q": "Is there a limit on file count or size?",
+      "a": "There's no limit on the number of files or their size, and no watermark either. Even a long, many-page report can be turned into images just as easily."
+    }
+  ],
+  "extraSections": [
+    {
+      "heading": "Great for moments like these",
+      "body": "Moving a page from an assignment or report into a blog post, grabbing a chart from a deck as a picture, or sending a specific page of a contract over messenger. You can convert right on your phone and share on the spot."
+    }
+  ]
+}

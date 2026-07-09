@@ -1,0 +1,42 @@
+{
+  "title": "AVIF to JPG Converter Free | Everything PDF",
+  "metaDescription": "Convert AVIF to JPG for free. Turn modern AVIF into widely compatible JPG, pick your quality, get a ZIP for batches. Processed right in your browser, so it stays private.",
+  "h1": "AVIF to JPG Converter",
+  "subtitle": "Convert modern AVIF into widely compatible JPG. Transparent areas fill with white, choose your quality, free.",
+  "intro": "This is the tool for when you want to turn the small, modern AVIF format into a JPG that works just about everywhere. JPG opens in nearly any environment and stays lightweight, which makes it easy to upload and share. Since JPG doesn't support transparency, any transparent areas are filled with white, and you can choose the quality to balance file size against sharpness. Drop in several images and they come back bundled in a single ZIP. Nothing is ever uploaded anywhere; it's all processed right on your own device, so you can convert with confidence.",
+  "steps": [
+    "Drag in the AVIF images you want to convert, or add them with [Choose Files]. You can do several at once.",
+    "Pick the quality you want. Higher means sharper but larger files.",
+    "Click [Convert to JPG]. Transparent areas are filled with white.",
+    "Download a single JPG, or a ZIP if you converted several."
+  ],
+  "security": "The entire process of converting and saving your AVIF as a JPG happens inside your own browser, and no file is ever sent to a server. That means you can convert work files and personal images without any upload worries.",
+  "faq": [
+    {
+      "q": "Why convert AVIF to JPG?",
+      "a": "AVIF is a small, modern format, but some programs and web boards don't support it yet. JPG opens in nearly any environment and stays lightweight, which makes it a great choice for uploads and sharing where compatibility matters."
+    },
+    {
+      "q": "What happens to transparent areas?",
+      "a": "JPG doesn't support transparency, so any areas that were transparent in the AVIF get filled with white. If you need to keep the transparent background intact, use [AVIF to PNG] instead of JPG. PNG preserves transparency."
+    },
+    {
+      "q": "How do I choose the quality?",
+      "a": "Higher quality means a sharper image but a larger file; lower quality means a lighter file with less detail. We recommend medium quality for web uploads or email attachments, and high quality for printing or archiving. Adjust it to fit your use."
+    },
+    {
+      "q": "Can I convert several files at once?",
+      "a": "Yes, upload multiple AVIFs at once and they'll all be converted to JPG and bundled into a single ZIP for download. No need to save them one by one, you can handle them all in one go."
+    },
+    {
+      "q": "Is it really free? Any watermarks or usage limits?",
+      "a": "It's completely free with no watermarks. There are no conversion limits, file size caps, or sign-ups. Convert AVIF to JPG freely, whenever you need to."
+    }
+  ],
+  "extraSections": [
+    {
+      "heading": "When this comes in handy",
+      "body": "It's perfect for when you've grabbed an AVIF image off the web but need to post it to a board or form that only accepts JPG, or for shrinking the file size to send by email or messenger. JPG opens almost anywhere, so there's no compatibility to worry about. Since transparent areas turn white, use the PNG conversion instead if you need to keep a transparent background."
+    }
+  ]
+}

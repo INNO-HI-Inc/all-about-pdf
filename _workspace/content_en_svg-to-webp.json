@@ -1,0 +1,42 @@
+{
+  "title": "SVG to WEBP Converter Free | Everything PDF",
+  "metaDescription": "Convert SVG to WEBP for free. Everything runs right in your browser with no uploads, so it's private. Scale up for crisp results and keep transparent backgrounds intact.",
+  "h1": "SVG to WEBP Converter",
+  "subtitle": "Turn vector SVGs into lightweight WEBP images. Free, with nothing to install.",
+  "intro": "Turn SVG vectors like logos and icons into small, lightweight WEBP images that load fast on your blog, website, or slide deck. Scale them up and they stay razor-sharp instead of getting pixelated, and transparent backgrounds carry over just as they are. Your files are never uploaded to a server, they're processed entirely in your own browser, so you can use it with total peace of mind.",
+  "steps": [
+    "Drag in the SVG files you want to convert, or pick them from your device. You can do several at once.",
+    "Set the output scale (1x to 4x). The higher you go, the crisper and larger the WEBP.",
+    "Choose a transparent or white background.",
+    "Hit convert and download your WEBP. Multiple images come bundled in a ZIP."
+  ],
+  "security": "Every conversion happens entirely inside your own browser, and everything disappears the moment you close the tab. No file is ever sent to a server, so even sensitive SVGs like company logos or unreleased designs are safe to convert.",
+  "faq": [
+    {
+      "q": "What is WEBP, and why convert SVG to WEBP?",
+      "a": "WEBP is an image format that packs the same quality into a smaller file than PNG or JPG. Converting SVG to WEBP helps your website or blog load faster, and lets you drop images into places that don't support vectors, without the extra weight."
+    },
+    {
+      "q": "Will the quality get pixelated?",
+      "a": "SVGs are vectors, so they don't pixelate when you scale them up. Bump the output scale to 2x-4x and you'll get a WEBP that stays sharp even on big screens. For smaller uses, 1x-2x is plenty."
+    },
+    {
+      "q": "Can I keep a transparent background?",
+      "a": "Yes. Leave the background set to 'transparent' and the see-through parts of your SVG carry over into the WEBP unchanged. If you need a solid backdrop, choose 'white'. WEBP fully supports transparency."
+    },
+    {
+      "q": "Can I convert several files at once?",
+      "a": "Yes, drag in multiple SVGs and convert them all in one go. A single file downloads on its own; multiple files come bundled in a ZIP."
+    },
+    {
+      "q": "Are there places WEBP won't open?",
+      "a": "Modern browsers and most apps handle WEBP just fine. That said, older programs or some document editors may not display it, so in those cases a PNG conversion is the safer bet."
+    }
+  ],
+  "extraSections": [
+    {
+      "heading": "When this comes in handy",
+      "body": "It's great for taking a logo SVG exported from a design tool like Figma or Illustrator and dropping it lightly onto a website, for shrinking blog image sizes so pages load faster, or for tidying icons into small WEBP files. Just by adjusting the scale, you can turn a single SVG into anything from a tiny thumbnail to a large banner, all without any loss of sharpness."
+    }
+  ]
+}

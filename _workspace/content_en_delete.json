@@ -1,0 +1,47 @@
+{
+  "title": "Delete PDF Pages Free | Everything PDF",
+  "metaDescription": "Delete PDF pages right now, for free. Just type the numbers to remove — that's it. Your files are processed on your device only, with no upload, so they stay safe.",
+  "h1": "Delete PDF Pages",
+  "subtitle": "No sign-up, no install, completely free — pull out the pages you don't need and save a clean new file.",
+  "intro": "That blank page that snuck in during scanning, or the unneeded sheet at the end of a report — just type its number and it's gone. We drop the pages you delete and save a tidy new PDF. No watermarks, no limits.",
+  "steps": [
+    "Drop your PDF onto the screen.",
+    "Enter the page numbers to delete (e.g., 2, 4, 6-8).",
+    "Use the preview to confirm which pages will remain.",
+    "Click Delete.",
+    "Download the new PDF with those pages removed."
+  ],
+  "security": "Everything is processed inside your browser — on your device only. That means you can delete pages from sensitive files like contracts, applications, and official documents without ever uploading them anywhere.",
+  "faq": [
+    {
+      "q": "Can I delete just one specific page?",
+      "a": "Yes — just enter the number of the page you want to remove. If you only want to drop page 3, for instance, enter 3. Every other page keeps its original order."
+    },
+    {
+      "q": "How do I delete several pages at once?",
+      "a": "Separate the numbers with commas, or use ranges. Enter 2, 4, 6-8, for example, and pages 2 and 4 plus pages 6 through 8 are all removed in one go."
+    },
+    {
+      "q": "Can I pick out and delete only the blank pages from scanning?",
+      "a": "It won't find blank pages automatically, but you can spot the blank page numbers in the preview and enter them yourself. Type just those numbers to delete them, and the blanks come out cleanly."
+    },
+    {
+      "q": "Is my original file kept intact?",
+      "a": "Yes — the original is never touched. The version with pages removed is saved as a new file, so you can compare the original and the result before deciding. Use it with peace of mind."
+    },
+    {
+      "q": "Is it really free? Any limits on file count or size?",
+      "a": "It's completely free with no watermarks. There are no limits on file count or size, and no sign-up. Delete pages as freely as you need, whenever you need to."
+    }
+  ],
+  "extraSections": [
+    {
+      "heading": "Handy for people like you",
+      "body": "When a blank page slips into a scanned assignment or report, when you need to drop the last signature page of a contract, or when you're cleaning up an unneeded info page from official paperwork. Enter the numbers accurately and the pages you want are removed in a flash."
+    },
+    {
+      "heading": "Worth checking before you delete",
+      "body": "Take a moment to confirm the pages you're keeping in the preview before you delete. Even if you type a wrong number, the original stays untouched, so you can just try again. For double-sided scans, front and back page numbers both come into play — so give the range you're removing one more look."
+    }
+  ]
+}

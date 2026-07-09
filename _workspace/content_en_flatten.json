@@ -1,0 +1,42 @@
+{
+  "title": "Flatten PDF Form Free | Everything PDF",
+  "metaDescription": "Flatten PDF forms for free. Lock in your form values so they can't be edited and look identical everywhere. Processed only in your browser — no upload, fully private.",
+  "h1": "Flatten PDF Form",
+  "subtitle": "\"Lock\" the values you filled into an application or contract onto the page, so recipients can't edit them and they look identical in any viewer. Your text stays intact. Free, with no install and no sign-up.",
+  "intro": "You've probably filled in a PDF form and submitted it, only to find the recipient's viewer doesn't show your text — or, the opposite, it opens still editable and causes trouble. Flattening bakes your filled-in form values right onto the page, so they can no longer be edited and look identical no matter what program opens them. This tool doesn't turn each page into an image; instead it locks your input in as page content, so text stays selectable and searchable and there's no drop in quality. And since your file is never uploaded anywhere and is processed entirely on your device, you can finalize even applications and consent forms full of personal information with complete peace of mind.",
+  "steps": [
+    "Drag and drop the filled-in form PDF, or click Choose File to upload it.",
+    "The tool automatically finds the input fields (text boxes, checkboxes, and so on) in the document.",
+    "Click Lock the Form to freeze your input values right onto the page.",
+    "Download a new PDF that looks identical everywhere and can't be edited."
+  ],
+  "security": "Every step of finding the form, locking in the values, and saving happens entirely inside your browser (your device), and no file is ever sent to a server. So even applications containing sensitive details — names, ID numbers, contact info — can be finalized for submission with no worry of a leak.",
+  "faq": [
+    {
+      "q": "What's the benefit of flattening?",
+      "a": "Your filled-in values are locked onto the page, so recipients can't accidentally delete or change them, and the values look identical in any viewer. It prevents the classic \"it shows up on my computer but looks blank on theirs\" problem."
+    },
+    {
+      "q": "Will my text turn into a blurry image?",
+      "a": "No. It doesn't re-render the page like a photo — it locks your input in as page content. Text stays selectable, copyable, and searchable, and the quality is unchanged."
+    },
+    {
+      "q": "What if I upload a PDF that has no form?",
+      "a": "A PDF with no input fields has nothing to flatten, so it'll tell you \"No form found.\" If the values are already printed onto the document as a picture, no flattening is needed."
+    },
+    {
+      "q": "Do checkboxes and radio buttons get locked too?",
+      "a": "Yes. Not just text fields, but most form elements — checkboxes, option buttons, and the like — are locked in their current state. Some special forms may not be supported."
+    },
+    {
+      "q": "Is my original file kept intact?",
+      "a": "Yes — we never touch your original. The flattened version is saved as a separate new PDF. If you don't like the result, you can just upload the original again and redo it."
+    }
+  ],
+  "extraSections": [
+    {
+      "heading": "Great for moments like these",
+      "body": "It's ideal for filling in applications, consent forms, and contracts submitted to government offices, schools, or companies, then finalizing them so the recipient can't make changes and they look identical everywhere. It's especially good at preventing input values from vanishing or changing in situations where viewers vary — documents passed around among several people, or paperwork sent by email."
+    }
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "title": "WEBP to JPG Converter Free | Everything PDF",
+  "metaDescription": "Convert WEBP to JPG for free. Processed safely in your browser with no file uploads. Choose the quality; convert many at once into a ZIP.",
+  "h1": "WEBP to JPG Converter",
+  "subtitle": "Turn WEBP into widely compatible JPGs — free, no install, no sign-up.",
+  "intro": "When a WEBP you got from the web won't open or won't attach, convert it to JPG — a format that works everywhere. You can post it straight to messengers, blogs, documents, and email. Your files never touch a server — everything is converted right in your browser (on your device), so you can use it with complete peace of mind.",
+  "steps": [
+    "Drag and drop your WEBP files, or browse to select them. You can convert several at once.",
+    "Set the JPG quality. Higher is sharper; lower makes the file lighter.",
+    "Click Convert, and each image is redrawn on a canvas and turned into a JPG.",
+    "Download your converted JPGs. Multiple files come bundled in a ZIP."
+  ],
+  "security": "Every conversion happens entirely inside your browser (on your device), and everything disappears the moment you close the tab. No file is ever sent to a server, so you can safely convert even sensitive WEBP files like screenshots or unreleased images.",
+  "faq": [
+    {
+      "q": "Why convert WEBP to JPG?",
+      "a": "WEBP is popular on the web because it's small, but some messengers, document editors, and older programs won't open it or won't let you attach it. Convert it to JPG and it opens and uploads like a photo almost everywhere."
+    },
+    {
+      "q": "What happens to a transparent WEBP?",
+      "a": "JPG doesn't support transparency, so transparent areas are filled with a white background when saved. If you need to keep the transparency intact, it's better to use a format like PNG instead of JPG."
+    },
+    {
+      "q": "Does the quality drop much?",
+      "a": "You choose the quality when converting to JPG. Set it high to stay crisp and close to the original; set it lower to make the file lighter. Medium works well for messengers and blogs, while high is right for printing and archiving."
+    },
+    {
+      "q": "Can I convert several images at once?",
+      "a": "Yes — drag in multiple WEBP files and convert them all in one go. A single image downloads right away, while multiple images come bundled in a ZIP file."
+    },
+    {
+      "q": "Are there size or count limits?",
+      "a": "There are no limits on count or size, and no watermark is added. Just keep in mind that since every conversion runs on your own device, a very large batch or very big images may take a little longer depending on your device's performance."
+    }
+  ],
+  "extraSections": [
+    {
+      "heading": "When this comes in handy",
+      "body": "It cleanly solves things when a WEBP you saved online won't paste into a messenger or word processor, when an email attachment gets blocked, or when it won't open in an older photo app. Gathering several images to convert at once and getting them back as a ZIP makes them easy to organize, too."
+    }
+  ]
+}

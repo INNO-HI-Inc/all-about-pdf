@@ -1,0 +1,51 @@
+{
+  "title": "Unlock PDF Free | Everything PDF",
+  "metaDescription": "Unlock your PDF for free. Remove print and edit restrictions or a password you already know. Files stay on your device and are never uploaded to a server.",
+  "h1": "Unlock PDF",
+  "subtitle": "Lift restrictions right on your device, free and with nothing to install.",
+  "intro": "Remove the print and edit restrictions locked onto your own PDF. For documents that ask for a password when you open them, just enter the password you know and unlock. Everything happens inside your browser, so your file is never sent to a server.",
+  "steps": [
+    "Add the PDF you want to unlock.",
+    "Documents with only print or edit restrictions are unlocked right away.",
+    "For documents that need a password to open, enter the password you know.",
+    "Choose 'Unlock as image' to remove the password.",
+    "Save the unlocked PDF to your device."
+  ],
+  "security": "This tool doesn't crack passwords you don't know. It removes a password you already know or lifts print and edit restrictions on your own document. Your file and any password you type are used only inside your browser, never stored or sent to a server.",
+  "faq": [
+    {
+      "q": "Can I unlock a PDF if I don't know the password?",
+      "a": "No. A password you don't know can't be removed. This tool is for removing a password you already know or lifting print and edit restrictions, not for cracking passwords."
+    },
+    {
+      "q": "Is the password I enter stored or sent anywhere?",
+      "a": "No. The password you enter is used only inside your browser. It's never stored or transmitted to a server, and it disappears from memory once the task is done."
+    },
+    {
+      "q": "What's the difference between permission restrictions and an open password?",
+      "a": "With permission restrictions the document still opens, but printing, editing, and copying are blocked, and those can be removed instantly without a password. An open password locks the document from the moment you try to open it. To remove one, enter the password you know and choose 'Unlock as image'."
+    },
+    {
+      "q": "Is it legal to remove a PDF password?",
+      "a": "It's fine as long as it's your own document or one you have every right to access. For example, use it to lift the print restriction on a subscription notice you received or on a contract or report you created yourself. Don't use it on someone else's document without permission."
+    },
+    {
+      "q": "Do I need to sign up or install anything?",
+      "a": "No. You can start right away with no sign-up and nothing to install. It's completely free with no watermarks and no limits on the number or size of files."
+    },
+    {
+      "q": "Can I safely unlock scans or sensitive contracts?",
+      "a": "Yes. Files are processed only in your browser, on your device, and never uploaded, so sensitive documents like contracts, official paperwork, and scans stay private. Unlike overseas tools that upload your file and delete it after a while, we never upload it in the first place."
+    }
+  ],
+  "extraSections": [
+    {
+      "heading": "Great for moments like these",
+      "body": "Use it to reopen a report or assignment PDF you made yourself so you can edit it again, to print and keep a subscription notice or statement you received by email, or to open your own contract without typing the password each time when you already know it. In every case, it's only for documents you have the right to access."
+    },
+    {
+      "heading": "What to know about 'Unlock as image'",
+      "body": "When you 'Unlock as image' a document with an open password, each page is converted to an image and the password is removed. The document still looks the same, but afterward you can no longer select or copy the text directly or edit the body. It's safest to keep the original password-protected PDF stored separately."
+    }
+  ]
+}

@@ -1,0 +1,43 @@
+{
+  "title": "Remove Blank Pages from PDF Free | Everything PDF",
+  "metaDescription": "Remove blank pages from your PDF for free. Automatically finds and drops blank pages from scans, processed only in your browser, so it's safe.",
+  "h1": "Remove Blank Pages from PDF",
+  "subtitle": "Automatically find and drop the blank pages mixed into a scan, and save a clean new PDF. Free, with no install and no sign-up.",
+  "intro": "When you scan double-sided, the blank back of a page often slips in as an entirely empty page. This tool looks at each page one by one, picks out only the nearly white ones, and leaves any page with even a little text or graphics intact. It saves a new PDF with just the empty pages removed, so it's perfect for cleaning up the blank backs of a double-sided scan in one go. Everything is processed only inside your browser, on your device, without uploading your file, so you can tidy up even sensitive documents with peace of mind.",
+  "steps": [
+    "Drag in the PDF you want to tidy up, or add it with [Choose File].",
+    "It examines each page and automatically finds the nearly white ones.",
+    "Check the pages flagged as blank in the preview.",
+    "Click [Remove Blank Pages] to create a new PDF.",
+    "Download the PDF with the blank pages removed."
+  ],
+  "security": "The entire process of finding and removing blank pages happens only inside your browser, meaning on your device, and no file is ever sent to a server. That's why you can use it without any upload worries, even when tidying up the blank backs of a sensitive scan like a contract, medical certificate, or official paperwork.",
+  "faq": [
+    {
+      "q": "How does it find blank pages automatically?",
+      "a": "It examines each page one by one and picks out the nearly white ones as blank pages. Any page with even a little text or graphics is treated as having content and left in place. You don't have to enter page numbers one by one; it finds the empty pages for you."
+    },
+    {
+      "q": "What do you mean it's great for cleaning up blank backs of double-sided scans?",
+      "a": "When you scan double-sided, the unprinted back of a page often slips in as an entirely blank page. This tool finds and drops those nearly white pages, so you can clean up a scan with several blank backs mixed in all at once."
+    },
+    {
+      "q": "Could a page with very faint text get removed as blank?",
+      "a": "If the content is very faint, the page can look nearly white and be classified as blank. That's why we recommend checking the pages flagged as blank in the preview before removing. If a page you want to keep is mixed in, you can confirm first and then proceed."
+    },
+    {
+      "q": "Is the original file preserved?",
+      "a": "Yes, the original is left untouched, and only the result with blank pages removed is saved as a new PDF. You can compare the original and the result before deciding, so if something was removed by mistake, you can try again from the original."
+    },
+    {
+      "q": "Is it really free? Are there limits on the number or size of files?",
+      "a": "It's completely free with no watermarks. No sign-up or install is required. Since everything is processed on your device, feel free to tidy up blank pages as often as you need."
+    }
+  ],
+  "extraSections": [
+    {
+      "heading": "Great for moments like these",
+      "body": "It's great when a double-sided scan has several blank backs mixed in, when blank pages ended up scattered through a batch scan, or when you want to drop all the empty pages at once before submitting or printing. Since it automatically picks out the nearly white pages without you hunting down and typing page numbers, cleanup is fast. Just note that very faint content can be seen as blank, so we recommend checking the result once before you download."
+    }
+  ]
+}

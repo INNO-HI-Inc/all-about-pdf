@@ -1,0 +1,42 @@
+{
+  "title": "Add Margins to PDF Free | Everything PDF",
+  "metaDescription": "Add white margins around every page of your PDF for free. Choose narrow, medium, or wide. Files are processed right on your device, never uploaded.",
+  "h1": "Add Margins to PDF",
+  "subtitle": "Add clean white margins around every page. Free, with no install and no sign-up.",
+  "intro": "Ever had text disappear into the binding, or watched your printer chop off the edges of a page? Add a white margin around every page — narrow, medium, or wide — to make room for binding and give yourself space to write. Your content stays exactly the same size; we simply add a white border around it. And because everything happens right on your device with nothing ever uploaded to a server, you can polish even your most sensitive documents with total peace of mind.",
+  "steps": [
+    "Drag and drop the PDF you want to add margins to, or click Choose File to upload it.",
+    "Pick how much margin to add: narrow, medium, or wide.",
+    "Check the preview to see how the added margin looks.",
+    "Click Add Margins and download your finished PDF."
+  ],
+  "security": "Every step of adding margins happens entirely inside your browser (your device) — no file is ever sent to a server. So even for documents you'd rather keep private, like contracts, assignments, or medical records, nothing gets uploaded and you can add margins with complete confidence.",
+  "faq": [
+    {
+      "q": "Can I control how much margin to add?",
+      "a": "Yes — just pick from three sizes: narrow, medium, or wide. The same margin width is added on all four sides, so choose \"wide\" when you need room for binding or plenty of space to write, and \"narrow\" when you only want a slight border. You can check the result in the preview before you commit."
+    },
+    {
+      "q": "Can I add a margin to just one side?",
+      "a": "This tool adds the same margin width to all four sides of the page at once. Setting different values for top, bottom, left, and right isn't supported. It works best when you want to evenly widen the border to make room for binding or to keep printers from cutting off the edges."
+    },
+    {
+      "q": "Will adding margins shrink my text or images?",
+      "a": "No. Your content stays exactly the same size — we only add a white border on the outside of the page, so text and images keep their original dimensions. Just keep in mind that the overall page gets larger by the margin amount, so double-check your paper size before printing."
+    },
+    {
+      "q": "Will adding margins reduce the quality?",
+      "a": "No. We don't re-render the page as an image — we simply add a white margin around your existing content. That means text stays selectable and copyable, and there's no loss in quality. Even scans and photo-heavy documents stay just as crisp."
+    },
+    {
+      "q": "Is my original file kept intact?",
+      "a": "Yes. We never touch your original — the version with margins is saved as a separate new PDF. If you don't like the result, just start over from the original. There are no watermarks and no limits on file count or size."
+    }
+  ],
+  "extraSections": [
+    {
+      "heading": "Great for moments like these",
+      "body": "It's handy when you need binding room so the inner edge doesn't swallow your text after printing, when you want space to jot notes on lecture slides or meeting handouts, or when you want to stop your printer from trimming the edges. Add a white margin around the page and binding, note-taking, and printing all come out cleaner."
+    }
+  ]
+}

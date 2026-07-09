@@ -1,0 +1,45 @@
+{
+  "metaTitle": "Everything PDF | Free PDF Merge, Split & Convert",
+  "metaDescription": "A free suite of PDF tools with no install and no sign-up. Merge, split, convert, and unlock right in your browser, with no files ever uploaded to a server.",
+  "heroTitle": "Every PDF task you need, free, with no install and no uploads",
+  "heroSubtitle": "From merging, splitting, converting, and unlocking to turning images into PDFs, 37 tools in one place.",
+  "uspCards": [
+    {
+      "title": "100% Processed on Your Device",
+      "desc": "Every task runs entirely inside your browser. Your files are never sent to a server, so you can handle contracts and work documents with total peace of mind."
+    },
+    {
+      "title": "Completely Free, Unlimited",
+      "desc": "No watermarks, no caps on the number or size of files. Use it as much as you need, with no paywalls and no push to sign up."
+    },
+    {
+      "title": "No Install, No Sign-up",
+      "desc": "No software to install and no login required. Open the page and start working right away, with clear, natural guidance every step of the way."
+    }
+  ],
+  "intro": "Everything PDF is a free toolkit that brings together the PDF tasks you reach for most, merging, splitting, unlocking, extracting and deleting pages, converting to JPG and other images, adding page numbers, rotating, cropping, and compressing. Start right in your browser with no install or sign-up, and since your files are never uploaded to a server, you can handle even sensitive documents with confidence.",
+  "whyTitle": "Why Everything PDF?",
+  "why": "Most PDF tools upload your file to a server and then delete it after a set period. We don't upload it in the first place. Every task runs inside your own device, so when you're working with sensitive documents like contracts or internal materials, there's nothing to worry about being uploaded. On top of that, clear and natural guidance, instead of clunky machine translation, means even first-time users never feel lost.",
+  "faq": [
+    {
+      "q": "Is it really free?",
+      "a": "Yes, all of it is free. Your results carry no watermarks, there are no caps on the number or size of files, and we never ask for payment partway through."
+    },
+    {
+      "q": "Are my files safe?",
+      "a": "They're safe. Every task is processed inside your own browser and no file is sent to a server. Since there's no upload at all, there's no way for your files to end up stored somewhere else."
+    },
+    {
+      "q": "Do I need to install any software?",
+      "a": "No. With no install and no sign-up, just open the web page and you can start using it right away."
+    },
+    {
+      "q": "What can I do here?",
+      "a": "We offer 37 tools, including merging, splitting, and unlocking PDFs, extracting or deleting specific pages, converting to JPG and other images, adding page numbers, turning images into PDFs, and rotating, cropping, compressing, and viewing file info."
+    },
+    {
+      "q": "Does it work on mobile?",
+      "a": "Yes. You can use it the same way in the web browser on your smartphone or tablet, with no separate app to install."
+    }
+  ]
+}

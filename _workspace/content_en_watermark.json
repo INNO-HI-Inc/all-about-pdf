@@ -1,0 +1,42 @@
+{
+  "title": "PDF Watermark Free | Everything PDF",
+  "metaDescription": "Free PDF watermark. Stamp text like 'Confidential' or 'Copy' or an image onto every page. Processed only in your browser, safe with no upload.",
+  "h1": "PDF Watermark",
+  "subtitle": "Stamp text like 'Confidential' or 'Do Not Copy' or a logo image onto every page at once. Crisp lettering, with your choice of position, angle, and opacity. Free, with no install and no sign-up.",
+  "intro": "Sometimes a document you're submitting or sharing needs a mark like 'Confidential,' 'Copy,' or 'Draft.' Many overseas tools render text poorly or require you to upload your file to a server, which makes them hard to trust with sensitive documents. This tool renders your text crisply and lays it over every page, and it can add a logo or stamp image as a watermark too. You can drop it large and diagonal across the center, or tile it across the whole page like a grid to deter unauthorized copying. Adjust the angle (0 degrees, 45 degrees, 90 degrees), size, and opacity (light to heavy), and best of all, nothing is uploaded anywhere. It's processed only inside your browser, so you can confidently mark documents like contracts and proposals.",
+  "steps": [
+    "Drag in the PDF you want to watermark, or add it with [Choose File].",
+    "Choose 'Text' or 'Image,' then set the text (e.g., Confidential) or the logo image to add.",
+    "Pick the layout (centered or tiled), the angle, and the color, size, and opacity.",
+    "Click [Add Watermark] and download a new PDF marked on every page."
+  ],
+  "security": "Rendering the text, laying on the watermark, and saving all happen only inside your browser, on your device, and neither the original PDF nor the watermark image is ever sent to any server. That's why you can add a mark with complete peace of mind, even to documents you'd rather not upload, like confidential files, contracts, and internal proposals.",
+  "faq": [
+    {
+      "q": "Will the watermark text render cleanly without breaking?",
+      "a": "Yes. Text like 'Confidential' or 'Do Not Copy' is rendered crisply and stamped on. Because the text is drawn as an image and laid on top, it looks exactly the same even if the recipient's computer doesn't have a particular font installed."
+    },
+    {
+      "q": "Can I use a logo or stamp image as the watermark?",
+      "a": "Yes. Choose 'Image' and upload a PNG or JPG file. A transparent PNG (a logo or stamp) lays on naturally with no background. You can adjust the opacity and size too."
+    },
+    {
+      "q": "Is it applied to every page at once?",
+      "a": "Yes, it's applied identically to every page of the document. You can choose between one large mark in the center or a repeated tile pattern across the whole page to deter unauthorized copying."
+    },
+    {
+      "q": "Does the watermark degrade the original text or image quality?",
+      "a": "No. It lays a semi-transparent mark over the original page, so the body text and image quality stay exactly as they were. Set the opacity to 'light' to keep the mark visible without obscuring the content."
+    },
+    {
+      "q": "Is it really free? Do watermarks come with ads?",
+      "a": "It's completely free, and nothing beyond the text or image you add is stamped on, no ads and no service branding. There are no usage or size limits, and no sign-up."
+    }
+  ],
+  "extraSections": [
+    {
+      "heading": "Great for moments like these",
+      "body": "It's perfect for stamping 'Confidential' on a proposal you're sharing externally, marking 'Copy' or 'Draft' to distinguish a version from the original, or subtly laying your company logo onto shared materials. A tiled (repeated) layout suits internal documents where you want to discourage screenshots and redistribution, while a centered layout fits cover pages or contracts that need their status recognized at a glance."
+    }
+  ]
+}
