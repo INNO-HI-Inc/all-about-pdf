@@ -1457,7 +1457,8 @@ ${catRows}
 
   const searchIco = '<svg class="ws-search__ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>';
   const gridIco = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="3.5" width="7" height="7" rx="1.6"/><rect x="13.5" y="3.5" width="7" height="7" rx="1.6"/><rect x="3.5" y="13.5" width="7" height="7" rx="1.6"/><rect x="13.5" y="13.5" width="7" height="7" rx="1.6"/></svg>';
-  const main = `    <section class="ws-home2" id="tools">
+  const main = `    <div class="home-frame">
+    <section class="ws-home2" id="tools">
       <h1 class="sr-only">${esc(c.metaTitle || 'PDF의 모든 것')} — 설치 없이 무료로 쓰는 한국어 PDF 도구 모음</h1>
       <div class="ws-hero">
         <span class="ws-hero__brand">${esc(BRAND)}</span>
@@ -1531,6 +1532,7 @@ ${catRows}
         </div>
       </div>
     </section>
+    </div>
 
     <aside class="ws-drawer" id="tool-drawer" aria-label="전체 도구" aria-hidden="true">
       <div class="ws-drawer__bar">
