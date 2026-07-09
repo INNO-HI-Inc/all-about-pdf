@@ -1,0 +1,51 @@
+{
+  "title": "Numerar páginas de PDF gratis | Everything PDF",
+  "metaDescription": "Añade números de página a tus PDF gratis. Elige posición, número inicial e incluso excluir la portada. Los archivos se procesan solo en tu dispositivo y no se envían a ningún servidor.",
+  "h1": "Numerar páginas de PDF",
+  "subtitle": "Gratis, sin instalar nada y directamente en tu navegador, numera las páginas.",
+  "intro": "¿Alguna vez te has llevado un susto al ver que a tu PDF le faltaban los números de página justo antes de entregar un informe o un trabajo? Sube el archivo, elige solo la posición y el formato, y los números de página se añaden de una sola vez. Sin marca de agua y sin registro.",
+  "steps": [
+    "① Sube el archivo PDF a la pantalla.",
+    "② Elige la posición del número (arriba/abajo × izquierda/centro/derecha).",
+    "③ Define el número inicial y el formato (1 · 1/N · - 1 -).",
+    "④ Decide si excluir la portada y revisa la vista previa.",
+    "⑤ Descarga el PDF terminado."
+  ],
+  "security": "Los archivos se procesan solo dentro del navegador de tu ordenador. A diferencia de otras herramientas de PDF, no se envían a ningún servidor, así que incluso documentos que no quieres mostrar a nadie —como contratos, trámites o trabajos— pueden numerarse con total tranquilidad.",
+  "faq": [
+    {
+      "q": "¿Puedo empezar la numeración desde un número distinto del 1?",
+      "a": "Sí, puedes definir libremente el número inicial. Si has unido al principio otro archivo, puedes configurarlo para que empiece en el 5 o en el 10. La numeración se añade por orden a partir del número que introduzcas."
+    },
+    {
+      "q": "¿Puedo poner el número de página abajo en el centro?",
+      "a": "Sí, puedes combinar arriba o abajo con izquierda, centro o derecha para elegir la posición. En los informes se suele usar abajo en el centro. Comprueba la posición en la vista previa antes de descargar."
+    },
+    {
+      "q": "¿Puedo excluir la portada y empezar el 1 en el cuerpo del documento?",
+      "a": "Sí, si activas la opción de excluir la portada, la primera hoja no llevará número. La primera página del cuerpo, justo después de la portada, se numerará como 1. Es ideal para ajustarse a los formatos de entrega de tesis o propuestas."
+    },
+    {
+      "q": "¿Puedo numerar con un formato como 1/N?",
+      "a": "Sí, puedes elegir entre el 1 con solo el número, el 1/N que muestra también el total de páginas, o el formato - 1 - con guiones a los lados. Para informes en los que hay que indicar la extensión total, resulta cómodo el 1/N."
+    },
+    {
+      "q": "¿Hay límite de número de archivos o de tamaño?",
+      "a": "No hemos puesto ningún límite de número ni de tamaño. Ahora bien, como todo el trabajo se procesa en tu dispositivo, los archivos muy grandes pueden tardar algo más según la potencia de tu ordenador."
+    },
+    {
+      "q": "¿Puedo añadir números de página a un PDF escaneado?",
+      "a": "Sí, también puedes añadir números de página a los PDF formados por imágenes, como los escaneos. Como el número solo se superpone sobre el contenido existente, el original se mantiene intacto."
+    }
+  ],
+  "extraSections": [
+    {
+      "heading": "Pruébalo cuando…",
+      "body": "Resulta útil cuando te has olvidado de los números de página justo antes de entregar un trabajo o un informe, o cuando necesitas reorganizar la numeración tras unir varios documentos. Puedes numerar tus PDF ajustándote al formato que exija la entrega: empezar el 1 en el cuerpo excluyendo la portada, o añadir el 1/N que muestra la extensión total."
+    },
+    {
+      "heading": "Conviene saber antes de empezar",
+      "body": "Si añades una numeración nueva a un documento que ya tiene números impresos, puede que se vean superpuestos, así que elige una posición que esté libre. El PDF procesado se descarga como un archivo nuevo, de modo que el original se mantiene intacto. Si el resultado no te convence, basta con cambiar los ajustes y generarlo de nuevo."
+    }
+  ]
+}

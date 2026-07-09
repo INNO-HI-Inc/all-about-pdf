@@ -1,0 +1,51 @@
+{
+  "title": "Desbloquear PDF gratis | Everything PDF",
+  "metaDescription": "Desbloquea tus PDF gratis. Quita restricciones de impresión y edición y contraseñas. Los archivos se procesan solo en tu dispositivo y no se suben a ningún servidor.",
+  "h1": "Desbloquear PDF",
+  "subtitle": "Gratis, sin instalar nada y directamente en tu dispositivo, quita las restricciones.",
+  "intro": "Quita las restricciones de impresión y edición de tus propios PDF. Si el documento pide una contraseña al abrirlo, introduce la que ya conoces para desbloquearlo. Los archivos se procesan solo dentro del navegador y no se envían a ningún servidor.",
+  "steps": [
+    "① Sube el archivo PDF que quieras desbloquear.",
+    "② Si el documento solo tiene bloqueada la impresión o la edición, la restricción se quita al momento.",
+    "③ Si pide contraseña al abrirlo, introduce la que ya conoces.",
+    "④ Selecciona «Desbloquear como imagen» para eliminar la contraseña.",
+    "⑤ Guarda en tu dispositivo el PDF ya desbloqueado."
+  ],
+  "security": "Esta herramienta no es un crack para averiguar contraseñas, sino una utilidad para eliminar una contraseña que ya conoces o quitar restricciones de impresión y edición. No se pueden abrir contraseñas que desconoces. El archivo y la contraseña que introduces se usan solo en tu navegador y no se guardan ni se envían a ningún servidor.",
+  "faq": [
+    {
+      "q": "¿Puedo desbloquear un PDF si no conozco la contraseña?",
+      "a": "No. No se pueden quitar contraseñas que desconoces. Esta herramienta sirve para eliminar una contraseña que ya conoces o para quitar restricciones de impresión y edición; no es un crack de contraseñas."
+    },
+    {
+      "q": "¿Se guarda o se envía a algún sitio la contraseña que introduzco?",
+      "a": "No. La contraseña que introduces se usa solo dentro de tu navegador. No se guarda ni se envía a ningún servidor y, al terminar el proceso, desaparece de la memoria."
+    },
+    {
+      "q": "¿Qué diferencia hay entre una restricción de permisos y una contraseña de apertura?",
+      "a": "Con una restricción de permisos el documento se abre, pero está bloqueada la impresión, la edición o la copia; se puede quitar directamente sin contraseña. La contraseña de apertura pide una clave desde el momento de abrir el documento: introduce la que ya conoces y selecciona «Desbloquear como imagen» para eliminarla."
+    },
+    {
+      "q": "¿Quitar la contraseña de un PDF tiene algún problema legal?",
+      "a": "No hay problema si se trata de tus propios documentos o de documentos sobre los que tienes un derecho legítimo. Por ejemplo, puedes usarla para quitar la restricción de impresión de un folleto informativo que hayas recibido o de un contrato o informe que hayas creado tú. No debe usarse para desbloquear documentos ajenos sobre los que no tienes permiso."
+    },
+    {
+      "q": "¿Hace falta registrarse o instalar algún programa?",
+      "a": "No. Puedes usarla directamente, sin registro ni instalación. Es totalmente gratis, no añade marca de agua y no hay límite de número de archivos ni de tamaño."
+    },
+    {
+      "q": "¿Puedo desbloquear con seguridad escaneos o contratos sensibles?",
+      "a": "Sí. Los archivos se procesan solo en el navegador de tu dispositivo y no se suben a ningún servidor, así que documentos sensibles como contratos, trámites o escaneos no salen al exterior. A diferencia de las herramientas extranjeras que suben el archivo y lo borran pasado un tiempo, aquí directamente no se sube nada."
+    }
+  ],
+  "extraSections": [
+    {
+      "heading": "Cuándo te vendrá bien",
+      "body": "Úsala para quitar las restricciones de impresión o edición de un informe o trabajo que hayas creado tú y poder retocarlo de nuevo, para imprimir y archivar un folleto o una factura que hayas recibido por correo, o para abrir sin contraseña un contrato tuyo cuya clave conoces. Todo ello limitado a documentos sobre los que tengas permiso."
+    },
+    {
+      "heading": "Ten en cuenta al desbloquear como imagen",
+      "body": "Cuando «desbloqueas como imagen» un documento con contraseña de apertura, cada página se convierte en una imagen y la contraseña desaparece. Con este método el documento se ve igual, pero después resulta difícil seleccionar y copiar el texto directamente o modificar el contenido. Es más seguro conservar aparte el PDF original con contraseña."
+    }
+  ]
+}

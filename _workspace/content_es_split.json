@@ -1,0 +1,47 @@
+{
+  "title": "Dividir PDF gratis | Everything PDF",
+  "metaDescription": "Divide tus PDF gratis. Separa páginas sueltas o por rangos y descárgalas en un ZIP. Los archivos no se suben a ningún servidor: todo se procesa en tu dispositivo.",
+  "h1": "Dividir PDF",
+  "subtitle": "Gratis, sin instalar nada y directamente en tu dispositivo.",
+  "intro": "Úsalo cuando solo necesites una parte de un PDF grande. Puedes separar cada página por separado o indicar rangos como 1-3 o 4-8 para recortar el PDF. El resultado se descarga de una vez en un ZIP.",
+  "steps": [
+    "① Sube el archivo PDF que quieras dividir.",
+    "② Elige entre «Separar en páginas sueltas» o «Indicar rangos».",
+    "③ Si eliges rangos, escribe los tramos como 1-3 o 4-8.",
+    "④ Pulsa «Dividir».",
+    "⑤ Descarga los archivos divididos en un ZIP."
+  ],
+  "security": "Todo el procesamiento ocurre 100 % dentro de tu navegador (tu dispositivo). Ni siquiera los documentos sensibles como contratos, trámites o escaneos se suben a ningún sitio, así que puedes dividir tus PDF con total tranquilidad.",
+  "faq": [
+    {
+      "q": "¿Cómo guardo una sola página por separado?",
+      "a": "En la opción de rangos, escribe únicamente ese número de página. Por ejemplo, si introduces solo «5», obtendrás la página 5 por separado. Si quieres seleccionar varias páginas y extraerlas en un único archivo, usa la herramienta «Extraer páginas de PDF»."
+    },
+    {
+      "q": "¿Qué diferencia hay entre separar en páginas sueltas e indicar rangos?",
+      "a": "Separar en páginas sueltas divide todas las páginas en archivos de una sola hoja. Indicar rangos agrupa solo los tramos que quieras, como 1-3 o 4-8. Para dividir un informe por capítulos, es más cómodo usar los rangos."
+    },
+    {
+      "q": "¿Se pierde calidad al dividir un PDF?",
+      "a": "No. Como las páginas se extraen tal cual, el texto y las imágenes se mantienen idénticos al original. Incluso los escaneos o los documentos con fotos se dividen sin ninguna pérdida de calidad."
+    },
+    {
+      "q": "¿Cómo recibo el resultado?",
+      "a": "Los archivos divididos se agrupan en un ZIP para descargarlos de una sola vez. Al descomprimirlo encontrarás cada PDF por separado. No hay límite de número de archivos ni de tamaño."
+    },
+    {
+      "q": "¿Hace falta registrarse o instalar algo?",
+      "a": "No hace falta. Puedes recortar tus PDF directamente desde el navegador, sin registro ni programas que instalar. Tampoco se añade ninguna marca de agua."
+    }
+  ],
+  "extraSections": [
+    {
+      "heading": "Cuándo te vendrá bien",
+      "body": "Resulta útil para extraer solo tu parte de un trabajo colectivo de 100 páginas, dividir un contrato cláusula por cláusula u organizar por páginas trámites o solicitudes escaneadas. También es cómodo para separar un informe voluminoso por capítulos y guardarlos aparte o adjuntarlos por correo."
+    },
+    {
+      "heading": "Consejo para indicar rangos",
+      "body": "Puedes escribir varios rangos a la vez separándolos con comas. Por ejemplo, si introduces 1-3, 4-8 juntos, se generarán dos archivos. Si quieres partir el PDF por la mitad, basta con indicar el rango de la primera parte y el de la segunda."
+    }
+  ]
+}

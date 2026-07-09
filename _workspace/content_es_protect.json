@@ -1,0 +1,42 @@
+{
+  "title": "Poner contraseña a un PDF (cifrado) gratis | Everything PDF",
+  "metaDescription": "Herramienta gratuita para poner una contraseña de apertura a tus PDF. También puedes restringir la impresión y la copia. Se cifra en tu navegador, sin subir nada, con total seguridad.",
+  "h1": "Poner contraseña a un PDF",
+  "subtitle": "Protege tu PDF con una contraseña de apertura para que solo lo abra quien tú decidas. También puedes restringir la impresión y la copia. El cifrado se hace en tu navegador, sin subir el archivo a ningún sitio.",
+  "intro": "A veces necesitas proteger con contraseña un PDF que no debería abrir cualquiera, como un contrato, una nómina o un historial médico. Esta herramienta cifra el archivo directamente en tu navegador, sin subirlo a ningún servidor, de modo que el documento solo se pueda abrir introduciendo la contraseña que hayas establecido. Además de la contraseña de apertura, dispones de opciones para restringir la impresión y la copia (selección de texto), evitando así que quien lo reciba extraiga el contenido a su antojo. Es la función opuesta a la herramienta de desbloqueo (unlock), ideal para cerrar por última vez un documento sensible antes de enviarlo por correo o mensajería. La contraseña que definas no se guarda en ninguna parte de este dispositivo, así que asegúrate de recordarla aparte: si la olvidas, no habrá vuelta atrás.",
+  "steps": [
+    "① Arrastra el PDF que quieras proteger o súbelo con [Seleccionar archivo].",
+    "② Introduce la contraseña de apertura y, si lo necesitas, decide si permites imprimir y copiar.",
+    "③ Pulsa [Poner contraseña] para crear un nuevo PDF cifrado.",
+    "④ Descarga el PDF protegido. Necesitarás esa contraseña para abrirlo."
+  ],
+  "security": "Todo el proceso de poner la contraseña y cifrar ocurre únicamente dentro de tu navegador (tu dispositivo); ni el PDF original ni la contraseña se envían a ningún servidor. Por eso puedes proteger incluso documentos sensibles como contratos, expedientes de personal o informes médicos sin temor a que se filtren.",
+  "faq": [
+    {
+      "q": "¿Qué tipo de cifrado se utiliza?",
+      "a": "Se usa el cifrado estándar de PDF, de modo que el documento solo se abre introduciendo la contraseña de apertura que hayas definido. Visores habituales como Acrobat, Chrome o Vista Previa pedirán la contraseña. Todo el procesamiento se realiza dentro del navegador."
+    },
+    {
+      "q": "¿Qué pasa si olvido la contraseña?",
+      "a": "No hay vuelta atrás. Esta herramienta no guarda la contraseña en el dispositivo, así que, si la olvidas, no habrá forma de abrir ese PDF. Guarda el archivo original aparte y recuerda la contraseña en un lugar seguro."
+    },
+    {
+      "q": "¿Se respetan siempre las restricciones de impresión y copia?",
+      "a": "Si desactivas el permiso de impresión y copia, la restricción se establece mediante una contraseña de propietario distinta de la de apertura. Ahora bien, el grado en que se respeta esa restricción puede variar según el programa (visor) con el que se abra. Si necesitas bloquearlo de forma segura, te recomendamos combinarla también con la contraseña de apertura."
+    },
+    {
+      "q": "¿Puedo volver a proteger un PDF que ya tiene contraseña?",
+      "a": "Primero quita la contraseña actual con la herramienta [Desbloquear PDF] y luego establece una nueva. Si subes directamente un archivo ya bloqueado, no podrá abrirse y aparecerá un aviso."
+    },
+    {
+      "q": "¿Es realmente gratis? ¿Se suben los archivos a un servidor?",
+      "a": "Es totalmente gratis, y ni los archivos ni las contraseñas se envían a ningún servidor: el cifrado ocurre solo en tu navegador. Tampoco hay límite de usos ni de tamaño."
+    }
+  ],
+  "extraSections": [
+    {
+      "heading": "Cuándo te vendrá bien",
+      "body": "Es perfecta para cerrar documentos que solo deberían abrir determinadas personas —como nóminas, contratos o informes médicos— antes de enviarlos por correo o mensajería. Si añades además la restricción de impresión y copia, puedes disuadir hasta cierto punto a quien lo reciba de extraer el contenido y redistribuirlo tal cual. Y si lo que quieres es lo contrario, quitar una contraseña que conoces o una restricción, usa la herramienta [Desbloquear PDF]."
+    }
+  ]
+}
