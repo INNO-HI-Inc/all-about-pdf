@@ -1171,7 +1171,7 @@ body.lp-page .ws-taskbar { max-width: none; margin: 0; top: 0; height: 68px; bor
 /* 히어로 우측: 마스코트 + 기능 노드 클러스터 */
 .lp-hero__viz { position: relative; min-height: 440px; display: grid; place-items: center; }
 .lp-viz__glow { position: absolute; width: 340px; height: 340px; border-radius: 50%; background: radial-gradient(circle, rgba(229, 37, 42, .16), rgba(229, 37, 42, 0) 68%); filter: blur(6px); z-index: 0; }
-.lp-mascot { position: relative; z-index: 1; width: min(238px, 62%); filter: drop-shadow(0 26px 40px rgba(23, 23, 42, .18)); animation: lpMascotFloat 4.2s var(--ez-in-out, ease-in-out) infinite; }
+.lp-mascot { position: relative; z-index: 1; width: min(300px, 74%); filter: drop-shadow(0 28px 44px rgba(23, 23, 42, .18)); animation: lpMascotFloat 4.2s var(--ez-in-out, ease-in-out) infinite; }
 .lp-mascot svg { width: 100%; height: auto; display: block; }
 .lp-mascot__wave { transform-origin: 148px 116px; animation: lpMascotWave 3.4s ease-in-out infinite; }
 @keyframes lpMascotFloat { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }

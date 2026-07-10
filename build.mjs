@@ -1540,10 +1540,6 @@ ${catRows}
             <rect x="66" y="156" width="42" height="7" rx="3.5" fill="#ffd9d6"/>
           </svg>
         </div>
-        ${lpNode('to-image', LI.convert, '변환', '다양한 형식으로', 'red')}
-        ${lpNode('rotate', LI.edit, '편집', 'PDF 내용 수정', 'amber')}
-        ${lpNode('merge', LI.split, '분할·병합', '자유롭게 구성', 'blue')}
-        ${lpNode('compress', LI.compress, '압축', '용량 줄이기', 'green')}
       </div>
     </section>
 
