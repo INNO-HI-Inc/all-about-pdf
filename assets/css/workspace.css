@@ -1146,11 +1146,17 @@ body.lp-page .ws-taskbar { max-width: none; margin: 0; top: 0; height: 68px; bor
 /* 드롭존 (mockup: 빨강 점선 박스 + 원형 + 버튼 + 포맷 칩) */
 .lp-drop { position: relative; border: 2px dashed rgba(229, 37, 42, .42); border-radius: 24px; background: linear-gradient(180deg, var(--surf), #fff6f5); padding: clamp(16px, 2vw, 26px); box-shadow: 0 30px 60px -26px rgba(229, 37, 42, .28), 0 2px 10px rgba(23, 23, 42, .04); transition: border-color .2s, box-shadow .35s var(--ez-out), transform .35s var(--ez-out); }
 .lp-drop:hover { transform: translateY(-3px); box-shadow: 0 44px 78px -26px rgba(229, 37, 42, .38), 0 3px 12px rgba(23, 23, 42, .05); }
-.lp-drop:has(.tool.is-loaded) { border-style: solid; border-color: var(--line); background: var(--surf); }
+/* 히어로 상태: 데크 투명 + 작업창 오른쪽 옵션은 파일 로드 전 숨김 */
+.lp-drop .lp-deck { background: none; border: 0; box-shadow: none; border-radius: 0; }
 .lp-drop .tool { display: block; }
 .lp-drop .tool__left { width: 100%; }
 .lp-drop .tool:not(.is-loaded) .tool__right { display: none; }
 .lp-drop .tool__right { margin-top: 16px; }
+/* 파일 드롭 → 풀스크린 작업 뷰(포탈되어 body 직속으로 최대화) */
+.lp-deck.is-max { padding: 0; }
+.lp-deck.is-max .tool { display: flex !important; flex-direction: column; gap: 18px; flex: 1 1 auto; min-height: 0; overflow: auto; padding: clamp(16px, 2.4vw, 26px); }
+.lp-deck.is-max .tool__right { display: block !important; margin-top: 0; }
+.lp-deck.is-max .dropzone { min-height: 180px !important; }
 .lp-drop .dropzone { display: flex !important; flex-direction: column; align-items: center; justify-content: center; text-align: center; border: none !important; background: none !important; box-shadow: none !important; min-height: 168px !important; padding: 14px !important; gap: 4px; }
 .lp-drop:has(.tool.is-loaded) .dropzone { min-height: auto !important; }
 .lp-drop .dropzone__icon { width: 64px !important; height: 64px !important; padding: 16px; margin-bottom: 10px !important; background: linear-gradient(160deg, #ff5147, #e5252a); color: #fff; border-radius: 50%; animation: lpPulse 2.6s ease-in-out infinite; }

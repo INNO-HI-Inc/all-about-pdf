@@ -1511,7 +1511,10 @@ ${catRows}
         <p class="lp-hero__title"><span class="lp-hero__red">PDF,</span> 그 이상의 간편함</p>
         <p class="lp-hero__sub">${esc(c.heroSubtitle || '')}</p>
         <div class="lp-drop">
-          ${widget(TOOL_BY['organize'])}
+          <div class="ws-window ws-deck lp-deck" data-ws-window>
+            <button class="ws-winclose ws-deck__close" type="button" data-ws-close aria-label="작업 닫고 처음으로">처음으로 ✕</button>
+            ${widget(TOOL_BY['organize'])}
+          </div>
           <div class="lp-drop__formats"><span class="lp-fmt lp-fmt--pdf">PDF</span><span class="lp-fmt lp-fmt--word">Word</span><span class="lp-fmt lp-fmt--jpg">JPG</span><span class="lp-fmt lp-fmt--png">PNG</span><span class="lp-fmt lp-fmt--more">…</span></div>
         </div>
         <p class="lp-note">${IC('<rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/>')}<span>파일은 서버로 전송되지 않습니다.</span></p>
