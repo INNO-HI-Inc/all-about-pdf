@@ -967,11 +967,13 @@ html.drawer-open { overflow: hidden; }
 .home-pop__grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; align-items: stretch; }
 .home-pop__card { display: flex; align-items: center; gap: 15px; background: var(--surf); border: 1px solid var(--line-2); border-radius: var(--r-card); padding: 22px 24px; color: var(--ink); text-decoration: none; box-shadow: var(--sh-rest); position: relative; overflow: hidden;
   transition: transform var(--d-hover) var(--ez-spring), box-shadow var(--d-hover) var(--ez-out), border-color var(--d-micro) var(--ez); }
-.home-pop__card::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 4px; background: var(--cat-color, var(--red)); }
+.home-pop__card::before { content: none; }
 .home-pop__card:hover { transform: translateY(-4px) scale(1.012); box-shadow: var(--sh-hover); border-color: var(--cat-color, var(--line)); text-decoration: none; }
-.home-pop__ico { flex: none; width: 46px; height: 46px; display: grid; place-items: center; transition: transform var(--d-hover) var(--ez-spring); }
-.home-pop__ico .ic-svg, .home-pop__ico > svg { width: 40px; height: 40px; }
-.home-pop__card:hover .home-pop__ico { transform: scale(1.08) rotate(-3deg); }
+/* 아이콘 = '실제 변환 예시'의 파일칩 스타일(카테고리색 + 접힌 모서리 + 흰 글리프) */
+.home-pop__ico { flex: none; width: 46px; height: 56px; position: relative; display: grid; place-items: center; border-radius: 8px; background: var(--cat-color, var(--red)); box-shadow: 0 4px 10px rgba(23, 23, 42, .16); overflow: hidden; transition: transform var(--d-hover) var(--ez-spring); }
+.home-pop__ico::after { content: ""; position: absolute; top: 0; right: 0; width: 0; height: 0; border-style: solid; border-width: 0 12px 12px 0; border-color: rgba(255, 255, 255, .5) transparent; }
+.home-pop__ico .ic-svg, .home-pop__ico > svg { width: 26px; height: 26px; filter: brightness(0) invert(1); }
+.home-pop__card:hover .home-pop__ico { transform: translateY(-2px); }
 .home-pop__tx { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
 .home-pop__tx b { font-size: 1.06rem; font-weight: 800; color: var(--ink); }
 .home-pop__tx span { font-size: 13px; color: var(--ink-faint); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
@@ -986,8 +988,9 @@ html.drawer-open { overflow: hidden; }
 /* 위계: featured 카드(합치기) — 2×2 대형 */
 .home-pop__card--feat { grid-column: span 2; grid-row: span 2; flex-direction: column; align-items: flex-start; justify-content: flex-start; gap: 0; padding: 30px; background: radial-gradient(130% 120% at 100% 0%, rgba(229, 37, 42, .08), rgba(229, 37, 42, 0) 55%), var(--surf); }
 .home-pop__card--feat::before { width: 5px; }
-.home-pop__card--feat .home-pop__ico { width: 62px; height: 62px; }
-.home-pop__card--feat .home-pop__ico .ic-svg, .home-pop__card--feat .home-pop__ico > svg { width: 54px; height: 54px; }
+.home-pop__card--feat .home-pop__ico { width: 58px; height: 72px; border-radius: 10px; }
+.home-pop__card--feat .home-pop__ico::after { border-width: 0 15px 15px 0; }
+.home-pop__card--feat .home-pop__ico .ic-svg, .home-pop__card--feat .home-pop__ico > svg { width: 32px; height: 32px; }
 .home-pop__card--feat .home-pop__tx { margin-top: auto; padding-top: 22px; gap: 7px; }
 .home-pop__card--feat .home-pop__tx b { font-size: 1.5rem; letter-spacing: -.02em; }
 .home-pop__card--feat .home-pop__tx span { font-size: 14.5px; white-space: normal; overflow: visible; color: var(--ink-soft); line-height: 1.5; }
@@ -1050,7 +1053,11 @@ html.drawer-open { overflow: hidden; }
 @media (prefers-color-scheme: dark) { .ws-hero__free { color: #4fdd9a; background: rgba(22, 196, 127, .12); border-color: rgba(22, 196, 127, .28); } }
 
 /* ===== Codeit 스타일: 소프트 틴트 배경 + 라운드 콘텐츠 프레임 ===== */
+html:has(body.home) { background: #f4f3fa; }
 body.home { background: linear-gradient(180deg, #f4f3fa 0%, #eeedf6 100%); }
+/* 메뉴바 폭을 아래 콘텐츠 프레임(1240)과 일치 — 정렬 */
+body.home .ws-taskbar { max-width: 1240px; margin: 14px auto 0; }
+@media (max-width: 900px) { body.home .ws-taskbar { margin: 8px auto 0; } }
 .home-frame { max-width: 1240px; margin: 22px auto 40px; background: var(--surf, #fff); border-radius: var(--r-dialog); padding: 16px 26px 64px; border: 1px solid rgba(23, 23, 42, .05); box-shadow: 0 10px 44px rgba(23, 23, 42, .06), inset 0 1px 0 rgba(255, 255, 255, .8); }
 .home-frame .ws-home2 { background: none; }
 /* Codeit 히어로 비주얼 패널: 부드러운 라운드 틴트 배경 — 넉넉한 세로 리듬 */
@@ -1076,7 +1083,11 @@ body.home { background: linear-gradient(180deg, #f4f3fa 0%, #eeedf6 100%); }
 .home-hero2__chips .ic-svg { width: 16px; height: 16px; color: var(--red); }
 .home-hero2__work { min-width: 0; }
 .home-hero2__work .ws-home2--solo { max-width: none; margin: 0; padding: 0; }
-.home-hero2__work .ws-window { border-radius: 24px; box-shadow: 0 24px 60px rgba(23, 23, 42, .13), 0 6px 16px rgba(23, 23, 42, .06); }
+/* 작업창을 계층별 카드로 분리: (1)도구 선택 탭 카드 / (2)작업 카드 */
+.home-hero2__work .ws-window { background: none; border: 0; border-radius: 0; box-shadow: none; overflow: visible; }
+.home-hero2__work .herotool { padding: 0; background: none; display: flex; flex-direction: column; gap: 12px; }
+.home-hero2__work .herotool__tabs { padding: 8px; background: var(--surf); border: 1px solid var(--line-2); border-radius: 16px; box-shadow: var(--sh-rest); }
+.home-hero2__work .herotool__panels { background: var(--surf); border: 1px solid var(--line-2); border-radius: 18px; box-shadow: var(--sh-rest); overflow: hidden; }
 @media (max-width: 900px) {
   .home-frame .home-hero2 { grid-template-columns: 1fr; gap: 30px; padding: 40px 16px; text-align: center; }
   .home-hero2__copy { align-items: center; }
@@ -1085,9 +1096,11 @@ body.home { background: linear-gradient(180deg, #f4f3fa 0%, #eeedf6 100%); }
 }
 
 @media (prefers-color-scheme: dark) {
+  html:has(body.home) { background: #16131f; }
   body.home { background: linear-gradient(180deg, #16131f 0%, #0d0e15 100%); }
   .home-frame { background: var(--surf); border-color: var(--line); box-shadow: 0 10px 44px rgba(0, 0, 0, .42), inset 0 1px 0 rgba(255, 255, 255, .04); }
   .home-frame .ws-hero { background: radial-gradient(120% 140% at 50% -10%, rgba(229, 37, 42, .14), rgba(229, 37, 42, 0) 60%), linear-gradient(180deg, rgba(255, 255, 255, .035), rgba(255, 255, 255, .01)); border-color: rgba(255, 255, 255, .05); }
   .home-hero2__all { background: rgba(255, 255, 255, .04); border-color: var(--line-2); }
-  .home-hero2__work .ws-window { box-shadow: 0 24px 60px rgba(0, 0, 0, .5); }
+  .home-hero2__work .ws-window { box-shadow: none; }
+  .home-hero2__work .herotool__tabs, .home-hero2__work .herotool__panels { background: var(--surf-2); border-color: var(--line-2); box-shadow: 0 8px 24px rgba(0, 0, 0, .4); }
 }
