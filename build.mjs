@@ -522,8 +522,7 @@ function wsTaskbar(rel) {
     : `<a class="ws-nav__cta" href="${home}#tools">전체 도구</a>`;
   return `    <header class="ws-taskbar">
       <a href="${home}" class="ws-logo"><span class="chip" aria-hidden="true"><img src="${rel}assets/img/logo.png" alt="" width="30" height="30" decoding="async"></span><span class="ko">PDF의 모든 것</span><b class="sep" aria-hidden="true">/</b><span class="wk">workspace</span></a>
-      <nav class="ws-nav"><a href="${home}about/">소개</a></nav>
-      ${allTools}
+      <nav class="ws-nav"><a href="${home}about/">소개</a>${allTools}</nav>
     </header>`;
 }
 function wsFooter(rel) {
