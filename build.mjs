@@ -1499,7 +1499,7 @@ ${catRows}
 
     <section class="home-pop" aria-label="인기 도구" data-reveal>
       <div class="ws-wrap">
-        <h2 class="home-pop__h">가장 많이 쓰는 도구</h2>
+        <h2 class="home-pop__h"><span class="home-sec__num">01</span>가장 많이 쓰는 도구</h2>
         <div class="home-pop__grid">
           <a class="home-pop__card home-pop__card--feat" href="merge/" data-cat="organize">
             <span class="home-pop__ico">${ICONS_PDF['merge']}</span>
@@ -1517,7 +1517,7 @@ ${catRows}
 
     <section class="home-scenes" aria-label="실제 변환 예시" data-reveal>
       <div class="ws-wrap">
-        <h2 class="home-scenes__h">실제 변환 예시</h2>
+        <h2 class="home-scenes__h"><span class="home-sec__num">02</span>실제 변환 예시</h2>
         <p class="home-scenes__sub">브라우저 안에서 바로, 이렇게 바뀝니다</p>
         <div class="home-scenes__grid">
           <a class="scene" href="merge/">
@@ -1583,7 +1583,7 @@ ${catRows}
           </div>
         </div>
         <div class="home-block home-faqblock" data-reveal>
-          <h2 class="home-block__h">자주 묻는 질문</h2>
+          <h2 class="home-block__h"><span class="home-sec__num">03</span>자주 묻는 질문</h2>
           <div class="home-faq">
             <details><summary>정말 무료인가요?</summary><p>네. 모든 도구가 완전 무료이며, 워터마크나 파일 개수·용량 제한이 없습니다.</p></details>
             <details><summary>제 파일이 서버로 업로드되나요?</summary><p>아니요. 모든 작업은 여러분의 웹 브라우저 안에서만 실행되며, 파일은 어떤 서버로도 전송되지 않습니다. 창을 닫으면 메모리에서 사라집니다.</p></details>
