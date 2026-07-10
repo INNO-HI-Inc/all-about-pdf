@@ -1053,7 +1053,7 @@ html.drawer-open { overflow: hidden; }
 @media (prefers-color-scheme: dark) { .ws-hero__free { color: #4fdd9a; background: rgba(22, 196, 127, .12); border-color: rgba(22, 196, 127, .28); } }
 
 /* ===== Codeit 스타일: 소프트 틴트 배경 + 라운드 콘텐츠 프레임 ===== */
-html:has(body.lp-page) { background: #f6f7f8; }
+html:has(body.lp-page) { background: #ffffff; }
 body.home { background: linear-gradient(180deg, #f8f9fa 0%, #f1f2f4 100%); }
 /* 메뉴바 폭을 아래 콘텐츠 프레임(1240)과 일치 — 정렬 */
 body.home .ws-taskbar { max-width: 1500px; margin: 14px auto 0; }
@@ -1110,8 +1110,8 @@ body.home .ws-foot .ws-wrap { max-width: 1500px; }
 }
 
 /* ===================== 목업 랜딩(lp-*) — iLovePDF 스타일 ===================== */
-/* 홈·세부 페이지 배경 통일: near-white */
-body.lp-page { background: #f6f7f8; }
+/* 홈·세부 페이지 배경 통일: 올화이트 */
+body.lp-page { background: #ffffff; }
 /* 내비: 플로팅 바 제거 → 상단에 붙는 전체폭 흰 바 (body.home 폭 규칙보다 우선) */
 body.lp-page .ws-taskbar { max-width: none; margin: 0; top: 0; height: 68px; border-radius: 0; gap: 0; padding: 0 clamp(18px, 4vw, 40px);
   background: color-mix(in srgb, var(--bg) 82%, #fff); border: 0; border-bottom: 1px solid var(--line); box-shadow: none;
@@ -1130,7 +1130,10 @@ body.lp-page .ws-taskbar { max-width: none; margin: 0; top: 0; height: 68px; bor
 .lp { max-width: 1320px; margin: 0 auto; padding: 0 clamp(18px, 4vw, 40px); }
 
 /* 히어로 2단 */
-.lp-hero { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, .95fr); gap: clamp(28px, 4vw, 64px); align-items: center; align-content: center; min-height: calc(100vh - 68px); padding: clamp(14px, 2.2vh, 34px) 0; }
+.lp-hero { display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; min-height: calc(100vh - 68px); padding: clamp(16px, 2.4vh, 40px) 0; }
+.lp-hero__copy { max-width: 660px; width: 100%; }
+.lp-hero .lp-hero__sub { margin-left: auto; margin-right: auto; }
+.lp-hero .lp-note { justify-content: center; }
 @media (max-width: 980px) { .lp-hero { min-height: 0; } }
 .lp-hero__copy { min-width: 0; }
 .lp-hero__title { font-size: clamp(2.3rem, 4.4vw, 3.7rem); font-weight: 800; letter-spacing: -.035em; line-height: 1.2; color: var(--ink); margin: 0 0 12px; animation: lpFadeUp .7s var(--ez-out) both; }
