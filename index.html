@@ -48,382 +48,87 @@
   <link rel="preload" as="font" type="font/woff2" href="assets/vendor/fonts/a2z-ExtraBold.woff2" crossorigin>
   <link rel="stylesheet" href="assets/css/style.css?v=6fe3ba59">
   <script>document.documentElement.className+=" js";</script>
-  <link rel="stylesheet" href="assets/css/workspace.css?v=78804975">
+  <link rel="stylesheet" href="assets/css/workspace.css?v=6c052106">
   <script type="application/ld+json">[{"@context":"https://schema.org","@type":"WebSite","name":"PDF의 모든 것","url":"https://everything-pdf.site/","inLanguage":"ko","description":"설치도 회원가입도 없이 무료로 쓰는 PDF 도구 모음. 파일을 서버에 올리지 않고 내 브라우저에서 바로 합치기·분할·변환·잠금해제까지 처리합니다."},{"@context":"https://schema.org","@type":"Organization","name":"PDF의 모든 것","legalName":"INNO-HI Inc","url":"https://everything-pdf.site/","logo":"https://everything-pdf.site/assets/img/logo.png","contactPoint":{"@type":"ContactPoint","contactType":"customer support","email":"board@innohi.ai.kr"}},{"@context":"https://schema.org","@type":"ItemList","name":"PDF의 모든 것 도구 목록","inLanguage":"ko","numberOfItems":37,"itemListElement":[{"@type":"ListItem","position":1,"name":"합치기","url":"https://everything-pdf.site/merge/"},{"@type":"ListItem","position":2,"name":"분할","url":"https://everything-pdf.site/split/"},{"@type":"ListItem","position":3,"name":"잠금해제","url":"https://everything-pdf.site/unlock/"},{"@type":"ListItem","position":4,"name":"페이지 추출","url":"https://everything-pdf.site/extract/"},{"@type":"ListItem","position":5,"name":"페이지 삭제","url":"https://everything-pdf.site/delete/"},{"@type":"ListItem","position":6,"name":"페이지 정리","url":"https://everything-pdf.site/organize/"},{"@type":"ListItem","position":7,"name":"페이지 번호 넣기","url":"https://everything-pdf.site/page-numbers/"},{"@type":"ListItem","position":8,"name":"JPG 변환","url":"https://everything-pdf.site/to-image/"},{"@type":"ListItem","position":9,"name":"이미지 PDF 변환","url":"https://everything-pdf.site/image-to-pdf/"},{"@type":"ListItem","position":10,"name":"SVG PNG 변환","url":"https://everything-pdf.site/svg-to-png/"},{"@type":"ListItem","position":11,"name":"회전","url":"https://everything-pdf.site/rotate/"},{"@type":"ListItem","position":12,"name":"자르기 (여백 제거)","url":"https://everything-pdf.site/crop/"},{"@type":"ListItem","position":13,"name":"압축","url":"https://everything-pdf.site/compress/"},{"@type":"ListItem","position":14,"name":"정보 보기","url":"https://everything-pdf.site/pdf-info/"},{"@type":"ListItem","position":15,"name":"개인정보 제거","url":"https://everything-pdf.site/remove-metadata/"},{"@type":"ListItem","position":16,"name":"빈 페이지 제거","url":"https://everything-pdf.site/remove-blank/"},{"@type":"ListItem","position":17,"name":"여백 추가","url":"https://everything-pdf.site/add-margin/"},{"@type":"ListItem","position":18,"name":"텍스트 추출","url":"https://everything-pdf.site/extract-text/"},{"@type":"ListItem","position":19,"name":"페이지 역순","url":"https://everything-pdf.site/reverse/"},{"@type":"ListItem","position":20,"name":"흑백 변환","url":"https://everything-pdf.site/grayscale/"},{"@type":"ListItem","position":21,"name":"모아찍기","url":"https://everything-pdf.site/nup/"},{"@type":"ListItem","position":22,"name":"서명 넣기","url":"https://everything-pdf.site/sign/"},{"@type":"ListItem","position":23,"name":"워터마크","url":"https://everything-pdf.site/watermark/"},{"@type":"ListItem","position":24,"name":"양식 평탄화","url":"https://everything-pdf.site/flatten/"},{"@type":"ListItem","position":25,"name":"비밀번호 설정","url":"https://everything-pdf.site/protect/"},{"@type":"ListItem","position":26,"name":"GIF → PNG","url":"https://everything-pdf.site/gif-to-png/"},{"@type":"ListItem","position":27,"name":"GIF → JPG","url":"https://everything-pdf.site/gif-to-jpg/"},{"@type":"ListItem","position":28,"name":"AVIF → PNG","url":"https://everything-pdf.site/avif-to-png/"},{"@type":"ListItem","position":29,"name":"AVIF → JPG","url":"https://everything-pdf.site/avif-to-jpg/"},{"@type":"ListItem","position":30,"name":"JPG → PNG","url":"https://everything-pdf.site/jpg-to-png/"},{"@type":"ListItem","position":31,"name":"PNG → JPG","url":"https://everything-pdf.site/png-to-jpg/"},{"@type":"ListItem","position":32,"name":"WEBP → PNG","url":"https://everything-pdf.site/webp-to-png/"},{"@type":"ListItem","position":33,"name":"WEBP → JPG","url":"https://everything-pdf.site/webp-to-jpg/"},{"@type":"ListItem","position":34,"name":"PNG → WEBP","url":"https://everything-pdf.site/png-to-webp/"},{"@type":"ListItem","position":35,"name":"JPG → WEBP","url":"https://everything-pdf.site/jpg-to-webp/"},{"@type":"ListItem","position":36,"name":"SVG → JPG","url":"https://everything-pdf.site/svg-to-jpg/"},{"@type":"ListItem","position":37,"name":"SVG → WEBP","url":"https://everything-pdf.site/svg-to-webp/"}]}]</script>
 </head>
-<body class="ws home">
+<body class="ws home lp-page">
   <a class="skip-link" href="#main">본문 바로가기</a>
     <header class="ws-taskbar">
-      <a href="./" class="ws-logo"><span class="chip" aria-hidden="true"><img src="assets/img/logo.png" alt="" width="30" height="30" decoding="async"></span><span class="ko">PDF의 모든 것</span><b class="sep" aria-hidden="true">/</b><span class="wk">workspace</span></a>
+      <a href="./" class="ws-logo"><span class="chip" aria-hidden="true"><img src="assets/img/logo.png" alt="" width="30" height="30" decoding="async"></span><span class="ko">PDF의 모든 것</span></a>
+      <nav class="lp-nav__mid" aria-label="주요 메뉴">
+        <button class="lp-nav__link" type="button" data-drawer-toggle aria-controls="tool-drawer">모든 도구</button>
+        <a class="lp-nav__link" href="./to-image/">변환</a>
+        <a class="lp-nav__link" href="./rotate/">편집</a>
+        <a class="lp-nav__link" href="./protect/">보안</a>
+      </nav>
       <nav class="ws-nav"><details class="ws-langswitch"><summary aria-label="language / 언어"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.5 3.8 5.7 3.8 9S14.5 18.5 12 21C9.5 18.5 8.2 15.3 8.2 12S9.5 5.5 12 3z"/></svg><span>한국어</span></summary><div class="ws-langmenu"><a href="/" hreflang="ko" aria-current="true">한국어</a><a href="/en/" hreflang="en">English</a><a href="/es/" hreflang="es">Español</a><a href="/ja/" hreflang="ja">日本語</a><a href="/zh/" hreflang="zh">中文</a></div></details><a href="./about/">소개</a><button class="ws-nav__cta" type="button" data-drawer-toggle aria-controls="tool-drawer" aria-expanded="false">전체 도구</button></nav>
     </header>
   <main id="main">
-    <div class="home-frame">
-    <section class="ws-home2" id="tools">
-      <h1 class="sr-only">PDF의 모든 것 | 무료 PDF 합치기·분할·변환 — 설치 없이 무료로 쓰는 한국어 PDF 도구 모음</h1>
-      <div class="home-hero2 ws-hero">
-        <div class="home-hero2__copy">
-          <span class="ws-hero__brand">PDF의 모든 것</span>
-          <p class="ws-hero__title">필요한 모든 PDF 작업, 한곳에서</p>
-          <p class="ws-hero__sub">합치기·분할·변환·잠금해제부터 이미지를 PDF로까지, 37가지 도구를 한곳에서.</p>
-          <div class="home-hero2__cta">
-            <button class="home-hero2__start" type="button" data-hero-start>무료로 시작하기<span aria-hidden="true">→</span></button>
-            <button class="home-hero2__all" type="button" data-drawer-toggle aria-controls="tool-drawer">전체 도구 둘러보기</button>
-          </div>
-          <ul class="home-hero2__chips" aria-label="특징">
-            <li><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>완전 무료</li>
-            <li><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 3v5.2c0 4.4-3 7.4-7 8.8-4-1.4-7-4.4-7-8.8V6z"/></svg>서버 미전송</li>
-            <li><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 3L5 13.5h5.2L9.5 21 19 10.5h-5.4z"/></svg>설치 불필요</li>
-          </ul>
-        </div>
-        <div class="home-hero2__work">
-          <div class="ws-wrap ws-home2--solo">
-            <div class="ws-winwrap">
-              <div class="ws-window ws-deck" data-ws-window>
-                <button class="ws-winclose ws-deck__close" type="button" data-ws-close aria-label="작업 닫고 처음으로">처음으로 ✕</button>
-                <div class="herotool">
-                  <div class="herotool__tabs" role="tablist" aria-label="PDF 도구 선택">
-                  <button class="herotool__tab" type="button" role="tab" data-tab="merge" aria-selected="true"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="8" width="11" height="12.5" rx="2"/><path d="M9 8V5.5A2 2 0 0 1 11 3.5h7.5A2 2 0 0 1 20.5 5.5V15a2 2 0 0 1-2 2H14.5"/></svg><span>합치기</span></button>
-              <button class="herotool__tab" type="button" role="tab" data-tab="split" aria-selected="false"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="6" cy="6" r="2.4"/><circle cx="6" cy="18" r="2.4"/><line x1="20" y1="4" x2="8.6" y2="15.4"/><line x1="14.6" y1="14.6" x2="20" y2="20"/><line x1="8.6" y1="8.6" x2="11.4" y2="11.4"/></svg><span>분할</span></button>
-              <button class="herotool__tab" type="button" role="tab" data-tab="compress" aria-selected="false"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="4" y1="12" x2="20" y2="12"/><path d="M8.5 5.5 12 9l3.5-3.5M8.5 18.5 12 15l3.5 3.5"/></svg><span>PDF 압축</span></button>
-              <button class="herotool__tab" type="button" role="tab" data-tab="to-image" aria-selected="false"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="4.5" width="17" height="15" rx="2.5"/><circle cx="8.5" cy="9.5" r="1.7"/><path d="M20.5 15.5 16 11 6 21"/></svg><span>PDF→이미지</span></button>
-              <button class="herotool__tab" type="button" role="tab" data-tab="unlock" aria-selected="false"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="9.5" rx="2"/><path d="M8 11V7a4 4 0 0 1 7.5-1.9"/></svg><span>잠금해제</span></button>
-                  </div>
-                  <div class="herotool__panels">
-              <div class="herotool__panel is-active" role="tabpanel" data-panel="merge">
-            <div class="tool" data-tool="merge">
-      <div class="tool__left ws-window"><div class="ws-winbar"><span class="ws-wintitle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 16V4M8 8l4-4 4 4"/><path d="M4 16v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg><span class="t">여기에 PDF를 놓고 바로 작업</span></span></div><div class="tool__leftbody"><div class="dropzone js-drop" tabindex="0" role="button" aria-label="PDF 파일 선택 또는 끌어다 놓기">
-          <input type="file" class="js-file" accept="application/pdf" multiple hidden>
-          <svg class="dropzone__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 16V4M12 4l-4 4M12 4l4 4"/><path d="M4 16v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg>
-          <p class="dropzone__title">합칠 PDF들을 끌어다 놓으세요</p>
-          <span class="dropzone__btn">파일 선택</span>
-          <p class="dropzone__hint">또는 끌어다 놓기·붙여넣기(여러 개 가능) · 파일은 내 브라우저에서만 처리됩니다</p>
-        </div>
-        <ul class="filelist js-files"></ul>
-        <div class="pagegrid js-pagegrid" hidden></div></div></div>
-      <div class="tool__right">
-        <div class="options">
-  <label class="checkbox"><input type="checkbox" id="merge-blank"> 파일 사이에 빈 페이지 넣기</label>
-  <div class="option">
-    <label class="option__label" for="out-name-1">저장 파일명 <span class="option__hint">선택 · 비우면 기본 이름</span></label>
-    <input type="text" id="out-name-1" class="field js-outname" placeholder="합쳐진-PDF" autocomplete="off">
-  </div>
-</div>
-        <div class="actions"><button class="btn btn--primary btn--lg btn--block js-run" disabled>PDF 합치기</button></div>
-        <div class="progress js-progress" hidden><div class="progress__bar js-bar"></div><span class="progress__text js-ptext"></span></div>
-        <div class="result js-result" hidden></div>
-        <noscript><p class="callout callout--warn" style="margin-top:16px"><span class="callout__ic"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><line x1="12" y1="11" x2="12" y2="16.5"/><circle cx="12" cy="7.8" r=".7" fill="currentColor" stroke="none"/></svg></span><span>이 도구는 자바스크립트가 필요합니다. 브라우저의 자바스크립트를 켜 주세요. 파일은 여전히 서버로 전송되지 않고 내 브라우저에서만 처리됩니다.</span></p></noscript>
-      </div>
-    </div>
-          </div>
-          <div class="herotool__panel" role="tabpanel" data-panel="split">
-            <div class="tool" data-tool="split">
-      <div class="tool__left ws-window"><div class="ws-winbar"><span class="ws-wintitle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 16V4M8 8l4-4 4 4"/><path d="M4 16v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg><span class="t">여기에 PDF를 놓고 바로 작업</span></span></div><div class="tool__leftbody"><div class="dropzone js-drop" tabindex="0" role="button" aria-label="PDF 파일 선택 또는 끌어다 놓기">
+    <div class="lp">
+    <h1 class="sr-only">PDF의 모든 것 | 무료 PDF 합치기·분할·변환 — 설치 없이 무료로 쓰는 한국어 PDF 도구 모음</h1>
+    <section class="lp-hero" id="tools">
+      <div class="lp-hero__copy">
+        <p class="lp-hero__title"><span class="lp-hero__red">PDF,</span> 그 이상의 간편함</p>
+        <p class="lp-hero__sub">합치기·분할·변환·잠금해제부터 이미지를 PDF로까지, 37가지 도구를 한곳에서.</p>
+        <div class="lp-drop">
+          <div class="tool" data-tool="organize">
+      <div class="tool__left"><div class="dropzone js-drop" tabindex="0" role="button" aria-label="PDF 파일 선택 또는 끌어다 놓기">
           <input type="file" class="js-file" accept="application/pdf" hidden>
           <svg class="dropzone__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 16V4M12 4l-4 4M12 4l4 4"/><path d="M4 16v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg>
-          <p class="dropzone__title">분할할 PDF를 끌어다 놓으세요</p>
+          <p class="dropzone__title">정리할 PDF를 끌어다 놓으세요</p>
           <span class="dropzone__btn">파일 선택</span>
           <p class="dropzone__hint">또는 끌어다 놓기·붙여넣기 · 파일은 내 브라우저에서만 처리됩니다</p>
         </div>
       <p class="pagecount js-pagecount"></p>
         <ul class="filelist js-files"></ul>
-        <div class="pagegrid js-pagegrid" hidden></div></div></div>
+        <div class="pagegrid js-pagegrid" hidden></div></div>
       <div class="tool__right">
         <div class="options">
+  <p class="option__hint" style="margin:0 0 2px">PDF를 올리면 모든 페이지가 아래에 펼쳐집니다. 끌어서 순서를 바꾸고, <b>↺ ↻</b>로 회전, <b>✕</b>로 삭제하세요.</p>
   <div class="option">
-    <span class="option__label">분할 방식</span>
-    <div class="segmented" role="radiogroup" aria-label="분할 방식">
-      <label><input type="radio" name="split-mode" value="each" class="js-nopersist" checked><span>낱장으로</span></label>
-      <label><input type="radio" name="split-mode" value="every" class="js-nopersist"><span>N매마다</span></label>
-      <label><input type="radio" name="split-mode" value="oddeven" class="js-nopersist"><span>홀/짝 분리</span></label>
-      <label><input type="radio" name="split-mode" value="ranges" class="js-nopersist"><span>범위 지정</span></label>
-    </div>
-  </div>
-  <div class="option-row">
-    <div class="option">
-      <label class="option__label" for="split-every">N매마다 <span class="option__hint">'N매마다' 선택 시</span></label>
-      <input type="number" id="split-every" class="field" value="2" min="1" inputmode="numeric">
-    </div>
-    <div class="option">
-      <label class="option__label" for="split-zipname">ZIP 파일명 <span class="option__hint">선택</span></label>
-      <input type="text" id="split-zipname" class="field" placeholder="분할된-PDF" autocomplete="off">
-    </div>
-  </div>
-  <div class="option">
-    <label class="option__label" for="split-ranges">페이지 범위 <span class="option__hint">'범위 지정' 선택 시 · 예: 1-3, 4-8, 9</span></label>
-    <input type="text" id="split-ranges" class="field js-nopersist" placeholder="1-3, 4-8, 9" inputmode="numeric" autocomplete="off">
+    <label class="option__label" for="out-name-5">저장 파일명 <span class="option__hint">선택 · 비우면 기본 이름</span></label>
+    <input type="text" id="out-name-5" class="field js-outname" placeholder="정리된-PDF" autocomplete="off">
   </div>
 </div>
-        <div class="actions"><button class="btn btn--primary btn--lg btn--block js-run" disabled>PDF 분할하기</button></div>
+        <div class="actions"><button class="btn btn--primary btn--lg btn--block js-run" disabled>페이지 정리하기</button></div>
         <div class="progress js-progress" hidden><div class="progress__bar js-bar"></div><span class="progress__text js-ptext"></span></div>
         <div class="result js-result" hidden></div>
         <noscript><p class="callout callout--warn" style="margin-top:16px"><span class="callout__ic"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><line x1="12" y1="11" x2="12" y2="16.5"/><circle cx="12" cy="7.8" r=".7" fill="currentColor" stroke="none"/></svg></span><span>이 도구는 자바스크립트가 필요합니다. 브라우저의 자바스크립트를 켜 주세요. 파일은 여전히 서버로 전송되지 않고 내 브라우저에서만 처리됩니다.</span></p></noscript>
       </div>
     </div>
-          </div>
-          <div class="herotool__panel" role="tabpanel" data-panel="compress">
-            <div class="tool" data-tool="compress">
-      <div class="tool__left ws-window"><div class="ws-winbar"><span class="ws-wintitle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 16V4M8 8l4-4 4 4"/><path d="M4 16v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg><span class="t">여기에 PDF를 놓고 바로 작업</span></span></div><div class="tool__leftbody"><div class="dropzone js-drop" tabindex="0" role="button" aria-label="PDF 파일 선택 또는 끌어다 놓기">
-          <input type="file" class="js-file" accept="application/pdf" hidden>
-          <svg class="dropzone__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 16V4M12 4l-4 4M12 4l4 4"/><path d="M4 16v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg>
-          <p class="dropzone__title">압축할 PDF를 끌어다 놓으세요</p>
-          <span class="dropzone__btn">파일 선택</span>
-          <p class="dropzone__hint">또는 끌어다 놓기·붙여넣기 · 파일은 내 브라우저에서만 처리됩니다</p>
+          <div class="lp-drop__formats"><span class="lp-fmt lp-fmt--pdf">PDF</span><span class="lp-fmt lp-fmt--word">Word</span><span class="lp-fmt lp-fmt--jpg">JPG</span><span class="lp-fmt lp-fmt--png">PNG</span><span class="lp-fmt lp-fmt--more">…</span></div>
         </div>
-      <p class="pagecount js-pagecount"></p>
-        <ul class="filelist js-files"></ul>
-        <div class="pagegrid js-pagegrid" hidden></div></div></div>
-      <div class="tool__right">
-        <div class="options">
-  <div class="option">
-    <span class="option__label">화질 <span class="option__hint">낮을수록 용량↓</span></span>
-    <div class="segmented" role="radiogroup" aria-label="화질">
-      <label><input type="radio" name="cmp-quality" value="low"><span>낮음</span></label>
-      <label><input type="radio" name="cmp-quality" value="medium" checked><span>보통</span></label>
-      <label><input type="radio" name="cmp-quality" value="high"><span>높음</span></label>
-    </div>
-  </div>
-  <p class="option__hint" style="margin:2px 0 0">스캔본·사진 PDF에 효과가 큽니다. 글자 위주 PDF는 거의 줄지 않거나 글자가 이미지로 바뀔 수 있어요.</p>
-  <div class="option">
-    <label class="option__label" for="out-name-11">저장 파일명 <span class="option__hint">선택 · 비우면 기본 이름</span></label>
-    <input type="text" id="out-name-11" class="field js-outname" placeholder="압축된-PDF" autocomplete="off">
-  </div>
-</div>
-        <div class="actions"><button class="btn btn--primary btn--lg btn--block js-run" disabled>압축하기</button></div>
-        <div class="progress js-progress" hidden><div class="progress__bar js-bar"></div><span class="progress__text js-ptext"></span></div>
-        <div class="result js-result" hidden></div>
-        <noscript><p class="callout callout--warn" style="margin-top:16px"><span class="callout__ic"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><line x1="12" y1="11" x2="12" y2="16.5"/><circle cx="12" cy="7.8" r=".7" fill="currentColor" stroke="none"/></svg></span><span>이 도구는 자바스크립트가 필요합니다. 브라우저의 자바스크립트를 켜 주세요. 파일은 여전히 서버로 전송되지 않고 내 브라우저에서만 처리됩니다.</span></p></noscript>
+        <p class="lp-note"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg><span>파일은 서버로 전송되지 않습니다.</span></p>
       </div>
-    </div>
-          </div>
-          <div class="herotool__panel" role="tabpanel" data-panel="to-image">
-            <div class="tool" data-tool="to-image">
-      <div class="tool__left ws-window"><div class="ws-winbar"><span class="ws-wintitle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 16V4M8 8l4-4 4 4"/><path d="M4 16v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg><span class="t">여기에 PDF를 놓고 바로 작업</span></span></div><div class="tool__leftbody"><div class="dropzone js-drop" tabindex="0" role="button" aria-label="PDF 파일 선택 또는 끌어다 놓기">
-          <input type="file" class="js-file" accept="application/pdf" hidden>
-          <svg class="dropzone__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 16V4M12 4l-4 4M12 4l4 4"/><path d="M4 16v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg>
-          <p class="dropzone__title">이미지로 바꿀 PDF를 끌어다 놓으세요</p>
-          <span class="dropzone__btn">파일 선택</span>
-          <p class="dropzone__hint">또는 끌어다 놓기·붙여넣기 · 파일은 내 브라우저에서만 처리됩니다</p>
-        </div>
-      <p class="pagecount js-pagecount"></p>
-        <ul class="filelist js-files"></ul>
-        <div class="pagegrid js-pagegrid" hidden></div></div></div>
-      <div class="tool__right">
-        <div class="options">
-  <div class="option-row">
-    <div class="option">
-      <span class="option__label">이미지 형식</span>
-      <div class="segmented" role="radiogroup" aria-label="이미지 형식">
-        <label><input type="radio" name="img-format" value="png" checked><span>PNG</span></label>
-        <label><input type="radio" name="img-format" value="jpg"><span>JPG</span></label>
-        <label><input type="radio" name="img-format" value="webp"><span>WEBP</span></label>
-      </div>
-    </div>
-    <div class="option">
-      <label class="option__label" for="img-scale">화질(배율)</label>
-      <select id="img-scale" class="field">
-        <option value="1">보통 (1배)</option>
-        <option value="2" selected>선명 (2배)</option>
-        <option value="3">아주 선명 (3배)</option>
-      </select>
-    </div>
-  </div>
-  <div class="option-row">
-    <div class="option">
-      <label class="option__label" for="img-quality">JPG·WEBP 품질 <span class="option__hint">JPG·WEBP일 때</span></label>
-      <select id="img-quality" class="field">
-        <option value="0.7">보통 (가벼움)</option>
-        <option value="0.85">좋음</option>
-        <option value="0.92" selected>높음</option>
-        <option value="0.97">최고 (용량 큼)</option>
-      </select>
-    </div>
-    <div class="option">
-      <label class="option__label" for="img-prefix">파일명 접두어 <span class="option__hint">선택 · 기본 page</span></label>
-      <input type="text" id="img-prefix" class="field" placeholder="page" autocomplete="off">
-    </div>
-  </div>
-  <div class="option">
-    <span class="option__label">변환 범위</span>
-    <div class="segmented" role="radiogroup" aria-label="변환 범위">
-      <label><input type="radio" name="img-pages-mode" value="all" class="js-nopersist" checked><span>전체 페이지</span></label>
-      <label><input type="radio" name="img-pages-mode" value="custom" class="js-nopersist"><span>특정 페이지</span></label>
-    </div>
-  </div>
-  <div class="option">
-    <label class="option__label" for="img-pages">페이지 지정 <span class="option__hint">'특정 페이지' 선택 시 · 예: 1, 3, 5-7</span></label>
-    <input type="text" id="img-pages" class="field js-nopersist" placeholder="1, 3, 5-7" inputmode="numeric" autocomplete="off">
-  </div>
-  <label class="checkbox"><input type="checkbox" id="img-gray"> 흑백(그레이스케일)으로 변환</label>
-  <label class="checkbox"><input type="checkbox" id="img-transparent"> 투명 배경 (PNG·WEBP)</label>
-</div>
-        <div class="actions"><button class="btn btn--primary btn--lg btn--block js-run" disabled>이미지로 변환하기</button></div>
-        <div class="progress js-progress" hidden><div class="progress__bar js-bar"></div><span class="progress__text js-ptext"></span></div>
-        <div class="result js-result" hidden></div>
-        <noscript><p class="callout callout--warn" style="margin-top:16px"><span class="callout__ic"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><line x1="12" y1="11" x2="12" y2="16.5"/><circle cx="12" cy="7.8" r=".7" fill="currentColor" stroke="none"/></svg></span><span>이 도구는 자바스크립트가 필요합니다. 브라우저의 자바스크립트를 켜 주세요. 파일은 여전히 서버로 전송되지 않고 내 브라우저에서만 처리됩니다.</span></p></noscript>
-      </div>
-    </div>
-          </div>
-          <div class="herotool__panel" role="tabpanel" data-panel="unlock">
-            <div class="tool" data-tool="unlock">
-      <div class="tool__left ws-window"><div class="ws-winbar"><span class="ws-wintitle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 16V4M8 8l4-4 4 4"/><path d="M4 16v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg><span class="t">여기에 PDF를 놓고 바로 작업</span></span></div><div class="tool__leftbody"><div class="dropzone js-drop" tabindex="0" role="button" aria-label="PDF 파일 선택 또는 끌어다 놓기">
-          <input type="file" class="js-file" accept="application/pdf" hidden>
-          <svg class="dropzone__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 16V4M12 4l-4 4M12 4l4 4"/><path d="M4 16v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg>
-          <p class="dropzone__title">잠금을 풀 PDF를 끌어다 놓으세요</p>
-          <span class="dropzone__btn">파일 선택</span>
-          <p class="dropzone__hint">또는 끌어다 놓기·붙여넣기 · 파일은 내 브라우저에서만 처리됩니다</p>
-        </div>
-        <ul class="filelist js-files"></ul>
-        <div class="pagegrid js-pagegrid" hidden></div></div></div>
-      <div class="tool__right">
-        <div class="options">
-  <div class="option">
-    <label class="option__label" for="unlock-pw">비밀번호 <span class="option__hint">열 때 비밀번호를 묻는 경우에만 입력</span></label>
-    <input type="password" id="unlock-pw" class="field js-nopersist" placeholder="아는 비밀번호 (선택)" autocomplete="off">
-  </div>
-  <label class="checkbox"><input type="checkbox" id="unlock-showpw"> 비밀번호 표시</label>
-  <label class="checkbox"><input type="checkbox" id="unlock-raster"> 이미지로 해제 (비밀번호가 걸린 PDF용)</label>
-  <div class="option">
-    <label class="option__label" for="unlock-scale">이미지 해제 화질 <span class="option__hint">'이미지로 해제' 선택 시</span></label>
-    <select id="unlock-scale" class="field">
-      <option value="1.5">보통 (가벼움)</option>
-      <option value="2" selected>선명</option>
-      <option value="3">아주 선명 (용량 큼)</option>
-    </select>
-  </div>
-  <p class="option__hint" style="margin-top:-6px">※ 이미지로 해제하면 글자 선택·복사·편집이 안 되는 이미지 PDF로 바뀝니다. 비밀번호가 걸려 일반 해제가 안 될 때만 쓰세요.</p>
-  <div class="option">
-    <label class="option__label" for="out-name-2">저장 파일명 <span class="option__hint">선택 · 비우면 기본 이름</span></label>
-    <input type="text" id="out-name-2" class="field js-outname" placeholder="잠금해제-PDF" autocomplete="off">
-  </div>
-  <p class="callout callout--warn"><span class="callout__ic"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><line x1="12" y1="11" x2="12" y2="16.5"/><circle cx="12" cy="7.8" r=".7" fill="currentColor" stroke="none"/></svg></span><span><strong>암호 크랙이 아닙니다.</strong> 본인이 아는 비밀번호, 또는 인쇄·편집 제한만 제거합니다. 모르는 비밀번호는 풀 수 없어요.</span></p>
-</div>
-        <div class="actions"><button class="btn btn--primary btn--lg btn--block js-run" disabled>잠금 해제하기</button></div>
-        <div class="progress js-progress" hidden><div class="progress__bar js-bar"></div><span class="progress__text js-ptext"></span></div>
-        <div class="result js-result" hidden></div>
-        <noscript><p class="callout callout--warn" style="margin-top:16px"><span class="callout__ic"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><line x1="12" y1="11" x2="12" y2="16.5"/><circle cx="12" cy="7.8" r=".7" fill="currentColor" stroke="none"/></svg></span><span>이 도구는 자바스크립트가 필요합니다. 브라우저의 자바스크립트를 켜 주세요. 파일은 여전히 서버로 전송되지 않고 내 브라우저에서만 처리됩니다.</span></p></noscript>
-      </div>
-    </div>
-          </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+      <div class="lp-hero__viz" aria-hidden="true">
+        <span class="lp-viz__blob"></span>
+        <div class="lp-viz__doc"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h8l4 4v13a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z"/><path d="M13 3v5h5"/><path d="M8.5 12.5h7M8.5 16h5"/></svg></div>
+        <a class="lp-node lp-node--red" href="to-image/"><span class="lp-node__ic"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8h11M7 5 4 8l3 3"/><path d="M20 16H9m8-3 3 3-3 3"/></svg></span><span class="lp-node__tx"><b>변환</b><small>다양한 형식으로</small></span></a>
+        <a class="lp-node lp-node--amber" href="rotate/"><span class="lp-node__ic"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20h16"/><path d="M14 4l4 4L8 18l-5 1 1-5z"/></svg></span><span class="lp-node__tx"><b>편집</b><small>PDF 내용 수정</small></span></a>
+        <a class="lp-node lp-node--blue" href="merge/"><span class="lp-node__ic"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v18"/><path d="M6 8 3 12l3 4"/><path d="M18 8l3 4-3 4"/></svg></span><span class="lp-node__tx"><b>분할·병합</b><small>자유롭게 구성</small></span></a>
+        <a class="lp-node lp-node--green" href="compress/"><span class="lp-node__ic"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 3v6M5 6l3-3 3 3"/><path d="M16 21v-6m-3 3 3 3 3-3"/><path d="M4 12h16"/></svg></span><span class="lp-node__tx"><b>압축</b><small>용량 줄이기</small></span></a>
       </div>
     </section>
 
-    <section class="home-pop" aria-label="인기 도구" data-reveal>
-      <div class="ws-wrap">
-        <h2 class="home-pop__h">가장 많이 쓰는 도구</h2>
-        <div class="home-pop__grid">
-          <a class="home-pop__card home-pop__card--feat" href="merge/" data-cat="organize">
-            <span class="home-pop__ico"><svg viewBox="0 0 24 24" class="ic-svg ic-pdf" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M6.4 2.6h6.6L17.6 7v11.4a1.5 1.5 0 0 1-1.5 1.5H6.4a1.5 1.5 0 0 1-1.5-1.5V4.1a1.5 1.5 0 0 1 1.5-1.5z" fill="#E5252A"/><path d="M12.7 2.6 17.6 7h-3.8a1.1 1.1 0 0 1-1.1-1.1z" fill="#B3160F"/><rect x="7.2" y="8.7" width="6" height="1.2" rx=".6" fill="#fff" opacity=".9"/><rect x="7.2" y="11" width="4.2" height="1.2" rx=".6" fill="#fff" opacity=".9"/><circle cx="17.4" cy="17.4" r="4.4" fill="#18a957" stroke="#fff" stroke-width="1.2"/><path d="M17.4 15.5v3.8M15.5 17.4h3.8" stroke="#fff" stroke-width="1.5" stroke-linecap="round"/></svg></span>
-            <span class="home-pop__tx"><b>합치기</b><span>여러 PDF를 하나로</span></span>
-            <span class="home-pop__arr" aria-hidden="true">→</span>
-          </a>
-          <a class="home-pop__card" href="compress/" data-cat="optimize">
-            <span class="home-pop__ico"><svg viewBox="0 0 24 24" class="ic-svg ic-pdf" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M6.4 2.6h6.6L17.6 7v11.4a1.5 1.5 0 0 1-1.5 1.5H6.4a1.5 1.5 0 0 1-1.5-1.5V4.1a1.5 1.5 0 0 1 1.5-1.5z" fill="#E5252A"/><path d="M12.7 2.6 17.6 7h-3.8a1.1 1.1 0 0 1-1.1-1.1z" fill="#B3160F"/><rect x="7.2" y="8.7" width="6" height="1.2" rx=".6" fill="#fff" opacity=".9"/><rect x="7.2" y="11" width="4.2" height="1.2" rx=".6" fill="#fff" opacity=".9"/><circle cx="17.4" cy="17.4" r="4.4" fill="#f59e0b" stroke="#fff" stroke-width="1.2"/><path d="M15.6 17.4h3.6" stroke="#fff" stroke-width="1.1"/><path d="M16.2 15.5l1.2 1.1 1.2-1.1M16.2 19.3l1.2-1.1 1.2 1.1" fill="none" stroke="#fff" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-            <span class="home-pop__tx"><b>압축</b><span>용량 줄이기</span></span>
-            <span class="home-pop__arr" aria-hidden="true">→</span>
-          </a>
-          <a class="home-pop__card" href="to-image/" data-cat="convert">
-            <span class="home-pop__ico"><svg viewBox="0 0 24 24" class="ic-svg ic-pdf" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M6.4 2.6h6.6L17.6 7v11.4a1.5 1.5 0 0 1-1.5 1.5H6.4a1.5 1.5 0 0 1-1.5-1.5V4.1a1.5 1.5 0 0 1 1.5-1.5z" fill="#E5252A"/><path d="M12.7 2.6 17.6 7h-3.8a1.1 1.1 0 0 1-1.1-1.1z" fill="#B3160F"/><rect x="7.2" y="8.7" width="6" height="1.2" rx=".6" fill="#fff" opacity=".9"/><rect x="13" y="13" width="7.8" height="7.8" rx="1.4" fill="#18a957" stroke="#fff" stroke-width="1"/><circle cx="15.5" cy="15.7" r="1" fill="#fff"/><path d="M13.7 19.7l2.1-2.4 1.4 1.5 1.3-1.5 1.9 2.4z" fill="#fff"/></svg></span>
-            <span class="home-pop__tx"><b>JPG 변환</b><span>JPG·PNG로 변환</span></span>
-            <span class="home-pop__arr" aria-hidden="true">→</span>
-          </a>
-          <a class="home-pop__card" href="image-to-pdf/" data-cat="convert">
-            <span class="home-pop__ico"><svg viewBox="0 0 24 24" class="ic-svg ic-pdf" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M6.4 2.6h6.6L17.6 7v11.4a1.5 1.5 0 0 1-1.5 1.5H6.4a1.5 1.5 0 0 1-1.5-1.5V4.1a1.5 1.5 0 0 1 1.5-1.5z" fill="#E5252A"/><path d="M12.7 2.6 17.6 7h-3.8a1.1 1.1 0 0 1-1.1-1.1z" fill="#B3160F"/><rect x="6.8" y="8.2" width="6.8" height="5.4" rx="1" fill="#0ea5e9"/><circle cx="8.9" cy="10.1" r=".85" fill="#fff"/><path d="M7.2 13.2l1.9-2.2 1.25 1.35 1.15-1.25 1.7 2.1z" fill="#fff"/><circle cx="17.4" cy="17.4" r="4.4" fill="#e5252a" stroke="#fff" stroke-width="1.2"/><path d="M15.6 17.4h3.6M17.4 15.6v3.6" stroke="#fff" stroke-width="1.5" stroke-linecap="round"/></svg></span>
-            <span class="home-pop__tx"><b>이미지 PDF 변환</b><span>JPG·PNG를 PDF로</span></span>
-            <span class="home-pop__arr" aria-hidden="true">→</span>
-          </a>
-          <a class="home-pop__card" href="unlock/" data-cat="security">
-            <span class="home-pop__ico"><svg viewBox="0 0 24 24" class="ic-svg ic-pdf" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M6.4 2.6h6.6L17.6 7v11.4a1.5 1.5 0 0 1-1.5 1.5H6.4a1.5 1.5 0 0 1-1.5-1.5V4.1a1.5 1.5 0 0 1 1.5-1.5z" fill="#E5252A"/><path d="M12.7 2.6 17.6 7h-3.8a1.1 1.1 0 0 1-1.1-1.1z" fill="#B3160F"/><rect x="7.2" y="8.7" width="6" height="1.2" rx=".6" fill="#fff" opacity=".9"/><path d="M15.4 15.5v-1.7a2 2 0 0 1 3.8-.9" fill="none" stroke="#f5a623" stroke-width="1.4" stroke-linecap="round"/><rect x="13.8" y="15.3" width="6.5" height="5.4" rx="1.1" fill="#f5a623" stroke="#fff" stroke-width="1"/><circle cx="17.05" cy="17.7" r=".95" fill="#fff"/></svg></span>
-            <span class="home-pop__tx"><b>잠금해제</b><span>비밀번호·제한 해제</span></span>
-            <span class="home-pop__arr" aria-hidden="true">→</span>
-          </a>
-        </div>
+    <section class="lp-pop" data-reveal>
+      <div class="lp-pop__head">
+        <h2 class="lp-pop__h">인기 도구</h2>
+        <button class="lp-pop__all" type="button" data-drawer-toggle aria-controls="tool-drawer">모든 도구 보기 <span aria-hidden="true">›</span></button>
+      </div>
+      <div class="lp-pop__grid">
+        <a class="lp-tool" href="to-image/"><span class="lp-tool__ic lp-tool__ic--blue"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="8.5" cy="10" r="1.6"/><path d="M21 15l-5-4-8 8"/></svg></span><span class="lp-tool__body"><b class="lp-tool__name">JPG 변환</b><span class="lp-tool__desc">JPG·PNG로 변환</span></span><span class="lp-tool__arr" aria-hidden="true">›</span></a>
+        <a class="lp-tool" href="image-to-pdf/"><span class="lp-tool__ic lp-tool__ic--purple"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="8.5" cy="10" r="1.6"/><path d="M21 15l-5-4-8 8"/></svg></span><span class="lp-tool__body"><b class="lp-tool__name">이미지 PDF 변환</b><span class="lp-tool__desc">JPG·PNG를 PDF로</span></span><span class="lp-tool__arr" aria-hidden="true">›</span></a>
+        <a class="lp-tool" href="merge/"><span class="lp-tool__ic lp-tool__ic--purple"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="4" width="7.5" height="16" rx="1.6"/><rect x="13" y="4" width="7.5" height="16" rx="1.6"/></svg></span><span class="lp-tool__body"><b class="lp-tool__name">합치기</b><span class="lp-tool__desc">여러 PDF를 하나로</span></span><span class="lp-tool__arr" aria-hidden="true">›</span></a>
+        <a class="lp-tool" href="split/"><span class="lp-tool__ic lp-tool__ic--amber"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v18"/><path d="M6 8 3 12l3 4"/><path d="M18 8l3 4-3 4"/></svg></span><span class="lp-tool__body"><b class="lp-tool__name">분할</b><span class="lp-tool__desc">한 파일을 여러 개로</span></span><span class="lp-tool__arr" aria-hidden="true">›</span></a>
+        <a class="lp-tool" href="compress/"><span class="lp-tool__ic lp-tool__ic--red"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 3v6M5 6l3-3 3 3"/><path d="M16 21v-6m-3 3 3 3 3-3"/><path d="M4 12h16"/></svg></span><span class="lp-tool__body"><b class="lp-tool__name">압축</b><span class="lp-tool__desc">용량 줄이기</span></span><span class="lp-tool__arr" aria-hidden="true">›</span></a>
+        <a class="lp-tool" href="unlock/"><span class="lp-tool__ic lp-tool__ic--green"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg></span><span class="lp-tool__body"><b class="lp-tool__name">잠금해제</b><span class="lp-tool__desc">비밀번호·제한 해제</span></span><span class="lp-tool__arr" aria-hidden="true">›</span></a>
       </div>
     </section>
 
-    <section class="home-scenes" aria-label="실제 변환 예시" data-reveal>
-      <div class="ws-wrap">
-        <h2 class="home-scenes__h">실제 변환 예시</h2>
-        <p class="home-scenes__sub">브라우저 안에서 바로, 이렇게 바뀝니다</p>
-        <div class="home-scenes__grid">
-          <a class="scene" href="merge/">
-            <span class="scene__label" data-cat="organize">합치기</span>
-            <div class="scene__flow">
-              <span class="scene__stack"><i class="ft ft--pdf">PDF</i><i class="ft ft--pdf">PDF</i><i class="ft ft--pdf">PDF</i></span>
-              <span class="scene__arr" aria-hidden="true">→</span>
-              <i class="ft ft--pdf ft--lg">PDF</i>
-            </div>
-          </a>
-          <a class="scene" href="compress/">
-            <span class="scene__label" data-cat="optimize">압축</span>
-            <div class="scene__flow">
-              <i class="ft ft--pdf ft--lg">PDF</i>
-              <span class="scene__arr" aria-hidden="true">→</span>
-              <i class="ft ft--pdf ft--sm">PDF</i>
-            </div>
-          </a>
-          <a class="scene" href="image-to-pdf/">
-            <span class="scene__label" data-cat="convert">이미지 PDF 변환</span>
-            <div class="scene__flow">
-              <span class="scene__stack"><i class="ft ft--jpg">JPG</i><i class="ft ft--png">PNG</i></span>
-              <span class="scene__arr" aria-hidden="true">→</span>
-              <i class="ft ft--pdf ft--lg">PDF</i>
-            </div>
-          </a>
-          <a class="scene" href="to-image/">
-            <span class="scene__label" data-cat="convert">JPG 변환</span>
-            <div class="scene__flow">
-              <i class="ft ft--pdf ft--lg">PDF</i>
-              <span class="scene__arr" aria-hidden="true">→</span>
-              <span class="scene__stack"><i class="ft ft--jpg">JPG</i><i class="ft ft--png">PNG</i></span>
-            </div>
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <section class="home-explain" aria-label="서비스 안내">
-      <div class="ws-wrap">
-        <ul class="home-trust" data-reveal>
-          <li class="home-trust--free"><span class="home-trust__ic"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.7 12.4l7.9-7.9a2 2 0 0 1 1.4-.6H18.8a2 2 0 0 1 2 2v5.8a2 2 0 0 1-.6 1.4l-7.9 7.9a2 2 0 0 1-2.8 0l-5.8-5.8a2 2 0 0 1 0-2.8z"/><circle cx="16" cy="8" r="1.25"/></svg></span><b>완전 무료</b><small>워터마크·가입 없음</small></li>
-          <li><span class="home-trust__ic"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 3v5.2c0 4.4-3 7.4-7 8.8-4-1.4-7-4.4-7-8.8V6z"/><path d="M9 12l2.1 2.1L15.4 9.8"/></svg></span><b>서버 미전송</b><small>100% 내 브라우저 처리</small></li>
-          <li><span class="home-trust__ic"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 3L5 13.5h5.2L9.5 21 19 10.5h-5.4z"/></svg></span><b>설치 불필요</b><small>열면 바로 사용</small></li>
-          <li><span class="home-trust__ic"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.6" y="3.6" width="7" height="7" rx="1.7"/><rect x="13.4" y="3.6" width="7" height="7" rx="1.7"/><rect x="3.6" y="13.4" width="7" height="7" rx="1.7"/><rect x="13.4" y="13.4" width="7" height="7" rx="1.7"/></svg></span><b>37개 도구</b><small>합치기부터 변환까지</small></li>
-        </ul>
-        <div class="home-explain__grid" data-reveal>
-          <div class="home-block">
-            <h2 class="home-block__h">3단계면 끝나요</h2>
-            <ol class="home-steps">
-              <li><span class="home-steps__n">1</span><div><b>파일 올리기</b><p>PDF·이미지를 화면에 끌어다 놓거나 [파일 선택]으로 고르세요.</p></div></li>
-              <li><span class="home-steps__n">2</span><div><b>옵션 고르고 실행</b><p>순서·범위·화질 등 필요한 옵션을 정하고 실행 버튼을 누르세요.</p></div></li>
-              <li><span class="home-steps__n">3</span><div><b>결과 내려받기</b><p>완성된 파일을 바로 저장하세요. 창을 닫으면 흔적도 남지 않습니다.</p></div></li>
-            </ol>
-          </div>
-          <div class="home-block">
-            <h2 class="home-block__h">왜 「PDF의 모든 것」인가요?</h2>
-            <div class="home-why">
-              <div class="home-why__card"><h3>파일이 서버로 가지 않아요</h3><p>합치기·변환·압축 등 모든 처리가 여러분의 기기 안에서만 이뤄집니다. 계약서·신분증 같은 민감한 문서도 안심하고 다루세요.</p></div>
-              <div class="home-why__card"><h3>완전 무료, 워터마크 없음</h3><p>회원가입도 결제도 없고, 파일 개수·용량 제한도 없습니다. 결과물에 워터마크가 찍히지 않습니다.</p></div>
-              <div class="home-why__card"><h3>한국어에 진심입니다</h3><p>외산 도구의 어색한 기계번역 대신, 자연스러운 한국어 안내와 단계 설명으로 누구나 쉽게 쓸 수 있어요.</p></div>
-            </div>
-          </div>
-        </div>
-        <div class="home-block home-faqblock" data-reveal>
-          <h2 class="home-block__h">자주 묻는 질문</h2>
-          <div class="home-faq">
-            <details><summary>정말 무료인가요?</summary><p>네. 모든 도구가 완전 무료이며, 워터마크나 파일 개수·용량 제한이 없습니다.</p></details>
-            <details><summary>제 파일이 서버로 업로드되나요?</summary><p>아니요. 모든 작업은 여러분의 웹 브라우저 안에서만 실행되며, 파일은 어떤 서버로도 전송되지 않습니다. 창을 닫으면 메모리에서 사라집니다.</p></details>
-            <details><summary>회원가입이나 프로그램 설치가 필요한가요?</summary><p>둘 다 필요 없습니다. 이 페이지를 열면 바로 사용할 수 있습니다.</p></details>
-            <details><summary>스마트폰에서도 쓸 수 있나요?</summary><p>네. 스마트폰·태블릿 브라우저에서도 대부분의 도구가 그대로 동작합니다.</p></details>
-          </div>
-        </div>
-      </div>
+    <section class="lp-feats" data-reveal>
+      <div class="lp-feat"><span class="lp-feat__ic lp-feat__ic--red"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 3 5 13.5h5.2L9.5 21 19 10.5h-5.4z"/></svg></span><div class="lp-feat__tx"><b>빠르고 간편한 변환</b><p>몇 초 만에 원하는 결과로 처리하세요.</p></div></div>
+      <div class="lp-feat"><span class="lp-feat__ic lp-feat__ic--blue"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 3v5.2c0 4.4-3 7.4-7 8.8-4-1.4-7-4.4-7-8.8V6z"/><path d="M9 12l2.1 2.1L15.4 9.8"/></svg></span><div class="lp-feat__tx"><b>안전하고 신뢰할 수 있는 서비스</b><p>파일은 서버로 전송되지 않습니다.</p></div></div>
+      <div class="lp-feat"><span class="lp-feat__ic lp-feat__ic--green"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="7" y="3" width="10" height="18" rx="2.5"/><path d="M11 18h2"/></svg></span><div class="lp-feat__tx"><b>모든 기기에서 자유롭게</b><p>웹에서 언제 어디서나 사용하세요.</p></div></div>
     </section>
     </div>
 
@@ -660,6 +365,7 @@
   <script src="assets/js/ui.js?v=47a1abf4" defer></script>
   <script src="assets/js/pdf-engine.js?v=a30acd16" defer></script>
   <script src="assets/js/tool-core.js?v=5bff895b" defer></script>
+  <script src="assets/js/tools/organize.js?v=c7d65528" defer></script>
   <script src="assets/js/tools/merge.js?v=7ee6150a" defer></script>
   <script src="assets/js/tools/split.js?v=e6a79d52" defer></script>
   <script src="assets/js/tools/compress.js?v=29c23f67" defer></script>

@@ -166,6 +166,13 @@ const MISC = {
   ja: { skip: '本文へスキップ', lastUpdated: '最終更新', terms: '利用規約', noToolsFound: 'ツールが見つかりません', searchTry: ' — 別のキーワードでお試しください。', noUpload: 'ファイルはサーバーに送信されません。', browserOnly: 'アップロードなし・ブラウザ内で完結', note: '補足', done: '完了しました', next: '次にできること', srH1: '無料オンラインPDFツール — インストール不要、ブラウザで完結', freeTools: '無料オンラインPDFツール', aboutPrivacy: '概要・プライバシー', aboutPrivacyPolicy: '概要とプライバシーポリシー', image: '画像', heroCta: '無料で始める', heroSee: 'すべてのツール', sceneH: '実際の変換例', sceneSub: 'すべてブラウザ内で完結する実際の変換' },
   zh: { skip: '跳到正文', lastUpdated: '最后更新', terms: '服务条款', noToolsFound: '未找到工具', searchTry: ' — 换个关键词试试。', noUpload: '您的文件绝不会上传到任何服务器。', browserOnly: '无需上传 · 全程在浏览器', note: '说明', done: '已完成', next: '接下来可以做什么', srH1: '免费在线PDF工具 — 无需安装，在浏览器中完成', freeTools: '免费在线PDF工具', aboutPrivacy: '关于 · 隐私', aboutPrivacyPolicy: '关于与隐私政策', image: '图片', heroCta: '免费开始', heroSee: '查看全部工具', sceneH: '实际转换示例', sceneSub: '全程在浏览器中完成的真实转换' }
 };
+// 랜딩(목업) 신규 문구 다국어
+const LPX = {
+  en: { conv: 'Convert', edit: 'Edit', sec: 'Security', allTools: 'All tools', convSub: 'To many formats', editSub: 'Edit PDF content', splitMerge: 'Split · Merge', splitMergeSub: 'Arrange freely', compressSub: 'Reduce size', popular: 'Popular tools', seeAll: 'See all tools', f1: 'Fast and simple', f1s: 'Get results in seconds.', f2: 'Safe and trustworthy', f3: 'Free on every device', f3s: 'Use it anywhere on the web.', dropTitle: 'Drop your PDF here', chooseFile: 'or choose a file' },
+  es: { conv: 'Convertir', edit: 'Editar', sec: 'Seguridad', allTools: 'Todas', convSub: 'A varios formatos', editSub: 'Editar contenido PDF', splitMerge: 'Dividir · Unir', splitMergeSub: 'Organiza libremente', compressSub: 'Reduce el tamaño', popular: 'Populares', seeAll: 'Ver todas', f1: 'Rápido y simple', f1s: 'Resultados en segundos.', f2: 'Seguro y confiable', f3: 'En cualquier dispositivo', f3s: 'Úsalo desde la web.', dropTitle: 'Suelta tu PDF aquí', chooseFile: 'o elige un archivo' },
+  ja: { conv: '変換', edit: '編集', sec: 'セキュリティ', allTools: 'すべて', convSub: 'さまざまな形式に', editSub: 'PDFの内容を編集', splitMerge: '分割・結合', splitMergeSub: '自由に構成', compressSub: '容量を削減', popular: '人気ツール', seeAll: 'すべて見る', f1: '速くて簡単', f1s: '数秒で処理します。', f2: '安全で信頼できる', f3: 'あらゆる端末で', f3s: 'ウェブでいつでもどこでも。', dropTitle: 'PDFをここにドロップ', chooseFile: 'またはファイルを選択' },
+  zh: { conv: '转换', edit: '编辑', sec: '安全', allTools: '全部', convSub: '多种格式', editSub: '编辑PDF内容', splitMerge: '拆分·合并', splitMergeSub: '自由组合', compressSub: '减小体积', popular: '热门工具', seeAll: '查看全部', f1: '快速简便', f1s: '几秒内完成处理。', f2: '安全可信赖', f3: '所有设备通用', f3s: '随时随地在网页使用。', dropTitle: '将PDF拖到此处', chooseFile: '或选择文件' }
+};
 const _pairCache = {};
 function langPairs(lang) {
   if (_pairCache[lang]) return _pairCache[lang];
@@ -238,6 +245,17 @@ function langPairs(lang) {
   (C.homeFaq || []).forEach((e, i) => { if (koFaq[i]) { add(koFaq[i][0], e.q); add(koFaq[i][1], e.a); } });
   add('무료로 시작하기', M.heroCta); add('전체 도구 둘러보기', M.heroSee);
   add('실제 변환 예시', M.sceneH); add('브라우저 안에서 바로, 이렇게 바뀝니다', M.sceneSub);
+  // 랜딩(목업) 문구
+  const L = LPX[lang] || LPX.en;
+  add('다양한 형식으로', L.convSub); add('PDF 내용 수정', L.editSub);
+  add('분할·병합', L.splitMerge); add('자유롭게 구성', L.splitMergeSub); add('용량 줄이기', L.compressSub);
+  add('인기 도구', L.popular); add('모든 도구 보기', L.seeAll);
+  add('빠르고 간편한 변환', L.f1); add('몇 초 만에 원하는 결과로 처리하세요.', L.f1s);
+  add('안전하고 신뢰할 수 있는 서비스', L.f2);
+  add('모든 기기에서 자유롭게', L.f3); add('웹에서 언제 어디서나 사용하세요.', L.f3s);
+  add('모든 도구', L.allTools); add('변환', L.conv); add('편집', L.edit); add('보안', L.sec);
+  const LT = { en: 'and beyond, made simple', es: 'y más, muy fácil', ja: 'その先へ、もっと簡単に', zh: '不止于此，更简单' };
+  add('그 이상의 간편함', LT[lang] || LT.en);
   if (E.tools && E.tools.compress) add('압축', E.tools.compress.nav);
   if (E.tools && E.tools.merge) add('합치기', E.tools.merge.nav);
   return (_pairCache[lang] = pairs.sort((a, b) => b[0].length - a[0].length));
@@ -520,8 +538,21 @@ function wsTaskbar(rel) {
   const allTools = rel === ''
     ? `<button class="ws-nav__cta" type="button" data-drawer-toggle aria-controls="tool-drawer" aria-expanded="false">전체 도구</button>`
     : `<a class="ws-nav__cta" href="${home}#tools">전체 도구</a>`;
+  // 카테고리 페이지는 언어별로 없으므로(예: /en/category 없음) 상단 메뉴는 도구 서랍/대표 도구로 연결
+  const midLink = (label, slug) => rel === ''
+    ? `<a class="lp-nav__link" href="${home}${slug}/">${label}</a>`
+    : `<a class="lp-nav__link" href="${home}${slug}/">${label}</a>`;
+  const allToolsMid = rel === ''
+    ? `<button class="lp-nav__link" type="button" data-drawer-toggle aria-controls="tool-drawer">모든 도구</button>`
+    : `<a class="lp-nav__link" href="${home}#tools">모든 도구</a>`;
   return `    <header class="ws-taskbar">
-      <a href="${home}" class="ws-logo"><span class="chip" aria-hidden="true"><img src="${rel}assets/img/logo.png" alt="" width="30" height="30" decoding="async"></span><span class="ko">PDF의 모든 것</span><b class="sep" aria-hidden="true">/</b><span class="wk">workspace</span></a>
+      <a href="${home}" class="ws-logo"><span class="chip" aria-hidden="true"><img src="${rel}assets/img/logo.png" alt="" width="30" height="30" decoding="async"></span><span class="ko">PDF의 모든 것</span></a>
+      <nav class="lp-nav__mid" aria-label="주요 메뉴">
+        ${allToolsMid}
+        ${midLink('변환', 'to-image')}
+        ${midLink('편집', 'rotate')}
+        ${midLink('보안', 'protect')}
+      </nav>
       <nav class="ws-nav"><a href="${home}about/">소개</a>${allTools}</nav>
     </header>`;
 }
@@ -1459,139 +1490,61 @@ ${catRows}
 
   const searchIco = '<svg class="ws-search__ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>';
   const gridIco = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="3.5" width="7" height="7" rx="1.6"/><rect x="13.5" y="3.5" width="7" height="7" rx="1.6"/><rect x="3.5" y="13.5" width="7" height="7" rx="1.6"/><rect x="13.5" y="13.5" width="7" height="7" rx="1.6"/></svg>';
-  const main = `    <div class="home-frame">
-    <section class="ws-home2" id="tools">
-      <h1 class="sr-only">${esc(c.metaTitle || 'PDF의 모든 것')} — 설치 없이 무료로 쓰는 한국어 PDF 도구 모음</h1>
-      <div class="home-hero2 ws-hero">
-        <div class="home-hero2__copy">
-          <span class="ws-hero__brand">${esc(BRAND)}</span>
-          <p class="ws-hero__title">${esc(HERO_PUNCH[CUR_LANG] || HERO_PUNCH.ko)}</p>
-          <p class="ws-hero__sub">${esc(c.heroSubtitle || '')}</p>
-          <div class="home-hero2__cta">
-            <button class="home-hero2__start" type="button" data-hero-start>무료로 시작하기<span aria-hidden="true">→</span></button>
-            <button class="home-hero2__all" type="button" data-drawer-toggle aria-controls="tool-drawer">전체 도구 둘러보기</button>
-          </div>
-          <ul class="home-hero2__chips" aria-label="특징">
-            <li>${IC('<path d="M20 6L9 17l-5-5"/>')}완전 무료</li>
-            <li>${IC('<path d="M12 3l7 3v5.2c0 4.4-3 7.4-7 8.8-4-1.4-7-4.4-7-8.8V6z"/>')}서버 미전송</li>
-            <li>${IC('<path d="M13 3L5 13.5h5.2L9.5 21 19 10.5h-5.4z"/>')}설치 불필요</li>
-          </ul>
+  const LI = {
+    convert: '<path d="M4 8h11M7 5 4 8l3 3"/><path d="M20 16H9m8-3 3 3-3 3"/>',
+    edit: '<path d="M4 20h16"/><path d="M14 4l4 4L8 18l-5 1 1-5z"/>',
+    merge: '<rect x="3.5" y="4" width="7.5" height="16" rx="1.6"/><rect x="13" y="4" width="7.5" height="16" rx="1.6"/>',
+    compress: '<path d="M8 3v6M5 6l3-3 3 3"/><path d="M16 21v-6m-3 3 3 3 3-3"/><path d="M4 12h16"/>',
+    split: '<path d="M12 3v18"/><path d="M6 8 3 12l3 4"/><path d="M18 8l3 4-3 4"/>',
+    image: '<rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="8.5" cy="10" r="1.6"/><path d="M21 15l-5-4-8 8"/>',
+    lock: '<rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/>',
+    bolt: '<path d="M13 3 5 13.5h5.2L9.5 21 19 10.5h-5.4z"/>',
+    shield: '<path d="M12 3l7 3v5.2c0 4.4-3 7.4-7 8.8-4-1.4-7-4.4-7-8.8V6z"/><path d="M9 12l2.1 2.1L15.4 9.8"/>',
+    phone: '<rect x="7" y="3" width="10" height="18" rx="2.5"/><path d="M11 18h2"/>'
+  };
+  const lpNode = (slug, ic, title, sub, color) => `<a class="lp-node lp-node--${color}" href="${slug}/"><span class="lp-node__ic">${IC(ic)}</span><span class="lp-node__tx"><b>${title}</b><small>${sub}</small></span></a>`;
+  const lpTool = (slug, ic, color) => `<a class="lp-tool" href="${slug}/"><span class="lp-tool__ic lp-tool__ic--${color}">${IC(ic)}</span><span class="lp-tool__body"><b class="lp-tool__name">${esc(dispName(slug))}</b><span class="lp-tool__desc">${esc(APP_SHORT[slug] || '')}</span></span><span class="lp-tool__arr" aria-hidden="true">›</span></a>`;
+  const main = `    <div class="lp">
+    <h1 class="sr-only">${esc(c.metaTitle || 'PDF의 모든 것')} — 설치 없이 무료로 쓰는 한국어 PDF 도구 모음</h1>
+    <section class="lp-hero" id="tools">
+      <div class="lp-hero__copy">
+        <p class="lp-hero__title"><span class="lp-hero__red">PDF,</span> 그 이상의 간편함</p>
+        <p class="lp-hero__sub">${esc(c.heroSubtitle || '')}</p>
+        <div class="lp-drop">
+          ${widget(TOOL_BY['organize'])}
+          <div class="lp-drop__formats"><span class="lp-fmt lp-fmt--pdf">PDF</span><span class="lp-fmt lp-fmt--word">Word</span><span class="lp-fmt lp-fmt--jpg">JPG</span><span class="lp-fmt lp-fmt--png">PNG</span><span class="lp-fmt lp-fmt--more">…</span></div>
         </div>
-        <div class="home-hero2__work">
-          <div class="ws-wrap ws-home2--solo">
-            <div class="ws-winwrap">
-              <div class="ws-window ws-deck" data-ws-window>
-                <button class="ws-winclose ws-deck__close" type="button" data-ws-close aria-label="작업 닫고 처음으로">처음으로 ✕</button>
-                <div class="herotool">
-                  <div class="herotool__tabs" role="tablist" aria-label="PDF 도구 선택">
-                  ${heroTabs}
-                  </div>
-                  <div class="herotool__panels">
-              ${heroPanels}
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+        <p class="lp-note">${IC('<rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/>')}<span>파일은 서버로 전송되지 않습니다.</span></p>
+      </div>
+      <div class="lp-hero__viz" aria-hidden="true">
+        <span class="lp-viz__blob"></span>
+        <div class="lp-viz__doc">${IC('<path d="M6 3h8l4 4v13a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z"/><path d="M13 3v5h5"/><path d="M8.5 12.5h7M8.5 16h5"/>')}</div>
+        ${lpNode('to-image', LI.convert, '변환', '다양한 형식으로', 'red')}
+        ${lpNode('rotate', LI.edit, '편집', 'PDF 내용 수정', 'amber')}
+        ${lpNode('merge', LI.split, '분할·병합', '자유롭게 구성', 'blue')}
+        ${lpNode('compress', LI.compress, '압축', '용량 줄이기', 'green')}
       </div>
     </section>
 
-    <section class="home-pop" aria-label="인기 도구" data-reveal>
-      <div class="ws-wrap">
-        <h2 class="home-pop__h">가장 많이 쓰는 도구</h2>
-        <div class="home-pop__grid">
-          <a class="home-pop__card home-pop__card--feat" href="merge/" data-cat="organize">
-            <span class="home-pop__ico">${ICONS_PDF['merge']}</span>
-            <span class="home-pop__tx"><b>${esc(dispName('merge'))}</b><span>${esc(APP_SHORT['merge'] || '')}</span></span>
-            <span class="home-pop__arr" aria-hidden="true">→</span>
-          </a>
-          ${['compress', 'to-image', 'image-to-pdf', 'unlock'].map((s) => `<a class="home-pop__card" href="${s}/" data-cat="${(CATEGORIES.find((c) => c.slugs.includes(s)) || {}).id || ''}">
-            <span class="home-pop__ico">${ICONS_PDF[s]}</span>
-            <span class="home-pop__tx"><b>${esc(dispName(s))}</b><span>${esc(APP_SHORT[s] || '')}</span></span>
-            <span class="home-pop__arr" aria-hidden="true">→</span>
-          </a>`).join('\n          ')}
-        </div>
+    <section class="lp-pop" data-reveal>
+      <div class="lp-pop__head">
+        <h2 class="lp-pop__h">인기 도구</h2>
+        <button class="lp-pop__all" type="button" data-drawer-toggle aria-controls="tool-drawer">모든 도구 보기 <span aria-hidden="true">›</span></button>
+      </div>
+      <div class="lp-pop__grid">
+        ${lpTool('to-image', LI.image, 'blue')}
+        ${lpTool('image-to-pdf', LI.image, 'purple')}
+        ${lpTool('merge', LI.merge, 'purple')}
+        ${lpTool('split', LI.split, 'amber')}
+        ${lpTool('compress', LI.compress, 'red')}
+        ${lpTool('unlock', LI.lock, 'green')}
       </div>
     </section>
 
-    <section class="home-scenes" aria-label="실제 변환 예시" data-reveal>
-      <div class="ws-wrap">
-        <h2 class="home-scenes__h">실제 변환 예시</h2>
-        <p class="home-scenes__sub">브라우저 안에서 바로, 이렇게 바뀝니다</p>
-        <div class="home-scenes__grid">
-          <a class="scene" href="merge/">
-            <span class="scene__label" data-cat="organize">${esc(dispName('merge'))}</span>
-            <div class="scene__flow">
-              <span class="scene__stack"><i class="ft ft--pdf">PDF</i><i class="ft ft--pdf">PDF</i><i class="ft ft--pdf">PDF</i></span>
-              <span class="scene__arr" aria-hidden="true">→</span>
-              <i class="ft ft--pdf ft--lg">PDF</i>
-            </div>
-          </a>
-          <a class="scene" href="compress/">
-            <span class="scene__label" data-cat="optimize">${esc(dispName('compress'))}</span>
-            <div class="scene__flow">
-              <i class="ft ft--pdf ft--lg">PDF</i>
-              <span class="scene__arr" aria-hidden="true">→</span>
-              <i class="ft ft--pdf ft--sm">PDF</i>
-            </div>
-          </a>
-          <a class="scene" href="image-to-pdf/">
-            <span class="scene__label" data-cat="convert">${esc(dispName('image-to-pdf'))}</span>
-            <div class="scene__flow">
-              <span class="scene__stack"><i class="ft ft--jpg">JPG</i><i class="ft ft--png">PNG</i></span>
-              <span class="scene__arr" aria-hidden="true">→</span>
-              <i class="ft ft--pdf ft--lg">PDF</i>
-            </div>
-          </a>
-          <a class="scene" href="to-image/">
-            <span class="scene__label" data-cat="convert">${esc(dispName('to-image'))}</span>
-            <div class="scene__flow">
-              <i class="ft ft--pdf ft--lg">PDF</i>
-              <span class="scene__arr" aria-hidden="true">→</span>
-              <span class="scene__stack"><i class="ft ft--jpg">JPG</i><i class="ft ft--png">PNG</i></span>
-            </div>
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <section class="home-explain" aria-label="서비스 안내">
-      <div class="ws-wrap">
-        <ul class="home-trust" data-reveal>
-          <li class="home-trust--free"><span class="home-trust__ic">${IC('<path d="M3.7 12.4l7.9-7.9a2 2 0 0 1 1.4-.6H18.8a2 2 0 0 1 2 2v5.8a2 2 0 0 1-.6 1.4l-7.9 7.9a2 2 0 0 1-2.8 0l-5.8-5.8a2 2 0 0 1 0-2.8z"/><circle cx="16" cy="8" r="1.25"/>')}</span><b>완전 무료</b><small>워터마크·가입 없음</small></li>
-          <li><span class="home-trust__ic">${IC('<path d="M12 3l7 3v5.2c0 4.4-3 7.4-7 8.8-4-1.4-7-4.4-7-8.8V6z"/><path d="M9 12l2.1 2.1L15.4 9.8"/>')}</span><b>서버 미전송</b><small>100% 내 브라우저 처리</small></li>
-          <li><span class="home-trust__ic">${IC('<path d="M13 3L5 13.5h5.2L9.5 21 19 10.5h-5.4z"/>')}</span><b>설치 불필요</b><small>열면 바로 사용</small></li>
-          <li><span class="home-trust__ic">${IC('<rect x="3.6" y="3.6" width="7" height="7" rx="1.7"/><rect x="13.4" y="3.6" width="7" height="7" rx="1.7"/><rect x="3.6" y="13.4" width="7" height="7" rx="1.7"/><rect x="13.4" y="13.4" width="7" height="7" rx="1.7"/>')}</span><b>37개 도구</b><small>합치기부터 변환까지</small></li>
-        </ul>
-        <div class="home-explain__grid" data-reveal>
-          <div class="home-block">
-            <h2 class="home-block__h">3단계면 끝나요</h2>
-            <ol class="home-steps">
-              <li><span class="home-steps__n">1</span><div><b>파일 올리기</b><p>PDF·이미지를 화면에 끌어다 놓거나 [파일 선택]으로 고르세요.</p></div></li>
-              <li><span class="home-steps__n">2</span><div><b>옵션 고르고 실행</b><p>순서·범위·화질 등 필요한 옵션을 정하고 실행 버튼을 누르세요.</p></div></li>
-              <li><span class="home-steps__n">3</span><div><b>결과 내려받기</b><p>완성된 파일을 바로 저장하세요. 창을 닫으면 흔적도 남지 않습니다.</p></div></li>
-            </ol>
-          </div>
-          <div class="home-block">
-            <h2 class="home-block__h">왜 「PDF의 모든 것」인가요?</h2>
-            <div class="home-why">
-              <div class="home-why__card"><h3>파일이 서버로 가지 않아요</h3><p>합치기·변환·압축 등 모든 처리가 여러분의 기기 안에서만 이뤄집니다. 계약서·신분증 같은 민감한 문서도 안심하고 다루세요.</p></div>
-              <div class="home-why__card"><h3>완전 무료, 워터마크 없음</h3><p>회원가입도 결제도 없고, 파일 개수·용량 제한도 없습니다. 결과물에 워터마크가 찍히지 않습니다.</p></div>
-              <div class="home-why__card"><h3>한국어에 진심입니다</h3><p>외산 도구의 어색한 기계번역 대신, 자연스러운 한국어 안내와 단계 설명으로 누구나 쉽게 쓸 수 있어요.</p></div>
-            </div>
-          </div>
-        </div>
-        <div class="home-block home-faqblock" data-reveal>
-          <h2 class="home-block__h">자주 묻는 질문</h2>
-          <div class="home-faq">
-            <details><summary>정말 무료인가요?</summary><p>네. 모든 도구가 완전 무료이며, 워터마크나 파일 개수·용량 제한이 없습니다.</p></details>
-            <details><summary>제 파일이 서버로 업로드되나요?</summary><p>아니요. 모든 작업은 여러분의 웹 브라우저 안에서만 실행되며, 파일은 어떤 서버로도 전송되지 않습니다. 창을 닫으면 메모리에서 사라집니다.</p></details>
-            <details><summary>회원가입이나 프로그램 설치가 필요한가요?</summary><p>둘 다 필요 없습니다. 이 페이지를 열면 바로 사용할 수 있습니다.</p></details>
-            <details><summary>스마트폰에서도 쓸 수 있나요?</summary><p>네. 스마트폰·태블릿 브라우저에서도 대부분의 도구가 그대로 동작합니다.</p></details>
-          </div>
-        </div>
-      </div>
+    <section class="lp-feats" data-reveal>
+      <div class="lp-feat"><span class="lp-feat__ic lp-feat__ic--red">${IC(LI.bolt)}</span><div class="lp-feat__tx"><b>빠르고 간편한 변환</b><p>몇 초 만에 원하는 결과로 처리하세요.</p></div></div>
+      <div class="lp-feat"><span class="lp-feat__ic lp-feat__ic--blue">${IC(LI.shield)}</span><div class="lp-feat__tx"><b>안전하고 신뢰할 수 있는 서비스</b><p>파일은 서버로 전송되지 않습니다.</p></div></div>
+      <div class="lp-feat"><span class="lp-feat__ic lp-feat__ic--green">${IC(LI.phone)}</span><div class="lp-feat__tx"><b>모든 기기에서 자유롭게</b><p>웹에서 언제 어디서나 사용하세요.</p></div></div>
     </section>
     </div>
 
@@ -1614,8 +1567,8 @@ ${catalog}
   const html = page({
     title: c.metaTitle, desc: c.metaDescription, canonical,
     ogTitle: c.metaTitle, rel, jsonld, main, noChrome: true,
-    withScripts: [...new Set(FEATURED.map((t) => t.script || t.slug))],
-    bodyClass: 'ws home',
+    withScripts: [...new Set([TOOL_BY['organize'], ...FEATURED].map((t) => t.script || t.slug))],
+    bodyClass: 'ws home lp-page',
     extraScripts: ['assets/js/workspace.js'],
     headExtra: `\n  <script>document.documentElement.className+=" js";</script>\n  <link rel="stylesheet" href="assets/css/workspace.css?v=${assetVer('assets/css/workspace.css')}">`
   });

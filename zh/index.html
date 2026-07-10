@@ -48,382 +48,87 @@
   <link rel="preload" as="font" type="font/woff2" href="/assets/vendor/fonts/a2z-ExtraBold.woff2" crossorigin>
   <link rel="stylesheet" href="/assets/css/style.css?v=6fe3ba59">
   <script>document.documentElement.className+=" js";</script>
-  <link rel="stylesheet" href="/assets/css/workspace.css?v=78804975">
+  <link rel="stylesheet" href="/assets/css/workspace.css?v=6c052106">
   <script type="application/ld+json">[{"@context":"https://schema.org","@type":"WebSite","name":"Everything PDF","url":"https://everything-pdf.site/","inLanguage":"ko","description":"无需安装、无需注册的免费PDF工具集。文件不上传服务器,直接在浏览器里完成合并、拆分、转换、解锁等操作。"},{"@context":"https://schema.org","@type":"Organization","name":"Everything PDF","legalName":"INNO-HI Inc","url":"https://everything-pdf.site/","logo":"https://everything-pdf.site/assets/img/logo.png","contactPoint":{"@type":"ContactPoint","contactType":"customer support","email":"board@innohi.ai.kr"}},{"@context":"https://schema.org","@type":"ItemList","name":"Everything PDF 도구 목록","inLanguage":"ko","numberOfItems":37,"itemListElement":[{"@type":"ListItem","position":1,"name":"合并","url":"https://everything-pdf.site/merge/"},{"@type":"ListItem","position":2,"name":"拆分PDF","url":"https://everything-pdf.site/split/"},{"@type":"ListItem","position":3,"name":"解锁","url":"https://everything-pdf.site/unlock/"},{"@type":"ListItem","position":4,"name":"提取PDF页面","url":"https://everything-pdf.site/extract/"},{"@type":"ListItem","position":5,"name":"删除PDF页面","url":"https://everything-pdf.site/delete/"},{"@type":"ListItem","position":6,"name":"页面整理","url":"https://everything-pdf.site/organize/"},{"@type":"ListItem","position":7,"name":"添加页码","url":"https://everything-pdf.site/page-numbers/"},{"@type":"ListItem","position":8,"name":"转JPG","url":"https://everything-pdf.site/to-image/"},{"@type":"ListItem","position":9,"name":"图片转PDF","url":"https://everything-pdf.site/image-to-pdf/"},{"@type":"ListItem","position":10,"name":"SVG转PNG","url":"https://everything-pdf.site/svg-to-png/"},{"@type":"ListItem","position":11,"name":"旋转","url":"https://everything-pdf.site/rotate/"},{"@type":"ListItem","position":12,"name":"裁剪(去除空白)","url":"https://everything-pdf.site/crop/"},{"@type":"ListItem","position":13,"name":"压缩","url":"https://everything-pdf.site/compress/"},{"@type":"ListItem","position":14,"name":"查看PDF信息","url":"https://everything-pdf.site/pdf-info/"},{"@type":"ListItem","position":15,"name":"清除PDF隐私信息","url":"https://everything-pdf.site/remove-metadata/"},{"@type":"ListItem","position":16,"name":"删除PDF空白页","url":"https://everything-pdf.site/remove-blank/"},{"@type":"ListItem","position":17,"name":"添加页边距","url":"https://everything-pdf.site/add-margin/"},{"@type":"ListItem","position":18,"name":"提取文字","url":"https://everything-pdf.site/extract-text/"},{"@type":"ListItem","position":19,"name":"页面倒序","url":"https://everything-pdf.site/reverse/"},{"@type":"ListItem","position":20,"name":"转黑白","url":"https://everything-pdf.site/grayscale/"},{"@type":"ListItem","position":21,"name":"多页合并到一张","url":"https://everything-pdf.site/nup/"},{"@type":"ListItem","position":22,"name":"签名","url":"https://everything-pdf.site/sign/"},{"@type":"ListItem","position":23,"name":"水印","url":"https://everything-pdf.site/watermark/"},{"@type":"ListItem","position":24,"name":"表单扁平化","url":"https://everything-pdf.site/flatten/"},{"@type":"ListItem","position":25,"name":"设置密码","url":"https://everything-pdf.site/protect/"},{"@type":"ListItem","position":26,"name":"GIF → PNG","url":"https://everything-pdf.site/gif-to-png/"},{"@type":"ListItem","position":27,"name":"GIF → JPG","url":"https://everything-pdf.site/gif-to-jpg/"},{"@type":"ListItem","position":28,"name":"AVIF → PNG","url":"https://everything-pdf.site/avif-to-png/"},{"@type":"ListItem","position":29,"name":"AVIF → JPG","url":"https://everything-pdf.site/avif-to-jpg/"},{"@type":"ListItem","position":30,"name":"JPG → PNG","url":"https://everything-pdf.site/jpg-to-png/"},{"@type":"ListItem","position":31,"name":"PNG → JPG","url":"https://everything-pdf.site/png-to-jpg/"},{"@type":"ListItem","position":32,"name":"WEBP → PNG","url":"https://everything-pdf.site/webp-to-png/"},{"@type":"ListItem","position":33,"name":"WEBP → JPG","url":"https://everything-pdf.site/webp-to-jpg/"},{"@type":"ListItem","position":34,"name":"PNG → WEBP","url":"https://everything-pdf.site/png-to-webp/"},{"@type":"ListItem","position":35,"name":"JPG → WEBP","url":"https://everything-pdf.site/jpg-to-webp/"},{"@type":"ListItem","position":36,"name":"SVG → JPG","url":"https://everything-pdf.site/svg-to-jpg/"},{"@type":"ListItem","position":37,"name":"SVG → WEBP","url":"https://everything-pdf.site/svg-to-webp/"}]}]</script>
 </head>
-<body class="ws home">
+<body class="ws home lp-page">
   <a class="skip-link" href="#main">跳到正文</a>
     <header class="ws-taskbar">
-      <a href="./" class="ws-logo"><span class="chip" aria-hidden="true"><img src="/assets/img/logo.png" alt="" width="30" height="30" decoding="async"></span><span class="ko">Everything PDF</span><b class="sep" aria-hidden="true">/</b><span class="wk">workspace</span></a>
+      <a href="./" class="ws-logo"><span class="chip" aria-hidden="true"><img src="/assets/img/logo.png" alt="" width="30" height="30" decoding="async"></span><span class="ko">Everything PDF</span></a>
+      <nav class="lp-nav__mid" aria-label="주요 메뉴">
+        <button class="lp-nav__link" type="button" data-drawer-toggle aria-controls="tool-drawer">全部</button>
+        <a class="lp-nav__link" href="./to-image/">转换</a>
+        <a class="lp-nav__link" href="./rotate/">编辑</a>
+        <a class="lp-nav__link" href="./protect/">安全</a>
+      </nav>
       <nav class="ws-nav"><details class="ws-langswitch"><summary aria-label="language / 언어"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.5 3.8 5.7 3.8 9S14.5 18.5 12 21C9.5 18.5 8.2 15.3 8.2 12S9.5 5.5 12 3z"/></svg><span>中文</span></summary><div class="ws-langmenu"><a href="/" hreflang="ko">한국어</a><a href="/en/" hreflang="en">English</a><a href="/es/" hreflang="es">Español</a><a href="/ja/" hreflang="ja">日本語</a><a href="/zh/" hreflang="zh" aria-current="true">中文</a></div></details><a href="./about/">关于</a><button class="ws-nav__cta" type="button" data-drawer-toggle aria-controls="tool-drawer" aria-expanded="false">全部工具</button></nav>
     </header>
   <main id="main">
-    <div class="home-frame">
-    <section class="ws-home2" id="tools">
-      <h1 class="sr-only">Everything PDF | 免费PDF合并、拆分、转换 — 免费在线PDF工具 — 无需安装，在浏览器中完成</h1>
-      <div class="home-hero2 ws-hero">
-        <div class="home-hero2__copy">
-          <span class="ws-hero__brand">Everything PDF</span>
-          <p class="ws-hero__title">你需要的所有 PDF 工具，一站搞定</p>
-          <p class="ws-hero__sub">从合并、拆分、转换、解锁到把图片转成PDF,37款工具一站搞定。</p>
-          <div class="home-hero2__cta">
-            <button class="home-hero2__start" type="button" data-hero-start>免费开始<span aria-hidden="true">→</span></button>
-            <button class="home-hero2__all" type="button" data-drawer-toggle aria-controls="tool-drawer">查看全部工具</button>
-          </div>
-          <ul class="home-hero2__chips" aria-label="특징">
-            <li><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>完全免费</li>
-            <li><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 3v5.2c0 4.4-3 7.4-7 8.8-4-1.4-7-4.4-7-8.8V6z"/></svg>不上传</li>
-            <li><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 3L5 13.5h5.2L9.5 21 19 10.5h-5.4z"/></svg>无需安装</li>
-          </ul>
-        </div>
-        <div class="home-hero2__work">
-          <div class="ws-wrap ws-home2--solo">
-            <div class="ws-winwrap">
-              <div class="ws-window ws-deck" data-ws-window>
-                <button class="ws-winclose ws-deck__close" type="button" data-ws-close aria-label="작업 닫고 처음으로">重新开始</button>
-                <div class="herotool">
-                  <div class="herotool__tabs" role="tablist" aria-label="PDF 도구 可选">
-                  <button class="herotool__tab" type="button" role="tab" data-tab="merge" aria-selected="true"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="8" width="11" height="12.5" rx="2"/><path d="M9 8V5.5A2 2 0 0 1 11 3.5h7.5A2 2 0 0 1 20.5 5.5V15a2 2 0 0 1-2 2H14.5"/></svg><span>合并</span></button>
-              <button class="herotool__tab" type="button" role="tab" data-tab="split" aria-selected="false"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="6" cy="6" r="2.4"/><circle cx="6" cy="18" r="2.4"/><line x1="20" y1="4" x2="8.6" y2="15.4"/><line x1="14.6" y1="14.6" x2="20" y2="20"/><line x1="8.6" y1="8.6" x2="11.4" y2="11.4"/></svg><span>拆分</span></button>
-              <button class="herotool__tab" type="button" role="tab" data-tab="compress" aria-selected="false"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="4" y1="12" x2="20" y2="12"/><path d="M8.5 5.5 12 9l3.5-3.5M8.5 18.5 12 15l3.5 3.5"/></svg><span>压缩</span></button>
-              <button class="herotool__tab" type="button" role="tab" data-tab="to-image" aria-selected="false"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="4.5" width="17" height="15" rx="2.5"/><circle cx="8.5" cy="9.5" r="1.7"/><path d="M20.5 15.5 16 11 6 21"/></svg><span>PDF → 图片</span></button>
-              <button class="herotool__tab" type="button" role="tab" data-tab="unlock" aria-selected="false"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="9.5" rx="2"/><path d="M8 11V7a4 4 0 0 1 7.5-1.9"/></svg><span>解锁</span></button>
-                  </div>
-                  <div class="herotool__panels">
-              <div class="herotool__panel is-active" role="tabpanel" data-panel="merge">
-            <div class="tool" data-tool="merge">
-      <div class="tool__left ws-window"><div class="ws-winbar"><span class="ws-wintitle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 16V4M8 8l4-4 4 4"/><path d="M4 16v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg><span class="t">拖入你的 PDF 到这里，立即开始处理</span></span></div><div class="tool__leftbody"><div class="dropzone js-drop" tabindex="0" role="button" aria-label="PDF 选择文件 또는 끌어다 놓기">
-          <input type="file" class="js-file" accept="application/pdf" multiple hidden>
-          <svg class="dropzone__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 16V4M12 4l-4 4M12 4l4 4"/><path d="M4 16v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg>
-          <p class="dropzone__title">拖入要合并的 PDF</p>
-          <span class="dropzone__btn">选择文件</span>
-          <p class="dropzone__hint">或拖放或粘贴 · 文件仅在你的浏览器中处理</p>
-        </div>
-        <ul class="filelist js-files"></ul>
-        <div class="pagegrid js-pagegrid" hidden></div></div></div>
-      <div class="tool__right">
-        <div class="options">
-  <label class="checkbox"><input type="checkbox" id="merge-blank"> 在文件之间插入空白页</label>
-  <div class="option">
-    <label class="option__label" for="out-name-1">输出文件名 <span class="option__hint">可选 · 留空则使用默认名称</span></label>
-    <input type="text" id="out-name-1" class="field js-outname" placeholder="合并的-PDF" autocomplete="off">
-  </div>
-</div>
-        <div class="actions"><button class="btn btn--primary btn--lg btn--block js-run" disabled>合并 PDF</button></div>
-        <div class="progress js-progress" hidden><div class="progress__bar js-bar"></div><span class="progress__text js-ptext"></span></div>
-        <div class="result js-result" hidden></div>
-        <noscript><p class="callout callout--warn" style="margin-top:16px"><span class="callout__ic"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><line x1="12" y1="11" x2="12" y2="16.5"/><circle cx="12" cy="7.8" r=".7" fill="currentColor" stroke="none"/></svg></span><span>此工具需要 JavaScript。请在你的浏览器中启用 JavaScript。你的文件依然绝不会发送到服务器，仅在你的浏览器中处理。</span></p></noscript>
-      </div>
-    </div>
-          </div>
-          <div class="herotool__panel" role="tabpanel" data-panel="split">
-            <div class="tool" data-tool="split">
-      <div class="tool__left ws-window"><div class="ws-winbar"><span class="ws-wintitle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 16V4M8 8l4-4 4 4"/><path d="M4 16v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg><span class="t">拖入你的 PDF 到这里，立即开始处理</span></span></div><div class="tool__leftbody"><div class="dropzone js-drop" tabindex="0" role="button" aria-label="PDF 选择文件 또는 끌어다 놓기">
+    <div class="lp">
+    <h1 class="sr-only">Everything PDF | 免费PDF合并、拆分、转换 — 免费在线PDF工具 — 无需安装，在浏览器中完成</h1>
+    <section class="lp-hero" id="tools">
+      <div class="lp-hero__copy">
+        <p class="lp-hero__title"><span class="lp-hero__red">PDF,</span> 不止于此，更简单</p>
+        <p class="lp-hero__sub">从合并、拆分、转换、解锁到把图片转成PDF,37款工具一站搞定。</p>
+        <div class="lp-drop">
+          <div class="tool" data-tool="organize">
+      <div class="tool__left"><div class="dropzone js-drop" tabindex="0" role="button" aria-label="PDF 选择文件 또는 끌어다 놓기">
           <input type="file" class="js-file" accept="application/pdf" hidden>
           <svg class="dropzone__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 16V4M12 4l-4 4M12 4l4 4"/><path d="M4 16v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg>
-          <p class="dropzone__title">拖入要拆分的 PDF</p>
+          <p class="dropzone__title">拖入要整理的 PDF</p>
           <span class="dropzone__btn">选择文件</span>
           <p class="dropzone__hint">或拖放或粘贴 · 文件仅在你的浏览器中处理</p>
         </div>
       <p class="pagecount js-pagecount"></p>
         <ul class="filelist js-files"></ul>
-        <div class="pagegrid js-pagegrid" hidden></div></div></div>
+        <div class="pagegrid js-pagegrid" hidden></div></div>
       <div class="tool__right">
         <div class="options">
+  <p class="option__hint" style="margin:0 0 2px">上传 PDF 后，其所有页面会在下方展开。拖动可重新排序，用 <b>↺ ↻</b> 旋转，用 <b>✕</b> 删除。</p>
   <div class="option">
-    <span class="option__label">拆分方式</span>
-    <div class="segmented" role="radiogroup" aria-label="拆分方式">
-      <label><input type="radio" name="split-mode" value="each" class="js-nopersist" checked><span>拆成单页</span></label>
-      <label><input type="radio" name="split-mode" value="every" class="js-nopersist"><span>每 N 页</span></label>
-      <label><input type="radio" name="split-mode" value="oddeven" class="js-nopersist"><span>奇偶分离</span></label>
-      <label><input type="radio" name="split-mode" value="ranges" class="js-nopersist"><span>按范围</span></label>
-    </div>
-  </div>
-  <div class="option-row">
-    <div class="option">
-      <label class="option__label" for="split-every">每 N 页 <span class="option__hint">选择“每 N 页”时</span></label>
-      <input type="number" id="split-every" class="field" value="2" min="1" inputmode="numeric">
-    </div>
-    <div class="option">
-      <label class="option__label" for="split-zipname">ZIP 文件名 <span class="option__hint">可选</span></label>
-      <input type="text" id="split-zipname" class="field" placeholder="拆分的-PDF" autocomplete="off">
-    </div>
-  </div>
-  <div class="option">
-    <label class="option__label" for="split-ranges">页面范围 <span class="option__hint">选择“按范围”时 · 例如 1-3, 4-8, 9</span></label>
-    <input type="text" id="split-ranges" class="field js-nopersist" placeholder="1-3, 4-8, 9" inputmode="numeric" autocomplete="off">
+    <label class="option__label" for="out-name-5">输出文件名 <span class="option__hint">可选 · 留空则使用默认名称</span></label>
+    <input type="text" id="out-name-5" class="field js-outname" placeholder="整理的-PDF" autocomplete="off">
   </div>
 </div>
-        <div class="actions"><button class="btn btn--primary btn--lg btn--block js-run" disabled>拆分 PDF</button></div>
+        <div class="actions"><button class="btn btn--primary btn--lg btn--block js-run" disabled>整理页面</button></div>
         <div class="progress js-progress" hidden><div class="progress__bar js-bar"></div><span class="progress__text js-ptext"></span></div>
         <div class="result js-result" hidden></div>
         <noscript><p class="callout callout--warn" style="margin-top:16px"><span class="callout__ic"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><line x1="12" y1="11" x2="12" y2="16.5"/><circle cx="12" cy="7.8" r=".7" fill="currentColor" stroke="none"/></svg></span><span>此工具需要 JavaScript。请在你的浏览器中启用 JavaScript。你的文件依然绝不会发送到服务器，仅在你的浏览器中处理。</span></p></noscript>
       </div>
     </div>
-          </div>
-          <div class="herotool__panel" role="tabpanel" data-panel="compress">
-            <div class="tool" data-tool="compress">
-      <div class="tool__left ws-window"><div class="ws-winbar"><span class="ws-wintitle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 16V4M8 8l4-4 4 4"/><path d="M4 16v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg><span class="t">拖入你的 PDF 到这里，立即开始处理</span></span></div><div class="tool__leftbody"><div class="dropzone js-drop" tabindex="0" role="button" aria-label="PDF 选择文件 또는 끌어다 놓기">
-          <input type="file" class="js-file" accept="application/pdf" hidden>
-          <svg class="dropzone__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 16V4M12 4l-4 4M12 4l4 4"/><path d="M4 16v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg>
-          <p class="dropzone__title">拖入要压缩的 PDF</p>
-          <span class="dropzone__btn">选择文件</span>
-          <p class="dropzone__hint">或拖放或粘贴 · 文件仅在你的浏览器中处理</p>
+          <div class="lp-drop__formats"><span class="lp-fmt lp-fmt--pdf">PDF</span><span class="lp-fmt lp-fmt--word">Word</span><span class="lp-fmt lp-fmt--jpg">JPG</span><span class="lp-fmt lp-fmt--png">PNG</span><span class="lp-fmt lp-fmt--more">…</span></div>
         </div>
-      <p class="pagecount js-pagecount"></p>
-        <ul class="filelist js-files"></ul>
-        <div class="pagegrid js-pagegrid" hidden></div></div></div>
-      <div class="tool__right">
-        <div class="options">
-  <div class="option">
-    <span class="option__label">画质 <span class="option__hint">越低 = 文件越小</span></span>
-    <div class="segmented" role="radiogroup" aria-label="画质">
-      <label><input type="radio" name="cmp-quality" value="low"><span>低</span></label>
-      <label><input type="radio" name="cmp-quality" value="medium" checked><span>适中</span></label>
-      <label><input type="radio" name="cmp-quality" value="high"><span>高</span></label>
-    </div>
-  </div>
-  <p class="option__hint" style="margin:2px 0 0">对扫描件或图片较多的 PDF 效果显著。以文字为主的 PDF 几乎不会变小，其文字还可能被转换为图片。</p>
-  <div class="option">
-    <label class="option__label" for="out-name-11">输出文件名 <span class="option__hint">可选 · 留空则使用默认名称</span></label>
-    <input type="text" id="out-name-11" class="field js-outname" placeholder="压缩的-PDF" autocomplete="off">
-  </div>
-</div>
-        <div class="actions"><button class="btn btn--primary btn--lg btn--block js-run" disabled>压缩</button></div>
-        <div class="progress js-progress" hidden><div class="progress__bar js-bar"></div><span class="progress__text js-ptext"></span></div>
-        <div class="result js-result" hidden></div>
-        <noscript><p class="callout callout--warn" style="margin-top:16px"><span class="callout__ic"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><line x1="12" y1="11" x2="12" y2="16.5"/><circle cx="12" cy="7.8" r=".7" fill="currentColor" stroke="none"/></svg></span><span>此工具需要 JavaScript。请在你的浏览器中启用 JavaScript。你的文件依然绝不会发送到服务器，仅在你的浏览器中处理。</span></p></noscript>
+        <p class="lp-note"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg><span>您的文件绝不会上传到任何服务器。</span></p>
       </div>
-    </div>
-          </div>
-          <div class="herotool__panel" role="tabpanel" data-panel="to-image">
-            <div class="tool" data-tool="to-image">
-      <div class="tool__left ws-window"><div class="ws-winbar"><span class="ws-wintitle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 16V4M8 8l4-4 4 4"/><path d="M4 16v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg><span class="t">拖入你的 PDF 到这里，立即开始处理</span></span></div><div class="tool__leftbody"><div class="dropzone js-drop" tabindex="0" role="button" aria-label="PDF 选择文件 또는 끌어다 놓기">
-          <input type="file" class="js-file" accept="application/pdf" hidden>
-          <svg class="dropzone__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 16V4M12 4l-4 4M12 4l4 4"/><path d="M4 16v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg>
-          <p class="dropzone__title">拖入要转换为图片的 PDF</p>
-          <span class="dropzone__btn">选择文件</span>
-          <p class="dropzone__hint">或拖放或粘贴 · 文件仅在你的浏览器中处理</p>
-        </div>
-      <p class="pagecount js-pagecount"></p>
-        <ul class="filelist js-files"></ul>
-        <div class="pagegrid js-pagegrid" hidden></div></div></div>
-      <div class="tool__right">
-        <div class="options">
-  <div class="option-row">
-    <div class="option">
-      <span class="option__label">图片格式</span>
-      <div class="segmented" role="radiogroup" aria-label="图片格式">
-        <label><input type="radio" name="img-format" value="png" checked><span>PNG</span></label>
-        <label><input type="radio" name="img-format" value="jpg"><span>JPG</span></label>
-        <label><input type="radio" name="img-format" value="webp"><span>WEBP</span></label>
-      </div>
-    </div>
-    <div class="option">
-      <label class="option__label" for="img-scale">画质（倍率）</label>
-      <select id="img-scale" class="field">
-        <option value="1">标准（1 倍）</option>
-        <option value="2" selected>清晰（2 倍）</option>
-        <option value="3">非常清晰（3 倍）</option>
-      </select>
-    </div>
-  </div>
-  <div class="option-row">
-    <div class="option">
-      <label class="option__label" for="img-quality">JPG / WEBP 品质 <span class="option__hint">适用于 JPG 或 WEBP</span></label>
-      <select id="img-quality" class="field">
-        <option value="0.7">中（更小）</option>
-        <option value="0.85">良好</option>
-        <option value="0.92" selected>高</option>
-        <option value="0.97">最佳（文件更大）</option>
-      </select>
-    </div>
-    <div class="option">
-      <label class="option__label" for="img-prefix">文件名前缀 <span class="option__hint">可选 · 默认为 page</span></label>
-      <input type="text" id="img-prefix" class="field" placeholder="page" autocomplete="off">
-    </div>
-  </div>
-  <div class="option">
-    <span class="option__label">转换范围</span>
-    <div class="segmented" role="radiogroup" aria-label="转换范围">
-      <label><input type="radio" name="img-pages-mode" value="all" class="js-nopersist" checked><span>全部页面</span></label>
-      <label><input type="radio" name="img-pages-mode" value="custom" class="js-nopersist"><span>特定页面</span></label>
-    </div>
-  </div>
-  <div class="option">
-    <label class="option__label" for="img-pages">指定页面 <span class="option__hint">选择“特定页面”时 · 例如 1, 3, 5-7</span></label>
-    <input type="text" id="img-pages" class="field js-nopersist" placeholder="1, 3, 5-7" inputmode="numeric" autocomplete="off">
-  </div>
-  <label class="checkbox"><input type="checkbox" id="img-gray"> 转换为黑白（灰度）</label>
-  <label class="checkbox"><input type="checkbox" id="img-transparent"> 透明背景（PNG / WEBP）</label>
-</div>
-        <div class="actions"><button class="btn btn--primary btn--lg btn--block js-run" disabled>转换为图片</button></div>
-        <div class="progress js-progress" hidden><div class="progress__bar js-bar"></div><span class="progress__text js-ptext"></span></div>
-        <div class="result js-result" hidden></div>
-        <noscript><p class="callout callout--warn" style="margin-top:16px"><span class="callout__ic"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><line x1="12" y1="11" x2="12" y2="16.5"/><circle cx="12" cy="7.8" r=".7" fill="currentColor" stroke="none"/></svg></span><span>此工具需要 JavaScript。请在你的浏览器中启用 JavaScript。你的文件依然绝不会发送到服务器，仅在你的浏览器中处理。</span></p></noscript>
-      </div>
-    </div>
-          </div>
-          <div class="herotool__panel" role="tabpanel" data-panel="unlock">
-            <div class="tool" data-tool="unlock">
-      <div class="tool__left ws-window"><div class="ws-winbar"><span class="ws-wintitle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 16V4M8 8l4-4 4 4"/><path d="M4 16v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg><span class="t">拖入你的 PDF 到这里，立即开始处理</span></span></div><div class="tool__leftbody"><div class="dropzone js-drop" tabindex="0" role="button" aria-label="PDF 选择文件 또는 끌어다 놓기">
-          <input type="file" class="js-file" accept="application/pdf" hidden>
-          <svg class="dropzone__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 16V4M12 4l-4 4M12 4l4 4"/><path d="M4 16v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg>
-          <p class="dropzone__title">拖入要解锁的 PDF</p>
-          <span class="dropzone__btn">选择文件</span>
-          <p class="dropzone__hint">或拖放或粘贴 · 文件仅在你的浏览器中处理</p>
-        </div>
-        <ul class="filelist js-files"></ul>
-        <div class="pagegrid js-pagegrid" hidden></div></div></div>
-      <div class="tool__right">
-        <div class="options">
-  <div class="option">
-    <label class="option__label" for="unlock-pw">密码 <span class="option__hint">仅当打开 PDF 时提示输入密码才需填写</span></label>
-    <input type="password" id="unlock-pw" class="field js-nopersist" placeholder="你知道的密码（可选）" autocomplete="off">
-  </div>
-  <label class="checkbox"><input type="checkbox" id="unlock-showpw"> 显示密码</label>
-  <label class="checkbox"><input type="checkbox" id="unlock-raster"> 以图片方式解锁（适用于受密码锁定的 PDF）</label>
-  <div class="option">
-    <label class="option__label" for="unlock-scale">图片解锁画质 <span class="option__hint">选择“以图片方式解锁”时</span></label>
-    <select id="unlock-scale" class="field">
-      <option value="1.5">中（更小）</option>
-      <option value="2" selected>清晰</option>
-      <option value="3">非常清晰（文件更大）</option>
-    </select>
-  </div>
-  <p class="option__hint" style="margin-top:-6px">※ 以图片方式解锁后，会生成无法选中、复制或编辑文字的图片版 PDF。仅在因密码而无法正常解锁时使用。</p>
-  <div class="option">
-    <label class="option__label" for="out-name-2">输出文件名 <span class="option__hint">可选 · 留空则使用默认名称</span></label>
-    <input type="text" id="out-name-2" class="field js-outname" placeholder="解锁-PDF" autocomplete="off">
-  </div>
-  <p class="callout callout--warn"><span class="callout__ic"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><line x1="12" y1="11" x2="12" y2="16.5"/><circle cx="12" cy="7.8" r=".7" fill="currentColor" stroke="none"/></svg></span><span><strong>这不是密码破解。</strong> 它只会移除你已知的密码，或打印、编辑限制。无法破解你不知道的密码。</span></p>
-</div>
-        <div class="actions"><button class="btn btn--primary btn--lg btn--block js-run" disabled>解锁 PDF</button></div>
-        <div class="progress js-progress" hidden><div class="progress__bar js-bar"></div><span class="progress__text js-ptext"></span></div>
-        <div class="result js-result" hidden></div>
-        <noscript><p class="callout callout--warn" style="margin-top:16px"><span class="callout__ic"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><line x1="12" y1="11" x2="12" y2="16.5"/><circle cx="12" cy="7.8" r=".7" fill="currentColor" stroke="none"/></svg></span><span>此工具需要 JavaScript。请在你的浏览器中启用 JavaScript。你的文件依然绝不会发送到服务器，仅在你的浏览器中处理。</span></p></noscript>
-      </div>
-    </div>
-          </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+      <div class="lp-hero__viz" aria-hidden="true">
+        <span class="lp-viz__blob"></span>
+        <div class="lp-viz__doc"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h8l4 4v13a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z"/><path d="M13 3v5h5"/><path d="M8.5 12.5h7M8.5 16h5"/></svg></div>
+        <a class="lp-node lp-node--red" href="to-image/"><span class="lp-node__ic"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8h11M7 5 4 8l3 3"/><path d="M20 16H9m8-3 3 3-3 3"/></svg></span><span class="lp-node__tx"><b>转换</b><small>多种格式</small></span></a>
+        <a class="lp-node lp-node--amber" href="rotate/"><span class="lp-node__ic"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20h16"/><path d="M14 4l4 4L8 18l-5 1 1-5z"/></svg></span><span class="lp-node__tx"><b>编辑</b><small>编辑PDF内容</small></span></a>
+        <a class="lp-node lp-node--blue" href="merge/"><span class="lp-node__ic"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v18"/><path d="M6 8 3 12l3 4"/><path d="M18 8l3 4-3 4"/></svg></span><span class="lp-node__tx"><b>拆分·合并</b><small>自由组合</small></span></a>
+        <a class="lp-node lp-node--green" href="compress/"><span class="lp-node__ic"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 3v6M5 6l3-3 3 3"/><path d="M16 21v-6m-3 3 3 3 3-3"/><path d="M4 12h16"/></svg></span><span class="lp-node__tx"><b>压缩</b><small>减小文件大小</small></span></a>
       </div>
     </section>
 
-    <section class="home-pop" aria-label="인기 도구" data-reveal>
-      <div class="ws-wrap">
-        <h2 class="home-pop__h">热门工具</h2>
-        <div class="home-pop__grid">
-          <a class="home-pop__card home-pop__card--feat" href="merge/" data-cat="organize">
-            <span class="home-pop__ico"><svg viewBox="0 0 24 24" class="ic-svg ic-pdf" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M6.4 2.6h6.6L17.6 7v11.4a1.5 1.5 0 0 1-1.5 1.5H6.4a1.5 1.5 0 0 1-1.5-1.5V4.1a1.5 1.5 0 0 1 1.5-1.5z" fill="#E5252A"/><path d="M12.7 2.6 17.6 7h-3.8a1.1 1.1 0 0 1-1.1-1.1z" fill="#B3160F"/><rect x="7.2" y="8.7" width="6" height="1.2" rx=".6" fill="#fff" opacity=".9"/><rect x="7.2" y="11" width="4.2" height="1.2" rx=".6" fill="#fff" opacity=".9"/><circle cx="17.4" cy="17.4" r="4.4" fill="#18a957" stroke="#fff" stroke-width="1.2"/><path d="M17.4 15.5v3.8M15.5 17.4h3.8" stroke="#fff" stroke-width="1.5" stroke-linecap="round"/></svg></span>
-            <span class="home-pop__tx"><b>合并</b><span>将多个 PDF 合并为一个</span></span>
-            <span class="home-pop__arr" aria-hidden="true">→</span>
-          </a>
-          <a class="home-pop__card" href="compress/" data-cat="optimize">
-            <span class="home-pop__ico"><svg viewBox="0 0 24 24" class="ic-svg ic-pdf" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M6.4 2.6h6.6L17.6 7v11.4a1.5 1.5 0 0 1-1.5 1.5H6.4a1.5 1.5 0 0 1-1.5-1.5V4.1a1.5 1.5 0 0 1 1.5-1.5z" fill="#E5252A"/><path d="M12.7 2.6 17.6 7h-3.8a1.1 1.1 0 0 1-1.1-1.1z" fill="#B3160F"/><rect x="7.2" y="8.7" width="6" height="1.2" rx=".6" fill="#fff" opacity=".9"/><rect x="7.2" y="11" width="4.2" height="1.2" rx=".6" fill="#fff" opacity=".9"/><circle cx="17.4" cy="17.4" r="4.4" fill="#f59e0b" stroke="#fff" stroke-width="1.2"/><path d="M15.6 17.4h3.6" stroke="#fff" stroke-width="1.1"/><path d="M16.2 15.5l1.2 1.1 1.2-1.1M16.2 19.3l1.2-1.1 1.2 1.1" fill="none" stroke="#fff" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-            <span class="home-pop__tx"><b>压缩</b><span>减小文件大小</span></span>
-            <span class="home-pop__arr" aria-hidden="true">→</span>
-          </a>
-          <a class="home-pop__card" href="to-image/" data-cat="convert">
-            <span class="home-pop__ico"><svg viewBox="0 0 24 24" class="ic-svg ic-pdf" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M6.4 2.6h6.6L17.6 7v11.4a1.5 1.5 0 0 1-1.5 1.5H6.4a1.5 1.5 0 0 1-1.5-1.5V4.1a1.5 1.5 0 0 1 1.5-1.5z" fill="#E5252A"/><path d="M12.7 2.6 17.6 7h-3.8a1.1 1.1 0 0 1-1.1-1.1z" fill="#B3160F"/><rect x="7.2" y="8.7" width="6" height="1.2" rx=".6" fill="#fff" opacity=".9"/><rect x="13" y="13" width="7.8" height="7.8" rx="1.4" fill="#18a957" stroke="#fff" stroke-width="1"/><circle cx="15.5" cy="15.7" r="1" fill="#fff"/><path d="M13.7 19.7l2.1-2.4 1.4 1.5 1.3-1.5 1.9 2.4z" fill="#fff"/></svg></span>
-            <span class="home-pop__tx"><b>转JPG</b><span>转换为 JPG / PNG</span></span>
-            <span class="home-pop__arr" aria-hidden="true">→</span>
-          </a>
-          <a class="home-pop__card" href="image-to-pdf/" data-cat="convert">
-            <span class="home-pop__ico"><svg viewBox="0 0 24 24" class="ic-svg ic-pdf" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M6.4 2.6h6.6L17.6 7v11.4a1.5 1.5 0 0 1-1.5 1.5H6.4a1.5 1.5 0 0 1-1.5-1.5V4.1a1.5 1.5 0 0 1 1.5-1.5z" fill="#E5252A"/><path d="M12.7 2.6 17.6 7h-3.8a1.1 1.1 0 0 1-1.1-1.1z" fill="#B3160F"/><rect x="6.8" y="8.2" width="6.8" height="5.4" rx="1" fill="#0ea5e9"/><circle cx="8.9" cy="10.1" r=".85" fill="#fff"/><path d="M7.2 13.2l1.9-2.2 1.25 1.35 1.15-1.25 1.7 2.1z" fill="#fff"/><circle cx="17.4" cy="17.4" r="4.4" fill="#e5252a" stroke="#fff" stroke-width="1.2"/><path d="M15.6 17.4h3.6M17.4 15.6v3.6" stroke="#fff" stroke-width="1.5" stroke-linecap="round"/></svg></span>
-            <span class="home-pop__tx"><b>图片转PDF</b><span>将 JPG / PNG 转为 PDF</span></span>
-            <span class="home-pop__arr" aria-hidden="true">→</span>
-          </a>
-          <a class="home-pop__card" href="unlock/" data-cat="security">
-            <span class="home-pop__ico"><svg viewBox="0 0 24 24" class="ic-svg ic-pdf" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M6.4 2.6h6.6L17.6 7v11.4a1.5 1.5 0 0 1-1.5 1.5H6.4a1.5 1.5 0 0 1-1.5-1.5V4.1a1.5 1.5 0 0 1 1.5-1.5z" fill="#E5252A"/><path d="M12.7 2.6 17.6 7h-3.8a1.1 1.1 0 0 1-1.1-1.1z" fill="#B3160F"/><rect x="7.2" y="8.7" width="6" height="1.2" rx=".6" fill="#fff" opacity=".9"/><path d="M15.4 15.5v-1.7a2 2 0 0 1 3.8-.9" fill="none" stroke="#f5a623" stroke-width="1.4" stroke-linecap="round"/><rect x="13.8" y="15.3" width="6.5" height="5.4" rx="1.1" fill="#f5a623" stroke="#fff" stroke-width="1"/><circle cx="17.05" cy="17.7" r=".95" fill="#fff"/></svg></span>
-            <span class="home-pop__tx"><b>解锁</b><span>解除密码和限制</span></span>
-            <span class="home-pop__arr" aria-hidden="true">→</span>
-          </a>
-        </div>
+    <section class="lp-pop" data-reveal>
+      <div class="lp-pop__head">
+        <h2 class="lp-pop__h">热门工具</h2>
+        <button class="lp-pop__all" type="button" data-drawer-toggle aria-controls="tool-drawer">查看全部 <span aria-hidden="true">›</span></button>
+      </div>
+      <div class="lp-pop__grid">
+        <a class="lp-tool" href="to-image/"><span class="lp-tool__ic lp-tool__ic--blue"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="8.5" cy="10" r="1.6"/><path d="M21 15l-5-4-8 8"/></svg></span><span class="lp-tool__body"><b class="lp-tool__name">转JPG</b><span class="lp-tool__desc">转换为 JPG / PNG</span></span><span class="lp-tool__arr" aria-hidden="true">›</span></a>
+        <a class="lp-tool" href="image-to-pdf/"><span class="lp-tool__ic lp-tool__ic--purple"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="8.5" cy="10" r="1.6"/><path d="M21 15l-5-4-8 8"/></svg></span><span class="lp-tool__body"><b class="lp-tool__name">图片转PDF</b><span class="lp-tool__desc">将 JPG / PNG 转为 PDF</span></span><span class="lp-tool__arr" aria-hidden="true">›</span></a>
+        <a class="lp-tool" href="merge/"><span class="lp-tool__ic lp-tool__ic--purple"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="4" width="7.5" height="16" rx="1.6"/><rect x="13" y="4" width="7.5" height="16" rx="1.6"/></svg></span><span class="lp-tool__body"><b class="lp-tool__name">合并</b><span class="lp-tool__desc">将多个 PDF 合并为一个</span></span><span class="lp-tool__arr" aria-hidden="true">›</span></a>
+        <a class="lp-tool" href="split/"><span class="lp-tool__ic lp-tool__ic--amber"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v18"/><path d="M6 8 3 12l3 4"/><path d="M18 8l3 4-3 4"/></svg></span><span class="lp-tool__body"><b class="lp-tool__name">拆分PDF</b><span class="lp-tool__desc">将一个文件拆分为多个</span></span><span class="lp-tool__arr" aria-hidden="true">›</span></a>
+        <a class="lp-tool" href="compress/"><span class="lp-tool__ic lp-tool__ic--red"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 3v6M5 6l3-3 3 3"/><path d="M16 21v-6m-3 3 3 3 3-3"/><path d="M4 12h16"/></svg></span><span class="lp-tool__body"><b class="lp-tool__name">压缩</b><span class="lp-tool__desc">减小文件大小</span></span><span class="lp-tool__arr" aria-hidden="true">›</span></a>
+        <a class="lp-tool" href="unlock/"><span class="lp-tool__ic lp-tool__ic--green"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg></span><span class="lp-tool__body"><b class="lp-tool__name">解锁</b><span class="lp-tool__desc">解除密码和限制</span></span><span class="lp-tool__arr" aria-hidden="true">›</span></a>
       </div>
     </section>
 
-    <section class="home-scenes" aria-label="实际转换示例" data-reveal>
-      <div class="ws-wrap">
-        <h2 class="home-scenes__h">实际转换示例</h2>
-        <p class="home-scenes__sub">全程在浏览器中完成的真实转换</p>
-        <div class="home-scenes__grid">
-          <a class="scene" href="merge/">
-            <span class="scene__label" data-cat="organize">合并</span>
-            <div class="scene__flow">
-              <span class="scene__stack"><i class="ft ft--pdf">PDF</i><i class="ft ft--pdf">PDF</i><i class="ft ft--pdf">PDF</i></span>
-              <span class="scene__arr" aria-hidden="true">→</span>
-              <i class="ft ft--pdf ft--lg">PDF</i>
-            </div>
-          </a>
-          <a class="scene" href="compress/">
-            <span class="scene__label" data-cat="optimize">压缩</span>
-            <div class="scene__flow">
-              <i class="ft ft--pdf ft--lg">PDF</i>
-              <span class="scene__arr" aria-hidden="true">→</span>
-              <i class="ft ft--pdf ft--sm">PDF</i>
-            </div>
-          </a>
-          <a class="scene" href="image-to-pdf/">
-            <span class="scene__label" data-cat="convert">图片转PDF</span>
-            <div class="scene__flow">
-              <span class="scene__stack"><i class="ft ft--jpg">JPG</i><i class="ft ft--png">PNG</i></span>
-              <span class="scene__arr" aria-hidden="true">→</span>
-              <i class="ft ft--pdf ft--lg">PDF</i>
-            </div>
-          </a>
-          <a class="scene" href="to-image/">
-            <span class="scene__label" data-cat="convert">转JPG</span>
-            <div class="scene__flow">
-              <i class="ft ft--pdf ft--lg">PDF</i>
-              <span class="scene__arr" aria-hidden="true">→</span>
-              <span class="scene__stack"><i class="ft ft--jpg">JPG</i><i class="ft ft--png">PNG</i></span>
-            </div>
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <section class="home-explain" aria-label="서비스 안내">
-      <div class="ws-wrap">
-        <ul class="home-trust" data-reveal>
-          <li class="home-trust--free"><span class="home-trust__ic"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.7 12.4l7.9-7.9a2 2 0 0 1 1.4-.6H18.8a2 2 0 0 1 2 2v5.8a2 2 0 0 1-.6 1.4l-7.9 7.9a2 2 0 0 1-2.8 0l-5.8-5.8a2 2 0 0 1 0-2.8z"/><circle cx="16" cy="8" r="1.25"/></svg></span><b>完全免费</b><small>无水印，无需注册</small></li>
-          <li><span class="home-trust__ic"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 3v5.2c0 4.4-3 7.4-7 8.8-4-1.4-7-4.4-7-8.8V6z"/><path d="M9 12l2.1 2.1L15.4 9.8"/></svg></span><b>不上传</b><small>100% 在你的浏览器中处理</small></li>
-          <li><span class="home-trust__ic"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 3L5 13.5h5.2L9.5 21 19 10.5h-5.4z"/></svg></span><b>无需安装</b><small>打开即用</small></li>
-          <li><span class="home-trust__ic"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.6" y="3.6" width="7" height="7" rx="1.7"/><rect x="13.4" y="3.6" width="7" height="7" rx="1.7"/><rect x="3.6" y="13.4" width="7" height="7" rx="1.7"/><rect x="13.4" y="13.4" width="7" height="7" rx="1.7"/></svg></span><b>37 个工具</b><small>从合并到转换</small></li>
-        </ul>
-        <div class="home-explain__grid" data-reveal>
-          <div class="home-block">
-            <h2 class="home-block__h">三步搞定</h2>
-            <ol class="home-steps">
-              <li><span class="home-steps__n">1</span><div><b>添加文件</b><p>将你的 PDF 或图片拖到屏幕上，或用“选择文件”挑选。</p></div></li>
-              <li><span class="home-steps__n">2</span><div><b>设置选项并运行</b><p>选择所需的选项（顺序、范围、画质），然后点击运行按钮。</p></div></li>
-              <li><span class="home-steps__n">3</span><div><b>下载结果</b><p>立即保存处理好的文件。关闭标签页后不留任何痕迹。</p></div></li>
-            </ol>
-          </div>
-          <div class="home-block">
-            <h2 class="home-block__h">为什么选择 Everything PDF？</h2>
-            <div class="home-why">
-              <div class="home-why__card"><h3>你的文件绝不离开你的设备</h3><p>合并、转换、压缩以及其他所有操作都完全在你的设备上运行。处理合同、身份证件等敏感文档，完全放心。</p></div>
-              <div class="home-why__card"><h3>完全免费，无水印</h3><p>无需注册、无需付费，文件数量和大小均无限制。你的结果绝不会被打上水印。</p></div>
-              <div class="home-why__card"><h3>精心打磨，而非机器翻译</h3><p>不同于外国工具那种生硬的机器翻译，每一步都配有清晰、自然的说明，让任何人都能轻松上手。</p></div>
-            </div>
-          </div>
-        </div>
-        <div class="home-block home-faqblock" data-reveal>
-          <h2 class="home-block__h">常见问题</h2>
-          <div class="home-faq">
-            <details><summary>真的免费吗？</summary><p>是的。每个工具都完全免费，无水印，文件数量和大小均无限制。</p></details>
-            <details><summary>我的文件会上传到服务器吗？</summary><p>不会。每项操作都完全在你的网页浏览器中运行，你的文件绝不会发送到任何服务器。关闭标签页后，它们便从内存中消失。</p></details>
-            <details><summary>我需要注册或安装什么吗？</summary><p>都不需要。只需打开此页面，即可立即开始使用。</p></details>
-            <details><summary>我可以在手机上使用吗？</summary><p>可以。大多数工具在手机或平板的浏览器中使用方式完全相同。</p></details>
-          </div>
-        </div>
-      </div>
+    <section class="lp-feats" data-reveal>
+      <div class="lp-feat"><span class="lp-feat__ic lp-feat__ic--red"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 3 5 13.5h5.2L9.5 21 19 10.5h-5.4z"/></svg></span><div class="lp-feat__tx"><b>快速简便</b><p>几秒内完成处理。</p></div></div>
+      <div class="lp-feat"><span class="lp-feat__ic lp-feat__ic--blue"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 3v5.2c0 4.4-3 7.4-7 8.8-4-1.4-7-4.4-7-8.8V6z"/><path d="M9 12l2.1 2.1L15.4 9.8"/></svg></span><div class="lp-feat__tx"><b>安全可信赖</b><p>您的文件绝不会上传到任何服务器。</p></div></div>
+      <div class="lp-feat"><span class="lp-feat__ic lp-feat__ic--green"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="7" y="3" width="10" height="18" rx="2.5"/><path d="M11 18h2"/></svg></span><div class="lp-feat__tx"><b>所有设备通用</b><p>随时随地在网页使用。</p></div></div>
     </section>
     </div>
 
@@ -485,7 +190,7 @@
             <span class="ws-cattile__title">转换 PDF</span>
           </button>
           <div class="ws-cat-tools"><div class="ws-shelf">
-          <a class="ws-card" href="to-image/" style="--i:0" data-keywords="pdf→图片 转jpg jpg·png to image 图片">
+          <a class="ws-card" href="to-image/" style="--i:0" data-keywords="pdf→图片 转jpg jpg·png 转换 to image 图片 转换">
           <span class="ws-card__ico"><svg viewBox="0 0 24 24" class="ic-svg ic-pdf" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M6.4 2.6h6.6L17.6 7v11.4a1.5 1.5 0 0 1-1.5 1.5H6.4a1.5 1.5 0 0 1-1.5-1.5V4.1a1.5 1.5 0 0 1 1.5-1.5z" fill="#E5252A"/><path d="M12.7 2.6 17.6 7h-3.8a1.1 1.1 0 0 1-1.1-1.1z" fill="#B3160F"/><rect x="7.2" y="8.7" width="6" height="1.2" rx=".6" fill="#fff" opacity=".9"/><rect x="13" y="13" width="7.8" height="7.8" rx="1.4" fill="#18a957" stroke="#fff" stroke-width="1"/><circle cx="15.5" cy="15.7" r="1" fill="#fff"/><path d="M13.7 19.7l2.1-2.4 1.4 1.5 1.3-1.5 1.9 2.4z" fill="#fff"/></svg></span>
           <span class="ws-card__tx"><span class="ws-card__name">转JPG</span><span class="ws-card__desc">将 PDF 页面转换为 JPG 或 PNG 图片。非常适合直接粘贴到博客、社交帖子和演示文稿中。</span></span>
         </a>
@@ -497,51 +202,51 @@
           <span class="ws-card__ico"><svg viewBox="0 0 24 24" class="ic-svg ic-pdf" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="3.4" y="4.2" width="9.6" height="9.6" rx="1.6" fill="#8b5cf6"/><path d="M6 11.2l1.9-2.3 1.25 1.4 1.2-1.4 1.75 2.3z" fill="#fff"/><circle cx="6.4" cy="7.2" r="1.05" fill="#fff"/><rect x="11" y="10.4" width="9.6" height="9.6" rx="1.6" fill="${PDF_RED}" stroke="#fff" stroke-width="1.1"/><path d="M13.5 17.4l1.9-2.3 1.25 1.4 1.2-1.4 1.75 2.3z" fill="#fff"/><circle cx="13.9" cy="13.4" r="1.05" fill="#fff"/></svg></span>
           <span class="ws-card__tx"><span class="ws-card__name">SVG转PNG</span><span class="ws-card__desc">将矢量 SVG 转换为清晰的 PNG 图片。可放大以获得高分辨率，并选择透明或白色背景，适用于博客、演示文稿和设计工作。</span></span>
         </a>
-          <a class="ws-card" href="gif-to-png/" style="--i:3" data-keywords="gif→png gif → png gif→png gif to png gif png gif png">
+          <a class="ws-card" href="gif-to-png/" style="--i:3" data-keywords="gif→png gif → png gif→png gif to png gif png gif png 转换">
           <span class="ws-card__ico"><svg viewBox="0 0 24 24" class="ic-svg ic-pdf" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="3" y="5.2" width="8.4" height="8.4" rx="1.5" fill="#9aa0ad"/><path d="M5 11.6l1.6-2 1.05 1.2 1-1.2 1.55 2z" fill="#fff"/><circle cx="5.5" cy="8" r=".9" fill="#fff"/><rect x="11.6" y="10.4" width="9.4" height="9.4" rx="1.6" fill="#18a957" stroke="#fff" stroke-width="1.1"/><path d="M14 17.6l1.7-2.1 1.1 1.25 1.05-1.25 1.6 2.1z" fill="#fff"/><circle cx="14.3" cy="13.6" r="1" fill="#fff"/></svg></span>
           <span class="ws-card__tx"><span class="ws-card__name">GIF → PNG</span><span class="ws-card__desc">将动态 GIF 的第一帧转换为 PNG。无损，保留透明度，生成随处可打开的静态图片。</span></span>
         </a>
-          <a class="ws-card" href="gif-to-jpg/" style="--i:4" data-keywords="gif→jpg gif → jpg gif→jpg gif to jpg gif jpg gif jpg">
+          <a class="ws-card" href="gif-to-jpg/" style="--i:4" data-keywords="gif→jpg gif → jpg gif→jpg gif to jpg gif jpg gif jpg 转换">
           <span class="ws-card__ico"><svg viewBox="0 0 24 24" class="ic-svg ic-pdf" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="3" y="5.2" width="8.4" height="8.4" rx="1.5" fill="#9aa0ad"/><path d="M5 11.6l1.6-2 1.05 1.2 1-1.2 1.55 2z" fill="#fff"/><circle cx="5.5" cy="8" r=".9" fill="#fff"/><rect x="11.6" y="10.4" width="9.4" height="9.4" rx="1.6" fill="#f59e0b" stroke="#fff" stroke-width="1.1"/><path d="M14 17.6l1.7-2.1 1.1 1.25 1.05-1.25 1.6 2.1z" fill="#fff"/><circle cx="14.3" cy="13.6" r="1" fill="#fff"/></svg></span>
           <span class="ws-card__tx"><span class="ws-card__name">GIF → JPG</span><span class="ws-card__desc">将 GIF 转换为轻量的 JPG。动态 GIF 仅保留第一帧，透明区域会变为白色。</span></span>
         </a>
-          <a class="ws-card" href="avif-to-png/" style="--i:5" data-keywords="avif→png avif → png avif→png avif to png avif png avif png">
+          <a class="ws-card" href="avif-to-png/" style="--i:5" data-keywords="avif→png avif → png avif→png avif to png avif png avif png 转换">
           <span class="ws-card__ico"><svg viewBox="0 0 24 24" class="ic-svg ic-pdf" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="3" y="5.2" width="8.4" height="8.4" rx="1.5" fill="#9aa0ad"/><path d="M5 11.6l1.6-2 1.05 1.2 1-1.2 1.55 2z" fill="#fff"/><circle cx="5.5" cy="8" r=".9" fill="#fff"/><rect x="11.6" y="10.4" width="9.4" height="9.4" rx="1.6" fill="#18a957" stroke="#fff" stroke-width="1.1"/><path d="M14 17.6l1.7-2.1 1.1 1.25 1.05-1.25 1.6 2.1z" fill="#fff"/><circle cx="14.3" cy="13.6" r="1" fill="#fff"/></svg></span>
           <span class="ws-card__tx"><span class="ws-card__name">AVIF → PNG</span><span class="ws-card__desc">将现代的 AVIF 转换为随处可打开的无损 PNG。透明背景完整保留。</span></span>
         </a>
-          <a class="ws-card" href="avif-to-jpg/" style="--i:6" data-keywords="avif→jpg avif → jpg avif→jpg avif to jpg avif jpg avif jpg">
+          <a class="ws-card" href="avif-to-jpg/" style="--i:6" data-keywords="avif→jpg avif → jpg avif→jpg avif to jpg avif jpg avif jpg 转换">
           <span class="ws-card__ico"><svg viewBox="0 0 24 24" class="ic-svg ic-pdf" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="3" y="5.2" width="8.4" height="8.4" rx="1.5" fill="#9aa0ad"/><path d="M5 11.6l1.6-2 1.05 1.2 1-1.2 1.55 2z" fill="#fff"/><circle cx="5.5" cy="8" r=".9" fill="#fff"/><rect x="11.6" y="10.4" width="9.4" height="9.4" rx="1.6" fill="#f59e0b" stroke="#fff" stroke-width="1.1"/><path d="M14 17.6l1.7-2.1 1.1 1.25 1.05-1.25 1.6 2.1z" fill="#fff"/><circle cx="14.3" cy="13.6" r="1" fill="#fff"/></svg></span>
           <span class="ws-card__tx"><span class="ws-card__name">AVIF → JPG</span><span class="ws-card__desc">将 AVIF 转换为兼容性广泛的 JPG，可直接用于聊天、文档和电子邮件。</span></span>
         </a>
-          <a class="ws-card" href="jpg-to-png/" style="--i:7" data-keywords="jpg→png jpg → png jpg→png jpg to png jpg png jpg png">
+          <a class="ws-card" href="jpg-to-png/" style="--i:7" data-keywords="jpg→png jpg → png jpg→png jpg to png jpg png jpg png 转换">
           <span class="ws-card__ico"><svg viewBox="0 0 24 24" class="ic-svg ic-pdf" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="3" y="5.2" width="8.4" height="8.4" rx="1.5" fill="#9aa0ad"/><path d="M5 11.6l1.6-2 1.05 1.2 1-1.2 1.55 2z" fill="#fff"/><circle cx="5.5" cy="8" r=".9" fill="#fff"/><rect x="11.6" y="10.4" width="9.4" height="9.4" rx="1.6" fill="#18a957" stroke="#fff" stroke-width="1.1"/><path d="M14 17.6l1.7-2.1 1.1 1.25 1.05-1.25 1.6 2.1z" fill="#fff"/><circle cx="14.3" cy="13.6" r="1" fill="#fff"/></svg></span>
           <span class="ws-card__tx"><span class="ws-card__name">JPG → PNG</span><span class="ws-card__desc">将 JPG 照片转换为无损、支持透明的 PNG。非常适合只接受 PNG 的场合，或用于编辑和存档。</span></span>
         </a>
-          <a class="ws-card" href="png-to-jpg/" style="--i:8" data-keywords="png→jpg png → jpg png→jpg png to jpg png jpg png jpg">
+          <a class="ws-card" href="png-to-jpg/" style="--i:8" data-keywords="png→jpg png → jpg png→jpg png to jpg png jpg png jpg 转换">
           <span class="ws-card__ico"><svg viewBox="0 0 24 24" class="ic-svg ic-pdf" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="3" y="5.2" width="8.4" height="8.4" rx="1.5" fill="#9aa0ad"/><path d="M5 11.6l1.6-2 1.05 1.2 1-1.2 1.55 2z" fill="#fff"/><circle cx="5.5" cy="8" r=".9" fill="#fff"/><rect x="11.6" y="10.4" width="9.4" height="9.4" rx="1.6" fill="#f59e0b" stroke="#fff" stroke-width="1.1"/><path d="M14 17.6l1.7-2.1 1.1 1.25 1.05-1.25 1.6 2.1z" fill="#fff"/><circle cx="14.3" cy="13.6" r="1" fill="#fff"/></svg></span>
           <span class="ws-card__tx"><span class="ws-card__name">PNG → JPG</span><span class="ws-card__desc">将笨重的 PNG 转换为轻量的 JPG。透明背景会填充为白色，并且你可以选择画质。</span></span>
         </a>
-          <a class="ws-card" href="webp-to-png/" style="--i:9" data-keywords="webp→png webp → png webp→png webp to png webp png webp png">
+          <a class="ws-card" href="webp-to-png/" style="--i:9" data-keywords="webp→png webp → png webp→png webp to png webp png webp png 转换">
           <span class="ws-card__ico"><svg viewBox="0 0 24 24" class="ic-svg ic-pdf" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="3" y="5.2" width="8.4" height="8.4" rx="1.5" fill="#9aa0ad"/><path d="M5 11.6l1.6-2 1.05 1.2 1-1.2 1.55 2z" fill="#fff"/><circle cx="5.5" cy="8" r=".9" fill="#fff"/><rect x="11.6" y="10.4" width="9.4" height="9.4" rx="1.6" fill="#18a957" stroke="#fff" stroke-width="1.1"/><path d="M14 17.6l1.7-2.1 1.1 1.25 1.05-1.25 1.6 2.1z" fill="#fff"/><circle cx="14.3" cy="13.6" r="1" fill="#fff"/></svg></span>
           <span class="ws-card__tx"><span class="ws-card__name">WEBP → PNG</span><span class="ws-card__desc">将面向网络的 WEBP 转换为随处可打开的无损 PNG。透明背景完整保留。</span></span>
         </a>
-          <a class="ws-card" href="webp-to-jpg/" style="--i:10" data-keywords="webp→jpg webp → jpg webp→jpg webp to jpg webp jpg webp jpg">
+          <a class="ws-card" href="webp-to-jpg/" style="--i:10" data-keywords="webp→jpg webp → jpg webp→jpg webp to jpg webp jpg webp jpg 转换">
           <span class="ws-card__ico"><svg viewBox="0 0 24 24" class="ic-svg ic-pdf" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="3" y="5.2" width="8.4" height="8.4" rx="1.5" fill="#9aa0ad"/><path d="M5 11.6l1.6-2 1.05 1.2 1-1.2 1.55 2z" fill="#fff"/><circle cx="5.5" cy="8" r=".9" fill="#fff"/><rect x="11.6" y="10.4" width="9.4" height="9.4" rx="1.6" fill="#f59e0b" stroke="#fff" stroke-width="1.1"/><path d="M14 17.6l1.7-2.1 1.1 1.25 1.05-1.25 1.6 2.1z" fill="#fff"/><circle cx="14.3" cy="13.6" r="1" fill="#fff"/></svg></span>
           <span class="ws-card__tx"><span class="ws-card__name">WEBP → JPG</span><span class="ws-card__desc">将 WEBP 转换为兼容性广泛的 JPG，可直接用于聊天、文档和电子邮件。</span></span>
         </a>
-          <a class="ws-card" href="png-to-webp/" style="--i:11" data-keywords="png→webp png → webp png→webp png to webp png webp png webp">
+          <a class="ws-card" href="png-to-webp/" style="--i:11" data-keywords="png→webp png → webp png→webp png to webp png webp png webp 转换">
           <span class="ws-card__ico"><svg viewBox="0 0 24 24" class="ic-svg ic-pdf" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="3" y="5.2" width="8.4" height="8.4" rx="1.5" fill="#9aa0ad"/><path d="M5 11.6l1.6-2 1.05 1.2 1-1.2 1.55 2z" fill="#fff"/><circle cx="5.5" cy="8" r=".9" fill="#fff"/><rect x="11.6" y="10.4" width="9.4" height="9.4" rx="1.6" fill="#0ea5e9" stroke="#fff" stroke-width="1.1"/><path d="M14 17.6l1.7-2.1 1.1 1.25 1.05-1.25 1.6 2.1z" fill="#fff"/><circle cx="14.3" cy="13.6" r="1" fill="#fff"/></svg></span>
           <span class="ws-card__tx"><span class="ws-card__name">PNG → WEBP</span><span class="ws-card__desc">将笨重的 PNG 转换为轻量的 WEBP。外观完全一致，只是体积小得多，让网站加载更快。</span></span>
         </a>
-          <a class="ws-card" href="jpg-to-webp/" style="--i:12" data-keywords="jpg→webp jpg → webp jpg→webp jpg to webp jpg webp jpg webp">
+          <a class="ws-card" href="jpg-to-webp/" style="--i:12" data-keywords="jpg→webp jpg → webp jpg→webp jpg to webp jpg webp jpg webp 转换">
           <span class="ws-card__ico"><svg viewBox="0 0 24 24" class="ic-svg ic-pdf" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="3" y="5.2" width="8.4" height="8.4" rx="1.5" fill="#9aa0ad"/><path d="M5 11.6l1.6-2 1.05 1.2 1-1.2 1.55 2z" fill="#fff"/><circle cx="5.5" cy="8" r=".9" fill="#fff"/><rect x="11.6" y="10.4" width="9.4" height="9.4" rx="1.6" fill="#0ea5e9" stroke="#fff" stroke-width="1.1"/><path d="M14 17.6l1.7-2.1 1.1 1.25 1.05-1.25 1.6 2.1z" fill="#fff"/><circle cx="14.3" cy="13.6" r="1" fill="#fff"/></svg></span>
           <span class="ws-card__tx"><span class="ws-card__name">JPG → WEBP</span><span class="ws-card__desc">将 JPG 转换为更轻的 WEBP。同样的画质，更小的体积，让网页加载更快。</span></span>
         </a>
-          <a class="ws-card" href="svg-to-jpg/" style="--i:13" data-keywords="svg→jpg svg → jpg svg→jpg svg to jpg svg jpg svg jpg">
+          <a class="ws-card" href="svg-to-jpg/" style="--i:13" data-keywords="svg→jpg svg → jpg svg→jpg svg to jpg svg jpg svg jpg 转换">
           <span class="ws-card__ico"><svg viewBox="0 0 24 24" class="ic-svg ic-pdf" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="3" y="5.2" width="8.4" height="8.4" rx="1.5" fill="#9aa0ad"/><path d="M5 11.6l1.6-2 1.05 1.2 1-1.2 1.55 2z" fill="#fff"/><circle cx="5.5" cy="8" r=".9" fill="#fff"/><rect x="11.6" y="10.4" width="9.4" height="9.4" rx="1.6" fill="#f59e0b" stroke="#fff" stroke-width="1.1"/><path d="M14 17.6l1.7-2.1 1.1 1.25 1.05-1.25 1.6 2.1z" fill="#fff"/><circle cx="14.3" cy="13.6" r="1" fill="#fff"/></svg></span>
           <span class="ws-card__tx"><span class="ws-card__name">SVG → JPG</span><span class="ws-card__desc">将矢量 SVG 转换为随处可用的 JPG。可放大以获得高分辨率；透明区域会变为白色。</span></span>
         </a>
-          <a class="ws-card" href="svg-to-webp/" style="--i:14" data-keywords="svg→webp svg → webp svg→webp svg to webp svg webp svg webp">
+          <a class="ws-card" href="svg-to-webp/" style="--i:14" data-keywords="svg→webp svg → webp svg→webp svg to webp svg webp svg webp 转换">
           <span class="ws-card__ico"><svg viewBox="0 0 24 24" class="ic-svg ic-pdf" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="3" y="5.2" width="8.4" height="8.4" rx="1.5" fill="#9aa0ad"/><path d="M5 11.6l1.6-2 1.05 1.2 1-1.2 1.55 2z" fill="#fff"/><circle cx="5.5" cy="8" r=".9" fill="#fff"/><rect x="11.6" y="10.4" width="9.4" height="9.4" rx="1.6" fill="#0ea5e9" stroke="#fff" stroke-width="1.1"/><path d="M14 17.6l1.7-2.1 1.1 1.25 1.05-1.25 1.6 2.1z" fill="#fff"/><circle cx="14.3" cy="13.6" r="1" fill="#fff"/></svg></span>
           <span class="ws-card__tx"><span class="ws-card__name">SVG → WEBP</span><span class="ws-card__desc">将矢量 SVG 转换为轻量的 WEBP。可选择缩放倍率并保留透明度。</span></span>
         </a>
@@ -660,6 +365,7 @@
   <script src="/assets/js/ui.js?v=47a1abf4" defer></script>
   <script src="/assets/js/pdf-engine.js?v=a30acd16" defer></script>
   <script src="/assets/js/tool-core.js?v=5bff895b" defer></script>
+  <script src="/assets/js/tools/organize.js?v=c7d65528" defer></script>
   <script src="/assets/js/tools/merge.js?v=7ee6150a" defer></script>
   <script src="/assets/js/tools/split.js?v=e6a79d52" defer></script>
   <script src="/assets/js/tools/compress.js?v=29c23f67" defer></script>
