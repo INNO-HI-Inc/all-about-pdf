@@ -1503,7 +1503,7 @@ ${catRows}
     phone: '<rect x="7" y="3" width="10" height="18" rx="2.5"/><path d="M11 18h2"/>'
   };
   const lpNode = (slug, ic, title, sub, color) => `<a class="lp-node lp-node--${color}" href="${slug}/"><span class="lp-node__ic">${IC(ic)}</span><span class="lp-node__tx"><b>${title}</b><small>${sub}</small></span></a>`;
-  const lpTool = (slug, ic, color) => `<a class="lp-tool" href="${slug}/"><span class="lp-tool__ic lp-tool__ic--${color}">${IC(ic)}</span><span class="lp-tool__body"><b class="lp-tool__name">${esc(dispName(slug))}</b><span class="lp-tool__desc">${esc(APP_SHORT[slug] || '')}</span></span><span class="lp-tool__arr" aria-hidden="true">›</span></a>`;
+  const lpTool = (slug, ic, color, feat) => `<a class="lp-tool${feat ? ' lp-tool--feat' : ''}" href="${slug}/"><span class="lp-tool__ic lp-tool__ic--${color}">${IC(ic)}</span><span class="lp-tool__body"><b class="lp-tool__name">${esc(dispName(slug))}</b><span class="lp-tool__desc">${esc(APP_SHORT[slug] || '')}</span></span><span class="lp-tool__arr" aria-hidden="true">›</span></a>`;
   const main = `    <div class="lp">
     <h1 class="sr-only">${esc(c.metaTitle || 'PDF의 모든 것')} — 설치 없이 무료로 쓰는 한국어 PDF 도구 모음</h1>
     <section class="lp-hero" id="tools">
@@ -1517,8 +1517,29 @@ ${catRows}
         <p class="lp-note">${IC('<rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/>')}<span>파일은 서버로 전송되지 않습니다.</span></p>
       </div>
       <div class="lp-hero__viz" aria-hidden="true">
-        <span class="lp-viz__blob"></span>
-        <div class="lp-viz__doc">${IC('<path d="M6 3h8l4 4v13a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z"/><path d="M13 3v5h5"/><path d="M8.5 12.5h7M8.5 16h5"/>')}</div>
+        <span class="lp-viz__glow"></span>
+        <div class="lp-mascot">
+          <svg viewBox="0 0 200 232" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path class="lp-mascot__arm" d="M52 116q-30 2-40 26" stroke="#1c1c24" stroke-width="9" stroke-linecap="round"/>
+            <path class="lp-mascot__wave" d="M148 116q30 0 41-25" stroke="#1c1c24" stroke-width="9" stroke-linecap="round"/>
+            <path d="M80 176v34" stroke="#1c1c24" stroke-width="12" stroke-linecap="round"/>
+            <path d="M120 176v34" stroke="#1c1c24" stroke-width="12" stroke-linecap="round"/>
+            <ellipse cx="72" cy="214" rx="17" ry="9" fill="#1c1c24"/>
+            <ellipse cx="128" cy="214" rx="17" ry="9" fill="#1c1c24"/>
+            <path d="M50 34h74l26 26v106a14 14 0 0 1-14 14H50a14 14 0 0 1-14-14V48a14 14 0 0 1 14-14z" fill="#fff" stroke="#efe4e4" stroke-width="1.5"/>
+            <path d="M124 34l26 26h-18a8 8 0 0 1-8-8z" fill="#ff5147"/>
+            <path d="M124 34v18a8 8 0 0 0 8 8h18z" fill="#e5252a"/>
+            <circle cx="80" cy="98" r="7.5" fill="#1c1c24"/>
+            <circle cx="116" cy="98" r="7.5" fill="#1c1c24"/>
+            <circle cx="82.6" cy="95.4" r="2.4" fill="#fff"/>
+            <circle cx="118.6" cy="95.4" r="2.4" fill="#fff"/>
+            <path d="M85 117q13 12 26 0" stroke="#1c1c24" stroke-width="4.5" stroke-linecap="round"/>
+            <circle cx="66" cy="112" r="5.5" fill="#ffcfca"/>
+            <circle cx="130" cy="112" r="5.5" fill="#ffcfca"/>
+            <rect x="66" y="142" width="62" height="7" rx="3.5" fill="#ffd9d6"/>
+            <rect x="66" y="156" width="42" height="7" rx="3.5" fill="#ffd9d6"/>
+          </svg>
+        </div>
         ${lpNode('to-image', LI.convert, '변환', '다양한 형식으로', 'red')}
         ${lpNode('rotate', LI.edit, '편집', 'PDF 내용 수정', 'amber')}
         ${lpNode('merge', LI.split, '분할·병합', '자유롭게 구성', 'blue')}
@@ -1532,10 +1553,9 @@ ${catRows}
         <button class="lp-pop__all" type="button" data-drawer-toggle aria-controls="tool-drawer">모든 도구 보기 <span aria-hidden="true">›</span></button>
       </div>
       <div class="lp-pop__grid">
+        ${lpTool('merge', LI.merge, 'purple', true)}
         ${lpTool('to-image', LI.image, 'blue')}
-        ${lpTool('image-to-pdf', LI.image, 'purple')}
-        ${lpTool('merge', LI.merge, 'purple')}
-        ${lpTool('split', LI.split, 'amber')}
+        ${lpTool('image-to-pdf', LI.image, 'amber')}
         ${lpTool('compress', LI.compress, 'red')}
         ${lpTool('unlock', LI.lock, 'green')}
       </div>
