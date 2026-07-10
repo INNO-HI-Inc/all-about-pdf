@@ -988,12 +988,36 @@ html.drawer-open { overflow: hidden; }
 .ws-hero__free .ic-svg { width: 17px; height: 17px; flex: none; }
 @media (prefers-color-scheme: dark) { .ws-hero__free { color: #4fdd9a; background: rgba(22, 196, 127, .12); border-color: rgba(22, 196, 127, .28); } }
 
-/* ===== Codeit 스타일: 소프트 틴트 배경 + 라운드 콘텐츠 프레임 ===== */
+/* ===== Codeit 스타일: 소프트 틴트 배경 + 좌측 사이드바 + 라운드 콘텐츠 프레임 ===== */
 body.home { background: linear-gradient(180deg, #f4f3fa 0%, #eeedf6 100%); }
-.home-frame { max-width: 1240px; margin: 22px auto 40px; background: var(--surf, #fff); border-radius: 28px; padding: 10px 12px 52px; border: 1px solid rgba(23, 23, 42, .05); box-shadow: 0 10px 44px rgba(23, 23, 42, .06), inset 0 1px 0 rgba(255, 255, 255, .8); }
-.home-frame .ws-home2 { background: none; }
-@media (max-width: 900px) { .home-frame { margin: 10px; border-radius: 22px; padding: 6px 6px 34px; } }
+.home-app { max-width: 1300px; margin: 22px auto 40px; padding: 0 18px; display: flex; align-items: flex-start; gap: 22px; }
+
+/* 좌측 사이드바 */
+.home-side { flex: none; width: 232px; position: sticky; top: 88px; display: flex; flex-direction: column; gap: 8px; }
+.home-side__all { display: flex; align-items: center; gap: 10px; width: 100%; padding: 13px 16px; border: none; border-radius: 15px; background: var(--grad); color: #fff; font-family: inherit; font-size: .96rem; font-weight: 800; letter-spacing: -.01em; cursor: pointer; box-shadow: var(--sh-red); transition: transform var(--d-hover) var(--ez-spring), box-shadow var(--d-hover) var(--ez-out); }
+.home-side__all:hover { transform: translateY(-2px); box-shadow: 0 9px 22px rgba(23, 23, 42, .14); }
+.home-side__all svg, .home-side__all .ic-svg { width: 19px; height: 19px; flex: none; }
+.home-side__all b { margin-left: auto; font-size: .82rem; font-weight: 700; opacity: .85; background: rgba(255, 255, 255, .2); padding: 1px 9px; border-radius: 999px; }
+.home-sidenav { display: flex; flex-direction: column; gap: 2px; margin-top: 6px; padding: 6px; background: rgba(255, 255, 255, .55); border: 1px solid rgba(23, 23, 42, .05); border-radius: 16px; }
+.home-sidenav__item { display: flex; align-items: center; gap: 11px; width: 100%; padding: 10px 12px; border: none; border-radius: 11px; background: none; color: var(--ink-soft); font-family: inherit; font-size: .93rem; font-weight: 650; letter-spacing: -.01em; text-align: left; cursor: pointer; transition: background var(--d-micro) var(--ez), color var(--d-micro) var(--ez); }
+.home-sidenav__item:hover { background: rgba(23, 23, 42, .045); color: var(--ink); }
+.home-sidenav__dot { flex: none; width: 9px; height: 9px; border-radius: 3px; }
+.home-sidenav__t { flex: 1; min-width: 0; }
+.home-sidenav__n { flex: none; font-size: .8rem; font-weight: 700; color: var(--ink-faint); }
+.home-sidenav__about { display: block; margin-top: 2px; padding: 11px 18px; color: var(--ink-soft); font-size: .92rem; font-weight: 650; text-decoration: none; border-radius: 12px; transition: background var(--d-micro) var(--ez), color var(--d-micro) var(--ez); }
+.home-sidenav__about:hover { background: rgba(23, 23, 42, .045); color: var(--ink); text-decoration: none; }
+
+/* 우측 메인 프레임 */
+.home-main { flex: 1; min-width: 0; background: var(--surf, #fff); border-radius: 28px; padding: 12px 22px 52px; border: 1px solid rgba(23, 23, 42, .05); box-shadow: 0 10px 44px rgba(23, 23, 42, .06), inset 0 1px 0 rgba(255, 255, 255, .8); }
+.home-main .ws-home2 { background: none; }
+/* Codeit 히어로 비주얼 패널: 부드러운 라운드 틴트 배경 */
+.home-main .ws-hero { position: relative; margin: 6px 0 8px; padding: 40px 28px 34px; border-radius: 22px; background: radial-gradient(120% 140% at 50% -10%, rgba(229, 37, 42, .09), rgba(229, 37, 42, 0) 60%), linear-gradient(180deg, #faf7fb 0%, #f6f4fb 100%); border: 1px solid rgba(23, 23, 42, .04); overflow: hidden; }
+
+@media (max-width: 980px) { .home-side { display: none; } .home-app { padding: 0 12px; } }
+@media (max-width: 900px) { .home-main { border-radius: 22px; padding: 8px 12px 34px; } .home-main .ws-hero { padding: 30px 18px 26px; } }
 @media (prefers-color-scheme: dark) {
   body.home { background: linear-gradient(180deg, #16131f 0%, #0d0e15 100%); }
-  .home-frame { background: var(--surf); border-color: var(--line); box-shadow: 0 10px 44px rgba(0, 0, 0, .42), inset 0 1px 0 rgba(255, 255, 255, .04); }
+  .home-sidenav { background: rgba(255, 255, 255, .03); border-color: rgba(255, 255, 255, .06); }
+  .home-main { background: var(--surf); border-color: var(--line); box-shadow: 0 10px 44px rgba(0, 0, 0, .42), inset 0 1px 0 rgba(255, 255, 255, .04); }
+  .home-main .ws-hero { background: radial-gradient(120% 140% at 50% -10%, rgba(229, 37, 42, .14), rgba(229, 37, 42, 0) 60%), linear-gradient(180deg, rgba(255, 255, 255, .035), rgba(255, 255, 255, .01)); border-color: rgba(255, 255, 255, .05); }
 }

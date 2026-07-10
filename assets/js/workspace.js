@@ -92,7 +92,9 @@
       drawer.setAttribute('aria-hidden', open ? 'false' : 'true');
       if (open) { var f = drawer.querySelector('.js-toolsearch'); if (f) setTimeout(function () { try { f.focus(); } catch (e) {} }, 380); }
     }
-    if (dHandle) dHandle.addEventListener('click', function () { setDrawer(!root.classList.contains('drawer-open')); });
+    Array.prototype.slice.call(d.querySelectorAll('[data-drawer-toggle]')).forEach(function (el) {
+      el.addEventListener('click', function () { setDrawer(!root.classList.contains('drawer-open')); });
+    });
     Array.prototype.slice.call(d.querySelectorAll('[data-drawer-close]')).forEach(function (el) {
       el.addEventListener('click', function () { setDrawer(false); });
     });
