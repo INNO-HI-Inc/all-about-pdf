@@ -161,10 +161,10 @@ const read = (slug) => {
 };
 // JSON에 없는 크롬 조각의 언어별 값
 const MISC = {
-  en: { skip: 'Skip to content', lastUpdated: 'Last updated', terms: 'Terms of Service', noToolsFound: 'No tools found', searchTry: ' — try another search.', noUpload: 'Your files are never uploaded to any server.', browserOnly: 'No upload · 100% in your browser', note: 'Note', done: 'Done', next: 'What to do next', srH1: 'Free online PDF tools — no install, right in your browser', freeTools: 'Free online PDF tools', aboutPrivacy: 'About · Privacy', aboutPrivacyPolicy: 'About & Privacy Policy', image: 'images' },
-  es: { skip: 'Saltar al contenido', lastUpdated: 'Última actualización', terms: 'Términos del servicio', noToolsFound: 'No se encontraron herramientas', searchTry: ' — prueba otra búsqueda.', noUpload: 'Tus archivos nunca se suben a ningún servidor.', browserOnly: 'Sin subir · 100% en tu navegador', note: 'Nota', done: 'Listo', next: 'Qué sigue', srH1: 'Herramientas PDF gratis — sin instalar, en tu navegador', freeTools: 'Herramientas PDF gratis', aboutPrivacy: 'Acerca de · Privacidad', aboutPrivacyPolicy: 'Acerca de y privacidad', image: 'imágenes' },
-  ja: { skip: '本文へスキップ', lastUpdated: '最終更新', terms: '利用規約', noToolsFound: 'ツールが見つかりません', searchTry: ' — 別のキーワードでお試しください。', noUpload: 'ファイルはサーバーに送信されません。', browserOnly: 'アップロードなし・ブラウザ内で完結', note: '補足', done: '完了しました', next: '次にできること', srH1: '無料オンラインPDFツール — インストール不要、ブラウザで完結', freeTools: '無料オンラインPDFツール', aboutPrivacy: '概要・プライバシー', aboutPrivacyPolicy: '概要とプライバシーポリシー', image: '画像' },
-  zh: { skip: '跳到正文', lastUpdated: '最后更新', terms: '服务条款', noToolsFound: '未找到工具', searchTry: ' — 换个关键词试试。', noUpload: '您的文件绝不会上传到任何服务器。', browserOnly: '无需上传 · 全程在浏览器', note: '说明', done: '已完成', next: '接下来可以做什么', srH1: '免费在线PDF工具 — 无需安装，在浏览器中完成', freeTools: '免费在线PDF工具', aboutPrivacy: '关于 · 隐私', aboutPrivacyPolicy: '关于与隐私政策', image: '图片' }
+  en: { skip: 'Skip to content', lastUpdated: 'Last updated', terms: 'Terms of Service', noToolsFound: 'No tools found', searchTry: ' — try another search.', noUpload: 'Your files are never uploaded to any server.', browserOnly: 'No upload · 100% in your browser', note: 'Note', done: 'Done', next: 'What to do next', srH1: 'Free online PDF tools — no install, right in your browser', freeTools: 'Free online PDF tools', aboutPrivacy: 'About · Privacy', aboutPrivacyPolicy: 'About & Privacy Policy', image: 'images', heroCta: 'Start free', heroSee: 'Browse all tools', sceneH: 'See it in action', sceneSub: 'Real transformations, entirely in your browser' },
+  es: { skip: 'Saltar al contenido', lastUpdated: 'Última actualización', terms: 'Términos del servicio', noToolsFound: 'No se encontraron herramientas', searchTry: ' — prueba otra búsqueda.', noUpload: 'Tus archivos nunca se suben a ningún servidor.', browserOnly: 'Sin subir · 100% en tu navegador', note: 'Nota', done: 'Listo', next: 'Qué sigue', srH1: 'Herramientas PDF gratis — sin instalar, en tu navegador', freeTools: 'Herramientas PDF gratis', aboutPrivacy: 'Acerca de · Privacidad', aboutPrivacyPolicy: 'Acerca de y privacidad', image: 'imágenes', heroCta: 'Empezar gratis', heroSee: 'Ver todas', sceneH: 'Míralo en acción', sceneSub: 'Transformaciones reales, todo en tu navegador' },
+  ja: { skip: '本文へスキップ', lastUpdated: '最終更新', terms: '利用規約', noToolsFound: 'ツールが見つかりません', searchTry: ' — 別のキーワードでお試しください。', noUpload: 'ファイルはサーバーに送信されません。', browserOnly: 'アップロードなし・ブラウザ内で完結', note: '補足', done: '完了しました', next: '次にできること', srH1: '無料オンラインPDFツール — インストール不要、ブラウザで完結', freeTools: '無料オンラインPDFツール', aboutPrivacy: '概要・プライバシー', aboutPrivacyPolicy: '概要とプライバシーポリシー', image: '画像', heroCta: '無料で始める', heroSee: 'すべてのツール', sceneH: '実際の変換例', sceneSub: 'すべてブラウザ内で完結する実際の変換' },
+  zh: { skip: '跳到正文', lastUpdated: '最后更新', terms: '服务条款', noToolsFound: '未找到工具', searchTry: ' — 换个关键词试试。', noUpload: '您的文件绝不会上传到任何服务器。', browserOnly: '无需上传 · 全程在浏览器', note: '说明', done: '已完成', next: '接下来可以做什么', srH1: '免费在线PDF工具 — 无需安装，在浏览器中完成', freeTools: '免费在线PDF工具', aboutPrivacy: '关于 · 隐私', aboutPrivacyPolicy: '关于与隐私政策', image: '图片', heroCta: '免费开始', heroSee: '查看全部工具', sceneH: '实际转换示例', sceneSub: '全程在浏览器中完成的真实转换' }
 };
 const _pairCache = {};
 function langPairs(lang) {
@@ -236,6 +236,8 @@ function langPairs(lang) {
   add('자주 묻는 질문', C.homeFaqH || '');
   const koFaq = [['정말 무료인가요?', '네. 모든 도구가 완전 무료이며, 워터마크나 파일 개수·용량 제한이 없습니다.'], ['제 파일이 서버로 업로드되나요?', '아니요. 모든 작업은 여러분의 웹 브라우저 안에서만 실행되며, 파일은 어떤 서버로도 전송되지 않습니다. 창을 닫으면 메모리에서 사라집니다.'], ['회원가입이나 프로그램 설치가 필요한가요?', '둘 다 필요 없습니다. 이 페이지를 열면 바로 사용할 수 있습니다.'], ['스마트폰에서도 쓸 수 있나요?', '네. 스마트폰·태블릿 브라우저에서도 대부분의 도구가 그대로 동작합니다.']];
   (C.homeFaq || []).forEach((e, i) => { if (koFaq[i]) { add(koFaq[i][0], e.q); add(koFaq[i][1], e.a); } });
+  add('무료로 시작하기', M.heroCta); add('전체 도구 둘러보기', M.heroSee);
+  add('실제 변환 예시', M.sceneH); add('브라우저 안에서 바로, 이렇게 바뀝니다', M.sceneSub);
   if (E.tools && E.tools.compress) add('압축', E.tools.compress.nav);
   if (E.tools && E.tools.merge) add('합치기', E.tools.merge.nav);
   return (_pairCache[lang] = pairs.sort((a, b) => b[0].length - a[0].length));
@@ -1460,21 +1462,34 @@ ${catRows}
   const main = `    <div class="home-frame">
     <section class="ws-home2" id="tools">
       <h1 class="sr-only">${esc(c.metaTitle || 'PDF의 모든 것')} — 설치 없이 무료로 쓰는 한국어 PDF 도구 모음</h1>
-      <div class="ws-hero">
-        <span class="ws-hero__brand">${esc(BRAND)}</span>
-        <p class="ws-hero__title">${esc(HERO_PUNCH[CUR_LANG] || HERO_PUNCH.ko)}</p>
-        <p class="ws-hero__sub">${esc(c.heroSubtitle || '')}</p>
-      </div>
-      <div class="ws-wrap ws-home2--solo">
-        <div class="ws-winwrap">
-          <div class="ws-window ws-deck" data-ws-window>
-            <button class="ws-winclose ws-deck__close" type="button" data-ws-close aria-label="작업 닫고 처음으로">처음으로 ✕</button>
-            <div class="herotool">
-              <div class="herotool__tabs" role="tablist" aria-label="PDF 도구 선택">
-              ${heroTabs}
-              </div>
-              <div class="herotool__panels">
-          ${heroPanels}
+      <div class="home-hero2 ws-hero">
+        <div class="home-hero2__copy">
+          <span class="ws-hero__brand">${esc(BRAND)}</span>
+          <p class="ws-hero__title">${esc(HERO_PUNCH[CUR_LANG] || HERO_PUNCH.ko)}</p>
+          <p class="ws-hero__sub">${esc(c.heroSubtitle || '')}</p>
+          <div class="home-hero2__cta">
+            <button class="home-hero2__start" type="button" data-hero-start>무료로 시작하기<span aria-hidden="true">→</span></button>
+            <button class="home-hero2__all" type="button" data-drawer-toggle aria-controls="tool-drawer">전체 도구 둘러보기</button>
+          </div>
+          <ul class="home-hero2__chips" aria-label="특징">
+            <li>${IC('<path d="M20 6L9 17l-5-5"/>')}완전 무료</li>
+            <li>${IC('<path d="M12 3l7 3v5.2c0 4.4-3 7.4-7 8.8-4-1.4-7-4.4-7-8.8V6z"/>')}서버 미전송</li>
+            <li>${IC('<path d="M13 3L5 13.5h5.2L9.5 21 19 10.5h-5.4z"/>')}설치 불필요</li>
+          </ul>
+        </div>
+        <div class="home-hero2__work">
+          <div class="ws-wrap ws-home2--solo">
+            <div class="ws-winwrap">
+              <div class="ws-window ws-deck" data-ws-window>
+                <button class="ws-winclose ws-deck__close" type="button" data-ws-close aria-label="작업 닫고 처음으로">처음으로 ✕</button>
+                <div class="herotool">
+                  <div class="herotool__tabs" role="tablist" aria-label="PDF 도구 선택">
+                  ${heroTabs}
+                  </div>
+                  <div class="herotool__panels">
+              ${heroPanels}
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -1496,6 +1511,47 @@ ${catRows}
             <span class="home-pop__tx"><b>${esc(dispName(s))}</b><span>${esc(APP_SHORT[s] || '')}</span></span>
             <span class="home-pop__arr" aria-hidden="true">→</span>
           </a>`).join('\n          ')}
+        </div>
+      </div>
+    </section>
+
+    <section class="home-scenes" aria-label="실제 변환 예시" data-reveal>
+      <div class="ws-wrap">
+        <h2 class="home-scenes__h">실제 변환 예시</h2>
+        <p class="home-scenes__sub">브라우저 안에서 바로, 이렇게 바뀝니다</p>
+        <div class="home-scenes__grid">
+          <a class="scene" href="merge/">
+            <span class="scene__label" data-cat="organize">${esc(dispName('merge'))}</span>
+            <div class="scene__flow">
+              <span class="scene__stack"><i class="ft ft--pdf">PDF</i><i class="ft ft--pdf">PDF</i><i class="ft ft--pdf">PDF</i></span>
+              <span class="scene__arr" aria-hidden="true">→</span>
+              <i class="ft ft--pdf ft--lg">PDF</i>
+            </div>
+          </a>
+          <a class="scene" href="compress/">
+            <span class="scene__label" data-cat="optimize">${esc(dispName('compress'))}</span>
+            <div class="scene__flow">
+              <i class="ft ft--pdf ft--lg">PDF</i>
+              <span class="scene__arr" aria-hidden="true">→</span>
+              <i class="ft ft--pdf ft--sm">PDF</i>
+            </div>
+          </a>
+          <a class="scene" href="image-to-pdf/">
+            <span class="scene__label" data-cat="convert">${esc(dispName('image-to-pdf'))}</span>
+            <div class="scene__flow">
+              <span class="scene__stack"><i class="ft ft--jpg">JPG</i><i class="ft ft--png">PNG</i></span>
+              <span class="scene__arr" aria-hidden="true">→</span>
+              <i class="ft ft--pdf ft--lg">PDF</i>
+            </div>
+          </a>
+          <a class="scene" href="to-image/">
+            <span class="scene__label" data-cat="convert">${esc(dispName('to-image'))}</span>
+            <div class="scene__flow">
+              <i class="ft ft--pdf ft--lg">PDF</i>
+              <span class="scene__arr" aria-hidden="true">→</span>
+              <span class="scene__stack"><i class="ft ft--jpg">JPG</i><i class="ft ft--png">PNG</i></span>
+            </div>
+          </a>
         </div>
       </div>
     </section>

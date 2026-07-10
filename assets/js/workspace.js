@@ -101,6 +101,18 @@
     d.addEventListener('keydown', function (e) { if (e.key === 'Escape' && root.classList.contains('drawer-open')) setDrawer(false); });
   }
 
+  // 2-b3) 히어로 '무료로 시작하기' → 활성 도구의 파일 선택 열기(모바일은 작업창으로 스크롤)
+  Array.prototype.slice.call(d.querySelectorAll('[data-hero-start]')).forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var work = d.querySelector('.home-hero2__work');
+      var target = (work || d).querySelector('.herotool__panel.is-active .dropzone input[type="file"], .herotool__panel.is-active .dropzone__btn, .herotool__panel.is-active .dropzone');
+      if (window.matchMedia('(max-width: 900px)').matches && work) {
+        work.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        setTimeout(function () { if (target) try { target.click(); } catch (e) {} }, 420);
+      } else if (target) { try { target.click(); } catch (e) {} }
+    });
+  });
+
   // 2-c) 도구 검색/필터 — 이름·설명·동의어(data-keywords)로 즉시 필터
   var searchInput = d.querySelector('.js-toolsearch');
   if (searchInput) {
