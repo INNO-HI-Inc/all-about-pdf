@@ -1053,7 +1053,7 @@ html.drawer-open { overflow: hidden; }
 @media (prefers-color-scheme: dark) { .ws-hero__free { color: #4fdd9a; background: rgba(22, 196, 127, .12); border-color: rgba(22, 196, 127, .28); } }
 
 /* ===== Codeit 스타일: 소프트 틴트 배경 + 라운드 콘텐츠 프레임 ===== */
-html:has(body.home) { background: #f6f7f8; }
+html:has(body.lp-page) { background: #f6f7f8; }
 body.home { background: linear-gradient(180deg, #f8f9fa 0%, #f1f2f4 100%); }
 /* 메뉴바 폭을 아래 콘텐츠 프레임(1240)과 일치 — 정렬 */
 body.home .ws-taskbar { max-width: 1500px; margin: 14px auto 0; }
@@ -1099,7 +1099,8 @@ body.home .ws-foot .ws-wrap { max-width: 1500px; }
 }
 
 @media (prefers-color-scheme: dark) {
-  html:has(body.home) { background: #16131f; }
+  html:has(body.lp-page) { background: #131317; }
+  body.lp-page.ws, body.lp-page { background: #131317 !important; }
   body.home { background: linear-gradient(180deg, #16131f 0%, #0d0e15 100%); }
   .home-frame { background: var(--surf); border-color: var(--line); box-shadow: 0 10px 44px rgba(0, 0, 0, .42), inset 0 1px 0 rgba(255, 255, 255, .04); }
   .home-frame .ws-hero { background: radial-gradient(120% 140% at 50% -10%, rgba(229, 37, 42, .14), rgba(229, 37, 42, 0) 60%), linear-gradient(180deg, rgba(255, 255, 255, .035), rgba(255, 255, 255, .01)); border-color: rgba(255, 255, 255, .05); }
@@ -1109,7 +1110,8 @@ body.home .ws-foot .ws-wrap { max-width: 1500px; }
 }
 
 /* ===================== 목업 랜딩(lp-*) — iLovePDF 스타일 ===================== */
-.lp-page.home { background: var(--bg); }
+/* 홈·세부 페이지 배경 통일: near-white */
+body.lp-page { background: #f6f7f8; }
 /* 내비: 플로팅 바 제거 → 상단에 붙는 전체폭 흰 바 (body.home 폭 규칙보다 우선) */
 body.lp-page .ws-taskbar { max-width: none; margin: 0; top: 0; height: 68px; border-radius: 0; gap: 0; padding: 0 clamp(18px, 4vw, 40px);
   background: color-mix(in srgb, var(--bg) 82%, #fff); border: 0; border-bottom: 1px solid var(--line); box-shadow: none;
