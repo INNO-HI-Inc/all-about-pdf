@@ -1482,11 +1482,16 @@ ${catRows}
       </div>
     </section>
 
-    <section class="home-pop" aria-label="인기 도구">
+    <section class="home-pop" aria-label="인기 도구" data-reveal>
       <div class="ws-wrap">
         <h2 class="home-pop__h">가장 많이 쓰는 도구</h2>
         <div class="home-pop__grid">
-          ${['merge', 'compress', 'to-image', 'image-to-pdf', 'unlock', 'watermark'].map((s) => `<a class="home-pop__card" href="${s}/" data-cat="${(CATEGORIES.find((c) => c.slugs.includes(s)) || {}).id || ''}">
+          <a class="home-pop__card home-pop__card--feat" href="merge/" data-cat="organize">
+            <span class="home-pop__ico">${ICONS_PDF['merge']}</span>
+            <span class="home-pop__tx"><b>${esc(dispName('merge'))}</b><span>${esc(APP_SHORT['merge'] || '')}</span></span>
+            <span class="home-pop__arr" aria-hidden="true">→</span>
+          </a>
+          ${['compress', 'to-image', 'image-to-pdf', 'unlock'].map((s) => `<a class="home-pop__card" href="${s}/" data-cat="${(CATEGORIES.find((c) => c.slugs.includes(s)) || {}).id || ''}">
             <span class="home-pop__ico">${ICONS_PDF[s]}</span>
             <span class="home-pop__tx"><b>${esc(dispName(s))}</b><span>${esc(APP_SHORT[s] || '')}</span></span>
             <span class="home-pop__arr" aria-hidden="true">→</span>
@@ -1497,13 +1502,13 @@ ${catRows}
 
     <section class="home-explain" aria-label="서비스 안내">
       <div class="ws-wrap">
-        <ul class="home-trust">
+        <ul class="home-trust" data-reveal>
           <li class="home-trust--free"><span class="home-trust__ic">${IC('<path d="M3.7 12.4l7.9-7.9a2 2 0 0 1 1.4-.6H18.8a2 2 0 0 1 2 2v5.8a2 2 0 0 1-.6 1.4l-7.9 7.9a2 2 0 0 1-2.8 0l-5.8-5.8a2 2 0 0 1 0-2.8z"/><circle cx="16" cy="8" r="1.25"/>')}</span><b>완전 무료</b><small>워터마크·가입 없음</small></li>
           <li><span class="home-trust__ic">${IC('<path d="M12 3l7 3v5.2c0 4.4-3 7.4-7 8.8-4-1.4-7-4.4-7-8.8V6z"/><path d="M9 12l2.1 2.1L15.4 9.8"/>')}</span><b>서버 미전송</b><small>100% 내 브라우저 처리</small></li>
           <li><span class="home-trust__ic">${IC('<path d="M13 3L5 13.5h5.2L9.5 21 19 10.5h-5.4z"/>')}</span><b>설치 불필요</b><small>열면 바로 사용</small></li>
           <li><span class="home-trust__ic">${IC('<rect x="3.6" y="3.6" width="7" height="7" rx="1.7"/><rect x="13.4" y="3.6" width="7" height="7" rx="1.7"/><rect x="3.6" y="13.4" width="7" height="7" rx="1.7"/><rect x="13.4" y="13.4" width="7" height="7" rx="1.7"/>')}</span><b>37개 도구</b><small>합치기부터 변환까지</small></li>
         </ul>
-        <div class="home-explain__grid">
+        <div class="home-explain__grid" data-reveal>
           <div class="home-block">
             <h2 class="home-block__h">3단계면 끝나요</h2>
             <ol class="home-steps">
@@ -1521,7 +1526,7 @@ ${catRows}
             </div>
           </div>
         </div>
-        <div class="home-block home-faqblock">
+        <div class="home-block home-faqblock" data-reveal>
           <h2 class="home-block__h">자주 묻는 질문</h2>
           <div class="home-faq">
             <details><summary>정말 무료인가요?</summary><p>네. 모든 도구가 완전 무료이며, 워터마크나 파일 개수·용량 제한이 없습니다.</p></details>
