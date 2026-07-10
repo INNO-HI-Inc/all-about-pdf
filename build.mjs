@@ -1457,17 +1457,7 @@ ${catRows}
 
   const searchIco = '<svg class="ws-search__ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>';
   const gridIco = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="3.5" width="7" height="7" rx="1.6"/><rect x="13.5" y="3.5" width="7" height="7" rx="1.6"/><rect x="3.5" y="13.5" width="7" height="7" rx="1.6"/><rect x="13.5" y="13.5" width="7" height="7" rx="1.6"/></svg>';
-  const CAT_COLOR = { organize: '#e5252a', convert: '#0ea5e9', security: '#f59e0b', optimize: '#16c47f', edit: '#7c3aed', analyze: '#2f6df6' };
-  const catNav = CATEGORIES.map((cat) => `<button class="home-sidenav__item" type="button" data-drawer-toggle aria-controls="tool-drawer"><span class="home-sidenav__dot" style="background:${CAT_COLOR[cat.id] || 'var(--red)'}"></span><span class="home-sidenav__t">${esc(cat.title)}</span><span class="home-sidenav__n">${cat.slugs.length}</span></button>`).join('\n            ');
-  const main = `    <div class="home-app">
-      <aside class="home-side" aria-label="도구 탐색">
-        <button class="home-side__all" type="button" data-drawer-toggle aria-controls="tool-drawer">${gridIco}<span>전체 도구</span><b>37</b></button>
-        <nav class="home-sidenav">
-            ${catNav}
-        </nav>
-        <a class="home-sidenav__about" href="about/">소개</a>
-      </aside>
-      <div class="home-main home-frame">
+  const main = `    <div class="home-frame">
     <section class="ws-home2" id="tools">
       <h1 class="sr-only">${esc(c.metaTitle || 'PDF의 모든 것')} — 설치 없이 무료로 쓰는 한국어 PDF 도구 모음</h1>
       <div class="ws-hero">
@@ -1542,7 +1532,6 @@ ${catRows}
         </div>
       </div>
     </section>
-      </div>
     </div>
 
     <aside class="ws-drawer" id="tool-drawer" aria-label="전체 도구" aria-hidden="true">
