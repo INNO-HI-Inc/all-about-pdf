@@ -457,7 +457,9 @@
 /* ───── 데스크톱: 플로팅 도구바를 하단 중앙 → 우측 세로 레일로 ─────
    모바일/태블릿(≤880px)은 하단 바 유지(세로 레일은 좁은 화면에 부적합) */
 @media (min-width: 1000px) {
-  .tp-dock { bottom: auto; left: auto; right: 16px; top: 50%; transform: translateY(-50%); width: auto; }
+  /* 네비바(상단) 아래 영역 안에서만 세로 중앙 → 네비바 침범 방지 */
+  .tp-dock { top: 88px; bottom: 24px; left: auto; right: 16px; transform: none; width: auto; display: flex; flex-direction: column; justify-content: center; align-items: flex-end; pointer-events: none; }
+  .tp-dock > * { pointer-events: auto; }
   .tp-dock__cats { flex-direction: column; gap: 4px; padding: 7px; border-radius: 20px; }
   .tp-dock__cat { flex: 0 0 auto; width: 70px; padding: 11px 6px; border-radius: 14px; }
   /* 패널을 레일 왼쪽으로 펼침 + 세로 중앙 정렬 */
