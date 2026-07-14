@@ -416,6 +416,19 @@
 /* 페이지 미리보기가 비어있을 때(업로드 전) 왼쪽은 드롭존만 */
 .tp-editor .tool__left .pagegrid:not([hidden]) { margin-top: 18px; }
 
+/* ★ 상세 페이지 드롭존 = 홈과 동일한 프리미엄 스타일(빨강 원형·글로우·점선) */
+.tp-editor .tool__left.ws-window { background: none; border: 0; box-shadow: none; border-radius: 0; overflow: visible; }
+.tp-editor .tool__left .ws-winbar { display: none; }
+.tp-editor .tool__leftbody { padding: 0; }
+.tp-editor .tool:not(.is-loaded) .dropzone { display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; border: 2px dashed rgba(229, 37, 42, .42); border-radius: 22px; background: linear-gradient(180deg, var(--surf), #fff6f5); min-height: 320px; padding: 36px 24px; box-shadow: 0 26px 54px -24px rgba(229, 37, 42, .26), 0 2px 10px rgba(23, 23, 42, .04); transition: border-color .2s, box-shadow .35s var(--ez-out), transform .35s var(--ez-out); }
+.tp-editor .tool:not(.is-loaded) .dropzone:hover { transform: translateY(-3px); border-color: var(--red-2); box-shadow: 0 34px 66px -24px rgba(229, 37, 42, .34); }
+.tp-editor .tool:not(.is-loaded) .dropzone__icon { width: 68px !important; height: 68px !important; padding: 18px; margin-bottom: 14px !important; background: linear-gradient(160deg, #ff5147, #e5252a); color: #fff; border-radius: 50%; animation: lpPulse 2.6s ease-in-out infinite; }
+.tp-editor .tool:not(.is-loaded) .dropzone__title { font-size: 1.24rem; font-weight: 800; color: var(--ink); }
+.tp-editor .tool:not(.is-loaded) .dropzone__btn { background: none !important; box-shadow: none !important; color: var(--red) !important; font-weight: 700; text-decoration: underline; text-underline-offset: 3px; padding: 4px 0 !important; }
+.tp-editor .tool:not(.is-loaded) .dropzone__hint { font-size: .9rem; color: var(--ink-faint); }
+@media (prefers-reduced-motion: reduce) { .tp-editor .dropzone__icon { animation: none !important; } }
+@media (prefers-color-scheme: dark) { .tp-editor .tool:not(.is-loaded) .dropzone { background: linear-gradient(180deg, var(--surf-2), rgba(229, 37, 42, .06)); } }
+
 /* 하단 중앙 플로팅 도구 독 */
 .tp-dock { position: fixed; bottom: 22px; left: 50%; transform: translateX(-50%); z-index: 150; width: min(720px, calc(100vw - 28px)); }
 /* 항상 보이는 카테고리 바 */
