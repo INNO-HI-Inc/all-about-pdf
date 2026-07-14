@@ -264,13 +264,17 @@ select.field { cursor: pointer; }
   font-weight: 800; font-size: .85rem; display: grid; place-items: center;
 }
 .callout {
-  display: flex; gap: 12px; padding: 16px 18px; border-radius: var(--radius-sm);
-  background: var(--accent-soft); border: 1px solid #d4e0ff; font-size: .94rem; color: var(--ink);
+  display: flex; gap: 13px; align-items: flex-start; padding: 16px 18px; border-radius: 14px;
+  background: var(--surf); border: 1px solid var(--line-2); box-shadow: 0 2px 8px rgba(23, 23, 42, .05);
+  font-size: .94rem; color: var(--ink); line-height: 1.55;
 }
-.callout--security { background: var(--success-soft); border-color: #bfe8cf; }
-.callout--warn { background: var(--warn-soft); border-color: #f0dca8; }
-.callout__ic { font-size: 1.2rem; flex-shrink: 0; }
-.callout strong { display: block; margin-bottom: 2px; }
+.callout__ic { flex: none; width: 32px; height: 32px; display: grid; place-items: center; border-radius: 9px; background: rgba(229, 37, 42, .1); color: var(--red); font-weight: 800; font-size: 1rem; margin-top: 1px; }
+.callout__ic .ic-svg { width: 19px; height: 19px; }
+.callout strong { display: block; margin-bottom: 3px; font-weight: 800; }
+.callout--warn { border-color: rgba(229, 37, 42, .3); }
+.callout--warn .callout__ic { background: rgba(229, 37, 42, .12); color: var(--red); }
+.callout--security { border-color: rgba(22, 163, 74, .32); }
+.callout--security .callout__ic { background: rgba(22, 163, 74, .12); color: #16a34a; }
 
 /* ── FAQ ────────────────────────────────────────────── */
 .faq { display: flex; flex-direction: column; gap: 10px; }
@@ -504,9 +508,11 @@ a { transition: color .14s var(--ease); }
     --shadow-lg: 0 16px 48px rgba(0, 0, 0, .55);
   }
   html { background: var(--surface); }
-  /* callout 하드코딩 밝은 테두리 보정 */
-  .callout { border-color: #33385a; }
-  .callout--warn { border-color: #4a3a1e; }
+  /* callout: 다크에서도 토큰 기반(빨강 액센트 유지) */
+  .callout { background: var(--surf); border-color: var(--line-2); box-shadow: 0 2px 8px rgba(0, 0, 0, .3); }
+  .callout--warn { border-color: rgba(255, 91, 82, .35); }
+  .callout--warn .callout__ic { background: rgba(255, 91, 82, .16); color: #ff7a72; }
+  .callout--security .callout__ic { background: rgba(52, 211, 153, .16); color: #4fdd9a; }
   /* 결과 카드(기반 스타일) */
   .result { background: var(--success-soft); border-color: #1f4a33; }
   .result__ok { color: #7fdca8; }
