@@ -1145,9 +1145,11 @@ body.lp-page .ws-taskbar { max-width: none; margin: 0; top: 0; height: 68px; bor
 .lp { max-width: 1320px; margin: 0 auto; padding: 0 clamp(18px, 4vw, 40px); }
 
 /* 히어로 2단 */
-.lp-hero { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, .95fr); gap: clamp(28px, 4vw, 64px); align-items: center; align-content: center; min-height: calc(100vh - 68px); padding: clamp(14px, 2.2vh, 34px) 0; text-align: left; }
-@media (max-width: 980px) { .lp-hero { grid-template-columns: 1fr; min-height: 0; } }
-.lp-hero__copy { min-width: 0; }
+.lp-hero { display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; min-height: calc(100vh - 68px); padding: clamp(16px, 2.4vh, 40px) 0; }
+.lp-hero__copy { max-width: 660px; width: 100%; min-width: 0; }
+.lp-hero .lp-hero__sub { margin-left: auto; margin-right: auto; }
+.lp-hero .lp-note { justify-content: center; }
+@media (max-width: 980px) { .lp-hero { min-height: 0; } }
 .lp-hero__title { font-size: clamp(2.3rem, 4.4vw, 3.7rem); font-weight: 800; letter-spacing: -.035em; line-height: 1.2; color: var(--ink); margin: 0 0 12px; animation: lpFadeUp .7s var(--ez-out) both; }
 .lp-hero__sub { animation: lpFadeUp .7s var(--ez-out) .08s both; }
 @keyframes lpFadeUp { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
@@ -1169,6 +1171,9 @@ body.lp-page .ws-taskbar { max-width: none; margin: 0; top: 0; height: 68px; bor
 .lp-deck.is-max .tool { display: flex !important; flex-direction: column; gap: 18px; flex: 1 1 auto; min-height: 0; overflow: auto; padding: clamp(16px, 2.4vw, 26px); }
 .lp-deck.is-max .tool__right { display: block !important; margin-top: 0; }
 .lp-deck.is-max .dropzone { min-height: 180px !important; }
+/* 홈 덱: PDF→organize / 이미지→image-to-pdf 라우팅 시 한쪽 도구만 표시 */
+.lp-deck:not(.lp-deck--img) .lp-imgtool { display: none !important; }
+.lp-deck.lp-deck--img [data-tool="organize"] { display: none !important; }
 .lp-drop .dropzone { display: flex !important; flex-direction: column; align-items: center; justify-content: center; text-align: center; border: none !important; background: none !important; box-shadow: none !important; min-height: 168px !important; padding: 14px !important; gap: 4px; }
 .lp-drop:has(.tool.is-loaded) .dropzone { min-height: auto !important; }
 .lp-drop .dropzone__icon { width: 64px !important; height: 64px !important; padding: 16px; margin-bottom: 10px !important; background: linear-gradient(160deg, #ff5147, #e5252a); color: #fff; border-radius: 50%; animation: lpPulse 2.6s ease-in-out infinite; }

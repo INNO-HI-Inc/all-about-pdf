@@ -1514,35 +1514,11 @@ ${catRows}
           <div class="ws-window ws-deck lp-deck" data-ws-window>
             <button class="ws-winclose ws-deck__close" type="button" data-ws-close aria-label="작업 닫고 처음으로">처음으로 ✕</button>
             ${widget(TOOL_BY['organize'])}
+            ${widget(TOOL_BY['image-to-pdf'], { class: 'lp-imgtool' })}
           </div>
           <div class="lp-drop__formats"><span class="lp-fmt lp-fmt--pdf">PDF</span><span class="lp-fmt lp-fmt--word">Word</span><span class="lp-fmt lp-fmt--jpg">JPG</span><span class="lp-fmt lp-fmt--png">PNG</span><span class="lp-fmt lp-fmt--more">…</span></div>
         </div>
         <p class="lp-note">${IC('<rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/>')}<span>파일은 서버로 전송되지 않습니다.</span></p>
-      </div>
-      <div class="lp-hero__viz" aria-hidden="true">
-        <span class="lp-viz__glow"></span>
-        <div class="lp-mascot">
-          <svg viewBox="0 0 200 232" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path class="lp-mascot__arm" d="M52 120q-30 2-40 26" stroke="#1c1c24" stroke-width="9" stroke-linecap="round"/>
-            <path class="lp-mascot__wave" d="M148 120q30 0 41-25" stroke="#1c1c24" stroke-width="9" stroke-linecap="round"/>
-            <path d="M80 180v34" stroke="#1c1c24" stroke-width="12" stroke-linecap="round"/>
-            <path d="M120 180v34" stroke="#1c1c24" stroke-width="12" stroke-linecap="round"/>
-            <ellipse cx="72" cy="216" rx="17" ry="9" fill="#1c1c24"/>
-            <ellipse cx="128" cy="216" rx="17" ry="9" fill="#1c1c24"/>
-            <path d="M48 30h76l28 28v110a14 14 0 0 1-14 14H48a14 14 0 0 1-14-14V44a14 14 0 0 1 14-14z" fill="#fff" stroke="#efe4e4" stroke-width="1.5"/>
-            <path d="M124 30l28 28h-20a8 8 0 0 1-8-8z" fill="#ff5147"/>
-            <path d="M124 30v20a8 8 0 0 0 8 8h20z" fill="#e5252a"/>
-            <circle cx="74" cy="102" r="16.5" fill="#1c1c24"/>
-            <circle cx="120" cy="102" r="16.5" fill="#1c1c24"/>
-            <circle cx="79.5" cy="96.5" r="6" fill="#fff"/>
-            <circle cx="125.5" cy="96.5" r="6" fill="#fff"/>
-            <circle cx="70" cy="108" r="2.6" fill="#fff" opacity=".55"/>
-            <circle cx="116" cy="108" r="2.6" fill="#fff" opacity=".55"/>
-            <path d="M85 133q12 11 24 0" stroke="#1c1c24" stroke-width="4.6" stroke-linecap="round"/>
-            <circle cx="52" cy="120" r="6" fill="#ffcfca"/>
-            <circle cx="142" cy="120" r="6" fill="#ffcfca"/>
-          </svg>
-        </div>
       </div>
     </section>
 
@@ -1586,7 +1562,7 @@ ${catalog}
   const html = page({
     title: c.metaTitle, desc: c.metaDescription, canonical,
     ogTitle: c.metaTitle, rel, jsonld, main, noChrome: true,
-    withScripts: [...new Set([TOOL_BY['organize'], ...FEATURED].map((t) => t.script || t.slug))],
+    withScripts: [...new Set([TOOL_BY['organize'], TOOL_BY['image-to-pdf'], ...FEATURED].map((t) => t.script || t.slug))],
     bodyClass: 'ws home lp-page',
     extraScripts: ['assets/js/workspace.js'],
     headExtra: `\n  <script>document.documentElement.className+=" js";</script>\n  <link rel="stylesheet" href="assets/css/workspace.css?v=${assetVer('assets/css/workspace.css')}">`

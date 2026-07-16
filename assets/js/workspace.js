@@ -69,6 +69,45 @@
     d.addEventListener('keydown', function (e) { if (e.key === 'Escape') close(); });
   }
 
+  // 2-a2) 홈 드롭존 파일형 라우터: PDF→정리(organize) / 이미지→이미지PDF(image-to-pdf)
+  var lpDeck = d.querySelector('.lp-deck');
+  if (lpDeck) {
+    var orgInput = lpDeck.querySelector('[data-tool="organize"] .js-file');
+    var imgInput = lpDeck.querySelector('.lp-imgtool .js-file');
+    if (orgInput) orgInput.setAttribute('accept', 'application/pdf,image/*'); // 파일 선택창도 이미지 허용
+    var isImage = function (f) { return f && /^image\/(png|jpe?g|webp|gif|avif)/i.test(f.type || '') || (f && /\.(png|jpe?g|webp|gif|avif)$/i.test(f.name || '')); };
+    var routeToImg = function (fileList) {
+      if (!imgInput || !fileList || !fileList.length) return;
+      lpDeck.classList.add('lp-deck--img');
+      var dt = new DataTransfer();
+      Array.prototype.forEach.call(fileList, function (f) { dt.items.add(f); });
+      imgInput.files = dt.files;
+      imgInput.dispatchEvent(new Event('change', { bubbles: true }));
+    };
+    // 변경(파일 선택) 가로채기 — organize 입력에 이미지가 오면 image-to-pdf로 전달
+    lpDeck.addEventListener('change', function (e) {
+      if (e.target === orgInput && orgInput.files && orgInput.files.length && isImage(orgInput.files[0])) {
+        e.stopImmediatePropagation();
+        // ⚠ live FileList이므로 비우기 전에 먼저 복사
+        var copy = new DataTransfer();
+        Array.prototype.forEach.call(orgInput.files, function (f) { copy.items.add(f); });
+        try { orgInput.value = ''; } catch (er) {}
+        routeToImg(copy.files);
+      }
+    }, true);
+    // 드롭 가로채기 — organize 드롭존에 이미지가 떨어지면 image-to-pdf로
+    lpDeck.addEventListener('drop', function (e) {
+      var org = lpDeck.querySelector('[data-tool="organize"]');
+      var files = e.dataTransfer && e.dataTransfer.files;
+      if (org && org.contains(e.target) && files && files.length && isImage(files[0])) {
+        e.stopImmediatePropagation(); e.preventDefault();
+        routeToImg(files);
+      }
+    }, true);
+    // 파일 0개가 되면(닫기) 라우팅 상태 초기화
+    lpDeck.addEventListener('tool:files', function (e) { if (!(e.detail && e.detail.count > 0)) lpDeck.classList.remove('lp-deck--img'); });
+  }
+
   // 2-b) 정사각 카테고리 타일 — 클릭하면 그 도구가 타일 옆으로 분신술 촤라락
   var catTiles = Array.prototype.slice.call(d.querySelectorAll('.ws-cattile'));
   var catRows = Array.prototype.slice.call(d.querySelectorAll('.ws-cat-row'));
