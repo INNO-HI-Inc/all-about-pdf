@@ -1213,8 +1213,9 @@ body.lp-page .ws-taskbar { max-width: none; margin: 0; top: 0; height: 68px; bor
 .lp-fmt--jpg { color: #d97706; border-color: rgba(217, 119, 6, .3); }
 .lp-fmt--png { color: #16a34a; border-color: rgba(22, 163, 74, .3); }
 .lp-fmt--more { color: var(--ink-faint); }
-.lp-note { display: flex; align-items: flex-start; justify-content: center; gap: 7px; margin: 22px auto 0; max-width: 46ch; line-height: 1.65; text-align: left; font-size: 13px; color: var(--ink-faint); }
-.lp-note .ic-svg { width: 14px; height: 14px; flex: none; margin-top: 3px; color: var(--ink-faint); }
+.lp-note { display: flex; align-items: center; justify-content: center; gap: 7px; margin: 22px auto 0; line-height: 1.6; text-align: center; flex-wrap: wrap; font-size: 13px; color: var(--ink-faint); }
+.lp-note .ic-svg { width: 14px; height: 14px; flex: none; color: var(--ink-faint); }
+.lp-note b { font-weight: 700; color: var(--ink-soft); }
 
 /* 히어로 우측: 마스코트 + 기능 노드 클러스터 */
 .lp-hero__viz { position: relative; min-height: 440px; display: grid; place-items: center; }

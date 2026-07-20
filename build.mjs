@@ -178,13 +178,13 @@ const LPX = {
 };
 // 홈 도구 디렉터리(#tools) 전용 문구 — 카테고리 설명은 통째로 치환해야 부분치환 사고가 없다.
 const LDIR = {
-  en: { faqEyebrow: 'Common questions', howEyebrow: 'Three quick steps', limitsEyebrow: 'Before you start', limitsH: 'What this tool cannot do', convGroup: 'Convert between image formats', fmtLabel: 'Accepts', dropRoute: 'Drop a PDF to open Organize pages, or an image to open Image to PDF · Files are never sent to a server.', lead: 'Pick what you need and run it right away. Every tool is free — no install, no sign-up — and your files are processed entirely inside your browser.', more: 'See all 37 tools', dropAny: 'Drop your file here',
+  en: { faqEyebrow: 'Common questions', howEyebrow: 'Three quick steps', limitsEyebrow: 'Before you start', limitsH: 'What this tool cannot do', convGroup: 'Convert between image formats', fmtLabel: 'Accepts', dropRoute: 'Drop a PDF for <b>Organize pages</b>, an image for <b>Image to PDF</b>', lead: 'Pick what you need and run it right away. Every tool is free — no install, no sign-up — and your files are processed entirely inside your browser.', more: 'See all 37 tools', dropAny: 'Drop your file here',
     organize: 'Merge, split, and rearrange PDF pages however you like.', convert: 'Convert between PDF and images — all processed in your browser.', security: 'Lock or unlock with a password, strip personal data, and protect with watermarks.', optimize: 'Shrink file size and clean up blank pages.', edit: 'Polish your document with rotation, margins, cropping, signatures, and form flattening.', analyze: 'Check document details and pull the text out.' },
-  es: { faqEyebrow: 'Preguntas frecuentes', howEyebrow: 'Tres pasos rápidos', limitsEyebrow: 'Before you start', limitsH: 'What this tool cannot do', convGroup: 'Convertir entre formatos de imagen', fmtLabel: 'Admite', dropRoute: 'Suelta un PDF para abrir Organizar páginas, o una imagen para Imagen a PDF · Los archivos nunca se envían a un servidor.', lead: 'Elige lo que necesitas y ejecútalo al instante. Todas las herramientas son gratuitas —sin instalación ni registro— y tus archivos se procesan íntegramente en tu navegador.', more: 'Ver las 37 herramientas', dropAny: 'Suelta tu archivo aquí',
+  es: { faqEyebrow: 'Preguntas frecuentes', howEyebrow: 'Tres pasos rápidos', limitsEyebrow: 'Before you start', limitsH: 'What this tool cannot do', convGroup: 'Convertir entre formatos de imagen', fmtLabel: 'Admite', dropRoute: 'Suelta un PDF para <b>Organizar páginas</b>, una imagen para <b>Imagen a PDF</b>', lead: 'Elige lo que necesitas y ejecútalo al instante. Todas las herramientas son gratuitas —sin instalación ni registro— y tus archivos se procesan íntegramente en tu navegador.', more: 'Ver las 37 herramientas', dropAny: 'Suelta tu archivo aquí',
     organize: 'Une, divide y reorganiza las páginas de tus PDF como quieras.', convert: 'Convierte entre PDF e imágenes: todo se procesa en tu navegador.', security: 'Pon o quita contraseñas, borra datos personales y protege con marcas de agua.', optimize: 'Reduce el tamaño del archivo y elimina páginas en blanco.', edit: 'Ajusta el documento con rotación, márgenes, recorte, firma y aplanado de formularios.', analyze: 'Consulta los datos del documento y extrae su texto.' },
-  ja: { faqEyebrow: 'よくある質問', howEyebrow: '3分で終わります', limitsEyebrow: 'Before you start', limitsH: 'What this tool cannot do', convGroup: '画像形式どうしの変換', fmtLabel: '対応形式', dropRoute: 'PDFをドロップするとページ整理、画像をドロップすると画像からPDFが開きます · ファイルがサーバーに送られることはありません。', lead: '必要な作業を選べば、すぐに実行できます。すべてのツールはインストールも登録も不要で無料。ファイルはブラウザの中だけで処理されます。', more: '37のツールをすべて見る', dropAny: 'ここにファイルをドロップ',
+  ja: { faqEyebrow: 'よくある質問', howEyebrow: '3分で終わります', limitsEyebrow: 'Before you start', limitsH: 'What this tool cannot do', convGroup: '画像形式どうしの変換', fmtLabel: '対応形式', dropRoute: 'PDFは<b>ページ整理</b>、画像は<b>画像からPDF</b>が開きます', lead: '必要な作業を選べば、すぐに実行できます。すべてのツールはインストールも登録も不要で無料。ファイルはブラウザの中だけで処理されます。', more: '37のツールをすべて見る', dropAny: 'ここにファイルをドロップ',
     organize: '複数のPDFを結合・分割し、ページを自由に整理できます。', convert: 'PDFと画像を相互に変換。すべてブラウザ内で処理されます。', security: 'パスワードの設定・解除、個人情報の削除、ウォーターマークで安全に。', optimize: '容量を減らし、空白ページを整理して軽くします。', edit: '向き・余白・トリミング・署名・フォームで文書を美しく整えます。', analyze: '文書情報を確認し、文字をテキストとして抽出します。' },
-  zh: { faqEyebrow: '常见问题', howEyebrow: '三步即可完成', limitsEyebrow: 'Before you start', limitsH: 'What this tool cannot do', convGroup: '图片格式互转', fmtLabel: '支持格式', dropRoute: '拖入 PDF 打开整理页面，拖入图片打开图片转 PDF · 文件不会上传到服务器。', lead: '选择需要的操作即可立即执行。所有工具均免费，无需安装或注册，文件仅在您的浏览器中处理。', more: '查看全部 37 个工具', dropAny: '将文件拖到此处',
+  zh: { faqEyebrow: '常见问题', howEyebrow: '三步即可完成', limitsEyebrow: 'Before you start', limitsH: 'What this tool cannot do', convGroup: '图片格式互转', fmtLabel: '支持格式', dropRoute: 'PDF 打开<b>整理页面</b>，图片打开<b>图片转 PDF</b>', lead: '选择需要的操作即可立即执行。所有工具均免费，无需安装或注册，文件仅在您的浏览器中处理。', more: '查看全部 37 个工具', dropAny: '将文件拖到此处',
     organize: '合并、拆分 PDF，自由整理页面顺序。', convert: 'PDF 与图片互转，全部在浏览器中完成。', security: '设置或解除密码、清除个人信息、添加水印保护。', optimize: '减小文件体积，清理空白页面。', edit: '通过旋转、页边距、裁剪、签名和表单扁平化美化文档。', analyze: '查看文档信息并提取其中的文字。' }
 };
 // 한국어 전용 도구 — HWPX는 한국 전용 포맷이고, 얇은 기계번역 페이지를 늘리지 않기 위해 ko에서만 생성한다.
@@ -280,7 +280,7 @@ function langPairs(lang) {
   add('필요한 작업을 고르면 바로 실행할 수 있어요. 모든 도구는 설치·회원가입 없이 무료이며, 파일은 내 브라우저 안에서만 처리됩니다.', D.lead);
   add('도구 전체 보기', D.more);
   add('여기에 파일을 끌어다 놓으세요', D.dropAny);
-  add('PDF를 놓으면 페이지 정리로, 이미지를 놓으면 이미지 PDF 변환으로 열립니다 · 파일은 서버로 전송되지 않습니다.', D.dropRoute);
+  add('PDF는 <b>페이지 정리</b>로, 이미지는 <b>이미지 PDF 변환</b>으로 열립니다', D.dropRoute);
   add('받는 형식', D.fmtLabel);
   add('이미지 형식끼리 바꾸기', D.convGroup);
   add('3분이면 끝나요', D.howEyebrow);
@@ -1664,7 +1664,7 @@ function buildHome() {
           </div>
           <p class="lp-drop__formats"><span class="lp-drop__formats-lb">받는 형식</span><span class="lp-fmt lp-fmt--pdf">PDF</span><span class="lp-fmt lp-fmt--jpg">JPG</span><span class="lp-fmt lp-fmt--png">PNG</span><span class="lp-fmt lp-fmt--webp">WEBP</span><span class="lp-fmt lp-fmt--gif">GIF</span></p>
         </div>
-        <p class="lp-note">${IC('<rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/>')}<span>PDF를 놓으면 페이지 정리로, 이미지를 놓으면 이미지 PDF 변환으로 열립니다 · 파일은 서버로 전송되지 않습니다.</span></p>
+        <p class="lp-note"><span>PDF는 <b>페이지 정리</b>로, 이미지는 <b>이미지 PDF 변환</b>으로 열립니다</span></p>
       </div>
       <a class="lp-hero__more" href="#tools"><span>도구 전체 보기</span><span class="lp-hero__chev" aria-hidden="true">⌄</span></a>
     </section>
