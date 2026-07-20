@@ -44,7 +44,7 @@
   <link rel="preload" as="font" type="font/woff2" href="/assets/vendor/fonts/a2z-ExtraBold.woff2" crossorigin>
   <link rel="stylesheet" href="/assets/css/style.css?v=e16ae327">
   <script>document.documentElement.className+=" js";</script>
-  <link rel="stylesheet" href="/assets/css/workspace.css?v=bc74466e">
+  <link rel="stylesheet" href="/assets/css/workspace.css?v=c7bef4a8">
   <script type="application/ld+json">[{"@context":"https://schema.org","@type":"WebApplication","name":"Girar PDF - Everything PDF","url":"https://everything-pdf.site/rotate/","applicationCategory":"UtilitiesApplication","operatingSystem":"All","browserRequirements":"Requires JavaScript","inLanguage":"ko","isAccessibleForFree":true,"datePublished":"2026-06-04","dateModified":"2026-06-16","offers":{"@type":"Offer","price":"0","priceCurrency":"KRW"},"featureList":["왼쪽·오른쪽·180도","Todas las páginas 한 번에","Calidad·글자 보존"],"publisher":{"@type":"Organization","name":"Everything PDF","url":"https://everything-pdf.site/"}},{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"홈","item":"https://everything-pdf.site/"},{"@type":"ListItem","position":2,"name":"Girar PDF","item":"https://everything-pdf.site/rotate/"}]},{"@context":"https://schema.org","@type":"HowTo","name":"Girar PDF How to use","inLanguage":"ko","step":[{"@type":"HowToStep","position":1,"name":"1단계","text":"Arrastra el PDF que quieras girar o súbelo con [Seleccionar archivo]."},{"@type":"HowToStep","position":2,"name":"2단계","text":"Elige el sentido de giro que quieras entre 90° a la izquierda · 90° a la derecha · 180°."},{"@type":"HowToStep","position":3,"name":"3단계","text":"Comprueba en la vista previa que las páginas han quedado derechas."},{"@type":"HowToStep","position":4,"name":"4단계","text":"Pulsa [Girar] y descarga el PDF nuevo con la orientación ya corregida."}]},{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"¿Cómo elijo el sentido de giro?","acceptedAnswer":{"@type":"Answer","text":"Puedes elegir entre tres opciones: 90° a la izquierda, 90° a la derecha o 180°. Para un documento tumbado de lado, gíralo 90°; para uno que entró completamente del revés, 180°. Si defines el sentido mirando la vista previa, no te harás un lío."}},{"@type":"Question","name":"¿Puedo girar solo algunas páginas por separado?","acceptedAnswer":{"@type":"Answer","text":"Esta herramienta gira todas las páginas del documento en el mismo sentido de una vez. Si necesitas girar cada página en un sentido distinto, usa la herramienta [Organizar páginas]. Allí puedes girar hoja por hoja con los botones ↺ ↻ de cada página."}},{"@type":"Question","name":"¿Se estropea el texto o la calidad al girar?","acceptedAnswer":{"@type":"Answer","text":"El giro no vuelve a dibujar la página como una imagen, sino que solo añade información de «orientación» al PDF, así que se conserva la selección y la copia de texto y la calidad no baja. Se corrige solo la orientación manteniendo la nitidez del original."}},{"@type":"Question","name":"¿Se conserva el archivo original?","acceptedAnswer":{"@type":"Answer","text":"Sí, no se toca el original: el resultado girado se guarda aparte en un PDF nuevo. Si la orientación no te convence, puedes volver a subir el original y girarlo en otro ángulo, así que úsala con tranquilidad."}},{"@type":"Question","name":"¿Es realmente gratis? ¿Hay marca de agua o límite de usos?","acceptedAnswer":{"@type":"Answer","text":"Es totalmente gratis y no añade marca de agua. No hay límite de giros ni de tamaño de archivo, ni hace falta registrarse. Corrige la orientación de tus PDF con total libertad siempre que lo necesites."}}]}]</script>
 </head>
 <body class="ws tp lp-page">
@@ -145,12 +145,10 @@
           </div>
         </div>
         <div class="tp-dock__panel" data-cat="convert" role="menu" aria-label="Convertir PDF 도구" hidden>
-          <div class="tp-dock__panel-head">Convertir PDF <span>17</span></div>
+          <div class="tp-dock__panel-head">Convertir PDF <span>15</span></div>
           <div class="tp-dock__grid">
             <a class="tp-dock__item" href="../to-image/"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="4.5" width="17" height="15" rx="2.5"/><circle cx="8.5" cy="9.5" r="1.7"/><path d="M20.5 15.5 16 11 6 21"/></svg><span>PDF → Imagen</span></a>
             <a class="tp-dock__item" href="../image-to-pdf/"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="4.5" width="17" height="15" rx="2.5"/><circle cx="8.5" cy="9.5" r="1.7"/><path d="M20.5 15.5 16 11 6 21"/></svg><span>Imagen → PDF</span></a>
-            <a class="tp-dock__item" href="../pdf-to-docx/"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3.5H7.5a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h9a2 2 0 0 0 2-2V8l-5-4.5z"/><path d="M14 3.5V8h5"/><path d="M8.5 12h7M8.5 15h7M8.5 9h3"/></svg><span>워드 Convertir</span></a>
-            <a class="tp-dock__item" href="../pdf-to-hwpx/"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3.5H7.5a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h9a2 2 0 0 0 2-2V8l-5-4.5z"/><path d="M14 3.5V8h5"/><path d="M8.5 12h7M8.5 15h7M8.5 9h3"/></svg><span>한글 Convertir</span></a>
             <a class="tp-dock__item" href="../svg-to-png/"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="4.5" width="17" height="15" rx="2.5"/><circle cx="8.5" cy="9.5" r="1.7"/><path d="M20.5 15.5 16 11 6 21"/></svg><span>SVG → PNG</span></a>
             <a class="tp-dock__item" href="../gif-to-png/"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="4.5" width="17" height="15" rx="2.5"/><circle cx="8.5" cy="9.5" r="1.7"/><path d="M20.5 15.5 16 11 6 21"/></svg><span>GIF → PNG</span></a>
             <a class="tp-dock__item" href="../gif-to-jpg/"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="4.5" width="17" height="15" rx="2.5"/><circle cx="8.5" cy="9.5" r="1.7"/><path d="M20.5 15.5 16 11 6 21"/></svg><span>GIF → JPG</span></a>
@@ -234,7 +232,7 @@
         <p class="tp-lead">Es la herramienta que usar cuando resulta incómodo entregar un documento tumbado de lado por haber entrado torcido en el escáner, o un escaneo con la parte de arriba y de abajo al revés. Sube el PDF, elige el sentido que quieras entre 90° a la izquierda, 90° a la derecha o 180°, y todas las páginas se enderezan de una vez. Como el archivo no se sube a ningún sitio y se procesa solo dentro de tu dispositivo, puedes corregir la orientación incluso de documentos sensibles con total tranquilidad.</p>
 
         <div class="tp-sec" data-reveal>
-          <span class="tp-eyebrow">3분이면 끝나요</span>
+          <span class="tp-eyebrow">Tres pasos rápidos</span>
           <h2 class="tp-h2">Girar PDF How to use</h2>
           <ol class="tp-steps">
           <li><span class="tx">Arrastra el PDF que quieras girar o súbelo con [Seleccionar archivo].</span></li>
@@ -249,10 +247,12 @@
           <div class="tx"><strong>Tus archivos nunca se suben a ningún servidor.</strong><span>Todo el proceso de girar el PDF y guardarlo ocurre únicamente dentro de tu navegador (tu dispositivo), y ningún archivo se envía a ningún servidor. Por eso, incluso documentos que da reparo subir a internet —como contratos, informes médicos o documentos de identidad— pueden corregirse de orientación sin preocuparte por las subidas.</span></div>
         </div>
 
+        
+
         <div class="tp-sec" data-reveal><span class="tp-eyebrow">Nota</span><h2 class="tp-h2">Cuándo te vendrá bien</h2><p>Va bien para enderezar antes de entregar un contrato tumbado de lado por entrar en horizontal en el escáner, una solicitud escaneada con la parte de arriba y de abajo al revés, o un documento con la orientación torcida por haberlo fotografiado. Con solo elegir un sentido, todas las páginas se enderezan de una vez y quien lo reciba no tiene que ladear la cabeza para leerlo.</p></div>
 
         <div class="tp-sec" data-reveal>
-          <span class="tp-eyebrow">궁금한 점</span>
+          <span class="tp-eyebrow">Preguntas frecuentes</span>
           <h2 class="tp-h2">Preguntas frecuentes</h2>
           <div class="ws-term tp-faqterm">
             <div class="ws-faqlist">

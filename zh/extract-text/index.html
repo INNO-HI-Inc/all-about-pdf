@@ -44,7 +44,7 @@
   <link rel="preload" as="font" type="font/woff2" href="/assets/vendor/fonts/a2z-ExtraBold.woff2" crossorigin>
   <link rel="stylesheet" href="/assets/css/style.css?v=e16ae327">
   <script>document.documentElement.className+=" js";</script>
-  <link rel="stylesheet" href="/assets/css/workspace.css?v=bc74466e">
+  <link rel="stylesheet" href="/assets/css/workspace.css?v=c7bef4a8">
   <script type="application/ld+json">[{"@context":"https://schema.org","@type":"WebApplication","name":"PDF提取文字 - Everything PDF","url":"https://everything-pdf.site/extract-text/","applicationCategory":"UtilitiesApplication","operatingSystem":"All","browserRequirements":"Requires JavaScript","inLanguage":"ko","isAccessibleForFree":true,"datePublished":"2026-06-04","dateModified":"2026-06-16","offers":{"@type":"Offer","price":"0","priceCurrency":"KRW"},"featureList":["글자를 .txt로","복사·검색·재활용","OCR 아님"],"publisher":{"@type":"Organization","name":"Everything PDF","url":"https://everything-pdf.site/"}},{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"홈","item":"https://everything-pdf.site/"},{"@type":"ListItem","position":2,"name":"PDF提取文字","item":"https://everything-pdf.site/extract-text/"}]},{"@context":"https://schema.org","@type":"HowTo","name":"PDF提取文字 How to use","inLanguage":"ko","step":[{"@type":"HowToStep","position":1,"name":"1단계","text":"上传要提取文字的PDF文件。"},{"@type":"HowToStep","position":2,"name":"2단계","text":"从文档中读取文字信息并汇集成文本。"},{"@type":"HowToStep","position":3,"name":"3단계","text":"在屏幕上预览提取出的文字。"},{"@type":"HowToStep","position":4,"name":"4단계","text":"点击“保存文本”,把.txt文件下载到本机。"}]},{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"扫描版PDF也能提取出文字吗?","acceptedAnswer":{"@type":"Answer","text":"不能。像照片一样扫描而来的PDF,整页都只是图片、没有文字信息,所以本工具无法提取出文字。这个功能不是把图片识别成文字的OCR,而是把PDF里已有的文字原样提取出来的工具。"}},{"@type":"Question","name":"提取出的文字会以什么格式保存?","acceptedAnswer":{"@type":"Answer","text":"会保存为只含文字的文本(.txt)文件,用记事本、Word等任意编辑器都能直接打开。表格、图片、字体、颜色等格式会被去掉,只保留纯文字。"}},{"@type":"Question","name":"文字提取得很好,但换行或表格错乱了,为什么?","acceptedAnswer":{"@type":"Answer","text":"PDF是以坐标记录文字位置的,所以分栏或含表格的文档在转成文本时,顺序或行可能会错乱。文字本身会原样提取出来,保存后再把需要的部分稍作整理即可。"}},{"@type":"Question","name":"怎么判断我的PDF是扫描件还是含文字的文档?","acceptedAnswer":{"@type":"Answer","text":"打开PDF,用鼠标拖选正文文字看看。文字变蓝被选中,说明是含文字信息的文档,可以提取;如果选不中、像照片一样整块被选,那就是扫描件,无法提取。"}},{"@type":"Question","name":"文件会上传到服务器吗?是免费的吗?","acceptedAnswer":{"@type":"Answer","text":"文件不会上传到服务器,只在本机内处理。无需注册和安装,免费使用,也没有水印以及文件数量、容量限制。"}}]}]</script>
 </head>
 <body class="ws tp lp-page">
@@ -123,12 +123,10 @@
           </div>
         </div>
         <div class="tp-dock__panel" data-cat="convert" role="menu" aria-label="转换 PDF 도구" hidden>
-          <div class="tp-dock__panel-head">转换 PDF <span>17</span></div>
+          <div class="tp-dock__panel-head">转换 PDF <span>15</span></div>
           <div class="tp-dock__grid">
             <a class="tp-dock__item" href="../to-image/"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="4.5" width="17" height="15" rx="2.5"/><circle cx="8.5" cy="9.5" r="1.7"/><path d="M20.5 15.5 16 11 6 21"/></svg><span>PDF → 图片</span></a>
             <a class="tp-dock__item" href="../image-to-pdf/"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="4.5" width="17" height="15" rx="2.5"/><circle cx="8.5" cy="9.5" r="1.7"/><path d="M20.5 15.5 16 11 6 21"/></svg><span>图片 → PDF</span></a>
-            <a class="tp-dock__item" href="../pdf-to-docx/"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3.5H7.5a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h9a2 2 0 0 0 2-2V8l-5-4.5z"/><path d="M14 3.5V8h5"/><path d="M8.5 12h7M8.5 15h7M8.5 9h3"/></svg><span>워드 转换</span></a>
-            <a class="tp-dock__item" href="../pdf-to-hwpx/"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3.5H7.5a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h9a2 2 0 0 0 2-2V8l-5-4.5z"/><path d="M14 3.5V8h5"/><path d="M8.5 12h7M8.5 15h7M8.5 9h3"/></svg><span>한글 转换</span></a>
             <a class="tp-dock__item" href="../svg-to-png/"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="4.5" width="17" height="15" rx="2.5"/><circle cx="8.5" cy="9.5" r="1.7"/><path d="M20.5 15.5 16 11 6 21"/></svg><span>SVG → PNG</span></a>
             <a class="tp-dock__item" href="../gif-to-png/"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="4.5" width="17" height="15" rx="2.5"/><circle cx="8.5" cy="9.5" r="1.7"/><path d="M20.5 15.5 16 11 6 21"/></svg><span>GIF → PNG</span></a>
             <a class="tp-dock__item" href="../gif-to-jpg/"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="4.5" width="17" height="15" rx="2.5"/><circle cx="8.5" cy="9.5" r="1.7"/><path d="M20.5 15.5 16 11 6 21"/></svg><span>GIF → JPG</span></a>
@@ -212,7 +210,7 @@
         <p class="tp-lead">这是一个把PDF中包含的文字提取为文本(.txt)文件并下载的工具。提取出的文字很适合复制到其他文档、进行搜索,或重新编辑使用。文件只在浏览器内处理,不会上传到服务器。</p>
 
         <div class="tp-sec" data-reveal>
-          <span class="tp-eyebrow">3분이면 끝나요</span>
+          <span class="tp-eyebrow">三步即可完成</span>
           <h2 class="tp-h2">PDF提取文字 How to use</h2>
           <ol class="tp-steps">
           <li><span class="tx">上传要提取文字的PDF文件。</span></li>
@@ -227,10 +225,12 @@
           <div class="tx"><strong>您的文件绝不会上传到任何服务器。</strong><span>所有提取操作都只在你的浏览器,也就是本机内完成。合同、报告这类敏感文档中的文字也不会外泄,可以放心使用。它不像国外工具那样先上传再删除,而是从一开始就不把文件上传到服务器。</span></div>
         </div>
 
+        
+
         <div class="tp-sec" data-reveal><span class="tp-eyebrow">说明</span><h2 class="tp-h2">这些场景很方便</h2><p>想从长篇报告或论文中挑出需要的句子粘贴到其他文档,想把PDF内容导入记事本或Word重新编辑,或想在正文中搜索含某个词的位置时,都很实用。想把通知或合同里的文字原样复制、重复利用时,也能快速提取出来使用。</p></div>
 
         <div class="tp-sec" data-reveal>
-          <span class="tp-eyebrow">궁금한 점</span>
+          <span class="tp-eyebrow">常见问题</span>
           <h2 class="tp-h2">常见问题</h2>
           <div class="ws-term tp-faqterm">
             <div class="ws-faqlist">

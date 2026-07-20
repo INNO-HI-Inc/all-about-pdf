@@ -44,7 +44,7 @@
   <link rel="preload" as="font" type="font/woff2" href="/assets/vendor/fonts/a2z-ExtraBold.woff2" crossorigin>
   <link rel="stylesheet" href="/assets/css/style.css?v=e16ae327">
   <script>document.documentElement.className+=" js";</script>
-  <link rel="stylesheet" href="/assets/css/workspace.css?v=bc74466e">
+  <link rel="stylesheet" href="/assets/css/workspace.css?v=c7bef4a8">
   <script type="application/ld+json">[{"@context":"https://schema.org","@type":"WebApplication","name":"PDF結合 - Everything PDF","url":"https://everything-pdf.site/merge/","applicationCategory":"UtilitiesApplication","operatingSystem":"All","browserRequirements":"Requires JavaScript","inLanguage":"ko","isAccessibleForFree":true,"datePublished":"2026-06-04","dateModified":"2026-06-11","offers":{"@type":"Offer","price":"0","priceCurrency":"KRW"},"featureList":["여러 PDF 병합","페이지 순서 변경","무료·무제한"],"publisher":{"@type":"Organization","name":"Everything PDF","url":"https://everything-pdf.site/"}},{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"홈","item":"https://everything-pdf.site/"},{"@type":"ListItem","position":2,"name":"PDF結合","item":"https://everything-pdf.site/merge/"}]},{"@context":"https://schema.org","@type":"HowTo","name":"PDF結合 How to use","inLanguage":"ko","step":[{"@type":"HowToStep","position":1,"name":"1단계","text":"PDFファイルを画面にドラッグ＆ドロップします。"},{"@type":"HowToStep","position":2,"name":"2단계","text":"一覧の↑↓ボタンで順番を整えます。"},{"@type":"HowToStep","position":3,"name":"3단계","text":"[結合]を押します。"},{"@type":"HowToStep","position":4,"name":"4단계","text":"一つにまとまったPDFをダウンロードします。"}]},{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"一度に何個までPDFを結合できますか？","acceptedAnswer":{"@type":"Answer","text":"ファイル件数や容量に制限は設けていません。レポートの複数チャプターやスキャン文書の数十枚も一度に結合できます。ただしファイルがとても多かったり大きかったりすると、端末の性能によって少し時間がかかることがあります。"}},{"@type":"Question","name":"JPGなどの画像もPDFと一緒に結合できますか？","acceptedAnswer":{"@type":"Answer","text":"このツールはPDFファイル同士を結合する機能です。写真・画像はそのままでは結合できないので、Word・一太郎・画像プレビューなどで「印刷 → PDFとして保存」でまずPDFにしてから、ここで結合してください。そうすれば一つのファイルにすっきり整理できます。"}},{"@type":"Question","name":"結合する順番を変えられますか？","acceptedAnswer":{"@type":"Answer","text":"はい。アップロードしたファイル一覧の↑↓ボタンで順番を自由に変えられます。表紙、本文、添付の順のように好きな並びに整えてから[結合]を押せば、その順番のまま一つのファイルになります。"}},{"@type":"Question","name":"iPhoneやスマホでもPDF結合できますか？","acceptedAnswer":{"@type":"Answer","text":"できます。アプリのインストールなしで、スマホのブラウザからすぐにお使いいただけます。メールで受け取ったPDFやスキャンアプリで撮ったファイルを選び、順番を決めて結合すればOKです。"}},{"@type":"Question","name":"結合したPDFに透かしが入りますか？","acceptedAnswer":{"@type":"Answer","text":"透かしは一切入りません。完全無料で会員登録も不要です。課題や業務文書にそのまま提出しても大丈夫です。"}}]}]</script>
 </head>
 <body class="ws tp lp-page">
@@ -126,12 +126,10 @@
           </div>
         </div>
         <div class="tp-dock__panel" data-cat="convert" role="menu" aria-label="PDFを変換 도구" hidden>
-          <div class="tp-dock__panel-head">PDFを変換 <span>17</span></div>
+          <div class="tp-dock__panel-head">PDFを変換 <span>15</span></div>
           <div class="tp-dock__grid">
             <a class="tp-dock__item" href="../to-image/"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="4.5" width="17" height="15" rx="2.5"/><circle cx="8.5" cy="9.5" r="1.7"/><path d="M20.5 15.5 16 11 6 21"/></svg><span>PDF → 画像</span></a>
             <a class="tp-dock__item" href="../image-to-pdf/"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="4.5" width="17" height="15" rx="2.5"/><circle cx="8.5" cy="9.5" r="1.7"/><path d="M20.5 15.5 16 11 6 21"/></svg><span>画像 → PDF</span></a>
-            <a class="tp-dock__item" href="../pdf-to-docx/"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3.5H7.5a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h9a2 2 0 0 0 2-2V8l-5-4.5z"/><path d="M14 3.5V8h5"/><path d="M8.5 12h7M8.5 15h7M8.5 9h3"/></svg><span>워드 変換</span></a>
-            <a class="tp-dock__item" href="../pdf-to-hwpx/"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3.5H7.5a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h9a2 2 0 0 0 2-2V8l-5-4.5z"/><path d="M14 3.5V8h5"/><path d="M8.5 12h7M8.5 15h7M8.5 9h3"/></svg><span>한글 変換</span></a>
             <a class="tp-dock__item" href="../svg-to-png/"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="4.5" width="17" height="15" rx="2.5"/><circle cx="8.5" cy="9.5" r="1.7"/><path d="M20.5 15.5 16 11 6 21"/></svg><span>SVG → PNG</span></a>
             <a class="tp-dock__item" href="../gif-to-png/"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="4.5" width="17" height="15" rx="2.5"/><circle cx="8.5" cy="9.5" r="1.7"/><path d="M20.5 15.5 16 11 6 21"/></svg><span>GIF → PNG</span></a>
             <a class="tp-dock__item" href="../gif-to-jpg/"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="4.5" width="17" height="15" rx="2.5"/><circle cx="8.5" cy="9.5" r="1.7"/><path d="M20.5 15.5 16 11 6 21"/></svg><span>GIF → JPG</span></a>
@@ -215,7 +213,7 @@
         <p class="tp-lead">課題、レポート、契約書、スキャン文書が何枚にも分かれていませんか。散らばったPDFをドラッグして順番を決めるだけで、一つのファイルに結合されます。すべての作業がお使いの端末内で完結します。</p>
 
         <div class="tp-sec" data-reveal>
-          <span class="tp-eyebrow">3분이면 끝나요</span>
+          <span class="tp-eyebrow">3分で終わります</span>
           <h2 class="tp-h2">PDF結合 How to use</h2>
           <ol class="tp-steps">
           <li><span class="tx">PDFファイルを画面にドラッグ＆ドロップします。</span></li>
@@ -230,11 +228,13 @@
           <div class="tx"><strong>ファイルはサーバーに送信されません。</strong><span>結合の過程はすべてお使いのブラウザ（端末）の中だけで行われ、ウィンドウを閉じれば痕跡も残りません。契約書や行政書類のような機密文書も安心して結合できます。</span></div>
         </div>
 
+        
+
         <div class="tp-sec" data-reveal><span class="tp-eyebrow">補足</span><h2 class="tp-h2">こんなときに便利です</h2><p>何枚にも分けてスキャンした契約書を一つのファイルにまとめるとき、グループ課題をそれぞれが作ったパートごとに結合して提出するとき、申込や行政手続きに必要な書類を一つに整理するときに便利です。表紙と本文、付録を別々に作ったなら、順番を整えて一度に結合しましょう。</p></div>
         <div class="tp-sec" data-reveal><span class="tp-eyebrow">補足</span><h2 class="tp-h2">結合前に確認してください</h2><p>ファイル名が似ていると順番が紛らわしいので、一覧の↑↓で順番をもう一度確認してください。パスワードのかかったPDFは、先にロックを解除しないと結合できません。</p></div>
 
         <div class="tp-sec" data-reveal>
-          <span class="tp-eyebrow">궁금한 점</span>
+          <span class="tp-eyebrow">よくある質問</span>
           <h2 class="tp-h2">よくある質問</h2>
           <div class="ws-term tp-faqterm">
             <div class="ws-faqlist">

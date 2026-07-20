@@ -44,7 +44,7 @@
   <link rel="preload" as="font" type="font/woff2" href="/assets/vendor/fonts/a2z-ExtraBold.woff2" crossorigin>
   <link rel="stylesheet" href="/assets/css/style.css?v=e16ae327">
   <script>document.documentElement.className+=" js";</script>
-  <link rel="stylesheet" href="/assets/css/workspace.css?v=bc74466e">
+  <link rel="stylesheet" href="/assets/css/workspace.css?v=c7bef4a8">
   <script type="application/ld+json">[{"@context":"https://schema.org","@type":"WebApplication","name":"PDFの情報を見る - Everything PDF","url":"https://everything-pdf.site/pdf-info/","applicationCategory":"UtilitiesApplication","operatingSystem":"All","browserRequirements":"Requires JavaScript","inLanguage":"ko","isAccessibleForFree":true,"datePublished":"2026-06-04","dateModified":"2026-06-16","offers":{"@type":"Offer","price":"0","priceCurrency":"KRW"},"featureList":["페이지·용량·サイズ","메타데이터 확인","잠김 여부"],"publisher":{"@type":"Organization","name":"Everything PDF","url":"https://everything-pdf.site/"}},{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"홈","item":"https://everything-pdf.site/"},{"@type":"ListItem","position":2,"name":"PDFの情報を見る","item":"https://everything-pdf.site/pdf-info/"}]},{"@context":"https://schema.org","@type":"HowTo","name":"PDFの情報を見る How to use","inLanguage":"ko","step":[{"@type":"HowToStep","position":1,"name":"1단계","text":"情報を確認したいPDFファイルをアップします。"},{"@type":"HowToStep","position":2,"name":"2단계","text":"ページ数とファイル容量が一覧で表示されます。"},{"@type":"HowToStep","position":3,"name":"3단계","text":"ページサイズ（幅×高さ）やタイトル・作成者などのメタデータを確認します。"},{"@type":"HowToStep","position":4,"name":"4단계","text":"パスワードでロックされているかどうかまで、同じ画面で見られます。"}]},{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"PDFが何ページか、どうやって確認しますか？","acceptedAnswer":{"@type":"Answer","text":"ファイルをアップすると、ページ数が一覧の一番上にすぐ表示されます。分厚いレポートやスキャン文書も、開かずに全体のページ数を一度に確認できます。印刷や提出の前に分量を見積もるときに便利です。"}},{"@type":"Question","name":"ページサイズや容量もわかりますか？","acceptedAnswer":{"@type":"Answer","text":"はい。ファイル容量とあわせて、ページサイズを幅×高さで表示します。A4か別の規格か、横向きか縦向きかを確認できるので、印刷設定や規格合わせに役立ちます。"}},{"@type":"Question","name":"タイトル・作成者などのメタデータはどこで見られますか？","acceptedAnswer":{"@type":"Answer","text":"PDFに含まれるタイトルや作成者などのメタデータを一覧に整理して表示します。ただし、作成したプログラムによってはこの情報が空のことがあり、その場合は該当項目が表示されなかったり空の値で出たりします。"}},{"@type":"Question","name":"パスワードがかかったPDFかどうかわかりますか？","acceptedAnswer":{"@type":"Answer","text":"はい。パスワードでロックされているかどうかもあわせて表示します。ただしこのツールは情報を読み取って表示するだけで、ロックを解除するものではありません。ご自身が知っているパスワードで制限を外すには、「PDFロック解除」ツールをお使いください。"}},{"@type":"Question","name":"ファイルはサーバーにアップされますか？無料ですか？","acceptedAnswer":{"@type":"Answer","text":"ファイルはサーバーへアップされず、お使いの端末内だけで情報を読み取ります。会員登録もインストールも不要で無料で使え、透かしやファイル数・容量の制限もありません。"}}]}]</script>
 </head>
 <body class="ws tp lp-page">
@@ -122,12 +122,10 @@
           </div>
         </div>
         <div class="tp-dock__panel" data-cat="convert" role="menu" aria-label="PDFを変換 도구" hidden>
-          <div class="tp-dock__panel-head">PDFを変換 <span>17</span></div>
+          <div class="tp-dock__panel-head">PDFを変換 <span>15</span></div>
           <div class="tp-dock__grid">
             <a class="tp-dock__item" href="../to-image/"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="4.5" width="17" height="15" rx="2.5"/><circle cx="8.5" cy="9.5" r="1.7"/><path d="M20.5 15.5 16 11 6 21"/></svg><span>PDF → 画像</span></a>
             <a class="tp-dock__item" href="../image-to-pdf/"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="4.5" width="17" height="15" rx="2.5"/><circle cx="8.5" cy="9.5" r="1.7"/><path d="M20.5 15.5 16 11 6 21"/></svg><span>画像 → PDF</span></a>
-            <a class="tp-dock__item" href="../pdf-to-docx/"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3.5H7.5a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h9a2 2 0 0 0 2-2V8l-5-4.5z"/><path d="M14 3.5V8h5"/><path d="M8.5 12h7M8.5 15h7M8.5 9h3"/></svg><span>워드 変換</span></a>
-            <a class="tp-dock__item" href="../pdf-to-hwpx/"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3.5H7.5a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h9a2 2 0 0 0 2-2V8l-5-4.5z"/><path d="M14 3.5V8h5"/><path d="M8.5 12h7M8.5 15h7M8.5 9h3"/></svg><span>한글 変換</span></a>
             <a class="tp-dock__item" href="../svg-to-png/"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="4.5" width="17" height="15" rx="2.5"/><circle cx="8.5" cy="9.5" r="1.7"/><path d="M20.5 15.5 16 11 6 21"/></svg><span>SVG → PNG</span></a>
             <a class="tp-dock__item" href="../gif-to-png/"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="4.5" width="17" height="15" rx="2.5"/><circle cx="8.5" cy="9.5" r="1.7"/><path d="M20.5 15.5 16 11 6 21"/></svg><span>GIF → PNG</span></a>
             <a class="tp-dock__item" href="../gif-to-jpg/"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="4.5" width="17" height="15" rx="2.5"/><circle cx="8.5" cy="9.5" r="1.7"/><path d="M20.5 15.5 16 11 6 21"/></svg><span>GIF → JPG</span></a>
@@ -211,7 +209,7 @@
         <p class="tp-lead">アップしたPDFが何ページか、容量はどれくらいか、ページサイズやタイトル・作成者といった情報を一覧で表示するツールです。パスワードがかかっているかどうかも教えてくれます。ファイルを変更したりダウンロードしたりせず、情報だけを読み取って表示し、すべての処理はブラウザ内だけで行われるので、サーバーへ送信されることはありません。</p>
 
         <div class="tp-sec" data-reveal>
-          <span class="tp-eyebrow">3분이면 끝나요</span>
+          <span class="tp-eyebrow">3分で終わります</span>
           <h2 class="tp-h2">PDFの情報を見る How to use</h2>
           <ol class="tp-steps">
           <li><span class="tx">情報を確認したいPDFファイルをアップします。</span></li>
@@ -226,10 +224,12 @@
           <div class="tx"><strong>ファイルはサーバーに送信されません。</strong><span>情報を読み取るすべての工程が、ブラウザ、つまりお使いの端末の中だけで行われます。ファイルはサーバーへアップされず、内容を変更したり別途保存したりもせず、画面に情報を表示するだけです。契約書や行政手続きの書類のような機微なPDFの情報を確認するときも、外部に漏れないので安心して使えます。</span></div>
         </div>
 
+        
+
         <div class="tp-sec" data-reveal><span class="tp-eyebrow">補足</span><h2 class="tp-h2">こんなときに便利です</h2><p>メールで受け取ったPDFが何ページか、印刷すると紙がどれくらい要るかを事前に見積もるときに便利です。提出先が求める容量や規格（例：A4）に合っているかを確認するとき、あるいは受け取った文書にパスワードがかかっているかをまず調べたいときにも役立ちます。ファイルを開いたり変更したりせず、情報だけをすばやく確認したいときにお使いください。</p></div>
 
         <div class="tp-sec" data-reveal>
-          <span class="tp-eyebrow">궁금한 점</span>
+          <span class="tp-eyebrow">よくある質問</span>
           <h2 class="tp-h2">よくある質問</h2>
           <div class="ws-term tp-faqterm">
             <div class="ws-faqlist">

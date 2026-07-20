@@ -44,7 +44,7 @@
   <link rel="preload" as="font" type="font/woff2" href="/assets/vendor/fonts/a2z-ExtraBold.woff2" crossorigin>
   <link rel="stylesheet" href="/assets/css/style.css?v=e16ae327">
   <script>document.documentElement.className+=" js";</script>
-  <link rel="stylesheet" href="/assets/css/workspace.css?v=bc74466e">
+  <link rel="stylesheet" href="/assets/css/workspace.css?v=c7bef4a8">
   <script type="application/ld+json">[{"@context":"https://schema.org","@type":"WebApplication","name":"PDFページ削除 - Everything PDF","url":"https://everything-pdf.site/delete/","applicationCategory":"UtilitiesApplication","operatingSystem":"All","browserRequirements":"Requires JavaScript","inLanguage":"ko","isAccessibleForFree":true,"datePublished":"2026-06-04","dateModified":"2026-06-11","offers":{"@type":"Offer","price":"0","priceCurrency":"KRW"},"featureList":["특정 ページ削除","여러 페이지 일괄","원본 보존"],"publisher":{"@type":"Organization","name":"Everything PDF","url":"https://everything-pdf.site/"}},{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"홈","item":"https://everything-pdf.site/"},{"@type":"ListItem","position":2,"name":"PDFページ削除","item":"https://everything-pdf.site/delete/"}]},{"@context":"https://schema.org","@type":"HowTo","name":"PDFページ削除 How to use","inLanguage":"ko","step":[{"@type":"HowToStep","position":1,"name":"1단계","text":"PDFファイルを画面にアップロードします。"},{"@type":"HowToStep","position":2,"name":"2단계","text":"削除するページ番号を入力します（例：2, 4, 6-8）。"},{"@type":"HowToStep","position":3,"name":"3단계","text":"プレビューで残すページを確認します。"},{"@type":"HowToStep","position":4,"name":"4단계","text":"削除ボタンを押します。"},{"@type":"HowToStep","position":5,"name":"5단계","text":"ページが抜けた新しいPDFをダウンロードします。"}]},{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"特定のページだけを削除できますか？","acceptedAnswer":{"@type":"Answer","text":"はい。消したいページ番号を入力するだけです。たとえば3ページ目だけを抜きたいなら3を入力してください。残りのページは順番そのまま保たれます。"}},{"@type":"Question","name":"複数ページを一度に削除するにはどうすればいいですか？","acceptedAnswer":{"@type":"Answer","text":"番号をカンマで区切って書くか、範囲で書けばOKです。たとえば2, 4, 6-8のように入力すると、2・4ページと6から8ページまでを一度に削除します。"}},{"@type":"Question","name":"スキャン時にできた空白ページだけを選んで消せますか？","acceptedAnswer":{"@type":"Answer","text":"空白ページを自動で見つけることはしませんが、プレビューで空になっているページの番号を確認して自分で入力すればOKです。その番号だけを指定して削除すれば、空白ページをきれいに抜けます。"}},{"@type":"Question","name":"元のファイルはそのまま残りますか？","acceptedAnswer":{"@type":"Answer","text":"はい。元ファイルには手を加えず、ページが抜けた結果を新しいファイルに保存します。元ファイルと結果を見比べてから決められるので、安心してお使いください。"}},{"@type":"Question","name":"本当に無料ですか？ファイル件数や容量の制限はありますか？","acceptedAnswer":{"@type":"Answer","text":"完全無料で、透かしは入りません。ファイル件数や容量の制限、会員登録もありません。必要なときにいつでも自由にページを削除してください。"}}]}]</script>
 </head>
 <body class="ws tp lp-page">
@@ -130,12 +130,10 @@
           </div>
         </div>
         <div class="tp-dock__panel" data-cat="convert" role="menu" aria-label="PDFを変換 도구" hidden>
-          <div class="tp-dock__panel-head">PDFを変換 <span>17</span></div>
+          <div class="tp-dock__panel-head">PDFを変換 <span>15</span></div>
           <div class="tp-dock__grid">
             <a class="tp-dock__item" href="../to-image/"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="4.5" width="17" height="15" rx="2.5"/><circle cx="8.5" cy="9.5" r="1.7"/><path d="M20.5 15.5 16 11 6 21"/></svg><span>PDF → 画像</span></a>
             <a class="tp-dock__item" href="../image-to-pdf/"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="4.5" width="17" height="15" rx="2.5"/><circle cx="8.5" cy="9.5" r="1.7"/><path d="M20.5 15.5 16 11 6 21"/></svg><span>画像 → PDF</span></a>
-            <a class="tp-dock__item" href="../pdf-to-docx/"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3.5H7.5a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h9a2 2 0 0 0 2-2V8l-5-4.5z"/><path d="M14 3.5V8h5"/><path d="M8.5 12h7M8.5 15h7M8.5 9h3"/></svg><span>워드 変換</span></a>
-            <a class="tp-dock__item" href="../pdf-to-hwpx/"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3.5H7.5a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h9a2 2 0 0 0 2-2V8l-5-4.5z"/><path d="M14 3.5V8h5"/><path d="M8.5 12h7M8.5 15h7M8.5 9h3"/></svg><span>한글 変換</span></a>
             <a class="tp-dock__item" href="../svg-to-png/"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="4.5" width="17" height="15" rx="2.5"/><circle cx="8.5" cy="9.5" r="1.7"/><path d="M20.5 15.5 16 11 6 21"/></svg><span>SVG → PNG</span></a>
             <a class="tp-dock__item" href="../gif-to-png/"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="4.5" width="17" height="15" rx="2.5"/><circle cx="8.5" cy="9.5" r="1.7"/><path d="M20.5 15.5 16 11 6 21"/></svg><span>GIF → PNG</span></a>
             <a class="tp-dock__item" href="../gif-to-jpg/"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="4.5" width="17" height="15" rx="2.5"/><circle cx="8.5" cy="9.5" r="1.7"/><path d="M20.5 15.5 16 11 6 21"/></svg><span>GIF → JPG</span></a>
@@ -219,7 +217,7 @@
         <p class="tp-lead">スキャン中に紛れ込んだ空白ページや、レポート末尾の不要なページを、番号を入力するだけで削除しましょう。削除したいページを除いて、すっきりしたPDFとして新しく保存します。透かしも件数制限もありません。</p>
 
         <div class="tp-sec" data-reveal>
-          <span class="tp-eyebrow">3분이면 끝나요</span>
+          <span class="tp-eyebrow">3分で終わります</span>
           <h2 class="tp-h2">PDFページ削除 How to use</h2>
           <ol class="tp-steps">
           <li><span class="tx">PDFファイルを画面にアップロードします。</span></li>
@@ -235,11 +233,13 @@
           <div class="tx"><strong>ファイルはサーバーに送信されません。</strong><span>すべての処理はユーザーのブラウザ、つまりお使いの端末の中だけで行われます。ですから契約書・申込書類・行政文書のような機密ファイルも、外部にアップロードせずにページを削除できます。</span></div>
         </div>
 
+        
+
         <div class="tp-sec" data-reveal><span class="tp-eyebrow">補足</span><h2 class="tp-h2">こんな方に便利です</h2><p>課題やレポートをスキャン中に空白ページが紛れ込んだとき、契約書で署名だけをもらった最後のページを抜きたいとき、行政書類のうち不要な案内ページを整理したいときに便利です。番号を正確に入力するだけで、狙ったページをすばやく削除できます。</p></div>
         <div class="tp-sec" data-reveal><span class="tp-eyebrow">補足</span><h2 class="tp-h2">削除前に確認しておきたいこと</h2><p>削除はプレビューで残すページを一度確認してから進めてください。番号を間違えても元ファイルはそのままなので、やり直せます。両面スキャン文書は表裏のページ番号がいっしょに入るので、抜く範囲をもう一度見直しておきましょう。</p></div>
 
         <div class="tp-sec" data-reveal>
-          <span class="tp-eyebrow">궁금한 점</span>
+          <span class="tp-eyebrow">よくある質問</span>
           <h2 class="tp-h2">よくある質問</h2>
           <div class="ws-term tp-faqterm">
             <div class="ws-faqlist">

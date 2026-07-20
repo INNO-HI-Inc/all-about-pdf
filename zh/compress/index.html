@@ -44,7 +44,7 @@
   <link rel="preload" as="font" type="font/woff2" href="/assets/vendor/fonts/a2z-ExtraBold.woff2" crossorigin>
   <link rel="stylesheet" href="/assets/css/style.css?v=e16ae327">
   <script>document.documentElement.className+=" js";</script>
-  <link rel="stylesheet" href="/assets/css/workspace.css?v=bc74466e">
+  <link rel="stylesheet" href="/assets/css/workspace.css?v=c7bef4a8">
   <script type="application/ld+json">[{"@context":"https://schema.org","@type":"WebApplication","name":"PDF压缩 - Everything PDF","url":"https://everything-pdf.site/compress/","applicationCategory":"UtilitiesApplication","operatingSystem":"All","browserRequirements":"Requires JavaScript","inLanguage":"ko","isAccessibleForFree":true,"datePublished":"2026-06-04","dateModified":"2026-06-16","offers":{"@type":"Offer","price":"0","priceCurrency":"KRW"},"featureList":["减小文件大小","画质 可选","스캔 PDF에 효과적"],"publisher":{"@type":"Organization","name":"Everything PDF","url":"https://everything-pdf.site/"}},{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"홈","item":"https://everything-pdf.site/"},{"@type":"ListItem","position":2,"name":"PDF压缩","item":"https://everything-pdf.site/compress/"}]},{"@context":"https://schema.org","@type":"HowTo","name":"PDF压缩 How to use","inLanguage":"ko","step":[{"@type":"HowToStep","position":1,"name":"1단계","text":"上传要减小体积的PDF文件。"},{"@type":"HowToStep","position":2,"name":"2단계","text":"在低、中、高中选择画质。越低体积压得越小。"},{"@type":"HowToStep","position":3,"name":"3단계","text":"点击压缩按钮。"},{"@type":"HowToStep","position":4,"name":"4단계","text":"对照原文件确认压缩后的体积。"},{"@type":"HowToStep","position":5,"name":"5단계","text":"把压缩后的PDF保存到本机。"}]},{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"只有文字的PDF也能减小体积吗?","acceptedAnswer":{"@type":"Answer","text":"纯文字文档压缩幅度较小,甚至可能变大。本工具是把页面重新渲染成图片再压缩,对本就只有文字的轻量PDF并不适合。对扫描件或图片较多的PDF,效果才明显。"}},{"@type":"Question","name":"压缩后还能选中或搜索文字吗?","acceptedAnswer":{"@type":"Answer","text":"压缩后文字会变成图片,可能无法直接选中、复制正文或进行搜索。如果需要保留可编辑的文字,请另存一份原文件。屏幕上显示的样子会保持不变。"}},{"@type":"Question","name":"画质低、中、高该怎么选?","acceptedAnswer":{"@type":"Answer","text":"想尽量减小体积就选低,想保留美观清晰度就选高,中则介于两者之间。被邮件附件限制卡住时可以从低开始尝试,需要打印的文档选高更稳妥。"}},{"@type":"Question","name":"能提前知道能压缩多少吗?","acceptedAnswer":{"@type":"Answer","text":"因文档而异。扫描件、图片型PDF有时能压到一半以下,而以文字为主的文档几乎不减小,甚至可能变大。压缩后对照原文件的体积看看,若结果不满意,可以换个画质再试。"}},{"@type":"Question","name":"需要注册或安装软件吗?","acceptedAnswer":{"@type":"Answer","text":"不需要。无需注册和安装,打开即用。完全免费,不打水印,也没有文件数量和容量限制。"}}]}]</script>
 </head>
 <body class="ws tp lp-page">
@@ -135,12 +135,10 @@
           </div>
         </div>
         <div class="tp-dock__panel" data-cat="convert" role="menu" aria-label="转换 PDF 도구" hidden>
-          <div class="tp-dock__panel-head">转换 PDF <span>17</span></div>
+          <div class="tp-dock__panel-head">转换 PDF <span>15</span></div>
           <div class="tp-dock__grid">
             <a class="tp-dock__item" href="../to-image/"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="4.5" width="17" height="15" rx="2.5"/><circle cx="8.5" cy="9.5" r="1.7"/><path d="M20.5 15.5 16 11 6 21"/></svg><span>PDF → 图片</span></a>
             <a class="tp-dock__item" href="../image-to-pdf/"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="4.5" width="17" height="15" rx="2.5"/><circle cx="8.5" cy="9.5" r="1.7"/><path d="M20.5 15.5 16 11 6 21"/></svg><span>图片 → PDF</span></a>
-            <a class="tp-dock__item" href="../pdf-to-docx/"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3.5H7.5a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h9a2 2 0 0 0 2-2V8l-5-4.5z"/><path d="M14 3.5V8h5"/><path d="M8.5 12h7M8.5 15h7M8.5 9h3"/></svg><span>워드 转换</span></a>
-            <a class="tp-dock__item" href="../pdf-to-hwpx/"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3.5H7.5a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h9a2 2 0 0 0 2-2V8l-5-4.5z"/><path d="M14 3.5V8h5"/><path d="M8.5 12h7M8.5 15h7M8.5 9h3"/></svg><span>한글 转换</span></a>
             <a class="tp-dock__item" href="../svg-to-png/"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="4.5" width="17" height="15" rx="2.5"/><circle cx="8.5" cy="9.5" r="1.7"/><path d="M20.5 15.5 16 11 6 21"/></svg><span>SVG → PNG</span></a>
             <a class="tp-dock__item" href="../gif-to-png/"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="4.5" width="17" height="15" rx="2.5"/><circle cx="8.5" cy="9.5" r="1.7"/><path d="M20.5 15.5 16 11 6 21"/></svg><span>GIF → PNG</span></a>
             <a class="tp-dock__item" href="../gif-to-jpg/"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="4.5" width="17" height="15" rx="2.5"/><circle cx="8.5" cy="9.5" r="1.7"/><path d="M20.5 15.5 16 11 6 21"/></svg><span>GIF → JPG</span></a>
@@ -224,7 +222,7 @@
         <p class="tp-lead">当邮件附件或提交网站的容量限制卡住你时,不妨压缩一下PDF体积。它会把每一页重新渲染为图片,并按画质重新压缩,因此对扫描件或图片较多的PDF效果尤其明显。文件不上传服务器,只在你的浏览器(设备)内处理。</p>
 
         <div class="tp-sec" data-reveal>
-          <span class="tp-eyebrow">3분이면 끝나요</span>
+          <span class="tp-eyebrow">三步即可完成</span>
           <h2 class="tp-h2">PDF压缩 How to use</h2>
           <ol class="tp-steps">
           <li><span class="tx">上传要减小体积的PDF文件。</span></li>
@@ -240,10 +238,12 @@
           <div class="tx"><strong>您的文件绝不会上传到任何服务器。</strong><span>压缩全过程都在你的浏览器(设备)内完成,文件不会上传到服务器。因此,合同、简历、政务材料这类敏感文档也不会外泄。它不像国外工具那样先上传、过段时间再删除,而是从一开始就不上传。</span></div>
         </div>
 
+        
+
         <div class="tp-sec" data-reveal><span class="tp-eyebrow">说明</span><h2 class="tp-h2">这些场景很好用</h2><p>把扫描的合同或身份证复印件上传到提交网站却被容量限制卡住时,需要把图片较多的演示材料或作品集通过邮件发送时,或扫描版报告太大导致微信、即时通讯发不出去时,都很好用。反之,如果是以文字为主的轻量PDF,压缩效果有限,直接发原文件可能更好。</p></div>
 
         <div class="tp-sec" data-reveal>
-          <span class="tp-eyebrow">궁금한 점</span>
+          <span class="tp-eyebrow">常见问题</span>
           <h2 class="tp-h2">常见问题</h2>
           <div class="ws-term tp-faqterm">
             <div class="ws-faqlist">

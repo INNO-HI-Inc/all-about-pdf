@@ -44,7 +44,7 @@
   <link rel="preload" as="font" type="font/woff2" href="/assets/vendor/fonts/a2z-ExtraBold.woff2" crossorigin>
   <link rel="stylesheet" href="/assets/css/style.css?v=e16ae327">
   <script>document.documentElement.className+=" js";</script>
-  <link rel="stylesheet" href="/assets/css/workspace.css?v=bc74466e">
+  <link rel="stylesheet" href="/assets/css/workspace.css?v=c7bef4a8">
   <script type="application/ld+json">[{"@context":"https://schema.org","@type":"WebApplication","name":"PDF表单扁平化 - Everything PDF","url":"https://everything-pdf.site/flatten/","applicationCategory":"UtilitiesApplication","operatingSystem":"All","browserRequirements":"Requires JavaScript","inLanguage":"ko","isAccessibleForFree":true,"datePublished":"2026-06-04","dateModified":"2026-07-08","offers":{"@type":"Offer","price":"0","priceCurrency":"KRW"},"featureList":["입력값 페이지에 고정","어디서나 동일하게","글자 그대로 보존"],"publisher":{"@type":"Organization","name":"Everything PDF","url":"https://everything-pdf.site/"}},{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"홈","item":"https://everything-pdf.site/"},{"@type":"ListItem","position":2,"name":"PDF表单扁平化","item":"https://everything-pdf.site/flatten/"}]},{"@context":"https://schema.org","@type":"HowTo","name":"PDF表单扁平化 How to use","inLanguage":"ko","step":[{"@type":"HowToStep","position":1,"name":"1단계","text":"拖入已填值的表单PDF,或点击[选择文件]上传。"},{"@type":"HowToStep","position":2,"name":"2단계","text":"工具会自动查找文档中的输入表单(文本框、复选框等)。"},{"@type":"HowToStep","position":3,"name":"3단계","text":"点击[固定表单],把输入值原样固化到页面上。"},{"@type":"HowToStep","position":4,"name":"4단계","text":"下载一份在任何地方都显示一致、无法被修改的新PDF。"}]},{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"扁平化有什么好处?","acceptedAnswer":{"@type":"Answer","text":"填好的值会被固定到页面上,收件人无法误删或改动,并且在任何阅读器中打开输入值都显示一致。它能避免“在我电脑上看得到、对方屏幕上却空白”的问题。"}},{"@type":"Question","name":"文字会变成图片、变模糊吗?","acceptedAnswer":{"@type":"Answer","text":"不会。它不是像照片那样把页面重新渲染,而是把输入值原样固定为页面内容。文字仍可选中、复制、搜索,画质也保持原样。"}},{"@type":"Question","name":"上传了没有表单的PDF会怎样?","acceptedAnswer":{"@type":"Answer","text":"没有输入表单的PDF没有可扁平化的对象,会提示“未发现表单”。如果值已经作为图形印在文档上,就不需要扁平化。"}},{"@type":"Question","name":"复选框、单选按钮也会被固定吗?","acceptedAnswer":{"@type":"Answer","text":"会。不仅是文本输入框,复选框、选择按钮等大多数表单元素都会按当前状态固定下来。部分特殊表单可能不受支持。"}},{"@type":"Question","name":"原文件会保持不变吗?","acceptedAnswer":{"@type":"Answer","text":"会,原文件不受任何改动,扁平化后的结果会另存为新的PDF。如果结果不满意,重新上传原文件处理即可。"}}]}]</script>
 </head>
 <body class="ws tp lp-page">
@@ -127,12 +127,10 @@
           </div>
         </div>
         <div class="tp-dock__panel" data-cat="convert" role="menu" aria-label="转换 PDF 도구" hidden>
-          <div class="tp-dock__panel-head">转换 PDF <span>17</span></div>
+          <div class="tp-dock__panel-head">转换 PDF <span>15</span></div>
           <div class="tp-dock__grid">
             <a class="tp-dock__item" href="../to-image/"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="4.5" width="17" height="15" rx="2.5"/><circle cx="8.5" cy="9.5" r="1.7"/><path d="M20.5 15.5 16 11 6 21"/></svg><span>PDF → 图片</span></a>
             <a class="tp-dock__item" href="../image-to-pdf/"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="4.5" width="17" height="15" rx="2.5"/><circle cx="8.5" cy="9.5" r="1.7"/><path d="M20.5 15.5 16 11 6 21"/></svg><span>图片 → PDF</span></a>
-            <a class="tp-dock__item" href="../pdf-to-docx/"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3.5H7.5a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h9a2 2 0 0 0 2-2V8l-5-4.5z"/><path d="M14 3.5V8h5"/><path d="M8.5 12h7M8.5 15h7M8.5 9h3"/></svg><span>워드 转换</span></a>
-            <a class="tp-dock__item" href="../pdf-to-hwpx/"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3.5H7.5a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h9a2 2 0 0 0 2-2V8l-5-4.5z"/><path d="M14 3.5V8h5"/><path d="M8.5 12h7M8.5 15h7M8.5 9h3"/></svg><span>한글 转换</span></a>
             <a class="tp-dock__item" href="../svg-to-png/"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="4.5" width="17" height="15" rx="2.5"/><circle cx="8.5" cy="9.5" r="1.7"/><path d="M20.5 15.5 16 11 6 21"/></svg><span>SVG → PNG</span></a>
             <a class="tp-dock__item" href="../gif-to-png/"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="4.5" width="17" height="15" rx="2.5"/><circle cx="8.5" cy="9.5" r="1.7"/><path d="M20.5 15.5 16 11 6 21"/></svg><span>GIF → PNG</span></a>
             <a class="tp-dock__item" href="../gif-to-jpg/"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="4.5" width="17" height="15" rx="2.5"/><circle cx="8.5" cy="9.5" r="1.7"/><path d="M20.5 15.5 16 11 6 21"/></svg><span>GIF → JPG</span></a>
@@ -216,7 +214,7 @@
         <p class="tp-lead">在PDF表单里填好值提交后,你或许遇到过这样的尴尬:对方的阅读器里看不到你填的文字,或者相反,文档还处于可编辑状态被打开。所谓“扁平化(flatten)”,就是把填好的表单值直接“烤”进页面,让它不再可编辑,并在任何程序中打开都显示一致。本工具不是把每一页转成图片,而是把输入值原样固定为页面内容,因此文字仍可选中、搜索,画质也不会下降。文件不会上传到任何地方,只在本机处理,连含个人信息的申请表、同意书也能放心整理成可提交的版本。</p>
 
         <div class="tp-sec" data-reveal>
-          <span class="tp-eyebrow">3분이면 끝나요</span>
+          <span class="tp-eyebrow">三步即可完成</span>
           <h2 class="tp-h2">PDF表单扁平化 How to use</h2>
           <ol class="tp-steps">
           <li><span class="tx">拖入已填值的表单PDF,或点击[选择文件]上传。</span></li>
@@ -231,10 +229,12 @@
           <div class="tx"><strong>您的文件绝不会上传到任何服务器。</strong><span>查找表单、固定值并保存的全过程都只在你的浏览器(设备)内完成,任何文件都不会上传到服务器。含姓名、身份证号、联系方式等敏感信息的申请表,也能毫无外泄顾虑地整理成可提交的版本。</span></div>
         </div>
 
+        
+
         <div class="tp-sec" data-reveal><span class="tp-eyebrow">说明</span><h2 class="tp-h2">这些场景很好用</h2><p>向政府机关、学校、公司提交的申请表、同意书、合同里填好值后,想让对方无法修改、且在任何地方都显示一致地整理好时,非常好用。尤其在多人传阅的文档、通过邮件发送、各人阅读器五花八门的情况下,它能避免输入值消失或被改动的事故。</p></div>
 
         <div class="tp-sec" data-reveal>
-          <span class="tp-eyebrow">궁금한 점</span>
+          <span class="tp-eyebrow">常见问题</span>
           <h2 class="tp-h2">常见问题</h2>
           <div class="ws-term tp-faqterm">
             <div class="ws-faqlist">

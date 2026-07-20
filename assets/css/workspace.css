@@ -1488,3 +1488,8 @@ p, li, .tp-sub, .gd-sub, .gd-lead, .tp-lead, .lp-dir__lead, .ws-card__desc, .lp-
 .lp-conv__ic { flex: none; width: 22px; height: 22px; display: grid; place-items: center; }
 .lp-conv__ic .ic-svg { width: 22px; height: 22px; }
 @media (max-width: 520px) { .lp-conv__grid { grid-template-columns: 1fr 1fr; } .lp-conv { padding: 14px; } }
+
+/* 도구 한계 안내 — 되는 것만 크게 적으면 쓰는 사람이 헛수고를 한다 */
+.tp-limits__list { max-width: var(--measure); margin: 0; padding: 0; list-style: none; }
+.tp-limits__list li { position: relative; margin-bottom: .6em; padding-left: 26px; font-size: var(--fs-body); line-height: var(--lh-body); color: var(--ink-soft); word-break: keep-all; }
+.tp-limits__list li::before { content: '!'; position: absolute; left: 0; top: .34em; width: 18px; height: 18px; display: grid; place-items: center; border-radius: 5px; background: rgba(229, 37, 42, .1); color: var(--red); font-size: .72rem; font-weight: 800; }

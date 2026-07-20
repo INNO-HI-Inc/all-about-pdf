@@ -44,7 +44,7 @@
   <link rel="preload" as="font" type="font/woff2" href="/assets/vendor/fonts/a2z-ExtraBold.woff2" crossorigin>
   <link rel="stylesheet" href="/assets/css/style.css?v=e16ae327">
   <script>document.documentElement.className+=" js";</script>
-  <link rel="stylesheet" href="/assets/css/workspace.css?v=bc74466e">
+  <link rel="stylesheet" href="/assets/css/workspace.css?v=c7bef4a8">
   <script type="application/ld+json">[{"@context":"https://schema.org","@type":"WebApplication","name":"PDF页面倒序 - Everything PDF","url":"https://everything-pdf.site/reverse/","applicationCategory":"UtilitiesApplication","operatingSystem":"All","browserRequirements":"Requires JavaScript","inLanguage":"ko","isAccessibleForFree":true,"datePublished":"2026-06-04","dateModified":"2026-06-17","offers":{"@type":"Offer","price":"0","priceCurrency":"KRW"},"featureList":["페이지 순서 거꾸로","마지막→처음","원본 보존"],"publisher":{"@type":"Organization","name":"Everything PDF","url":"https://everything-pdf.site/"}},{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"홈","item":"https://everything-pdf.site/"},{"@type":"ListItem","position":2,"name":"PDF页面倒序","item":"https://everything-pdf.site/reverse/"}]},{"@context":"https://schema.org","@type":"HowTo","name":"PDF页面倒序 How to use","inLanguage":"ko","step":[{"@type":"HowToStep","position":1,"name":"1단계","text":"把要翻转顺序的PDF拖进来，或用[选择文件]上传。"},{"@type":"HowToStep","position":2,"name":"2단계","text":"用预览确认整份页面现在是什么顺序。"},{"@type":"HowToStep","position":3,"name":"3단계","text":"点[倒序翻转]，让最后一页排到最前。"},{"@type":"HowToStep","position":4,"name":"4단계","text":"下载顺序已纠正的新PDF。"}]},{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"什么情况下需要页面倒序？","acceptedAnswer":{"@type":"Answer","text":"适合纠正整体顺序整个颠倒的PDF，比如把纸倒着放进走纸器、从最后一张开始扫描的文档，或从后往前拍摄、顺序被翻转的资料。一次翻转就能变回正常顺序。"}},{"@type":"Question","name":"能只调换部分页面的顺序吗？","acceptedAnswer":{"@type":"Answer","text":"这个工具会把整份页面整个倒过来。若只想移动某些页面，或只调换一两张的位置，请用[页面整理]工具。在那里可以把页面拖到想要的位置，一张张地移动。"}},{"@type":"Question","name":"倒序翻转会让文字或画质损坏吗？","acceptedAnswer":{"@type":"Answer","text":"不会。它只改变页面的排列顺序，每一页的内容原封不动。文字可选可复制，画质不下降，页面也不会被倒转，只是顺序反过来排列而已。"}},{"@type":"Question","name":"原始文件会保留吗？","acceptedAnswer":{"@type":"Answer","text":"会，原件不动，把翻转顺序后的结果另存为新PDF。对结果不满意，重新上传原件再处理就行，尽管放心用。"}},{"@type":"Question","name":"真的免费吗？有水印或次数限制吗？","acceptedAnswer":{"@type":"Answer","text":"完全免费，不加水印。没有使用次数、文件大小限制，也不用注册。需要时尽管随时纠正PDF顺序。"}}]}]</script>
 </head>
 <body class="ws tp lp-page">
@@ -127,12 +127,10 @@
           </div>
         </div>
         <div class="tp-dock__panel" data-cat="convert" role="menu" aria-label="转换 PDF 도구" hidden>
-          <div class="tp-dock__panel-head">转换 PDF <span>17</span></div>
+          <div class="tp-dock__panel-head">转换 PDF <span>15</span></div>
           <div class="tp-dock__grid">
             <a class="tp-dock__item" href="../to-image/"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="4.5" width="17" height="15" rx="2.5"/><circle cx="8.5" cy="9.5" r="1.7"/><path d="M20.5 15.5 16 11 6 21"/></svg><span>PDF → 图片</span></a>
             <a class="tp-dock__item" href="../image-to-pdf/"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="4.5" width="17" height="15" rx="2.5"/><circle cx="8.5" cy="9.5" r="1.7"/><path d="M20.5 15.5 16 11 6 21"/></svg><span>图片 → PDF</span></a>
-            <a class="tp-dock__item" href="../pdf-to-docx/"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3.5H7.5a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h9a2 2 0 0 0 2-2V8l-5-4.5z"/><path d="M14 3.5V8h5"/><path d="M8.5 12h7M8.5 15h7M8.5 9h3"/></svg><span>워드 转换</span></a>
-            <a class="tp-dock__item" href="../pdf-to-hwpx/"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3.5H7.5a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h9a2 2 0 0 0 2-2V8l-5-4.5z"/><path d="M14 3.5V8h5"/><path d="M8.5 12h7M8.5 15h7M8.5 9h3"/></svg><span>한글 转换</span></a>
             <a class="tp-dock__item" href="../svg-to-png/"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="4.5" width="17" height="15" rx="2.5"/><circle cx="8.5" cy="9.5" r="1.7"/><path d="M20.5 15.5 16 11 6 21"/></svg><span>SVG → PNG</span></a>
             <a class="tp-dock__item" href="../gif-to-png/"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="4.5" width="17" height="15" rx="2.5"/><circle cx="8.5" cy="9.5" r="1.7"/><path d="M20.5 15.5 16 11 6 21"/></svg><span>GIF → PNG</span></a>
             <a class="tp-dock__item" href="../gif-to-jpg/"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="4.5" width="17" height="15" rx="2.5"/><circle cx="8.5" cy="9.5" r="1.7"/><path d="M20.5 15.5 16 11 6 21"/></svg><span>GIF → JPG</span></a>
@@ -216,7 +214,7 @@
         <p class="tp-lead">急着扫描时，常会从最后一张倒着扫进去，结果第一页跑到了最后。遇到这种情况，不用一张张重扫，只要上传PDF，就能把整份页面顺序整个翻转过来。最后一页移到最前、第一页移到最后，整体倒序后另存为新PDF。文件不上传任何地方，只在你的设备上处理，敏感材料也能放心地纠正顺序。</p>
 
         <div class="tp-sec" data-reveal>
-          <span class="tp-eyebrow">3분이면 끝나요</span>
+          <span class="tp-eyebrow">三步即可完成</span>
           <h2 class="tp-h2">PDF页面倒序 How to use</h2>
           <ol class="tp-steps">
           <li><span class="tx">把要翻转顺序的PDF拖进来，或用[选择文件]上传。</span></li>
@@ -231,10 +229,12 @@
           <div class="tx"><strong>您的文件绝不会上传到任何服务器。</strong><span>翻转页面顺序并保存的整个过程都只在你的浏览器（设备）里完成，任何文件都不会传到服务器。所以合同、诊断书、身份材料这类不便上传外部的文档，也能在无需担心上传的情况下只纠正顺序。</span></div>
         </div>
 
+        
+
         <div class="tp-sec" data-reveal><span class="tp-eyebrow">说明</span><h2 class="tp-h2">这些场景很好用</h2><p>适合把自动走纸器扫描时纸张倒着进、从最后一张开始保存的文档，或把老资料从后往前拍摄、顺序整个颠倒的PDF，还原成正常顺序。不用一张张重扫或逐一挪动，一键就能对调首尾，变成好读的顺序。</p></div>
 
         <div class="tp-sec" data-reveal>
-          <span class="tp-eyebrow">궁금한 점</span>
+          <span class="tp-eyebrow">常见问题</span>
           <h2 class="tp-h2">常见问题</h2>
           <div class="ws-term tp-faqterm">
             <div class="ws-faqlist">

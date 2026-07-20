@@ -1,6 +1,30 @@
 /* PDF 페이지 번호 삽입 */
 document.addEventListener('DOMContentLoaded', function () {
-  if (!document.querySelector('[data-tool="page-numbers"]')) return;
+  var host = document.querySelector('[data-tool="page-numbers"]');
+  if (!host) return;
+
+  // 한글은 기본 글꼴로 인코딩할 수 없어 저장 시 빠진다. 실행 후 토스트로만 알리면 이미 다 입력한
+  // 뒤라 늦으므로, 입력하는 중에 바로 알려 준다.
+  (function () {
+    var ids = ['#pn-prefix', '#pn-suffix'];
+    var suf = host.querySelector('#pn-suffix');
+    if (!suf || !suf.parentNode) return;
+    var note = document.createElement('p');
+    note.className = 'option__hint js-pn-note';
+    note.style.cssText = 'margin:6px 0 0;color:var(--red);font-weight:600';
+    note.hidden = true;
+    note.textContent = '한글은 넣을 수 없어 저장할 때 빠집니다. 영문·숫자·기호만 사용해 주세요.';
+    suf.parentNode.appendChild(note);
+    function check() {
+      note.hidden = !ids.some(function (id) {
+        var el = host.querySelector(id);
+        return el && /[^\x20-\x7E\xA0-\xFF]/.test(el.value || '');
+      });
+    }
+    ids.forEach(function (id) { var el = host.querySelector(id); if (el) el.addEventListener('input', check); });
+    check();
+  })();
+
   ToolCore.init({
     tool: 'page-numbers', multiple: false, pageCount: true, numberPreview: true,
     readOptions: function (root) {

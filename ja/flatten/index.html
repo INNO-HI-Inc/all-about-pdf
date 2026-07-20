@@ -44,7 +44,7 @@
   <link rel="preload" as="font" type="font/woff2" href="/assets/vendor/fonts/a2z-ExtraBold.woff2" crossorigin>
   <link rel="stylesheet" href="/assets/css/style.css?v=e16ae327">
   <script>document.documentElement.className+=" js";</script>
-  <link rel="stylesheet" href="/assets/css/workspace.css?v=bc74466e">
+  <link rel="stylesheet" href="/assets/css/workspace.css?v=c7bef4a8">
   <script type="application/ld+json">[{"@context":"https://schema.org","@type":"WebApplication","name":"PDFフォーム平坦化 - Everything PDF","url":"https://everything-pdf.site/flatten/","applicationCategory":"UtilitiesApplication","operatingSystem":"All","browserRequirements":"Requires JavaScript","inLanguage":"ko","isAccessibleForFree":true,"datePublished":"2026-06-04","dateModified":"2026-07-08","offers":{"@type":"Offer","price":"0","priceCurrency":"KRW"},"featureList":["입력값 페이지에 고정","어디서나 동일하게","글자 그대로 보존"],"publisher":{"@type":"Organization","name":"Everything PDF","url":"https://everything-pdf.site/"}},{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"홈","item":"https://everything-pdf.site/"},{"@type":"ListItem","position":2,"name":"PDFフォーム平坦化","item":"https://everything-pdf.site/flatten/"}]},{"@context":"https://schema.org","@type":"HowTo","name":"PDFフォーム平坦化 How to use","inLanguage":"ko","step":[{"@type":"HowToStep","position":1,"name":"1단계","text":"値を記入したフォームPDFをドラッグ＆ドロップするか、[ファイルを選択]でアップロードします。"},{"@type":"HowToStep","position":2,"name":"2단계","text":"ツールが文書内の入力フォーム（テキスト・チェックボックスなど）を自動で見つけます。"},{"@type":"HowToStep","position":3,"name":"3단계","text":"[フォームを固定する]を押して、入力値をページにそのまま焼き付けます。"},{"@type":"HowToStep","position":4,"name":"4단계","text":"どこでも同じに見え、編集できない新しいPDFをダウンロードします。"}]},{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"平坦化すると何が良いのですか？","acceptedAnswer":{"@type":"Answer","text":"記入した値がページに固定されるので、受け取った人がうっかり消したり変えたりできず、どのビューアで開いても入力値が同じに見えます。「自分のパソコンでは見えるのに相手の画面では空に見える」という問題を防いでくれます。"}},{"@type":"Question","name":"文字が画像に変わってぼやけますか？","acceptedAnswer":{"@type":"Answer","text":"いいえ。ページを写真のように描き直す方式ではなく、入力値をページの内容としてそのまま固定します。文字の選択・コピー・検索が保たれ、画質もそのままです。"}},{"@type":"Question","name":"フォームのないPDFをアップロードするとどうなりますか？","acceptedAnswer":{"@type":"Answer","text":"入力フォームのないPDFは平坦化する対象がないため、「フォームがありません」とご案内します。すでに値が画像として印刷された文書なら、平坦化は不要です。"}},{"@type":"Question","name":"チェックボックスやラジオボタンも固定されますか？","acceptedAnswer":{"@type":"Answer","text":"はい。テキスト入力欄だけでなく、チェックボックス・選択ボタンなど、ほとんどのフォーム要素が現在の状態のまま固定されます。一部の特殊なフォームは対応できないことがあります。"}},{"@type":"Question","name":"元のファイルはそのまま残りますか？","acceptedAnswer":{"@type":"Answer","text":"はい。元ファイルには手を加えず、平坦化した結果を新しいPDFとして別に保存します。仕上がりが気に入らなければ、元ファイルを再度アップロードして作業できます。"}}]}]</script>
 </head>
 <body class="ws tp lp-page">
@@ -127,12 +127,10 @@
           </div>
         </div>
         <div class="tp-dock__panel" data-cat="convert" role="menu" aria-label="PDFを変換 도구" hidden>
-          <div class="tp-dock__panel-head">PDFを変換 <span>17</span></div>
+          <div class="tp-dock__panel-head">PDFを変換 <span>15</span></div>
           <div class="tp-dock__grid">
             <a class="tp-dock__item" href="../to-image/"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="4.5" width="17" height="15" rx="2.5"/><circle cx="8.5" cy="9.5" r="1.7"/><path d="M20.5 15.5 16 11 6 21"/></svg><span>PDF → 画像</span></a>
             <a class="tp-dock__item" href="../image-to-pdf/"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="4.5" width="17" height="15" rx="2.5"/><circle cx="8.5" cy="9.5" r="1.7"/><path d="M20.5 15.5 16 11 6 21"/></svg><span>画像 → PDF</span></a>
-            <a class="tp-dock__item" href="../pdf-to-docx/"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3.5H7.5a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h9a2 2 0 0 0 2-2V8l-5-4.5z"/><path d="M14 3.5V8h5"/><path d="M8.5 12h7M8.5 15h7M8.5 9h3"/></svg><span>워드 変換</span></a>
-            <a class="tp-dock__item" href="../pdf-to-hwpx/"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3.5H7.5a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h9a2 2 0 0 0 2-2V8l-5-4.5z"/><path d="M14 3.5V8h5"/><path d="M8.5 12h7M8.5 15h7M8.5 9h3"/></svg><span>한글 変換</span></a>
             <a class="tp-dock__item" href="../svg-to-png/"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="4.5" width="17" height="15" rx="2.5"/><circle cx="8.5" cy="9.5" r="1.7"/><path d="M20.5 15.5 16 11 6 21"/></svg><span>SVG → PNG</span></a>
             <a class="tp-dock__item" href="../gif-to-png/"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="4.5" width="17" height="15" rx="2.5"/><circle cx="8.5" cy="9.5" r="1.7"/><path d="M20.5 15.5 16 11 6 21"/></svg><span>GIF → PNG</span></a>
             <a class="tp-dock__item" href="../gif-to-jpg/"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="4.5" width="17" height="15" rx="2.5"/><circle cx="8.5" cy="9.5" r="1.7"/><path d="M20.5 15.5 16 11 6 21"/></svg><span>GIF → JPG</span></a>
@@ -216,7 +214,7 @@
         <p class="tp-lead">PDFフォームに値を記入して提出したのに、受け取る側のビューアでは入力した文字が見えなかったり、逆にまだ編集できる状態で開いて困ったりした経験はないでしょうか。「平坦化（flatten）」は、記入したフォームの値をページにそのまま焼き込み、もう編集されず、どのプログラムで開いても同じに見えるようにする作業です。このツールは各ページを画像に変えるのではなく、入力値をそのままページの内容として固定するので、文字の選択・検索が保たれ、画質も落ちません。ファイルをどこにもアップロードせず、お使いの端末内だけで処理するので、個人情報を含む申込書・同意書も安心して提出用に整えられます。</p>
 
         <div class="tp-sec" data-reveal>
-          <span class="tp-eyebrow">3분이면 끝나요</span>
+          <span class="tp-eyebrow">3分で終わります</span>
           <h2 class="tp-h2">PDFフォーム平坦化 How to use</h2>
           <ol class="tp-steps">
           <li><span class="tx">値を記入したフォームPDFをドラッグ＆ドロップするか、[ファイルを選択]でアップロードします。</span></li>
@@ -231,10 +229,12 @@
           <div class="tx"><strong>ファイルはサーバーに送信されません。</strong><span>フォームを見つけて値を固定し保存するすべての処理は、お使いのブラウザ（端末）の中だけで行われ、いかなるファイルもサーバーへ送信されません。氏名・マイナンバー・連絡先のような機密情報を含む申込書も、外部流出の心配なく提出用に整えられます。</span></div>
         </div>
 
+        
+
         <div class="tp-sec" data-reveal><span class="tp-eyebrow">補足</span><h2 class="tp-h2">こんなときに便利です</h2><p>役所・学校・会社に提出する申込書・同意書・契約書に値を記入したあと、受け取る側で修正できず、どこでも同じに見えるように整えるときに便利です。とくに複数人で回し読みする文書や、メールで送る書類のようにビューアがまちまちな状況で、入力値が消えたり変わったりする事故を防いでくれます。</p></div>
 
         <div class="tp-sec" data-reveal>
-          <span class="tp-eyebrow">궁금한 점</span>
+          <span class="tp-eyebrow">よくある質問</span>
           <h2 class="tp-h2">よくある質問</h2>
           <div class="ws-term tp-faqterm">
             <div class="ws-faqlist">

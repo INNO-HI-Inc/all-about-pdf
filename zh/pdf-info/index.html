@@ -44,7 +44,7 @@
   <link rel="preload" as="font" type="font/woff2" href="/assets/vendor/fonts/a2z-ExtraBold.woff2" crossorigin>
   <link rel="stylesheet" href="/assets/css/style.css?v=e16ae327">
   <script>document.documentElement.className+=" js";</script>
-  <link rel="stylesheet" href="/assets/css/workspace.css?v=bc74466e">
+  <link rel="stylesheet" href="/assets/css/workspace.css?v=c7bef4a8">
   <script type="application/ld+json">[{"@context":"https://schema.org","@type":"WebApplication","name":"查看PDF信息 - Everything PDF","url":"https://everything-pdf.site/pdf-info/","applicationCategory":"UtilitiesApplication","operatingSystem":"All","browserRequirements":"Requires JavaScript","inLanguage":"ko","isAccessibleForFree":true,"datePublished":"2026-06-04","dateModified":"2026-06-16","offers":{"@type":"Offer","price":"0","priceCurrency":"KRW"},"featureList":["페이지·용량·大小","메타데이터 확인","잠김 여부"],"publisher":{"@type":"Organization","name":"Everything PDF","url":"https://everything-pdf.site/"}},{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"홈","item":"https://everything-pdf.site/"},{"@type":"ListItem","position":2,"name":"查看PDF信息","item":"https://everything-pdf.site/pdf-info/"}]},{"@context":"https://schema.org","@type":"HowTo","name":"查看PDF信息 How to use","inLanguage":"ko","step":[{"@type":"HowToStep","position":1,"name":"1단계","text":"上传要查看信息的PDF文件。"},{"@type":"HowToStep","position":2,"name":"2단계","text":"页数和文件大小会以表格呈现。"},{"@type":"HowToStep","position":3,"name":"3단계","text":"查看页面尺寸（宽x高）以及标题·作者等元数据。"},{"@type":"HowToStep","position":4,"name":"4단계","text":"是否加密也能在同一屏里看清。"}]},{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"怎么查看PDF有多少页？","acceptedAnswer":{"@type":"Answer","text":"上传文件后，页数会直接显示在表格最上方。再厚的报告或扫描件，不用一页页翻，也能一次看清总页数。打印或提交前估算篇幅时很方便。"}},{"@type":"Question","name":"页面尺寸和大小也能知道吗？","acceptedAnswer":{"@type":"Answer","text":"可以。除了文件大小，还会以宽x高显示页面尺寸。是A4还是别的规格、是横向还是纵向都能看出来，有助于设置打印或对齐规格。"}},{"@type":"Question","name":"标题·作者这类元数据在哪儿看？","acceptedAnswer":{"@type":"Answer","text":"工具会把PDF里的标题、作者等元数据整理成表格展示。不过这些信息会因制作软件不同而可能为空，那时对应项就不显示或显示为空值。"}},{"@type":"Question","name":"能看出PDF是否加了密码吗？","acceptedAnswer":{"@type":"Answer","text":"可以，会一并显示是否加密。不过这个工具只读取并显示信息，并不解锁。若要用你知道的密码解除限制，请使用“PDF解锁”工具。"}},{"@type":"Question","name":"文件会上传到服务器吗？免费吗？","acceptedAnswer":{"@type":"Answer","text":"文件不会上传到服务器，只在你的设备上读取信息。免注册、免安装，完全免费，也没有水印或文件数量·大小限制。"}}]}]</script>
 </head>
 <body class="ws tp lp-page">
@@ -122,12 +122,10 @@
           </div>
         </div>
         <div class="tp-dock__panel" data-cat="convert" role="menu" aria-label="转换 PDF 도구" hidden>
-          <div class="tp-dock__panel-head">转换 PDF <span>17</span></div>
+          <div class="tp-dock__panel-head">转换 PDF <span>15</span></div>
           <div class="tp-dock__grid">
             <a class="tp-dock__item" href="../to-image/"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="4.5" width="17" height="15" rx="2.5"/><circle cx="8.5" cy="9.5" r="1.7"/><path d="M20.5 15.5 16 11 6 21"/></svg><span>PDF → 图片</span></a>
             <a class="tp-dock__item" href="../image-to-pdf/"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="4.5" width="17" height="15" rx="2.5"/><circle cx="8.5" cy="9.5" r="1.7"/><path d="M20.5 15.5 16 11 6 21"/></svg><span>图片 → PDF</span></a>
-            <a class="tp-dock__item" href="../pdf-to-docx/"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3.5H7.5a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h9a2 2 0 0 0 2-2V8l-5-4.5z"/><path d="M14 3.5V8h5"/><path d="M8.5 12h7M8.5 15h7M8.5 9h3"/></svg><span>워드 转换</span></a>
-            <a class="tp-dock__item" href="../pdf-to-hwpx/"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3.5H7.5a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h9a2 2 0 0 0 2-2V8l-5-4.5z"/><path d="M14 3.5V8h5"/><path d="M8.5 12h7M8.5 15h7M8.5 9h3"/></svg><span>한글 转换</span></a>
             <a class="tp-dock__item" href="../svg-to-png/"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="4.5" width="17" height="15" rx="2.5"/><circle cx="8.5" cy="9.5" r="1.7"/><path d="M20.5 15.5 16 11 6 21"/></svg><span>SVG → PNG</span></a>
             <a class="tp-dock__item" href="../gif-to-png/"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="4.5" width="17" height="15" rx="2.5"/><circle cx="8.5" cy="9.5" r="1.7"/><path d="M20.5 15.5 16 11 6 21"/></svg><span>GIF → PNG</span></a>
             <a class="tp-dock__item" href="../gif-to-jpg/"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="4.5" width="17" height="15" rx="2.5"/><circle cx="8.5" cy="9.5" r="1.7"/><path d="M20.5 15.5 16 11 6 21"/></svg><span>GIF → JPG</span></a>
@@ -211,7 +209,7 @@
         <p class="tp-lead">这个工具会把你上传的PDF有多少页、多大、页面尺寸以及标题·作者等信息汇成一张表，还会告诉你是否设了密码。它不改动、不下载文件，只读取信息展示出来；所有处理都只在你的浏览器里完成，不会传到服务器。</p>
 
         <div class="tp-sec" data-reveal>
-          <span class="tp-eyebrow">3분이면 끝나요</span>
+          <span class="tp-eyebrow">三步即可完成</span>
           <h2 class="tp-h2">查看PDF信息 How to use</h2>
           <ol class="tp-steps">
           <li><span class="tx">上传要查看信息的PDF文件。</span></li>
@@ -226,10 +224,12 @@
           <div class="tx"><strong>您的文件绝不会上传到任何服务器。</strong><span>读取信息的整个过程都只在你的浏览器、也就是你的设备上完成。文件不会上传到服务器，内容不会被改动或另存，只在屏幕上显示信息。查看合同、办事材料这类敏感PDF的信息时，也不会外泄，可以放心使用。</span></div>
         </div>
 
+        
+
         <div class="tp-sec" data-reveal><span class="tp-eyebrow">说明</span><h2 class="tp-h2">这些场景用着方便</h2><p>想预估邮件收到的PDF有多少页、打印要用多少纸时很好用。想确认是否符合提交方要求的大小或规格（如A4）时，或想先弄清收到的文档是否加了密码时，也很合适。当你不想打开或改动文件、只想快速看看信息时，就用它。</p></div>
 
         <div class="tp-sec" data-reveal>
-          <span class="tp-eyebrow">궁금한 점</span>
+          <span class="tp-eyebrow">常见问题</span>
           <h2 class="tp-h2">常见问题</h2>
           <div class="ws-term tp-faqterm">
             <div class="ws-faqlist">

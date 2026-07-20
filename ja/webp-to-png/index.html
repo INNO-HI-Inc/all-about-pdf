@@ -44,7 +44,7 @@
   <link rel="preload" as="font" type="font/woff2" href="/assets/vendor/fonts/a2z-ExtraBold.woff2" crossorigin>
   <link rel="stylesheet" href="/assets/css/style.css?v=e16ae327">
   <script>document.documentElement.className+=" js";</script>
-  <link rel="stylesheet" href="/assets/css/workspace.css?v=bc74466e">
+  <link rel="stylesheet" href="/assets/css/workspace.css?v=c7bef4a8">
   <script type="application/ld+json">[{"@context":"https://schema.org","@type":"WebApplication","name":"WEBP PNG 変換 - Everything PDF","url":"https://everything-pdf.site/webp-to-png/","applicationCategory":"UtilitiesApplication","operatingSystem":"All","browserRequirements":"Requires JavaScript","inLanguage":"ko","isAccessibleForFree":true,"datePublished":"2026-06-04","dateModified":"2026-06-16","offers":{"@type":"Offer","price":"0","priceCurrency":"KRW"},"featureList":["WEBP → PNG","어디서나 열림","透明 유지"],"publisher":{"@type":"Organization","name":"Everything PDF","url":"https://everything-pdf.site/"}},{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"홈","item":"https://everything-pdf.site/"},{"@type":"ListItem","position":2,"name":"WEBP PNG 変換","item":"https://everything-pdf.site/webp-to-png/"}]},{"@context":"https://schema.org","@type":"HowTo","name":"WEBP PNG 変換 How to use","inLanguage":"ko","step":[{"@type":"HowToStep","position":1,"name":"1단계","text":"変換したいWEBPファイルをドラッグ＆ドロップするか選びます。複数個も一度にできます。"},{"@type":"HowToStep","position":2,"name":"2단계","text":"変換ボタンを押すと、キャンバスに描き直してPNGに変換します。"},{"@type":"HowToStep","position":3,"name":"3단계","text":"透明な背景はそのまま保たれて保存されます。"},{"@type":"HowToStep","position":4,"name":"4단계","text":"作られたPNGをダウンロードします。複数枚ならZIPにまとめられます。"}]},{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"なぜWEBPをPNGに変換するのですか？","acceptedAnswer":{"@type":"Answer","text":"WEBPはウェブで容量を減らすために使われる形式なので、古いソフトや一部の文書編集ソフト・メッセンジャーでは開けないことがあります。PNGに変換すれば、どこでも画像としてすぐに開いて貼り付けられます。"}},{"@type":"Question","name":"画質は落ちませんか？","acceptedAnswer":{"@type":"Answer","text":"PNGは可逆（無損失）形式なので、WEBPを描き直すときに見えているまま画質を損なわず保存されます。ただし元のWEBPが非可逆（不可逆）圧縮で保存されていた場合、失われた情報が再び戻ることはありません。"}},{"@type":"Question","name":"透明背景は保たれますか？","acceptedAnswer":{"@type":"Answer","text":"はい。透明な部分のあるWEBPは、その透明さをそのまま活かしたPNGになります。特別な設定なしで透明背景が保たれます。"}},{"@type":"Question","name":"複数個を一度に変換できますか？","acceptedAnswer":{"@type":"Answer","text":"はい、WEBPを複数枚ドラッグして一度に変換できます。1枚ならそのままダウンロード、複数枚ならZIPファイルにまとめて受け取れます。"}},{"@type":"Question","name":"動くWEBP（アニメーション）も変換できますか？","acceptedAnswer":{"@type":"Answer","text":"動くWEBPは最初の1コマだけがPNGとして保存されます。PNGは1枚の静止画像の形式なので、動き全体を収めることはできません。"}}]}]</script>
 </head>
 <body class="ws tp lp-page">
@@ -125,12 +125,10 @@
           </div>
         </div>
         <div class="tp-dock__panel" data-cat="convert" role="menu" aria-label="PDFを変換 도구" hidden>
-          <div class="tp-dock__panel-head">PDFを変換 <span>17</span></div>
+          <div class="tp-dock__panel-head">PDFを変換 <span>15</span></div>
           <div class="tp-dock__grid">
             <a class="tp-dock__item" href="../to-image/"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="4.5" width="17" height="15" rx="2.5"/><circle cx="8.5" cy="9.5" r="1.7"/><path d="M20.5 15.5 16 11 6 21"/></svg><span>PDF → 画像</span></a>
             <a class="tp-dock__item" href="../image-to-pdf/"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="4.5" width="17" height="15" rx="2.5"/><circle cx="8.5" cy="9.5" r="1.7"/><path d="M20.5 15.5 16 11 6 21"/></svg><span>画像 → PDF</span></a>
-            <a class="tp-dock__item" href="../pdf-to-docx/"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3.5H7.5a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h9a2 2 0 0 0 2-2V8l-5-4.5z"/><path d="M14 3.5V8h5"/><path d="M8.5 12h7M8.5 15h7M8.5 9h3"/></svg><span>워드 変換</span></a>
-            <a class="tp-dock__item" href="../pdf-to-hwpx/"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3.5H7.5a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h9a2 2 0 0 0 2-2V8l-5-4.5z"/><path d="M14 3.5V8h5"/><path d="M8.5 12h7M8.5 15h7M8.5 9h3"/></svg><span>한글 変換</span></a>
             <a class="tp-dock__item" href="../svg-to-png/"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="4.5" width="17" height="15" rx="2.5"/><circle cx="8.5" cy="9.5" r="1.7"/><path d="M20.5 15.5 16 11 6 21"/></svg><span>SVG → PNG</span></a>
             <a class="tp-dock__item" href="../gif-to-png/"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="4.5" width="17" height="15" rx="2.5"/><circle cx="8.5" cy="9.5" r="1.7"/><path d="M20.5 15.5 16 11 6 21"/></svg><span>GIF → PNG</span></a>
             <a class="tp-dock__item" href="../gif-to-jpg/"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="4.5" width="17" height="15" rx="2.5"/><circle cx="8.5" cy="9.5" r="1.7"/><path d="M20.5 15.5 16 11 6 21"/></svg><span>GIF → JPG</span></a>
@@ -214,7 +212,7 @@
         <p class="tp-lead">ウェブで保存したWEBP画像が一部のソフトやチャットで開けないとき、PNGに変換すればどこでもすぐに開けます。キャンバスに描き直して可逆で変換し、透明背景もそのまま残します。ファイルはサーバーにアップせず、ブラウザ（端末）内だけで処理するので安心してお使いください。</p>
 
         <div class="tp-sec" data-reveal>
-          <span class="tp-eyebrow">3분이면 끝나요</span>
+          <span class="tp-eyebrow">3分で終わります</span>
           <h2 class="tp-h2">WEBP PNG 変換 How to use</h2>
           <ol class="tp-steps">
           <li><span class="tx">変換したいWEBPファイルをドラッグ＆ドロップするか選びます。複数個も一度にできます。</span></li>
@@ -229,10 +227,12 @@
           <div class="tx"><strong>ファイルはサーバーに送信されません。</strong><span>変換はすべてブラウザ（端末）内で行われ、終わって画面を閉じるとすぐに消えます。いかなるファイルもサーバーへ送信されないので、未公開のデザインや個人的な写真のような機微な画像も、安心して変換できます。</span></div>
         </div>
 
+        
+
         <div class="tp-sec" data-reveal><span class="tp-eyebrow">補足</span><h2 class="tp-h2">こんなときに便利です</h2><p>ウェブサイトで保存したWEBP画像がチャット・Notion・プレゼン資料で開けないとき、古い編集ソフトに入れる必要があるとき、透明背景のロゴをPNGで受け取りたいときに便利です。複数枚を一度にドラッグしてZIPで受け取れば、整理も簡単です。</p></div>
 
         <div class="tp-sec" data-reveal>
-          <span class="tp-eyebrow">궁금한 점</span>
+          <span class="tp-eyebrow">よくある質問</span>
           <h2 class="tp-h2">よくある質問</h2>
           <div class="ws-term tp-faqterm">
             <div class="ws-faqlist">

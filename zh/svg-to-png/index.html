@@ -44,7 +44,7 @@
   <link rel="preload" as="font" type="font/woff2" href="/assets/vendor/fonts/a2z-ExtraBold.woff2" crossorigin>
   <link rel="stylesheet" href="/assets/css/style.css?v=e16ae327">
   <script>document.documentElement.className+=" js";</script>
-  <link rel="stylesheet" href="/assets/css/workspace.css?v=bc74466e">
+  <link rel="stylesheet" href="/assets/css/workspace.css?v=c7bef4a8">
   <script type="application/ld+json">[{"@context":"https://schema.org","@type":"WebApplication","name":"SVG转PNG - Everything PDF","url":"https://everything-pdf.site/svg-to-png/","applicationCategory":"UtilitiesApplication","operatingSystem":"All","browserRequirements":"Requires JavaScript","inLanguage":"ko","isAccessibleForFree":true,"datePublished":"2026-06-04","dateModified":"2026-06-16","offers":{"@type":"Offer","price":"0","priceCurrency":"KRW"},"featureList":["SVG → PNG 转换","배율(고画质) 可选","여러 장 한 번에"],"publisher":{"@type":"Organization","name":"Everything PDF","url":"https://everything-pdf.site/"}},{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"홈","item":"https://everything-pdf.site/"},{"@type":"ListItem","position":2,"name":"SVG转PNG","item":"https://everything-pdf.site/svg-to-png/"}]},{"@context":"https://schema.org","@type":"HowTo","name":"SVG转PNG How to use","inLanguage":"ko","step":[{"@type":"HowToStep","position":1,"name":"1단계","text":"拖入或选择要转换的SVG文件，多个也能一次搞定。"},{"@type":"HowToStep","position":2,"name":"2단계","text":"设定输出倍率（1~4倍）。越大，PNG越清晰越大。"},{"@type":"HowToStep","position":3,"name":"3단계","text":"把背景选为透明或白色。"},{"@type":"HowToStep","position":4,"name":"4단계","text":"点转换按钮下载PNG。多张会打包成ZIP。"}]},{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"为什么要把SVG转成PNG？","acceptedAnswer":{"@type":"Answer","text":"SVG在微信、博客、一些文档编辑器等不支持矢量的地方可能显示不出来。转成PNG后，无论在哪儿都能像图片一样贴进去，透明背景也能原样保留。"}},{"@type":"Question","name":"画质会模糊吗？","acceptedAnswer":{"@type":"Answer","text":"SVG是矢量，调高倍率也不会模糊。把输出倍率提到2~4倍，即便用于大屏或打印也能得到清晰的PNG。若只是小尺寸使用，1~2倍就够了。"}},{"@type":"Question","name":"会保存为透明背景吗？","acceptedAnswer":{"@type":"Answer","text":"会。把背景设为“透明”，就会得到保留SVG透明部分的PNG。若需要白底，选“白色”即可。"}},{"@type":"Question","name":"能一次转换多个吗？","acceptedAnswer":{"@type":"Answer","text":"可以，把多张SVG拖进来就能一次转换。单张直接下载，多张打包成ZIP。"}},{"@type":"Question","name":"有转换不了的SVG吗？","acceptedAnswer":{"@type":"Answer","text":"引用了外部字体或网络图片的SVG，由于不向外部传输文件的策略，那部分可能显示为空白。字体方面，用事先转成轮廓（path）的SVG就能一模一样地呈现。"}}]}]</script>
 </head>
 <body class="ws tp lp-page">
@@ -141,12 +141,10 @@
           </div>
         </div>
         <div class="tp-dock__panel" data-cat="convert" role="menu" aria-label="转换 PDF 도구" hidden>
-          <div class="tp-dock__panel-head">转换 PDF <span>17</span></div>
+          <div class="tp-dock__panel-head">转换 PDF <span>15</span></div>
           <div class="tp-dock__grid">
             <a class="tp-dock__item" href="../to-image/"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="4.5" width="17" height="15" rx="2.5"/><circle cx="8.5" cy="9.5" r="1.7"/><path d="M20.5 15.5 16 11 6 21"/></svg><span>PDF → 图片</span></a>
             <a class="tp-dock__item" href="../image-to-pdf/"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="4.5" width="17" height="15" rx="2.5"/><circle cx="8.5" cy="9.5" r="1.7"/><path d="M20.5 15.5 16 11 6 21"/></svg><span>图片 → PDF</span></a>
-            <a class="tp-dock__item" href="../pdf-to-docx/"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3.5H7.5a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h9a2 2 0 0 0 2-2V8l-5-4.5z"/><path d="M14 3.5V8h5"/><path d="M8.5 12h7M8.5 15h7M8.5 9h3"/></svg><span>워드 转换</span></a>
-            <a class="tp-dock__item" href="../pdf-to-hwpx/"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3.5H7.5a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h9a2 2 0 0 0 2-2V8l-5-4.5z"/><path d="M14 3.5V8h5"/><path d="M8.5 12h7M8.5 15h7M8.5 9h3"/></svg><span>한글 转换</span></a>
             <a class="tp-dock__item is-active" href="../svg-to-png/" aria-current="page"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="4.5" width="17" height="15" rx="2.5"/><circle cx="8.5" cy="9.5" r="1.7"/><path d="M20.5 15.5 16 11 6 21"/></svg><span>SVG → PNG</span></a>
             <a class="tp-dock__item" href="../gif-to-png/"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="4.5" width="17" height="15" rx="2.5"/><circle cx="8.5" cy="9.5" r="1.7"/><path d="M20.5 15.5 16 11 6 21"/></svg><span>GIF → PNG</span></a>
             <a class="tp-dock__item" href="../gif-to-jpg/"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="4.5" width="17" height="15" rx="2.5"/><circle cx="8.5" cy="9.5" r="1.7"/><path d="M20.5 15.5 16 11 6 21"/></svg><span>GIF → JPG</span></a>
@@ -230,7 +228,7 @@
         <p class="tp-lead">把logo、图标这类SVG矢量文件转成PNG图片，就能直接传到博客·演示文稿·微信。调高倍率也不会模糊、依旧清晰，还能选择保留透明背景或用白底保存。文件不上传服务器，只在你的浏览器（设备）里处理，尽管放心用。</p>
 
         <div class="tp-sec" data-reveal>
-          <span class="tp-eyebrow">3분이면 끝나요</span>
+          <span class="tp-eyebrow">三步即可完成</span>
           <h2 class="tp-h2">SVG转PNG How to use</h2>
           <ol class="tp-steps">
           <li><span class="tx">拖入或选择要转换的SVG文件，多个也能一次搞定。</span></li>
@@ -245,10 +243,12 @@
           <div class="tx"><strong>您的文件绝不会上传到任何服务器。</strong><span>转换全程都在你的浏览器（设备）里完成，结束后一关闭页面即刻消失。任何文件都不会传到服务器，所以公司logo、未公开设计这类敏感SVG也能放心转换。</span></div>
         </div>
 
+        
+
         <div class="tp-sec" data-reveal><span class="tp-eyebrow">说明</span><h2 class="tp-h2">这些场景很好用</h2><p>把设计工具（Figma、Illustrator）导出的logo SVG贴进演示文稿时，把图标传到微信·Notion时，或把网页用矢量导出成打印用高清PNG时，都很方便。只要调高倍率，同一个SVG就能从小缩略图到大横幅都不模糊。</p></div>
 
         <div class="tp-sec" data-reveal>
-          <span class="tp-eyebrow">궁금한 점</span>
+          <span class="tp-eyebrow">常见问题</span>
           <h2 class="tp-h2">常见问题</h2>
           <div class="ws-term tp-faqterm">
             <div class="ws-faqlist">

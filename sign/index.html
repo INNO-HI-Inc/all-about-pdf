@@ -44,7 +44,7 @@
   <link rel="preload" as="font" type="font/woff2" href="../assets/vendor/fonts/a2z-ExtraBold.woff2" crossorigin>
   <link rel="stylesheet" href="../assets/css/style.css?v=e16ae327">
   <script>document.documentElement.className+=" js";</script>
-  <link rel="stylesheet" href="../assets/css/workspace.css?v=bc74466e">
+  <link rel="stylesheet" href="../assets/css/workspace.css?v=c7bef4a8">
   <script type="application/ld+json">[{"@context":"https://schema.org","@type":"WebApplication","name":"PDF 서명 넣기 - PDF의 모든 것","url":"https://everything-pdf.site/sign/","applicationCategory":"UtilitiesApplication","operatingSystem":"All","browserRequirements":"Requires JavaScript","inLanguage":"ko","isAccessibleForFree":true,"datePublished":"2026-06-04","dateModified":"2026-06-17","offers":{"@type":"Offer","price":"0","priceCurrency":"KRW"},"featureList":["그리기·이미지·타이핑","미리보기에 드래그 배치","도장·사인 모두"],"publisher":{"@type":"Organization","name":"PDF의 모든 것","url":"https://everything-pdf.site/"}},{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"홈","item":"https://everything-pdf.site/"},{"@type":"ListItem","position":2,"name":"PDF 서명 넣기","item":"https://everything-pdf.site/sign/"}]},{"@context":"https://schema.org","@type":"HowTo","name":"PDF 서명 넣기 사용 방법","inLanguage":"ko","step":[{"@type":"HowToStep","position":1,"name":"1단계","text":"서명할 PDF를 끌어다 놓거나 [파일 선택]으로 올려요."},{"@type":"HowToStep","position":2,"name":"2단계","text":"그리기·이미지·타이핑 중에서 골라 서명을 만들어요."},{"@type":"HowToStep","position":3,"name":"3단계","text":"[페이지에 서명 올리기]를 누르고, 미리보기에서 원하는 자리에 끌어다 놓고 모서리로 크기를 맞춰요."},{"@type":"HowToStep","position":4,"name":"4단계","text":"[서명 적용 후 다운로드]를 눌러 서명이 들어간 새 PDF를 내려받아요."}]},{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"법적 효력이 있는 전자서명인가요?","acceptedAnswer":{"@type":"Answer","text":"이 도구는 서명 이미지를 PDF 위에 그려 넣는 방식으로, 공인인증서 기반의 전자서명(디지털 서명)과는 다릅니다. 일상적인 동의서·확인서·서식 제출처럼 손으로 서명한 것과 같은 용도로 쓰기 좋습니다. 법적 구속력이 중요한 계약이라면 상대방이 요구하는 전자서명 방식을 따르세요."}},{"@type":"Question","name":"도장 이미지는 어떻게 준비하나요?","acceptedAnswer":{"@type":"Answer","text":"도장을 흰 종이에 찍어 사진을 찍거나 스캔한 뒤, 배경을 지운 투명 PNG로 만들어 올리면 깔끔하게 들어갑니다. 흰 배경 그대로 올리면 사각형 배경째 들어가니, 가능하면 투명 배경 PNG를 사용하세요."}},{"@type":"Question","name":"한 문서에 여러 곳에 서명할 수 있나요?","acceptedAnswer":{"@type":"Answer","text":"네. 서명을 만든 뒤 [페이지에 서명 올리기]를 여러 번 눌러 여러 개를 배치할 수 있고, 페이지를 스크롤하며 원하는 페이지마다 서명을 넣을 수 있습니다. 각 서명은 따로 위치와 크기를 조절할 수 있어요."}},{"@type":"Question","name":"서명 위치나 크기를 잘못 넣으면 어떻게 하나요?","acceptedAnswer":{"@type":"Answer","text":"다운로드 전이라면 미리보기에서 서명을 다시 끌어 옮기거나 모서리를 잡아 크기를 바꿀 수 있고, 서명 위의 ✕ 버튼으로 지울 수 있습니다. 원본은 그대로 두고 결과만 새 파일로 저장하니, 마음에 들 때까지 자유롭게 조절하세요."}},{"@type":"Question","name":"정말 무료인가요? 워터마크나 횟수 제한이 있나요?","acceptedAnswer":{"@type":"Answer","text":"완전 무료이며 워터마크가 찍히지 않습니다. 사용 횟수나 파일 용량 제한, 회원가입도 없습니다. 필요할 때마다 자유롭게 PDF에 서명을 넣으세요."}}]}]</script>
 </head>
 <body class="ws tp lp-page">
@@ -260,6 +260,14 @@
         <div class="tp-secure" data-reveal>
           <span class="ic"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="9.5" rx="2"/><path d="M8 11V7.5a4 4 0 0 1 8 0V11"/></svg></span>
           <div class="tx"><strong>파일은 서버로 전송되지 않습니다.</strong><span>서명을 만들고 PDF에 합쳐 저장하는 모든 과정은 내 브라우저(기기) 안에서만 이뤄지며, 원본 파일도 서명 이미지도 서버로 전송되지 않습니다. 그래서 계약서·동의서처럼 외부에 올리기 꺼려지는 문서도 업로드 걱정 없이 서명할 수 있습니다.</span></div>
+        </div>
+
+        <div class="tp-sec tp-limits" data-reveal>
+          <span class="tp-eyebrow">미리 알아두기</span>
+          <h2 class="tp-h2">이 도구로 안 되는 것</h2>
+          <ul class="tp-limits__list">
+            <li>법적 효력을 보장하는 전자서명(공인인증)이 아닙니다. 이미지로 넣는 서명입니다.</li>
+          </ul>
         </div>
 
         <div class="tp-sec" data-reveal><span class="tp-eyebrow">참고</span><h2 class="tp-h2">이럴 때 쓰면 좋아요</h2><p>메일로 받은 계약서·동의서에 사인을 넣어 바로 회신할 때, 출력→서명→재스캔 과정을 건너뛰고 싶을 때, 회사 도장이나 직인을 문서에 깔끔하게 찍어야 할 때 쓰기 좋습니다. 프린터와 스캐너 없이도 화면에서 바로 서명을 끝낼 수 있고, 파일을 외부에 올리지 않아 민감한 문서도 안심하고 처리할 수 있어요.</p></div>

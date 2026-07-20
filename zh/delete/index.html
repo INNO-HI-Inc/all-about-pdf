@@ -44,7 +44,7 @@
   <link rel="preload" as="font" type="font/woff2" href="/assets/vendor/fonts/a2z-ExtraBold.woff2" crossorigin>
   <link rel="stylesheet" href="/assets/css/style.css?v=e16ae327">
   <script>document.documentElement.className+=" js";</script>
-  <link rel="stylesheet" href="/assets/css/workspace.css?v=bc74466e">
+  <link rel="stylesheet" href="/assets/css/workspace.css?v=c7bef4a8">
   <script type="application/ld+json">[{"@context":"https://schema.org","@type":"WebApplication","name":"删除PDF页面 - Everything PDF","url":"https://everything-pdf.site/delete/","applicationCategory":"UtilitiesApplication","operatingSystem":"All","browserRequirements":"Requires JavaScript","inLanguage":"ko","isAccessibleForFree":true,"datePublished":"2026-06-04","dateModified":"2026-06-11","offers":{"@type":"Offer","price":"0","priceCurrency":"KRW"},"featureList":["특정 删除页面","여러 페이지 일괄","원본 보존"],"publisher":{"@type":"Organization","name":"Everything PDF","url":"https://everything-pdf.site/"}},{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"홈","item":"https://everything-pdf.site/"},{"@type":"ListItem","position":2,"name":"删除PDF页面","item":"https://everything-pdf.site/delete/"}]},{"@context":"https://schema.org","@type":"HowTo","name":"删除PDF页面 How to use","inLanguage":"ko","step":[{"@type":"HowToStep","position":1,"name":"1단계","text":"把PDF文件放到页面上。"},{"@type":"HowToStep","position":2,"name":"2단계","text":"输入要删除的页码(例如:2, 4, 6-8)。"},{"@type":"HowToStep","position":3,"name":"3단계","text":"通过预览确认要保留的页面。"},{"@type":"HowToStep","position":4,"name":"4단계","text":"点击删除按钮。"},{"@type":"HowToStep","position":5,"name":"5단계","text":"下载去掉这些页面后的新PDF。"}]},{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"可以只删除特定页面吗?","acceptedAnswer":{"@type":"Answer","text":"可以,只需输入想删除的页码即可。例如只想去掉第3页,就输入3。其余页面会按原顺序保留。"}},{"@type":"Question","name":"想一次删除多个页面该怎么做?","acceptedAnswer":{"@type":"Answer","text":"用逗号分开写页码,或用范围表示即可。例如输入 2, 4, 6-8,就会一次删除第2、4页以及第6到第8页。"}},{"@type":"Question","name":"可以只挑出扫描时产生的空白页删除吗?","acceptedAnswer":{"@type":"Answer","text":"工具不会自动查找空白页,但你可以在预览中确认空白页的页码后手动输入。只填这些页码去删除,就能干净地剔除空白页。"}},{"@type":"Question","name":"原文件会保持不变吗?","acceptedAnswer":{"@type":"Answer","text":"会,原文件不受任何改动,删除页面后的结果会另存为新文件。你可以对照原文件和结果后再决定,放心使用。"}},{"@type":"Question","name":"真的免费吗?有文件数量或容量限制吗?","acceptedAnswer":{"@type":"Answer","text":"完全免费,不会打水印。没有文件数量、容量限制,也无需注册。需要时随时都能删除页面。"}}]}]</script>
 </head>
 <body class="ws tp lp-page">
@@ -130,12 +130,10 @@
           </div>
         </div>
         <div class="tp-dock__panel" data-cat="convert" role="menu" aria-label="转换 PDF 도구" hidden>
-          <div class="tp-dock__panel-head">转换 PDF <span>17</span></div>
+          <div class="tp-dock__panel-head">转换 PDF <span>15</span></div>
           <div class="tp-dock__grid">
             <a class="tp-dock__item" href="../to-image/"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="4.5" width="17" height="15" rx="2.5"/><circle cx="8.5" cy="9.5" r="1.7"/><path d="M20.5 15.5 16 11 6 21"/></svg><span>PDF → 图片</span></a>
             <a class="tp-dock__item" href="../image-to-pdf/"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="4.5" width="17" height="15" rx="2.5"/><circle cx="8.5" cy="9.5" r="1.7"/><path d="M20.5 15.5 16 11 6 21"/></svg><span>图片 → PDF</span></a>
-            <a class="tp-dock__item" href="../pdf-to-docx/"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3.5H7.5a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h9a2 2 0 0 0 2-2V8l-5-4.5z"/><path d="M14 3.5V8h5"/><path d="M8.5 12h7M8.5 15h7M8.5 9h3"/></svg><span>워드 转换</span></a>
-            <a class="tp-dock__item" href="../pdf-to-hwpx/"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3.5H7.5a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h9a2 2 0 0 0 2-2V8l-5-4.5z"/><path d="M14 3.5V8h5"/><path d="M8.5 12h7M8.5 15h7M8.5 9h3"/></svg><span>한글 转换</span></a>
             <a class="tp-dock__item" href="../svg-to-png/"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="4.5" width="17" height="15" rx="2.5"/><circle cx="8.5" cy="9.5" r="1.7"/><path d="M20.5 15.5 16 11 6 21"/></svg><span>SVG → PNG</span></a>
             <a class="tp-dock__item" href="../gif-to-png/"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="4.5" width="17" height="15" rx="2.5"/><circle cx="8.5" cy="9.5" r="1.7"/><path d="M20.5 15.5 16 11 6 21"/></svg><span>GIF → PNG</span></a>
             <a class="tp-dock__item" href="../gif-to-jpg/"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="4.5" width="17" height="15" rx="2.5"/><circle cx="8.5" cy="9.5" r="1.7"/><path d="M20.5 15.5 16 11 6 21"/></svg><span>GIF → JPG</span></a>
@@ -219,7 +217,7 @@
         <p class="tp-lead">扫描时混入的空白页、报告末尾多余的页面,现在只需输入页码就能删掉。剔除要删除的页面后,另存为干净的新PDF。没有水印,也没有数量限制。</p>
 
         <div class="tp-sec" data-reveal>
-          <span class="tp-eyebrow">3분이면 끝나요</span>
+          <span class="tp-eyebrow">三步即可完成</span>
           <h2 class="tp-h2">删除PDF页面 How to use</h2>
           <ol class="tp-steps">
           <li><span class="tx">把PDF文件放到页面上。</span></li>
@@ -235,11 +233,13 @@
           <div class="tx"><strong>您的文件绝不会上传到任何服务器。</strong><span>所有处理都只在用户的浏览器,也就是本机内完成。因此,合同、认购材料、政务文书这类敏感文件也无需上传到外部即可删除页面。</span></div>
         </div>
 
+        
+
         <div class="tp-sec" data-reveal><span class="tp-eyebrow">说明</span><h2 class="tp-h2">这些情况很方便</h2><p>扫描作业或报告时混入了空白页,合同中只需去掉末尾那张签名页,或整理政务材料中不需要的说明页时,都很好用。只要页码填准确,就能快速删掉你想去掉的页面。</p></div>
         <div class="tp-sec" data-reveal><span class="tp-eyebrow">说明</span><h2 class="tp-h2">删除前确认一下更稳妥</h2><p>删除前请先在预览中确认要保留的页面再进行。即使填错页码,原文件也不受影响,可以重新再试。双面扫描件的正反页码会一起进入,建议再核对一下删除范围。</p></div>
 
         <div class="tp-sec" data-reveal>
-          <span class="tp-eyebrow">궁금한 점</span>
+          <span class="tp-eyebrow">常见问题</span>
           <h2 class="tp-h2">常见问题</h2>
           <div class="ws-term tp-faqterm">
             <div class="ws-faqlist">

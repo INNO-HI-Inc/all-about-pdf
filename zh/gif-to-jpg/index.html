@@ -44,7 +44,7 @@
   <link rel="preload" as="font" type="font/woff2" href="/assets/vendor/fonts/a2z-ExtraBold.woff2" crossorigin>
   <link rel="stylesheet" href="/assets/css/style.css?v=e16ae327">
   <script>document.documentElement.className+=" js";</script>
-  <link rel="stylesheet" href="/assets/css/workspace.css?v=bc74466e">
+  <link rel="stylesheet" href="/assets/css/workspace.css?v=c7bef4a8">
   <script type="application/ld+json">[{"@context":"https://schema.org","@type":"WebApplication","name":"GIF转JPG - Everything PDF","url":"https://everything-pdf.site/gif-to-jpg/","applicationCategory":"UtilitiesApplication","operatingSystem":"All","browserRequirements":"Requires JavaScript","inLanguage":"ko","isAccessibleForFree":true,"datePublished":"2026-06-04","dateModified":"2026-06-17","offers":{"@type":"Offer","price":"0","priceCurrency":"KRW"},"featureList":["GIF → JPG","첫 장면 정지","용량↓"],"publisher":{"@type":"Organization","name":"Everything PDF","url":"https://everything-pdf.site/"}},{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"홈","item":"https://everything-pdf.site/"},{"@type":"ListItem","position":2,"name":"GIF转JPG","item":"https://everything-pdf.site/gif-to-jpg/"}]},{"@context":"https://schema.org","@type":"HowTo","name":"GIF转JPG How to use","inLanguage":"ko","step":[{"@type":"HowToStep","position":1,"name":"1단계","text":"拖入要转换的GIF图片,或点击[选择文件]上传,支持多张一次处理。"},{"@type":"HowToStep","position":2,"name":"2단계","text":"选择想要的画质。越高越清晰,体积也越大。"},{"@type":"HowToStep","position":3,"name":"3단계","text":"点击[转为JPG]开始转换。透明区域会填充为白色背景。"},{"@type":"HowToStep","position":4,"name":"4단계","text":"单张直接下载JPG,多张则打包成ZIP下载。"}]},{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"动态GIF也能转换吗?","acceptedAnswer":{"@type":"Answer","text":"动态GIF只会把首帧(第一帧)保存为JPG静态图片。JPG是无法承载动画的格式,所以动画不会保留。可以理解为转换成一张静止的图片。"}},{"@type":"Question","name":"透明区域会变成什么样?","acceptedAnswer":{"@type":"Answer","text":"JPG不支持透明,所以GIF中原本透明的区域会填充为白色背景。如果需要保留透明背景,请改用[GIF转PNG],PNG会保留透明效果。"}},{"@type":"Question","name":"画质该怎么选?","acceptedAnswer":{"@type":"Answer","text":"提高画质会更清晰但体积更大,降低画质则更轻便但细节减少。网页上传或邮件附件建议用中等画质,打印或存档建议用高画质。按用途调整即可。"}},{"@type":"Question","name":"可以一次转换多张吗?","acceptedAnswer":{"@type":"Answer","text":"可以。一次上传多张GIF,会全部转成JPG后打包成一个ZIP文件供你下载,无需一张张保存,一次就能整理完。"}},{"@type":"Question","name":"真的免费吗?会有水印或次数限制吗?","acceptedAnswer":{"@type":"Answer","text":"完全免费,不会打水印。没有转换次数、文件容量限制,也无需注册。需要时随时都能把GIF转成JPG。"}}]}]</script>
 </head>
 <body class="ws tp lp-page">
@@ -129,12 +129,10 @@
           </div>
         </div>
         <div class="tp-dock__panel" data-cat="convert" role="menu" aria-label="转换 PDF 도구" hidden>
-          <div class="tp-dock__panel-head">转换 PDF <span>17</span></div>
+          <div class="tp-dock__panel-head">转换 PDF <span>15</span></div>
           <div class="tp-dock__grid">
             <a class="tp-dock__item" href="../to-image/"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="4.5" width="17" height="15" rx="2.5"/><circle cx="8.5" cy="9.5" r="1.7"/><path d="M20.5 15.5 16 11 6 21"/></svg><span>PDF → 图片</span></a>
             <a class="tp-dock__item" href="../image-to-pdf/"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="4.5" width="17" height="15" rx="2.5"/><circle cx="8.5" cy="9.5" r="1.7"/><path d="M20.5 15.5 16 11 6 21"/></svg><span>图片 → PDF</span></a>
-            <a class="tp-dock__item" href="../pdf-to-docx/"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3.5H7.5a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h9a2 2 0 0 0 2-2V8l-5-4.5z"/><path d="M14 3.5V8h5"/><path d="M8.5 12h7M8.5 15h7M8.5 9h3"/></svg><span>워드 转换</span></a>
-            <a class="tp-dock__item" href="../pdf-to-hwpx/"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3.5H7.5a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h9a2 2 0 0 0 2-2V8l-5-4.5z"/><path d="M14 3.5V8h5"/><path d="M8.5 12h7M8.5 15h7M8.5 9h3"/></svg><span>한글 转换</span></a>
             <a class="tp-dock__item" href="../svg-to-png/"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="4.5" width="17" height="15" rx="2.5"/><circle cx="8.5" cy="9.5" r="1.7"/><path d="M20.5 15.5 16 11 6 21"/></svg><span>SVG → PNG</span></a>
             <a class="tp-dock__item" href="../gif-to-png/"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="4.5" width="17" height="15" rx="2.5"/><circle cx="8.5" cy="9.5" r="1.7"/><path d="M20.5 15.5 16 11 6 21"/></svg><span>GIF → PNG</span></a>
             <a class="tp-dock__item is-active" href="../gif-to-jpg/" aria-current="page"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="4.5" width="17" height="15" rx="2.5"/><circle cx="8.5" cy="9.5" r="1.7"/><path d="M20.5 15.5 16 11 6 21"/></svg><span>GIF → JPG</span></a>
@@ -218,7 +216,7 @@
         <p class="tp-lead">当你想把GIF图片转成兼容性好、体积轻的JPG时,就用这个工具。动态GIF只会把首帧(第一帧)保存为JPG;由于JPG不支持透明,原本透明的区域会填充为白色背景。你可以自选画质,在体积与清晰度之间取得平衡;上传多张时,可打包成一个ZIP一并下载。文件不会上传到任何地方,只在本机处理,转换起来完全放心。</p>
 
         <div class="tp-sec" data-reveal>
-          <span class="tp-eyebrow">3분이면 끝나요</span>
+          <span class="tp-eyebrow">三步即可完成</span>
           <h2 class="tp-h2">GIF转JPG How to use</h2>
           <ol class="tp-steps">
           <li><span class="tx">拖入要转换的GIF图片,或点击[选择文件]上传,支持多张一次处理。</span></li>
@@ -233,10 +231,12 @@
           <div class="tx"><strong>您的文件绝不会上传到任何服务器。</strong><span>把GIF转成JPG并保存的全过程都只在你的浏览器(设备)内完成,任何文件都不会上传到服务器。因此,作品和私人图片也能毫无上传顾虑地转换。</span></div>
         </div>
 
+        
+
         <div class="tp-sec" data-reveal><span class="tp-eyebrow">说明</span><h2 class="tp-h2">这些场景很好用</h2><p>需要把只有GIF格式的图片上传到只接受JPG的论坛或表单时,或想把体积压小一点通过邮件发送时,都很好用。动态GIF只会保存首帧、透明区域会变成白色背景,因此很适合需要一张静止代表图的情况。如需保留透明背景,请改用PNG转换。</p></div>
 
         <div class="tp-sec" data-reveal>
-          <span class="tp-eyebrow">궁금한 점</span>
+          <span class="tp-eyebrow">常见问题</span>
           <h2 class="tp-h2">常见问题</h2>
           <div class="ws-term tp-faqterm">
             <div class="ws-faqlist">

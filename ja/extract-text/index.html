@@ -44,7 +44,7 @@
   <link rel="preload" as="font" type="font/woff2" href="/assets/vendor/fonts/a2z-ExtraBold.woff2" crossorigin>
   <link rel="stylesheet" href="/assets/css/style.css?v=e16ae327">
   <script>document.documentElement.className+=" js";</script>
-  <link rel="stylesheet" href="/assets/css/workspace.css?v=bc74466e">
+  <link rel="stylesheet" href="/assets/css/workspace.css?v=c7bef4a8">
   <script type="application/ld+json">[{"@context":"https://schema.org","@type":"WebApplication","name":"PDFテキスト抽出 - Everything PDF","url":"https://everything-pdf.site/extract-text/","applicationCategory":"UtilitiesApplication","operatingSystem":"All","browserRequirements":"Requires JavaScript","inLanguage":"ko","isAccessibleForFree":true,"datePublished":"2026-06-04","dateModified":"2026-06-16","offers":{"@type":"Offer","price":"0","priceCurrency":"KRW"},"featureList":["글자를 .txt로","복사·검색·재활용","OCR 아님"],"publisher":{"@type":"Organization","name":"Everything PDF","url":"https://everything-pdf.site/"}},{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"홈","item":"https://everything-pdf.site/"},{"@type":"ListItem","position":2,"name":"PDFテキスト抽出","item":"https://everything-pdf.site/extract-text/"}]},{"@context":"https://schema.org","@type":"HowTo","name":"PDFテキスト抽出 How to use","inLanguage":"ko","step":[{"@type":"HowToStep","position":1,"name":"1단계","text":"文字を書き出したいPDFファイルをアップロードします。"},{"@type":"HowToStep","position":2,"name":"2단계","text":"文書から文字情報を読み取ってテキストにまとめます。"},{"@type":"HowToStep","position":3,"name":"3단계","text":"抽出された文字を画面でプレビュー確認します。"},{"@type":"HowToStep","position":4,"name":"4단계","text":"「テキストを保存」を押して、.txtファイルとしてお使いの端末にダウンロードします。"}]},{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"スキャンしたPDFからも文字を抽出できますか？","acceptedAnswer":{"@type":"Answer","text":"いいえ。写真のようにスキャンされたPDFは、ページ全体が画像だけでできていて文字情報がありません。ですからこのツールでは文字を抽出できません。この機能は画像を文字に変換して読み取るOCRではなく、すでにPDF内に入っている文字をそのまま取り出すツールです。"}},{"@type":"Question","name":"抽出した文字はどんな形式で保存されますか？","acceptedAnswer":{"@type":"Answer","text":"文字だけが入ったテキスト（.txt）ファイルとして保存されます。メモ帳やWord、一太郎などどの編集ソフトでもそのまま開けます。表や画像、フォント・色などの装飾は抜け、純粋な文字だけが入ります。"}},{"@type":"Question","name":"文字はきちんと抽出されるのに、改行や表が崩れます。なぜですか？","acceptedAnswer":{"@type":"Answer","text":"PDFは文字の位置を座標で記録するため、段組みや表がある文書はテキストに移すときに順序や行が崩れることがあります。文字そのものはそのまま抽出されるので、保存後に必要な部分だけ整え直してお使いください。"}},{"@type":"Question","name":"自分のPDFがスキャン文書か、文字入りの文書か、どう見分けますか？","acceptedAnswer":{"@type":"Answer","text":"PDFを開いて本文の文字をマウスでドラッグしてみてください。文字が青く選択されれば文字情報がある文書なので抽出できます。選択できず写真のようにまるごと選ばれてしまうなら、スキャン文書なので抽出できません。"}},{"@type":"Question","name":"ファイルはサーバーにアップロードされますか？無料ですか？","acceptedAnswer":{"@type":"Answer","text":"ファイルはサーバーへアップロードされず、お使いの端末の中だけで処理されます。会員登録もインストールもなく無料で使え、透かしやファイル件数・容量の制限もありません。"}}]}]</script>
 </head>
 <body class="ws tp lp-page">
@@ -123,12 +123,10 @@
           </div>
         </div>
         <div class="tp-dock__panel" data-cat="convert" role="menu" aria-label="PDFを変換 도구" hidden>
-          <div class="tp-dock__panel-head">PDFを変換 <span>17</span></div>
+          <div class="tp-dock__panel-head">PDFを変換 <span>15</span></div>
           <div class="tp-dock__grid">
             <a class="tp-dock__item" href="../to-image/"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="4.5" width="17" height="15" rx="2.5"/><circle cx="8.5" cy="9.5" r="1.7"/><path d="M20.5 15.5 16 11 6 21"/></svg><span>PDF → 画像</span></a>
             <a class="tp-dock__item" href="../image-to-pdf/"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="4.5" width="17" height="15" rx="2.5"/><circle cx="8.5" cy="9.5" r="1.7"/><path d="M20.5 15.5 16 11 6 21"/></svg><span>画像 → PDF</span></a>
-            <a class="tp-dock__item" href="../pdf-to-docx/"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3.5H7.5a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h9a2 2 0 0 0 2-2V8l-5-4.5z"/><path d="M14 3.5V8h5"/><path d="M8.5 12h7M8.5 15h7M8.5 9h3"/></svg><span>워드 変換</span></a>
-            <a class="tp-dock__item" href="../pdf-to-hwpx/"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3.5H7.5a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h9a2 2 0 0 0 2-2V8l-5-4.5z"/><path d="M14 3.5V8h5"/><path d="M8.5 12h7M8.5 15h7M8.5 9h3"/></svg><span>한글 変換</span></a>
             <a class="tp-dock__item" href="../svg-to-png/"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="4.5" width="17" height="15" rx="2.5"/><circle cx="8.5" cy="9.5" r="1.7"/><path d="M20.5 15.5 16 11 6 21"/></svg><span>SVG → PNG</span></a>
             <a class="tp-dock__item" href="../gif-to-png/"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="4.5" width="17" height="15" rx="2.5"/><circle cx="8.5" cy="9.5" r="1.7"/><path d="M20.5 15.5 16 11 6 21"/></svg><span>GIF → PNG</span></a>
             <a class="tp-dock__item" href="../gif-to-jpg/"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="4.5" width="17" height="15" rx="2.5"/><circle cx="8.5" cy="9.5" r="1.7"/><path d="M20.5 15.5 16 11 6 21"/></svg><span>GIF → JPG</span></a>
@@ -212,7 +210,7 @@
         <p class="tp-lead">PDFの中に入っている文字を、テキスト（.txt）ファイルに書き出してダウンロードするツールです。抽出した文字は、ほかの文書にコピーしたり、検索したり、あらためて編集したりするのに便利です。ファイルはブラウザ内だけで処理し、サーバーへ送信されません。</p>
 
         <div class="tp-sec" data-reveal>
-          <span class="tp-eyebrow">3분이면 끝나요</span>
+          <span class="tp-eyebrow">3分で終わります</span>
           <h2 class="tp-h2">PDFテキスト抽出 How to use</h2>
           <ol class="tp-steps">
           <li><span class="tx">文字を書き出したいPDFファイルをアップロードします。</span></li>
@@ -227,10 +225,12 @@
           <div class="tx"><strong>ファイルはサーバーに送信されません。</strong><span>すべての抽出処理は、お使いのブラウザ、つまり端末の中だけで行われます。契約書やレポートのような機密文書の文字も外部に出ないので、安心してお使いください。海外製ツールのようにアップロード後に削除する方式ではなく、そもそもファイルをサーバーへアップロードしません。</span></div>
         </div>
 
+        
+
         <div class="tp-sec" data-reveal><span class="tp-eyebrow">補足</span><h2 class="tp-h2">こんなときに便利です</h2><p>長いレポートや論文から必要な文章だけを選んでほかの文書に貼り付けるとき、PDFの内容をメモ帳やWordに取り込んで編集し直すとき、本文で特定の単語が入った箇所を検索したいときに役立ちます。案内文や契約書の文章をそのままコピーして再利用したいときも、すばやく書き出して使えます。</p></div>
 
         <div class="tp-sec" data-reveal>
-          <span class="tp-eyebrow">궁금한 점</span>
+          <span class="tp-eyebrow">よくある質問</span>
           <h2 class="tp-h2">よくある質問</h2>
           <div class="ws-term tp-faqterm">
             <div class="ws-faqlist">

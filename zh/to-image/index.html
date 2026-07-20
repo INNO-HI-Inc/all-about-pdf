@@ -44,7 +44,7 @@
   <link rel="preload" as="font" type="font/woff2" href="/assets/vendor/fonts/a2z-ExtraBold.woff2" crossorigin>
   <link rel="stylesheet" href="/assets/css/style.css?v=e16ae327">
   <script>document.documentElement.className+=" js";</script>
-  <link rel="stylesheet" href="/assets/css/workspace.css?v=bc74466e">
+  <link rel="stylesheet" href="/assets/css/workspace.css?v=c7bef4a8">
   <script type="application/ld+json">[{"@context":"https://schema.org","@type":"WebApplication","name":"PDF转JPG - Everything PDF","url":"https://everything-pdf.site/to-image/","applicationCategory":"UtilitiesApplication","operatingSystem":"All","browserRequirements":"Requires JavaScript","inLanguage":"ko","isAccessibleForFree":true,"datePublished":"2026-06-04","dateModified":"2026-06-11","offers":{"@type":"Offer","price":"0","priceCurrency":"KRW"},"featureList":["PNG·JPG 转换","画质（倍率） 可选","指定页面"],"publisher":{"@type":"Organization","name":"Everything PDF","url":"https://everything-pdf.site/"}},{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"홈","item":"https://everything-pdf.site/"},{"@type":"ListItem","position":2,"name":"PDF转JPG","item":"https://everything-pdf.site/to-image/"}]},{"@context":"https://schema.org","@type":"HowTo","name":"PDF转JPG How to use","inLanguage":"ko","step":[{"@type":"HowToStep","position":1,"name":"1단계","text":"上传要转换的PDF文件。"},{"@type":"HowToStep","position":2,"name":"2단계","text":"选择JPG或PNG格式。"},{"@type":"HowToStep","position":3,"name":"3단계","text":"设定画质倍率（1~3倍）。"},{"@type":"HowToStep","position":4,"name":"4단계","text":"选择全部或想要的页面。"},{"@type":"HowToStep","position":5,"name":"5단계","text":"点转换按钮下载图片。多张打包成ZIP拿走。"}]},{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"也能转成PNG吗？","acceptedAnswer":{"@type":"Answer","text":"可以，在格式里选PNG即可。JPG和PNG两种格式随你选择转换。一次保存为一种格式。"}},{"@type":"Question","name":"画质能保持吗？","acceptedAnswer":{"@type":"Answer","text":"把画质倍率调高，出来的更清晰。1倍是默认画质，提到2~3倍文字和图像会更锐利。要截取或打印演示文稿时，不妨调高倍率。"}},{"@type":"Question","name":"会一页存成一张吗？","acceptedAnswer":{"@type":"Answer","text":"会，每一页都做成一张图片。多张打包成ZIP拿走，单张直接下载。也可以只挑特定页面转换。"}},{"@type":"Question","name":"JPG和PNG选哪个？","acceptedAnswer":{"@type":"Answer","text":"需要透明背景或文字很多的文档，用PNG更干净。想缩小体积、轻巧地传到微信·博客，用JPG更好。一般照片分享用JPG就够了。"}},{"@type":"Question","name":"文件数量或大小有限制吗？","acceptedAnswer":{"@type":"Answer","text":"没有数量或大小限制，也不加水印。页数很多的报告也能原样转成图片。"}}]}]</script>
 </head>
 <body class="ws tp lp-page">
@@ -168,12 +168,10 @@
           </div>
         </div>
         <div class="tp-dock__panel" data-cat="convert" role="menu" aria-label="转换 PDF 도구" hidden>
-          <div class="tp-dock__panel-head">转换 PDF <span>17</span></div>
+          <div class="tp-dock__panel-head">转换 PDF <span>15</span></div>
           <div class="tp-dock__grid">
             <a class="tp-dock__item is-active" href="../to-image/" aria-current="page"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="4.5" width="17" height="15" rx="2.5"/><circle cx="8.5" cy="9.5" r="1.7"/><path d="M20.5 15.5 16 11 6 21"/></svg><span>PDF → 图片</span></a>
             <a class="tp-dock__item" href="../image-to-pdf/"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="4.5" width="17" height="15" rx="2.5"/><circle cx="8.5" cy="9.5" r="1.7"/><path d="M20.5 15.5 16 11 6 21"/></svg><span>图片 → PDF</span></a>
-            <a class="tp-dock__item" href="../pdf-to-docx/"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3.5H7.5a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h9a2 2 0 0 0 2-2V8l-5-4.5z"/><path d="M14 3.5V8h5"/><path d="M8.5 12h7M8.5 15h7M8.5 9h3"/></svg><span>워드 转换</span></a>
-            <a class="tp-dock__item" href="../pdf-to-hwpx/"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3.5H7.5a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h9a2 2 0 0 0 2-2V8l-5-4.5z"/><path d="M14 3.5V8h5"/><path d="M8.5 12h7M8.5 15h7M8.5 9h3"/></svg><span>한글 转换</span></a>
             <a class="tp-dock__item" href="../svg-to-png/"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="4.5" width="17" height="15" rx="2.5"/><circle cx="8.5" cy="9.5" r="1.7"/><path d="M20.5 15.5 16 11 6 21"/></svg><span>SVG → PNG</span></a>
             <a class="tp-dock__item" href="../gif-to-png/"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="4.5" width="17" height="15" rx="2.5"/><circle cx="8.5" cy="9.5" r="1.7"/><path d="M20.5 15.5 16 11 6 21"/></svg><span>GIF → PNG</span></a>
             <a class="tp-dock__item" href="../gif-to-jpg/"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="4.5" width="17" height="15" rx="2.5"/><circle cx="8.5" cy="9.5" r="1.7"/><path d="M20.5 15.5 16 11 6 21"/></svg><span>GIF → JPG</span></a>
@@ -257,7 +255,7 @@
         <p class="tp-lead">把PDF转成JPG或PNG图片，就能直接传到微信·博客。想把演示文稿的某一屏存成图片文件时也很好用。文件只在你的设备上处理，尽管放心用。</p>
 
         <div class="tp-sec" data-reveal>
-          <span class="tp-eyebrow">3분이면 끝나요</span>
+          <span class="tp-eyebrow">三步即可完成</span>
           <h2 class="tp-h2">PDF转JPG How to use</h2>
           <ol class="tp-steps">
           <li><span class="tx">上传要转换的PDF文件。</span></li>
@@ -273,10 +271,12 @@
           <div class="tx"><strong>您的文件绝不会上传到任何服务器。</strong><span>转换全程都在你的浏览器（设备）里完成，结束后一关闭页面即刻消失。所以合同或办事材料这类敏感文档，也能放心地转成图片。</span></div>
         </div>
 
+        
+
         <div class="tp-sec" data-reveal><span class="tp-eyebrow">说明</span><h2 class="tp-h2">这些场景很好用</h2><p>把作业或报告的某一页搬到博客时，把演示文稿的图表截成图片时，把申购·合同的某一页发到微信时，都很方便。在手机上也能即刻转换，当场分享。</p></div>
 
         <div class="tp-sec" data-reveal>
-          <span class="tp-eyebrow">궁금한 점</span>
+          <span class="tp-eyebrow">常见问题</span>
           <h2 class="tp-h2">常见问题</h2>
           <div class="ws-term tp-faqterm">
             <div class="ws-faqlist">

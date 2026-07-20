@@ -44,7 +44,7 @@
   <link rel="preload" as="font" type="font/woff2" href="/assets/vendor/fonts/a2z-ExtraBold.woff2" crossorigin>
   <link rel="stylesheet" href="/assets/css/style.css?v=e16ae327">
   <script>document.documentElement.className+=" js";</script>
-  <link rel="stylesheet" href="/assets/css/workspace.css?v=bc74466e">
+  <link rel="stylesheet" href="/assets/css/workspace.css?v=c7bef4a8">
   <script type="application/ld+json">[{"@context":"https://schema.org","@type":"WebApplication","name":"PDFロック解除 - Everything PDF","url":"https://everything-pdf.site/unlock/","applicationCategory":"UtilitiesApplication","operatingSystem":"All","browserRequirements":"Requires JavaScript","inLanguage":"ko","isAccessibleForFree":true,"datePublished":"2026-06-04","dateModified":"2026-06-04","offers":{"@type":"Offer","price":"0","priceCurrency":"KRW"},"featureList":["인쇄·編集 제한 해제","パスワード 제거","브라우저 내 처리"],"publisher":{"@type":"Organization","name":"Everything PDF","url":"https://everything-pdf.site/"}},{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"홈","item":"https://everything-pdf.site/"},{"@type":"ListItem","position":2,"name":"PDFロック解除","item":"https://everything-pdf.site/unlock/"}]},{"@context":"https://schema.org","@type":"HowTo","name":"PDFロック解除 How to use","inLanguage":"ko","step":[{"@type":"HowToStep","position":1,"name":"1단계","text":"ロックを外したいPDFファイルをアップします。"},{"@type":"HowToStep","position":2,"name":"2단계","text":"印刷・編集だけが制限された文書は、すぐに制限が外れます。"},{"@type":"HowToStep","position":3,"name":"3단계","text":"開くときにパスワードが必要な文書は、知っているパスワードを入力します。"},{"@type":"HowToStep","position":4,"name":"4단계","text":"「画像として解除」を選んでパスワードを取り除きます。"},{"@type":"HowToStep","position":5,"name":"5단계","text":"ロックが外れたPDFをお使いの端末に保存します。"}]},{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"パスワードを知らないPDFのロックを外せますか？","acceptedAnswer":{"@type":"Answer","text":"いいえ。知らないパスワードは外せません。このツールはご自身が知っているパスワードを取り除いたり、印刷・編集の制限を外したりするためのもので、パスワードのクラックではありません。"}},{"@type":"Question","name":"入力したパスワードは保存されたり、どこかへ送信されたりしますか？","acceptedAnswer":{"@type":"Answer","text":"いいえ。入力したパスワードはブラウザ内だけで使われます。サーバーへ保存されたり送信されたりすることはなく、作業が終わればメモリから消えます。"}},{"@type":"Question","name":"権限制限と閲覧パスワードは何が違いますか？","acceptedAnswer":{"@type":"Answer","text":"権限制限は文書は開けるものの、印刷・編集・コピーが制限された状態で、パスワードなしですぐに外せます。閲覧パスワードは文書を開くときからパスワードを求めるロックで、知っているパスワードを入力し「画像として解除」を選んで取り除きます。"}},{"@type":"Question","name":"PDFのパスワード削除は法的に問題ありませんか？","acceptedAnswer":{"@type":"Answer","text":"ご自身の文書、または正当な権限のある文書の制限を外す用途であれば問題ありません。たとえば、自分が受け取った申込案内書や、自分で作った契約書・レポートの印刷制限を外すときに使えます。権限のない他人の文書を外すために使ってはいけません。"}},{"@type":"Question","name":"会員登録やソフトのインストールは必要ですか？","acceptedAnswer":{"@type":"Answer","text":"いいえ。会員登録もインストールも不要ですぐに使えます。完全無料で透かしも入らず、ファイル数や容量の制限もありません。"}},{"@type":"Question","name":"スキャン文書や機微な契約書も安全に外せますか？","acceptedAnswer":{"@type":"Answer","text":"はい。ファイルはお使いの端末のブラウザ内だけで処理し、サーバーへアップしないので、契約書・行政手続きの書類・スキャン文書のような機微な文書も外部に漏れません。海外製ツールのようにアップロード後しばらくして削除する方式ではなく、そもそもアップロードしません。"}}]}]</script>
 </head>
 <body class="ws tp lp-page">
@@ -141,12 +141,10 @@
           </div>
         </div>
         <div class="tp-dock__panel" data-cat="convert" role="menu" aria-label="PDFを変換 도구" hidden>
-          <div class="tp-dock__panel-head">PDFを変換 <span>17</span></div>
+          <div class="tp-dock__panel-head">PDFを変換 <span>15</span></div>
           <div class="tp-dock__grid">
             <a class="tp-dock__item" href="../to-image/"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="4.5" width="17" height="15" rx="2.5"/><circle cx="8.5" cy="9.5" r="1.7"/><path d="M20.5 15.5 16 11 6 21"/></svg><span>PDF → 画像</span></a>
             <a class="tp-dock__item" href="../image-to-pdf/"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="4.5" width="17" height="15" rx="2.5"/><circle cx="8.5" cy="9.5" r="1.7"/><path d="M20.5 15.5 16 11 6 21"/></svg><span>画像 → PDF</span></a>
-            <a class="tp-dock__item" href="../pdf-to-docx/"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3.5H7.5a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h9a2 2 0 0 0 2-2V8l-5-4.5z"/><path d="M14 3.5V8h5"/><path d="M8.5 12h7M8.5 15h7M8.5 9h3"/></svg><span>워드 変換</span></a>
-            <a class="tp-dock__item" href="../pdf-to-hwpx/"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3.5H7.5a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h9a2 2 0 0 0 2-2V8l-5-4.5z"/><path d="M14 3.5V8h5"/><path d="M8.5 12h7M8.5 15h7M8.5 9h3"/></svg><span>한글 変換</span></a>
             <a class="tp-dock__item" href="../svg-to-png/"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="4.5" width="17" height="15" rx="2.5"/><circle cx="8.5" cy="9.5" r="1.7"/><path d="M20.5 15.5 16 11 6 21"/></svg><span>SVG → PNG</span></a>
             <a class="tp-dock__item" href="../gif-to-png/"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="4.5" width="17" height="15" rx="2.5"/><circle cx="8.5" cy="9.5" r="1.7"/><path d="M20.5 15.5 16 11 6 21"/></svg><span>GIF → PNG</span></a>
             <a class="tp-dock__item" href="../gif-to-jpg/"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="4.5" width="17" height="15" rx="2.5"/><circle cx="8.5" cy="9.5" r="1.7"/><path d="M20.5 15.5 16 11 6 21"/></svg><span>GIF → JPG</span></a>
@@ -230,7 +228,7 @@
         <p class="tp-lead">ご自身のPDFにかかった印刷・編集の制限を外します。開くときにパスワードを求める文書は、知っているパスワードを入れて外します。ファイルはブラウザ内だけで処理するので、サーバーへ送信されることはありません。</p>
 
         <div class="tp-sec" data-reveal>
-          <span class="tp-eyebrow">3분이면 끝나요</span>
+          <span class="tp-eyebrow">3分で終わります</span>
           <h2 class="tp-h2">PDFロック解除 How to use</h2>
           <ol class="tp-steps">
           <li><span class="tx">ロックを外したいPDFファイルをアップします。</span></li>
@@ -246,11 +244,13 @@
           <div class="tx"><strong>ファイルはサーバーに送信されません。</strong><span>このツールはパスワードを割り出すクラックではなく、ご自身が知っているパスワードや印刷・編集の制限を取り除くためのツールです。知らないパスワードは外せません。ファイルと入力したパスワードはブラウザ内だけで使われ、サーバーへ保存・送信されることはありません。</span></div>
         </div>
 
+        
+
         <div class="tp-sec" data-reveal><span class="tp-eyebrow">補足</span><h2 class="tp-h2">こんなときに便利です</h2><p>自分で作ったレポートや課題のPDFの印刷・編集制限を外して手直しするとき、メールで受け取った申込案内書や明細書を印刷して保管するとき、パスワードを知っている自分の契約書をパスワードなしで開いて見たいときにお使いください。いずれもご自身が権限を持つ文書に限ります。</p></div>
         <div class="tp-sec" data-reveal><span class="tp-eyebrow">補足</span><h2 class="tp-h2">画像として解除するときに知っておいてください</h2><p>閲覧パスワードのかかった文書を「画像として解除」すると、各ページが画像に変わってパスワードが消えます。この方式は文書がそのまま見えますが、処理後は文字を直接選択・コピーしたり本文を修正したりするのが難しくなります。元のパスワード付きPDFは別に保管しておくほうが安全です。</p></div>
 
         <div class="tp-sec" data-reveal>
-          <span class="tp-eyebrow">궁금한 점</span>
+          <span class="tp-eyebrow">よくある質問</span>
           <h2 class="tp-h2">よくある質問</h2>
           <div class="ws-term tp-faqterm">
             <div class="ws-faqlist">

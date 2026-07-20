@@ -44,7 +44,7 @@
   <link rel="preload" as="font" type="font/woff2" href="/assets/vendor/fonts/a2z-ExtraBold.woff2" crossorigin>
   <link rel="stylesheet" href="/assets/css/style.css?v=e16ae327">
   <script>document.documentElement.className+=" js";</script>
-  <link rel="stylesheet" href="/assets/css/workspace.css?v=bc74466e">
+  <link rel="stylesheet" href="/assets/css/workspace.css?v=c7bef4a8">
   <script type="application/ld+json">[{"@context":"https://schema.org","@type":"WebApplication","name":"AVIF JPG変換 - Everything PDF","url":"https://everything-pdf.site/avif-to-jpg/","applicationCategory":"UtilitiesApplication","operatingSystem":"All","browserRequirements":"Requires JavaScript","inLanguage":"ko","isAccessibleForFree":true,"datePublished":"2026-06-04","dateModified":"2026-06-17","offers":{"@type":"Offer","price":"0","priceCurrency":"KRW"},"featureList":["AVIF → JPG","호환성↑","画質 任意"],"publisher":{"@type":"Organization","name":"Everything PDF","url":"https://everything-pdf.site/"}},{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"홈","item":"https://everything-pdf.site/"},{"@type":"ListItem","position":2,"name":"AVIF JPG変換","item":"https://everything-pdf.site/avif-to-jpg/"}]},{"@context":"https://schema.org","@type":"HowTo","name":"AVIF JPG変換 How to use","inLanguage":"ko","step":[{"@type":"HowToStep","position":1,"name":"1단계","text":"変換するAVIF画像をドラッグ＆ドロップするか、[ファイルを選択]でアップロードします。複数枚も一度に対応します。"},{"@type":"HowToStep","position":2,"name":"2단계","text":"お好みの画質を選びます。高いほど鮮明になり容量も大きくなります。"},{"@type":"HowToStep","position":3,"name":"3단계","text":"[JPGに変換]を押して変換します。透明部分は白い背景で埋められます。"},{"@type":"HowToStep","position":4,"name":"4단계","text":"1枚ならJPGを、複数枚ならZIPにまとめてダウンロードします。"}]},{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"AVIFをなぜJPGに変えるのですか？","acceptedAnswer":{"@type":"Answer","text":"AVIFは容量が小さい最新フォーマットですが、一部のプログラムや掲示板では対応していないことがあります。JPGはほぼすべての環境で開けて軽いので、互換性が重要なアップロードや共有に向いています。"}},{"@type":"Question","name":"透明部分はどうなりますか？","acceptedAnswer":{"@type":"Answer","text":"JPGは透明に対応していないため、AVIFで透明だった領域は白い背景で埋められます。透明な背景をそのまま活かしたい場合は、JPGではなく[AVIF PNG変換]をお使いください。PNGなら透明を保てます。"}},{"@type":"Question","name":"画質はどう選べばいいですか？","acceptedAnswer":{"@type":"Answer","text":"画質を上げるとより鮮明になりますが容量が大きくなり、下げると軽くなるかわりにディテールが減ります。Web投稿やメール添付には中程度の画質、印刷や保存には高い画質がおすすめです。用途にあわせて調整してください。"}},{"@type":"Question","name":"複数枚を一度に変換できますか？","acceptedAnswer":{"@type":"Answer","text":"はい。複数のAVIFを一度にアップロードすると、すべてJPGに変換したうえでZIPファイル一つにまとめてダウンロードできます。1枚ずつ受け取る必要がなく、一度に整理できます。"}},{"@type":"Question","name":"本当に無料ですか？透かしや回数制限はありますか？","acceptedAnswer":{"@type":"Answer","text":"完全無料で、透かしは入りません。変換回数やファイル容量の制限、会員登録もありません。必要なときにいつでも自由にAVIFをJPGに変えてください。"}}]}]</script>
 </head>
 <body class="ws tp lp-page">
@@ -129,12 +129,10 @@
           </div>
         </div>
         <div class="tp-dock__panel" data-cat="convert" role="menu" aria-label="PDFを変換 도구" hidden>
-          <div class="tp-dock__panel-head">PDFを変換 <span>17</span></div>
+          <div class="tp-dock__panel-head">PDFを変換 <span>15</span></div>
           <div class="tp-dock__grid">
             <a class="tp-dock__item" href="../to-image/"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="4.5" width="17" height="15" rx="2.5"/><circle cx="8.5" cy="9.5" r="1.7"/><path d="M20.5 15.5 16 11 6 21"/></svg><span>PDF → 画像</span></a>
             <a class="tp-dock__item" href="../image-to-pdf/"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="4.5" width="17" height="15" rx="2.5"/><circle cx="8.5" cy="9.5" r="1.7"/><path d="M20.5 15.5 16 11 6 21"/></svg><span>画像 → PDF</span></a>
-            <a class="tp-dock__item" href="../pdf-to-docx/"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3.5H7.5a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h9a2 2 0 0 0 2-2V8l-5-4.5z"/><path d="M14 3.5V8h5"/><path d="M8.5 12h7M8.5 15h7M8.5 9h3"/></svg><span>워드 変換</span></a>
-            <a class="tp-dock__item" href="../pdf-to-hwpx/"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3.5H7.5a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h9a2 2 0 0 0 2-2V8l-5-4.5z"/><path d="M14 3.5V8h5"/><path d="M8.5 12h7M8.5 15h7M8.5 9h3"/></svg><span>한글 変換</span></a>
             <a class="tp-dock__item" href="../svg-to-png/"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="4.5" width="17" height="15" rx="2.5"/><circle cx="8.5" cy="9.5" r="1.7"/><path d="M20.5 15.5 16 11 6 21"/></svg><span>SVG → PNG</span></a>
             <a class="tp-dock__item" href="../gif-to-png/"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="4.5" width="17" height="15" rx="2.5"/><circle cx="8.5" cy="9.5" r="1.7"/><path d="M20.5 15.5 16 11 6 21"/></svg><span>GIF → PNG</span></a>
             <a class="tp-dock__item" href="../gif-to-jpg/"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="4.5" width="17" height="15" rx="2.5"/><circle cx="8.5" cy="9.5" r="1.7"/><path d="M20.5 15.5 16 11 6 21"/></svg><span>GIF → JPG</span></a>
@@ -218,7 +216,7 @@
         <p class="tp-lead">容量が小さい最新フォーマットのAVIFを、どこでもきちんと表示できるJPGに変えたいときに使うツールです。JPGはほぼすべての環境で開けて容量も軽く、アップロードや共有に便利です。JPGは透明に対応していないため透明だった部分は白い背景で埋められ、画質を選んで容量と鮮明さのバランスを調整できます。複数枚をアップロードすればZIP一つにまとめてダウンロードできます。ファイルをどこにもアップロードせず、お使いの端末内だけで処理するので、安心して変換できます。</p>
 
         <div class="tp-sec" data-reveal>
-          <span class="tp-eyebrow">3분이면 끝나요</span>
+          <span class="tp-eyebrow">3分で終わります</span>
           <h2 class="tp-h2">AVIF JPG変換 How to use</h2>
           <ol class="tp-steps">
           <li><span class="tx">変換するAVIF画像をドラッグ＆ドロップするか、[ファイルを選択]でアップロードします。複数枚も一度に対応します。</span></li>
@@ -233,10 +231,12 @@
           <div class="tx"><strong>ファイルはサーバーに送信されません。</strong><span>AVIFをJPGに変換して保存するすべての処理は、お使いのブラウザ（端末）の中だけで行われ、いかなるファイルもサーバーへ送信されません。ですから制作物や個人的な画像も、アップロードの心配なく変換できます。</span></div>
         </div>
 
+        
+
         <div class="tp-sec" data-reveal><span class="tp-eyebrow">補足</span><h2 class="tp-h2">こんなときに便利です</h2><p>Webで受け取ったAVIF画像を、JPGしか受け付けない掲示板やフォームにアップロードするとき、容量を軽く抑えてメールやメッセンジャーで送るときに便利です。JPGはほぼどこでも開けるので互換性の心配がありません。透明部分は白い背景に変わるので、透明背景を活かしたい場合はPNG変換をお使いください。</p></div>
 
         <div class="tp-sec" data-reveal>
-          <span class="tp-eyebrow">궁금한 점</span>
+          <span class="tp-eyebrow">よくある質問</span>
           <h2 class="tp-h2">よくある質問</h2>
           <div class="ws-term tp-faqterm">
             <div class="ws-faqlist">

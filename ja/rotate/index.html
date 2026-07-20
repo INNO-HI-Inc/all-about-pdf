@@ -44,7 +44,7 @@
   <link rel="preload" as="font" type="font/woff2" href="/assets/vendor/fonts/a2z-ExtraBold.woff2" crossorigin>
   <link rel="stylesheet" href="/assets/css/style.css?v=e16ae327">
   <script>document.documentElement.className+=" js";</script>
-  <link rel="stylesheet" href="/assets/css/workspace.css?v=bc74466e">
+  <link rel="stylesheet" href="/assets/css/workspace.css?v=c7bef4a8">
   <script type="application/ld+json">[{"@context":"https://schema.org","@type":"WebApplication","name":"PDF回転 - Everything PDF","url":"https://everything-pdf.site/rotate/","applicationCategory":"UtilitiesApplication","operatingSystem":"All","browserRequirements":"Requires JavaScript","inLanguage":"ko","isAccessibleForFree":true,"datePublished":"2026-06-04","dateModified":"2026-06-16","offers":{"@type":"Offer","price":"0","priceCurrency":"KRW"},"featureList":["왼쪽·오른쪽·180도","すべてのページ 한 번에","画質·글자 보존"],"publisher":{"@type":"Organization","name":"Everything PDF","url":"https://everything-pdf.site/"}},{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"홈","item":"https://everything-pdf.site/"},{"@type":"ListItem","position":2,"name":"PDF回転","item":"https://everything-pdf.site/rotate/"}]},{"@context":"https://schema.org","@type":"HowTo","name":"PDF回転 How to use","inLanguage":"ko","step":[{"@type":"HowToStep","position":1,"name":"1단계","text":"回転したいPDFをドラッグ＆ドロップするか[ファイルを選択]でアップします。"},{"@type":"HowToStep","position":2,"name":"2단계","text":"左90度 ・ 右90度 ・ 180度 から、希望の回転方向を選びます。"},{"@type":"HowToStep","position":3,"name":"3단계","text":"プレビューで、ページがまっすぐ回転したかを確認します。"},{"@type":"HowToStep","position":4,"name":"4단계","text":"[回転する]を押して、向きが直った新しいPDFをダウンロードします。"}]},{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"回転方向はどう選べばいいですか？","acceptedAnswer":{"@type":"Answer","text":"左90度・右90度・180度の3つから選びます。横に倒れた文書は90度、完全に逆さまに入った文書は180度で回せばOKです。プレビューを見ながら方向を決めて回転すれば、迷いません。"}},{"@type":"Question","name":"特定のページだけ別々に回転できますか？","acceptedAnswer":{"@type":"Answer","text":"このツールは文書のすべてのページを同じ方向へ一度に回転します。ページごとに別の方向へ回したい場合は[ページ整理]ツールをお使いください。そちらではページごとに ↺ ↻ ボタンを押して、1枚ずつ回転できます。"}},{"@type":"Question","name":"回転すると文字や画質が崩れませんか？","acceptedAnswer":{"@type":"Answer","text":"回転はページを画像として描き直すのではなく、PDFに「向き」の情報を加えるだけの方式なので、文字の選択・コピーはそのまま保たれ、画質も落ちません。元の鮮明さを保ったまま向きだけを直します。"}},{"@type":"Question","name":"元のファイルはそのまま残りますか？","acceptedAnswer":{"@type":"Answer","text":"はい、元のファイルには手を加えず、回転した結果を新しいPDFとして別途保存します。向きが気に入らなければ元のファイルを再度アップして別の角度で回転できるので、安心してお使いください。"}},{"@type":"Question","name":"本当に無料ですか？透かしや回数制限はありますか？","acceptedAnswer":{"@type":"Answer","text":"完全無料で、透かしも入りません。回転回数やファイル容量の制限、会員登録もありません。必要なときにいつでも自由にPDFの向きを直してください。"}}]}]</script>
 </head>
 <body class="ws tp lp-page">
@@ -145,12 +145,10 @@
           </div>
         </div>
         <div class="tp-dock__panel" data-cat="convert" role="menu" aria-label="PDFを変換 도구" hidden>
-          <div class="tp-dock__panel-head">PDFを変換 <span>17</span></div>
+          <div class="tp-dock__panel-head">PDFを変換 <span>15</span></div>
           <div class="tp-dock__grid">
             <a class="tp-dock__item" href="../to-image/"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="4.5" width="17" height="15" rx="2.5"/><circle cx="8.5" cy="9.5" r="1.7"/><path d="M20.5 15.5 16 11 6 21"/></svg><span>PDF → 画像</span></a>
             <a class="tp-dock__item" href="../image-to-pdf/"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="4.5" width="17" height="15" rx="2.5"/><circle cx="8.5" cy="9.5" r="1.7"/><path d="M20.5 15.5 16 11 6 21"/></svg><span>画像 → PDF</span></a>
-            <a class="tp-dock__item" href="../pdf-to-docx/"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3.5H7.5a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h9a2 2 0 0 0 2-2V8l-5-4.5z"/><path d="M14 3.5V8h5"/><path d="M8.5 12h7M8.5 15h7M8.5 9h3"/></svg><span>워드 変換</span></a>
-            <a class="tp-dock__item" href="../pdf-to-hwpx/"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3.5H7.5a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h9a2 2 0 0 0 2-2V8l-5-4.5z"/><path d="M14 3.5V8h5"/><path d="M8.5 12h7M8.5 15h7M8.5 9h3"/></svg><span>한글 変換</span></a>
             <a class="tp-dock__item" href="../svg-to-png/"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="4.5" width="17" height="15" rx="2.5"/><circle cx="8.5" cy="9.5" r="1.7"/><path d="M20.5 15.5 16 11 6 21"/></svg><span>SVG → PNG</span></a>
             <a class="tp-dock__item" href="../gif-to-png/"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="4.5" width="17" height="15" rx="2.5"/><circle cx="8.5" cy="9.5" r="1.7"/><path d="M20.5 15.5 16 11 6 21"/></svg><span>GIF → PNG</span></a>
             <a class="tp-dock__item" href="../gif-to-jpg/"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="4.5" width="17" height="15" rx="2.5"/><circle cx="8.5" cy="9.5" r="1.7"/><path d="M20.5 15.5 16 11 6 21"/></svg><span>GIF → JPG</span></a>
@@ -234,7 +232,7 @@
         <p class="tp-lead">スキャナーに斜めに入って横に倒れた文書、上下がひっくり返ったスキャン文書を、そのまま提出しづらいときに使うツールです。PDFをアップして左90度・右90度・180度から向きを選ぶと、すべてのページが一度にまっすぐ回転します。ファイルをどこにもアップせず端末内だけで処理するので、機微な書類も安心して向きを直せます。</p>
 
         <div class="tp-sec" data-reveal>
-          <span class="tp-eyebrow">3분이면 끝나요</span>
+          <span class="tp-eyebrow">3分で終わります</span>
           <h2 class="tp-h2">PDF回転 How to use</h2>
           <ol class="tp-steps">
           <li><span class="tx">回転したいPDFをドラッグ＆ドロップするか[ファイルを選択]でアップします。</span></li>
@@ -249,10 +247,12 @@
           <div class="tx"><strong>ファイルはサーバーに送信されません。</strong><span>PDFを回転して保存するすべての工程は、ブラウザ（端末）内だけで行われ、いかなるファイルもサーバーへ送信されません。だから契約書・診断書・身分に関わる書類のように外部にアップしたくない文書も、アップロードの心配なく向きだけを直せます。</span></div>
         </div>
 
+        
+
         <div class="tp-sec" data-reveal><span class="tp-eyebrow">補足</span><h2 class="tp-h2">こんなときに便利です</h2><p>スキャナーに横向きに入って倒れた契約書、上下が逆さまにスキャンされた申込書、カメラで撮って向きがずれた文書を、提出前に直すときに便利です。方向を一つ選ぶだけで全ページが一度にまっすぐ回転するので、受け取った人が首をかしげて読む必要がありません。</p></div>
 
         <div class="tp-sec" data-reveal>
-          <span class="tp-eyebrow">궁금한 점</span>
+          <span class="tp-eyebrow">よくある質問</span>
           <h2 class="tp-h2">よくある質問</h2>
           <div class="ws-term tp-faqterm">
             <div class="ws-faqlist">

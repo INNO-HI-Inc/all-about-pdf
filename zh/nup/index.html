@@ -44,7 +44,7 @@
   <link rel="preload" as="font" type="font/woff2" href="/assets/vendor/fonts/a2z-ExtraBold.woff2" crossorigin>
   <link rel="stylesheet" href="/assets/css/style.css?v=e16ae327">
   <script>document.documentElement.className+=" js";</script>
-  <link rel="stylesheet" href="/assets/css/workspace.css?v=bc74466e">
+  <link rel="stylesheet" href="/assets/css/workspace.css?v=c7bef4a8">
   <script type="application/ld+json">[{"@context":"https://schema.org","@type":"WebApplication","name":"PDF多页合并到一张 - Everything PDF","url":"https://everything-pdf.site/nup/","applicationCategory":"UtilitiesApplication","operatingSystem":"All","browserRequirements":"Requires JavaScript","inLanguage":"ko","isAccessibleForFree":true,"datePublished":"2026-06-04","dateModified":"2026-06-17","offers":{"@type":"Offer","price":"0","priceCurrency":"KRW"},"featureList":["2·4 页 每张纸","종이 절약","핸드아웃"],"publisher":{"@type":"Organization","name":"Everything PDF","url":"https://everything-pdf.site/"}},{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"홈","item":"https://everything-pdf.site/"},{"@type":"ListItem","position":2,"name":"PDF多页合并到一张","item":"https://everything-pdf.site/nup/"}]},{"@context":"https://schema.org","@type":"HowTo","name":"PDF多页合并到一张 How to use","inLanguage":"ko","step":[{"@type":"HowToStep","position":1,"name":"1단계","text":"拖入要拼版的PDF,或点击[选择文件]上传。"},{"@type":"HowToStep","position":2,"name":"2단계","text":"在每张纸拼2页或4页中选择。"},{"@type":"HowToStep","position":3,"name":"3단계","text":"通过预览确认页面是否在网格中排列妥当。"},{"@type":"HowToStep","position":4,"name":"4단계","text":"点击[拼版],下载每张纸拼多页的新PDF。"}]},{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"每张纸最多能拼几页?","acceptedAnswer":{"@type":"Answer","text":"每张纸可在拼2页或4页中选择。2页时字号保持较大、更易读,4页则更省纸。请按文档的字号和用途来选。"}},{"@type":"Question","name":"字会不会变得太小?","acceptedAnswer":{"@type":"Answer","text":"由于是缩小原页面来排列,拼的页数越多字越小。字小的文档建议拼2页,字大的文档拼4页更好读。先用预览确认尺寸再打印。"}},{"@type":"Question","name":"会按什么顺序排列?","acceptedAnswer":{"@type":"Answer","text":"会严格按原页面顺序,从左到右、从上到下填入网格。第1、2页在第一张上,后续页面依次排入,阅读顺序不会乱。"}},{"@type":"Question","name":"原文件会保持不变吗?","acceptedAnswer":{"@type":"Answer","text":"会,原文件不受任何改动,拼版后的结果会另存为新的PDF。若还需要一页页看的原文件,直接用即可,放心使用。"}},{"@type":"Question","name":"真的免费吗?会有水印或次数限制吗?","acceptedAnswer":{"@type":"Answer","text":"完全免费,不会打水印。没有使用次数、文件容量限制,也无需注册。需要时随时都能给PDF拼版。"}}]}]</script>
 </head>
 <body class="ws tp lp-page">
@@ -133,12 +133,10 @@
           </div>
         </div>
         <div class="tp-dock__panel" data-cat="convert" role="menu" aria-label="转换 PDF 도구" hidden>
-          <div class="tp-dock__panel-head">转换 PDF <span>17</span></div>
+          <div class="tp-dock__panel-head">转换 PDF <span>15</span></div>
           <div class="tp-dock__grid">
             <a class="tp-dock__item" href="../to-image/"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="4.5" width="17" height="15" rx="2.5"/><circle cx="8.5" cy="9.5" r="1.7"/><path d="M20.5 15.5 16 11 6 21"/></svg><span>PDF → 图片</span></a>
             <a class="tp-dock__item" href="../image-to-pdf/"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="4.5" width="17" height="15" rx="2.5"/><circle cx="8.5" cy="9.5" r="1.7"/><path d="M20.5 15.5 16 11 6 21"/></svg><span>图片 → PDF</span></a>
-            <a class="tp-dock__item" href="../pdf-to-docx/"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3.5H7.5a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h9a2 2 0 0 0 2-2V8l-5-4.5z"/><path d="M14 3.5V8h5"/><path d="M8.5 12h7M8.5 15h7M8.5 9h3"/></svg><span>워드 转换</span></a>
-            <a class="tp-dock__item" href="../pdf-to-hwpx/"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3.5H7.5a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h9a2 2 0 0 0 2-2V8l-5-4.5z"/><path d="M14 3.5V8h5"/><path d="M8.5 12h7M8.5 15h7M8.5 9h3"/></svg><span>한글 转换</span></a>
             <a class="tp-dock__item" href="../svg-to-png/"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="4.5" width="17" height="15" rx="2.5"/><circle cx="8.5" cy="9.5" r="1.7"/><path d="M20.5 15.5 16 11 6 21"/></svg><span>SVG → PNG</span></a>
             <a class="tp-dock__item" href="../gif-to-png/"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="4.5" width="17" height="15" rx="2.5"/><circle cx="8.5" cy="9.5" r="1.7"/><path d="M20.5 15.5 16 11 6 21"/></svg><span>GIF → PNG</span></a>
             <a class="tp-dock__item" href="../gif-to-jpg/"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="4.5" width="17" height="15" rx="2.5"/><circle cx="8.5" cy="9.5" r="1.7"/><path d="M20.5 15.5 16 11 6 21"/></svg><span>GIF → JPG</span></a>
@@ -222,7 +220,7 @@
         <p class="tp-lead">当你想省纸打印多页文档,或想把会议讲义做得整洁时,就用这个工具。它会缩小原页面,以网格方式每张纸拼2页或4页。把10页文档做成每张4页,只要3张就够了,能大幅节省纸张和墨粉。文件不会上传到任何地方,只在本机处理,制作起来完全放心。</p>
 
         <div class="tp-sec" data-reveal>
-          <span class="tp-eyebrow">3분이면 끝나요</span>
+          <span class="tp-eyebrow">三步即可完成</span>
           <h2 class="tp-h2">PDF多页合并到一张 How to use</h2>
           <ol class="tp-steps">
           <li><span class="tx">拖入要拼版的PDF,或点击[选择文件]上传。</span></li>
@@ -237,10 +235,12 @@
           <div class="tx"><strong>您的文件绝不会上传到任何服务器。</strong><span>把页面拼版排列并保存的全过程都只在你的浏览器(设备)内完成,任何文件都不会上传到服务器。因此,会议资料、教材这类不便外传的文档,也能毫无上传顾虑地拼版。</span></div>
         </div>
 
+        
+
         <div class="tp-sec" data-reveal><span class="tp-eyebrow">说明</span><h2 class="tp-h2">这些场景很好用</h2><p>制作发给与会者的讲义时,省纸打印多页课程材料时,或把演示幻灯片拼在一起、便于一览地分发时,都很好用。用每张4页拼版,篇幅能缩到四分之一,在大幅节省纸张和墨粉的同时,把内容汇集到一张纸上一目了然。</p></div>
 
         <div class="tp-sec" data-reveal>
-          <span class="tp-eyebrow">궁금한 점</span>
+          <span class="tp-eyebrow">常见问题</span>
           <h2 class="tp-h2">常见问题</h2>
           <div class="ws-term tp-faqterm">
             <div class="ws-faqlist">

@@ -44,7 +44,7 @@
   <link rel="preload" as="font" type="font/woff2" href="/assets/vendor/fonts/a2z-ExtraBold.woff2" crossorigin>
   <link rel="stylesheet" href="/assets/css/style.css?v=e16ae327">
   <script>document.documentElement.className+=" js";</script>
-  <link rel="stylesheet" href="/assets/css/workspace.css?v=bc74466e">
+  <link rel="stylesheet" href="/assets/css/workspace.css?v=c7bef4a8">
   <script type="application/ld+json">[{"@context":"https://schema.org","@type":"WebApplication","name":"Ver información de un PDF - Everything PDF","url":"https://everything-pdf.site/pdf-info/","applicationCategory":"UtilitiesApplication","operatingSystem":"All","browserRequirements":"Requires JavaScript","inLanguage":"ko","isAccessibleForFree":true,"datePublished":"2026-06-04","dateModified":"2026-06-16","offers":{"@type":"Offer","price":"0","priceCurrency":"KRW"},"featureList":["페이지·용량·Tamaño","메타데이터 확인","잠김 여부"],"publisher":{"@type":"Organization","name":"Everything PDF","url":"https://everything-pdf.site/"}},{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"홈","item":"https://everything-pdf.site/"},{"@type":"ListItem","position":2,"name":"Ver información de un PDF","item":"https://everything-pdf.site/pdf-info/"}]},{"@context":"https://schema.org","@type":"HowTo","name":"Ver información de un PDF How to use","inLanguage":"ko","step":[{"@type":"HowToStep","position":1,"name":"1단계","text":"Sube el archivo PDF cuya información quieras consultar."},{"@type":"HowToStep","position":2,"name":"2단계","text":"El número de páginas y el tamaño del archivo aparecen en una tabla."},{"@type":"HowToStep","position":3,"name":"3단계","text":"Consulta las dimensiones de página (ancho x alto) y metadatos como el título o el autor."},{"@type":"HowToStep","position":4,"name":"4단계","text":"Revisa incluso si tiene contraseña, todo en una sola pantalla."}]},{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"¿Cómo compruebo cuántas páginas tiene un PDF?","acceptedAnswer":{"@type":"Answer","text":"Al subir el archivo, el número de páginas aparece justo en la parte superior de la tabla. Puedes ver el total de páginas de un informe voluminoso o un escaneo de una sola vez, sin necesidad de abrirlo. Es práctico para hacerte una idea de la extensión antes de imprimir o entregar."}},{"@type":"Question","name":"¿También puedo saber las dimensiones o el tamaño?","acceptedAnswer":{"@type":"Answer","text":"Sí. Junto con el tamaño del archivo, mostramos las dimensiones de página en ancho x alto. Podrás comprobar si es A4 u otro formato, y si está en horizontal o vertical, lo que ayuda a configurar la impresión o ajustar el formato."}},{"@type":"Question","name":"¿Dónde veo metadatos como el título o el autor?","acceptedAnswer":{"@type":"Answer","text":"Mostramos en una tabla los metadatos que contiene el PDF, como el título o el autor. Ahora bien, según el programa con el que se creó, esta información puede estar vacía; en ese caso, el campo correspondiente no se muestra o aparece con un valor vacío."}},{"@type":"Question","name":"¿Puedo saber si un PDF tiene contraseña?","acceptedAnswer":{"@type":"Answer","text":"Sí. Indicamos también si tiene contraseña. Eso sí, esta herramienta solo lee y muestra la información, no desbloquea nada. Si quieres quitar una restricción con una contraseña que conoces, usa la herramienta «Desbloquear PDF»."}},{"@type":"Question","name":"¿Se suben los archivos a un servidor? ¿Es gratis?","acceptedAnswer":{"@type":"Answer","text":"Los archivos no se suben a ningún servidor: la información se lee solo dentro de tu dispositivo. Puedes usarla gratis, sin registro ni instalación, y no hay marca de agua ni límite de número de archivos o de tamaño."}}]}]</script>
 </head>
 <body class="ws tp lp-page">
@@ -122,12 +122,10 @@
           </div>
         </div>
         <div class="tp-dock__panel" data-cat="convert" role="menu" aria-label="Convertir PDF 도구" hidden>
-          <div class="tp-dock__panel-head">Convertir PDF <span>17</span></div>
+          <div class="tp-dock__panel-head">Convertir PDF <span>15</span></div>
           <div class="tp-dock__grid">
             <a class="tp-dock__item" href="../to-image/"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="4.5" width="17" height="15" rx="2.5"/><circle cx="8.5" cy="9.5" r="1.7"/><path d="M20.5 15.5 16 11 6 21"/></svg><span>PDF → Imagen</span></a>
             <a class="tp-dock__item" href="../image-to-pdf/"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="4.5" width="17" height="15" rx="2.5"/><circle cx="8.5" cy="9.5" r="1.7"/><path d="M20.5 15.5 16 11 6 21"/></svg><span>Imagen → PDF</span></a>
-            <a class="tp-dock__item" href="../pdf-to-docx/"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3.5H7.5a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h9a2 2 0 0 0 2-2V8l-5-4.5z"/><path d="M14 3.5V8h5"/><path d="M8.5 12h7M8.5 15h7M8.5 9h3"/></svg><span>워드 Convertir</span></a>
-            <a class="tp-dock__item" href="../pdf-to-hwpx/"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3.5H7.5a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h9a2 2 0 0 0 2-2V8l-5-4.5z"/><path d="M14 3.5V8h5"/><path d="M8.5 12h7M8.5 15h7M8.5 9h3"/></svg><span>한글 Convertir</span></a>
             <a class="tp-dock__item" href="../svg-to-png/"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="4.5" width="17" height="15" rx="2.5"/><circle cx="8.5" cy="9.5" r="1.7"/><path d="M20.5 15.5 16 11 6 21"/></svg><span>SVG → PNG</span></a>
             <a class="tp-dock__item" href="../gif-to-png/"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="4.5" width="17" height="15" rx="2.5"/><circle cx="8.5" cy="9.5" r="1.7"/><path d="M20.5 15.5 16 11 6 21"/></svg><span>GIF → PNG</span></a>
             <a class="tp-dock__item" href="../gif-to-jpg/"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="4.5" width="17" height="15" rx="2.5"/><circle cx="8.5" cy="9.5" r="1.7"/><path d="M20.5 15.5 16 11 6 21"/></svg><span>GIF → JPG</span></a>
@@ -211,7 +209,7 @@
         <p class="tp-lead">Es una herramienta que muestra en una tabla cuántas páginas tiene el PDF que subes, cuánto ocupa, sus dimensiones y datos como el título o el autor. También te indica si tiene contraseña. No modifica ni descarga el archivo: solo lee y muestra la información, y todo el procesamiento ocurre únicamente dentro de tu navegador, sin enviarse a ningún servidor.</p>
 
         <div class="tp-sec" data-reveal>
-          <span class="tp-eyebrow">3분이면 끝나요</span>
+          <span class="tp-eyebrow">Tres pasos rápidos</span>
           <h2 class="tp-h2">Ver información de un PDF How to use</h2>
           <ol class="tp-steps">
           <li><span class="tx">Sube el archivo PDF cuya información quieras consultar.</span></li>
@@ -226,10 +224,12 @@
           <div class="tx"><strong>Tus archivos nunca se suben a ningún servidor.</strong><span>Todo el proceso de lectura de la información ocurre únicamente dentro de tu navegador, es decir, en tu dispositivo. El archivo no se sube a ningún servidor, no se modifica ni se guarda su contenido: solo se muestra la información en pantalla. Así, puedes consultar los datos de PDF sensibles —como contratos o trámites— sin que se filtren al exterior, con total tranquilidad.</span></div>
         </div>
 
+        
+
         <div class="tp-sec" data-reveal><span class="tp-eyebrow">Nota</span><h2 class="tp-h2">Cuándo te resultará cómoda</h2><p>Es útil para hacerte una idea de cuántas páginas tiene un PDF que has recibido por correo o de cuánto papel gastarás al imprimirlo. También va bien para comprobar si cumple el tamaño o el formato (por ejemplo, A4) que exige el destinatario, o simplemente para averiguar de entrada si un documento recibido tiene contraseña. Úsala cuando quieras consultar rápidamente la información sin abrir ni modificar el archivo.</p></div>
 
         <div class="tp-sec" data-reveal>
-          <span class="tp-eyebrow">궁금한 점</span>
+          <span class="tp-eyebrow">Preguntas frecuentes</span>
           <h2 class="tp-h2">Preguntas frecuentes</h2>
           <div class="ws-term tp-faqterm">
             <div class="ws-faqlist">

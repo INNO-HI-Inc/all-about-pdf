@@ -44,7 +44,7 @@
   <link rel="preload" as="font" type="font/woff2" href="/assets/vendor/fonts/a2z-ExtraBold.woff2" crossorigin>
   <link rel="stylesheet" href="/assets/css/style.css?v=e16ae327">
   <script>document.documentElement.className+=" js";</script>
-  <link rel="stylesheet" href="/assets/css/workspace.css?v=bc74466e">
+  <link rel="stylesheet" href="/assets/css/workspace.css?v=c7bef4a8">
   <script type="application/ld+json">[{"@context":"https://schema.org","@type":"WebApplication","name":"PDF JPG 変換 - Everything PDF","url":"https://everything-pdf.site/to-image/","applicationCategory":"UtilitiesApplication","operatingSystem":"All","browserRequirements":"Requires JavaScript","inLanguage":"ko","isAccessibleForFree":true,"datePublished":"2026-06-04","dateModified":"2026-06-11","offers":{"@type":"Offer","price":"0","priceCurrency":"KRW"},"featureList":["PNG·JPG 変換","画質（倍率） 任意","ページ指定"],"publisher":{"@type":"Organization","name":"Everything PDF","url":"https://everything-pdf.site/"}},{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"홈","item":"https://everything-pdf.site/"},{"@type":"ListItem","position":2,"name":"PDF JPG 変換","item":"https://everything-pdf.site/to-image/"}]},{"@context":"https://schema.org","@type":"HowTo","name":"PDF JPG 変換 How to use","inLanguage":"ko","step":[{"@type":"HowToStep","position":1,"name":"1단계","text":"変換したいPDFファイルをアップします。"},{"@type":"HowToStep","position":2,"name":"2단계","text":"JPGかPNGの形式を選びます。"},{"@type":"HowToStep","position":3,"name":"3단계","text":"画質の倍率（1〜3倍）を決めます。"},{"@type":"HowToStep","position":4,"name":"4단계","text":"全体または希望のページを選びます。"},{"@type":"HowToStep","position":5,"name":"5단계","text":"変換ボタンを押して画像をダウンロードします。複数枚ならZIPで受け取れます。"}]},{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"PNGにも変換できますか？","acceptedAnswer":{"@type":"Answer","text":"はい、形式でPNGを選べばOKです。JPGとPNGから好きな形式を選んで変換できます。一度に一つの形式で保存されます。"}},{"@type":"Question","name":"画質は保たれますか？","acceptedAnswer":{"@type":"Answer","text":"画質の倍率を上げると、より鮮明に出力されます。1倍は標準画質、2〜3倍に上げると文字や図がくっきりします。プレゼン資料をキャプチャするときや印刷するときは倍率を上げてみてください。"}},{"@type":"Question","name":"ページごとに1枚ずつ保存されますか？","acceptedAnswer":{"@type":"Answer","text":"はい、各ページが1枚の画像になります。複数枚ならZIPファイルにまとめて受け取り、1枚ならそのままダウンロードします。特定のページだけを選んで変換することもできます。"}},{"@type":"Question","name":"JPGとPNGのどちらを選べばいいですか？","acceptedAnswer":{"@type":"Answer","text":"透明な背景が必要だったり文字が多い文書はPNGがきれいです。容量を小さくしてチャット・ブログに軽く載せたいならJPGが良いです。ふだんの写真の共有はJPGで十分です。"}},{"@type":"Question","name":"ファイル数や容量の制限はありますか？","acceptedAnswer":{"@type":"Answer","text":"数や容量の制限はありません。透かしも入りません。ページの多いレポートも、そのまま画像に変換できます。"}}]}]</script>
 </head>
 <body class="ws tp lp-page">
@@ -168,12 +168,10 @@
           </div>
         </div>
         <div class="tp-dock__panel" data-cat="convert" role="menu" aria-label="PDFを変換 도구" hidden>
-          <div class="tp-dock__panel-head">PDFを変換 <span>17</span></div>
+          <div class="tp-dock__panel-head">PDFを変換 <span>15</span></div>
           <div class="tp-dock__grid">
             <a class="tp-dock__item is-active" href="../to-image/" aria-current="page"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="4.5" width="17" height="15" rx="2.5"/><circle cx="8.5" cy="9.5" r="1.7"/><path d="M20.5 15.5 16 11 6 21"/></svg><span>PDF → 画像</span></a>
             <a class="tp-dock__item" href="../image-to-pdf/"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="4.5" width="17" height="15" rx="2.5"/><circle cx="8.5" cy="9.5" r="1.7"/><path d="M20.5 15.5 16 11 6 21"/></svg><span>画像 → PDF</span></a>
-            <a class="tp-dock__item" href="../pdf-to-docx/"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3.5H7.5a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h9a2 2 0 0 0 2-2V8l-5-4.5z"/><path d="M14 3.5V8h5"/><path d="M8.5 12h7M8.5 15h7M8.5 9h3"/></svg><span>워드 変換</span></a>
-            <a class="tp-dock__item" href="../pdf-to-hwpx/"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3.5H7.5a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h9a2 2 0 0 0 2-2V8l-5-4.5z"/><path d="M14 3.5V8h5"/><path d="M8.5 12h7M8.5 15h7M8.5 9h3"/></svg><span>한글 変換</span></a>
             <a class="tp-dock__item" href="../svg-to-png/"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="4.5" width="17" height="15" rx="2.5"/><circle cx="8.5" cy="9.5" r="1.7"/><path d="M20.5 15.5 16 11 6 21"/></svg><span>SVG → PNG</span></a>
             <a class="tp-dock__item" href="../gif-to-png/"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="4.5" width="17" height="15" rx="2.5"/><circle cx="8.5" cy="9.5" r="1.7"/><path d="M20.5 15.5 16 11 6 21"/></svg><span>GIF → PNG</span></a>
             <a class="tp-dock__item" href="../gif-to-jpg/"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="4.5" width="17" height="15" rx="2.5"/><circle cx="8.5" cy="9.5" r="1.7"/><path d="M20.5 15.5 16 11 6 21"/></svg><span>GIF → JPG</span></a>
@@ -257,7 +255,7 @@
         <p class="tp-lead">PDFをJPGやPNGの画像に変換して、チャット・ブログにそのまま載せましょう。プレゼン資料の1シーンを画像ファイルとして保存するときにも便利です。ファイルはお使いの端末内だけで処理するので安心してお使いください。</p>
 
         <div class="tp-sec" data-reveal>
-          <span class="tp-eyebrow">3분이면 끝나요</span>
+          <span class="tp-eyebrow">3分で終わります</span>
           <h2 class="tp-h2">PDF JPG 変換 How to use</h2>
           <ol class="tp-steps">
           <li><span class="tx">変換したいPDFファイルをアップします。</span></li>
@@ -273,10 +271,12 @@
           <div class="tx"><strong>ファイルはサーバーに送信されません。</strong><span>変換はすべてブラウザ（端末）内で行われ、終わって画面を閉じるとすぐに消えます。だから契約書や行政手続きの書類のような機微な文書も、安心して画像に変換できます。</span></div>
         </div>
 
+        
+
         <div class="tp-sec" data-reveal><span class="tp-eyebrow">補足</span><h2 class="tp-h2">こんなときに便利です</h2><p>課題やレポートの1ページをブログに移すとき、プレゼン資料の図表を画像としてキャプチャするとき、申込・契約書の特定のページをチャットで送るときに便利です。スマホからもその場で変換して、すぐに共有できます。</p></div>
 
         <div class="tp-sec" data-reveal>
-          <span class="tp-eyebrow">궁금한 점</span>
+          <span class="tp-eyebrow">よくある質問</span>
           <h2 class="tp-h2">よくある質問</h2>
           <div class="ws-term tp-faqterm">
             <div class="ws-faqlist">

@@ -44,7 +44,7 @@
   <link rel="preload" as="font" type="font/woff2" href="/assets/vendor/fonts/a2z-ExtraBold.woff2" crossorigin>
   <link rel="stylesheet" href="/assets/css/style.css?v=e16ae327">
   <script>document.documentElement.className+=" js";</script>
-  <link rel="stylesheet" href="/assets/css/workspace.css?v=bc74466e">
+  <link rel="stylesheet" href="/assets/css/workspace.css?v=c7bef4a8">
   <script type="application/ld+json">[{"@context":"https://schema.org","@type":"WebApplication","name":"PDF转黑白 - Everything PDF","url":"https://everything-pdf.site/grayscale/","applicationCategory":"UtilitiesApplication","operatingSystem":"All","browserRequirements":"Requires JavaScript","inLanguage":"ko","isAccessibleForFree":true,"datePublished":"2026-06-04","dateModified":"2026-06-17","offers":{"@type":"Offer","price":"0","priceCurrency":"KRW"},"featureList":["컬러→흑백","减小文件大小","흑백 인쇄용"],"publisher":{"@type":"Organization","name":"Everything PDF","url":"https://everything-pdf.site/"}},{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"홈","item":"https://everything-pdf.site/"},{"@type":"ListItem","position":2,"name":"PDF转黑白","item":"https://everything-pdf.site/grayscale/"}]},{"@context":"https://schema.org","@type":"HowTo","name":"PDF转黑白 How to use","inLanguage":"ko","step":[{"@type":"HowToStep","position":1,"name":"1단계","text":"拖入要转成黑白的彩色PDF,或点击[选择文件]上传。"},{"@type":"HowToStep","position":2,"name":"2단계","text":"通过预览确认里面有哪些页面。"},{"@type":"HowToStep","position":3,"name":"3단계","text":"点击[转为黑白],把每一页重新绘制成灰度图片。"},{"@type":"HowToStep","position":4,"name":"4단계","text":"下载去掉颜色的黑白PDF。"}]},{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"转成黑白后就不能选中或搜索文字了吗?","acceptedAnswer":{"@type":"Answer","text":"说实话,可能不能。本工具是把每一页重新渲染成图片并做灰度处理,文字会变成图形,选中、复制、搜索都会变难。用于打印或存档已足够,但如果需要照常处理文字,请一并保留原文件。"}},{"@type":"Question","name":"转成黑白后体积会减小吗?","acceptedAnswer":{"@type":"Answer","text":"大体上会减小。去掉彩色信息、只按灰度单通道处理,照片或色彩较多的文档,体积节省效果越明显。邮件附件或存档时更轻便、更好处理。"}},{"@type":"Question","name":"为什么要转成黑白?","acceptedAnswer":{"@type":"Answer","text":"想在黑白打印机上不串色、干净地输出时,想省墨粉时,想减小文件体积时,主要都会用到。打印、分发不需要彩色的、以文字为主的材料时尤其实用。"}},{"@type":"Question","name":"原彩色文件会保持不变吗?","acceptedAnswer":{"@type":"Answer","text":"会,原文件不受任何改动,转成黑白的结果会另存为新的PDF。若还需要彩色,直接用原文件即可,放心转换。"}},{"@type":"Question","name":"真的免费吗?会有水印或次数限制吗?","acceptedAnswer":{"@type":"Answer","text":"完全免费,不会打水印。没有转换次数、文件容量限制,也无需注册。需要时随时都能把PDF转成黑白。"}}]}]</script>
 </head>
 <body class="ws tp lp-page">
@@ -127,12 +127,10 @@
           </div>
         </div>
         <div class="tp-dock__panel" data-cat="convert" role="menu" aria-label="转换 PDF 도구" hidden>
-          <div class="tp-dock__panel-head">转换 PDF <span>17</span></div>
+          <div class="tp-dock__panel-head">转换 PDF <span>15</span></div>
           <div class="tp-dock__grid">
             <a class="tp-dock__item" href="../to-image/"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="4.5" width="17" height="15" rx="2.5"/><circle cx="8.5" cy="9.5" r="1.7"/><path d="M20.5 15.5 16 11 6 21"/></svg><span>PDF → 图片</span></a>
             <a class="tp-dock__item" href="../image-to-pdf/"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="4.5" width="17" height="15" rx="2.5"/><circle cx="8.5" cy="9.5" r="1.7"/><path d="M20.5 15.5 16 11 6 21"/></svg><span>图片 → PDF</span></a>
-            <a class="tp-dock__item" href="../pdf-to-docx/"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3.5H7.5a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h9a2 2 0 0 0 2-2V8l-5-4.5z"/><path d="M14 3.5V8h5"/><path d="M8.5 12h7M8.5 15h7M8.5 9h3"/></svg><span>워드 转换</span></a>
-            <a class="tp-dock__item" href="../pdf-to-hwpx/"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3.5H7.5a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h9a2 2 0 0 0 2-2V8l-5-4.5z"/><path d="M14 3.5V8h5"/><path d="M8.5 12h7M8.5 15h7M8.5 9h3"/></svg><span>한글 转换</span></a>
             <a class="tp-dock__item" href="../svg-to-png/"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="4.5" width="17" height="15" rx="2.5"/><circle cx="8.5" cy="9.5" r="1.7"/><path d="M20.5 15.5 16 11 6 21"/></svg><span>SVG → PNG</span></a>
             <a class="tp-dock__item" href="../gif-to-png/"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="4.5" width="17" height="15" rx="2.5"/><circle cx="8.5" cy="9.5" r="1.7"/><path d="M20.5 15.5 16 11 6 21"/></svg><span>GIF → PNG</span></a>
             <a class="tp-dock__item" href="../gif-to-jpg/"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="4.5" width="17" height="15" rx="2.5"/><circle cx="8.5" cy="9.5" r="1.7"/><path d="M20.5 15.5 16 11 6 21"/></svg><span>GIF → JPG</span></a>
@@ -216,7 +214,7 @@
         <p class="tp-lead">当你想把彩色制作的材料用黑白打印,或想减小文件体积时,就用这个工具。它会把每一页重新渲染成图片并做灰度处理,颜色去掉后体积会减小,用黑白打印机也能干净输出。不过由于文字会变成图片,转换后可能无法选中或搜索文字,这一点最好提前了解。文件不会上传到任何地方,只在本机处理,转换起来完全放心。</p>
 
         <div class="tp-sec" data-reveal>
-          <span class="tp-eyebrow">3분이면 끝나요</span>
+          <span class="tp-eyebrow">三步即可完成</span>
           <h2 class="tp-h2">PDF转黑白 How to use</h2>
           <ol class="tp-steps">
           <li><span class="tx">拖入要转成黑白的彩色PDF,或点击[选择文件]上传。</span></li>
@@ -231,10 +229,12 @@
           <div class="tx"><strong>您的文件绝不会上传到任何服务器。</strong><span>转成黑白并保存的全过程都只在你的浏览器(设备)内完成,任何文件都不会上传到服务器。因此,内部资料、报告这类不便外传的文档,也能毫无上传顾虑地转成黑白。</span></div>
         </div>
 
+        
+
         <div class="tp-sec" data-reveal><span class="tp-eyebrow">说明</span><h2 class="tp-h2">这些场景很好用</h2><p>想把彩色制作的演示材料或报告用黑白打印机干净输出时,想省墨粉时,或想把色彩多、体积大的PDF压小后用邮件发送时,都很好用。转换后文字可能变得难以选中,如果是需要照常处理文字的材料,请一并保留原文件。</p></div>
 
         <div class="tp-sec" data-reveal>
-          <span class="tp-eyebrow">궁금한 점</span>
+          <span class="tp-eyebrow">常见问题</span>
           <h2 class="tp-h2">常见问题</h2>
           <div class="ws-term tp-faqterm">
             <div class="ws-faqlist">

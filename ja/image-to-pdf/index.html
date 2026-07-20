@@ -44,7 +44,7 @@
   <link rel="preload" as="font" type="font/woff2" href="/assets/vendor/fonts/a2z-ExtraBold.woff2" crossorigin>
   <link rel="stylesheet" href="/assets/css/style.css?v=e16ae327">
   <script>document.documentElement.className+=" js";</script>
-  <link rel="stylesheet" href="/assets/css/workspace.css?v=bc74466e">
+  <link rel="stylesheet" href="/assets/css/workspace.css?v=c7bef4a8">
   <script type="application/ld+json">[{"@context":"https://schema.org","@type":"WebApplication","name":"画像PDF変換 - Everything PDF","url":"https://everything-pdf.site/image-to-pdf/","applicationCategory":"UtilitiesApplication","operatingSystem":"All","browserRequirements":"Requires JavaScript","inLanguage":"ko","isAccessibleForFree":true,"datePublished":"2026-06-04","dateModified":"2026-06-14","offers":{"@type":"Offer","price":"0","priceCurrency":"KRW"},"featureList":["JPG·PNG → PDF","여러 장 한 파일로","순서 변경"],"publisher":{"@type":"Organization","name":"Everything PDF","url":"https://everything-pdf.site/"}},{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"홈","item":"https://everything-pdf.site/"},{"@type":"ListItem","position":2,"name":"画像PDF変換","item":"https://everything-pdf.site/image-to-pdf/"}]},{"@context":"https://schema.org","@type":"HowTo","name":"画像PDF変換 How to use","inLanguage":"ko","step":[{"@type":"HowToStep","position":1,"name":"1단계","text":"PDFにする画像（JPG・PNG）をアップロードします。複数枚を一度にアップロードできます。"},{"@type":"HowToStep","position":2,"name":"2단계","text":"一覧で↑↓またはドラッグしてページの順番を整えます。"},{"@type":"HowToStep","position":3,"name":"3단계","text":"ページサイズを「画像サイズのまま」か「A4に合わせる」から選びます。"},{"@type":"HowToStep","position":4,"name":"4단계","text":"[PDFにする]を押して、一つのPDFとしてダウンロードします。"}]},{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"複数枚を一つのPDFにできますか？","acceptedAnswer":{"@type":"Answer","text":"はい。画像を複数枚アップロードして一覧で順番を決めれば、各画像が1ページずつ順に入った一つのPDFができます。ページの順番は↑↓ボタンやドラッグで入れ替えられます。"}},{"@type":"Question","name":"どの画像形式に対応していますか？","acceptedAnswer":{"@type":"Answer","text":"JPGとPNGに対応しています。スマホの写真（JPG）や画面キャプチャ（PNG）をそのままアップロードすればOKです。それ以外の形式（HEIC・WebPなど）は、JPG・PNGにいったん保存してからアップロードしてください。"}},{"@type":"Question","name":"「画像サイズのまま」と「A4に合わせる」は何が違いますか？","acceptedAnswer":{"@type":"Answer","text":"「画像サイズのまま」は各画像の解像度に合わせてページサイズを作り、切れることなくそのまま収めます。「A4に合わせる」はすべての画像をA4用紙の中央に比率を保って配置するので、印刷・提出用にサイズをそろえたいときに便利です。"}},{"@type":"Question","name":"写真の画質は落ちますか？","acceptedAnswer":{"@type":"Answer","text":"元の画像をそのままPDFに収めるので、画質が勝手に下がることはありません。ただし「A4に合わせる」で小さな画像を大きく引き伸ばすと、元の解像度の限界でぼやけて見えることがあります。"}},{"@type":"Question","name":"ファイル件数や容量の制限はありますか？","acceptedAnswer":{"@type":"Answer","text":"件数・容量の制限はなく、透かしもありません。ただし、とても多い高解像度の写真を一度にまとめると端末のメモリを大きく使うので、動作が重ければ分けて作ってみてください。"}}]}]</script>
 </head>
 <body class="ws tp lp-page">
@@ -132,12 +132,10 @@
           </div>
         </div>
         <div class="tp-dock__panel" data-cat="convert" role="menu" aria-label="PDFを変換 도구" hidden>
-          <div class="tp-dock__panel-head">PDFを変換 <span>17</span></div>
+          <div class="tp-dock__panel-head">PDFを変換 <span>15</span></div>
           <div class="tp-dock__grid">
             <a class="tp-dock__item" href="../to-image/"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="4.5" width="17" height="15" rx="2.5"/><circle cx="8.5" cy="9.5" r="1.7"/><path d="M20.5 15.5 16 11 6 21"/></svg><span>PDF → 画像</span></a>
             <a class="tp-dock__item is-active" href="../image-to-pdf/" aria-current="page"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="4.5" width="17" height="15" rx="2.5"/><circle cx="8.5" cy="9.5" r="1.7"/><path d="M20.5 15.5 16 11 6 21"/></svg><span>画像 → PDF</span></a>
-            <a class="tp-dock__item" href="../pdf-to-docx/"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3.5H7.5a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h9a2 2 0 0 0 2-2V8l-5-4.5z"/><path d="M14 3.5V8h5"/><path d="M8.5 12h7M8.5 15h7M8.5 9h3"/></svg><span>워드 変換</span></a>
-            <a class="tp-dock__item" href="../pdf-to-hwpx/"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3.5H7.5a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h9a2 2 0 0 0 2-2V8l-5-4.5z"/><path d="M14 3.5V8h5"/><path d="M8.5 12h7M8.5 15h7M8.5 9h3"/></svg><span>한글 変換</span></a>
             <a class="tp-dock__item" href="../svg-to-png/"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="4.5" width="17" height="15" rx="2.5"/><circle cx="8.5" cy="9.5" r="1.7"/><path d="M20.5 15.5 16 11 6 21"/></svg><span>SVG → PNG</span></a>
             <a class="tp-dock__item" href="../gif-to-png/"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="4.5" width="17" height="15" rx="2.5"/><circle cx="8.5" cy="9.5" r="1.7"/><path d="M20.5 15.5 16 11 6 21"/></svg><span>GIF → PNG</span></a>
             <a class="tp-dock__item" href="../gif-to-jpg/"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="4.5" width="17" height="15" rx="2.5"/><circle cx="8.5" cy="9.5" r="1.7"/><path d="M20.5 15.5 16 11 6 21"/></svg><span>GIF → JPG</span></a>
@@ -221,7 +219,7 @@
         <p class="tp-lead">スキャンした写真、スマホで撮った書類、画面キャプチャのような画像を、一つのPDFにまとめてみましょう。複数枚をドラッグして順番を決めれば、そのまま一つの文書になります。提出用の書類やポートフォリオを作るときに便利で、ファイルはお使いの端末内だけで処理するので安心してお使いいただけます。</p>
 
         <div class="tp-sec" data-reveal>
-          <span class="tp-eyebrow">3분이면 끝나요</span>
+          <span class="tp-eyebrow">3分で終わります</span>
           <h2 class="tp-h2">画像PDF変換 How to use</h2>
           <ol class="tp-steps">
           <li><span class="tx">PDFにする画像（JPG・PNG）をアップロードします。複数枚を一度にアップロードできます。</span></li>
@@ -236,10 +234,12 @@
           <div class="tx"><strong>ファイルはサーバーに送信されません。</strong><span>画像をPDFにまとめるすべての処理は、お使いのブラウザ（端末）の中だけで行われ、いかなるファイルもサーバーへ送信されません。身分証のコピーや契約書類のような機密性の高い画像も、アップロードの心配なくPDFにできます。</span></div>
         </div>
 
+        
+
         <div class="tp-sec" data-reveal><span class="tp-eyebrow">補足</span><h2 class="tp-h2">こんなときに便利です</h2><p>スマホで撮った書類の写真を一つのPDFにまとめて提出するとき、画面キャプチャ複数枚を報告用の文書にするとき、手描きやポートフォリオの画像を一つのファイルに整理するときに便利です。スマホからもその場で作って、そのまま送れます。</p></div>
 
         <div class="tp-sec" data-reveal>
-          <span class="tp-eyebrow">궁금한 점</span>
+          <span class="tp-eyebrow">よくある質問</span>
           <h2 class="tp-h2">よくある質問</h2>
           <div class="ws-term tp-faqterm">
             <div class="ws-faqlist">
