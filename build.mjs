@@ -132,6 +132,7 @@ const ICONS_PDF = {
   'remove-metadata': pdfSvg(pdfPage(2) + pdfBadge(17.4, 17.4, '#2b303b', '<path d="M17.4 14.5l2.3.85v1.85c0 1.45-1 2.45-2.3 2.95-1.3-.5-2.3-1.5-2.3-2.95V15.35z" fill="none" stroke="#fff" stroke-width="1.05"/>')),
   'remove-blank': pdfSvg(pdfPage(1) + pdfBadge(17.4, 17.4, '#f59e0b', '<path d="M15.4 17.4h4" stroke="#fff" stroke-width="1.7" stroke-linecap="round"/>')),
   'add-margin': pdfSvg(pdfPage(2) + pdfBadge(17.4, 17.4, '#0d9488', '<rect x="15.3" y="15.3" width="4.2" height="4.2" rx=".6" fill="none" stroke="#fff" stroke-width="1.05" stroke-dasharray="1.6 1.2"/>')),
+  'pptx-to-pdf': pdfSvg('<rect x="1.6" y="6.2" width="8.2" height="11.6" rx="1.9" fill="#d24726"/><path d="M4 9.6h2.2a1.5 1.5 0 0 1 0 3H4.6v2.4H4z" fill="#fff"/><path d="M10.9 12h2.5M12.2 10.7 13.5 12l-1.3 1.3" stroke="#98a0ae" stroke-width="1.35" fill="none" stroke-linecap="round" stroke-linejoin="round"/>' + '<rect x="14.6" y="6.2" width="8.2" height="11.6" rx="1.9" fill="' + PDF_RED + '"/><path d="M16.9 9.7h1.9a1.35 1.35 0 0 1 0 2.7h-1.3v2.2h-.6z" fill="#fff"/>'),
   'pdf-to-docx': pdfSvg(pdfPage(2) + pdfBadge(17.4, 17.4, '#2b579a', '<path d="M15.5 15.9l.9 3.2.9-2.3.9 2.3.9-3.2" stroke="#fff" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" fill="none"/>')),
   'pdf-to-hwpx': pdfSvg(pdfPage(2) + pdfBadge(17.4, 17.4, '#e5252a', '<path d="M15.8 15.8v3.4M18.8 15.8v3.4M15.8 17.5h3" stroke="#fff" stroke-width="1" stroke-linecap="round" fill="none"/>')),
   'extract-text': pdfSvg(pdfPage(2) + pdfBadge(17.4, 17.4, '#2f6df6', '<path d="M15.6 15.9h3.6M15.9 17.5h3M16.1 19h2.6" stroke="#fff" stroke-width="1" stroke-linecap="round"/>')),
@@ -187,7 +188,7 @@ const LDIR = {
     organize: '合并、拆分 PDF，自由整理页面顺序。', convert: 'PDF 与图片互转，全部在浏览器中完成。', security: '设置或解除密码、清除个人信息、添加水印保护。', optimize: '减小文件体积，清理空白页面。', edit: '通过旋转、页边距、裁剪、签名和表单扁平化美化文档。', analyze: '查看文档信息并提取其中的文字。' }
 };
 // 한국어 전용 도구 — HWPX는 한국 전용 포맷이고, 얇은 기계번역 페이지를 늘리지 않기 위해 ko에서만 생성한다.
-const KO_ONLY_TOOLS = new Set(['pdf-to-docx', 'pdf-to-hwpx']);
+const KO_ONLY_TOOLS = new Set(['pdf-to-docx', 'pdf-to-hwpx', 'pptx-to-pdf']);
 const visTools = () => TOOLS.filter((t) => CUR_LANG === 'ko' || !KO_ONLY_TOOLS.has(t.slug));
 const visSlugs = (slugs) => slugs.filter((sl) => CUR_LANG === 'ko' || !KO_ONLY_TOOLS.has(sl));
 const toolCount = () => visTools().length;
@@ -424,6 +425,9 @@ const TOOLS = [
   { slug: 'extract-text', icon: ICONS.text, nav: '텍스트 추출', multiple: false,
     runLabel: '텍스트 추출하기', dropTitle: '글자를 뽑을 PDF를 끌어다 놓으세요', pagecount: true,
     feature: ['글자를 .txt로', '복사·검색·재활용', 'OCR 아님'], options: optExtractText() },
+  { slug: 'pptx-to-pdf', icon: ICONS.text, nav: 'PPT 변환', multiple: false, script: 'pptx-to-pdf', needs: ['pdflib', 'zip'],
+    accept: 'pptx', runLabel: 'PDF로 변환하기', dropTitle: 'PDF로 바꿀 PPTX 파일을 끌어다 놓으세요', pagecount: false,
+    feature: ['PPTX→PDF', '업로드 없음', '글자·사진 위주'], options: optPptx() },
   { slug: 'pdf-to-docx', icon: ICONS.text, nav: '워드 변환', multiple: false, script: 'pdf-to-docx', needs: ['pdfjs', 'zip'],
     runLabel: 'DOCX로 변환하기', dropTitle: '워드로 바꿀 PDF를 끌어다 놓으세요', pagecount: true,
     feature: ['PDF→워드(.docx)', '표·그림 포함', '업로드 없음'], options: optToDocx() },
@@ -457,7 +461,7 @@ const TOOL_BY = Object.fromEntries(TOOLS.map((t) => [t.slug, t]));
 // ───────── 카테고리(카탈로그) ─────────
 const CATEGORIES = [
   { id: 'organize', title: 'PDF 구성', desc: '여러 PDF를 합치고, 나누고, 페이지를 자유롭게 정리하세요.', slugs: ['merge', 'split', 'organize', 'extract', 'delete', 'page-numbers', 'reverse', 'nup'] },
-  { id: 'convert', title: 'PDF 변환', desc: 'PDF와 이미지를 서로 바꾸세요. 모두 내 브라우저에서 처리됩니다.', slugs: ['to-image', 'image-to-pdf', 'pdf-to-docx', 'pdf-to-hwpx', 'svg-to-png'] },
+  { id: 'convert', title: 'PDF 변환', desc: 'PDF와 이미지를 서로 바꾸세요. 모두 내 브라우저에서 처리됩니다.', slugs: ['to-image', 'image-to-pdf', 'pdf-to-docx', 'pdf-to-hwpx', 'pptx-to-pdf', 'svg-to-png'] },
   { id: 'security', title: 'PDF 보안', desc: '비밀번호를 걸거나 풀고, 개인정보를 지우고, 워터마크로 지켜 안전하게.', slugs: ['protect', 'unlock', 'remove-metadata', 'watermark'] },
   { id: 'optimize', title: 'PDF 최적화', desc: '용량을 줄이고 빈 페이지를 정리해 가볍게.', slugs: ['compress', 'remove-blank', 'grayscale'] },
   { id: 'edit', title: 'PDF 편집', desc: '방향·여백·자르기·서명·양식으로 문서를 보기 좋게 다듬으세요.', slugs: ['rotate', 'crop', 'add-margin', 'sign', 'flatten'] },
@@ -466,7 +470,7 @@ const CATEGORIES = [
 
 // 작업실 OS 공용 자원 (홈 + 도구 상세 공통)
 const CHIP = '<svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4"/></svg>';
-const APP_FILE = { merge: 'merge.app', split: 'split.app', unlock: 'unlock.app', extract: 'extract.app', delete: 'delete.app', organize: 'organize.app', 'to-image': 'to-image.app', 'page-numbers': 'page-num.app', 'image-to-pdf': 'img-to-pdf.app', 'svg-to-png': 'svg-to-png.app', rotate: 'rotate.app', crop: 'crop.app', compress: 'compress.app', 'pdf-info': 'pdf-info.app', 'remove-metadata': 'remove-metadata.app', 'remove-blank': 'remove-blank.app', 'add-margin': 'add-margin.app', 'extract-text': 'extract-text.app', 'pdf-to-docx': 'to-docx.app', 'pdf-to-hwpx': 'to-hwpx.app', reverse: 'reverse.app', grayscale: 'grayscale.app', nup: 'nup.app', sign: 'sign.app', watermark: 'watermark.app', flatten: 'flatten.app', protect: 'protect.app' };
+const APP_FILE = { merge: 'merge.app', split: 'split.app', unlock: 'unlock.app', extract: 'extract.app', delete: 'delete.app', organize: 'organize.app', 'to-image': 'to-image.app', 'page-numbers': 'page-num.app', 'image-to-pdf': 'img-to-pdf.app', 'svg-to-png': 'svg-to-png.app', rotate: 'rotate.app', crop: 'crop.app', compress: 'compress.app', 'pdf-info': 'pdf-info.app', 'remove-metadata': 'remove-metadata.app', 'remove-blank': 'remove-blank.app', 'add-margin': 'add-margin.app', 'extract-text': 'extract-text.app', 'pptx-to-pdf': 'pptx-to-pdf.app', 'pdf-to-docx': 'to-docx.app', 'pdf-to-hwpx': 'to-hwpx.app', reverse: 'reverse.app', grayscale: 'grayscale.app', nup: 'nup.app', sign: 'sign.app', watermark: 'watermark.app', flatten: 'flatten.app', protect: 'protect.app' };
 const APP_DESC = {
   merge: '여러 PDF를 순서대로 끌어다 하나로. 과제 묶음, 보고서 취합, 스캔본 결합까지 한 번에 끝냅니다.',
   split: '한 파일을 여러 개로. 자르는 지점을 눌러 필요한 부분만 깔끔하게 나눕니다.',
@@ -509,6 +513,7 @@ const APP_BULLET = {
   nup: '한 장에 2·4쪽 모아 배치 · 종이 절약 · 핸드아웃',
   'to-image': 'PDF를 JPG·PNG로 · 페이지별 저장 · ZIP 묶음',
   'image-to-pdf': '사진·캡처를 한 PDF로 · 순서 지정 · 여러 장 가능',
+  'pptx-to-pdf': '파워포인트(.pptx)를 PDF로 · 글자·사진 위주 · 차트는 미지원',
   'pdf-to-docx': 'PDF를 워드(.docx)로 · 표·그림 포함 · 문단·제목 유지',
   'pdf-to-hwpx': 'PDF를 한글(.hwpx)로 · 표는 탭 구분 · 한글 2014 이상',
   protect: '열기 비밀번호 설정 · 인쇄·복사 제한 선택',
@@ -542,7 +547,7 @@ const APP_SHORT = {
   extract: '원하는 페이지만 추출', delete: '불필요한 페이지 삭제', organize: '순서·회전·삭제 한 번에', 'to-image': 'JPG·PNG로 변환', 'page-numbers': '페이지 번호 넣기',
   'image-to-pdf': 'JPG·PNG를 PDF로', 'svg-to-png': 'SVG를 PNG로',
   rotate: '페이지 회전', crop: '여백 제거', compress: '용량 줄이기', 'pdf-info': '문서 정보 보기',
-  'remove-metadata': '개인정보 제거', 'remove-blank': '빈 페이지 제거', 'add-margin': '여백 추가', 'extract-text': '텍스트 추출', 'pdf-to-docx': '워드(.docx)로 변환', 'pdf-to-hwpx': '한글(.hwpx)로 변환',
+  'remove-metadata': '개인정보 제거', 'remove-blank': '빈 페이지 제거', 'add-margin': '여백 추가', 'extract-text': '텍스트 추출', 'pptx-to-pdf': 'PPT를 PDF로', 'pdf-to-docx': '워드(.docx)로 변환', 'pdf-to-hwpx': '한글(.hwpx)로 변환',
   reverse: '페이지 역순', grayscale: '흑백 변환', nup: '모아찍기', sign: '서명·도장 넣기',
   watermark: '워터마크 넣기', flatten: '양식 값 고정', protect: '비밀번호 걸기',
 };
@@ -557,6 +562,7 @@ const SEARCH_SYN = {
   rotate: '회전 방향 돌리기 눕힘 세우기', crop: '자르기 여백 제거 크롭', 'add-margin': '여백 추가 제본 필기공간',
   sign: '서명 사인 도장 계약서 동의서', flatten: '양식 평탄화 폼 고정 신청서', 'pdf-info': '정보 페이지수 크기 메타',
   'extract-text': '텍스트 추출 글자 복사',
+  'pptx-to-pdf': 'ppt pptx 파워포인트 powerpoint 발표자료 슬라이드 pdf 변환',
   'pdf-to-docx': '워드 변환 docx doc ms워드 msword 문서 변환 편집',
   'pdf-to-hwpx': '한글 변환 hwp hwpx 한컴 아래아한글 한글파일 문서 변환', protect: '비밀번호 설정 암호화 암호 걸기 보호 잠금 encrypt',
 };
@@ -802,6 +808,18 @@ function optAddMargin() {
 function optExtractText() {
   return `<div class="options">
   <p class="option__hint" style="margin:0">PDF 속 글자를 .txt 파일로 뽑아요. 사진처럼 스캔된 PDF(이미지)는 글자가 없어 추출되지 않아요(OCR 아님).</p>
+</div>`;
+}
+function optPptx() {
+  return `<div class="options">
+  <p class="option__hint" style="margin:0 0 4px">파워포인트(.pptx) 슬라이드를 그려 PDF로 묶어요. 차트·SmartArt·도형 효과는 재현되지 않고, 결과의 글자는 선택·검색이 되지 않습니다.</p>
+  <label class="field__lb" for="pp-quality">선명도</label>
+  <select id="pp-quality" class="field">
+    <option value="1.5">보통 — 용량 작게</option>
+    <option value="2" selected>높음 — 권장</option>
+    <option value="3">최고 — 용량 큼</option>
+  </select>
+  ${optOutName('슬라이드-PDF')}
 </div>`;
 }
 function optToDocx() {
@@ -1315,8 +1333,8 @@ function widget(t, opts) {
   opts = opts || {};
   const extraClass = opts.class ? ' ' + opts.class : '';
   const pc = t.pagecount ? `\n      <p class="pagecount js-pagecount"></p>` : '';
-  const ACC = { image: 'image/png,image/jpeg', jpg: 'image/jpeg,.jpg,.jpeg', png: 'image/png,.png', webp: 'image/webp,.webp', gif: 'image/gif,.gif', avif: 'image/avif,.avif', svg: 'image/svg+xml,.svg' };
-  const NOUN = { image: '이미지', jpg: 'JPG', png: 'PNG', webp: 'WEBP', gif: 'GIF', avif: 'AVIF', svg: 'SVG' };
+  const ACC = { pptx: 'application/vnd.openxmlformats-officedocument.presentationml.presentation,.pptx', image: 'image/png,image/jpeg', jpg: 'image/jpeg,.jpg,.jpeg', png: 'image/png,.png', webp: 'image/webp,.webp', gif: 'image/gif,.gif', avif: 'image/avif,.avif', svg: 'image/svg+xml,.svg' };
+  const NOUN = { pptx: 'PPTX', image: '이미지', jpg: 'JPG', png: 'PNG', webp: 'WEBP', gif: 'GIF', avif: 'AVIF', svg: 'SVG' };
   const accept = ACC[t.accept] || 'application/pdf';
   const noun = NOUN[t.accept] || 'PDF';
   const aria = noun + ' 파일 선택 또는 끌어다 놓기';

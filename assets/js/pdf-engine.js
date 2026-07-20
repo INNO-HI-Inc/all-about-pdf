@@ -903,6 +903,196 @@
     return await zip.generateAsync({ type: 'blob', compression: 'DEFLATE' });
   }
 
+  // ── PPTX → PDF ────────────────────────────────────────────
+  // PPTX는 ZIP+XML이고 도형 위치를 EMU 절대좌표로 갖는다. PDF도 절대좌표라 궁합은 좋다.
+  // 다만 한글을 PDF에 벡터 텍스트로 넣으려면 한글 TTF+fontkit이 필요한데 번들에 없으므로,
+  // 슬라이드를 캔버스에 그린 뒤 이미지로 PDF에 얹는다(워터마크 도구와 같은 방식).
+  // 결과: 보이는 대로 나오지만 글자 선택·검색은 안 된다. 도구 페이지에 명시한다.
+  var EMU_PT = 12700; // 1pt
+
+  function xmlDoc(text) { return new DOMParser().parseFromString(text, 'application/xml'); }
+  function tagAll(node, local) {
+    // 네임스페이스 접두사가 파일마다 달라 getElementsByTagNameNS 대신 localName으로 훑는다
+    var out = [];
+    (function walk(n) {
+      for (var c = n.firstElementChild; c; c = c.nextElementSibling) {
+        if (c.localName === local) out.push(c);
+        walk(c);
+      }
+    })(node);
+    return out;
+  }
+  function tagOne(node, local) { var a = tagAll(node, local); return a.length ? a[0] : null; }
+  function attr(node, name) { if (!node) return null; for (var i = 0; i < node.attributes.length; i++) { var a = node.attributes[i]; if (a.localName === name) return a.value; } return null; }
+
+  function solidColor(node) {
+    if (!node) return null;
+    var fill = tagOne(node, 'solidFill');
+    if (!fill) return null;
+    var srgb = tagOne(fill, 'srgbClr');
+    if (srgb) return '#' + (attr(srgb, 'val') || '000000');
+    return null;
+  }
+
+  function parseShape(sp) {
+    var xfrm = tagOne(sp, 'xfrm');
+    var off = xfrm ? tagOne(xfrm, 'off') : null, ext = xfrm ? tagOne(xfrm, 'ext') : null;
+    var box = {
+      x: off ? parseInt(attr(off, 'x') || 0, 10) / EMU_PT : null,
+      y: off ? parseInt(attr(off, 'y') || 0, 10) / EMU_PT : null,
+      w: ext ? parseInt(attr(ext, 'cx') || 0, 10) / EMU_PT : null,
+      h: ext ? parseInt(attr(ext, 'cy') || 0, 10) / EMU_PT : null
+    };
+    var ph = tagOne(sp, 'ph');
+    var phType = ph ? (attr(ph, 'type') || 'body') : null;
+    var paras = tagAll(sp, 'p').map(function (p) {
+      var pPr = tagOne(p, 'pPr');
+      var runs = tagAll(p, 'r').map(function (r) {
+        var rPr = tagOne(r, 'rPr'), t = tagOne(r, 't');
+        return {
+          text: t ? (t.textContent || '') : '',
+          size: rPr && attr(rPr, 'sz') ? parseInt(attr(rPr, 'sz'), 10) / 100 : null,
+          bold: rPr ? attr(rPr, 'b') === '1' : false,
+          color: solidColor(rPr)
+        };
+      }).filter(function (r) { return r.text; });
+      return { align: pPr ? attr(pPr, 'algn') : null, runs: runs };
+    }).filter(function (p) { return p.runs.length; });
+    return { box: box, phType: phType, paras: paras };
+  }
+
+  function wrapLine(ctx, text, maxW) {
+    // 한국어는 공백 없이 이어지는 구간이 많아 어절 우선 + 넘치면 글자 단위로 끊는다
+    var words = String(text).split(/(\s+)/), lines = [], cur = '';
+    words.forEach(function (w) {
+      var test = cur + w;
+      if (ctx.measureText(test).width <= maxW || !cur) {
+        if (ctx.measureText(test).width > maxW && !cur) {
+          for (var i = 0; i < w.length; i++) {
+            if (ctx.measureText(cur + w[i]).width > maxW && cur) { lines.push(cur); cur = ''; }
+            cur += w[i];
+          }
+        } else cur = test;
+      } else { lines.push(cur.replace(/\s+$/, '')); cur = w.replace(/^\s+/, ''); }
+    });
+    if (cur.trim()) lines.push(cur);
+    return lines;
+  }
+
+  async function pptxToPdf(file, opts, onProgress) {
+    opts = opts || {};
+    if (!global.JSZip) throw new Error('압축 모듈을 불러오지 못했습니다. 새로고침해 주세요.');
+    var PDFDocument = L().PDFDocument;
+    var zip = await global.JSZip.loadAsync(await readArrayBuffer(file));
+
+    var presFile = zip.file('ppt/presentation.xml');
+    if (!presFile) throw new Error('PPTX 파일이 아니거나 손상된 것 같아요. 파워포인트에서 다시 저장해 보세요.');
+    var pres = xmlDoc(await presFile.async('string'));
+    var sz = tagOne(pres, 'sldSz');
+    var slideW = sz ? parseInt(attr(sz, 'cx'), 10) / EMU_PT : 720;
+    var slideH = sz ? parseInt(attr(sz, 'cy'), 10) / EMU_PT : 540;
+
+    // 슬라이드 순서: sldIdLst의 r:id → presentation.xml.rels 의 Target
+    var relsFile = zip.file('ppt/_rels/presentation.xml.rels');
+    var relMap = {};
+    if (relsFile) {
+      var rels = xmlDoc(await relsFile.async('string'));
+      tagAll(rels, 'Relationship').forEach(function (r) { relMap[attr(r, 'Id')] = attr(r, 'Target'); });
+    }
+    var order = tagAll(pres, 'sldId').map(function (s) {
+      var rid = attr(s, 'id') && null; // 사용 안 함
+      for (var i = 0; i < s.attributes.length; i++) if (s.attributes[i].localName === 'id' && s.attributes[i].prefix === 'r') rid = s.attributes[i].value;
+      if (!rid) for (var j = 0; j < s.attributes.length; j++) if (s.attributes[j].name === 'r:id') rid = s.attributes[j].value;
+      return relMap[rid];
+    }).filter(Boolean).map(function (t) { return t.indexOf('/') === 0 ? t.slice(1) : 'ppt/' + t.replace(/^\.\.\//, ''); });
+    if (!order.length) {
+      order = Object.keys(zip.files).filter(function (n) { return /^ppt\/slides\/slide\d+\.xml$/.test(n); })
+        .sort(function (a, b) { return (+a.match(/(\d+)/)[1]) - (+b.match(/(\d+)/)[1]); });
+    }
+    if (!order.length) throw new Error('슬라이드를 찾지 못했어요. 파워포인트에서 다시 저장해 보세요.');
+
+    var SC = Math.max(1, Math.min(3, opts.scale || 2)); // 캔버스 확대 배율(선명도)
+    var out = await PDFDocument.create();
+
+    for (var si = 0; si < order.length; si++) {
+      var sFile = zip.file(order[si]);
+      if (!sFile) continue;
+      var sdoc = xmlDoc(await sFile.async('string'));
+
+      var cv = document.createElement('canvas');
+      cv.width = Math.round(slideW * SC); cv.height = Math.round(slideH * SC);
+      var ctx = cv.getContext('2d');
+      ctx.scale(SC, SC);
+
+      // 배경
+      var bgEl = tagOne(sdoc, 'bgPr');
+      ctx.fillStyle = solidColor(bgEl) || '#ffffff';
+      ctx.fillRect(0, 0, slideW, slideH);
+
+      // 그림 먼저(뒤에 깔리도록) — 슬라이드 rels에서 이미지 경로를 찾는다
+      var srels = {};
+      var srFile = zip.file(order[si].replace(/slides\/([^/]+)$/, 'slides/_rels/$1.rels'));
+      if (srFile) {
+        var sr = xmlDoc(await srFile.async('string'));
+        tagAll(sr, 'Relationship').forEach(function (r) { srels[attr(r, 'Id')] = attr(r, 'Target'); });
+      }
+      var pics = tagAll(sdoc, 'pic');
+      for (var pi = 0; pi < pics.length; pi++) {
+        try {
+          var blip = tagOne(pics[pi], 'blip');
+          var embed = null;
+          if (blip) for (var k = 0; k < blip.attributes.length; k++) if (blip.attributes[k].localName === 'embed') embed = blip.attributes[k].value;
+          var tgt = embed ? srels[embed] : null;
+          if (!tgt) continue;
+          var path = 'ppt/' + tgt.replace(/^\.\.\//, '');
+          var imgFile = zip.file(path);
+          if (!imgFile) continue;
+          var blob = new Blob([await imgFile.async('arraybuffer')]);
+          var bmp = await createImageBitmap(blob);
+          var pb = parseShape(pics[pi]).box;
+          if (pb.x == null) continue;
+          ctx.drawImage(bmp, pb.x, pb.y, pb.w, pb.h);
+        } catch (e) { /* 개별 이미지 실패는 건너뛴다 */ }
+      }
+
+      // 텍스트
+      tagAll(sdoc, 'sp').forEach(function (sp) {
+        var sh = parseShape(sp);
+        if (!sh.paras.length || sh.box.x == null) return;
+        var isTitle = sh.phType && /title|ctrTitle/.test(sh.phType);
+        var y = sh.box.y;
+        sh.paras.forEach(function (p) {
+          var first = p.runs[0] || {};
+          var fs = first.size || (isTitle ? 32 : 18);
+          var bold = first.bold || isTitle;
+          ctx.font = (bold ? '700 ' : '400 ') + fs + 'px "Apple SD Gothic Neo","Malgun Gothic","Noto Sans KR",sans-serif';
+          ctx.fillStyle = first.color || '#1a1a2e';
+          ctx.textBaseline = 'top';
+          var text = p.runs.map(function (r) { return r.text; }).join('');
+          var lines = wrapLine(ctx, text, sh.box.w);
+          lines.forEach(function (ln) {
+            var x = sh.box.x;
+            if (p.align === 'ctr') { ctx.textAlign = 'center'; x = sh.box.x + sh.box.w / 2; }
+            else if (p.align === 'r') { ctx.textAlign = 'right'; x = sh.box.x + sh.box.w; }
+            else ctx.textAlign = 'left';
+            ctx.fillText(ln, x, y);
+            y += fs * 1.35;
+          });
+          y += fs * 0.35;
+        });
+      });
+
+      var png = await canvasToBlob(cv, 'image/png');
+      var bytes = new Uint8Array(await png.arrayBuffer());
+      var emb = await out.embedPng(bytes);
+      var page = out.addPage([slideW, slideH]);
+      page.drawImage(emb, { x: 0, y: 0, width: slideW, height: slideH });
+      if (onProgress) onProgress((si + 1) / order.length);
+    }
+    if (!out.getPageCount()) throw new Error('변환할 슬라이드를 찾지 못했어요.');
+    return toBlob(await out.save());
+  }
+
   // ── 페이지 역순 ────────────────────────────────────────────
   async function reverse(file) {
     var PDFDocument = L().PDFDocument;
@@ -1235,6 +1425,7 @@
     isPasswordError: isPasswordError,
     probe: probe,
     extractBlocks: extractBlocks,
+    pptxToPdf: pptxToPdf,
     buildDocx: buildDocx,
     buildHwpx: buildHwpx
   };

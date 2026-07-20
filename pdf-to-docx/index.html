@@ -91,8 +91,8 @@
         <div class="options">
   <p class="option__hint" style="margin:0 0 4px">PDF 속 글자를 뽑아 워드(.docx) 문서로 만들어요. 문단·제목과 함께 표와 그림도 옮깁니다. 다만 칸이 병합된 복잡한 표나 다단 배치는 흐트러질 수 있고, 스캔본(사진 PDF)은 글자가 없어 변환되지 않습니다.</p>
   <div class="option">
-    <label class="option__label" for="out-name-15">저장 파일명 <span class="option__hint">선택 · 비우면 기본 이름</span></label>
-    <input type="text" id="out-name-15" class="field js-outname" placeholder="워드-문서" autocomplete="off">
+    <label class="option__label" for="out-name-16">저장 파일명 <span class="option__hint">선택 · 비우면 기본 이름</span></label>
+    <input type="text" id="out-name-16" class="field js-outname" placeholder="워드-문서" autocomplete="off">
   </div>
 </div>
         <div class="actions"><button class="btn btn--primary btn--lg btn--block js-run" disabled>DOCX로 변환하기</button></div>
@@ -127,12 +127,13 @@
           </div>
         </div>
         <div class="tp-dock__panel" data-cat="convert" role="menu" aria-label="PDF 변환 도구" hidden>
-          <div class="tp-dock__panel-head">PDF 변환 <span>17</span></div>
+          <div class="tp-dock__panel-head">PDF 변환 <span>18</span></div>
           <div class="tp-dock__grid">
             <a class="tp-dock__item" href="../to-image/"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="4.5" width="17" height="15" rx="2.5"/><circle cx="8.5" cy="9.5" r="1.7"/><path d="M20.5 15.5 16 11 6 21"/></svg><span>PDF→이미지</span></a>
             <a class="tp-dock__item" href="../image-to-pdf/"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="4.5" width="17" height="15" rx="2.5"/><circle cx="8.5" cy="9.5" r="1.7"/><path d="M20.5 15.5 16 11 6 21"/></svg><span>이미지→PDF</span></a>
             <a class="tp-dock__item is-active" href="../pdf-to-docx/" aria-current="page"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3.5H7.5a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h9a2 2 0 0 0 2-2V8l-5-4.5z"/><path d="M14 3.5V8h5"/><path d="M8.5 12h7M8.5 15h7M8.5 9h3"/></svg><span>워드 변환</span></a>
             <a class="tp-dock__item" href="../pdf-to-hwpx/"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3.5H7.5a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h9a2 2 0 0 0 2-2V8l-5-4.5z"/><path d="M14 3.5V8h5"/><path d="M8.5 12h7M8.5 15h7M8.5 9h3"/></svg><span>한글 변환</span></a>
+            <a class="tp-dock__item" href="../pptx-to-pdf/"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3.5H7.5a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h9a2 2 0 0 0 2-2V8l-5-4.5z"/><path d="M14 3.5V8h5"/><path d="M8.5 12h7M8.5 15h7M8.5 9h3"/></svg><span>PPT 변환</span></a>
             <a class="tp-dock__item" href="../svg-to-png/"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="4.5" width="17" height="15" rx="2.5"/><circle cx="8.5" cy="9.5" r="1.7"/><path d="M20.5 15.5 16 11 6 21"/></svg><span>SVG→PNG</span></a>
             <a class="tp-dock__item" href="../gif-to-png/"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="4.5" width="17" height="15" rx="2.5"/><circle cx="8.5" cy="9.5" r="1.7"/><path d="M20.5 15.5 16 11 6 21"/></svg><span>GIF→PNG</span></a>
             <a class="tp-dock__item" href="../gif-to-jpg/"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="4.5" width="17" height="15" rx="2.5"/><circle cx="8.5" cy="9.5" r="1.7"/><path d="M20.5 15.5 16 11 6 21"/></svg><span>GIF→JPG</span></a>
@@ -190,7 +191,7 @@
         </button>
         <button type="button" class="tp-dock__cat is-current" data-cat="convert" aria-expanded="false" aria-haspopup="menu">
           <span class="tp-dock__cat-name">변환</span>
-          <span class="tp-dock__cat-count">17</span>
+          <span class="tp-dock__cat-count">18</span>
         </button>
         <button type="button" class="tp-dock__cat" data-cat="security" aria-expanded="false" aria-haspopup="menu">
           <span class="tp-dock__cat-name">보안</span>
@@ -277,14 +278,14 @@
         <a class="tp-rel" href="../pdf-to-hwpx/">
           <div class="tp-rel__body"><span class="tp-rel__ico"><svg viewBox="0 0 24 24" class="ic-svg ic-pdf" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M6.4 2.6h6.6L17.6 7v11.4a1.5 1.5 0 0 1-1.5 1.5H6.4a1.5 1.5 0 0 1-1.5-1.5V4.1a1.5 1.5 0 0 1 1.5-1.5z" fill="#E5252A"/><path d="M12.7 2.6 17.6 7h-3.8a1.1 1.1 0 0 1-1.1-1.1z" fill="#B3160F"/><rect x="7.2" y="8.7" width="6" height="1.2" rx=".6" fill="#fff" opacity=".9"/><rect x="7.2" y="11" width="4.2" height="1.2" rx=".6" fill="#fff" opacity=".9"/><circle cx="17.4" cy="17.4" r="4.4" fill="#e5252a" stroke="#fff" stroke-width="1.2"/><path d="M15.8 15.8v3.4M18.8 15.8v3.4M15.8 17.5h3" stroke="#fff" stroke-width="1" stroke-linecap="round" fill="none"/></svg></span><div class="tp-rel__tx"><h3>한글 변환 (HWPX)</h3><p>한글(.hwpx)로 변환</p></div><span class="tp-rel__arr" aria-hidden="true">→</span></div>
         </a>
+        <a class="tp-rel" href="../pptx-to-pdf/">
+          <div class="tp-rel__body"><span class="tp-rel__ico"><svg viewBox="0 0 24 24" class="ic-svg ic-pdf" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="1.6" y="6.2" width="8.2" height="11.6" rx="1.9" fill="#d24726"/><path d="M4 9.6h2.2a1.5 1.5 0 0 1 0 3H4.6v2.4H4z" fill="#fff"/><path d="M10.9 12h2.5M12.2 10.7 13.5 12l-1.3 1.3" stroke="#98a0ae" stroke-width="1.35" fill="none" stroke-linecap="round" stroke-linejoin="round"/><rect x="14.6" y="6.2" width="8.2" height="11.6" rx="1.9" fill="#E5252A"/><path d="M16.9 9.7h1.9a1.35 1.35 0 0 1 0 2.7h-1.3v2.2h-.6z" fill="#fff"/></svg></span><div class="tp-rel__tx"><h3>PPT PDF 변환</h3><p>PPT를 PDF로</p></div><span class="tp-rel__arr" aria-hidden="true">→</span></div>
+        </a>
         <a class="tp-rel" href="../svg-to-png/">
           <div class="tp-rel__body"><span class="tp-rel__ico"><svg viewBox="0 0 24 24" class="ic-svg ic-pdf" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="1.1" y="6.2" width="8.2" height="11.6" rx="1.9" fill="#6366f1"/><circle cx="3.5" cy="9.9" r=".95" fill="#fff" opacity=".95"/><path d="M2.1 15.4l2.1-2.6 1.3 1.5 1.2-1.5 2 2.6z" fill="#fff" opacity=".95"/><path d="M10.9 12h2.5M12.2 10.7 13.5 12l-1.3 1.3" stroke="#98a0ae" stroke-width="1.35" fill="none" stroke-linecap="round" stroke-linejoin="round"/><rect x="14.6" y="6.2" width="8.2" height="11.6" rx="1.9" fill="#18a957"/><circle cx="17" cy="9.9" r=".95" fill="#fff" opacity=".95"/><path d="M15.6 15.4l2.1-2.6 1.3 1.5 1.2-1.5 2 2.6z" fill="#fff" opacity=".95"/></svg></span><div class="tp-rel__tx"><h3>SVG → PNG</h3><p>SVG를 PNG로</p></div><span class="tp-rel__arr" aria-hidden="true">→</span></div>
         </a>
         <a class="tp-rel" href="../gif-to-png/">
           <div class="tp-rel__body"><span class="tp-rel__ico"><svg viewBox="0 0 24 24" class="ic-svg ic-pdf" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="1.1" y="6.2" width="8.2" height="11.6" rx="1.9" fill="#8b5cf6"/><circle cx="3.5" cy="9.9" r=".95" fill="#fff" opacity=".95"/><path d="M2.1 15.4l2.1-2.6 1.3 1.5 1.2-1.5 2 2.6z" fill="#fff" opacity=".95"/><path d="M10.9 12h2.5M12.2 10.7 13.5 12l-1.3 1.3" stroke="#98a0ae" stroke-width="1.35" fill="none" stroke-linecap="round" stroke-linejoin="round"/><rect x="14.6" y="6.2" width="8.2" height="11.6" rx="1.9" fill="#18a957"/><circle cx="17" cy="9.9" r=".95" fill="#fff" opacity=".95"/><path d="M15.6 15.4l2.1-2.6 1.3 1.5 1.2-1.5 2 2.6z" fill="#fff" opacity=".95"/></svg></span><div class="tp-rel__tx"><h3>GIF → PNG</h3><p>GIF→PNG</p></div><span class="tp-rel__arr" aria-hidden="true">→</span></div>
-        </a>
-        <a class="tp-rel" href="../gif-to-jpg/">
-          <div class="tp-rel__body"><span class="tp-rel__ico"><svg viewBox="0 0 24 24" class="ic-svg ic-pdf" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="1.1" y="6.2" width="8.2" height="11.6" rx="1.9" fill="#8b5cf6"/><circle cx="3.5" cy="9.9" r=".95" fill="#fff" opacity=".95"/><path d="M2.1 15.4l2.1-2.6 1.3 1.5 1.2-1.5 2 2.6z" fill="#fff" opacity=".95"/><path d="M10.9 12h2.5M12.2 10.7 13.5 12l-1.3 1.3" stroke="#98a0ae" stroke-width="1.35" fill="none" stroke-linecap="round" stroke-linejoin="round"/><rect x="14.6" y="6.2" width="8.2" height="11.6" rx="1.9" fill="#f59e0b"/><circle cx="17" cy="9.9" r=".95" fill="#fff" opacity=".95"/><path d="M15.6 15.4l2.1-2.6 1.3 1.5 1.2-1.5 2 2.6z" fill="#fff" opacity=".95"/></svg></span><div class="tp-rel__tx"><h3>GIF → JPG</h3><p>GIF→JPG</p></div><span class="tp-rel__arr" aria-hidden="true">→</span></div>
         </a>
         </div>
       </div>
@@ -295,8 +296,8 @@
   <script src="../assets/vendor/pdf.min.js" defer fetchpriority="low"></script>
   <script src="../assets/vendor/jszip.min.js" defer fetchpriority="low"></script>
   <script src="../assets/js/ui.js?v=47a1abf4" defer></script>
-  <script src="../assets/js/pdf-engine.js?v=4a7a3858" defer></script>
-  <script src="../assets/js/tool-core.js?v=5bff895b" defer></script>
+  <script src="../assets/js/pdf-engine.js?v=7c205605" defer></script>
+  <script src="../assets/js/tool-core.js?v=4b4d217c" defer></script>
   <script src="../assets/js/tools/pdf-to-docx.js?v=08539ef4" defer></script>
   <script src="../assets/js/workspace.js?v=74de2e53" defer></script>
 </body>

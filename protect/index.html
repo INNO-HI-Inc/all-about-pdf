@@ -98,8 +98,8 @@
   <label class="checkbox"><input type="checkbox" id="protect-allow-copy" checked> 텍스트 복사 허용</label>
   <p class="option__hint" style="margin:2px 0 0">인쇄·복사를 끄면 열기 비밀번호와 별개의 소유자 암호로 제한이 걸립니다(뷰어에 따라 제한 적용이 다를 수 있어요).</p>
   <div class="option">
-    <label class="option__label" for="out-name-22">저장 파일명 <span class="option__hint">선택 · 비우면 기본 이름</span></label>
-    <input type="text" id="out-name-22" class="field js-outname" placeholder="비밀번호-PDF" autocomplete="off">
+    <label class="option__label" for="out-name-23">저장 파일명 <span class="option__hint">선택 · 비우면 기본 이름</span></label>
+    <input type="text" id="out-name-23" class="field js-outname" placeholder="비밀번호-PDF" autocomplete="off">
   </div>
   <p class="callout callout--warn"><span class="callout__ic"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><line x1="12" y1="11" x2="12" y2="16.5"/><circle cx="12" cy="7.8" r=".7" fill="currentColor" stroke="none"/></svg></span><span><strong>비밀번호를 잊으면 되돌릴 수 없어요.</strong> 설정한 비밀번호는 이 기기 어디에도 저장되지 않으니 꼭 따로 기억해 두세요. 파일은 서버로 전송되지 않고 브라우저에서 암호화됩니다.</span></p>
 </div>
@@ -135,12 +135,13 @@
           </div>
         </div>
         <div class="tp-dock__panel" data-cat="convert" role="menu" aria-label="PDF 변환 도구" hidden>
-          <div class="tp-dock__panel-head">PDF 변환 <span>17</span></div>
+          <div class="tp-dock__panel-head">PDF 변환 <span>18</span></div>
           <div class="tp-dock__grid">
             <a class="tp-dock__item" href="../to-image/"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="4.5" width="17" height="15" rx="2.5"/><circle cx="8.5" cy="9.5" r="1.7"/><path d="M20.5 15.5 16 11 6 21"/></svg><span>PDF→이미지</span></a>
             <a class="tp-dock__item" href="../image-to-pdf/"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="4.5" width="17" height="15" rx="2.5"/><circle cx="8.5" cy="9.5" r="1.7"/><path d="M20.5 15.5 16 11 6 21"/></svg><span>이미지→PDF</span></a>
             <a class="tp-dock__item" href="../pdf-to-docx/"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3.5H7.5a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h9a2 2 0 0 0 2-2V8l-5-4.5z"/><path d="M14 3.5V8h5"/><path d="M8.5 12h7M8.5 15h7M8.5 9h3"/></svg><span>워드 변환</span></a>
             <a class="tp-dock__item" href="../pdf-to-hwpx/"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3.5H7.5a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h9a2 2 0 0 0 2-2V8l-5-4.5z"/><path d="M14 3.5V8h5"/><path d="M8.5 12h7M8.5 15h7M8.5 9h3"/></svg><span>한글 변환</span></a>
+            <a class="tp-dock__item" href="../pptx-to-pdf/"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3.5H7.5a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h9a2 2 0 0 0 2-2V8l-5-4.5z"/><path d="M14 3.5V8h5"/><path d="M8.5 12h7M8.5 15h7M8.5 9h3"/></svg><span>PPT 변환</span></a>
             <a class="tp-dock__item" href="../svg-to-png/"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="4.5" width="17" height="15" rx="2.5"/><circle cx="8.5" cy="9.5" r="1.7"/><path d="M20.5 15.5 16 11 6 21"/></svg><span>SVG→PNG</span></a>
             <a class="tp-dock__item" href="../gif-to-png/"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="4.5" width="17" height="15" rx="2.5"/><circle cx="8.5" cy="9.5" r="1.7"/><path d="M20.5 15.5 16 11 6 21"/></svg><span>GIF→PNG</span></a>
             <a class="tp-dock__item" href="../gif-to-jpg/"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="4.5" width="17" height="15" rx="2.5"/><circle cx="8.5" cy="9.5" r="1.7"/><path d="M20.5 15.5 16 11 6 21"/></svg><span>GIF→JPG</span></a>
@@ -198,7 +199,7 @@
         </button>
         <button type="button" class="tp-dock__cat" data-cat="convert" aria-expanded="false" aria-haspopup="menu">
           <span class="tp-dock__cat-name">변환</span>
-          <span class="tp-dock__cat-count">17</span>
+          <span class="tp-dock__cat-count">18</span>
         </button>
         <button type="button" class="tp-dock__cat is-current" data-cat="security" aria-expanded="false" aria-haspopup="menu">
           <span class="tp-dock__cat-name">보안</span>
@@ -300,8 +301,8 @@
   <script>window.AAP_BASE='../';</script>
   <script src="../assets/vendor/pdf-lib-cantoo.min.js" defer fetchpriority="low"></script>
   <script src="../assets/js/ui.js?v=47a1abf4" defer></script>
-  <script src="../assets/js/pdf-engine.js?v=4a7a3858" defer></script>
-  <script src="../assets/js/tool-core.js?v=5bff895b" defer></script>
+  <script src="../assets/js/pdf-engine.js?v=7c205605" defer></script>
+  <script src="../assets/js/tool-core.js?v=4b4d217c" defer></script>
   <script src="../assets/js/tools/protect.js?v=23c08072" defer></script>
   <script src="../assets/js/workspace.js?v=74de2e53" defer></script>
 </body>

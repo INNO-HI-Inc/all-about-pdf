@@ -461,6 +461,7 @@
 
     var FMT = {
       image: { re: /\.(jpe?g|png)$/i, mime: /^image\/(png|jpeg)$/i, label: 'JPG·PNG 이미지' },
+      pptx: { re: /\.pptx$/i, mime: /presentationml\.presentation/i, label: 'PPTX 파워포인트 파일' },
       jpg: { re: /\.jpe?g$/i, mime: /^image\/jpeg$/i, label: 'JPG 이미지' },
       png: { re: /\.png$/i, mime: /^image\/png$/i, label: 'PNG 이미지' },
       webp: { re: /\.webp$/i, mime: /^image\/webp$/i, label: 'WEBP 이미지' },
