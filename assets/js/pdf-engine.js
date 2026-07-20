@@ -633,6 +633,83 @@
     return pages.join('\n\n');
   }
 
+  // ── 구조화 추출 (문단/제목 추정) ───────────────────────────
+  // PDF는 '줄' 단위 좌표만 갖고 문단 개념이 없다. 글자 크기 중앙값을 본문 기준으로 삼아
+  // 크고 짧은 줄은 제목으로, 종결어미 없이 길게 끝난 줄은 다음 줄과 한 문단으로 잇는다.
+  async function extractBlocks(file, onProgress) {
+    var pdfjs = await loadPdfjs(file);
+    var total = pdfjs.numPages, lines = [];
+    for (var n = 1; n <= total; n++) {
+      var page = await pdfjs.getPage(n);
+      var tc = await page.getTextContent();
+      var cur = '', size = 0;
+      tc.items.forEach(function (it) {
+        var s = it.transform ? Math.abs(it.transform[3]) : 0;
+        if (s > size) size = s;
+        cur += (it.str || '');
+        if (it.hasEOL) { lines.push({ text: cur, size: size }); cur = ''; size = 0; }
+      });
+      if (cur) lines.push({ text: cur, size: size });
+      if (onProgress) onProgress(n / total);
+    }
+    var sizes = lines.map(function (l) { return l.size; }).filter(function (s) { return s > 0; }).sort(function (a, b) { return a - b; });
+    var bodySize = sizes.length ? sizes[Math.floor(sizes.length / 2)] : 12;
+    var blocks = [];
+    lines.forEach(function (l) {
+      var t = (l.text || '').replace(/\s+/g, ' ').trim();
+      if (!t) { blocks.push({ type: 'gap' }); return; }
+      if (l.size >= bodySize * 1.25 && t.length <= 60) { blocks.push({ type: 'h', text: t }); return; }
+      var prev = blocks[blocks.length - 1];
+      // 종결(마침표·한국어 종결어미) 없이 길게 끝난 줄 → 앞 문단에 이어 붙임
+      var continued = prev && prev.type === 'p' && prev.text.length > 25 &&
+        !/[.!?。」』”\)\]:;]$/.test(prev.text) && !/(다|요|음|임|함|것|죠)$/.test(prev.text);
+      if (continued) prev.text = (prev.text + ' ' + t).replace(/\s{2,}/g, ' ');
+      else blocks.push({ type: 'p', text: t });
+    });
+    return blocks.filter(function (b) { return b.type !== 'gap'; });
+  }
+
+  function xmlEsc(s) {
+    return String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&apos;')
+      .replace(/[\x00-\x08\x0B\x0C\x0E-\x1F]/g, ''); // XML 1.0 금지 제어문자 제거
+  }
+
+  // ── PDF → DOCX (OOXML: ZIP+XML, 브라우저에서 생성) ────────
+  async function buildDocx(blocks, title) {
+    if (!global.JSZip) throw new Error('압축 모듈을 불러오지 못했습니다. 새로고침해 주세요.');
+    var zip = new global.JSZip();
+    var body = blocks.map(function (b) {
+      var t = xmlEsc(b.text);
+      if (b.type === 'h') return '<w:p><w:pPr><w:pStyle w:val="Heading1"/></w:pPr><w:r><w:t xml:space="preserve">' + t + '</w:t></w:r></w:p>';
+      return '<w:p><w:r><w:t xml:space="preserve">' + t + '</w:t></w:r></w:p>';
+    }).join('');
+    zip.file('[Content_Types].xml', '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>\n<Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types"><Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/><Default Extension="xml" ContentType="application/xml"/><Override PartName="/word/document.xml" ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.document.main+xml"/><Override PartName="/word/styles.xml" ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.styles+xml"/><Override PartName="/docProps/core.xml" ContentType="application/vnd.openxmlformats-package.core-properties+xml"/></Types>');
+    zip.file('_rels/.rels', '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>\n<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument" Target="word/document.xml"/><Relationship Id="rId2" Type="http://schemas.openxmlformats.org/package/2006/relationships/metadata/core-properties" Target="docProps/core.xml"/></Relationships>');
+    zip.file('docProps/core.xml', '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>\n<cp:coreProperties xmlns:cp="http://schemas.openxmlformats.org/package/2006/metadata/core-properties" xmlns:dc="http://purl.org/dc/elements/1.1/"><dc:title>' + xmlEsc(title || '') + '</dc:title></cp:coreProperties>');
+    zip.file('word/_rels/document.xml.rels', '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>\n<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/styles" Target="styles.xml"/></Relationships>');
+    // 한글이 깨지지 않도록 eastAsia 글꼴을 명시
+    zip.file('word/styles.xml', '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>\n<w:styles xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main"><w:docDefaults><w:rPrDefault><w:rPr><w:rFonts w:ascii="맑은 고딕" w:hAnsi="맑은 고딕" w:eastAsia="맑은 고딕"/><w:sz w:val="22"/></w:rPr></w:rPrDefault></w:docDefaults><w:style w:type="paragraph" w:styleId="Heading1"><w:name w:val="heading 1"/><w:pPr><w:spacing w:before="240" w:after="120"/><w:outlineLvl w:val="0"/></w:pPr><w:rPr><w:b/><w:sz w:val="32"/></w:rPr></w:style></w:styles>');
+    zip.file('word/document.xml', '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>\n<w:document xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main"><w:body>' + body + '<w:sectPr><w:pgSz w:w="11906" w:h="16838"/><w:pgMar w:top="1134" w:right="1134" w:bottom="1134" w:left="1134"/></w:sectPr></w:body></w:document>');
+    return await zip.generateAsync({ type: 'blob', compression: 'DEFLATE' });
+  }
+
+  // ── PDF → HWPX (OWPML: 한글 개방형 표준, 한글 2014 이상에서 열림) ──
+  async function buildHwpx(blocks, title) {
+    if (!global.JSZip) throw new Error('압축 모듈을 불러오지 못했습니다. 새로고침해 주세요.');
+    var zip = new global.JSZip();
+    var paras = blocks.map(function (b) {
+      return '<hp:p><hp:run><hp:t>' + xmlEsc(b.text) + '</hp:t></hp:run></hp:p>';
+    }).join('\n');
+    // mimetype은 반드시 무압축(STORE)으로 첫 항목
+    zip.file('mimetype', 'application/hwp+zip', { compression: 'STORE' });
+    zip.file('META-INF/manifest.xml', '<?xml version="1.0" encoding="UTF-8"?>\n<manifest:manifest xmlns:manifest="urn:oasis:names:tc:opendocument:xmlns:manifest:1.0"><manifest:file-entry manifest:full-path="/" manifest:media-type="application/hwp+zip"/><manifest:file-entry manifest:full-path="Contents/content.hpf" manifest:media-type="application/xml"/><manifest:file-entry manifest:full-path="Contents/header.xml" manifest:media-type="application/xml"/><manifest:file-entry manifest:full-path="Contents/section0.xml" manifest:media-type="application/xml"/></manifest:manifest>');
+    zip.file('Contents/header.xml', '<?xml version="1.0" encoding="UTF-8"?>\n<hh:head xmlns:hh="http://www.hancom.co.kr/hwpml/2011/head"><hh:beginNum page="1"/><hh:refList><hh:fontfaces><hh:fontface lang="hangul"><hh:font face="맑은 고딕"/></hh:fontface></hh:fontfaces><hh:charProperties><hh:charPr><hh:sz val="1000"/></hh:charPr></hh:charProperties></hh:refList><hh:secDef><hh:pageDef width="21000" height="29700" marginTop="2000" marginBottom="2000" marginLeft="2000" marginRight="2000"/></hh:secDef></hh:head>');
+    zip.file('Contents/section0.xml', '<?xml version="1.0" encoding="UTF-8"?>\n<hs:sec xmlns:hs="http://www.hancom.co.kr/hwpml/2011/section" xmlns:hp="http://www.hancom.co.kr/hwpml/2011/paragraph">\n' + paras + '\n</hs:sec>');
+    zip.file('Contents/content.hpf', '<?xml version="1.0" encoding="UTF-8"?>\n<opf:package xmlns:opf="http://www.idpf.org/2007/opf"><opf:metadata><opf:title>' + xmlEsc(title || '') + '</opf:title></opf:metadata><opf:manifest><opf:item id="header" href="Contents/header.xml" media-type="application/xml"/><opf:item id="section0" href="Contents/section0.xml" media-type="application/xml"/></opf:manifest><opf:spine><opf:itemref idref="section0"/></opf:spine></opf:package>');
+    return await zip.generateAsync({ type: 'blob', compression: 'DEFLATE' });
+  }
+
   // ── 페이지 역순 ────────────────────────────────────────────
   async function reverse(file) {
     var PDFDocument = L().PDFDocument;
