@@ -313,8 +313,11 @@ function localize(html, canonical, lang) {
     const langC = SITE_URL + '/' + lang + canonical.replace(SITE_URL, '');
     out = out.replace('rel="canonical" href="' + canonical + '"', 'rel="canonical" href="' + langC + '"')
       .replace('property="og:url" content="' + canonical + '"', 'property="og:url" content="' + langC + '"')
-      .replace('<link rel="alternate" hreflang="ko" href="' + canonical + '">', hreflangSet(canonical));
+      .replace('<link rel="alternate" hreflang="ko" href="' + canonical + '">', '<link rel="alternate" hreflang="' + lang + '" href="' + langC + '">');
   }
+  // 번역본은 한국어 원문을 문자열 치환한 것이라 구글이 '대량 생성 콘텐츠'로 볼 위험이 있다.
+  // 사용자에게는 그대로 제공하되 색인 대상에서는 제외한다(되돌리기 쉬움).
+  out = out.replace(/<meta name="robots" content="index,follow[^"]*">/, '<meta name="robots" content="noindex,follow">');
   out = out.replace('<nav class="ws-nav">', '<nav class="ws-nav">' + langSwitch(canonical, lang));
   return out;
 }
@@ -322,7 +325,6 @@ function koPost(html, canonical, koOnly) {
   if (!LANGS.some((l) => l !== 'ko' && I18N[l])) return html;
   let out = html;
   // koOnly: 번역본이 없는 페이지 — hreflang을 걸면 존재하지 않는 URL을 가리키게 되므로 ko/x-default만 유지
-  if (canonical && !koOnly) out = out.replace('<link rel="alternate" hreflang="ko" href="' + canonical + '">', hreflangSet(canonical));
   out = out.replace('<nav class="ws-nav">', '<nav class="ws-nav">' + langSwitch(canonical, 'ko', koOnly));
   return out;
 }
@@ -1811,14 +1813,6 @@ function buildSeoFiles() {
     { url: SITE_URL + '/terms/', file: 'terms/index.html', priority: '0.3' },
     { url: SITE_URL + '/privacy/', file: 'privacy/index.html', priority: '0.3' },
     { url: SITE_URL + '/contact/', file: 'contact/index.html', priority: '0.3' },
-    ...LANGS.filter((l) => l !== 'ko' && I18N[l]).flatMap((l) => [
-      { url: `${SITE_URL}/${l}/`, file: `${l}/index.html`, priority: '0.9' },
-      // 한국어 전용 도구는 해당 언어 페이지가 생성되지 않으므로 사이트맵에서도 제외(404 방지)
-      ...TOOLS.filter((t) => !KO_ONLY_TOOLS.has(t.slug)).map((t) => ({ url: `${SITE_URL}/${l}/${t.slug}/`, file: `${l}/${t.slug}/index.html`, priority: '0.7' })),
-      { url: `${SITE_URL}/${l}/about/`, file: `${l}/about/index.html`, priority: '0.4' },
-      { url: `${SITE_URL}/${l}/privacy/`, file: `${l}/privacy/index.html`, priority: '0.2' },
-      { url: `${SITE_URL}/${l}/contact/`, file: `${l}/contact/index.html`, priority: '0.2' }
-    ])
   ];
   const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
@@ -1864,6 +1858,20 @@ Sitemap: ${SITE_URL}/sitemap.xml
 
 // ───────── 카테고리 허브 페이지 (/category/<id>/) — 롱테일 카테고리 검색어 대응 ─────────
 // 주의: 카테고리 id 'organize'는 도구 slug와 충돌하므로 /category/ 접두어로 격리한다.
+// 카테고리 허브가 링크 목록만 있어 얇았던 문제 → 카테고리별 안내문과 관련 가이드를 붙인다.
+const CAT_INTRO = {
+  organize: '여러 파일을 하나로 묶거나, 반대로 필요한 부분만 떼어내는 작업입니다. 스캔한 서류를 한 권으로 합칠 때, 보고서 앞뒤에 표지와 부록을 붙일 때, 계약서에서 특정 조항 페이지만 뽑아 보낼 때 씁니다. 합치기 전에는 파일 이름 순서를 확인하세요. 이름순 정렬은 1, 10, 2 순으로 잡히는 경우가 많아 의도한 차례와 어긋나기 쉽습니다.',
+  convert: 'PDF와 다른 형식 사이를 오가는 도구입니다. 문서를 이미지로 뽑아 발표 자료에 넣거나, 사진 여러 장을 한 개의 PDF로 묶거나, PDF 속 글자를 워드·한글 문서로 옮길 때 씁니다. 다만 스캔된 PDF는 페이지 전체가 사진이라 글자 정보가 없어 문서 변환이 되지 않습니다.',
+  security: '문서를 남에게 보내기 전에 거치면 좋은 단계입니다. 비밀번호로 열람을 막고, 워터마크로 무단 배포를 억제하고, 파일에 남은 작성자·회사명 같은 숨은 정보를 지웁니다. 참고로 인쇄·복사를 막는 권한 암호는 열기 암호와 달리 보호 강도가 약하니, 정말 지켜야 할 문서라면 열기 암호를 쓰세요.',
+  optimize: '파일을 가볍게 만드는 도구입니다. 메일 첨부 용량이나 제출 사이트의 업로드 한도에 걸릴 때 씁니다. 용량의 대부분은 스캔 이미지가 차지하므로 스캔본은 눈에 띄게 줄어들지만, 글자 위주 문서는 이미 최적화돼 있어 거의 줄지 않는 것이 정상입니다.',
+  edit: '문서의 겉모습을 다듬는 도구입니다. 거꾸로 스캔된 페이지를 바로 세우고, 넓은 여백을 잘라내고, 제본할 공간을 확보하고, 계약서에 서명을 넣습니다. 여러 작업을 겹칠 때는 회전과 자르기를 먼저 하고 압축이나 페이지 번호는 마지막에 하는 편이 결과가 깔끔합니다.',
+  analyze: '파일을 바꾸지 않고 안을 들여다보는 도구입니다. 페이지 수와 용량, 잠김 여부를 확인하거나, 문서에 어떤 작성자 정보가 남아 있는지 점검하거나, 본문 글자를 텍스트로 뽑아 재활용할 때 씁니다.'
+};
+const CAT_GUIDES = {
+  organize: ['pdf-합치기-나누기'], convert: ['이미지-포맷-선택'], security: ['pdf-비밀번호', 'pdf-메타데이터-개인정보'],
+  optimize: ['pdf-용량-줄이기', '스캔-문서-정리'], edit: ['스캔-문서-정리'], analyze: ['pdf-메타데이터-개인정보']
+};
+
 function buildCategory(cat) {
   const rel = '../../';
   const canonical = `${SITE_URL}/category/${cat.id}/`;
@@ -1899,6 +1907,16 @@ function buildCategory(cat) {
         <div class="tp-relgrid" style="margin-top:10px">
         ${cards}
         </div>
+        <div class="tp-sec" data-reveal style="margin-top:34px">
+          <h2 class="tp-h2">언제 쓰나요?</h2>
+          <p>${esc(CAT_INTRO[cat.id] || '')}</p>
+        </div>
+${(CAT_GUIDES[cat.id] || []).length ? `        <div class="tp-sec" data-reveal>
+          <h2 class="tp-h2">더 읽어보기</h2>
+          <div class="tp-relgrid">
+          ${(CAT_GUIDES[cat.id] || []).map((gs) => { const g = GUIDES.find((x) => x.slug === gs); return g ? `<a class="tp-rel" href="${rel}guide/${encodeURIComponent(g.slug)}/"><div class="tp-rel__body"><div class="tp-rel__tx"><h3>${esc(g.title)}</h3><p>${esc(g.desc)}</p></div><span class="tp-rel__arr" aria-hidden="true">→</span></div></a>` : ''; }).join('\n          ')}
+          </div>
+        </div>` : ''}
       </div>
     </section>
 
@@ -2011,6 +2029,20 @@ function buildGuideIndex() {
             <h1 class="tp-h1">PDF 가이드</h1>
             <p class="tp-sub">도구만으로는 해결되지 않는 것들 — 용량이 왜 안 줄어드는지, 비밀번호는 무엇을 지켜주는지, 스캔본을 어떤 순서로 정리해야 하는지 정리했습니다.</p>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="tp-info">
+      <div class="tp-col">
+        <p class="tp-lead">도구를 눌러 파일을 넣으면 결과는 나옵니다. 문제는 그다음입니다 — 왜 용량이 안 줄어드는지, 비밀번호를 걸었는데도 왜 안심할 수 없는지, 스캔본을 어떤 차례로 손봐야 덜 망가지는지는 버튼만으로는 알 수 없습니다.</p>
+        <div class="tp-sec" data-reveal>
+          <h2 class="tp-h2">이 가이드가 다루는 것</h2>
+          <p>여기 실린 글들은 실제로 자주 막히는 지점에서 출발합니다. 이메일 첨부 한도에 걸린 파일, 페이지 순서가 뒤죽박죽 합쳐진 스캔본, 이력서에 남은 이전 회사 흔적, 검은색으로 덧칠했는데 복사하면 그대로 읽히는 문서 같은 것들입니다. 각 글은 원인을 먼저 설명하고, 그다음에 어떤 도구를 어떤 차례로 쓰면 되는지 알려 드립니다.</p>
+        </div>
+        <div class="tp-sec" data-reveal>
+          <h2 class="tp-h2">안 되는 것도 적어 두었습니다</h2>
+          <p>브라우저에서 하는 처리에는 한계가 있습니다. 스캔된 이미지를 글자로 읽어 내는 OCR은 제공하지 않고, 글자 위주 PDF는 압축해도 거의 줄지 않으며, 문서 변환은 표와 그림까지 그대로 옮기지 못합니다. 되는 것만 크게 적어 두면 쓰는 분이 헛수고를 하게 되므로, 각 글에 안 되는 것도 함께 밝혀 두었습니다.</p>
         </div>
       </div>
     </section>
