@@ -1164,19 +1164,19 @@ body.lp-page .ws-taskbar { max-width: none; margin: 0; top: 0; height: 68px; bor
 /* 히어로 2단 */
 /* 다음 섹션(도구 목록)이 살짝 보이도록 88vh — 스크롤할 게 있다는 신호 */
 .lp-hero { display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; min-height: calc(88vh - 68px); padding: clamp(16px, 2.4vh, 40px) 0; }
-.lp-hero__copy { max-width: 660px; width: 100%; min-width: 0; }
+.lp-hero__copy { max-width: 720px; width: 100%; min-width: 0; }
 .lp-hero .lp-hero__sub { margin-left: auto; margin-right: auto; }
 .lp-hero .lp-note { justify-content: center; }
 @media (max-width: 980px) { .lp-hero { min-height: 0; } }
-.lp-hero__title { font-size: clamp(2.3rem, 4.4vw, 3.7rem); font-weight: 800; letter-spacing: -.035em; line-height: 1.2; color: var(--ink); margin: 0 0 12px; animation: lpFadeUp .7s var(--ez-out) both; }
+.lp-hero__title { font-size: clamp(2.3rem, 4.4vw, 3.7rem); font-weight: 800; letter-spacing: -.035em; line-height: 1.24; color: var(--ink); margin: 0 0 20px; animation: lpFadeUp .7s var(--ez-out) both; }
 .lp-hero__sub { animation: lpFadeUp .7s var(--ez-out) .08s both; }
 @keyframes lpFadeUp { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
 @media (prefers-reduced-motion: reduce) { .lp-hero__title, .lp-hero__sub { animation: none; } }
 .lp-hero__red { color: var(--red); }
-.lp-hero__sub { font-size: clamp(1rem, 1.3vw, 1.12rem); line-height: 1.55; color: var(--ink-soft); margin: 0 0 20px; max-width: 34ch; }
+.lp-hero__sub { font-size: clamp(1.02rem, 1.35vw, 1.16rem); line-height: 1.7; color: var(--ink-soft); margin: 0 auto 38px; max-width: 40ch; }
 
 /* 드롭존 (mockup: 빨강 점선 박스 + 원형 + 버튼 + 포맷 칩) */
-.lp-drop { position: relative; border: 2px dashed var(--line-2); border-radius: 22px; background: var(--surf); padding: clamp(22px, 2.6vw, 32px) clamp(18px, 2vw, 28px); box-shadow: 0 18px 44px -22px rgba(23, 23, 42, .16), 0 2px 8px rgba(23, 23, 42, .04); transition: border-color .22s var(--ez), background .22s var(--ez), box-shadow .35s var(--ez-out), transform .35s var(--ez-out); }
+.lp-drop { position: relative; border: 2px dashed var(--line-2); border-radius: 22px; background: var(--surf); padding: clamp(30px, 3.4vw, 46px) clamp(22px, 2.4vw, 36px); box-shadow: 0 18px 44px -22px rgba(23, 23, 42, .16), 0 2px 8px rgba(23, 23, 42, .04); transition: border-color .22s var(--ez), background .22s var(--ez), box-shadow .35s var(--ez-out), transform .35s var(--ez-out); }
 .lp-drop:hover { transform: translateY(-3px); border-color: rgba(229, 37, 42, .5); background: #fffafa; box-shadow: 0 30px 60px -24px rgba(229, 37, 42, .28), 0 3px 12px rgba(23, 23, 42, .05); }
 /* 히어로 상태: 데크 투명 + 작업창 오른쪽 옵션은 파일 로드 전 숨김 */
 .lp-drop .lp-deck { background: none; border: 0; box-shadow: none; border-radius: 0; }
@@ -1194,18 +1194,18 @@ body.lp-page .ws-taskbar { max-width: none; margin: 0; top: 0; height: 68px; bor
 .lp-deck.lp-deck--img [data-tool="organize"] { display: none !important; }
 .lp-drop .dropzone { display: flex !important; flex-direction: column; align-items: center; justify-content: center; text-align: center; border: none !important; background: none !important; box-shadow: none !important; min-height: 0 !important; padding: 0 !important; gap: 0; }
 .lp-drop:has(.tool.is-loaded) .dropzone { min-height: auto !important; }
-.lp-drop .dropzone__icon { width: 58px !important; height: 58px !important; padding: 15px; margin: 0 0 14px !important; background: var(--red); color: #fff; border-radius: 50%; animation: lpPulse 2.6s ease-in-out infinite; }
+.lp-drop .dropzone__icon { width: 62px !important; height: 62px !important; padding: 16px; margin: 0 0 22px !important; background: var(--red); color: #fff; border-radius: 50%; animation: lpPulse 2.6s ease-in-out infinite; }
 @keyframes lpPulse { 0%, 100% { box-shadow: 0 12px 26px rgba(229, 37, 42, .34), 0 0 0 0 rgba(229, 37, 42, .22); } 55% { box-shadow: 0 14px 30px rgba(229, 37, 42, .42), 0 0 0 18px rgba(229, 37, 42, 0); } }
 .lp-drop:hover .dropzone__icon { transform: scale(1.06); transition: transform .3s var(--ez-spring); }
 @media (prefers-reduced-motion: reduce) { .lp-drop .dropzone__icon { animation: none; } }
-.lp-drop .dropzone__title { margin: 0 0 6px !important; font-size: 1.2rem !important; font-weight: 800; letter-spacing: -.025em; color: var(--ink); }
+.lp-drop .dropzone__title { margin: 0 0 10px !important; font-size: 1.26rem !important; font-weight: 800; letter-spacing: -.025em; color: var(--ink); }
 /* 주 동작이므로 밑줄 텍스트가 아니라 버튼으로 */
-.lp-drop .dropzone__btn { display: inline-flex; align-items: center; margin-top: 16px; padding: 12px 26px !important; background: var(--red) !important; color: #fff !important; font-weight: 800; font-size: .96rem; border-radius: var(--r-btn); box-shadow: var(--sh-red) !important; text-decoration: none; transition: transform var(--d-hover) var(--ez-spring), filter var(--d-micro) var(--ez); }
+.lp-drop .dropzone__btn { display: inline-flex; align-items: center; margin-top: 26px; padding: 14px 32px !important; background: var(--red) !important; color: #fff !important; font-weight: 800; font-size: .96rem; border-radius: var(--r-btn); box-shadow: var(--sh-red) !important; text-decoration: none; transition: transform var(--d-hover) var(--ez-spring), filter var(--d-micro) var(--ez); }
 .lp-drop .dropzone__btn:hover { transform: translateY(-2px); filter: brightness(1.05); }
 /* 끌어다 놓기 안내는 버튼 아래 한 줄로 되살린다(기존엔 통째로 숨겨 공백만 남았다) */
-.lp-drop .dropzone__hint { display: block !important; margin: 12px 0 0 !important; font-size: .85rem; color: var(--ink-faint); }
+.lp-drop .dropzone__hint { display: block !important; margin: 18px 0 0 !important; font-size: .86rem; line-height: 1.6; color: var(--ink-faint); }
 
-.lp-drop__formats { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 7px; margin-top: 18px; padding-top: 16px; border-top: 1px solid var(--line); }
+.lp-drop__formats { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 8px; margin-top: 30px; padding-top: 26px; border-top: 1px solid var(--line); }
 .lp-drop:has(.tool.is-loaded) .lp-drop__formats { display: none; }
 .lp-fmt { font-size: 12px; font-weight: 700; padding: 5px 12px; border-radius: 999px; border: 1px solid var(--line-2); background: var(--surf); }
 .lp-fmt--pdf { color: #e5252a; border-color: rgba(229, 37, 42, .3); }
@@ -1213,8 +1213,8 @@ body.lp-page .ws-taskbar { max-width: none; margin: 0; top: 0; height: 68px; bor
 .lp-fmt--jpg { color: #d97706; border-color: rgba(217, 119, 6, .3); }
 .lp-fmt--png { color: #16a34a; border-color: rgba(22, 163, 74, .3); }
 .lp-fmt--more { color: var(--ink-faint); }
-.lp-note { display: flex; align-items: center; gap: 8px; margin: 12px 2px 0; font-size: 13px; color: var(--ink-faint); }
-.lp-note .ic-svg { width: 15px; height: 15px; flex: none; color: var(--ink-faint); }
+.lp-note { display: flex; align-items: flex-start; justify-content: center; gap: 7px; margin: 22px auto 0; max-width: 46ch; line-height: 1.65; text-align: left; font-size: 13px; color: var(--ink-faint); }
+.lp-note .ic-svg { width: 14px; height: 14px; flex: none; margin-top: 3px; color: var(--ink-faint); }
 
 /* 히어로 우측: 마스코트 + 기능 노드 클러스터 */
 .lp-hero__viz { position: relative; min-height: 440px; display: grid; place-items: center; }
@@ -1300,7 +1300,7 @@ body.lp-page .ws-taskbar { max-width: none; margin: 0; top: 0; height: 68px; bor
 }
 
 /* ───────── 홈 도구 디렉터리(#tools) — 서랍에 숨기던 37개 카탈로그를 본문으로 ───────── */
-.lp-hero__more { display: inline-flex; flex-direction: column; align-items: center; gap: 2px; margin-top: clamp(18px, 3vh, 34px); font-size: .92rem; font-weight: 700; color: var(--ink-soft); text-decoration: none; transition: color var(--d-hover) var(--ez); }
+.lp-hero__more { display: inline-flex; flex-direction: column; align-items: center; gap: 4px; margin-top: clamp(30px, 4.5vh, 54px); font-size: .92rem; font-weight: 700; color: var(--ink-soft); text-decoration: none; transition: color var(--d-hover) var(--ez); }
 .lp-hero__more:hover { color: var(--red); text-decoration: none; }
 .lp-hero__chev { font-size: 1.15rem; line-height: 1; animation: lpBob 2.2s var(--ez) infinite; }
 @keyframes lpBob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(4px); } }
@@ -1506,14 +1506,21 @@ p, li, .tp-sub, .gd-sub, .gd-lead, .tp-lead, .lp-dir__lead, .ws-card__desc, .lp-
 /* 좁은 화면에서 표가 페이지를 밀지 않도록 표만 가로 스크롤 */
 @media (max-width: 700px) { .gd-tbl { overflow-x: auto; -webkit-overflow-scrolling: touch; } .gd-tbl > table { min-width: 520px; } }
 
-/* 실제 변환 예시 — 결과물을 보여주는 요소가 없어 '무엇을 해주는 곳인지' 감이 안 왔다 */
-.lp-demo { padding: var(--sec-y-sm) 0 0; }
-.lp-demo__h { margin: 0 0 18px; font-size: clamp(1.15rem, 2.2vw, 1.4rem); font-weight: 800; letter-spacing: -.025em; color: var(--ink); }
-.lp-demo__grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(268px, 1fr)); gap: 12px; }
-.lp-demo__c { position: relative; display: flex; align-items: center; gap: 10px; padding: 18px 16px 30px; border: 1px solid var(--line-2); border-radius: 14px; background: var(--surf); color: var(--ink); transition: transform var(--d-hover) var(--ez), border-color var(--d-hover) var(--ez), box-shadow var(--d-hover) var(--ez); }
-.lp-demo__c:hover { transform: translateY(-3px); border-color: rgba(229, 37, 42, .3); box-shadow: 0 14px 30px -16px rgba(23, 23, 42, .22); text-decoration: none; }
-.lp-demo__side { display: flex; flex-direction: column; gap: 4px; min-width: 0; flex: 1; }
-.lp-demo__f { display: block; padding: 5px 9px; border-radius: 7px; border: 1px solid var(--line-2); background: var(--surf-2); font-size: .76rem; font-weight: 600; color: var(--ink-soft); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.lp-demo__f--out { border-color: rgba(229, 37, 42, .3); background: rgba(229, 37, 42, .06); color: var(--red); font-weight: 700; }
-.lp-demo__ar { flex: none; color: var(--ink-faint); font-weight: 700; }
-.lp-demo__t { position: absolute; left: 16px; bottom: 9px; font-size: .78rem; font-weight: 800; color: var(--ink-faint); }
+
+/* 히어로 여백은 데스크톱 기준으로 넓혔다. 좁은 화면에서는 그대로 쓰면 드롭존이 첫 화면 밖으로
+   밀리므로 단계적으로 줄인다. */
+@media (max-width: 760px) {
+  .lp-hero__title { margin-bottom: 14px; }
+  .lp-hero__sub { margin-bottom: 26px; }
+  .lp-drop { padding: 26px 18px; }
+  .lp-drop .dropzone__icon { width: 54px !important; height: 54px !important; padding: 14px; margin-bottom: 16px !important; }
+  .lp-drop .dropzone__btn { margin-top: 20px; padding: 13px 28px !important; }
+  .lp-drop .dropzone__hint { margin-top: 14px !important; }
+  .lp-drop__formats { margin-top: 22px; padding-top: 18px; gap: 6px; }
+  .lp-note { margin-top: 16px; }
+  .lp-hero__more { margin-top: 22px; }
+}
+@media (max-width: 420px) {
+  .lp-drop__formats .lp-fmt { padding: 4px 9px; font-size: .74rem; }
+  .lp-drop__formats-lb { width: 100%; text-align: center; margin: 0 0 4px; }
+}

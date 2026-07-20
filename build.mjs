@@ -1669,22 +1669,6 @@ function buildHome() {
       <a class="lp-hero__more" href="#tools"><span>도구 전체 보기</span><span class="lp-hero__chev" aria-hidden="true">⌄</span></a>
     </section>
 
-    ${CUR_LANG === 'ko' ? `<section class="lp-demo" data-reveal aria-label="실제 변환 예시">
-      <h2 class="lp-demo__h">이렇게 바뀝니다</h2>
-      <div class="lp-demo__grid">
-        ${[
-          { a: ['보고서-1.pdf', '보고서-2.pdf', '부록.pdf'], b: ['합쳐진-PDF.pdf'], t: '합치기', s: 'merge' },
-          { a: ['계약서.pdf'], b: ['계약서.docx'], t: '워드 변환', s: 'pdf-to-docx' },
-          { a: ['스캔본.pdf 12MB'], b: ['스캔본.pdf 3MB'], t: '압축', s: 'compress' },
-          { a: ['사진1.jpg', '사진2.jpg'], b: ['이미지-PDF.pdf'], t: '이미지 PDF 변환', s: 'image-to-pdf' }
-        ].map((d) => `<a class="lp-demo__c" href="${d.s}/">
-          <span class="lp-demo__side">${d.a.map((f) => `<span class="lp-demo__f">${esc(f)}</span>`).join('')}</span>
-          <span class="lp-demo__ar" aria-hidden="true">→</span>
-          <span class="lp-demo__side">${d.b.map((f) => `<span class="lp-demo__f lp-demo__f--out">${esc(f)}</span>`).join('')}</span>
-          <span class="lp-demo__t">${esc(d.t)}</span>
-        </a>`).join('\n        ')}
-      </div>
-    </section>` : ''}
 
     <section class="lp-dir" id="tools" data-reveal>
       <div class="lp-dir__head">
