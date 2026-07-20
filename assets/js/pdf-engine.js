@@ -642,18 +642,52 @@
     for (var n = 1; n <= total; n++) {
       var page = await pdfjs.getPage(n);
       var tc = await page.getTextContent();
-      var cur = '', size = 0;
+      // 줄은 Y좌표로 묶는다. hasEOL 기준으로 나누면 줄바꿈 위치가 어긋나 제목 글자 크기가
+      // 본문 줄에 섞여 들어가고, 그러면 제목 판별이 통째로 무너진다.
+      var rows = [];
       tc.items.forEach(function (it) {
-        var s = it.transform ? Math.abs(it.transform[3]) : 0;
-        if (s > size) size = s;
-        cur += (it.str || '');
-        if (it.hasEOL) { lines.push({ text: cur, size: size }); cur = ''; size = 0; }
+        // 공백만 있는 아이템도 버리지 않는다 — PDF는 단어 사이 공백을 별도 아이템으로 두는 경우가 많아
+        // 걸러내면 '사업보고서'처럼 전부 붙어 버린다.
+        if (!it.str || !it.transform) return;
+        var y = it.transform[5], x = it.transform[4], sz = Math.abs(it.transform[3]);
+        var row = null;
+        for (var i = rows.length - 1; i >= 0 && i >= rows.length - 4; i--) {
+          if (Math.abs(rows[i].y - y) <= Math.max(1.5, sz * 0.35)) { row = rows[i]; break; }
+        }
+        if (!row) { row = { y: y, size: 0, items: [] }; rows.push(row); }
+        // 줄 대표 크기는 '내용이 있는' 글자에서만 — 공백 아이템의 크기에 휘둘리지 않게
+        if (it.str.trim() && sz > row.size) row.size = sz;
+        row.items.push({ x: x, w: it.width || 0, s: it.str });
       });
-      if (cur) lines.push({ text: cur, size: size });
+      rows.sort(function (a, b) { return b.y - a.y; }); // PDF 좌표는 아래가 0 → 위에서 아래로
+      rows.forEach(function (r) {
+        r.items.sort(function (a, b) { return a.x - b.x; });
+        var t = '';
+        r.items.forEach(function (i, k) {
+          if (k > 0) {
+            var pv = r.items[k - 1];
+            var gap = i.x - (pv.x + pv.w);
+            // 공백 아이템이 아예 없는 PDF도 있어, 글자 간격이 벌어지면 공백을 넣어 준다
+            if (gap > Math.max(1, (r.size || 10) * 0.2) && !/\s$/.test(t) && !/^\s/.test(i.s)) t += ' ';
+          }
+          t += i.s;
+        });
+        t = t.replace(/\s+/g, ' ').trim();
+        if (t) lines.push({ text: t, size: r.size || 0 });
+      });
       if (onProgress) onProgress(n / total);
     }
-    var sizes = lines.map(function (l) { return l.size; }).filter(function (s) { return s > 0; }).sort(function (a, b) { return a - b; });
-    var bodySize = sizes.length ? sizes[Math.floor(sizes.length / 2)] : 12;
+    // 본문 글자 크기 = '글자 수가 가장 많은 크기'. 줄 수 중앙값을 쓰면 제목이 본문만큼 많은 짧은 문서에서
+    // 기준이 제목 쪽으로 끌려가 제목 판별이 통째로 실패한다(본문은 줄 수가 아니라 글자 수로 압도적이다).
+    var weight = {};
+    lines.forEach(function (l) {
+      if (!(l.size > 0)) return;
+      var k = Math.round(l.size * 2) / 2; // 0.5pt 단위로 묶어 미세한 차이를 흡수
+      weight[k] = (weight[k] || 0) + l.text.length;
+    });
+    var bodySize = 0, best = -1;
+    Object.keys(weight).forEach(function (k) { if (weight[k] > best) { best = weight[k]; bodySize = parseFloat(k); } });
+    if (!bodySize) bodySize = 12;
     var blocks = [];
     lines.forEach(function (l) {
       var t = (l.text || '').replace(/\s+/g, ' ').trim();
@@ -1040,6 +1074,9 @@
     renderThumbs: renderThumbs,
     getPageCount: getPageCount,
     isPasswordError: isPasswordError,
-    probe: probe
+    probe: probe,
+    extractBlocks: extractBlocks,
+    buildDocx: buildDocx,
+    buildHwpx: buildHwpx
   };
 })(window);

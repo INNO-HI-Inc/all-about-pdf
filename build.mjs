@@ -132,6 +132,8 @@ const ICONS_PDF = {
   'remove-metadata': pdfSvg(pdfPage(2) + pdfBadge(17.4, 17.4, '#2b303b', '<path d="M17.4 14.5l2.3.85v1.85c0 1.45-1 2.45-2.3 2.95-1.3-.5-2.3-1.5-2.3-2.95V15.35z" fill="none" stroke="#fff" stroke-width="1.05"/>')),
   'remove-blank': pdfSvg(pdfPage(1) + pdfBadge(17.4, 17.4, '#f59e0b', '<path d="M15.4 17.4h4" stroke="#fff" stroke-width="1.7" stroke-linecap="round"/>')),
   'add-margin': pdfSvg(pdfPage(2) + pdfBadge(17.4, 17.4, '#0d9488', '<rect x="15.3" y="15.3" width="4.2" height="4.2" rx=".6" fill="none" stroke="#fff" stroke-width="1.05" stroke-dasharray="1.6 1.2"/>')),
+  'pdf-to-docx': pdfSvg(pdfPage(2) + pdfBadge(17.4, 17.4, '#2b579a', '<path d="M15.5 15.9l.9 3.2.9-2.3.9 2.3.9-3.2" stroke="#fff" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" fill="none"/>')),
+  'pdf-to-hwpx': pdfSvg(pdfPage(2) + pdfBadge(17.4, 17.4, '#e5252a', '<path d="M15.8 15.8v3.4M18.8 15.8v3.4M15.8 17.5h3" stroke="#fff" stroke-width="1" stroke-linecap="round" fill="none"/>')),
   'extract-text': pdfSvg(pdfPage(2) + pdfBadge(17.4, 17.4, '#2f6df6', '<path d="M15.6 15.9h3.6M15.9 17.5h3M16.1 19h2.6" stroke="#fff" stroke-width="1" stroke-linecap="round"/>')),
   reverse: pdfSvg(pdfPage(2) + pdfBadge(17.4, 17.4, '#2f6df6', '<path d="M16 16l1.4-1.4 1.4 1.4M17.4 14.7v2.2M18.8 18.8l-1.4 1.4-1.4-1.4M17.4 20.3v-2.2" fill="none" stroke="#fff" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>')),
   grayscale: pdfSvg(pdfPage(2) + pdfBadge(17.4, 17.4, '#2b303b', '<circle cx="17.4" cy="17.4" r="2.7" fill="none" stroke="#fff" stroke-width="1"/><path d="M17.4 14.7a2.7 2.7 0 0 1 0 5.4z" fill="#fff"/>')),
@@ -184,6 +186,11 @@ const LDIR = {
   zh: { lead: '选择需要的操作即可立即执行。所有工具均免费，无需安装或注册，文件仅在您的浏览器中处理。', more: '查看全部 37 个工具', dropAny: '将文件拖到此处',
     organize: '合并、拆分 PDF，自由整理页面顺序。', convert: 'PDF 与图片互转，全部在浏览器中完成。', security: '设置或解除密码、清除个人信息、添加水印保护。', optimize: '减小文件体积，清理空白页面。', edit: '通过旋转、页边距、裁剪、签名和表单扁平化美化文档。', analyze: '查看文档信息并提取其中的文字。' }
 };
+// 한국어 전용 도구 — HWPX는 한국 전용 포맷이고, 얇은 기계번역 페이지를 늘리지 않기 위해 ko에서만 생성한다.
+const KO_ONLY_TOOLS = new Set(['pdf-to-docx', 'pdf-to-hwpx']);
+const visTools = () => TOOLS.filter((t) => CUR_LANG === 'ko' || !KO_ONLY_TOOLS.has(t.slug));
+const visSlugs = (slugs) => slugs.filter((sl) => CUR_LANG === 'ko' || !KO_ONLY_TOOLS.has(sl));
+const toolCount = () => visTools().length;
 const _pairCache = {};
 function langPairs(lang) {
   if (_pairCache[lang]) return _pairCache[lang];
@@ -208,7 +215,7 @@ function langPairs(lang) {
   add('가장 많이 쓰는 도구', C.footPopular || 'Popular tools');
   add('>이미지 변환</h5>', '>' + (C.footImageConv || '') + '</h5>');
   add('>정보</h5>', '>' + (C.footInfo || '') + '</h5>');
-  add('전체 37개 도구 →', C.footAllTools); add('모든 변환 →', C.footAllConv);
+  add(`전체 ${toolCount()}개 도구 →`, C.footAllTools); add('모든 변환 →', C.footAllConv);
   add('서비스 소개', C.footAbout); add('개인정보 처리방침', C.footPrivacy); add('문의 · 제안', C.footContact);
   add('설치도 회원가입도 없이, 파일을 서버에 올리지 않고 내 브라우저에서 바로 처리하는 한국어 무료 PDF 도구 모음입니다.', C.footTagline);
   add('© 2026 PDF의 모든 것 · 이노하이(INNO-HI Inc) — made in Korea, runs on your device.', C.footCopyright);
@@ -243,7 +250,7 @@ function langPairs(lang) {
   const nf = (E.pages && E.pages.notFound) || {};
   add('페이지를 찾을 수 없어요', nf.h1 || ''); add('홈으로 돌아가기', nf.button || '');
   add('주소가 바뀌었거나 삭제된 페이지일 수 있어요.<br>아래에서 처음으로 돌아가세요.', nf.body || '');
-  const koTrust = [['서버 미전송', '100% 내 브라우저 처리'], ['완전 무료', '워터마크·가입 없음'], ['설치 불필요', '열면 바로 사용'], ['37개 도구', '합치기부터 변환까지']];
+  const koTrust = [['서버 미전송', '100% 내 브라우저 처리'], ['완전 무료', '워터마크·가입 없음'], ['설치 불필요', '열면 바로 사용'], [`${toolCount()}개 도구`, '합치기부터 변환까지']];
   (C.homeTrust || []).forEach((e, i) => { if (koTrust[i]) { add(koTrust[i][0], e.b); add(koTrust[i][1], e.span); } });
   add('3단계면 끝나요', C.homeStepsH);
   const koSteps = [['파일 올리기', 'PDF·이미지를 화면에 끌어다 놓거나 [파일 선택]으로 고르세요.'], ['옵션 고르고 실행', '순서·범위·화질 등 필요한 옵션을 정하고 실행 버튼을 누르세요.'], ['결과 내려받기', '완성된 파일을 바로 저장하세요. 창을 닫으면 흔적도 남지 않습니다.']];
@@ -270,7 +277,7 @@ function langPairs(lang) {
   // 홈 도구 디렉터리 — 카테고리 설명·리드문은 문장 전체로 치환(부분치환 방지)
   const D = LDIR[lang] || LDIR.en;
   add('필요한 작업을 고르면 바로 실행할 수 있어요. 모든 도구는 설치·회원가입 없이 무료이며, 파일은 내 브라우저 안에서만 처리됩니다.', D.lead);
-  add('37가지 도구 전체 보기', D.more);
+  add(`${toolCount()}가지 도구 전체 보기`, D.more);
   add('여기에 파일을 끌어다 놓으세요', D.dropAny);
   CATEGORIES.forEach((cat) => add(cat.desc, D[cat.id]));
   if (E.tools && E.tools.compress) add('압축', E.tools.compress.nav);
@@ -282,11 +289,12 @@ function hreflangSet(canonical) {
   const path = canonical.replace(SITE_URL, '');
   return LANGS.map((lg) => `<link rel="alternate" hreflang="${lg}" href="${SITE_URL}${lg === 'ko' ? path : '/' + lg + path}">`).join('\n  ');
 }
-function langSwitch(canonical, curLang) {
+function langSwitch(canonical, curLang, koOnly) {
   if (!canonical) return '';
   const path = canonical.replace(SITE_URL, '') || '/';
   const items = LANGS.map((lg) => {
-    const href = lg === 'ko' ? path : '/' + lg + (path === '/' ? '/' : path);
+    // 한국어 전용 페이지는 대응 번역본이 없으므로 각 언어 홈으로 보낸다(404 방지)
+    const href = lg === 'ko' ? path : '/' + lg + (koOnly ? '/' : (path === '/' ? '/' : path));
     return `<a href="${href}" hreflang="${lg}"${lg === curLang ? ' aria-current="true"' : ''}>${LANG_LABEL[lg]}</a>`;
   }).join('');
   return `<details class="ws-langswitch"><summary aria-label="language / 언어"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.5 3.8 5.7 3.8 9S14.5 18.5 12 21C9.5 18.5 8.2 15.3 8.2 12S9.5 5.5 12 3z"/></svg><span>${LANG_LABEL[curLang] || 'Language'}</span></summary><div class="ws-langmenu">${items}</div></details>`;
@@ -310,19 +318,20 @@ function localize(html, canonical, lang) {
   out = out.replace('<nav class="ws-nav">', '<nav class="ws-nav">' + langSwitch(canonical, lang));
   return out;
 }
-function koPost(html, canonical) {
+function koPost(html, canonical, koOnly) {
   if (!LANGS.some((l) => l !== 'ko' && I18N[l])) return html;
   let out = html;
-  if (canonical) out = out.replace('<link rel="alternate" hreflang="ko" href="' + canonical + '">', hreflangSet(canonical));
-  out = out.replace('<nav class="ws-nav">', '<nav class="ws-nav">' + langSwitch(canonical, 'ko'));
+  // koOnly: 번역본이 없는 페이지 — hreflang을 걸면 존재하지 않는 URL을 가리키게 되므로 ko/x-default만 유지
+  if (canonical && !koOnly) out = out.replace('<link rel="alternate" hreflang="ko" href="' + canonical + '">', hreflangSet(canonical));
+  out = out.replace('<nav class="ws-nav">', '<nav class="ws-nav">' + langSwitch(canonical, 'ko', koOnly));
   return out;
 }
-function emitPage(subPath, html, canonical) {
+function emitPage(subPath, html, canonical, koOnly) {
   const base = CUR_LANG === 'ko' ? ROOT : join(ROOT, CUR_LANG);
   const outPath = join(base, subPath);
   const dir = dirname(outPath);
   if (!existsSync(dir)) mkdirSync(dir, { recursive: true });
-  writeFileSync(outPath, CUR_LANG === 'ko' ? koPost(html, canonical) : localize(html, canonical, CUR_LANG));
+  writeFileSync(outPath, CUR_LANG === 'ko' ? koPost(html, canonical, koOnly) : localize(html, canonical, CUR_LANG));
 }
 // about/privacy/contact 본문을 i18n_<lang>.json.pages 구조로 생성(프로즈 구조 스왑)
 function langPageMain(key, rel, lang) {
@@ -408,6 +417,12 @@ const TOOLS = [
   { slug: 'extract-text', icon: ICONS.text, nav: '텍스트 추출', multiple: false,
     runLabel: '텍스트 추출하기', dropTitle: '글자를 뽑을 PDF를 끌어다 놓으세요', pagecount: true,
     feature: ['글자를 .txt로', '복사·검색·재활용', 'OCR 아님'], options: optExtractText() },
+  { slug: 'pdf-to-docx', icon: ICONS.text, nav: '워드 변환', multiple: false, script: 'pdf-to-docx', needs: ['pdfjs', 'zip'],
+    runLabel: 'DOCX로 변환하기', dropTitle: '워드로 바꿀 PDF를 끌어다 놓으세요', pagecount: true,
+    feature: ['PDF→워드(.docx)', '문단·제목 살림', '업로드 없음'], options: optToDocx() },
+  { slug: 'pdf-to-hwpx', icon: ICONS.text, nav: '한글 변환', multiple: false, script: 'pdf-to-hwpx', needs: ['pdfjs', 'zip'],
+    runLabel: 'HWPX로 변환하기', dropTitle: '한글로 바꿀 PDF를 끌어다 놓으세요', pagecount: true,
+    feature: ['PDF→한글(.hwpx)', '한글 2014 이상', '업로드 없음'], options: optToHwpx() },
   { slug: 'reverse', icon: ICONS.reverse, nav: '페이지 역순', multiple: false,
     runLabel: '역순으로 만들기', dropTitle: '순서를 뒤집을 PDF를 끌어다 놓으세요', pagecount: true,
     feature: ['페이지 순서 거꾸로', '마지막→처음', '원본 보존'], options: optReverse() },
@@ -435,7 +450,7 @@ const TOOL_BY = Object.fromEntries(TOOLS.map((t) => [t.slug, t]));
 // ───────── 카테고리(카탈로그) ─────────
 const CATEGORIES = [
   { id: 'organize', title: 'PDF 구성', desc: '여러 PDF를 합치고, 나누고, 페이지를 자유롭게 정리하세요.', slugs: ['merge', 'split', 'organize', 'extract', 'delete', 'page-numbers', 'reverse', 'nup'] },
-  { id: 'convert', title: 'PDF 변환', desc: 'PDF와 이미지를 서로 바꾸세요. 모두 내 브라우저에서 처리됩니다.', slugs: ['to-image', 'image-to-pdf', 'svg-to-png'] },
+  { id: 'convert', title: 'PDF 변환', desc: 'PDF와 이미지를 서로 바꾸세요. 모두 내 브라우저에서 처리됩니다.', slugs: ['to-image', 'image-to-pdf', 'pdf-to-docx', 'pdf-to-hwpx', 'svg-to-png'] },
   { id: 'security', title: 'PDF 보안', desc: '비밀번호를 걸거나 풀고, 개인정보를 지우고, 워터마크로 지켜 안전하게.', slugs: ['protect', 'unlock', 'remove-metadata', 'watermark'] },
   { id: 'optimize', title: 'PDF 최적화', desc: '용량을 줄이고 빈 페이지를 정리해 가볍게.', slugs: ['compress', 'remove-blank', 'grayscale'] },
   { id: 'edit', title: 'PDF 편집', desc: '방향·여백·자르기·서명·양식으로 문서를 보기 좋게 다듬으세요.', slugs: ['rotate', 'crop', 'add-margin', 'sign', 'flatten'] },
@@ -444,7 +459,7 @@ const CATEGORIES = [
 
 // 작업실 OS 공용 자원 (홈 + 도구 상세 공통)
 const CHIP = '<svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4"/></svg>';
-const APP_FILE = { merge: 'merge.app', split: 'split.app', unlock: 'unlock.app', extract: 'extract.app', delete: 'delete.app', organize: 'organize.app', 'to-image': 'to-image.app', 'page-numbers': 'page-num.app', 'image-to-pdf': 'img-to-pdf.app', 'svg-to-png': 'svg-to-png.app', rotate: 'rotate.app', crop: 'crop.app', compress: 'compress.app', 'pdf-info': 'pdf-info.app', 'remove-metadata': 'remove-metadata.app', 'remove-blank': 'remove-blank.app', 'add-margin': 'add-margin.app', 'extract-text': 'extract-text.app', reverse: 'reverse.app', grayscale: 'grayscale.app', nup: 'nup.app', sign: 'sign.app', watermark: 'watermark.app', flatten: 'flatten.app', protect: 'protect.app' };
+const APP_FILE = { merge: 'merge.app', split: 'split.app', unlock: 'unlock.app', extract: 'extract.app', delete: 'delete.app', organize: 'organize.app', 'to-image': 'to-image.app', 'page-numbers': 'page-num.app', 'image-to-pdf': 'img-to-pdf.app', 'svg-to-png': 'svg-to-png.app', rotate: 'rotate.app', crop: 'crop.app', compress: 'compress.app', 'pdf-info': 'pdf-info.app', 'remove-metadata': 'remove-metadata.app', 'remove-blank': 'remove-blank.app', 'add-margin': 'add-margin.app', 'extract-text': 'extract-text.app', 'pdf-to-docx': 'to-docx.app', 'pdf-to-hwpx': 'to-hwpx.app', reverse: 'reverse.app', grayscale: 'grayscale.app', nup: 'nup.app', sign: 'sign.app', watermark: 'watermark.app', flatten: 'flatten.app', protect: 'protect.app' };
 const APP_DESC = {
   merge: '여러 PDF를 순서대로 끌어다 하나로. 과제 묶음, 보고서 취합, 스캔본 결합까지 한 번에 끝냅니다.',
   split: '한 파일을 여러 개로. 자르는 지점을 눌러 필요한 부분만 깔끔하게 나눕니다.',
@@ -464,6 +479,8 @@ const APP_DESC = {
   'remove-blank': '스캔에 섞인 빈 페이지를 자동으로 찾아 제거해 새 PDF로. 양면 스캔의 빈 뒷면 정리에 좋아요.',
   'add-margin': '모든 페이지 둘레에 흰 여백을 더해요. 제본 여백·필기 공간·가장자리 잘림 방지에 좋습니다.',
   'extract-text': 'PDF 속 글자를 .txt로 뽑아 복사·검색·재활용. 사진처럼 스캔된 PDF는 글자가 없어 제외(OCR 아님).',
+  'pdf-to-docx': 'PDF 속 글자를 워드(.docx) 문서로. 문단과 제목을 살려 워드에서 이어서 편집해요. 표·그림·배치는 옮겨지지 않습니다.',
+  'pdf-to-hwpx': 'PDF 속 글자를 한글 문서(.hwpx)로. 한글 2014 이상에서 바로 열려요. 표·그림·배치는 옮겨지지 않습니다.',
   reverse: 'PDF 페이지 순서를 거꾸로 뒤집어 새 PDF로. 마지막 페이지가 처음으로 — 거꾸로 스캔된 문서 바로잡기에.',
   grayscale: '컬러 PDF를 흑백으로. 용량을 줄이고 흑백 인쇄에 맞춰요. 글자가 이미지로 바뀌어 선택은 안 될 수 있어요.',
   nup: '여러 페이지를 한 장에 2·4쪽씩 모아 배치해요. 인쇄 종이 절약, 핸드아웃 만들기에 좋습니다.',
@@ -477,7 +494,7 @@ const APP_SHORT = {
   extract: '원하는 페이지만 추출', delete: '불필요한 페이지 삭제', organize: '순서·회전·삭제 한 번에', 'to-image': 'JPG·PNG로 변환', 'page-numbers': '페이지 번호 넣기',
   'image-to-pdf': 'JPG·PNG를 PDF로', 'svg-to-png': 'SVG를 PNG로',
   rotate: '페이지 회전', crop: '여백 제거', compress: '용량 줄이기', 'pdf-info': '문서 정보 보기',
-  'remove-metadata': '개인정보 제거', 'remove-blank': '빈 페이지 제거', 'add-margin': '여백 추가', 'extract-text': '텍스트 추출',
+  'remove-metadata': '개인정보 제거', 'remove-blank': '빈 페이지 제거', 'add-margin': '여백 추가', 'extract-text': '텍스트 추출', 'pdf-to-docx': '워드(.docx)로 변환', 'pdf-to-hwpx': '한글(.hwpx)로 변환',
   reverse: '페이지 역순', grayscale: '흑백 변환', nup: '모아찍기', sign: '서명·도장 넣기',
   watermark: '워터마크 넣기', flatten: '양식 값 고정', protect: '비밀번호 걸기',
 };
@@ -491,7 +508,9 @@ const SEARCH_SYN = {
   compress: '압축 용량 줄이기 가볍게', 'remove-blank': '빈 페이지 공백 제거', grayscale: '흑백 그레이 회색 인쇄',
   rotate: '회전 방향 돌리기 눕힘 세우기', crop: '자르기 여백 제거 크롭', 'add-margin': '여백 추가 제본 필기공간',
   sign: '서명 사인 도장 계약서 동의서', flatten: '양식 평탄화 폼 고정 신청서', 'pdf-info': '정보 페이지수 크기 메타',
-  'extract-text': '텍스트 추출 글자 복사', protect: '비밀번호 설정 암호화 암호 걸기 보호 잠금 encrypt',
+  'extract-text': '텍스트 추출 글자 복사',
+  'pdf-to-docx': '워드 변환 docx doc ms워드 msword 문서 변환 편집',
+  'pdf-to-hwpx': '한글 변환 hwp hwpx 한컴 아래아한글 한글파일 문서 변환', protect: '비밀번호 설정 암호화 암호 걸기 보호 잠금 encrypt',
 };
 const searchKeywords = (slug) => {
   const t = TOOL_BY[slug];
@@ -579,7 +598,7 @@ function wsFooter(rel) {
         <div class="ws-footgrid">
           <div class="ws-footbrand"><span class="fb"><span class="chip" aria-hidden="true"><img src="${rel}assets/img/logo.png" alt="" width="30" height="30" decoding="async"></span>PDF의 모든 것</span><p>설치도 회원가입도 없이, 파일을 서버에 올리지 않고 내 브라우저에서 바로 처리하는 한국어 무료 PDF 도구 모음입니다.</p></div>
           <div class="ws-footcols">
-            <div class="ws-footcol"><h5>인기 도구</h5>${linkList(popular)}<a class="ws-footcol__all" href="${home}#tools">전체 37개 도구 →</a></div>
+            <div class="ws-footcol"><h5>인기 도구</h5>${linkList(popular)}<a class="ws-footcol__all" href="${home}#tools">전체 ${toolCount()}개 도구 →</a></div>
             <div class="ws-footcol"><h5>이미지 변환</h5>${linkList(convPop)}<a class="ws-footcol__all" href="${home}#tools">모든 변환 →</a></div>
             ${CUR_LANG === 'ko' ? `<div class="ws-footcol"><h5>가이드</h5>${GUIDES.slice(0, 4).map((g) => `<a href="${home}guide/${encodeURIComponent(g.slug)}/">${esc(g.title)}</a>`).join('')}<a class="ws-footcol__all" href="${home}guide/">가이드 전체 →</a></div>` : ''}
             <div class="ws-footcol"><h5>정보</h5><a href="${home}about/">서비스 소개</a><a href="${home}terms/">이용약관</a><a href="${home}privacy/">개인정보 처리방침</a><a href="${home}contact/">문의 · 제안</a></div>
@@ -730,6 +749,18 @@ function optAddMargin() {
 function optExtractText() {
   return `<div class="options">
   <p class="option__hint" style="margin:0">PDF 속 글자를 .txt 파일로 뽑아요. 사진처럼 스캔된 PDF(이미지)는 글자가 없어 추출되지 않아요(OCR 아님).</p>
+</div>`;
+}
+function optToDocx() {
+  return `<div class="options">
+  <p class="option__hint" style="margin:0 0 4px">PDF 속 글자를 뽑아 워드(.docx) 문서로 만들어요. 문단과 제목은 살리지만 표·그림·다단 배치는 옮겨지지 않아요. 스캔본(사진 PDF)은 글자가 없어 변환되지 않습니다.</p>
+  ${optOutName('워드-문서')}
+</div>`;
+}
+function optToHwpx() {
+  return `<div class="options">
+  <p class="option__hint" style="margin:0 0 4px">PDF 속 글자를 뽑아 한글 문서(.hwpx)로 만들어요. 한글 2014 이상에서 열립니다. 표·그림·다단 배치는 옮겨지지 않고, 스캔본(사진 PDF)은 변환되지 않아요.</p>
+  ${optOutName('한글-문서')}
 </div>`;
 }
 function optReverse() {
@@ -1265,7 +1296,7 @@ function widget(t, opts) {
 
 // ───────── 관련 도구 ─────────
 function related(slug, rel) {
-  const others = TOOLS.filter((t) => t.slug !== slug);
+  const others = visTools().filter((t) => t.slug !== slug);
   const cards = others.map((t) => `<a class="tp-rel" href="${rel}${t.slug}/">
           <div class="tp-rel__body"><span class="tp-rel__ico">${ICONS_PDF[t.slug]}</span><div class="tp-rel__tx"><h3>${esc(dispName(t.slug))}</h3><p>${APP_SHORT[t.slug]}</p></div><span class="tp-rel__arr" aria-hidden="true">→</span></div>
         </a>`).join('\n        ');
@@ -1449,7 +1480,7 @@ ${related(t.slug, rel)}`;
     extraScripts: ['assets/js/workspace.js'],
     headExtra: `\n  <script>document.documentElement.className+=" js";</script>\n  <link rel="stylesheet" href="${rel}assets/css/workspace.css?v=${assetVer('assets/css/workspace.css')}">`
   });
-  emitPage(join(t.slug, 'index.html'), html, canonical);
+  emitPage(join(t.slug, 'index.html'), html, canonical, KO_ONLY_TOOLS.has(t.slug));
   console.log(`✓ /${t.slug}/index.html`);
 }
 
@@ -1465,8 +1496,8 @@ function buildHome() {
     { '@context': 'https://schema.org', '@type': 'Organization', name: BRAND, legalName: 'INNO-HI Inc', url: SITE_URL + '/',
       logo: SITE_URL + '/assets/img/logo.png',
       contactPoint: { '@type': 'ContactPoint', contactType: 'customer support', email: CONTACT_EMAIL } },
-    { '@context': 'https://schema.org', '@type': 'ItemList', name: `${BRAND} 도구 목록`, inLanguage: 'ko', numberOfItems: TOOLS.length,
-      itemListElement: TOOLS.map((t, i) => ({ '@type': 'ListItem', position: i + 1, name: dispName(t.slug), url: `${SITE_URL}/${t.slug}/` })) }
+    { '@context': 'https://schema.org', '@type': 'ItemList', name: `${BRAND} 도구 목록`, inLanguage: 'ko', numberOfItems: visTools().length,
+      itemListElement: visTools().map((t, i) => ({ '@type': 'ListItem', position: i + 1, name: dispName(t.slug), url: `${SITE_URL}/${t.slug}/` })) }
   ];
 
   // 좌측 빠른 작업 탭: 대표 도구 5개만(전체 탐색은 우측 카탈로그가 전담)
@@ -1491,11 +1522,11 @@ function buildHome() {
   // 홈 본문 도구 디렉터리 — 서랍에 숨기지 않고 카테고리 설명과 함께 펼쳐 보여준다(탐색성 + 읽을거리).
   const dirRows = CATEGORIES.map((cat) => `        <section class="lp-dir__cat ws-cat-row" id="cat-${cat.id}">
           <header class="lp-dir__cathead">
-            <h3 class="lp-dir__cattitle">${esc(cat.title)} <span class="lp-dir__count">${cat.slugs.length}</span></h3>
+            <h3 class="lp-dir__cattitle">${esc(cat.title)} <span class="lp-dir__count">${visSlugs(cat.slugs).length}</span></h3>
             <p class="lp-dir__catdesc">${esc(cat.desc)}</p>
           </header>
           <div class="lp-dir__grid">
-          ${cat.slugs.map((s, i) => card(s, i)).join('\n          ')}
+          ${visSlugs(cat.slugs).map((s, i) => card(s, i)).join('\n          ')}
           </div>
         </section>`).join('\n');
 
@@ -1531,12 +1562,12 @@ function buildHome() {
         </div>
         <p class="lp-note">${IC('<rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/>')}<span>파일은 서버로 전송되지 않습니다.</span></p>
       </div>
-      <a class="lp-hero__more" href="#tools"><span>37가지 도구 전체 보기</span><span class="lp-hero__chev" aria-hidden="true">⌄</span></a>
+      <a class="lp-hero__more" href="#tools"><span>${toolCount()}가지 도구 전체 보기</span><span class="lp-hero__chev" aria-hidden="true">⌄</span></a>
     </section>
 
     <section class="lp-dir" id="tools" data-reveal>
       <div class="lp-dir__head">
-        <h2 class="lp-dir__h">전체 도구 <span class="lp-dir__total">37</span></h2>
+        <h2 class="lp-dir__h">전체 도구 <span class="lp-dir__total">${toolCount()}</span></h2>
         <p class="lp-dir__lead">필요한 작업을 고르면 바로 실행할 수 있어요. 모든 도구는 설치·회원가입 없이 무료이며, 파일은 내 브라우저 안에서만 처리됩니다.</p>
         <div class="ws-search lp-dir__search">
           ${searchIco}
@@ -1782,7 +1813,8 @@ function buildSeoFiles() {
     { url: SITE_URL + '/contact/', file: 'contact/index.html', priority: '0.3' },
     ...LANGS.filter((l) => l !== 'ko' && I18N[l]).flatMap((l) => [
       { url: `${SITE_URL}/${l}/`, file: `${l}/index.html`, priority: '0.9' },
-      ...TOOLS.map((t) => ({ url: `${SITE_URL}/${l}/${t.slug}/`, file: `${l}/${t.slug}/index.html`, priority: '0.7' })),
+      // 한국어 전용 도구는 해당 언어 페이지가 생성되지 않으므로 사이트맵에서도 제외(404 방지)
+      ...TOOLS.filter((t) => !KO_ONLY_TOOLS.has(t.slug)).map((t) => ({ url: `${SITE_URL}/${l}/${t.slug}/`, file: `${l}/${t.slug}/index.html`, priority: '0.7' })),
       { url: `${SITE_URL}/${l}/about/`, file: `${l}/about/index.html`, priority: '0.4' },
       { url: `${SITE_URL}/${l}/privacy/`, file: `${l}/privacy/index.html`, priority: '0.2' },
       { url: `${SITE_URL}/${l}/contact/`, file: `${l}/contact/index.html`, priority: '0.2' }
@@ -1959,7 +1991,7 @@ ${secs}
     withScripts: null, noChrome: true, bodyClass: 'ws tp lp-page', extraScripts: ['assets/js/workspace.js'],
     headExtra: `\n  <script>document.documentElement.className+=" js";</script>\n  <link rel="stylesheet" href="${rel}assets/css/workspace.css?v=${assetVer('assets/css/workspace.css')}">`
   });
-  emitPage(join('guide', g.slug, 'index.html'), html, canonical);
+  emitPage(join('guide', g.slug, 'index.html'), html, canonical, true);
   console.log(`✓ /guide/${g.slug}/index.html`);
 }
 
@@ -2001,7 +2033,7 @@ function buildGuideIndex() {
     withScripts: null, noChrome: true, bodyClass: 'ws tp lp-page', extraScripts: ['assets/js/workspace.js'],
     headExtra: `\n  <script>document.documentElement.className+=" js";</script>\n  <link rel="stylesheet" href="${rel}assets/css/workspace.css?v=${assetVer('assets/css/workspace.css')}">`
   });
-  emitPage(join('guide', 'index.html'), html, canonical);
+  emitPage(join('guide', 'index.html'), html, canonical, true);
   console.log('✓ /guide/index.html');
 }
 
@@ -2055,7 +2087,7 @@ for (const lang of BUILD_LANGS) {
   CUR_LANG = lang;
   console.log(`\n── ${lang.toUpperCase()} ${lang === 'ko' ? '(루트)' : '(/en/)'} ──`);
   buildHome();
-  TOOLS.forEach(buildTool);
+  visTools().forEach(buildTool);
   buildAbout();
   buildPrivacy();
   buildContact();

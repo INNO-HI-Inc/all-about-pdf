@@ -102,8 +102,8 @@
   <label class="checkbox"><input type="checkbox" id="protect-allow-copy" checked> 允许复制文本</label>
   <p class="option__hint" style="margin:2px 0 0">关闭打印或复制后，将通过与打开密码不同的所有者密码来施加限制（不同查看器对限制的执行可能不同）。</p>
   <div class="option">
-    <label class="option__label" for="out-name-20">输出文件名 <span class="option__hint">可选 · 留空则使用默认名称</span></label>
-    <input type="text" id="out-name-20" class="field js-outname" placeholder="加密码-PDF" autocomplete="off">
+    <label class="option__label" for="out-name-22">输出文件名 <span class="option__hint">可选 · 留空则使用默认名称</span></label>
+    <input type="text" id="out-name-22" class="field js-outname" placeholder="加密码-PDF" autocomplete="off">
   </div>
   <p class="callout callout--warn"><span class="callout__ic"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><line x1="12" y1="11" x2="12" y2="16.5"/><circle cx="12" cy="7.8" r=".7" fill="currentColor" stroke="none"/></svg></span><span><strong>如果忘记密码，将无法恢复。</strong> 你设置的密码不会保存在本设备的任何地方，请务必另行牢记。文件不会发送到服务器，而是在浏览器中加密。</span></p>
 </div>
@@ -139,10 +139,12 @@
           </div>
         </div>
         <div class="tp-dock__panel" data-cat="convert" role="menu" aria-label="转换 PDF 도구" hidden>
-          <div class="tp-dock__panel-head">转换 PDF <span>15</span></div>
+          <div class="tp-dock__panel-head">转换 PDF <span>17</span></div>
           <div class="tp-dock__grid">
             <a class="tp-dock__item" href="../to-image/"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="4.5" width="17" height="15" rx="2.5"/><circle cx="8.5" cy="9.5" r="1.7"/><path d="M20.5 15.5 16 11 6 21"/></svg><span>PDF → 图片</span></a>
             <a class="tp-dock__item" href="../image-to-pdf/"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="4.5" width="17" height="15" rx="2.5"/><circle cx="8.5" cy="9.5" r="1.7"/><path d="M20.5 15.5 16 11 6 21"/></svg><span>图片 → PDF</span></a>
+            <a class="tp-dock__item" href="../pdf-to-docx/"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3.5H7.5a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h9a2 2 0 0 0 2-2V8l-5-4.5z"/><path d="M14 3.5V8h5"/><path d="M8.5 12h7M8.5 15h7M8.5 9h3"/></svg><span>워드 转换</span></a>
+            <a class="tp-dock__item" href="../pdf-to-hwpx/"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3.5H7.5a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h9a2 2 0 0 0 2-2V8l-5-4.5z"/><path d="M14 3.5V8h5"/><path d="M8.5 12h7M8.5 15h7M8.5 9h3"/></svg><span>한글 转换</span></a>
             <a class="tp-dock__item" href="../svg-to-png/"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="4.5" width="17" height="15" rx="2.5"/><circle cx="8.5" cy="9.5" r="1.7"/><path d="M20.5 15.5 16 11 6 21"/></svg><span>SVG → PNG</span></a>
             <a class="tp-dock__item" href="../gif-to-png/"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="4.5" width="17" height="15" rx="2.5"/><circle cx="8.5" cy="9.5" r="1.7"/><path d="M20.5 15.5 16 11 6 21"/></svg><span>GIF → PNG</span></a>
             <a class="tp-dock__item" href="../gif-to-jpg/"><svg class="ic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="4.5" width="17" height="15" rx="2.5"/><circle cx="8.5" cy="9.5" r="1.7"/><path d="M20.5 15.5 16 11 6 21"/></svg><span>GIF → JPG</span></a>
@@ -200,7 +202,7 @@
         </button>
         <button type="button" class="tp-dock__cat" data-cat="convert" aria-expanded="false" aria-haspopup="menu">
           <span class="tp-dock__cat-name">转换 PDF</span>
-          <span class="tp-dock__cat-count">15</span>
+          <span class="tp-dock__cat-count">17</span>
         </button>
         <button type="button" class="tp-dock__cat is-current" data-cat="security" aria-expanded="false" aria-haspopup="menu">
           <span class="tp-dock__cat-name">安全</span>
@@ -383,7 +385,7 @@
   <script>window.AAP_BASE='/';</script>
   <script src="/assets/vendor/pdf-lib-cantoo.min.js" defer fetchpriority="low"></script>
   <script src="/assets/js/ui.js?v=47a1abf4" defer></script>
-  <script src="/assets/js/pdf-engine.js?v=ba4c15e6" defer></script>
+  <script src="/assets/js/pdf-engine.js?v=5e1b6c4b" defer></script>
   <script src="/assets/js/tool-core.js?v=5bff895b" defer></script>
   <script src="/assets/js/tools/protect.js?v=23c08072" defer></script>
   <script src="/assets/js/workspace.js?v=cf25b162" defer></script>
