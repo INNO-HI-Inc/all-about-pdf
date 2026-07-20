@@ -47,5 +47,12 @@
       "a": "전송되지 않습니다. 이 사이트의 도구는 브라우저 안에서만 파일을 열고 처리하며, 서버로 업로드하지 않습니다. 회원가입이나 프로그램 설치도 필요 없고 결과물에 워터마크가 붙지 않습니다. 다만 브라우저 메모리로 처리하는 구조라, 수백 MB짜리 대용량 파일은 기기 성능에 따라 느려질 수 있습니다."
     }
   ],
-  "tools": ["compress", "grayscale", "remove-blank", "split", "pdf-info", "to-image"]
+  "tools": [
+    "compress",
+    "grayscale",
+    "remove-blank",
+    "split",
+    "pdf-info",
+    "to-image"
+  ]
 }

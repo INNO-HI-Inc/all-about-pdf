@@ -277,3 +277,24 @@
   d.addEventListener('drop', function () { depth = 0; veil.classList.remove('is-on'); });
   d.addEventListener('dragend', function () { depth = 0; veil.classList.remove('is-on'); });
 })();
+
+/* 가이드: 목차 현재 위치 표시 + 맨 위로 (긴 글에서 위치를 잃던 문제) */
+(function () {
+  var d = document, prose = d.querySelector('.gd-prose');
+  if (!prose) return;
+  var links = Array.prototype.slice.call(d.querySelectorAll('.gd-toc a[href^="#"]'));
+  var heads = links.map(function (a) { return d.getElementById(a.getAttribute('href').slice(1)); });
+  function spy() {
+    var best = -1;
+    heads.forEach(function (h, i) { if (h && h.getBoundingClientRect().top <= 140) best = i; });
+    links.forEach(function (a, i) { a.classList.toggle('is-cur', i === best); });
+  }
+  var btn = d.createElement('button');
+  btn.type = 'button'; btn.className = 'gd-top'; btn.setAttribute('aria-label', '맨 위로');
+  btn.innerHTML = '<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V6M6 12l6-6 6 6"/></svg>';
+  btn.addEventListener('click', function () { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+  d.body.appendChild(btn);
+  function onScroll() { spy(); btn.classList.toggle('is-on', window.scrollY > 700); }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+})();

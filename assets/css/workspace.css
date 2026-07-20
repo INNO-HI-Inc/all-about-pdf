@@ -546,12 +546,14 @@
 .tp-steps li .tx { padding-top: 9px; font-size: 1.02rem; line-height: 1.6; color: var(--ink); font-weight: 500; }
 
 /* 보안 콜아웃(레드 그라데이션 카드) */
-.tp-secure { margin-top: 48px; display: flex; gap: 18px; align-items: flex-start; background: var(--grad); color: #fff; border-radius: var(--radius-lg); padding: 28px 30px; box-shadow: var(--sh-red); position: relative; overflow: hidden; }
+/* 통짜 빨강(1240x149)이 페이지에서 가장 시선을 뺏었다 → callout과 같은 규칙으로 */
+.tp-secure { margin-top: 48px; max-width: var(--measure); display: flex; gap: 14px; align-items: flex-start; background: var(--surf); color: var(--ink); border: 1px solid var(--line-2); border-radius: 14px; padding: 18px 20px; box-shadow: 0 2px 8px rgba(23, 23, 42, .05); position: relative; overflow: hidden; }
 .tp-secure::after { display: none; }
 .tp-secure .ic { flex: 0 0 auto; position: relative; }
-.tp-secure .ic .ic-svg { width: 30px; height: 30px; color: #fff; }
+.tp-secure .ic { width: 32px; height: 32px; display: grid; place-items: center; border-radius: 9px; background: rgba(229, 37, 42, .1); }
+.tp-secure .ic .ic-svg { width: 19px; height: 19px; color: var(--red); }
 .tp-secure .tx { position: relative; }
-.tp-secure strong { display: block; font-weight: 800; font-size: 1.1rem; margin-bottom: 5px; }
+.tp-secure strong { display: block; font-weight: 800; font-size: .99rem; color: var(--ink); margin-bottom: 4px; }
 .tp-secure .tx span { font-size: .98rem; line-height: 1.72; color: rgba(255, 255, 255, .92); }
 
 .tp-related { padding: var(--sec-y) 0; background: var(--surf-2); border-top: 1px solid var(--line); }
@@ -1434,3 +1436,26 @@ body.lp-page .ws-taskbar { max-width: none; margin: 0; top: 0; height: 68px; bor
       제목은 균형 배치, 본문은 고아줄 방지로 다듬는다(미지원 브라우저는 무시). */
 h1, h2, h3, .tp-h1, .tp-h2, .gd-title, .gd-h2, .lp-hero__title, .lp-dir__h, .ws-card__name, .lp-guide__t, .tp-rel__tx h3 { text-wrap: balance; }
 p, li, .tp-sub, .gd-sub, .gd-lead, .tp-lead, .lp-dir__lead, .ws-card__desc, .lp-guide__d { text-wrap: pretty; }
+
+.lp-drop__formats-lb { font-size: .78rem; font-weight: 700; color: var(--ink-faint); margin-right: 3px; }
+.lp-fmt--webp { color: #0ea5e9; border-color: rgba(14,165,233,.32); }
+.lp-fmt--gif { color: #8b5cf6; border-color: rgba(139,92,246,.32); }
+
+/* 가이드 이전/다음 */
+.gd-pager { padding: 0 0 var(--sec-y-sm); }
+.gd-pager__in { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+@media (max-width: 700px) { .gd-pager__in { grid-template-columns: 1fr; } }
+.gd-pager__a { display: flex; flex-direction: column; gap: 6px; padding: 18px 20px; border: 1px solid var(--line-2); border-radius: 14px; background: var(--surf); color: var(--ink); transition: transform var(--d-hover) var(--ez), border-color var(--d-hover) var(--ez), box-shadow var(--d-hover) var(--ez); }
+.gd-pager__a:hover { transform: translateY(-3px); border-color: rgba(229, 37, 42, .3); box-shadow: 0 12px 28px -14px rgba(23, 23, 42, .22); text-decoration: none; }
+.gd-pager__a--next { text-align: right; align-items: flex-end; }
+.gd-pager__lb { font-size: .8rem; font-weight: 800; color: var(--red); }
+.gd-pager__a b { font-size: .98rem; font-weight: 700; line-height: 1.45; word-break: keep-all; }
+
+/* 목차 현재 위치 표시 */
+.gd-toc a.is-cur { background: rgba(229, 37, 42, .09); color: var(--red); }
+.gd-toc a.is-cur::before { color: var(--red); }
+
+/* 맨 위로 */
+.gd-top { position: fixed; right: 22px; bottom: 22px; z-index: 140; width: 46px; height: 46px; display: grid; place-items: center; border-radius: 50%; border: 1px solid var(--line-2); background: var(--surf); color: var(--ink); box-shadow: 0 8px 22px rgba(23, 23, 42, .14); cursor: pointer; opacity: 0; pointer-events: none; transform: translateY(8px); transition: opacity .22s var(--ez), transform .22s var(--ez); }
+.gd-top.is-on { opacity: 1; pointer-events: auto; transform: none; }
+.gd-top:hover { border-color: rgba(229, 37, 42, .4); color: var(--red); }
