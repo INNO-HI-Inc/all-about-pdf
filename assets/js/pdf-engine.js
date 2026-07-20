@@ -636,7 +636,8 @@
   // ── 구조화 추출 (문단/제목 추정) ───────────────────────────
   // PDF는 '줄' 단위 좌표만 갖고 문단 개념이 없다. 글자 크기 중앙값을 본문 기준으로 삼아
   // 크고 짧은 줄은 제목으로, 종결어미 없이 길게 끝난 줄은 다음 줄과 한 문단으로 잇는다.
-  async function extractBlocks(file, onProgress) {
+  async function extractBlocks(file, onProgress, opts) {
+    opts = opts || {};
     var pdfjs = await loadPdfjs(file);
     var total = pdfjs.numPages, lines = [];
     for (var n = 1; n <= total; n++) {
@@ -659,21 +660,29 @@
         if (it.str.trim() && sz > row.size) row.size = sz;
         row.items.push({ x: x, w: it.width || 0, s: it.str });
       });
+      var pageImgs = opts.images === false ? [] : await extractPageImages(page);
+      // 이미지도 같은 y축 흐름에 넣어 본문 순서대로 배치되게 한다
+      pageImgs.forEach(function (im) { rows.push({ y: im.y, size: 0, items: [], img: im }); });
       rows.sort(function (a, b) { return b.y - a.y; }); // PDF 좌표는 아래가 0 → 위에서 아래로
       rows.forEach(function (r) {
+        if (r.img) { lines.push({ text: '', size: 0, img: r.img }); return; }
         r.items.sort(function (a, b) { return a.x - b.x; });
-        var t = '';
+        var t = '', cells = [], cur = null;
+        var cellGap = Math.max(10, (r.size || 10) * 1.4); // 이만큼 벌어지면 다른 칸으로 본다
         r.items.forEach(function (i, k) {
+          var gap = k > 0 ? i.x - (r.items[k - 1].x + r.items[k - 1].w) : 0;
           if (k > 0) {
-            var pv = r.items[k - 1];
-            var gap = i.x - (pv.x + pv.w);
             // 공백 아이템이 아예 없는 PDF도 있어, 글자 간격이 벌어지면 공백을 넣어 준다
             if (gap > Math.max(1, (r.size || 10) * 0.2) && !/\s$/.test(t) && !/^\s/.test(i.s)) t += ' ';
           }
           t += i.s;
+          if (!cur || (k > 0 && gap > cellGap)) { cur = { x: i.x, t: '' }; cells.push(cur); }
+          cur.t += i.s;
         });
         t = t.replace(/\s+/g, ' ').trim();
-        if (t) lines.push({ text: t, size: r.size || 0 });
+        cells = cells.map(function (c) { return { x: c.x, t: c.t.replace(/\s+/g, ' ').trim() }; })
+          .filter(function (c) { return c.t; });
+        if (t) lines.push({ text: t, size: r.size || 0, cells: cells });
       });
       if (onProgress) onProgress(n / total);
     }
@@ -681,26 +690,131 @@
     // 기준이 제목 쪽으로 끌려가 제목 판별이 통째로 실패한다(본문은 줄 수가 아니라 글자 수로 압도적이다).
     var weight = {};
     lines.forEach(function (l) {
-      if (!(l.size > 0)) return;
+      if (l.img || !(l.size > 0)) return;
       var k = Math.round(l.size * 2) / 2; // 0.5pt 단위로 묶어 미세한 차이를 흡수
       weight[k] = (weight[k] || 0) + l.text.length;
     });
     var bodySize = 0, best = -1;
     Object.keys(weight).forEach(function (k) { if (weight[k] > best) { best = weight[k]; bodySize = parseFloat(k); } });
     if (!bodySize) bodySize = 12;
+    // 표 후보 구간을 먼저 잡는다(문단으로 흘려보내기 전에).
+    var tableAt = detectTables(lines);
     var blocks = [];
-    lines.forEach(function (l) {
+    for (var li = 0; li < lines.length; li++) {
+      var tb = tableAt[li];
+      if (tb) { blocks.push(tb.block); li = tb.end; continue; }
+      var l = lines[li];
+      if (l.img) { blocks.push({ type: 'img', bytes: l.img.bytes, w: l.img.w, h: l.img.h }); continue; }
       var t = (l.text || '').replace(/\s+/g, ' ').trim();
-      if (!t) { blocks.push({ type: 'gap' }); return; }
-      if (l.size >= bodySize * 1.25 && t.length <= 60) { blocks.push({ type: 'h', text: t }); return; }
+      if (!t) { blocks.push({ type: 'gap' }); continue; }
+      if (l.size >= bodySize * 1.25 && t.length <= 60) { blocks.push({ type: 'h', text: t }); continue; }
       var prev = blocks[blocks.length - 1];
       // 종결(마침표·한국어 종결어미) 없이 길게 끝난 줄 → 앞 문단에 이어 붙임
       var continued = prev && prev.type === 'p' && prev.text.length > 25 &&
         !/[.!?。」』”\)\]:;]$/.test(prev.text) && !/(다|요|음|임|함|것|죠)$/.test(prev.text);
       if (continued) prev.text = (prev.text + ' ' + t).replace(/\s{2,}/g, ' ');
       else blocks.push({ type: 'p', text: t });
-    });
+    }
     return blocks.filter(function (b) { return b.type !== 'gap'; });
+  }
+
+  // ── 표 검출 ────────────────────────────────────────────────
+  // PDF에는 '표'라는 개념이 없다. 글자 위치만 있으므로, 여러 줄이 같은 x에서 시작하는
+  // 열 구조를 이룰 때만 표로 본다. 애매하면 표로 만들지 않고 문단으로 흘려보낸다(오검출이 더 나쁘다).
+  function detectTables(lines) {
+    var out = {};
+    var i = 0;
+    while (i < lines.length) {
+      if (!lines[i].cells || lines[i].cells.length < 2) { i++; continue; }
+      var j = i;
+      while (j + 1 < lines.length && lines[j + 1].cells && lines[j + 1].cells.length >= 2) j++;
+      var run = lines.slice(i, j + 1);
+      if (run.length >= 2) {
+        var tol = Math.max(6, (run[0].size || 10) * 1.1);
+        var xs = [];
+        run.forEach(function (r) { r.cells.forEach(function (c) { xs.push(c.x); }); });
+        xs.sort(function (a, b) { return a - b; });
+        var cols = [];
+        xs.forEach(function (x) { if (!cols.length || x - cols[cols.length - 1] > tol) cols.push(x); });
+        // 열이 2개 이상이고, 대부분의 줄이 같은 열 수를 가질 때만 표로 인정
+        var counts = {};
+        run.forEach(function (r) { counts[r.cells.length] = (counts[r.cells.length] || 0) + 1; });
+        var domCount = 0, domN = 0;
+        Object.keys(counts).forEach(function (k) { if (counts[k] > domCount) { domCount = counts[k]; domN = +k; } });
+        if (cols.length >= 2 && cols.length <= 12 && domN >= 2 && domCount >= Math.ceil(run.length * 0.6)) {
+          var rows = run.map(function (r) {
+            var cellsOut = new Array(cols.length).fill('');
+            r.cells.forEach(function (c) {
+              var bi = 0, bd = Infinity;
+              cols.forEach(function (cx, ci) { var d = Math.abs(cx - c.x); if (d < bd) { bd = d; bi = ci; } });
+              cellsOut[bi] = (cellsOut[bi] ? cellsOut[bi] + ' ' : '') + c.t;
+            });
+            return cellsOut;
+          });
+          out[i] = { end: j, block: { type: 'table', rows: rows } };
+        }
+      }
+      i = j + 1;
+    }
+    return out;
+  }
+
+  // ── 페이지 안의 이미지 추출 ────────────────────────────────
+  function mulMat(a, b) {
+    return [a[0] * b[0] + a[1] * b[2], a[0] * b[1] + a[1] * b[3],
+      a[2] * b[0] + a[3] * b[2], a[2] * b[1] + a[3] * b[3],
+      a[4] * b[0] + a[5] * b[2] + b[4], a[4] * b[1] + a[5] * b[3] + b[5]];
+  }
+  function getPageObj(page, id) {
+    return new Promise(function (res) {
+      var done = false;
+      var t = setTimeout(function () { if (!done) { done = true; res(null); } }, 5000);
+      function fin(o) { if (!done) { done = true; clearTimeout(t); res(o); } }
+      try { page.objs.get(id, fin); } catch (e) { fin(null); }
+    });
+  }
+  async function imageToPngBytes(page, id) {
+    var img = await getPageObj(page, id);
+    if (!img || !img.width || !img.height) return null;
+    var w = img.width, h = img.height;
+    if (w * h > 36e6) return null; // 과도한 이미지는 메모리 보호를 위해 건너뜀
+    var cv = document.createElement('canvas'); cv.width = w; cv.height = h;
+    var cx = cv.getContext('2d');
+    if (img.bitmap) cx.drawImage(img.bitmap, 0, 0);
+    else if (img.data) {
+      var idata = cx.createImageData(w, h), d = idata.data, src = img.data;
+      if (src.length >= w * h * 4) d.set(src.subarray(0, w * h * 4));
+      else if (src.length >= w * h * 3) { for (var p = 0, q = 0; p < w * h; p++) { d[q++] = src[p * 3]; d[q++] = src[p * 3 + 1]; d[q++] = src[p * 3 + 2]; d[q++] = 255; } }
+      else return null;
+      cx.putImageData(idata, 0, 0);
+    } else return null;
+    var blob = await canvasToBlob(cv, 'image/png');
+    if (!blob) return null;
+    return new Uint8Array(await blob.arrayBuffer());
+  }
+  async function extractPageImages(page) {
+    var out = [];
+    var OPS = global.pdfjsLib && global.pdfjsLib.OPS;
+    if (!OPS) return out;
+    var ops;
+    try { ops = await page.getOperatorList(); } catch (e) { return out; }
+    var ctm = [1, 0, 0, 1, 0, 0], stack = [], seen = {};
+    for (var i = 0; i < ops.fnArray.length; i++) {
+      var fn = ops.fnArray[i], args = ops.argsArray[i];
+      if (fn === OPS.save) stack.push(ctm.slice());
+      else if (fn === OPS.restore) ctm = stack.pop() || [1, 0, 0, 1, 0, 0];
+      else if (fn === OPS.transform) ctm = mulMat(args, ctm);
+      else if (fn === OPS.paintImageXObject) {
+        var pw = Math.abs(ctm[0]) || Math.abs(ctm[1]), ph = Math.abs(ctm[3]) || Math.abs(ctm[2]);
+        if (pw < 28 || ph < 28) continue; // 구분선·아이콘 수준의 작은 이미지는 본문에 넣지 않는다
+        var id = args[0];
+        if (seen[id + '@' + Math.round(ctm[5])]) continue;
+        seen[id + '@' + Math.round(ctm[5])] = 1;
+        var bytes = await imageToPngBytes(page, id);
+        if (bytes) out.push({ y: ctm[5], w: pw, h: ph, bytes: bytes });
+      }
+    }
+    return out;
   }
 
   function xmlEsc(s) {
@@ -713,15 +827,51 @@
   async function buildDocx(blocks, title) {
     if (!global.JSZip) throw new Error('압축 모듈을 불러오지 못했습니다. 새로고침해 주세요.');
     var zip = new global.JSZip();
+    var EMU = 12700; // 1pt = 12700 EMU
+    var media = [], relExtra = '', drawId = 0;
+    var para = function (t, style) {
+      return '<w:p>' + (style ? '<w:pPr><w:pStyle w:val="' + style + '"/></w:pPr>' : '') +
+        '<w:r><w:t xml:space="preserve">' + xmlEsc(t) + '</w:t></w:r></w:p>';
+    };
     var body = blocks.map(function (b) {
-      var t = xmlEsc(b.text);
-      if (b.type === 'h') return '<w:p><w:pPr><w:pStyle w:val="Heading1"/></w:pPr><w:r><w:t xml:space="preserve">' + t + '</w:t></w:r></w:p>';
-      return '<w:p><w:r><w:t xml:space="preserve">' + t + '</w:t></w:r></w:p>';
+      if (b.type === 'h') return para(b.text, 'Heading1');
+      if (b.type === 'table') {
+        // 표: 테두리를 tblPr에 직접 넣어 별도 스타일 정의 없이도 선이 보이게 한다
+        var bd = ['top', 'left', 'bottom', 'right', 'insideH', 'insideV']
+          .map(function (k) { return '<w:' + k + ' w:val="single" w:sz="6" w:space="0" w:color="BFBFBF"/>'; }).join('');
+        var trs = b.rows.map(function (r) {
+          return '<w:tr>' + r.map(function (c) {
+            return '<w:tc><w:tcPr><w:tcW w:w="0" w:type="auto"/></w:tcPr>' + para(c) + '</w:tc>';
+          }).join('') + '</w:tr>';
+        }).join('');
+        // 표 뒤에는 빈 문단이 있어야 워드가 안정적으로 연다
+        return '<w:tbl><w:tblPr><w:tblW w:w="0" w:type="auto"/><w:tblBorders>' + bd + '</w:tblBorders></w:tblPr>' + trs + '</w:tbl><w:p/>';
+      }
+      if (b.type === 'img') {
+        drawId++;
+        var rid = 'rIdImg' + drawId, name = 'image' + drawId + '.png';
+        media.push({ name: name, bytes: b.bytes });
+        relExtra += '<Relationship Id="' + rid + '" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/image" Target="media/' + name + '"/>';
+        // 본문 폭(약 435pt)을 넘지 않게 축소
+        var w = b.w, h = b.h, maxW = 435;
+        if (w > maxW) { h = h * (maxW / w); w = maxW; }
+        var cx = Math.round(w * EMU), cy = Math.round(h * EMU);
+        return '<w:p><w:r><w:drawing><wp:inline distT="0" distB="0" distL="0" distR="0" xmlns:wp="http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing">' +
+          '<wp:extent cx="' + cx + '" cy="' + cy + '"/><wp:docPr id="' + drawId + '" name="Picture ' + drawId + '"/>' +
+          '<a:graphic xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main"><a:graphicData uri="http://schemas.openxmlformats.org/drawingml/2006/picture">' +
+          '<pic:pic xmlns:pic="http://schemas.openxmlformats.org/drawingml/2006/picture">' +
+          '<pic:nvPicPr><pic:cNvPr id="' + drawId + '" name="' + name + '"/><pic:cNvPicPr/></pic:nvPicPr>' +
+          '<pic:blipFill><a:blip xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships" r:embed="' + rid + '"/><a:stretch><a:fillRect/></a:stretch></pic:blipFill>' +
+          '<pic:spPr><a:xfrm><a:off x="0" y="0"/><a:ext cx="' + cx + '" cy="' + cy + '"/></a:xfrm>' +
+          '<a:prstGeom prst="rect"><a:avLst/></a:prstGeom></pic:spPr></pic:pic></a:graphicData></a:graphic></wp:inline></w:drawing></w:r></w:p>';
+      }
+      return para(b.text);
     }).join('');
-    zip.file('[Content_Types].xml', '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>\n<Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types"><Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/><Default Extension="xml" ContentType="application/xml"/><Override PartName="/word/document.xml" ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.document.main+xml"/><Override PartName="/word/styles.xml" ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.styles+xml"/><Override PartName="/docProps/core.xml" ContentType="application/vnd.openxmlformats-package.core-properties+xml"/></Types>');
+    media.forEach(function (m) { zip.file('word/media/' + m.name, m.bytes); });
+    zip.file('[Content_Types].xml', '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>\n<Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types"><Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/><Default Extension="xml" ContentType="application/xml"/><Default Extension="png" ContentType="image/png"/><Override PartName="/word/document.xml" ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.document.main+xml"/><Override PartName="/word/styles.xml" ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.styles+xml"/><Override PartName="/docProps/core.xml" ContentType="application/vnd.openxmlformats-package.core-properties+xml"/></Types>');
     zip.file('_rels/.rels', '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>\n<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument" Target="word/document.xml"/><Relationship Id="rId2" Type="http://schemas.openxmlformats.org/package/2006/relationships/metadata/core-properties" Target="docProps/core.xml"/></Relationships>');
     zip.file('docProps/core.xml', '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>\n<cp:coreProperties xmlns:cp="http://schemas.openxmlformats.org/package/2006/metadata/core-properties" xmlns:dc="http://purl.org/dc/elements/1.1/"><dc:title>' + xmlEsc(title || '') + '</dc:title></cp:coreProperties>');
-    zip.file('word/_rels/document.xml.rels', '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>\n<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/styles" Target="styles.xml"/></Relationships>');
+    zip.file('word/_rels/document.xml.rels', '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>\n<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/styles" Target="styles.xml"/>' + relExtra + '</Relationships>');
     // 한글이 깨지지 않도록 eastAsia 글꼴을 명시
     zip.file('word/styles.xml', '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>\n<w:styles xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main"><w:docDefaults><w:rPrDefault><w:rPr><w:rFonts w:ascii="맑은 고딕" w:hAnsi="맑은 고딕" w:eastAsia="맑은 고딕"/><w:sz w:val="22"/></w:rPr></w:rPrDefault></w:docDefaults><w:style w:type="paragraph" w:styleId="Heading1"><w:name w:val="heading 1"/><w:pPr><w:spacing w:before="240" w:after="120"/><w:outlineLvl w:val="0"/></w:pPr><w:rPr><w:b/><w:sz w:val="32"/></w:rPr></w:style></w:styles>');
     zip.file('word/document.xml', '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>\n<w:document xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main"><w:body>' + body + '<w:sectPr><w:pgSz w:w="11906" w:h="16838"/><w:pgMar w:top="1134" w:right="1134" w:bottom="1134" w:left="1134"/></w:sectPr></w:body></w:document>');
@@ -732,8 +882,13 @@
   async function buildHwpx(blocks, title) {
     if (!global.JSZip) throw new Error('압축 모듈을 불러오지 못했습니다. 새로고침해 주세요.');
     var zip = new global.JSZip();
+    var mkP = function (t) { return '<hp:p><hp:run><hp:t>' + xmlEsc(t) + '</hp:t></hp:run></hp:p>'; };
     var paras = blocks.map(function (b) {
-      return '<hp:p><hp:run><hp:t>' + xmlEsc(b.text) + '</hp:t></hp:run></hp:p>';
+      // HWPX 표·그림 마크업(OWPML)은 한글 앱에서 열어 검증할 수단이 없어, 잘못 쓰면 파일 자체가
+      // 열리지 않는다. 확실히 안전한 문단으로 표는 탭 구분해 담고 그림은 자리만 표시한다.
+      if (b.type === 'table') return b.rows.map(function (r) { return mkP(r.join('\t')); }).join('\n');
+      if (b.type === 'img') return mkP('[그림 — 원본 PDF를 참고하세요]');
+      return mkP(b.text);
     }).join('\n');
     // mimetype은 반드시 무압축(STORE)으로 첫 항목
     zip.file('mimetype', 'application/hwp+zip', { compression: 'STORE' });

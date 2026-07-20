@@ -392,7 +392,7 @@ const TOOLS = [
     runLabel: 'PDF로 만들기', dropTitle: '이미지(JPG·PNG)를 끌어다 놓으세요', pagecount: false,
     feature: ['JPG·PNG → PDF', '여러 장 한 파일로', '순서 변경'], options: optImagesToPdf() },
   { slug: 'svg-to-png', icon: ICONS.image, nav: 'SVG→PNG', multiple: true, reorder: true,
-    accept: 'svg', imageThumbs: true, fileThumbs: true, needs: ['zip'],
+    accept: 'svg', conv: { from: 'svg', to: 'png' }, imageThumbs: true, fileThumbs: true, needs: ['zip'],
     runLabel: 'PNG로 변환하기', dropTitle: 'SVG 파일을 끌어다 놓으세요', pagecount: false,
     feature: ['SVG → PNG 변환', '배율(고화질) 선택', '여러 장 한 번에'], options: optSvgToPng() },
   { slug: 'rotate', icon: ICONS.rotate, nav: 'PDF 회전', multiple: false,
@@ -583,7 +583,11 @@ const CONVERTS = [
   { from: 'svg', to: 'jpg', feat: ['배율 고화질', '흰 배경'], desc: '벡터 SVG를 어디서나 쓰는 JPG로. 배율을 올려 고화질로, 투명은 흰 배경 처리.' },
   { from: 'svg', to: 'webp', feat: ['배율 고화질', '용량↓'], desc: '벡터 SVG를 가벼운 WEBP로. 배율 선택, 투명 유지.' },
 ];
-const convIcon = (c) => pdfSvg('<rect x="3" y="5.2" width="8.4" height="8.4" rx="1.5" fill="#9aa0ad"/><path d="M5 11.6l1.6-2 1.05 1.2 1-1.2 1.55 2z" fill="#fff"/><circle cx="5.5" cy="8" r=".9" fill="#fff"/><rect x="11.6" y="10.4" width="9.4" height="9.4" rx="1.6" fill="' + ({ png: '#18a957', jpg: '#f59e0b', webp: '#0ea5e9' }[c.to] || PDF_RED) + '" stroke="#fff" stroke-width="1.1"/><path d="M14 17.6l1.7-2.1 1.1 1.25 1.05-1.25 1.6 2.1z" fill="#fff"/><circle cx="14.3" cy="13.6" r="1" fill="#fff"/>');
+// 포맷마다 고유 색을 줘서 17개 변환 도구가 한눈에 구분되게 한다.
+// (이전에는 출발 형식이 전부 회색이라 카드 39개가 같은 아이콘으로 보였다)
+const FMT_COLOR = { jpg: '#f59e0b', png: '#18a957', webp: '#0ea5e9', gif: '#8b5cf6', avif: '#ec4899', svg: '#6366f1', pdf: PDF_RED, image: '#64748b' };
+const fmtChip = (x, fill) => `<rect x="${x}" y="6.2" width="8.2" height="11.6" rx="1.9" fill="${fill}"/><circle cx="${x + 2.4}" cy="9.9" r=".95" fill="#fff" opacity=".95"/><path d="M${x + 1} 15.4l2.1-2.6 1.3 1.5 1.2-1.5 2 2.6z" fill="#fff" opacity=".95"/>`;
+const convIcon = (c) => pdfSvg(fmtChip(1.1, FMT_COLOR[c.from] || '#9aa0ad') + '<path d="M10.9 12h2.5M12.2 10.7 13.5 12l-1.3 1.3" stroke="#98a0ae" stroke-width="1.35" fill="none" stroke-linecap="round" stroke-linejoin="round"/>' + fmtChip(14.6, FMT_COLOR[c.to] || PDF_RED));
 const convTool = (c) => ({
   slug: c.from + '-to-' + c.to, icon: ICONS.image, nav: UP[c.from] + '→' + UP[c.to], multiple: true, reorder: true,
   accept: c.from, conv: { from: c.from, to: c.to }, script: 'img-convert', imageThumbs: true, fileThumbs: true,
@@ -600,6 +604,7 @@ CONVERTS.forEach((c) => {
   TILE_COLOR[slug] = '#0ea5e9';
   TOOLS.push(convTool(c));
 });
+ICONS_PDF['svg-to-png'] = convIcon({ from: 'svg', to: 'png' });
 CATEGORIES.find((x) => x.id === 'convert').slugs.push(...CONVERTS.map((c) => c.from + '-to-' + c.to));
 Object.assign(TOOL_BY, Object.fromEntries(TOOLS.map((t) => [t.slug, t])));
 // 카드/네비에 보일 짧은 표시명 — 변환 도구는 "GIF → PNG"처럼 화살표로 한눈에
