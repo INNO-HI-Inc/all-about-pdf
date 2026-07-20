@@ -173,6 +173,17 @@ const LPX = {
   ja: { conv: '変換', edit: '編集', sec: 'セキュリティ', allTools: 'すべて', convSub: 'さまざまな形式に', editSub: 'PDFの内容を編集', splitMerge: '分割・結合', splitMergeSub: '自由に構成', compressSub: '容量を削減', popular: '人気ツール', seeAll: 'すべて見る', f1: '速くて簡単', f1s: '数秒で処理します。', f2: '安全で信頼できる', f3: 'あらゆる端末で', f3s: 'ウェブでいつでもどこでも。', dropTitle: 'PDFをここにドロップ', chooseFile: 'またはファイルを選択' },
   zh: { conv: '转换', edit: '编辑', sec: '安全', allTools: '全部', convSub: '多种格式', editSub: '编辑PDF内容', splitMerge: '拆分·合并', splitMergeSub: '自由组合', compressSub: '减小体积', popular: '热门工具', seeAll: '查看全部', f1: '快速简便', f1s: '几秒内完成处理。', f2: '安全可信赖', f3: '所有设备通用', f3s: '随时随地在网页使用。', dropTitle: '将PDF拖到此处', chooseFile: '或选择文件' }
 };
+// 홈 도구 디렉터리(#tools) 전용 문구 — 카테고리 설명은 통째로 치환해야 부분치환 사고가 없다.
+const LDIR = {
+  en: { lead: 'Pick what you need and run it right away. Every tool is free — no install, no sign-up — and your files are processed entirely inside your browser.', more: 'See all 37 tools', dropAny: 'Drop your file here',
+    organize: 'Merge, split, and rearrange PDF pages however you like.', convert: 'Convert between PDF and images — all processed in your browser.', security: 'Lock or unlock with a password, strip personal data, and protect with watermarks.', optimize: 'Shrink file size and clean up blank pages.', edit: 'Polish your document with rotation, margins, cropping, signatures, and form flattening.', analyze: 'Check document details and pull the text out.' },
+  es: { lead: 'Elige lo que necesitas y ejecútalo al instante. Todas las herramientas son gratuitas —sin instalación ni registro— y tus archivos se procesan íntegramente en tu navegador.', more: 'Ver las 37 herramientas', dropAny: 'Suelta tu archivo aquí',
+    organize: 'Une, divide y reorganiza las páginas de tus PDF como quieras.', convert: 'Convierte entre PDF e imágenes: todo se procesa en tu navegador.', security: 'Pon o quita contraseñas, borra datos personales y protege con marcas de agua.', optimize: 'Reduce el tamaño del archivo y elimina páginas en blanco.', edit: 'Ajusta el documento con rotación, márgenes, recorte, firma y aplanado de formularios.', analyze: 'Consulta los datos del documento y extrae su texto.' },
+  ja: { lead: '必要な作業を選べば、すぐに実行できます。すべてのツールはインストールも登録も不要で無料。ファイルはブラウザの中だけで処理されます。', more: '37のツールをすべて見る', dropAny: 'ここにファイルをドロップ',
+    organize: '複数のPDFを結合・分割し、ページを自由に整理できます。', convert: 'PDFと画像を相互に変換。すべてブラウザ内で処理されます。', security: 'パスワードの設定・解除、個人情報の削除、ウォーターマークで安全に。', optimize: '容量を減らし、空白ページを整理して軽くします。', edit: '向き・余白・トリミング・署名・フォームで文書を美しく整えます。', analyze: '文書情報を確認し、文字をテキストとして抽出します。' },
+  zh: { lead: '选择需要的操作即可立即执行。所有工具均免费，无需安装或注册，文件仅在您的浏览器中处理。', more: '查看全部 37 个工具', dropAny: '将文件拖到此处',
+    organize: '合并、拆分 PDF，自由整理页面顺序。', convert: 'PDF 与图片互转，全部在浏览器中完成。', security: '设置或解除密码、清除个人信息、添加水印保护。', optimize: '减小文件体积，清理空白页面。', edit: '通过旋转、页边距、裁剪、签名和表单扁平化美化文档。', analyze: '查看文档信息并提取其中的文字。' }
+};
 const _pairCache = {};
 function langPairs(lang) {
   if (_pairCache[lang]) return _pairCache[lang];
@@ -256,6 +267,12 @@ function langPairs(lang) {
   add('모든 도구', L.allTools); add('변환', L.conv); add('편집', L.edit); add('보안', L.sec);
   const LT = { en: 'and beyond, made simple', es: 'y más, muy fácil', ja: 'その先へ、もっと簡単に', zh: '不止于此，更简单' };
   add('그 이상의 간편함', LT[lang] || LT.en);
+  // 홈 도구 디렉터리 — 카테고리 설명·리드문은 문장 전체로 치환(부분치환 방지)
+  const D = LDIR[lang] || LDIR.en;
+  add('필요한 작업을 고르면 바로 실행할 수 있어요. 모든 도구는 설치·회원가입 없이 무료이며, 파일은 내 브라우저 안에서만 처리됩니다.', D.lead);
+  add('37가지 도구 전체 보기', D.more);
+  add('여기에 파일을 끌어다 놓으세요', D.dropAny);
+  CATEGORIES.forEach((cat) => add(cat.desc, D[cat.id]));
   if (E.tools && E.tools.compress) add('압축', E.tools.compress.nav);
   if (E.tools && E.tools.merge) add('합치기', E.tools.merge.nav);
   return (_pairCache[lang] = pairs.sort((a, b) => b[0].length - a[0].length));
@@ -534,17 +551,11 @@ const ARR_SVG = '<svg class="arr" viewBox="0 0 24 24" width="20" height="20" fil
 // 작업실 OS 태스크바 / 푸터 (rel: 홈은 '', 하위는 '../')
 function wsTaskbar(rel) {
   const home = rel === '' ? './' : rel;
-  // '전체 도구'를 상단 메뉴바의 주요 버튼(우측)으로. 홈이면 서랍 토글, 하위 페이지면 홈으로 이동.
-  const allTools = rel === ''
-    ? `<button class="ws-nav__cta" type="button" data-drawer-toggle aria-controls="tool-drawer" aria-expanded="false">전체 도구</button>`
-    : `<a class="ws-nav__cta" href="${home}#tools">전체 도구</a>`;
-  // 카테고리 페이지는 언어별로 없으므로(예: /en/category 없음) 상단 메뉴는 도구 서랍/대표 도구로 연결
-  const midLink = (label, slug) => rel === ''
-    ? `<a class="lp-nav__link" href="${home}${slug}/">${label}</a>`
-    : `<a class="lp-nav__link" href="${home}${slug}/">${label}</a>`;
-  const allToolsMid = rel === ''
-    ? `<button class="lp-nav__link" type="button" data-drawer-toggle aria-controls="tool-drawer">모든 도구</button>`
-    : `<a class="lp-nav__link" href="${home}#tools">모든 도구</a>`;
+  // '전체 도구'는 어느 페이지에서든 홈의 도구 목록(#tools)으로. 서랍에 숨기지 않고 본문에 펼쳐둔다.
+  const allTools = `<a class="ws-nav__cta" href="${home}#tools">전체 도구</a>`;
+  // 카테고리 페이지는 언어별로 없으므로(예: /en/category 없음) 상단 메뉴는 대표 도구로 연결
+  const midLink = (label, slug) => `<a class="lp-nav__link" href="${home}${slug}/">${label}</a>`;
+  const allToolsMid = `<a class="lp-nav__link" href="${home}#tools">모든 도구</a>`;
   return `    <header class="ws-taskbar">
       <a href="${home}" class="ws-logo"><span class="chip" aria-hidden="true"><img src="${rel}assets/img/logo.png" alt="" width="30" height="30" decoding="async"></span><span class="ko">PDF의 모든 것</span></a>
       <nav class="lp-nav__mid" aria-label="주요 메뉴">
@@ -1227,7 +1238,7 @@ function widget(t, opts) {
   const dropBody = `<div class="dropzone js-drop" tabindex="0" role="button" aria-label="${aria}">
           <input type="file" class="js-file" accept="${accept}" ${t.multiple ? 'multiple ' : ''}hidden>
           <svg class="dropzone__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 16V4M12 4l-4 4M12 4l4 4"/><path d="M4 16v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg>
-          <p class="dropzone__title">${t.dropTitle}</p>
+          <p class="dropzone__title">${opts.dropTitle || t.dropTitle}</p>
           <span class="dropzone__btn">파일 선택</span>
           <p class="dropzone__hint">또는 끌어다 놓기·붙여넣기${t.multiple ? '(여러 개 가능)' : ''} · 파일은 내 브라우저에서만 처리됩니다</p>
         </div>${pc}
@@ -1475,18 +1486,16 @@ function buildHome() {
           <span class="ws-card__ico">${ICONS_PDF[slug]}</span>
           <span class="ws-card__tx"><span class="ws-card__name">${esc(dispName(slug))}</span><span class="ws-card__desc">${esc(APP_DESC[slug] || '')}</span></span>
         </a>`;
-  const catRows = CATEGORIES.map((cat, ci) => `        <div class="ws-cat-row is-active" data-cat="${cat.id}">
-          <button class="ws-cattile is-active" type="button" data-cat="${cat.id}" aria-expanded="true">
-            <span class="ws-cattile__count">${cat.slugs.length}</span>
-            <span class="ws-cattile__title">${esc(cat.title)}</span>
-          </button>
-          <div class="ws-cat-tools"><div class="ws-shelf">
+  // 홈 본문 도구 디렉터리 — 서랍에 숨기지 않고 카테고리 설명과 함께 펼쳐 보여준다(탐색성 + 읽을거리).
+  const dirRows = CATEGORIES.map((cat) => `        <section class="lp-dir__cat ws-cat-row" id="cat-${cat.id}">
+          <header class="lp-dir__cathead">
+            <h3 class="lp-dir__cattitle">${esc(cat.title)} <span class="lp-dir__count">${cat.slugs.length}</span></h3>
+            <p class="lp-dir__catdesc">${esc(cat.desc)}</p>
+          </header>
+          <div class="lp-dir__grid">
           ${cat.slugs.map((s, i) => card(s, i)).join('\n          ')}
-          </div></div>
-        </div>`).join('\n');
-  const catalog = `      <div class="ws-cats" aria-label="도구 카테고리">
-${catRows}
-      </div>`;
+          </div>
+        </section>`).join('\n');
 
   const searchIco = '<svg class="ws-search__ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>';
   const gridIco = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="3.5" width="7" height="7" rx="1.6"/><rect x="13.5" y="3.5" width="7" height="7" rx="1.6"/><rect x="3.5" y="13.5" width="7" height="7" rx="1.6"/><rect x="13.5" y="13.5" width="7" height="7" rx="1.6"/></svg>';
@@ -1506,34 +1515,34 @@ ${catRows}
   const lpTool = (slug, ic, color, feat) => `<a class="lp-tool${feat ? ' lp-tool--feat' : ''}" href="${slug}/"><span class="lp-tool__ic lp-tool__ic--${color}">${IC(ic)}</span><span class="lp-tool__body"><b class="lp-tool__name">${esc(dispName(slug))}</b><span class="lp-tool__desc">${esc(APP_SHORT[slug] || '')}</span></span><span class="lp-tool__arr" aria-hidden="true">›</span></a>`;
   const main = `    <div class="lp">
     <h1 class="sr-only">${esc(c.metaTitle || 'PDF의 모든 것')} — 설치 없이 무료로 쓰는 한국어 PDF 도구 모음</h1>
-    <section class="lp-hero" id="tools">
+    <section class="lp-hero">
       <div class="lp-hero__copy">
         <p class="lp-hero__title"><span class="lp-hero__red">PDF,</span> 그 이상의 간편함</p>
         <p class="lp-hero__sub">${esc(c.heroSubtitle || '')}</p>
         <div class="lp-drop">
           <div class="ws-window ws-deck lp-deck" data-ws-window>
             <button class="ws-winclose ws-deck__close" type="button" data-ws-close aria-label="작업 닫고 처음으로">처음으로 ✕</button>
-            ${widget(TOOL_BY['organize'])}
+            ${widget(TOOL_BY['organize'], { dropTitle: '여기에 파일을 끌어다 놓으세요' })}
             ${widget(TOOL_BY['image-to-pdf'], { class: 'lp-imgtool' })}
           </div>
           <div class="lp-drop__formats"><span class="lp-fmt lp-fmt--pdf">PDF</span><span class="lp-fmt lp-fmt--word">Word</span><span class="lp-fmt lp-fmt--jpg">JPG</span><span class="lp-fmt lp-fmt--png">PNG</span><span class="lp-fmt lp-fmt--more">…</span></div>
         </div>
         <p class="lp-note">${IC('<rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/>')}<span>파일은 서버로 전송되지 않습니다.</span></p>
       </div>
+      <a class="lp-hero__more" href="#tools"><span>37가지 도구 전체 보기</span><span class="lp-hero__chev" aria-hidden="true">⌄</span></a>
     </section>
 
-    <section class="lp-pop" data-reveal>
-      <div class="lp-pop__head">
-        <h2 class="lp-pop__h">인기 도구</h2>
-        <button class="lp-pop__all" type="button" data-drawer-toggle aria-controls="tool-drawer">모든 도구 보기 <span aria-hidden="true">›</span></button>
+    <section class="lp-dir" id="tools" data-reveal>
+      <div class="lp-dir__head">
+        <h2 class="lp-dir__h">전체 도구 <span class="lp-dir__total">37</span></h2>
+        <p class="lp-dir__lead">필요한 작업을 고르면 바로 실행할 수 있어요. 모든 도구는 설치·회원가입 없이 무료이며, 파일은 내 브라우저 안에서만 처리됩니다.</p>
+        <div class="ws-search lp-dir__search">
+          ${searchIco}
+          <input type="search" class="js-toolsearch ws-search__input" placeholder="도구 검색 — 예: 압축, 워터마크, jpg" aria-label="도구 검색" autocomplete="off">
+        </div>
+        <p class="ws-search__empty js-search-empty" hidden>찾는 도구가 없어요. ‘압축’, ‘합치기’, ‘jpg’ 처럼 검색해 보세요.</p>
       </div>
-      <div class="lp-pop__grid">
-        ${lpTool('merge', LI.merge, 'purple', true)}
-        ${lpTool('to-image', LI.image, 'blue')}
-        ${lpTool('image-to-pdf', LI.image, 'amber')}
-        ${lpTool('compress', LI.compress, 'red')}
-        ${lpTool('unlock', LI.lock, 'green')}
-      </div>
+${dirRows}
     </section>
 
     <section class="lp-feats" data-reveal>
@@ -1571,23 +1580,7 @@ ${catRows}
         </div>
       </div>
     </section>
-    </div>
-
-    <aside class="ws-drawer" id="tool-drawer" aria-label="전체 도구" aria-hidden="true">
-      <div class="ws-drawer__bar">
-        <span class="ws-drawer__title">${gridIco}전체 도구 <b>37</b></span>
-        <button class="ws-drawer__x" type="button" data-drawer-close aria-label="닫기">✕</button>
-      </div>
-      <div class="ws-drawer__scroll">
-        <div class="ws-search">
-          ${searchIco}
-          <input type="search" class="js-toolsearch ws-search__input" placeholder="도구 검색 — 예: 압축, 워터마크, jpg" aria-label="도구 검색" autocomplete="off">
-        </div>
-        <p class="ws-search__empty js-search-empty" hidden>찾는 도구가 없어요. ‘압축’, ‘합치기’, ‘jpg’ 처럼 검색해 보세요.</p>
-${catalog}
-      </div>
-    </aside>
-    <div class="ws-drawer-scrim" data-drawer-close></div>`;
+    </div>`;
 
   const html = page({
     title: c.metaTitle, desc: c.metaDescription, canonical,
