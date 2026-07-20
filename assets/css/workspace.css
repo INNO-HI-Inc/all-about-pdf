@@ -1493,3 +1493,27 @@ p, li, .tp-sub, .gd-sub, .gd-lead, .tp-lead, .lp-dir__lead, .ws-card__desc, .lp-
 .tp-limits__list { max-width: var(--measure); margin: 0; padding: 0; list-style: none; }
 .tp-limits__list li { position: relative; margin-bottom: .6em; padding-left: 26px; font-size: var(--fs-body); line-height: var(--lh-body); color: var(--ink-soft); word-break: keep-all; }
 .tp-limits__list li::before { content: '!'; position: absolute; left: 0; top: .34em; width: 18px; height: 18px; display: grid; place-items: center; border-radius: 5px; background: rgba(229, 37, 42, .1); color: var(--red); font-size: .72rem; font-weight: 800; }
+
+/* 가이드 표 — 글자벽에 정보 밀도를 주는 요소(장식 이미지보다 이게 낫다) */
+.gd-tbl { margin: 22px 0 26px; max-width: var(--measure); }
+.gd-tbl figcaption { margin-bottom: 9px; font-size: .84rem; font-weight: 800; color: var(--ink-faint); }
+.gd-tbl > table { width: 100%; border-collapse: collapse; font-size: .92rem; background: var(--surf); border: 1px solid var(--line-2); border-radius: 12px; overflow: hidden; }
+.gd-tbl th, .gd-tbl td { padding: 11px 13px; text-align: left; border-bottom: 1px solid var(--line); vertical-align: top; line-height: 1.6; word-break: keep-all; }
+.gd-tbl thead th { background: var(--surf-2); font-weight: 800; color: var(--ink); font-size: .87rem; }
+.gd-tbl tbody tr:last-child td { border-bottom: 0; }
+.gd-tbl td:first-child { font-weight: 700; color: var(--ink); white-space: nowrap; }
+.gd-tbl td { color: var(--ink-soft); }
+/* 좁은 화면에서 표가 페이지를 밀지 않도록 표만 가로 스크롤 */
+@media (max-width: 700px) { .gd-tbl { overflow-x: auto; -webkit-overflow-scrolling: touch; } .gd-tbl > table { min-width: 520px; } }
+
+/* 실제 변환 예시 — 결과물을 보여주는 요소가 없어 '무엇을 해주는 곳인지' 감이 안 왔다 */
+.lp-demo { padding: var(--sec-y-sm) 0 0; }
+.lp-demo__h { margin: 0 0 18px; font-size: clamp(1.15rem, 2.2vw, 1.4rem); font-weight: 800; letter-spacing: -.025em; color: var(--ink); }
+.lp-demo__grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(268px, 1fr)); gap: 12px; }
+.lp-demo__c { position: relative; display: flex; align-items: center; gap: 10px; padding: 18px 16px 30px; border: 1px solid var(--line-2); border-radius: 14px; background: var(--surf); color: var(--ink); transition: transform var(--d-hover) var(--ez), border-color var(--d-hover) var(--ez), box-shadow var(--d-hover) var(--ez); }
+.lp-demo__c:hover { transform: translateY(-3px); border-color: rgba(229, 37, 42, .3); box-shadow: 0 14px 30px -16px rgba(23, 23, 42, .22); text-decoration: none; }
+.lp-demo__side { display: flex; flex-direction: column; gap: 4px; min-width: 0; flex: 1; }
+.lp-demo__f { display: block; padding: 5px 9px; border-radius: 7px; border: 1px solid var(--line-2); background: var(--surf-2); font-size: .76rem; font-weight: 600; color: var(--ink-soft); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.lp-demo__f--out { border-color: rgba(229, 37, 42, .3); background: rgba(229, 37, 42, .06); color: var(--red); font-weight: 700; }
+.lp-demo__ar { flex: none; color: var(--ink-faint); font-weight: 700; }
+.lp-demo__t { position: absolute; left: 16px; bottom: 9px; font-size: .78rem; font-weight: 800; color: var(--ink-faint); }
