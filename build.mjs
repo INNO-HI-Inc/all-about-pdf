@@ -421,7 +421,7 @@ const TOOLS = [
     feature: ['글자를 .txt로', '복사·검색·재활용', 'OCR 아님'], options: optExtractText() },
   { slug: 'pdf-to-docx', icon: ICONS.text, nav: '워드 변환', multiple: false, script: 'pdf-to-docx', needs: ['pdfjs', 'zip'],
     runLabel: 'DOCX로 변환하기', dropTitle: '워드로 바꿀 PDF를 끌어다 놓으세요', pagecount: true,
-    feature: ['PDF→워드(.docx)', '문단·제목 살림', '업로드 없음'], options: optToDocx() },
+    feature: ['PDF→워드(.docx)', '표·그림 포함', '업로드 없음'], options: optToDocx() },
   { slug: 'pdf-to-hwpx', icon: ICONS.text, nav: '한글 변환', multiple: false, script: 'pdf-to-hwpx', needs: ['pdfjs', 'zip'],
     runLabel: 'HWPX로 변환하기', dropTitle: '한글로 바꿀 PDF를 끌어다 놓으세요', pagecount: true,
     feature: ['PDF→한글(.hwpx)', '한글 2014 이상', '업로드 없음'], options: optToHwpx() },
@@ -504,8 +504,8 @@ const APP_BULLET = {
   nup: '한 장에 2·4쪽 모아 배치 · 종이 절약 · 핸드아웃',
   'to-image': 'PDF를 JPG·PNG로 · 페이지별 저장 · ZIP 묶음',
   'image-to-pdf': '사진·캡처를 한 PDF로 · 순서 지정 · 여러 장 가능',
-  'pdf-to-docx': 'PDF 글자를 워드(.docx)로 · 문단·제목 유지',
-  'pdf-to-hwpx': 'PDF 글자를 한글(.hwpx)로 · 한글 2014 이상',
+  'pdf-to-docx': 'PDF를 워드(.docx)로 · 표·그림 포함 · 문단·제목 유지',
+  'pdf-to-hwpx': 'PDF를 한글(.hwpx)로 · 표는 탭 구분 · 한글 2014 이상',
   protect: '열기 비밀번호 설정 · 인쇄·복사 제한 선택',
   unlock: '아는 비밀번호 해제 · 인쇄·편집 제한 제거',
   'remove-metadata': '작성자·회사명 등 숨은 정보 삭제 · 본문 유지',
@@ -801,13 +801,13 @@ function optExtractText() {
 }
 function optToDocx() {
   return `<div class="options">
-  <p class="option__hint" style="margin:0 0 4px">PDF 속 글자를 뽑아 워드(.docx) 문서로 만들어요. 문단과 제목은 살리지만 표·그림·다단 배치는 옮겨지지 않아요. 스캔본(사진 PDF)은 글자가 없어 변환되지 않습니다.</p>
+  <p class="option__hint" style="margin:0 0 4px">PDF 속 글자를 뽑아 워드(.docx) 문서로 만들어요. 문단·제목과 함께 표와 그림도 옮깁니다. 다만 칸이 병합된 복잡한 표나 다단 배치는 흐트러질 수 있고, 스캔본(사진 PDF)은 글자가 없어 변환되지 않습니다.</p>
   ${optOutName('워드-문서')}
 </div>`;
 }
 function optToHwpx() {
   return `<div class="options">
-  <p class="option__hint" style="margin:0 0 4px">PDF 속 글자를 뽑아 한글 문서(.hwpx)로 만들어요. 한글 2014 이상에서 열립니다. 표·그림·다단 배치는 옮겨지지 않고, 스캔본(사진 PDF)은 변환되지 않아요.</p>
+  <p class="option__hint" style="margin:0 0 4px">PDF 속 글자를 뽑아 한글 문서(.hwpx)로 만들어요. 한글 2014 이상에서 열립니다. 표는 칸을 탭으로 구분해 담고 그림은 포함되지 않으며, 스캔본(사진 PDF)은 변환되지 않아요.</p>
   ${optOutName('한글-문서')}
 </div>`;
 }

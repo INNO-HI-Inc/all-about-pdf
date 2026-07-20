@@ -676,8 +676,12 @@
             if (gap > Math.max(1, (r.size || 10) * 0.2) && !/\s$/.test(t) && !/^\s/.test(i.s)) t += ' ';
           }
           t += i.s;
-          if (!cur || (k > 0 && gap > cellGap)) { cur = { x: i.x, t: '' }; cells.push(cur); }
-          cur.t += i.s;
+          // 칸 경계 판정: 좌표가 벌어졌거나(gap), 폭이 넓은 공백 아이템이 사이를 채우고 있을 때.
+          // 표는 보통 후자다 — 칸 사이가 공백 문자로 채워져 좌표 간격은 0으로 계산된다.
+          var isWideSpace = !i.s.trim() && (i.w || 0) > cellGap;
+          if (!cur || (k > 0 && (gap > cellGap || isWideSpace))) { cur = { x: isWideSpace ? i.x + (i.w || 0) : i.x, t: '' }; cells.push(cur); }
+          if (i.s.trim()) cur.t += i.s;
+          else if (cur.t) cur.t += ' ';
         });
         t = t.replace(/\s+/g, ' ').trim();
         cells = cells.map(function (c) { return { x: c.x, t: c.t.replace(/\s+/g, ' ').trim() }; })
