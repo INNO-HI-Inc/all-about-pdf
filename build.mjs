@@ -1541,6 +1541,36 @@ ${catRows}
       <div class="lp-feat"><span class="lp-feat__ic lp-feat__ic--blue">${IC(LI.shield)}</span><div class="lp-feat__tx"><b>안전하고 신뢰할 수 있는 서비스</b><p>파일은 서버로 전송되지 않습니다.</p></div></div>
       <div class="lp-feat"><span class="lp-feat__ic lp-feat__ic--green">${IC(LI.phone)}</span><div class="lp-feat__tx"><b>모든 기기에서 자유롭게</b><p>웹에서 언제 어디서나 사용하세요.</p></div></div>
     </section>
+
+    <section class="home-explain" aria-label="서비스 안내">
+      <div class="home-explain__grid" data-reveal>
+        <div class="home-block">
+          <h2 class="home-block__h">3단계면 끝나요</h2>
+          <ol class="home-steps">
+            <li><span class="home-steps__n">1</span><div><b>파일 올리기</b><p>PDF·이미지를 화면에 끌어다 놓거나 [파일 선택]으로 고르세요.</p></div></li>
+            <li><span class="home-steps__n">2</span><div><b>옵션 고르고 실행</b><p>순서·범위·화질 등 필요한 옵션을 정하고 실행 버튼을 누르세요.</p></div></li>
+            <li><span class="home-steps__n">3</span><div><b>결과 내려받기</b><p>완성된 파일을 바로 저장하세요. 창을 닫으면 흔적도 남지 않습니다.</p></div></li>
+          </ol>
+        </div>
+        <div class="home-block">
+          <h2 class="home-block__h">왜 「PDF의 모든 것」인가요?</h2>
+          <div class="home-why">
+            <div class="home-why__card"><h3>파일이 서버로 가지 않아요</h3><p>합치기·변환·압축 등 모든 처리가 여러분의 기기 안에서만 이뤄집니다. 계약서·신분증 같은 민감한 문서도 안심하고 다루세요.</p></div>
+            <div class="home-why__card"><h3>완전 무료, 워터마크 없음</h3><p>회원가입도 결제도 없고, 파일 개수·용량 제한도 없습니다. 결과물에 워터마크가 찍히지 않습니다.</p></div>
+            <div class="home-why__card"><h3>한국어에 진심입니다</h3><p>외산 도구의 어색한 기계번역 대신, 자연스러운 한국어 안내와 단계 설명으로 누구나 쉽게 쓸 수 있어요.</p></div>
+          </div>
+        </div>
+      </div>
+      <div class="home-block home-faqblock" data-reveal>
+        <h2 class="home-block__h">자주 묻는 질문</h2>
+        <div class="home-faq">
+          <details><summary>정말 무료인가요?</summary><p>네. 모든 도구가 완전 무료이며, 워터마크나 파일 개수·용량 제한이 없습니다.</p></details>
+          <details><summary>제 파일이 서버로 업로드되나요?</summary><p>아니요. 모든 작업은 여러분의 웹 브라우저 안에서만 실행되며, 파일은 어떤 서버로도 전송되지 않습니다. 창을 닫으면 메모리에서 사라집니다.</p></details>
+          <details><summary>회원가입이나 프로그램 설치가 필요한가요?</summary><p>둘 다 필요 없습니다. 이 페이지를 열면 바로 사용할 수 있습니다.</p></details>
+          <details><summary>스마트폰에서도 쓸 수 있나요?</summary><p>네. 스마트폰·태블릿 브라우저에서도 대부분의 도구가 그대로 동작합니다.</p></details>
+        </div>
+      </div>
+    </section>
     </div>
 
     <aside class="ws-drawer" id="tool-drawer" aria-label="전체 도구" aria-hidden="true">
