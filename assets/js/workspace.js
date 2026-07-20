@@ -155,13 +155,15 @@
   // 2-c) 도구 검색/필터 — 이름·설명·동의어(data-keywords)로 즉시 필터
   var searchInput = d.querySelector('.js-toolsearch');
   if (searchInput) {
-    var allCards = Array.prototype.slice.call(d.querySelectorAll('.ws-card'));
+    // 이미지 형식 변환은 카드가 아니라 조밀한 칩(.lp-conv__i)이라 함께 걸러야 한다
+    var allCards = Array.prototype.slice.call(d.querySelectorAll('.ws-card, .lp-conv__i'));
     var noRes = d.querySelector('.js-search-empty');
     var defaultActive = catRows.map(function (r) { return r.classList.contains('is-active'); });
     searchInput.addEventListener('input', function () {
       var q = searchInput.value.trim().toLowerCase();
       if (!q) { // 초기 상태 복원
         allCards.forEach(function (c) { c.style.display = ''; });
+        Array.prototype.forEach.call(d.querySelectorAll('.lp-conv'), function (c) { c.style.display = ''; });
         catRows.forEach(function (row, i) {
           row.style.display = '';
           var on = defaultActive[i];
@@ -175,12 +177,17 @@
       var total = 0;
       catRows.forEach(function (row) {
         var shown = 0;
-        Array.prototype.forEach.call(row.querySelectorAll('.ws-card'), function (c) {
+        Array.prototype.forEach.call(row.querySelectorAll('.ws-card, .lp-conv__i'), function (c) {
           var kw = (c.getAttribute('data-keywords') || '').toLowerCase();
           var match = kw.indexOf(q) >= 0;
           c.style.display = match ? '' : 'none';
           if (match) shown++;
         });
+        var conv = row.querySelector('.lp-conv');
+        if (conv) {
+          var cshown = Array.prototype.filter.call(conv.querySelectorAll('.lp-conv__i'), function (c) { return c.style.display !== 'none'; }).length;
+          conv.style.display = cshown ? '' : 'none';
+        }
         row.style.display = shown ? '' : 'none';
         row.classList.toggle('is-active', shown > 0);   // 매칭 카테고리는 자동 펼침
         var tile = row.querySelector('.ws-cattile');

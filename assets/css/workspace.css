@@ -367,7 +367,7 @@
 /* 부제 줄 수(1~3줄)에 따라 히어로가 184~240px로 들쭉날쭉해 아래 콘텐츠가 56px씩 밀렸다.
    전 도구 최대치(240px)로 고정해 어느 페이지를 열어도 작업 영역이 같은 위치에서 시작하게 한다. */
 .tp-hero { position: relative; padding: 30px 0 14px; min-height: 240px; box-sizing: border-box; display: flex; flex-direction: column; }
-.tp-hero > .tp-col { margin-top: auto; margin-bottom: 0; }
+.tp-hero > .tp-col { width: 100%; align-self: stretch; margin-top: auto; margin-bottom: 0; }
 @media (max-width: 760px) { .tp-hero { min-height: 0; } }
 .tp-hero::before { display: none; }
 .tp-hero > .tp-col { position: relative; z-index: 1; }
@@ -1459,3 +1459,32 @@ p, li, .tp-sub, .gd-sub, .gd-lead, .tp-lead, .lp-dir__lead, .ws-card__desc, .lp-
 .gd-top { position: fixed; right: 22px; bottom: 22px; z-index: 140; width: 46px; height: 46px; display: grid; place-items: center; border-radius: 50%; border: 1px solid var(--line-2); background: var(--surf); color: var(--ink); box-shadow: 0 8px 22px rgba(23, 23, 42, .14); cursor: pointer; opacity: 0; pointer-events: none; transform: translateY(8px); transition: opacity .22s var(--ez), transform .22s var(--ez); }
 .gd-top.is-on { opacity: 1; pointer-events: auto; transform: none; }
 .gd-top:hover { border-color: rgba(229, 37, 42, .4); color: var(--red); }
+
+
+/* 비활성 실행 버튼 — 왜 못 누르는지 보이게 */
+.btn[disabled], .js-run[disabled] { background: var(--surf-3) !important; color: var(--ink-faint) !important; box-shadow: none !important; border: 1px dashed var(--line-2) !important; cursor: not-allowed; opacity: 1; }
+.btn[disabled]:hover, .js-run[disabled]:hover { transform: none !important; filter: none !important; }
+.js-run[disabled]::after { content: " — 파일을 먼저 올려주세요"; font-weight: 600; font-size: .88em; opacity: .85; }
+.ws [lang]:not([lang^="ko"]) .js-run[disabled]::after { content: ""; }
+
+/* FAQ 표현 통일 — 도구·홈·가이드가 서로 다른 세 가지였다 */
+.ws-faqlist details, .home-faq details { border: 1px solid var(--line-2); border-radius: 12px; background: var(--surf); margin-bottom: 9px; overflow: hidden; transition: border-color var(--d-hover) var(--ez); }
+.ws-faqlist details[open], .home-faq details[open] { border-color: rgba(229, 37, 42, .3); }
+.ws-faqlist summary, .home-faq summary { list-style: none; cursor: pointer; padding: 15px 46px 15px 17px; position: relative; font-weight: 700; font-size: .99rem; line-height: 1.6; color: var(--ink); word-break: keep-all; }
+.ws-faqlist summary::-webkit-details-marker, .home-faq summary::-webkit-details-marker { display: none; }
+.ws-faqlist summary::after, .home-faq summary::after { content: '+'; position: absolute; right: 17px; top: 50%; transform: translateY(-50%); font-size: 1.25rem; font-weight: 700; color: var(--red); transition: transform var(--d-hover) var(--ez); }
+.ws-faqlist details[open] summary::after, .home-faq details[open] summary::after { transform: translateY(-50%) rotate(45deg); }
+.ws-faqlist .a, .ws-faqlist details > p, .home-faq details > p { margin: 0; padding: 0 17px 16px; font-size: .95rem; line-height: 1.85; color: var(--ink-soft); word-break: keep-all; }
+.ws-faqlist .q { display: none; }
+
+/* 이미지 형식 변환 — 순열 14종을 카드로 늘어놓으면 홈의 절반을 먹고 서로 구분도 안 된다.
+   성격이 같은 묶음이라 조밀한 칩으로 접는다. */
+.lp-conv { margin-top: 18px; padding: 18px 20px; border: 1px solid var(--line); border-radius: 14px; background: var(--surf-2); }
+.lp-conv__h { display: flex; align-items: center; gap: 8px; margin: 0 0 13px; font-size: .93rem; font-weight: 800; color: var(--ink); }
+.lp-conv__n { display: inline-grid; place-items: center; min-width: 22px; height: 20px; padding: 0 6px; border-radius: 999px; background: rgba(23, 23, 42, .07); color: var(--ink-soft); font-size: .74rem; font-weight: 800; }
+.lp-conv__grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(158px, 1fr)); gap: 7px; }
+.lp-conv__i { display: flex; align-items: center; gap: 9px; padding: 9px 11px; border-radius: 10px; background: var(--surf); border: 1px solid var(--line-2); color: var(--ink); font-size: .87rem; font-weight: 700; white-space: nowrap; transition: border-color var(--d-hover) var(--ez), transform var(--d-hover) var(--ez); }
+.lp-conv__i:hover { border-color: rgba(229, 37, 42, .35); transform: translateY(-2px); text-decoration: none; }
+.lp-conv__ic { flex: none; width: 22px; height: 22px; display: grid; place-items: center; }
+.lp-conv__ic .ic-svg { width: 22px; height: 22px; }
+@media (max-width: 520px) { .lp-conv__grid { grid-template-columns: 1fr 1fr; } .lp-conv { padding: 14px; } }
