@@ -285,6 +285,7 @@ function langPairs(lang) {
   add('이미지 형식끼리 바꾸기', D.convGroup);
   add('3분이면 끝나요', D.howEyebrow);
   add('궁금한 점', D.faqEyebrow);
+  add('>검색</span>', '>' + ({en:'Search',es:'Buscar',ja:'検索',zh:'搜索'}[lang] || 'Search') + '</span>');
   CATEGORIES.forEach((cat) => add(cat.desc, D[cat.id]));
   if (E.tools && E.tools.compress) add('압축', E.tools.compress.nav);
   if (E.tools && E.tools.merge) add('합치기', E.tools.merge.nav);
@@ -643,7 +644,7 @@ function wsTaskbar(rel) {
         ${midLink('보안', 'protect')}
         ${CUR_LANG === 'ko' ? `<a class="lp-nav__link" href="${home}guide/">가이드</a>` : ''}
       </nav>
-      <nav class="ws-nav"><a href="${home}about/">소개</a>${allTools}</nav>
+      <nav class="ws-nav"><a class="ws-nav__search" href="${home}#tools" data-nav-search aria-label="도구 검색"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg><span>검색</span></a><a href="${home}about/">소개</a>${allTools}</nav>
     </header>`;
 }
 function wsFooter(rel) {

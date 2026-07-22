@@ -475,17 +475,11 @@
 /* ───── 데스크톱: 플로팅 도구바를 하단 중앙 → 우측 세로 레일로 ─────
    모바일/태블릿(≤880px)은 하단 바 유지(세로 레일은 좁은 화면에 부적합) */
 @media (min-width: 1000px) {
-  /* 네비바(상단) 아래 영역 안에서만 세로 중앙 → 네비바 침범 방지 */
-  .tp-dock { top: 88px; bottom: 24px; left: auto; right: 16px; transform: none; width: auto; display: flex; flex-direction: column; justify-content: center; align-items: flex-end; pointer-events: none; }
-  .tp-dock > * { pointer-events: auto; }
-  .tp-dock__cats { flex-direction: column; gap: 4px; padding: 7px; border-radius: 20px; }
-  .tp-dock__cat { flex: 0 0 auto; width: 70px; padding: 11px 6px; border-radius: 14px; }
-  /* 패널을 레일 왼쪽으로 펼침 + 세로 중앙 정렬 */
-  .tp-dock__panels { top: 50%; bottom: auto; left: auto; right: calc(100% + 12px); transform: translateY(-50%); width: 320px; }
-  .tp-dock__panel { max-height: min(70vh, 560px); animation-name: dockPopLeft; }
-  /* 하단 바가 없으니 도구 영역 하단 여백 축소 + 우측 레일 레인 확보(카드가 레일에 가리지 않게) */
+  /* 데스크톱 우측 세로 레일은 헤더 내비(전체 도구·검색·카테고리)와 기능이 겹치고,
+     컨테이너를 1320px로 넓힌 뒤로는 콘텐츠 오른쪽을 50px 덮었다. 넓은 화면에선 숨기고
+     하단 독은 내비가 접히는 1000px 미만에서만 쓴다. */
+  .tp-dock { display: none; }
   .tp-editor { padding-bottom: 56px; }
-  .tp-editorwrap { padding-right: clamp(48px, 10vw, 140px); }
 }
 @media (max-width: 560px) {
   .tp-dock { bottom: 12px; width: calc(100vw - 16px); }
@@ -1428,7 +1422,7 @@ body.lp-page .ws-taskbar { max-width: none; margin: 0; top: 0; height: 68px; bor
 @media (max-width: 400px) { .ws-logo .ko { display: none; } }
 
 /* 2) 하단 고정 카테고리 독이 본문 마지막 요소를 가렸다 — 독 높이만큼 여백 확보 */
-@media (max-width: 900px) {
+@media (max-width: 999px) {
   body.tp:has(.tp-dock) { padding-bottom: 84px; }
   .tp-dock { padding-bottom: max(6px, env(safe-area-inset-bottom)); }
 }
@@ -1525,3 +1519,7 @@ p, li, .tp-sub, .gd-sub, .gd-lead, .tp-lead, .lp-dir__lead, .ws-card__desc, .lp-
   .lp-drop__formats .lp-fmt { padding: 4px 9px; font-size: .74rem; }
   .lp-drop__formats-lb { width: 100%; text-align: center; margin: 0 0 4px; }
 }
+
+/* 헤더 검색 진입점 */
+.ws-nav__search { display: inline-flex; align-items: center; gap: 6px; }
+@media (max-width: 760px) { .ws-nav > a.ws-nav__search { display: inline-flex; } .ws-nav__search span { display: none; } }

@@ -305,3 +305,19 @@
   window.addEventListener('scroll', onScroll, { passive: true });
   onScroll();
 })();
+
+/* 헤더 검색 → 홈 #tools 검색창 포커스. 홈에서는 이동 없이 스크롤+포커스 */
+(function () {
+  var d = document;
+  function focusSearch() {
+    var f = d.querySelector('.js-toolsearch');
+    if (!f) return false;
+    f.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    setTimeout(function () { try { f.focus(); } catch (e) {} }, 350);
+    return true;
+  }
+  Array.prototype.slice.call(d.querySelectorAll('[data-nav-search]')).forEach(function (a) {
+    a.addEventListener('click', function (e) { if (focusSearch()) e.preventDefault(); });
+  });
+  if (location.hash === '#tools') setTimeout(function () { var f = d.querySelector('.js-toolsearch'); if (f) try { f.focus({ preventScroll: true }); } catch (e) {} }, 500);
+})();
